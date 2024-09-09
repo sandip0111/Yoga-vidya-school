@@ -1,0 +1,543 @@
+:root {
+  --universal-white: #fff;
+
+  --tw-gray-100-light: #f9f9f9;
+  --tw-gray-200-light: #f1f1f4;
+  --tw-gray-300-light: #dbdfe9;
+  --tw-gray-400-light: #c4cada;
+  --tw-gray-500-light: #99a1b7;
+
+  --tw-primary-light: #f47019;
+  --tw-primary-active-light: #d55502;
+  --tw-primary-light-light: #ffc59f;
+  --tw-primary-clarity-light: #f4711942;
+  --tw-primary-inverse-light: #fff;
+
+  --tw-success-light: #17c653;
+  --tw-success-active-light: #04b440;
+  --tw-success-light-light: #eafff1;
+  --tw-success-clarity-light: #17c65333;
+  --tw-success-inverse-light: #fff;
+
+  --tw-info-light: #7239ea;
+  --tw-info-active-light: #5014d0;
+  --tw-info-light-light: #f8f5ff;
+  --tw-info-clarity-light: #7239ea33;
+  --tw-info-inverse-light: #fff;
+
+  --tw-danger-light: #f8285a;
+  --tw-danger-active-light: #d81a48;
+  --tw-danger-light-light: #ffeef3;
+  --tw-danger-clarity-light: #f8285a33;
+  --tw-danger-inverse-light: #fff;
+
+  --tw-warning-light: #f6b100;
+  --tw-warning-active-light: #dfa000;
+  --tw-warning-light-light: #fff8dd;
+  --tw-warning-clarity-light: #f6b10033;
+  --tw-warning-inverse-light: #fff;
+
+  --tw-dark-light: #1e2129;
+  --tw-dark-active-light: #111318;
+  --tw-dark-light-light: #f9f9f9;
+  --tw-dark-clarity-light: #1e212933;
+  --tw-dark-inverse-light: #fff;
+
+  --tw-light-light: #fff;
+  --tw-light-active-light: #fcfcfc;
+  --tw-light-light-light: #fff;
+  --tw-light-clarity-light: #fff3;
+  --tw-light-inverse-light: #4b5675;
+
+  --tw-secondary-light: #f9f9f9;
+  --tw-secondary-active-light: #f9f9f9;
+  --tw-secondary-light-light: #f9f9f9;
+  --tw-secondary-clarity-light: #f9f9f933;
+  --tw-secondary-inverse-light: #4b5675;
+
+  /* font-weight */
+  --fw_bold: 700;
+  --fw_regular: 400;
+  --fw_semibold: 600;
+  --fw_medium: 500;
+}
+
+html {
+  overflow-x: hidden;
+}
+
+body {
+  max-width: 1450px;
+  margin: auto;
+  overflow: hidden;
+}
+
+.flower-img {
+  width: 57px;
+}
+
+.jost {
+  font-family: "Jost", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+.julee-regular {
+  font-family: "Julee", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+* {
+  font-family: jost;
+}
+
+.text-left {
+  text-align: left !important;
+}
+
+.relative {
+  position: relative;
+}
+
+.text-white {
+  color: #fff;
+}
+
+.button {
+  background-image: linear-gradient(to right, #f47019, #d55502);
+  padding: 8px 26px;
+  border-radius: 10px;
+  text-decoration: none;
+  display: inline-block;
+  font-weight: 500 !important;
+  font-size: 18px !important;
+  color: #fff !important;
+  margin-top: 25px;
+}
+
+.button-white {
+  background: #fff;
+  color: #f5711a;
+  padding: 8px 26px;
+  border-radius: 10px;
+  text-decoration: none;
+  display: inline-block;
+  font-weight: 500 !important;
+  font-size: 18px !important;
+  margin-top: 25px;
+}
+
+h2 {
+  font-size: 32px;
+
+  span {
+    color: #f47019;
+  }
+}
+
+small {
+  padding: 0px 200px;
+  display: inline-block;
+  font-size: 22px;
+}
+
+section {
+  padding: 40px;
+}
+
+.fw-600 {
+  font-weight: 600;
+}
+
+.imageback {
+  background: rgba(249, 117, 30, 1);
+  border-radius: 10px;
+  padding-bottom: 6px;
+
+  img {
+    border-radius: 10px;
+    margin-left: -6px;
+    margin-top: -10px;
+  }
+}
+
+.small-head {
+  color: #2a2a2a;
+  font-weight: 300;
+  font-size: 20px !important;
+}
+
+.color-white {
+  color: #fff !important;
+}
+
+.section-fower {
+  position: relative;
+}
+
+.section-fower::after {
+  content: "";
+  background-image: url("https://my-s3-images-bucket.s3.amazonaws.com/img/fower-litebg-color.png");
+  background-size: 76%;
+  background-position: 10%;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 0;
+  right: -89px;
+  width: 28%;
+  height: 38%;
+  z-index: 9;
+}
+
+.section-fower::before {
+  content: "";
+  background-image: url("https://my-s3-images-bucket.s3.amazonaws.com/img/fower-litebg-color.png");
+  background-size: 50%;
+  background-position: 10%;
+  background-repeat: no-repeat;
+  position: absolute;
+  bottom: 0;
+  left: -107px;
+  width: 28%;
+  height: 38%;
+  z-index: 9;
+}
+iframe {
+  border: 6px solid #fff !important;
+  border-radius: 10px;
+}
+.p-0 {
+  padding: 0 !important;
+}
+.bg-object-fit {
+  background-size: cover; /* Ensures the image covers the div */
+  background-position: center; /* Centers the image */
+  background-repeat: no-repeat;
+}
+@media screen and (max-width: 910px) and (min-width: 300px) {
+  html {
+    overflow-x: hidden;
+  }
+  .nav-container {
+    width: 100% !important;
+  }
+  div:has(.bottom-menu) {
+    width: 100%;
+    scroll-behavior: auto;
+    overflow-x: auto;
+  }
+  .bottom-menu {
+    width: 814px !important;
+  }
+  .banner-text small {
+    padding: 0px 0px !important;
+    display: inline-block;
+    font-size: 16px;
+    text-align: center !important;
+    width: 100% !important;
+  }
+  h2 {
+    font-size: 19px !important;
+    text-align: center;
+    line-height: 28px !important;
+    margin-top: 10px;
+  }
+
+  span {
+    color: #f47019;
+  }
+
+  small {
+    padding: 0px 0px !important;
+    display: inline-block;
+    font-size: 16px;
+  }
+
+  .join-training p {
+    line-height: 27px !important;
+    padding: 0px 10px !important;
+  }
+
+  .services-section .image img {
+    height: auto !important;
+  }
+
+  iframe {
+    width: 100% !important;
+  }
+
+  .workshop-section .workshop .right-img img {
+    display: none !important;
+  }
+
+  .workshop-section .workshop {
+    padding: 30px 15px !important;
+  }
+
+  .workshop-section .workshop .details {
+    padding: 20px 10px 20px 7px !important;
+  }
+
+  .footer-section .subscribe {
+    display: none;
+  }
+
+  .banner-section .slider .inner img {
+    display: none !important;
+  }
+
+  .services-section .upper {
+    /* height: 550px; */
+    background: none !important;
+    height: auto !important;
+  }
+
+  .services-section .middle-text {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 0px 0px 0px 20px;
+    box-shadow: 0px 20px 30px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .workshop-section .workshop .details {
+    color: #fff;
+    background: rgba(249, 117, 30, 1);
+    width: auto !important;
+  }
+
+  .cooperate-section .destination {
+    height: 444px !important;
+    background-repeat: no-repeat;
+    margin-bottom: 10px;
+
+    h3 {
+      font-size: 19px;
+    }
+
+    p {
+      font-size: 15px;
+    }
+  }
+
+  .cooperate-section .destination .inner {
+    padding: 17px !important;
+    bottom: 0 !important;
+    width: 100%;
+  }
+
+  .about-section {
+    .row {
+      padding: 0 !important;
+    }
+
+    .col-md-7 {
+      div {
+        margin-top: 20px;
+        text-align: center;
+      }
+    }
+  }
+
+  section {
+    padding: 10px 20px !important;
+  }
+
+  .workshop {
+    .list {
+      color: #000;
+    }
+
+    small {
+      color: #000;
+    }
+
+    .col-md-4 {
+      img {
+        display: none !important;
+      }
+    }
+  }
+
+  .training-section .card-title {
+    margin: 0;
+    font-size: 15px;
+    font-weight: bold;
+  }
+
+  .training-section .card-text {
+    font-size: 15px;
+    line-height: 1.5;
+    font-weight: 400;
+  }
+
+  .training-section .card {
+    margin-bottom: 10px;
+  }
+
+  .tt-rishikesh h2 {
+    font-size: 19px;
+    line-height: 42px;
+    margin: 20px 0px;
+  }
+
+  .services-section {
+    h2 {
+      padding-top: 14px !important;
+      color: #000 !important;
+    }
+    small {
+      color: #000 !important;
+      font-size: 14px !important;
+    }
+    .upper {
+      h3 {
+        color: #000 !important;
+      }
+    }
+    small {
+      text-align: center;
+    }
+    .bottom {
+      height: auto !important;
+    }
+  }
+  .services-section .middle-text {
+    position: relative !important;
+    margin: 0 !important;
+    top: 0 !important;
+  }
+  ul {
+    padding: 0;
+    margin: 0;
+  }
+  .banner-section .form {
+    margin: auto;
+  }
+  .includes {
+    h2 {
+      font-size: 16px;
+    }
+    .list {
+      ul {
+        li {
+          font-size: 12px;
+        }
+      }
+    }
+  }
+  .benifits-section .count {
+    font-size: 25px !important;
+    font-weight: 900;
+  }
+  .services-section .middle-text {
+    width: 100% !important;
+    padding: 0 !important;
+  }
+  #navbarNav ul {
+    gap: 0 !important;
+  }
+  .testimonials-section .testimonials .inner .img img {
+    width: 36% !important;
+  }
+  small {
+    width: 100% !important;
+    text-align: center !important;
+    margin-top: 10px;
+  }
+  .small-head {
+    margin-top: 10px;
+    text-align: center;
+  }
+  .workshops .card .date .month {
+    font-size: 13px !important;
+  }
+  .workshops .card .date .day {
+    font-weight: 600;
+    font-size: 16px !important;
+  }
+}
+
+.yoga-course-gallery-main-div {
+  width: 100%;
+  margin: auto;
+  justify-content: center;
+  display: grid;
+  grid-template-columns: 40% calc(60% - 30px);
+  gap: 30px;
+  margin-block-start: 40px;
+  @media (max-width: 767px) {
+    & {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+.img-border {
+  /* background: #fff; */
+  border-radius: 20px;
+  border: 8px solid #fff;
+  img,
+  iframe {
+    border-radius: 20px;
+  }
+}
+iframe {
+  border-radius: 20px;
+  border: 8px solid #fff;
+}
+.yoga-course-big-img-first-div {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  border-radius: 15px;
+  box-shadow: 0px 10px 10px 10px #0000000e;
+  border: 4px solid white;
+  overflow: hidden;
+}
+
+.yoga-course-big-img-first-div img {
+  width: 100%;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.yoga-course-big-img-second-div {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  @media (max-width: 479px) {
+    & {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+.yoga-course-big-img-second-div img {
+  width: 100%;
+  object-fit: cover;
+  height: 100%;
+  max-height: 380px;
+  border-radius: 15px;
+  border: 4px solid white;
+  box-shadow: 0px 10px 10px 10px #0000000e;
+}
+
+.patern-bg2 {
+  background: -webkit-radial-gradient(
+    circle,
+    rgba(255, 245, 219, 0.94) 60%,
+    rgba(249, 117, 30, 0.21) 110%
+  );
+}
+
+.orange-tick ul li ::before {
+  content: "\2713 ";
+  color: #f9751e;
+  margin: 10px;
+  font-size: 20px;
+  font-weight: bolder;
+}

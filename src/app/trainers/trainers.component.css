@@ -1,0 +1,52 @@
+.mentors {
+    text-align: center;
+    padding: 40px 40px;
+    background: radial-gradient(circle, hsla(0, 0%, 100%, 1) 60%, rgba(249, 117, 30, 0.21) 130%);
+    background: -moz-radial-gradient(circle, hsla(0, 0%, 100%, 1) 60%, rgba(249, 117, 30, 0.21) 130%);
+    background: -webkit-radial-gradient(circle, hsla(0, 0%, 100%, 1) 60%, rgba(249, 117, 30, 0.21) 130%);
+
+    .card {
+        border: 0.94px solid #F9751E;
+        padding: 10px;
+        .card-body{
+            padding: 0;
+        }
+    }
+    p{
+        height: 50px;
+    }
+    small {
+        padding: 0px 200px;
+        display: inline-block;
+        font-size: 20px;
+    }
+    .fw-600{
+        font-weight: 600;
+    }
+    .card-image{
+        height: 260px;
+        overflow: hidden;
+    }
+    .button{
+        background: rgba(249, 117, 30, 1);
+        color: #fff;
+        border-radius: 5px;
+        padding: 5px 10px;
+        font-weight: 600;
+        font-size: 17px !important;
+        display: inline-block;
+        text-decoration: none;
+        margin-top: 40px;
+        display: inline-block;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        i{
+            padding: 6px;
+    background: #fff;
+    color: rgba(249, 117, 30, 1);
+    border-radius: 50%;
+    margin-right: 5px;
+        }
+    }
+}

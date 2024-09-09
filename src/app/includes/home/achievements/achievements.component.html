@@ -1,0 +1,11 @@
+<section class="achieve-section mb-3">
+  <div class="row">
+    <div class="col-md-3 col-6 col-sm-4 mb-3" *ngFor="let item of items">
+      <div class="icon">
+        <img [src]="'https://my-s3-images-bucket.s3.amazonaws.com/img/'+item.icon" class="img-fluid" alt="Achievements" />
+      </div>
+      <div class="count">{{item.count}}+</div>
+      <div class="title">{{item.title}}</div>
+    </div>
+  </div>
+</section>

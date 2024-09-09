@@ -1,0 +1,78 @@
+<!-- about.component.html -->
+
+<section class="excursions-rishikesh-section py-5" *ngIf="noContent">
+  <div class="row text-center">
+    <div class="col-md-12">
+      <div><img src="https://my-s3-images-bucket.s3.amazonaws.com/img/flower-color.png" class="flower-img" /></div>
+      <h2>Excursions for <span>{{exsData?.title}}</span></h2>
+      <small>{{exsData?.desc}}</small>
+    </div>
+  </div>
+  <div class="row">
+
+    <div class="col-md-6 image">
+      <div class="imageback">
+        <img
+          src="{{exsData?.row1?.img}}"
+          class="img-fluid"
+          alt="About Image"
+        />
+      </div>
+    </div>
+    <div class="col-md-6 d-flex align-items-center">
+      <div>
+        <h3><span>{{exsData?.row1?.title}}</span></h3>
+        <p>
+          {{exsData?.row1?.desc}}
+        </p>
+        <!-- <div class="namaste">Namaste!</div> -->
+        <!-- <div class=""><a href="#" class="button">Enroll In The Course </a></div> -->
+      </div>
+    </div>
+  </div>
+    <div class="row mb-5">
+
+    <div class="col-md-6 d-flex align-items-center">
+      <div>
+        <h3>{{exsData?.row2?.title}}</h3>
+        <p>
+          {{exsData?.row2?.desc}}
+        </p>
+        <!-- <div class="namaste">Namaste!</div> -->
+        <!-- <div class=""><a href="#" class="button">Enroll In The Course </a></div> -->
+      </div>
+    </div>
+    <div class="col-md-6 image">
+      <div class="imageback">
+        <img
+          src="{{exsData?.row2?.img}}"
+          class="img-fluid"
+          alt="About Image"
+        />
+      </div>
+    </div>
+  </div>
+  <div class="row">
+
+    <div class="col-md-6 image">
+      <div class="imageback">
+        <img
+          src="{{exsData?.row3?.img}}"
+          class="img-fluid"
+          alt="About Image"
+        />
+      </div>
+    </div>
+    <div class="col-md-6 d-flex align-items-center">
+      <div>
+        <h3><span>{{exsData?.row3?.title}}</span></h3>
+        <p>
+          {{exsData?.row3?.desc}}
+        </p>
+        <!-- <div class="namaste">Namaste!</div> -->
+        <!-- <div class=""><a href="#" class="button">Enroll In The Course </a></div> -->
+      </div>
+    </div>
+  </div>
+
+</section>

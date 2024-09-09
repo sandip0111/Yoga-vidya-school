@@ -1,0 +1,12 @@
+/* .bank-table tbody tr td {
+  border: none;
+} */
+.bank-table,
+.qr-img {
+  border: 1px solid #ed5426;
+}
+.qr-img img {
+  width: 200px;
+  height: 190px;
+  object-fit: cover;
+}

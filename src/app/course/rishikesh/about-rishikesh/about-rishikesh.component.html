@@ -1,0 +1,130 @@
+<!-- about.component.html -->
+
+<section class="about-rishikesh-section py-5">
+  <div class="row mb-3 align-items-center">
+    <div class="col-md-6">
+      <div class="imageback">
+        <img
+          src="{{ this.aboutContent.image }}"
+          class="img-fluid"
+          alt="{{ this.aboutContent.title }} {{
+            this.aboutContent.secondTitle
+          }}"
+        />
+      </div>
+    </div>
+    <div class="col-md-6 d-flex align-items-center">
+      <div>
+        <small class="text-left p-0">Yoga Vidya Present's</small>
+        <h1>
+          {{ this.aboutContent.title }}
+          <span>{{ this.aboutContent.secondTitle }}</span>
+        </h1>
+        <div [innerHTML]="this.aboutContent.desc"></div>
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="row mb-5"
+    *ngIf="slug == '300-hours-yoga-teacher-training-in-rishikesh'"
+  >
+    <div class="col-md-6 align-items-center">
+      <div>
+        <h2>
+          <span>Deeper Your Yoga Practice and Advance Your Yoga Teachings</span>
+        </h2>
+        <div>
+          <p>
+            Whether you have attended our Online Yoga Classes, Yoga Workshops,
+            100 hour or 200 hour Yoga Teacher Training or have practiced with
+            any other yoga school, our 300 hour yoga teacher training in
+            Rishikesh will uplift your current yoga practice to a higher level
+            with refined alignment and understanding. We meet you where you are,
+            and transform your yoga practice to an inspiring teaching skills
+            with confident voice and structured content and sequences, suitable
+            to individual body types.
+          </p>
+          <p>
+            We believe how you teach or lead your classes, becomes a
+            representation of who you are, your dedication and devotion towards
+            your practice and how you live it on and off your mat. And this 300
+            hours will empower you with the qualities of a good yoga
+            practitioner and a great yoga teacher.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="imageback">
+        <img
+          src="https://my-s3-images-bucket.s3.amazonaws.com/img/image_1721830582388.jpeg"
+          class="img-fluid"
+          alt="{{ this.aboutContent.title }} {{
+            this.aboutContent.secondTitle
+          }}"
+        />
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="row"
+    *ngIf="slug == '300-hours-yoga-teacher-training-in-rishikesh'"
+  >
+    <div class="col-md-6">
+      <div class="imageback">
+        <img
+          src="https://my-s3-images-bucket.s3.amazonaws.com/img/image_1696590613162.jpeg"
+          class="img-fluid"
+          alt="{{ this.aboutContent.title }} {{
+            this.aboutContent.secondTitle
+          }}"
+        />
+      </div>
+    </div>
+
+    <div class="col-md-6 align-items-center">
+      <div>
+        <h2>
+          <span
+            >300 Hours Yoga Teacher Training in Rishikesh is suitable for those
+            who..</span
+          >
+        </h2>
+        <div>
+          <ul style="list-style: none">
+            <li>
+              1. Have successfully completed their 200 hours Yoga TTC and want
+              to gain advanced knowledge in yogic science.
+            </li>
+            <li>
+              2. Are looking forward to gain in depth knowledge of Yoga
+              Philosophy , Yoga Anatomy with respect to biomechanics
+            </li>
+            <li>
+              3. Are seeking to further deepen their study of asanas and
+              immersive yoga practices of Pranayama, Yoga Nidra and Meditation.
+            </li>
+            <li>
+              4. Are looking to gain confidence, expertise and experience in
+              taking yoga classes
+            </li>
+            <li>
+              5. Are planning to take advanced or intermediate level yoga
+              sessions
+            </li>
+            <li>
+              6. Are truly inspired and focussed to become a 500 RYT yoga
+              teacher and aspire to teach advanced level yoga across the world.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="text-center">
+      <a href="/book-now" class="button">Enroll In The Course </a>
+    </div>
+  </div>
+</section>

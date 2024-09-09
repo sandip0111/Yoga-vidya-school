@@ -1,0 +1,55 @@
+<section class="banner-section" style="background-image: url('{{sliderImage}}');background-size: cover;background-position: center;" id="bnner_section">
+  <div class="row">
+    <div class="col-md-6">
+      <!-- <div class="banner-text">
+        <small>Best Yoga School In Rishikesh</small>
+        <h2>Awaken Your Inner Yogi:</h2>
+        <h2> Rishikesh's Acclaimed Haven for Yoga Mastery</h2>
+        <div class="banner-desc my-4">Discover Rishikesh's tranquil embrace, nurturing yoga mastery. Embrace serene landscapes, sacred rivers, and renowned gurus for soulful transformation.</div>
+      </div>
+      <div>
+        <a href="#" class="button">Enroll Now</a>
+        <a href="#" class="video-button"><i class="fas fa-play"></i> Enroll Now</a>
+      </div>
+      <div class="free-ad">
+        <div>
+          <img src="https://my-s3-images-bucket.s3.amazonaws.com/img/right-tick.png" class="img-fluid" alt="Banner Image" /> 3- Days Free Trial
+        </div>
+        <div>
+          <img src="https://my-s3-images-bucket.s3.amazonaws.com/img/right-tick.png" class="img-fluid" alt="Banner Image" /> 2- Days Free Trial
+        </div>
+        <div>
+          <img src="https://my-s3-images-bucket.s3.amazonaws.com/img/right-tick.png" class="img-fluid" alt="Banner Image" /> 2- Days Free Trial
+        </div>
+      </div> -->
+    </div>
+    <div class="col-md-6">
+      <div class="slider">
+        <div class="inner">
+          <div class="form">
+            <h3 *ngIf="slug != 'yoga-retreat-in-mysore-india' && slug !='yoga-retreat-in-peru'">Want To Become Expert Yoga Teacher!</h3>
+            <h3 *ngIf="slug == 'yoga-retreat-in-mysore-india' || slug =='yoga-retreat-in-peru'">Interested In This Retreat ?</h3>
+            <small *ngIf="slug == 'yoga-retreat-in-mysore-india' || slug =='yoga-retreat-in-peru'">Sign Up Here !</small>
+            <small *ngIf="slug != 'yoga-retreat-in-mysore-india' && slug !='yoga-retreat-in-peru'">Apply Now - We Are Taking Admissions.</small>
+            <form #inquiry="ngForm" (ngSubmit)="saveInquiry(inquiryData)">
+              <div class="form-inputs">
+                <input type="text" placeholder="Name" name="name" [(ngModel)]="inquiryData.name"/>
+                <input type="text" placeholder="Email" name="email" [(ngModel)]="inquiryData.to" />
+                <select  name="courseDate" [(ngModel)]="inquiryData.courseDate">
+                <option value="undefined">Select Course Date</option>
+                  <option *ngFor="let date of datesItem" value="{{ date.startDate | date : 'dd MMMM y' }} ~ {{date.endDate | date : 'dd MMMM y'}}">
+                    {{ date.startDate | date : "dd MMMM y" }} -
+                  {{ date.endDate | date : "dd MMMM y" }}
+                  </option>
+                </select>
+                <input type="number" placeholder="Your Contact Number"  name="contactNumber" [(ngModel)]="inquiryData.contactNumber" />
+                <textarea placeholder="Your Message" rows="2" name="message" [(ngModel)]="inquiryData.message"></textarea>
+                <input class="button" type="submit" value="Enquiry" />
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

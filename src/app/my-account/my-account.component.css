@@ -1,0 +1,6 @@
+.student-thumbnail {
+  border-radius: 7rem;
+  width: 75px;
+  height: 75px;
+  object-fit: cover;
+}

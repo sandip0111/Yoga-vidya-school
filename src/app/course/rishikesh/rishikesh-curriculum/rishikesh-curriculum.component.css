@@ -1,0 +1,119 @@
+.know-more-section {
+    text-align: center;
+    background: radial-gradient(circle, rgba(255, 245, 219, 0.94) 60%, rgba(249, 117, 30, 0.21) 110%);
+    background: -moz-radial-gradient(circle, rgba(255, 245, 219, 0.94) 60%, rgba(249, 117, 30, 0.21) 110%);
+    background: -webkit-radial-gradient(circle, rgba(255, 245, 219, 0.94) 60%, rgba(249, 117, 30, 0.21) 110%);
+
+    small {
+        padding: 0px 130px;
+        display: inline-block;
+        font-size: 17px;
+    }
+
+    .faq {
+        .card {
+            border: none;
+        }
+
+        .card-header {
+            font-size: 17px;
+            font-weight: 500;
+            display: flex;
+            justify-content: space-between;
+            padding: 2px 15px;
+            align-items: center;
+            border: 1px solid #F9751E;
+            box-shadow: 0px 4px 4px 0px #00000040;
+            background: #FFF5DE;
+
+            .ques {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+
+                h3 {
+                    font-size: 19px;
+                    margin: 0;
+                    margin-top:10px;
+                }
+
+                p {
+                    font-size: 14px;
+                    font-weight: normal;
+                }
+
+                .icon {
+
+                    img {
+                        width: 60%;
+                    }
+                }
+            }
+
+            .plus-icon {
+                color: #fff;
+                font-size: 14px;
+                background: rgba(249, 117, 30, 1);
+                border-radius: 50%;
+                padding: 7px 12px;
+                margin: 4px 0px;
+            }
+        }
+
+        .card-header {
+            cursor: pointer;
+        }
+
+        .plus-icon i {
+            transition: transform 0.3s ease;
+        }
+
+        .card-header.open .plus-icon i {
+            transform: rotate(45deg);
+            /* Change to a minus icon */
+        }
+
+        .card-body {
+            font-size: 18px;
+            font-weight: 400;
+            background: rgba(217, 217, 217, 0.1);
+
+            .desc {
+                box-shadow: 0px 4.51px 4.51px 0px #00000040;
+                border: 2.25px solid #F9751E;
+                padding: 20px;
+                border-radius: 10px;
+                font-size: 15px;
+                line-height: 28px;
+
+                img {
+                    width: 100%;
+                    border-radius: 40px;
+                }
+            }
+
+        }
+    }
+
+    ul {
+        list-style: none;
+
+        li {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            gap: 10px;
+
+            i {
+                color: #F9751E;
+            }
+        }
+    }
+
+    p {
+        span {
+            color: #F9751E;
+        }
+    }
+}

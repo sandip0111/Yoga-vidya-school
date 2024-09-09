@@ -1,0 +1,25 @@
+<section class="fee" *ngIf="list.length > 0">
+  <div><img src="https://my-s3-images-bucket.s3.amazonaws.com/img/flower-color.png" class="flower-img" /></div>
+  <h2>What’s <span>Covered in The Course</span></h2>
+  <h2>
+    We provide best {{feesData?.title}} at affordable
+    price.
+  </h2>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="borderall mb-2" *ngFor="let item of list;let i=index;">
+        <div class="row align-items-center">
+          <div class="col-md-1 col-3">
+            <div class="icon"><img [src]="'https://my-s3-images-bucket.s3.amazonaws.com/img/fee/fee'+(i+1)+'.png'" class="img-fluid" alt="About Image" /></div>
+
+          </div>
+          <div class="col-md-11 col-9 text-left">
+            <h3>{{ item.title }}</h3>
+            <p *ngIf="item.text" class="p0">{{ item.text }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+ <app-start-class [data]="feesData"></app-start-class>
+</section>

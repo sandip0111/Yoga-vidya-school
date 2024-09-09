@@ -1,0 +1,35 @@
+.join-training{
+    text-align: center;
+    padding: 40px 20px;
+    background: radial-gradient(circle, rgba(255, 245, 219, 0.94) 60%, rgba(249, 117, 30, 0.21) 110%);
+    background: -moz-radial-gradient(circle, rgba(255, 245, 219, 0.94) 60%, rgba(249, 117, 30, 0.21) 110%);
+    background: -webkit-radial-gradient(circle, rgba(255, 245, 219, 0.94) 60%, rgba(249, 117, 30, 0.21) 110%);
+    .ryslogo{
+        display: flex;
+        gap: 42px;
+        justify-content: center;
+        align-items: center;
+        img{
+            width: 14%;
+            height: 18%;
+        }
+    }
+    h3{
+        font-size: 18px;
+    }
+    h2{
+        font-size: 22px;
+        margin-bottom: 20px;
+        span{
+            color: #f47019;
+        }
+    }
+    p{
+        line-height: 27px;
+        padding: 0px 60px;
+    }
+}
+
+.h2-jt{
+  font-size:32px !important
+}

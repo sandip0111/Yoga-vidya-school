@@ -1,0 +1,127 @@
+.animation-prop:before {
+  opacity: 1;
+  transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg)
+    rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
+  transform-style: preserve-3d;
+  transition: all 0.5s ease-in-out;
+}
+.review-block {
+  max-width: 1050px;
+  margin: auto;
+  padding: auto;
+  margin-top: 50px;
+}
+.review-block .upperpart {
+  padding: 20px 30px;
+  display: flex;
+  align-items: center;
+  column-gap: 66px;
+}
+.review-block .upperpart .image img {
+  width: 90px;
+  height: 90px;
+  border-radius: 45px;
+  object-fit: cover;
+  border: 3px solid #f9751e;
+}
+.review-block .upperpart .parah {
+  border-radius: 15px;
+  font-size: 13px;
+  background: #f9751e;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  width: 100%;
+}
+
+.review-block .upperpart-rev {
+  padding: 20px 30px;
+  display: flex;
+  align-items: center;
+  column-gap: 66px;
+  flex-direction: row-reverse;
+}
+.review-block .upperpart-rev .image img {
+  width: 90px;
+  height: 90px;
+  border-radius: 45px;
+  object-fit: cover;
+  border: 3px solid #f9751e;
+}
+.review-block .upperpart-rev .parah {
+  border-radius: 15px;
+  font-size: 13px;
+  background: #f9751e;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  width: 100%;
+}
+@media (max-width: 800px) {
+  .review-block .upperpart {
+    padding: unset;
+    border-radius: 30px;
+    margin: 10px;
+    border: 3px solid white;
+    background: #f9751e;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .review-block .upperpart img {
+    margin-top: -35px;
+    border: 3px solid white !important;
+    width: 80px !important;
+    height: 80px !important;
+  }
+  .review-block .upperpart .parah {
+    background: unset;
+  }
+  .review-block .upperpart-rev {
+    padding: unset;
+    border-radius: 30px;
+    margin: 10px;
+    border: 3px solid white;
+    background: #f9751e;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-direction: row;
+  }
+  .review-block .upperpart-rev img {
+    margin-top: -35px;
+    border: 3px solid white !important;
+    width: 80px !important;
+    height: 80px !important;
+  }
+  .review-block .upperpart-rev .parah {
+    background: unset;
+  }
+}
+
+.courseCard .card {
+  border: none;
+  background: none;
+}
+.courseCard .card .cardBtn {
+  background: #f9751e;
+  border: none;
+}
+.courseCard .card img {
+  width: 100%;
+  height: 250px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.patern-bg2{
+  background: -webkit-radial-gradient(circle, rgba(255, 245, 219, 0.94) 60%, rgba(249, 117, 30, 0.21) 110%);
+}
+
+.main-image-mentor {
+  width: 100%;
+  border-radius: 15px;
+  border: 4px solid white;
+}
+
+.shadow {
+  box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15) !important;
+}

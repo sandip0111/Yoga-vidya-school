@@ -1,0 +1,43 @@
+<!-- about.component.html -->
+
+<section class="about-section py-5">
+  <div><img src="https://my-s3-images-bucket.s3.amazonaws.com/img/flower-color.png" class="flower-img" /></div>
+  <small>Welcome To</small>
+  <h1>
+    {{ aboutItems.title }} <span>{{ aboutItems.span }}</span>
+  </h1>
+  <div class="row mb-3">
+    <div class="col-md-12 d-flex align-items-center">
+      <div [innerHTML]="aboutItems.desc"></div>
+    </div>
+    <div class="col-md-12" *ngIf="aboutItems.image">
+      <div class="about-section_big_image">
+        <img src="{{ aboutItems.image }}" alt="About Image" />
+      </div>
+    </div>
+    <div class="col-md-12 image">
+      <a
+        *ngIf="slug != 'pranayama-course-online-pranarambha'"
+        href="/book-now"
+        class="button"
+        >Enroll in the course</a
+      >
+      <a
+        *ngIf="slug == 'pranayama-course-online-pranarambha'"
+        href="checkout/pranayama-course-online-pranarambha"
+        class="button"
+        >Enroll in the course</a
+      >
+    </div>
+  </div>
+</section>
+<section class="subjectSection py-5" *ngIf="aboutItems.subjectInfo">
+  <!-- <h2>{{aboutItems.title}} <span>{{aboutItems.span}}</span></h2> -->
+  <!-- <div class="container"> -->
+  <div class="col-md-12 align-items-center container">
+    <div
+      [innerHtml]="sanitizer.bypassSecurityTrustHtml(aboutItems?.subjectInfo)"
+    ></div>
+  </div>
+  <!-- </div> -->
+</section>

@@ -1,0 +1,75 @@
+<section class="choose-us-section py-5">
+  <div>
+    <img
+      src="https://my-s3-images-bucket.s3.amazonaws.com/img/flower-color.png"
+      class="flower-img"
+      alt="Choose Us Image"
+    />
+  </div>
+  <h2>
+    Why Choose<span>
+      Yoga Teacher Training in Rishikesh at Yoga Vidya School</span
+    >
+  </h2>
+  <small>Opportunities for Deepening Spiritual Growth and Self-Discovery</small>
+  <p>
+    A yoga teacher training in Rishikesh at Yoga Vidya School augurs well with
+    the spiritual heritage of this ancient, sacred land. Yoga Vidya School has
+    put in place an intensive yet rewarding yoga training in Rishikesh where
+    yoga aspirants can delve into a comprehensive exploration of yogic
+    philosophy, different asana styles, meditative and pranic practices, anatomy
+    and pedagogy. Guided by expert yoga faculty, participate in intense asana
+    classes of traditional Hatha yoga, Ashtanga Yoga and Vinyasa Flow Yoga in
+    the Yoga Alliance certified 200-hour, 300-hour and the 500-hour yoga TTC at
+    our yoga school in Rishikesh. Deepen your understanding of yogic philosophy
+    as you traverse through the ancient texts of Bhagavad Gita and the Yoga
+    Sutras.
+  </p>
+  <p>
+    Your yoga teacher training in Rishikesh at Yoga Vidya School is well
+    supported and augmented by a community of like-minded people and guided by a
+    team of dedicated and highly experienced yoga masters who offer personalized
+    attention. After completing your Yoga TTC from our yoga school in Rishikesh,
+    you will not only emerge as a certified yoga instructor but also the
+    torch-bearer of a timeless heritage, ready to uplift and motivate other
+    aspiring yogis and yoginis.
+  </p>
+  <div class="choose-us-section__galary">
+    <!-- <iframe
+      width="890"
+      height="470"
+      src="https://www.youtube.com/embed/vPD1NGMY_8E?si=PZ1aqfhF5s0UKkaA"
+      title="YouTube video player"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allowfullscreen
+    ></iframe> -->
+    <img src="https://my-s3-images-bucket.s3.amazonaws.com/images/why_choose_e29en0.jpg" alt="Why Choose Yoga Teacher Training in Rishikesh at Yoga Vidya School">
+  </div>
+  <div class="row my-2">
+    <div class="col-md-6 border-right">
+      <div class="choose-option" *ngFor="let left of itemsLeft">
+        <div class="icon">
+          <img src="https://my-s3-images-bucket.s3.amazonaws.com/img/{{ left.image }}" alt="Choose Us Image" />
+        </div>
+        <div class="text">
+          <span>{{ left.title }}: </span>{{ left.text }}
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="choose-option" *ngFor="let right of itemsRight">
+        <div class="icon">
+          <img src="https://my-s3-images-bucket.s3.amazonaws.com/img/{{ right.image }}" alt="Choose Us Image" />
+        </div>
+        <div class="text">
+          <span>{{ right.title }}: </span>{{ right.text }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <a href="#upcoming-events" class="button">Apply For The Upcoming Classes</a>
+  </div>
+</section>

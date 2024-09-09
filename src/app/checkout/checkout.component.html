@@ -1,0 +1,105 @@
+<div class="container mt-5 mb-5">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card border-0 mt-3">
+        <div class="card-body">
+          <h4 class="card-title text-center text-uppercase">Order Summary</h4>
+          <ul class="list-group text-white">
+            <li class="list-group-item">
+              <div class="row align-items-center">
+                <div class="col">
+                  <span> {{ courseList?.coursetitle }}</span>
+                </div>
+                <div class="col-auto">
+                  <span class="h4"
+                    ><strong>{{ price }}</strong></span
+                  >
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <h2>Checkout</h2>
+
+      <div class="check-user">
+        <div class="">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            class="form-control mb-3"
+            id="email"
+            (change)="checkEmail($event)"
+            [(ngModel)]="checkData.email"
+            placeholder="Enter your email"
+          />
+        </div>
+
+        <!-- <div>
+          <label for="package">Payment Mode</label>
+          <select
+            class="form-control mb-3"
+            name="package"
+            [(ngModel)]="checkData.mode"
+            (change)="setMode($event)"
+          >
+            <option value="undefined">Select Payment Mode</option>
+            <option value="CC">CC Avenue</option>
+            <option value="STRIPE">Stripe</option>
+          </select>
+        </div> -->
+
+        <div>
+          <label for="package">Payment Currency</label>
+          <select
+            class="form-control mb-3"
+            name="package"
+            [(ngModel)]="checkData.currency"
+            (change)="priceConvert($event)"
+          >
+            <option value="undefined">Select Currency</option>
+            <option value="USD">USD</option>
+            <option value="INR">INR</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="package">Package</label>
+          <select
+            class="form-control mb-3"
+            name="package"
+            [(ngModel)]="checkData.package"
+            (change)="setPrice($event)"
+          >
+            <option value="undefined">Select Package</option>
+            <option value="Basic">Basic</option>
+            <!-- <option value="Standard">Standard</option>
+            <option value="Premium">Premium</option> -->
+          </select>
+        </div>
+
+        <div class="" *ngIf="!oldStudent">
+          <label for="name">Name</label>
+          <input
+            type="text"
+            class="form-control mb-3"
+            id="name"
+            [(ngModel)]="checkData.name"
+            placeholder="Enter your Name"
+          />
+        </div>
+
+        <a
+          href="javascript:void(0)"
+          style="background-color: #f9751e"
+          class="btn btn-primary w-100 border-0"
+          (click)="checkoutData(checkData)"
+        >
+          Pay {{ price }} Now
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

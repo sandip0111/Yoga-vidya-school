@@ -1,0 +1,49 @@
+<section class="training-section py-5">
+  <div><img src="https://my-s3-images-bucket.s3.amazonaws.com/img/flower-color.png" class="flower-img" /></div>
+  <h3>
+    Watch Video
+  </h3>
+  <h2 >
+    <span >{{ytData?.title}}</span>
+  </h2>
+  <div class="video my-2 py-2" *ngIf="!this.ytData?.videoId">
+    <iframe
+    loading="lazy"
+      width="860"
+      height="500"
+      src="https://www.youtube.com/embed/vPD1NGMY_8E?si=PZ1aqfhF5s0UKkaA"
+      title="YouTube video player"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allowfullscreen=""
+    ></iframe>
+  </div>
+  <div class="video my-2 py-2" *ngIf="this.ytData?.videoId">
+    <iframe
+    loading="lazy"
+      width="860"
+      height="500"
+      [src]="safeUrl"
+      title="YouTube video player"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allowfullscreen=""
+    ></iframe>
+  </div>
+  <div *ngIf="content" class="my-2" [innerHTML]="content">
+    <!-- <p>
+      Begin your journey from an aspiring yogi to becoming an accomplished one
+      by taking the Yoga teacher training course in India from a recognized
+      place like that of Rishikesh which is the Yoga capital of the nation. When
+      you have the option of learning the authentic form of Yoga, then why dwell
+      around the Google pages to find out which one is the best? There is
+      nothing better to learn and gain the immense benefits of Yoga from a known
+      destination where the traditional understanding of Yoga was introduced,
+      and practiced for centuries.
+    </p>
+    <p class="bold"> Hatha | Ashtanga | Pranayama | Adjustment &amp; Alignment | Philosophy </p> -->
+  </div>
+  <app-start-class [data]="ytData"></app-start-class>
+</section>

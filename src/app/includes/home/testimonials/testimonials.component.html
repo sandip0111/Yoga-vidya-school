@@ -1,0 +1,45 @@
+<!-- about.component.html -->
+
+<section class="testimonials-section py-3">
+  <div class="row py-4">
+    <div class="col-md-12">
+      <div><img src="https://my-s3-images-bucket.s3.amazonaws.com/img/flower-color.png" class="flower-img" alt="Testimonials" /></div>
+      <h2>What They
+        <span>Say About Us?</span></h2>
+      <small
+        >Read and listen the transformative experiences of our yoga students and participants. Discover how our yoga teacher training, yoga classes and yoga retreats  have helped them achieve their spiritual awakening, personal and professional development.</small
+      >
+    </div>
+  </div>
+  <div class="row mx-md-5">
+    <div
+      class="col-md-12 testimonials"
+      *ngFor="let item of testimonials"
+    >
+      <div class="inner relative">
+        <div class="img">
+          <img [src]="item.img" alt="Testimonial Image" />
+        </div>
+        <div class="comma-left"><img src="https://my-s3-images-bucket.s3.amazonaws.com/img/inverted-comma.png" /></div>
+
+        <!-- <div class="stars">
+          <div class="stars">
+            <ng-container *ngFor="let star of [1, 2, 3, 4, 5]">
+              <i class="fas fa-star" *ngIf="star <= item.rating"></i>
+            </ng-container>
+          </div>
+        </div> -->
+        <div class="text">
+          {{ item.description }}
+        </div>
+        <div class="name">
+          {{ item.name }}
+        </div>
+        <div class="comma-right"><img src="https://my-s3-images-bucket.s3.amazonaws.com/img/inverted-comma.png" /></div>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <a href="/testimonial" class="button">View All Testimonials</a>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,20 @@
+.tt-rishikesh{
+    text-align: center;
+    padding: 40px 40px;
+    background: radial-gradient(circle, hsla(0, 0%, 100%, 1) 60%, rgba(249, 117, 30, 0.21) 130%);
+    background: -moz-radial-gradient(circle, hsla(0, 0%, 100%, 1) 60%, rgba(249, 117, 30, 0.21) 130%);
+    background: -webkit-radial-gradient(circle, hsla(0, 0%, 100%, 1) 60%, rgba(249, 117, 30, 0.21) 130%);
+    h2{
+      font-size: 30px;
+      line-height: 42px;
+      margin: 20px 0px;
+    }
+    .dotted-border {
+        border: 3px dashed rgba(249, 117, 30, 1);
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+        padding: 10px;
+        text-align: left;
+        font-family: jost;
+        font-size: 14px;
+      }
+}

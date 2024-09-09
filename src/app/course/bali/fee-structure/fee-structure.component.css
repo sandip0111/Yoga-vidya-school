@@ -1,0 +1,26 @@
+.fee{
+    text-align: center;
+    background: radial-gradient(circle, hsla(0, 0%, 100%, 1) 60%, rgba(249, 117, 30, 0.21) 130%);
+    background: -moz-radial-gradient(circle, hsla(0, 0%, 100%, 1) 60%, rgba(249, 117, 30, 0.21) 130%);
+    background: -webkit-radial-gradient(circle, hsla(0, 0%, 100%, 1) 60%, rgba(249, 117, 30, 0.21) 130%);
+    .borderall{
+        border: 2px dashed red;
+    padding: 20px;
+    border-radius: 10px;
+    background: #fff;
+    }
+    .icon{
+        background: #F9751E;
+        border-radius: 50%;
+        padding: 10px;
+    }
+    .offerend{
+        font-size: 18px;
+        span{
+            color: #f5711a;
+        }
+    }
+    .p0{
+        padding: 0;
+    }
+}

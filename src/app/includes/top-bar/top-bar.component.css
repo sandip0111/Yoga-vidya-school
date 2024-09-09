@@ -1,0 +1,39 @@
+
+  
+  .topbar {
+    background-color: #f47019;
+    background-image: linear-gradient(to right, #f47019, #d55502);
+  }
+  
+  .contact-info {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .contact-item {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #fff;
+    gap: 5px;
+  }
+  
+  .contact-item i {
+    font-size: 18px;
+  }
+  
+  .social-icons {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .social-icon {
+    text-decoration: none;
+    color: #fff;
+    font-size: 18px;
+  }
+  
+  .social-icon:hover {
+    color: #ddd;
+  }
+  

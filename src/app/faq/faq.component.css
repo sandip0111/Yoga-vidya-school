@@ -1,0 +1,13 @@
+.accordion-header button {
+    font-weight: bolder;
+  }
+  
+  section.faq h1 {
+    color: #F9751E;
+    text-align: center;
+  }
+  
+  section.faq h3 {
+    margin-top: 30px;
+  }
+  

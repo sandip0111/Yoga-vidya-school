@@ -1,0 +1,41 @@
+.cooperate-section {
+    text-align: center;
+    background: radial-gradient(circle, rgba(255, 245, 219, 0.94) 60%, rgba(249, 117, 30, 0.21) 110%);
+    background: -moz-radial-gradient(circle, rgba(255, 245, 219, 0.94) 60%, rgba(249, 117, 30, 0.21) 110%);
+    background: -webkit-radial-gradient(circle, rgba(255, 245, 219, 0.94) 60%, rgba(249, 117, 30, 0.21) 110%);
+
+    .destination {
+        position: relative;
+        height: 530px;
+        background-size: 100%;
+        overflow: hidden;
+        
+        .inner {
+            z-index: 999;
+            position: absolute;
+            text-align: left;
+            padding: 20px;
+            color: #fff;
+            bottom: -178px;
+            transition: bottom 0.5s ease;
+            a{
+                color: #fff;
+                text-decoration: none;
+                font-weight: 600;
+                margin-top: 10px;
+            }
+        }
+
+        .over-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            top: 0;
+            left: 0;
+        }
+    }
+}
+.destination:hover .inner {
+    bottom: 0 !important; /* Slide up to reveal the text */
+}

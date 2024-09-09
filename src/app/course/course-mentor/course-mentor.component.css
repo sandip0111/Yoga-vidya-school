@@ -1,0 +1,53 @@
+.mentors,
+.benefits {
+    text-align: center;
+    padding: 40px 40px;
+    background: radial-gradient(circle, hsla(0, 0%, 100%, 1) 60%, rgba(249, 117, 30, 0.21) 130%);
+    background: -moz-radial-gradient(circle, hsla(0, 0%, 100%, 1) 60%, rgba(249, 117, 30, 0.21) 130%);
+    background: -webkit-radial-gradient(circle, hsla(0, 0%, 100%, 1) 60%, rgba(249, 117, 30, 0.21) 130%);
+
+    .card {
+        border: 0.94px solid #F9751E;
+        padding: 10px;
+
+        .card-body {
+            padding: 0;
+        }
+    }
+
+    .fw-600 {
+        font-weight: 600;
+    }
+
+    .card-image {
+        height: 260px;
+        overflow: hidden;
+    }
+
+    .time-range {
+        font-size: 28px;
+        font-weight: normal;
+    }
+
+    .button {
+        background: rgba(249, 117, 30, 1);
+        color: #fff;
+        border-radius: 40px;
+        padding: 1px 10px;
+        font-weight: 600;
+        font-size: 17px !important;
+        display: inline-block;
+        text-decoration: none;
+        margin-top: 5px;
+        width: 85%;
+        display: inline-block;
+
+        i {
+            padding: 6px;
+            background: #fff;
+            color: rgba(249, 117, 30, 1);
+            border-radius: 50%;
+            margin-right: 5px;
+        }
+    }
+}

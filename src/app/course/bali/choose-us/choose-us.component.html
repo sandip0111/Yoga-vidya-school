@@ -1,0 +1,22 @@
+<section class="choose-us" *ngIf="!noContent">
+  <div><img src="https://my-s3-images-bucket.s3.amazonaws.com/img/flower-white.png" class="flower-img" /></div>
+  <h2>Why Choose {{ title }} at Yoga Vidya School ?</h2>
+  <div class="row my-3">
+    <div class="col-md-6">
+      <div class="images_wrapper">
+        <img [src]="chooseData.firstImage" class="" />
+        <img [src]="chooseData.secondImage" class="second_img" />
+      </div>
+    </div>
+    <div class="col-md-6 text-left">
+      <p [innerHTML]="chooseData.content"></p>
+      <div class="list">
+        <ul>
+          <li *ngFor="let list of chooseData.list">
+            <img src="https://my-s3-images-bucket.s3.amazonaws.com/img/white-check.png" />{{ list }}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

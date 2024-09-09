@@ -1,0 +1,24 @@
+.excursions-rishikesh-section{
+    background: #F8EED8;
+    .text-center{
+        text-align: center;
+        small{
+            text-align: center;
+            margin-bottom: 20px;
+        }
+    }
+    small{
+        text-align: left;
+    padding: 0;
+    }
+    
+    .image{
+        display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    }
+    .namaste{
+        font-family: "Julee", cursive;
+        font-size: 30px;
+    }
+}

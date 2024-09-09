@@ -1,0 +1,30 @@
+.code-conduct{
+    text-align: center;
+    .list{
+        ul{
+            li{
+                list-style: none;
+                display: flex;
+                align-items: center;
+                margin-bottom: 10px;
+                gap: 10px;
+                background: #f8eed8;
+                padding: 10px;
+                border-radius: 4px;
+                img{
+                    width: 3%;
+                }
+            }
+        }
+    }
+}
+@media screen and (max-width: 900px) and (min-width: 300px) {
+    .list{
+        ul{
+            li{
+                text-align: left;
+            }
+        }
+    }
+    
+}

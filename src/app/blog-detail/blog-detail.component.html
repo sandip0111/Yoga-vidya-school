@@ -1,0 +1,152 @@
+<section class="breadcrumb_section">
+  <div class="container">
+    <div class="row">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item" aria-current="page">Home</li>
+          <li class="breadcrumb-item" aria-current="page">Blog</li>
+          <li class="breadcrumb-item active" aria-current="page">
+            {{ blogArr?.title }}
+          </li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+</section>
+
+<section class="blogArea">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-3 col-md-6 aboutAuthor">
+        <div class="content">
+          <h2>About the <span>Author</span></h2>
+
+          <img
+            [defaultImage]="defaultImage"
+            [lazyLoad]="'https://my-s3-images-bucket.s3.amazonaws.com/images/prashant_rq2aul.jpg'"
+            class="img-fluid thumbnail"
+            alt="Prashant Ji"
+          />
+          <h3>Acharya Prashant Jakhmola</h3>
+          <p>
+            Yogi Prashant was born into a Brahmin family in Rishikesh, India. A
+            science graduate, he began his path of yoga with a visit to
+            Shivananda Ashram where he learnt from one of the oldest yogis, 80
+            years old yoga guru, learning the basics of traditional yoga and
+            philosophy, while continuing his Asana practice with Yogi Rudra Ji,
+            a popular Iyengar Yoga Teacher in Rishikesh. He then explored
+            Iyengar Yoga with Usha Devi Ji.The turning point of his life is,
+            visit to Bihar School Of Yoga where he got pu
+          </p>
+          <p class="mb-1">
+            <a routerLink="/mentor/acharya-prashant-jakhmola">Read More...</a>
+          </p>
+        </div>
+
+        <div class="content">
+          <h2>About the <span>Blog</span></h2>
+          <table class="table">
+            <tbody>
+              <tr>
+                <td><strong>Blog Posted on:</strong></td>
+                <td>{{ blogArr?.created | date : "dd/MM/yyyy" }}</td>
+              </tr>
+              <!-- <tr>
+                <td><strong>Total Blog Read:</strong></td>
+                <td>114</td>
+              </tr> -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-12 readBlogContent">
+        <div class="content">
+          <img
+            [defaultImage]="defaultImage"
+            [lazyLoad]="imageUrl + blogArr?.image"
+            class="img-fluid thumbnail"
+            alt="{{ blogArr?.title }}"
+          />
+          <h1 class="mb-3 mt-3">
+            {{ blogArr?.title }}
+          </h1>
+          <div class="para mt-3" [innerHTML]="this.sanitizer.bypassSecurityTrustHtml(blogArr?.content)"></div>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-6 yogaCards">
+        <div class="content">
+          <div class="card text-center">
+            <img
+              class="card-img-top"
+              [defaultImage]="defaultImage"
+              [lazyLoad]="'https://my-s3-images-bucket.s3.amazonaws.com/images/100_lufijn.jpg'"
+              alt="100 hour of yoga Rishikesh"
+            />
+            <div class="card-body">
+              <h5 class="card-title">100 Hour Yoga</h5>
+              <p class="card-text">
+                Duration: 3rd of Every Month<br />
+                Price: $700
+              </p>
+              <a
+                href="https://www.yogavidyaschool.com/100-hours-yoga-teacher-training-in-rishikesh"
+                target="_blank"
+                class="btn btn-orange"
+                >Read More</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="content">
+          <div class="card text-center">
+            <img
+              class="card-img-top"
+              [defaultImage]="defaultImage"
+              [lazyLoad]="'https://my-s3-images-bucket.s3.amazonaws.com/images/200_x05xvc.jpg'"
+              alt="200 hour of yoga Rishikesh"
+            />
+            <div class="card-body">
+              <h5 class="card-title">200 Hour Yoga</h5>
+              <p class="card-text">
+                Duration: 3rd of Every Month<br />
+                Price: $1200
+              </p>
+              <a
+                href="https://www.yogavidyaschool.com/200-hours-yoga-teacher-training-in-rishikesh"
+                target="_blank"
+                class="btn btn-orange"
+                >Read More</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="content">
+          <div class="card text-center">
+            <img
+              class="card-img-top"
+              [defaultImage]="defaultImage"
+              [lazyLoad]="'https://my-s3-images-bucket.s3.amazonaws.com/images/300_k4cpk7.jpg'"
+              alt="300 hour of yoga Rishikesh"
+            />
+            <div class="card-body">
+              <h5 class="card-title">300 Hour Yoga</h5>
+              <p class="card-text">
+                Duration: 3rd of Every Month<br />
+                Price: $1400
+              </p>
+              <a
+                href="https://www.yogavidyaschool.com/300-hours-yoga-teacher-training-in-rishikesh"
+                target="_blank"
+                class="btn btn-orange"
+                >Read More</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

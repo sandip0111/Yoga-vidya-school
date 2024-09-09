@@ -1,0 +1,30 @@
+.benifits-section{
+    text-align: center;
+    
+    padding: 40px;
+    color: #fff;
+    font-family: "Montserrat", sans-serif;
+    h2{
+        font-size: 27px;
+    }
+    .inner{
+        border: 1px solid #fff;
+    padding: 42px 0px;
+    }
+    .bold{
+        font-weight: 800;
+    }
+    .icon{
+        img{
+            width: 80px;
+        }
+    }
+    .title{
+        font-size: 14px;
+    font-weight: 400;
+    }
+    .count{
+        font-size: 37px;
+        font-weight: 900;
+    }
+}

@@ -1,0 +1,66 @@
+.training-section{
+    text-align: center;
+    padding: 40px 40px;
+    background: radial-gradient(circle, rgba(255, 245, 219, 0.94) 60%, rgba(249, 117, 30, 0.21) 110%);
+    background: -moz-radial-gradient(circle, rgba(255, 245, 219, 0.94) 60%, rgba(249, 117, 30, 0.21) 110%);
+    background: -webkit-radial-gradient(circle, rgba(255, 245, 219, 0.94) 60%, rgba(249, 117, 30, 0.21) 110%);
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+  }
+  
+  .card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  }
+  small{
+    font-size: 16px;
+  }
+  .card-img-overlay {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: auto;
+    padding: 0;
+  }
+  .card-image{
+    height: 260px;
+    overflow: hidden;
+  }
+  .card-title-gradient {
+    background: linear-gradient(to right, rgba(249, 117, 30, 1), rgba(147, 69, 18, 0.58));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .card-title {
+    margin: 0;
+    font-size: 17px;
+    font-weight: bold;
+  }
+  .course-button{
+    background-color: rgba(249, 117, 30, 1);
+    width: 100%;
+    display: block;
+    padding: 7px;
+    border-radius: 6px;
+    color: #fff;
+    font-family: 'Jost';
+    text-decoration: none;
+    font-size: 17px;
+    font-weight: 600;
+  }
+  .transparent{
+    border: 1px solid rgba(249, 117, 30, 1);
+    background: transparent;
+    color: #f9751e;
+  }
+  .card-text {
+    font-size: 17px;
+    line-height: 1.5;
+    font-weight: 400;
+  }
+  .relative{
+    position:relative
+  }
+}

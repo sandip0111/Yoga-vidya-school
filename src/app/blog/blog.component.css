@@ -1,0 +1,71 @@
+.breadcrumb_section {
+  background-color: #f9751e;
+  padding: 10px 0;
+}
+
+.breadcrumb_section ol.breadcrumb {
+  margin-bottom: 0;
+}
+
+.breadcrumb_section ol.breadcrumb li {
+  color: #fff;
+}
+
+.breadcrumb-item+.breadcrumb-item::before {
+  color: #fff;
+}
+
+section.blogs {
+  background-image: url("https://my-s3-images-bucket.s3.amazonaws.com/images/contactUs.be730257c3ec05a1_ukgldz.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 70px 0;
+  background-position: top;
+  background-attachment: fixed;
+}
+
+/* blog */
+section.blogs .single-blog {
+  background: linear-gradient(227deg, rgba(223, 223, 223, 0.2) 0%, rgba(225, 225, 225, 0.3) 100%);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  color: white;
+  padding: 15px;
+  margin: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  height: 100%;
+  position: relative;
+}
+
+section.blogs .single-blog .blogTitle {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 20px;
+}
+
+section.blogs .single-blog img {
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  width: 250px;
+  border-radius: 10px;
+}
+
+section.blogs .single-blog .standard-btn {
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+}
+
+section.blogs .single-blog a {
+  text-decoration: none;
+  color: #fff;
+}
+
+section.blogs .single-blog a h3 {
+  font-weight: 600;
+  font-size: 25px;
+}
+
+::ng-deep .ngx-pagination .current {
+  background: #f9751e !important;
+}

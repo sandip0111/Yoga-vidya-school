@@ -1,0 +1,20 @@
+<section class="patern-bg2">
+  <div class="container">
+    <div class="row master">
+      <div class="col-lg-9">
+        <div class="heading-wrapper title text-left flex">
+          <h1>{{ mentorData?.name }}</h1>
+          <p>
+            <span>{{ mentorData?.title }}</span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div
+        class=""
+        [innerHTML]="sanitizer.bypassSecurityTrustHtml(mentorData?.intro)"
+      ></div>
+    </div>
+  </div>
+</section>

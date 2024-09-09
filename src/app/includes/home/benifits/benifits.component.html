@@ -1,0 +1,23 @@
+<section class="benifits-section" style="background-image: url('https://my-s3-images-bucket.s3.amazonaws.com/img/benifit-bg.png');">
+  <div class="row">
+    <div class="col-md-12">
+      <h2>Make Yourself A Healthy Being With</h2>
+      <p class="bold mb-2">The Benefits Of Yoga.</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 col-6 col-sm-4" *ngFor="let item of items">
+      <div class="inner">
+        <div class="icon">
+          <img
+            [src]="'https://my-s3-images-bucket.s3.amazonaws.com/img/' + item.icon"
+            class="img-fluid"
+            alt="Achievements"
+          />
+        </div>
+        <div class="count">{{ item.count }}+</div>
+        <div class="title">{{ item.title }}</div>
+      </div>
+    </div>
+  </div>
+</section>

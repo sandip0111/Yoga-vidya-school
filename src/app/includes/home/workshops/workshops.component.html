@@ -1,0 +1,33 @@
+<section class="workshops" id="upcoming-events">
+  <div class="row">
+    <div class="col-md-12">
+      <div><img src="https://my-s3-images-bucket.s3.amazonaws.com/img/flower-color.png" class="flower-img"></div>
+      <h2>We Unveil <span>Our Upcoming Yoga Teacher Training</span></h2>
+      <p class="small-head">
+        Stay updated with exciting upcoming yoga events. Whether you are beginner or an advanced practitioner, our programs offer unique opportunities to learn from experienced teachers and experience the transformative power of authentic Yoga.
+        Plan your journey in advance to get early bird discounts and to avoid any last-minute disappointments.
+      </p>
+      <!-- <h2></h2> -->
+    </div>
+  </div>
+  <div class="row my-5">
+    <div class="col-md-3" *ngFor="let item of workshops">
+      <div class="card">
+        <div class="card-image relative">
+          <img [src]="item.image" class="card-img-top" alt="Card Image" />
+          <div class="date">
+            <div class="day">{{item.startDate | date : "dd"}}</div>
+            <div class="month">{{ item.startDate | date : "MMM"}}</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="heading fw-600">{{ item.title }}</div>
+          <div class="dis-flex">
+            <p class="card-text">Location : {{ item.location }}</p>
+            <a href="{{item.url}}" class="read-more">Read More</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+</section>

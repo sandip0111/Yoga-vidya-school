@@ -1,0 +1,85 @@
+.schedule-section {
+    text-align: center;
+
+    h2 {
+        span {
+            color: #f47019;
+        }
+    }
+
+    small {
+        font-size: 15px;
+    }
+
+    .visit-now{
+      background-color: #f47019 !important;
+      border: 0;
+    }
+
+    .inner-section {
+        box-shadow: 0px 10px 20px 0px #0000001A;
+        border-radius: 10px;
+        background: #FFF5DBF0;
+        padding: 20px;
+        margin-bottom: 20px;
+        border-radius: 10px;
+        .left {
+            border-right: 1px dashed #7C7C7C;
+            padding: 20px;
+            .rating {
+                border: 2px solid #F9751E;
+                background: #fff;
+                margin-top: 20px;
+                border-radius: 10px;
+                .star {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 10px;
+                    color: #FFA800;
+
+
+                    icon {}
+                }
+
+                .text {
+                    text-align: center;
+                    font-size: 15px;
+                }
+            }
+        }
+
+        .middle {
+            border-right: 1px dashed #7C7C7C;
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+            gap: 0px;
+            justify-content: center;
+            height: 100%;
+            .details {
+                div {
+                    display: flex;
+                    gap: 10px;
+                    align-items: center;
+                    margin-bottom: 10px;
+                }
+            }
+        }
+        .right{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100%;
+            button{
+                border: 1px solid #F9751E;
+                background: #fff;
+                color: #F9751E;
+                font-weight: 600;
+                margin-bottom: 20px;
+                border-radius: 50px;
+                padding: 10px;
+            }
+        }
+    }
+}

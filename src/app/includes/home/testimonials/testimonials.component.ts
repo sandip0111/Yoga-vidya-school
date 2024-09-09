@@ -1,0 +1,38 @@
+import { CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-testimonials',
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './testimonials.component.html',
+  styleUrls: ['./testimonials.component.css']
+})
+export class TestimonialsComponent implements OnInit {
+  testimonials:testimonial[]=[
+    {
+      img:"https://my-s3-images-bucket.s3.amazonaws.com/images/EMMA_oig8ll.jpg",
+      name:"Emma",
+      description:"The liberty, the inside oneness and openess that I felt after Prashant's classes always fullfilled me. I could feel the energy rising as well as the expansion of my limits. It is with a deep work of precision, humor, gentleness and perseverance that he gives his class. Prashant allowed me to go deeper on my and others and open new pathways. He's on of those who inspire and stays next to you for time ahead. Thank Prashant to have align me in so many ways and brought me further on. See you soon",
+      rating:5
+    },
+    {
+      img:"https://my-s3-images-bucket.s3.amazonaws.com/images/ELINEKL_uynd0l.jpg",
+      name:"Elinkel",
+      description:"I believe Yoga Vidya School’s 200 hour yoga teacher training can change anybody's view on Yoga and its practice. The course teach you about real yogic lifestyle with its true meaning. The yoga teachers of this school have rich knowledge of all the aspects and principles of Yoga and goes deep into it to make it accessible to all level of students. Mantra and philosophy classes can give you a whole new energy. Another important factor that make this school the best, is its location away from the crowd of hotels and yoga schools of Rishikesh. The place is blessed with nature, making you feel like a real yoga retreat in jungle.",
+      rating:5
+    },
+  ]
+  constructor() { }
+
+  ngOnInit() {
+  }
+
+}
+
+interface testimonial{
+  img:string;
+  name:string;
+  description:string;
+  rating:number;
+}

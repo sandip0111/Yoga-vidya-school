@@ -1,0 +1,30 @@
+<section class="mentors" *ngIf="courseMentor.length > 0">
+  <div class="row justify-content-center">
+    <div class="col-md-12">
+      <div><img src="https://my-s3-images-bucket.s3.amazonaws.com/img/flower-color.png" class="flower-img" /></div>
+      <h2>Choose the <span>Online Yoga Class</span> and the Time Slot You Like</h2>
+    </div>
+    <div class="col-md-3" *ngFor="let men of courseMentor">
+      <div class="card">
+        <div class="card-image relative">
+          <img
+            alt="Card Image"
+            class="card-img-top"
+            src="{{imageUrl}}{{men.image}}"
+          />
+        </div>
+        <div class="card-body">
+          <div class="heading fw-600">{{men.name}}</div>
+          <p class="card-text">{{men.intro}}</p>
+          <a *ngIf="men.time" href="javascript:void(0)" class="button">{{men.time}}</a>
+          <a *ngIf="men.price" href="javascript:void(0)" class="button">{{men.price}}</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12 my-3 time-range">
+      <h2>Monday –Thursday (Live Sessions)</h2>
+      <h2>Friday – Sunday (Self Practice)</h2>
+    </div>
+    <app-start-class></app-start-class>
+  </div>
+</section>

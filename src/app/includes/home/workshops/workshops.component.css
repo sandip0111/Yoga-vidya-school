@@ -1,0 +1,63 @@
+.workshops {
+    text-align: center;
+    background: radial-gradient(circle, hsla(0, 0%, 100%, 1) 60%, rgba(249, 117, 30, 0.21) 130%);
+    background: -moz-radial-gradient(circle, hsla(0, 0%, 100%, 1) 60%, rgba(249, 117, 30, 0.21) 130%);
+    background: -webkit-radial-gradient(circle, hsla(0, 0%, 100%, 1) 60%, rgba(249, 117, 30, 0.21) 130%);
+
+    .card {
+        text-align: left;
+        border: 0.94px solid #F9751E;
+        padding: 10px;
+
+        .heading {
+            font-size: 20px;
+            width: 71%;
+            height: 96px;
+        }
+
+        .card-body {
+            padding: 10px 0;
+        }
+
+        .dis-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .date {
+            position: absolute;
+            bottom: -40px !important;
+            right: 25px;
+            background: rgba(249, 117, 30, 1);
+            padding: 5px 17px;
+            color: #fff;
+            border-radius: 5px;
+
+            .day {
+                font-weight: 600;
+                font-size: 25px;
+            }
+
+            .month {
+                font-size: 25px;
+                line-height: 1.2;
+                margin-bottom: 6px;
+            }
+        }
+
+        .read-more {
+            text-decoration: none;
+            color: rgba(249, 117, 30, 1);
+            font-weight: 600;
+            display: inline-block;
+            font-size: 15px;
+            border: 1px solid;
+            padding: 5px 10px;
+            border-radius: 6px;
+        }
+    }
+
+
+}
+

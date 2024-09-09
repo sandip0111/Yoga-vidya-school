@@ -1,0 +1,21 @@
+.offerend {
+    font-size: 18px;
+
+    span {
+        color: #f5711a;
+    }
+}
+.tilted-text{
+    position:relative;
+}
+.tilted-text::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 50%;
+    height: 2px;
+    background: #0478ff;
+    transform: rotate(-10deg);
+    width: 100%;
+  }

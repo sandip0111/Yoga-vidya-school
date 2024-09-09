@@ -1,0 +1,175 @@
+<div class="know-more-section px-md-5 py-md-5 p-2">
+  <div class="row">
+    <div class="col-md-12">
+      <div><img src="https://my-s3-images-bucket.s3.amazonaws.com/img/flower-color.png" class="flower-img" /></div>
+      <small>Curriculum Overview</small>
+      <h3 class="small-head">Unleash Your Inner Potential: Dive into Our</h3>
+      <h2><span>Transformative {{title}} Curriculum!</span></h2>
+    </div>
+    <div class="col-md-12 text-left mb-3 faq" *ngFor="let cur of curriculum; let i = index">
+      <div class="card">
+        <div class="card-header" (click)="openCloseTab(i)">
+          <div class="ques">
+            <div class="icon">
+              <img src="https://my-s3-images-bucket.s3.amazonaws.com/img/bullet.png" class="img-fluid" />
+            </div>
+            <div>
+            <h3>{{cur?.title}}</h3>
+              <!-- <p>
+                {{cur.para}}
+              </p> -->
+          </div>
+          </div>
+          <div class="plus-icon">
+            <i class="fa-solid fa-plus" *ngIf="selectedIndex!=i"></i>
+            <i class="fa-solid fa-minus" *ngIf="selectedIndex==i"></i>
+          </div>
+        </div>
+        <div class="card-body" *ngIf="cur?.para && selectedIndex==i">
+          <div class="desc" [innerHTML]="cur?.para">
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="col-md-12 text-left mb-3 faq">
+      <div class="card">
+        <div class="card-header">
+          <div class="ques">
+            <div class="icon">
+              <img src="https://my-s3-images-bucket.s3.amazonaws.com/img/bullet.png" class="img-fluid" />
+            </div>
+            <div>
+              <h3>Ashtanga Vinyasa (Complete Primary Series, lead in Mysore Style)</h3>
+                <p>
+                  Ashtanga vinyasa is the dynamic form of doing asana. In this dynamic form of practice, achievements are attained by synchronising the body, mind and breath to a single rhythm.
+              </p>
+            </div>
+          </div>
+          <div class="plus-icon">
+            <i class="fa-solid fa-plus"></i>
+          </div>
+        </div>
+        <div class="card-body">
+
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12 text-left mb-3 faq">
+      <div class="card">
+        <div class="card-header">
+          <div class="ques">
+            <div class="icon">
+              <img src="https://my-s3-images-bucket.s3.amazonaws.com/img/bullet.png" class="img-fluid" />
+            </div>
+
+            <div>
+              <h3>Pranayama and breath (Practice and Theory)</h3>
+              <p>
+                Many of us consider Pranayama as the science of breathing but reality is the Pranayama and the Science of Breath are two different subjects.
+              </p></div>
+          </div>
+          <div class="plus-icon">
+            <i class="fa-solid fa-plus"></i>
+          </div>
+        </div>
+        <div class="card-body">
+
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12 text-left mb-3 faq">
+      <div class="card">
+        <div class="card-header">
+          <div class="ques">
+            <div class="icon">
+              <img src="https://my-s3-images-bucket.s3.amazonaws.com/img/bullet.png" class="img-fluid" />
+            </div>
+            <div>
+              <h3>Yogic Anatomy and Physiology (based on Yogic Point of View)</h3>
+              <p>
+                Anatomy is a medical term which is defined as the study of the structure of human body, covering the knowledge of external and internal organs.
+              </p></div>
+          </div>
+          <div class="plus-icon">
+            <i class="fa-solid fa-plus"></i>
+          </div>
+        </div>
+        <div class="card-body">
+
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12 text-left mb-3 faq">
+      <div class="card">
+        <div class="card-header">
+          <div class="ques">
+            <div class="icon">
+              <img src="https://my-s3-images-bucket.s3.amazonaws.com/img/bullet.png" class="img-fluid" />
+            </div>
+
+            <div>
+              <h3>Asana Alignment and Adjustments (Nectar of the asana)</h3>
+              <p>
+                We strongly believe that one should know the Philosophy of Yoga before practising the yoga exercises.
+              </p></div>
+          </div>
+          <div class="plus-icon">
+            <i class="fa-solid fa-plus"></i>
+          </div>
+        </div>
+        <div class="card-body">
+
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12 text-left mb-3 faq">
+      <div class="card">
+        <div class="card-header">
+          <div class="ques">
+            <div class="icon">
+              <img src="https://my-s3-images-bucket.s3.amazonaws.com/img/bullet.png" class="img-fluid" />
+            </div>
+
+            <div>
+              <h3>Yoga Darshan or Yoga Philosophy</h3>
+              <p>
+                We strongly believe that one should know the Philosophy of Yoga before practising the yoga exercises.
+              </p></div>
+          </div>
+          <div class="plus-icon">
+            <i class="fa-solid fa-plus"></i>
+          </div>
+        </div>
+        <div class="card-body">
+
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12 text-left mb-3 faq">
+      <div class="card">
+        <div class="card-header">
+          <div class="ques">
+            <div class="icon">
+              <img src="https://my-s3-images-bucket.s3.amazonaws.com/img/bullet.png" class="img-fluid" />
+            </div>
+
+            <div>
+              <h3>Hatha (Asana and Philoshopy)</h3>
+              <p>
+                Hatha yoga is very vast subject and it is very difficult to
+                explain this in brief. But still we will try to give a picture of
+                what you will learn about Hatha Yoga in this course.
+              </p></div>
+          </div>
+          <div class="plus-icon">
+            <i class="fa-solid fa-plus"></i>
+          </div>
+        </div>
+        <div class="card-body">
+
+        </div>
+      </div>
+    </div> -->
+  </div>
+</div>

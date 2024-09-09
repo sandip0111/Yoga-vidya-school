@@ -1,0 +1,19 @@
+.edu-category {
+    background: radial-gradient(circle, hsla(0, 0%, 100%, 1) 60%, rgba(249, 117, 30, 0.21) 130%);
+    background: -moz-radial-gradient(circle, hsla(0, 0%, 100%, 1) 60%, rgba(249, 117, 30, 0.21) 130%);
+    background: -webkit-radial-gradient(circle, hsla(0, 0%, 100%, 1) 60%, rgba(249, 117, 30, 0.21) 130%);
+    ul {
+        list-style-type: none;
+        li {
+            background: #F8EED8;
+            text-align: left;
+            border: 1px dashed #F5711A;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            padding: 10px;
+            img{
+                width: 5%;
+            }
+        }
+    }
+}

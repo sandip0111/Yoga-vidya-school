@@ -1,0 +1,23 @@
+<div class="faq-section mx-md-5 my-md-5 m-2" *ngIf="faqs.length > 0">
+  <div class="row">
+    <div class="col-md-12">
+      <div><img src="https://my-s3-images-bucket.s3.amazonaws.com/img/flower-color.png" class="flower-img" /></div>
+      <h2>Frequently <span>Asked Questions</span></h2>
+      <small>
+      The FAQ section of Yoga Vidya School addresses common queries about Yoga Classes, Yoga Teacher Training, Yoga Retreats, Online & Offline Yoga Events. You will also find answers to the queries related to enrolment process, accommodation and more.
+      </small>
+    </div>
+    <div class="col-md-12 text-left mb-3 mt-3 faq" *ngFor="let item of faqs; let i = index">
+      <div class="card">
+        <div class="card-header" (click)="toggleDescription(i)">
+          {{ item.title }}
+          <div class="plus-icon">
+            <i class="fa-solid" [ngClass]="{'fa-plus': openIndex !== i, 'fa-minus': openIndex === i}"></i>
+          </div>
+        </div>
+        <div class="card-body" *ngIf="openIndex === i" [innerHTML]="item.para ">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

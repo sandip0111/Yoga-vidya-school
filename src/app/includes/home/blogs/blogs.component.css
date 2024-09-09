@@ -1,0 +1,45 @@
+.blogs {
+    text-align: center;
+    padding: 40px 40px;
+    background: radial-gradient(circle, hsla(0, 0%, 100%, 1) 60%, rgba(249, 117, 30, 0.21) 130%);
+    background: -moz-radial-gradient(circle, hsla(0, 0%, 100%, 1) 60%, rgba(249, 117, 30, 0.21) 130%);
+    background: -webkit-radial-gradient(circle, hsla(0, 0%, 100%, 1) 60%, rgba(249, 117, 30, 0.21) 130%);
+
+    small{
+        font-size: 17px;
+        margin-bottom: 20px;
+    }
+    .card {
+        text-align: left;
+        border: 0.94px solid #F9751E;
+        padding: 10px;
+        .card-body{
+            padding: 10px 0;
+        }
+        .card-image{
+            height: 184px;
+            overflow: hidden;
+        }
+        .date{
+            position: absolute;
+            top: 12px;
+            right: 15px;
+            background: rgba(249, 117, 30, 1);
+            padding: 5px 10px;
+            color: #fff;
+            border-radius: 5px;
+            .days{
+                font-weight: 600;
+            }
+        }
+        .read-more{
+            text-decoration: none;
+            color: rgba(249, 117, 30, 1);;
+            font-weight: 600;
+            display: inline-block;
+            font-size: 12px;
+        }
+    }
+    
+    
+}

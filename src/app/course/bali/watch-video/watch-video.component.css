@@ -1,0 +1,22 @@
+
+.training-section{
+
+    text-align: center;
+    padding: 40px 40px;
+    background: radial-gradient(circle, hsla(0, 0%, 100%, 1) 60%, rgba(249, 117, 30, 0.21) 130%);
+    background: -moz-radial-gradient(circle, hsla(0, 0%, 100%, 1) 60%, rgba(249, 117, 30, 0.21) 130%);
+    background: -webkit-radial-gradient(circle, hsla(0, 0%, 100%, 1) 60%, rgba(249, 117, 30, 0.21) 130%);
+    h2{
+        span{
+            color: #f47019;
+        }
+    }
+    p{
+        font-size: 18px;
+    }
+    small{
+        padding: 0px 200px;
+    display: inline-block;
+    font-size: 17px;
+    }
+}

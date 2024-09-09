@@ -1,0 +1,62 @@
+<section class="learning" *ngIf="week1.length > 0">
+  <div><img src="https://my-s3-images-bucket.s3.amazonaws.com/img/flower-color.png" class="flower-img" /></div>
+  <h2>What you Will <span>Learn In this Course ?</span></h2>
+  <small *ngIf="weekPara">{{weekPara}}</small>
+  <!-- <small
+    >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
+    non proident
+  </small> -->
+  <div class="row my-4">
+    <div class="col-md-12">
+      <ul>
+        <li
+          [class]="selectedTab == 'week1' ? 'active' : ''"
+          (click)="selectedData(1, 'week1')"
+        >
+          Week 1
+        </li>
+        <li
+          [class]="selectedTab == 'week2' ? 'active' : ''"
+          (click)="selectedData(2, 'week2')"
+        >
+          Week 2
+        </li>
+        <li
+          [class]="selectedTab == 'week3' ? 'active' : ''"
+          (click)="selectedData(3, 'week3')"
+        >
+          Week 3
+        </li>
+        <li
+          [class]="selectedTab == 'week4' ? 'active' : ''"
+          (click)="selectedData(4, 'week4')"
+        >
+          Week 4
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 text-left">
+      <h2>{{ weeKTitle }}</h2>
+      <div *ngFor="let item of displayData" [innerHTML]="item"></div>
+      <a href="#" class="button">Download Full Information</a>
+    </div>
+    <div class="col-md-6">
+      <div class="learning_right">
+      <img class="img-fluid" height="660" width="550" style="border-radius:10px" src="https://my-s3-images-bucket.s3.amazonaws.com/images/FERN8271_fjodwd.jpg" />
+      <div class="thumbnail">
+        <img class="img-fluid" height="100" width="83" style="border-radius:10px" src="https://my-s3-images-bucket.s3.amazonaws.com/images/FERN8491_1_abj8zx.jpg" />
+        <img class="img-fluid" height="100" width="83" style="border-radius:10px" src="https://my-s3-images-bucket.s3.amazonaws.com/images/FERN8400_wp7mgl.jpg" />
+        <img class="img-fluid" height="100" width="83" style="border-radius:10px" src="https://my-s3-images-bucket.s3.amazonaws.com/images/FERN8542_u4gcrj.jpg" />
+        <img class="img-fluid" height="100" width="83" style="border-radius:10px" src="https://my-s3-images-bucket.s3.amazonaws.com/images/FERN8435_b7ugwc.jpg" />
+        <!-- <img src="https://my-s3-images-bucket.s3.amazonaws.com/img/learning-thumbnail.png" /> -->
+      </div>
+    </div>
+  </div>
+  </div>
+</section>

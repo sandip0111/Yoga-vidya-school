@@ -1,0 +1,33 @@
+<section class="edu-category text-center" *ngIf="!noContent">
+  <h2>Our Yoga Educational Categories for<span> {{title}}</span></h2>
+  <small
+    >This {{title}}, is registered
+    with Yoga Alliance
+  </small>
+  <small
+    >USA and focuses mainly on following yoga educational categories:</small
+  >
+  <div class="row my-5">
+    <div class="col-md-6">
+      <div class="list accolade">
+        <ul>
+          <li *ngFor="let left of eduCatLeft">
+            <img src="https://my-s3-images-bucket.s3.amazonaws.com/img/check-green.png" /> {{left}}
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="list accolade">
+        <ul>
+          <li *ngFor="let right of eduCatRight">
+            <img src="https://my-s3-images-bucket.s3.amazonaws.com/img/check-green.png" />{{right}}
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-md-12 text-center">
+      <app-start-class [data]="fees"></app-start-class>
+    </div>
+  </div>
+</section>

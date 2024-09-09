@@ -1,0 +1,47 @@
+<nav class="navbar navbar-expand-lg navbar-bg">
+  <div class="nav-container">
+    <a class="navbar-brand" href="/">Yoga Vidya School</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item dropdown" *ngFor="let menuItem of menuItems">
+          <a class="nav-link" href="{{menuItem.link}}" *ngIf="!menuItem.submenu">{{ menuItem.title }}</a>
+          <a class="nav-link dropdown-toggle" href="#" *ngIf="menuItem.submenu">{{ menuItem.title }}</a>
+          <ul class="dropdown-menu" *ngIf="menuItem.submenu">
+            <li *ngFor="let subMenuItem of menuItem.submenu" class="dropdown-submenu">
+              <a class="dropdown-item" href="{{subMenuItem.link}}" *ngIf="!subMenuItem.submenu">{{ subMenuItem.title }}</a>
+              <div class="dropdown dropend" *ngIf="subMenuItem.submenu">
+                <a class="dropdown-item dropdown-toggle" href="#">{{ subMenuItem.title }}</a>
+                <ul class="dropdown-menu mtn-35">
+                  <li *ngFor="let nestedSubMenuItem of subMenuItem.submenu">
+                    <a class="dropdown-item" href="{{nestedSubMenuItem.link}}">{{ nestedSubMenuItem.title }}</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <ul class="navbar-nav">
+        <li class="nav-item" *ngIf="!loginUser">
+          <a class="nav-link login-button" href="{{loginButton.link}}">
+            <i class="{{ loginButton.iconClass }}"></i> {{ loginButton.title }}
+          </a>
+        </li>
+      </ul>
+      <ul class="navbar-nav" *ngIf="loginUser">
+        <li class="nav-item dropdown" *ngIf="loginButton">
+          <a class="nav-link login-button dropdown-toggle">
+            <i class="fa-user fas"></i>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/my-account">My Acount</a></li>
+            <li><a class="dropdown-item" href="javascript:void(0)" (click)="logOut()">Logout</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

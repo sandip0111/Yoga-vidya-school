@@ -1,0 +1,26 @@
+<section class="curriculum py-5" *ngIf="currData?.length > 0">
+  <div class="row bottom-abs">
+    <div class="col-md-12">
+      <div><img src="https://my-s3-images-bucket.s3.amazonaws.com/img/flower-color.png" class="flower-img" /></div>
+      <h2>{{title}} <span>Curriculum</span></h2>
+      <p>Unleash Your Inner Potential: Dive into Our <span>Transformative Yoga Curriculum!</span></p>
+    </div>
+    <div class="col-md-3 col-6 col-sm-4 mb-3" *ngFor="let item of currData; let i = index">
+      <div class="services">
+        <div class="icon">
+          <img [src]="'https://my-s3-images-bucket.s3.amazonaws.com/img/curriculum/curr'+(i+1)+'.png'" alt="Services Image" />
+        </div>
+        <div class="text">
+          <h2>{{ item.title }}</h2>
+          <div [innerHTML]="item.para">
+
+          </div>
+        </div>
+        <div class="count">{{ i < 9 ? "0" + (i + 1) : i + 1 }}</div>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <a href="#" class="button">Enroll in the course</a>
+    </div>
+  </div>
+</section>

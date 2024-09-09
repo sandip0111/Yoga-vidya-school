@@ -1,0 +1,88 @@
+<section class="contact">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-7 shadow">
+        <div class="content">
+          <h1>Contact Us</h1>
+          <p class="lead">
+            We would love to hear from you. Whether you want more information on
+            our classes or want to attend any events that we hold, just give us
+            a quick call.
+          </p>
+          <h3>Visit Us</h3>
+          <p class="address">
+            Near Kailashanand Gaushala, Mateshwari Hospital Jonk Village, post,
+            Swarg Ashram, Rishikesh, Uttarakhand 249304
+          </p>
+
+          <h3>Contact Details</h3>
+          <div class="row">
+            <div class="col">
+              <div class="contactDetail">
+                <p>Call Us : <a href="tel:+919818660954">+919818660954</a></p>
+              </div>
+
+              <div class="contactDetail">
+                <p>
+                  Email Us :
+                  <a href="mailto: info@yogavidyaschool.com"
+                    >info&#x40;yogavidyaschool.com</a
+                  >
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13804.398097057785!2d78.3221528!3d30.1199655!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xef302428d529aa7!2sYoga%20Vidya%20School!5e0!3m2!1sen!2sin!4v1663139715978!5m2!1sen!2sin"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div class="m-2 m-md-0">
+          <form #contact="ngForm" class="shadow">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Name"
+              name="name"
+              [(ngModel)]="formData.name"
+            />
+            <input
+              type="email"
+              class="form-control"
+              placeholder="Email"
+              name="email"
+              [(ngModel)]="formData.to"
+            />
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Subject"
+              name="subject"
+              [(ngModel)]="formData.subject"
+            />
+            <textarea
+              class="form-control"
+              id=""
+              cols="30"
+              rows="6"
+              placeholder="Your message"
+              name="message"
+              [(ngModel)]="formData.message"
+            ></textarea>
+            <button class="btn orange-btn" (click)="insertInquiry(formData)">
+              Send <i class="fa-solid fa-paper-plane"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

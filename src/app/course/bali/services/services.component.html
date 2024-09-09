@@ -1,0 +1,193 @@
+<!-- about.component.html -->
+
+<section class="services-section accomation_sec" *ngIf="fees && fees?.accom">
+  <div class="background_img"></div>
+  <div class="upper">
+    <div><img src="https://my-s3-images-bucket.s3.amazonaws.com/img/flower-color.png" class="flower-img" /></div>
+    <h3 class="small-head color-white mt-3">OTHER AMINITES AND SERVICES</h3>
+    <h2 class="mt-2">ENJOY COMPLETE & <span>BEST QUALITY COOPERATION</span></h2>
+  </div>
+  <!-- <div
+    class="upper"
+    style="
+      background: url('https://my-s3-images-bucket.s3.amazonaws.com/img/services-bg.webp');
+      background-size: cover;
+    "
+  >
+    <div><img src="https://my-s3-images-bucket.s3.amazonaws.com/img/flower-color.png" class="flower-img" /></div>
+    <h3 class="small-head color-white mt-3">OTHER AMINITES AND SERVICES</h3>
+    <h2 class="mt-2">ENJOY COMPLETE & <span>BEST QUALITY COOPERATION</span></h2>
+  </div> -->
+  <div class="bottom">
+    <div class="middle-text">
+      <div class="accomodation">
+        <div class="md-text-left">
+          <small class="md-text-left">more About Our Services</small>
+          <h2><span>Accommodation</span></h2>
+          <div [innerHTML]="fees?.accom"></div>
+          <div class=""><a href="#" class="button">Read More</a></div>
+        </div>
+      </div>
+      <div class="accomodation_image">
+        <img class="img-fluid" src="https://my-s3-images-bucket.s3.amazonaws.com/images/IMG_6828_cchusm.jpg" alt="Accommodation" />
+        <!-- <iframe
+          width="600"
+          height="660"
+          src="https://www.youtube.com/embed/vPD1NGMY_8E?si=PZ1aqfhF5s0UKkaA"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+        ></iframe> -->
+    </div>
+    <div class="bottom-abs">
+        <div class="services">
+          <img class="img-fluid" style="border-radius: 10px;" src="https://my-s3-images-bucket.s3.amazonaws.com/images/acc4_ikf9ta.jpg" alt="Accomdation" />
+          <!-- <div class="icon">
+            <img src="https://my-s3-images-bucket.s3.amazonaws.com/img/room-service.png" alt="Accomdation" />
+          </div>
+          <div class="text">
+            <h2>Pick Up Drop</h2>
+            <span>Immersive Experience: </span>Engage in a deeply transformative
+            journey at the heart of yoga's origin, providing an unparalleled
+            immersive experience.
+          </div>
+          <div class="count">03</div> -->
+      </div>
+        <div class="services">
+          <img class="img-fluid" style="border-radius: 10px;" src="https://my-s3-images-bucket.s3.amazonaws.com/images/acc3_hbccdh.jpg" alt="Accomdation" />
+          <!-- <div class="icon">
+            <img src="https://my-s3-images-bucket.s3.amazonaws.com/img/room-service.png" alt="Accomdation" />
+          </div>
+          <div class="text">
+            <h2>Pick Up Drop</h2>
+            <span>Immersive Experience: </span>Engage in a deeply transformative
+            journey at the heart of yoga's origin, providing an unparalleled
+            immersive experience.
+          </div>
+          <div class="count">03</div> -->
+      </div>
+        <div class="services">
+          <img class="img-fluid" style="border-radius: 10px;" src="https://my-s3-images-bucket.s3.amazonaws.com/images/acc2_zwdgpr.jpg" alt="Accomdation" />
+          <!-- <div class="icon">
+            <img src="https://my-s3-images-bucket.s3.amazonaws.com/img/room-service.png" alt="Accomdation" />
+          </div>
+          <div class="text">
+            <h2>Pick Up Drop</h2>
+            <span>Immersive Experience: </span>Engage in a deeply transformative
+            journey at the heart of yoga's origin, providing an unparalleled
+            immersive experience.
+          </div>
+          <div class="count">03</div> -->
+      </div>
+        <div class="services">
+          <img class="img-fluid" style="border-radius: 10px;" src="https://my-s3-images-bucket.s3.amazonaws.com/images/acc1_e2fcux.jpg" alt="Accomdation" />
+          <!-- <div class="icon">
+            <img src="https://my-s3-images-bucket.s3.amazonaws.com/img/room-service.png" alt="Accomdation" />
+          </div>
+          <div class="text">
+            <h2>Pick Up Drop</h2>
+            <span>Immersive Experience: </span>Engage in a deeply transformative
+            journey at the heart of yoga's origin, providing an unparalleled
+            immersive experience.
+          </div>
+          <div class="count">03</div> -->
+      </div>
+    </div>
+  </div>
+  </div>
+</section>
+<section
+  class="services-section accomation_sec second_accomaton"
+  *ngIf="fees && fees?.food"
+>
+  <div class="bottom">
+    <div class="middle-text">
+      <div class="accomodation">
+        <div class="md-text-left">
+          <small class="md-text-left">more About Our Services</small>
+          <h2><span>Food</span></h2>
+          <div [innerHTML]="fees?.food"></div>
+          <div class=""><a href="#" class="button">Read More</a></div>
+        </div>
+      </div>
+      <div class="accomodation_image">
+        <!-- <iframe
+          width="600"
+          height="660"
+          src="https://www.youtube.com/embed/vPD1NGMY_8E?si=PZ1aqfhF5s0UKkaA"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+        ></iframe> -->
+        <img class="img-fluid" src="https://my-s3-images-bucket.s3.amazonaws.com/images/food_dwn1yl.jpg" alt="Food" />
+      </div>
+    </div>
+    <!-- <div class="row bottom-abs position-none">
+      <div class="col-md-3">
+        <div class="services">
+          <div class="icon">
+            <img src="https://my-s3-images-bucket.s3.amazonaws.com/img/watch.png" alt="Services Image" />
+          </div>
+          <div class="text">
+            <h2>Pick Up Drop</h2>
+            <span>Immersive Experience: </span>Engage in a deeply transformative
+            journey at the heart of yoga's origin, providing an unparalleled
+            immersive experience.
+          </div>
+          <div class="count">01</div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="services">
+          <div class="icon">
+            <img src="https://my-s3-images-bucket.s3.amazonaws.com/img/watch.png" alt="Services Image" />
+          </div>
+          <div class="text">
+            <h2>Pick Up Drop</h2>
+            <span>Immersive Experience: </span>Engage in a deeply transformative
+            journey at the heart of yoga's origin, providing an unparalleled
+            immersive experience.
+          </div>
+          <div class="count">02</div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="services">
+          <div class="icon">
+            <img src="https://my-s3-images-bucket.s3.amazonaws.com/img/watch.png" alt="Services Image" />
+          </div>
+          <div class="text">
+            <h2>Pick Up Drop</h2>
+            <span>Immersive Experience: </span>Engage in a deeply transformative
+            journey at the heart of yoga's origin, providing an unparalleled
+            immersive experience.
+          </div>
+          <div class="count">03</div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="services">
+          <div class="icon">
+            <img src="https://my-s3-images-bucket.s3.amazonaws.com/img/watch.png" alt="Services Image" />
+          </div>
+          <div class="text">
+            <h2>Pick Up Drop</h2>
+            <span>Immersive Experience: </span>Engage in a deeply transformative
+            journey at the heart of yoga's origin, providing an unparalleled
+            immersive experience.
+          </div>
+          <div class="count">04</div>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <a href="#" class="button text-center"
+          >START YOUR YOGA CLASS TODAY<br />&#64; {{fees?.amount}} {{fees?.currency}}</a
+        >
+      </div>
+    </div> -->
+  </div>
+</section>

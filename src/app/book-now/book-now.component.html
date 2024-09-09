@@ -1,0 +1,126 @@
+<div class="container mt-5 mb-5">
+  <div class="row">
+    <div class="col-12 mb-5 text-center">
+      <h1 class="mb-3">Payment in USD (Foreign Account Holder)</h1>
+      <div class="paypal-logo">
+        <a href="https://www.paypal.me/yogavidyafoundation">
+          <img
+            src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/checkout-logo-large.png"
+            alt="paypal"
+            class="img-fluid"
+          />
+        </a>
+      </div>
+    </div>
+    <div class="col-12 text-center mb-5">
+      <h1 class="mb-3">Payment in INR (Indian Bank Account Holder)</h1>
+      <div class="row justify-content-center align-items-center">
+        <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+          <p><strong>Bank Account Information</strong></p>
+          <table class="table bank-table">
+            <tbody>
+              <tr>
+                <td>Account Holder Name</td>
+
+                <td>Wellness Retreat By YVS LLP</td>
+              </tr>
+
+              <tr>
+                <td>Account No.</td>
+
+                <td>4246912943</td>
+              </tr>
+              <tr>
+                <td>IFSC Code</td>
+
+                <td>KKBK0001382</td>
+              </tr>
+
+              <tr>
+                <td>Bank Name</td>
+
+                <td>Kotak Mahindra Bank</td>
+              </tr>
+
+              <tr>
+                <td>Branch</td>
+
+                <td>Mumbai Kalanagar Bandra East Br</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+          <p>
+            <strong>UPI/Gpay/PayTm</strong>
+          </p>
+          <div class="qr-img text-center">
+            <img
+              src="https://my-s3-images-bucket.s3.amazonaws.com/images/qrcode_pm2ejf.png"
+              alt="qrcode"
+              class="img-fluid"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <h2>Pay Now</h2>
+
+      <div class="check-user">
+        <div class="">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            class="form-control mb-3"
+            id="email"
+            [(ngModel)]="checkData.email"
+            placeholder="Enter your email"
+          />
+        </div>
+        <div class="">
+          <label for="name">Name</label>
+          <input
+            type="text"
+            class="form-control mb-3"
+            id="name"
+            [(ngModel)]="checkData.name"
+            placeholder="Enter your name"
+          />
+        </div>
+        <div class="">
+          <label for="price">Price</label>
+          <input
+            type="number"
+            class="form-control mb-3"
+            id="price"
+            (change)="validateNumber($event)"
+            [(ngModel)]="checkData.price"
+            placeholder="Enter your price"
+          />
+        </div>
+        <div>
+          <label for="package">Payment Currency</label>
+          <select
+            class="form-control mb-3"
+            name="package"
+            [(ngModel)]="checkData.currency"
+          >
+            <option value="undefined">Select Currency</option>
+            <option value="usd">USD</option>
+            <option value="inr">INR</option>
+          </select>
+        </div>
+        <a
+          href="javascript:void(0)"
+          style="background-color: #f9751e"
+          class="btn btn-primary w-100 border-0"
+          (click)="checkoutData(checkData)"
+        >
+          Pay Now
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

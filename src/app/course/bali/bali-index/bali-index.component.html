@@ -1,0 +1,20 @@
+<app-banner [data]="bannerData"></app-banner>
+<app-bottom-nav-course></app-bottom-nav-course>
+<app-about-bali></app-about-bali>
+<app-curriculum [data]="currData"></app-curriculum>
+<app-learning></app-learning>
+<app-benifits></app-benifits>
+<app-includes [data]="feesData"></app-includes>
+<app-fee-structure [data]="feesData"></app-fee-structure>
+<app-choose-us [data]="codecond"></app-choose-us>
+<app-mentors></app-mentors>
+<app-services></app-services>
+<app-code-conduct [data]="codecond"></app-code-conduct>
+<app-yoga-alliance [data]="codecond"></app-yoga-alliance>
+<app-schedule [data]="schEventData"></app-schedule>
+<app-watch-video [data]="youtubeVideoData"></app-watch-video>
+<app-testimonials></app-testimonials>
+<app-gallery></app-gallery>
+<app-video-testimonials *ngIf="slug!='yoga-retreat-in-mysore-india' && slug!='pranayama-course-online-pranarambha' && slug!='foundation-of-spirituality-an-online-spiritual-awakening-course' && slug!='yoga-history-and-philosophy' && slug!='yoga-retreat-in-peru'" ></app-video-testimonials>
+<app-achievements *ngIf="slug!='yoga-retreat-in-mysore-india' && slug!='pranayama-course-online-pranarambha' && slug!='foundation-of-spirituality-an-online-spiritual-awakening-course' && slug!='yoga-history-and-philosophy' && slug!='yoga-retreat-in-peru'"></app-achievements>
+<app-faq [data]="faqData"></app-faq>

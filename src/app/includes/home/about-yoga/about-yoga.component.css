@@ -1,0 +1,89 @@
+.about-section {
+    .card {
+        background: #FFF5DBF0;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+    }
+
+    .notes {
+        font-size: 13px;
+        margin-top: 12px;
+    }
+
+    h3 {
+        font-size: 16px;
+    }
+
+    .list {
+        ul {
+            margin: 0;
+            padding: 0;
+
+            li {
+                display: grid;
+                grid-template-columns: 5% 95%;
+                gap: 10px;
+                font-size: 15px;
+                margin-bottom: 5px;
+
+                .dot {
+                    width: 10px;
+                    height: 10px;
+                    background-color: #F9751E;
+                    border-radius: 50%;
+                    margin-top: 7px;
+                }
+            }
+        }
+    }
+
+    h2 {
+        font-size: 24px;
+
+        span {
+            color: #f5711a;
+        }
+
+    }
+
+    .image {
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+    }
+
+}
+
+.about-section {
+    position: relative;
+}
+
+.about-section::after {
+    content: "";
+    background-image: url('https://my-s3-images-bucket.s3.amazonaws.com/img/fower-litebg-color.png');
+    background-size: 76%;
+    background-position: 10%;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 0;
+    right: -89px;
+    width: 28%;
+    height: 38%;
+    z-index: -1;
+}
+
+.about-section::before {
+    content: "";
+    background-image: url('https://my-s3-images-bucket.s3.amazonaws.com/img/fower-litebg-color.png');
+    background-size: 50%;
+    background-position: 10%;
+    background-repeat: no-repeat;
+    position: absolute;
+    bottom: 0;
+    left: -107px;
+    width: 28%;
+    height: 38%;
+    z-index: -1;
+}

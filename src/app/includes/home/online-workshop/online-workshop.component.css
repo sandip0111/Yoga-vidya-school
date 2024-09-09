@@ -1,0 +1,75 @@
+.workshop-section {
+    text-align: center;
+    padding: 40px 40px;
+    background: radial-gradient(circle, hsla(0, 0%, 100%, 1) 60%, rgba(249, 117, 30, 0.21) 130%);
+    background: -moz-radial-gradient(circle, hsla(0, 0%, 100%, 1) 60%, rgba(249, 117, 30, 0.21) 130%);
+    background: -webkit-radial-gradient(circle, hsla(0, 0%, 100%, 1) 60%, rgba(249, 117, 30, 0.21) 130%);
+
+
+    small {
+        padding: 0px 200px;
+        display: inline-block;
+        font-size: 17px;
+    }
+    .workshop {
+        border: 1px solid rgba(249, 117, 30, 1);
+        background: rgba(255, 245, 222, 1);
+        text-align: left;
+        padding: 30px 50px;
+        border-radius: 10px;
+        position: relative;
+        
+        img {
+            width: 60px;
+            margin-bottom: 20px;
+        }
+
+        .details {
+            color: #fff;
+    background: rgba(249, 117, 30, 1);
+    padding: 20px 117px 20px 20px;
+    width: 68%;
+            h3 {
+                font-size: 25px;
+                font-weight: 500;
+            }
+
+            h2 {
+                font-size: 30px;
+                font-weight: 600;
+            }
+
+            .but {
+                background: white;
+                color: #000;
+                padding: 7px 10px;
+                margin-top: 10px;
+                display: inline-flex;
+                justify-content: center;
+                align-items: center;
+                gap: 10px;
+
+                img {
+                    margin-bottom: 0px;
+                    width: 24%;
+                }
+            }
+        }
+        .contact {
+            margin-top: 10px;
+            small{
+                padding: 0;
+                display: block;
+            }
+        }
+    
+        .right-img {
+            position: absolute;
+            top: 0px;
+            right: -181px;
+            img {
+                width: 57%;
+            }
+        }
+    }
+}

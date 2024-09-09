@@ -1,0 +1,28 @@
+<section class="gallery" *ngIf="displayImages.length > 0">
+  <div class="row">
+    <div class="col-md-12">
+      <div><img src="https://my-s3-images-bucket.s3.amazonaws.com/img/flower-color.png" class="flower-img" /></div>
+      <h2>View Our <span>Yoga Programs, Activities & Student's Life through Pictures</span></h2>
+      <small>Explore the vibrant and serene world of Yoga Vidya School through our Gallery. Witness the journey of transformation, joy of practice, community spirit and Yogic Travel Immersions that defines life at Yoga Vidya School.</small>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="my-5 gallery-options">
+          <div [class]="selected=='all'?'active':''" (click)="allData()">All</div>
+          <div [class]="selected=='yoga'?'active':''" (click)="yogaClass()">Yoga Classes</div>
+          <div [class]="selected=='activity'?'active':''" (click)="activity()">Activity </div>
+          <div [class]="selected=='food'?'active':''" (click)="food()">Food & Accommodation</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3" *ngFor="let item of displayImages;let i=index;">
+      <div class="card">
+          <div class="card-image relative">
+            <img [src]="item.image" class="card-img-top" alt="Card Image">
+
+          </div>
+      </div>
+    </div>
+    <a href="/gallery" class="button">View Gallery</a>
+  </div>
+</section>

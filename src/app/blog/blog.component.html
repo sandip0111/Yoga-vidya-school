@@ -1,0 +1,58 @@
+<section class="breadcrumb_section">
+  <div class="container">
+    <div class="row">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item active" aria-current="page">Home</li>
+          <li class="breadcrumb-item active" aria-current="page">Blog</li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+</section>
+<section class="blogs">
+  <div class="container">
+    <div class="row">
+      <div
+        class="col-lg-6 mb-4"
+        *ngFor="
+          let blog of blogList
+            | paginate : { itemsPerPage: 10, currentPage: p, totalItems: total }
+        "
+      >
+        <div class="single-blog shadow">
+          <div class="blogTitle">
+            <a routerLink="/blog/{{ blog?.slug }}">
+              <img
+                [defaultImage]="defaultImage"
+                [lazyLoad]="imageUrl + blog?.image"
+                class="img-fluid"
+                alt="{{ blog?.title }}"
+              />
+            </a>
+            <div>
+              <a routerLink="/blog/{{ blog?.slug }}">
+                <h3>{{ blog?.title }}</h3>
+              </a>
+              <span class="date">
+                Posted on {{ blog?.created | date : "dd/MM/yyyy" }}</span
+              >
+            </div>
+          </div>
+          <p>{{ blog?.shortDesc }}...</p>
+          <a routerLink="/blog/{{ blog?.slug }}" class="standard-btn btn"
+            >Read More</a
+          >
+        </div>
+
+      </div>
+    </div>
+    <div class="row mt-5">
+      <div class="col text-center mt-4">
+        <pagination-controls
+          (pageChange)="onTableDataChange($event)"
+        ></pagination-controls>
+      </div>
+    </div>
+  </div>
+</section>
