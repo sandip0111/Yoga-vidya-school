@@ -1,0 +1,28 @@
+<div class="modal-header border-0">
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body d-flex flex-row" >
+    <div class="flex-grow-1 p-3">
+      <h5>Course Fee for 2025</h5>
+      
+        <div class="col-12 mb-2" *ngFor="let item of items">
+          <div class="card mb-2">
+            <div class="card-body">
+              <h5 class="card-title">{{ item.title }}</h5>
+              <h6 class="card-subtitle">{{ item.subtitle }}</h6>
+              <h6 class="card-text"><span>{{ item.price }}</span><br/>
+              {{item.priceDescription}}</h6>
+              <button (click)="redirectToBooKNow(item.btnURL)" type="button" class="btn btn-primary course-btn">Read More</button>
+            </div>
+          </div>
+        </div>
+    
+    
+    </div>
+    <div class="course-img-div">
+      <img src="https://my-s3-images-bucket.s3.amazonaws.com/img/alliance.png" sca alt="alliance" class="img-fluid course-img"/>
+    </div>
+   
+  </div>
+
+  
