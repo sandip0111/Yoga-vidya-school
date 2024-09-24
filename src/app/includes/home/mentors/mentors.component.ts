@@ -17,6 +17,7 @@ export class MentorsComponent implements OnInit {
   mentorLoop: number = 0;
   imageurl: string = '';
   slug: any = '';
+  hideBtn = false;
   constructor(private webapiService: WebapiService, protected sanitizer: DomSanitizer, private activatedRoute: ActivatedRoute, private router: Router) {
     this.imageurl = this.webapiService.imageUrl;
     this.slug = this.activatedRoute.snapshot.routeConfig?.path;
@@ -99,7 +100,19 @@ export class MentorsComponent implements OnInit {
       ]
 
     }
-    else if(this.slug == 'breath-detox-yoga' || this.slug == 'pranayama-course-online-pranarambha' || this.slug == 'yoga-inversion-workshop-headstand' || this.slug == 'yoga-philosophy-course-free' || this.slug == 'pranic-purification' || this.slug == '21-days-ashtanga-yoga-immersion'|| this.slug == 'adjustment-amp-alignment-level-1' || this.slug == 'adjustment-amp-alignment-level-2' || this.slug == 'pranic-purification' || this.slug == '21-days-ashtanga-yoga-immersion' || this.slug == 'yoga-retreat-in-bali' || this.slug == 'yoga-retreat-in-mysore-india' || this.slug == 'yoga-retreat-in-peru'){
+    else if(this.slug == 'breath-detox-yoga' || this.slug == 'pranayama-course-online-pranarambha' || this.slug == 'yoga-inversion-workshop-headstand' || this.slug == 'yoga-philosophy-course-free' || this.slug == '21-days-ashtanga-yoga-immersion'|| this.slug == 'adjustment-amp-alignment-level-1' || this.slug == 'adjustment-amp-alignment-level-2' || this.slug == '21-days-ashtanga-yoga-immersion' || this.slug == 'yoga-retreat-in-bali' || this.slug == 'yoga-retreat-in-mysore-india' || this.slug == 'yoga-retreat-in-peru'){
+      this.mentors = [
+        {
+          name: "Acharya Prashant Jakhmola",
+          picture: "image_1673271873934.jfif",
+          intro: "Pranayama, Asanas ",
+          slug: "acharya-prashant-jakhmola"
+        }
+      ]
+
+    }
+    else if(this.slug == 'pranic-purification'){
+      this.hideBtn = true;
       this.mentors = [
         {
           name: "Acharya Prashant Jakhmola",

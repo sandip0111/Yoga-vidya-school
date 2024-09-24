@@ -60,6 +60,7 @@
             }
         }
 
+       
         .card-header {
             cursor: pointer;
         }
@@ -117,3 +118,29 @@
         }
     }
 }
+
+h4 span {
+    color: #F9751E;
+}
+
+.cut-text {
+    text-decoration: line-through;
+    font-size: 20px;
+    font-weight: 600;
+  }
+  
+ 
+  .amount {
+    color: #F9751E;
+    font-weight: 600;
+    font-size: 20px;
+  }
+  .register-btn{
+    background-color: #F9751E;
+    width: 200px;
+    padding: 10px 8px;
+    font-size: 18px;
+    border-color: #F9751E;
+  }
+  
+  

@@ -15,15 +15,19 @@ export class GalleryComponent implements OnInit {
   imagesTab2:image[]=[];
   imagesTab3:image[]=[];
   imagesTab4:image[]=[];
+  isHidePranicPurificationRouteImageTab = false;
   slug:any='';
 
   displayImages:image[]=[];
   constructor(private activatedRoute: ActivatedRoute) {
     this.slug = this.activatedRoute.snapshot.routeConfig?.path;
+    if(this.slug == 'pranic-purification'){
+      this.isHidePranicPurificationRouteImageTab = true;
+    }
   }
   allData(){
     this.selected="all";
-
+    
     if(this.slug == '200-hours-yoga-teacher-training-in-rishikesh'){
 
       this.displayImages=[
@@ -214,7 +218,7 @@ export class GalleryComponent implements OnInit {
         },
       ]
     }
-    else if(this.slug == 'pranayama-therapy-course-online' || this.slug == 'adjustment-amp-alignment-level-1' || this.slug == 'adjustment-amp-alignment-level-2' || this.slug == 'yoga-teacher-training-in-india' || this.slug == 'drop-in-yoga-classes' || this.slug == 'pranic-purification'){
+    else if(this.slug == 'pranayama-therapy-course-online' || this.slug == 'adjustment-amp-alignment-level-1' || this.slug == 'adjustment-amp-alignment-level-2' || this.slug == 'yoga-teacher-training-in-india' || this.slug == 'drop-in-yoga-classes'){
       this.displayImages = [
         {
           image:"https://my-s3-images-bucket.s3.amazonaws.com/images/Gallery1_p2mk26.jpg"
@@ -397,6 +401,23 @@ export class GalleryComponent implements OnInit {
         },
         {
           image:"https://my-s3-images-bucket.s3.amazonaws.com/img/image_1721311930205.jpeg"
+        }
+      ]
+    }
+
+    else if(this.slug == "pranic-purification"){
+      this.displayImages = [
+        {
+          image:"https://my-s3-images-bucket.s3.amazonaws.com/images/pranic_954A0874.JPG"
+        },
+        {
+          image:"https://my-s3-images-bucket.s3.amazonaws.com/images/IMG_pranic_20190324_113603_Bokeh.jpg"
+        },
+        {
+          image:"https://my-s3-images-bucket.s3.amazonaws.com/images/pranic_2021.08_22_0273.jpg"
+        },
+        {
+          image:"https://my-s3-images-bucket.s3.amazonaws.com/images/pranic_2021.08_22_0257.jpg"
         }
       ]
     }

@@ -9,9 +9,9 @@
       <div class="col-md-12">
         <div class="my-5 gallery-options">
           <div [class]="selected=='all'?'active':''" (click)="allData()">All</div>
-          <div [class]="selected=='yoga'?'active':''" (click)="yogaClass()">Yoga Classes</div>
-          <div [class]="selected=='activity'?'active':''" (click)="activity()">Activity </div>
-          <div [class]="selected=='food'?'active':''" (click)="food()">Food & Accommodation</div>
+          <div *ngIf="!isHidePranicPurificationRouteImageTab" [class]="selected=='yoga'?'active':''" (click)="yogaClass()">Yoga Classes</div>
+          <div *ngIf="!isHidePranicPurificationRouteImageTab" [class]="selected=='activity'?'active':''" (click)="activity()">Activity </div>
+          <div *ngIf="!isHidePranicPurificationRouteImageTab" [class]="selected=='food'?'active':''" (click)="food()">Food & Accommodation</div>
         </div>
       </div>
     </div>

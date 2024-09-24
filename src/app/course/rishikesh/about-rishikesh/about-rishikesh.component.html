@@ -3,10 +3,11 @@
 <section class="about-rishikesh-section py-5">
   <div class="row mb-3 align-items-center">
     <div class="col-md-6">
-      <div class="imageback">
+      <div class="imageback" [ngClass]="{'pranic-purification-img': ispranicPurificationImg}">
         <img
           src="{{ this.aboutContent.image }}"
           class="img-fluid"
+          [ngClass]="{'pranic-purification-img': ispranicPurificationImg}"  
           alt="{{ this.aboutContent.title }} {{
             this.aboutContent.secondTitle
           }}"
@@ -20,6 +21,12 @@
           {{ this.aboutContent.title }}
           <span>{{ this.aboutContent.secondTitle }}</span>
         </h1>
+        <div *ngIf="this.aboutContent.subTitle" class="col-12">
+          <h4>
+            {{ this.aboutContent.subTitle}}
+          </h4>
+        </div>
+        
         <div [innerHTML]="this.aboutContent.desc"></div>
       </div>
     </div>

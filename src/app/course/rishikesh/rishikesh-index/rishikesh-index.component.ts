@@ -470,11 +470,16 @@ export class RishikeshIndexComponent implements OnInit {
           const itemDate = new Date(item.startDate);
           return itemDate >= currentDate;
         });
-        this.schEventData = {
-          title:res.data[0].coursetitle,
-          events:this.upEventData,
-          url:res.data[0].slug,
-          loc:'Rishikesh'
+        if(this.slug == 'pranic-purification'){
+          this.schEventData = {};
+        }
+        else{
+          this.schEventData = {
+            title:res.data[0].coursetitle,
+            events:this.upEventData,
+            url:res.data[0].slug,
+            loc:'Rishikesh'
+          }
         }
         this.bannerData = {
           event: this.upEventData,

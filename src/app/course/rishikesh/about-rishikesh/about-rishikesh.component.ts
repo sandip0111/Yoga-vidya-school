@@ -12,6 +12,7 @@ import { CommonModule } from '@angular/common';
 export class AboutRishikeshComponent implements OnInit {
   slug: any = '';
   aboutContent: any = {};
+  ispranicPurificationImg = false;
   constructor(private activatedRoute: ActivatedRoute, private router: Router) {
 
     this.slug = this.activatedRoute.snapshot.routeConfig?.path;
@@ -192,10 +193,12 @@ export class AboutRishikeshComponent implements OnInit {
     }
 
     else if(this.slug == 'pranic-purification'){
+      this.ispranicPurificationImg = true;
       this.aboutContent = {
-        image: "https://my-s3-images-bucket.s3.amazonaws.com/img/image_1674308332559.jpg",
+        image: "https://my-s3-images-bucket.s3.amazonaws.com/images/FERN8247.jpg",
         title: "Pranic",
         secondTitle: "Purification",
+        subTitle: "21 Days - Online Pranayama Sadhana with PrashantJ Yoga",
         desc: `
 <p>I believe you are learning and experiencing the Pranic practice through my video posts in the YouTube and other social media as well. I am very happy that you have taken the first step towards the Pranic journey by attending my free “<a href='#'>BREATH DETOX</a>” online yoga course.&nbsp;</p><p>Oh 😯 -, maybe some of you didn’t join yet and you are new to this page or Yoga Vidya School platform. If you are new then maybe you don’t know me well and about my teachings or online yoga training. So before you go ahead with the reading, I request and suggest you to have a short tour to my previous courses and content. It will help you to understand what I do. And definitely help you to build a small Pranayama routine in the morning. And you will be confident enough to take another step towards the self growth</p><p>When you practice Pranayama you get so many benefits. You become calmer, more attentive,&nbsp; joyful and lighter. And trust me, It is not limited to only these benefits from <a href='#'>Pranayama practice</a>, but you will get much more than this.</p><p><span style='text-decoration: underline;'><em>There are many more discoveries ahead&nbsp;</em></span>If you continue on this path</p><p>I have been teaching <a href='#'>Pranayama</a> for a decade now. And over these years I have received appreciative feedback from many students around the world. It inspired me more when I hear their stories, how they transform their life not only physically but mentally emotionally and energetically.</p>
 <h3><strong>What transformation I am talking about</strong></h3>

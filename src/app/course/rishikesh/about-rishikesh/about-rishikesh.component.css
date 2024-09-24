@@ -36,4 +36,7 @@
       max-height: 380px;
     }
   }
+  .pranic-purification-img {
+    max-height: none !important;
+  }
 }

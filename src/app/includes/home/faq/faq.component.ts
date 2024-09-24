@@ -35,6 +35,11 @@ export class FaqComponent implements OnInit {
     else{
       this.faqs = [];
     }
+    if(this.faqs.length != 0){
+      if(this.slug == "pranic-purification"){
+        this.faqs = this.faqs.filter(i => i.title != "How to book this course?");
+      }
+    }
   }
 }
 

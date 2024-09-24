@@ -1,10 +1,18 @@
 <div class="know-more-section px-md-5 py-md-5 p-2">
   <div class="row">
-    <div class="col-md-12">
+    <div *ngIf="!isItPranicRoute" class="col-md-12">
       <div><img src="https://my-s3-images-bucket.s3.amazonaws.com/img/flower-color.png" class="flower-img" /></div>
       <small>Curriculum Overview</small>
       <h3 class="small-head">Unleash Your Inner Potential: Dive into Our</h3>
       <h2><span>Transformative {{title}} Curriculum!</span></h2>
+    </div>
+    <div *ngIf="isItPranicRoute" class="row">
+      <h4>Start Date: <span>2nd December</span></h4>
+      <h6 >Time: 5:30PM to 6:30PM (IST)</h6>
+      <small>Fees: <span class="cut-text">Rs.2999</span> New Year Special Price <span class="amount">Rs.1499</span> </small>
+      <div class="col-12 text-center mt-4">
+      <button class="btn btn-primary register-btn" (click)="registerClick()" >Register Now Button</button>
+      </div>
     </div>
     <div class="col-md-12 text-left mb-3 faq" *ngFor="let cur of curriculum; let i = index">
       <div class="card">
