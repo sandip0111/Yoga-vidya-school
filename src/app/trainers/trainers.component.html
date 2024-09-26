@@ -27,7 +27,7 @@
               <a style="text-decoration: none;color: black" *ngIf="master.slug != 'acharya-prashant-jakhmola'" routerLink="/mentor/{{ master.slug }}"><div class="heading fw-600">{{ master.name }}</div></a>
 
               <p class="card-text">{{ master.title }}</p>
-              <a href="#" class="button">FOLLOW ON : <i class="fa-brands fa-instagram"></i> <i class="fa-brands fa-youtube"></i></a>
+              <div class="button">FOLLOW ON : <a *ngIf="master.instaLink" [href]="master.instaLink" target="_blank"><i class="fa-brands fa-instagram"></i></a><i *ngIf="!master.instaLink" class="fa-brands fa-instagram"></i> <a *ngIf="master.youTubeLink" [href]="master.youTubeLink" target="_blank"><i class="fa-brands fa-youtube"></i></a></div>
             </div>
         </div>
       </div>

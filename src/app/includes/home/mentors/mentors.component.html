@@ -16,7 +16,7 @@
           <div class="card-body">
             <div class="heading fw-600">{{item.name}}</div>
             <p class="card-text">{{item.intro}}</p>
-            <a href="#" class="button">FOLLOW ON : <i class="fa-brands fa-instagram"></i> <i class="fa-brands fa-youtube"></i></a>
+            <div class="button">FOLLOW ON : <a *ngIf="item.instaLink" [href]="item.instaLink" target="_blank"><i class="fa-brands fa-instagram"></i></a><i *ngIf="!item.instaLink" class="fa-brands fa-instagram"></i> <a *ngIf="item.youTubeLink" [href]="item.youTubeLink" target="_blank"><i class="fa-brands fa-youtube"></i></a></div>
           </div>
       </div>
     </div>

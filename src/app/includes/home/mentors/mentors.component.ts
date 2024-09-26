@@ -34,7 +34,7 @@ export class MentorsComponent implements OnInit {
           name: "Acharya Prashant Jakhmola",
           picture: "image_1673271873934.jfif",
           intro: "Pranayama, Asanas ",
-          slug: "acharya-prashant-jakhmola"
+          slug: "acharya-prashant-jakhmola"   
         },
         {
           name: "Mittra Rawat",
@@ -213,6 +213,43 @@ export class MentorsComponent implements OnInit {
         ]
     }
 
+    this.mentors.forEach(item =>{
+      switch(item.name){
+        case "Swami Atmatattwananda Sarawati":
+          item.instaLink = "https://www.instagram.com/atmatattwananda";
+          break;
+
+        case "Acharya Prashant Jakhmola":
+          item.instaLink = "https://www.instagram.com/prashantjyoga/";
+          item.youTubeLink = "https://www.youtube.com/@prashantjyoga";
+          break;
+
+        case "Ksenia Rasapriya Bodhi Ji":
+          item.instaLink = "https://www.instagram.com/ksenia_rasapriya/";
+          break;
+
+        case "Aparna Sharma":
+        item.instaLink = "https://www.instagram.com/aparnashanti_yoga";
+        break; 
+
+        case "Shivam Joshi":
+          item.instaLink = "https://www.instagram.com/traditional_yoga_with_shivam";
+          break; 
+
+        case "Taniya":
+          item.instaLink = "https://www.instagram.com/yogawith_taniya";
+          break; 
+
+        case "Anuj":
+          item.instaLink = "https://www.instagram.com/sadhakanuj";
+          break; 
+
+        case "Shiva":
+          item.instaLink = "https://www.instagram.com/yogacharya_shiva";
+          break; 
+      }
+    })
+
   }
 
   ngOnInit() {
@@ -248,4 +285,6 @@ interface mentor {
   picture: string;
   slug: string;
   intro: string;
+  instaLink?: string,
+  youTubeLink?: string
 }
