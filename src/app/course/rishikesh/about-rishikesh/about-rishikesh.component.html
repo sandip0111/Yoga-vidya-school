@@ -134,4 +134,21 @@
       <a href="/book-now" class="button">Enroll In The Course </a>
     </div>
   </div>
+  <div class="col-md-6 d-flex align-items-center">
+    <a
+      *ngIf="slug == 'online-hip-opening-workshop' ||
+             slug == '200-hours-yoga-teacher-training-online'"
+        href="/add-to-cart"
+        class="button"
+        target="_blank"
+        >Add To Cart</a
+      >
+      <a
+      *ngIf="slug == 'online-hip-opening-workshop' ||
+             slug == '200-hours-yoga-teacher-training-online' "  
+      href="/"
+      class="button"
+      >Buy Now</a
+    >
+  </div>
 </section>

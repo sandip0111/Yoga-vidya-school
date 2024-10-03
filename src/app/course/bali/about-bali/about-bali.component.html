@@ -15,7 +15,30 @@
         <img src="{{ aboutItems.image }}" alt="About Image" />
       </div>
     </div>
-    <div class="col-md-12 image">
+    <div class="col-md-12 image d-flex justify-content-center">
+      <a
+      *ngIf="slug == 'pranayama-course-online-pranarambha' ||
+             slug == 'breath-detox-yoga' ||
+             slug == 'foundation-of-spirituality-an-online-spiritual-awakening-course' ||
+             slug == 'yoga-inversion-workshop-headstand' ||
+             slug == 'yoga-philosophy-course-free' ||
+             slug == 'yoga-history-and-philosophy'"
+        href="/add-to-cart"
+        class="button"
+        target="_blank"
+        >Add To Cart</a
+      >
+      <a
+      *ngIf="slug == 'pranayama-course-online-pranarambha' ||
+             slug == 'breath-detox-yoga' ||
+             slug == 'foundation-of-spirituality-an-online-spiritual-awakening-course' ||
+             slug == 'yoga-inversion-workshop-headstand' ||
+             slug == 'yoga-philosophy-course-free' ||
+             slug == 'yoga-history-and-philosophy' "  
+      href="/"
+      class="button"
+      >Buy Now</a
+    >
       <a
         *ngIf="slug != 'pranayama-course-online-pranarambha'"
         href="/book-now"

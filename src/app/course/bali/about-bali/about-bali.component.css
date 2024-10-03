@@ -19,6 +19,10 @@ h1 span {
   );
 }
 
+.button {
+  margin: 0 10px;
+}
+
 .about-section_big_image {
   width: 100%;
   aspect-ratio: 16 / 8;

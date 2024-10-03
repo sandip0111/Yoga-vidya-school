@@ -39,4 +39,7 @@
   .pranic-purification-img {
     max-height: none !important;
   }
+  .button {
+    margin: 0 10px;
+  }
 }
