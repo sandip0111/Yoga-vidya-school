@@ -23,6 +23,7 @@ import { BlogDetailComponent } from './blog-detail/blog-detail.component';
 import { SuccessPaymentComponent } from './success-payment/success-payment.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { TrainerDetailComponent } from './trainers/trainer-detail/trainer-detail.component';
+import { AddToCartComponent } from './add-to-cart/add-to-cart.component';
 
 export const routes: Routes = [
 
@@ -76,7 +77,7 @@ export const routes: Routes = [
   {path:"testimonial", component:TestinomialComponent},
   {path:'yoga-teacher/acharya-prashant-jakhmola/:id', component: YogateacherComponent },
   {path:'confirmation', component: SuccessPaymentComponent },
-
+  {path:'add-to-cart', component: AddToCartComponent },
   {path:"book-now", component:BookNowComponent},
   {path:"contact-us", component:ContactComponent},
   {path:"checkout/:id",component:CheckoutComponent},
