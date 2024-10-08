@@ -27,7 +27,8 @@
       <div class="slider">
         <div class="inner">
           <div class="form">
-            <h3 *ngIf="slug != 'yoga-retreat-in-mysore-india' && slug !='yoga-retreat-in-peru'">Want To Practice Pranayama Sadhana!</h3>
+            <h3 *ngIf="slug != 'yoga-retreat-in-mysore-india' && slug !='yoga-retreat-in-peru' && !isRegistrationPageLabelToggle">Want To Practice Pranayama Sadhana!</h3>
+            <h3 *ngIf="slug != 'yoga-retreat-in-mysore-india' && slug !='yoga-retreat-in-peru' && isRegistrationPageLabelToggle">Want To Become Expert Yoga Teacher!</h3>
             <h3 *ngIf="slug == 'yoga-retreat-in-mysore-india' || slug =='yoga-retreat-in-peru'">Interested In This Retreat ?</h3>
             <small *ngIf="slug == 'yoga-retreat-in-mysore-india' || slug =='yoga-retreat-in-peru'">Sign Up Here !</small>
             <small *ngIf="slug != 'yoga-retreat-in-mysore-india' && slug !='yoga-retreat-in-peru'">Apply Now - We Are Taking Admissions.</small>

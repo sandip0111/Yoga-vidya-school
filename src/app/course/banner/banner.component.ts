@@ -18,6 +18,7 @@ export class BannerComponent implements OnInit {
  inquiryData:any={}
  slug:any='';
  courseName: any;
+ isRegistrationPageLabelToggle = false;
  sliderImage:any='https://my-s3-images-bucket.s3.amazonaws.com/images/InternalBackground_lticg8.jpg'
   constructor(private webapiService: WebapiService,private spinner:NgxSpinnerService,private router: Router, private activatedRoute: ActivatedRoute) {
     this.slug = this.activatedRoute.snapshot.routeConfig?.path;
@@ -36,6 +37,20 @@ export class BannerComponent implements OnInit {
     else if(this.slug == 'yoga-retreat-in-peru'){
       this.sliderImage = 'https://my-s3-images-bucket.s3.amazonaws.com/img/image_1721289105818.jpeg';
     }
+    if(this.slug == '100-hours-yoga-teacher-training-in-rishikesh' ||
+       this.slug == '200-horas-de-formacioacuten-de-profesores-de-yoga-en-rishikesh' ||
+       this.slug == '200-hours-yoga-teacher-training-in-rishikesh' ||
+       this.slug == '300-hours-yoga-teacher-training-in-rishikesh' ||
+       this.slug == '200-hour-yoga-teacher-training-scholarship-in-rishikesh' ||
+       this.slug == '300-hour-yoga-teacher-training-scholarship-in-rishikesh' ||
+       this.slug == '200-hour-yoga-teacher-training-in-bali' ||
+       this.slug == '300-hour-yoga-teacher-training-in-bali' ||
+       this.slug == '200-hour-yoga-teacher-training-in-kerala-india' ||
+        this.slug == '300-hour-yoga-teacher-training-in-kerala-india'
+    ) {
+      this.isRegistrationPageLabelToggle = true;
+    }
+    
   }
 
   ngOnInit() {

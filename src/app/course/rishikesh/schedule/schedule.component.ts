@@ -86,6 +86,14 @@ export class ScheduleComponent implements OnInit {
         redirectUrl: `/${changes['data'].currentValue.url}`,
         space: `${event.seat} spaces Available`,
       })).slice(0, 3);
+      if(this.slug == '200-hour-yoga-teacher-training-in-bali' ||
+        this.slug == '300-hour-yoga-teacher-training-in-bali'){
+          this.eventList = this.eventList.map((y: { trainer: string; }) =>{ 
+            var mentor = 'Prashant J Yoga';
+            return { ...y, trainer: mentor };
+          });
+        }
+      
     }
     else{
       this.eventList = [];

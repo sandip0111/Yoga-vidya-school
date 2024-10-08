@@ -22,7 +22,7 @@ export class MentorsComponent implements OnInit {
     this.imageurl = this.webapiService.imageUrl;
     this.slug = this.activatedRoute.snapshot.routeConfig?.path;
 
-    if (this.slug == '200-hour-yoga-teacher-training-in-bali' || this.slug=='200-hours-yoga-teacher-training-in-rishikesh' || this.slug=='300-hours-yoga-teacher-training-in-rishikesh' || this.slug =='100-hours-yoga-teacher-training-in-rishikesh' || this.slug == '200-horas-de-formacioacuten-de-profesores-de-yoga-en-rishikesh' || this.slug=='200-hour-yoga-teacher-training-scholarship-in-rishikesh' || this.slug=='300-hour-yoga-teacher-training-scholarship-in-rishikesh' || this.slug =='online-hip-opening-workshop' || this.slug == 'yoga-history-and-philosophy' || this.slug == '200-hour-yoga-teacher-training-in-kerala-india' || this.slug == '300-hour-yoga-teacher-training-in-kerala-india' || this.slug == 'yoga-retreat-in-rishikesh-india' || this.slug == 'yoga-retreat-in-kerala-india' || this.slug == 'pranayama-therapy-course-online' || this.slug == 'yoga-teacher-training-in-india' || this.slug == 'drop-in-yoga-classes') {
+    if (this.slug=='200-hours-yoga-teacher-training-in-rishikesh' || this.slug=='300-hours-yoga-teacher-training-in-rishikesh' || this.slug =='100-hours-yoga-teacher-training-in-rishikesh' || this.slug == '200-horas-de-formacioacuten-de-profesores-de-yoga-en-rishikesh' || this.slug=='200-hour-yoga-teacher-training-scholarship-in-rishikesh' || this.slug=='300-hour-yoga-teacher-training-scholarship-in-rishikesh' || this.slug =='online-hip-opening-workshop' || this.slug == 'yoga-history-and-philosophy' || this.slug == '200-hour-yoga-teacher-training-in-kerala-india' || this.slug == '300-hour-yoga-teacher-training-in-kerala-india' || this.slug == 'yoga-retreat-in-rishikesh-india' || this.slug == 'yoga-retreat-in-kerala-india' || this.slug == 'pranayama-therapy-course-online' || this.slug == 'yoga-teacher-training-in-india' || this.slug == 'drop-in-yoga-classes') {
       this.mentors = [
         {
           name: "Swami Atmatattwananda Sarawati",
@@ -75,7 +75,7 @@ export class MentorsComponent implements OnInit {
 
       ]
     }
-    else if (this.slug == '300-hour-yoga-teacher-training-in-bali') {
+    else if (this.slug == '200-hour-yoga-teacher-training-in-bali' || this.slug == '300-hour-yoga-teacher-training-in-bali') {
 
       this.mentors = [
         {
