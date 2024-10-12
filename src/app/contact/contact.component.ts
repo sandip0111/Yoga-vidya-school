@@ -14,10 +14,13 @@ import { FormsModule } from '@angular/forms';
 export class ContactComponent {
 
   formData: any = {};
-
+  user = 'info';
+  domain = 'yogavidyaschool.com';
+  email: string = "";
   constructor(private webapiService: WebapiService, private title: Title, private meta: Meta, private router: Router, @Inject(DOCUMENT) private _document: Document, private _renderer2: Renderer2) { }
 
   ngOnInit(): void {
+    this.email = `${this.user}@${this.domain}`;
     setTimeout(() => {
       this.title.setTitle('Contact Us');
       this.meta.updateTag({ name: 'keywords', content: 'Yoga Vidya School Rishikesh Contact Details' });
@@ -41,6 +44,6 @@ export class ContactComponent {
         alert('something went wrong')
       }
     });
-  }
+  } 
 
 }

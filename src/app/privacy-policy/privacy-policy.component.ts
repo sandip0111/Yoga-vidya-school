@@ -11,11 +11,14 @@ import { Router } from '@angular/router';
   styleUrl: './privacy-policy.component.css'
 })
 export class PrivacyPolicyComponent {
-
+  user = 'info';
+  domain = 'yogavidyaschool.com';
+  email: string = "";
   constructor(private title: Title, private meta: Meta, private router: Router, @Inject(DOCUMENT) private _document: Document, private _renderer2: Renderer2) {
 
   }
   ngOnInit(): void {
+    this.email = `${this.user}@${this.domain}`;
     setTimeout(() => {
       this.title.setTitle('Privacy Policy');
       this.meta.updateTag({ name: 'keywords', content: '' });
