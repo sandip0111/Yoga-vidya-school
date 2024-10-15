@@ -3,13 +3,15 @@
     background: radial-gradient(circle, rgba(255, 245, 219, 0.94) 60%, rgba(249, 117, 30, 0.21) 110%);
     background: -moz-radial-gradient(circle, rgba(255, 245, 219, 0.94) 60%, rgba(249, 117, 30, 0.21) 110%);
     background: -webkit-radial-gradient(circle, rgba(255, 245, 219, 0.94) 60%, rgba(249, 117, 30, 0.21) 110%);
-
+    #destination-bg2{
+        background-image: url('https://my-s3-images-bucket.s3.amazonaws.com/img/destination-bg2.png'); 
+    }
     .destination {
         position: relative;
         height: 530px;
         background-size: 100%;
         overflow: hidden;
-        
+        background-image: url('https://my-s3-images-bucket.s3.amazonaws.com/img/destination-bg3.png');
         .inner {
             z-index: 999;
             position: absolute;

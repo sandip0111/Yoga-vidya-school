@@ -1,6 +1,6 @@
 .benifits-section{
     text-align: center;
-    
+    background-image: url('https://my-s3-images-bucket.s3.amazonaws.com/img/benifit-bg.png');
     padding: 40px;
     color: #fff;
     font-family: "Montserrat", sans-serif;
