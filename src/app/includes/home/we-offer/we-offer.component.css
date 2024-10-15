@@ -1,5 +1,7 @@
 .workshop-section {
     text-align: center;
+    background: url('https://my-s3-images-bucket.s3.amazonaws.com/img/offer-bg.webp'); 
+    background-size: cover;
 
     h2 {
         font-size: 28px;

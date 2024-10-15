@@ -46,7 +46,8 @@
     .upper {
         height: 450px;
         background-color: rgba(0, 0, 0, 0.47);
-
+        background:url('https://my-s3-images-bucket.s3.amazonaws.com/img/services-bg.webp');
+        background-size:cover;
         small {
             padding: 0;
         }
@@ -54,6 +55,7 @@
 
     .bottom {
         height: 650px;
+        background: rgba(255, 245, 222, 1);
     }
 
     .bottom-abs {

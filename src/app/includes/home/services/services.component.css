@@ -169,3 +169,7 @@
     z-index: 0;
   }
 }
+
+.br-10{
+  border-radius: 10px;
+}

@@ -153,6 +153,7 @@
     border-radius: 10px;
     /* padding-bottom: 10px; */
     width: 100%;
+
     .icon {
       text-align: left;
       padding: 30px 0 1px 12px;
@@ -209,4 +210,8 @@
     /* height: 1787px; */
     height: auto;
   }
+}
+
+.br-10 {
+  border-radius: 10px;
 }
