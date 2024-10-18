@@ -36,12 +36,7 @@ export class MentorsComponent implements OnInit {
           intro: "Pranayama, Asanas ",
           slug: "acharya-prashant-jakhmola"   
         },
-        {
-          name: "Mittra Rawat",
-          picture: "image_1675243492499.jpg",
-          intro: "Hatha Yoga",
-          slug: "mittra-rawat"
-        },
+        
         {
           name: "Aparna Sharma",
           picture: "image_1673271914610.jpeg",

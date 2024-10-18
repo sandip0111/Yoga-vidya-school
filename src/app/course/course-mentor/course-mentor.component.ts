@@ -78,14 +78,7 @@ export class CourseMentorComponent {
           intro: "Yoga Philosophy",
           time:"",
           price:""
-        },
-        {
-          name: "Mittra Rawat",
-          image: "image_1675243492499.jpg",
-          intro: "Hatha Yoga",
-          time:"",
-          price:""
-        },
+        },        
         {
           name: "Aparna Sharma",
           image: "image_1673271914610.jpeg",
