@@ -11,11 +11,13 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class TestimonialsComponent implements OnInit {
   slug: any = '';
+  isParnicPage = false;
   testimonials:testimonial[]=[];
   
   constructor(private activatedRoute: ActivatedRoute) {
     this.slug = this.activatedRoute.snapshot.routeConfig?.path;
     if(this.slug == 'pranic-purification'){
+      this.isParnicPage = true;
       this.testimonials = [
         {
           img:"https://my-s3-images-bucket.s3.amazonaws.com/images/testimonials-pexels-parv-choudhary-724334-3395599.jpg",

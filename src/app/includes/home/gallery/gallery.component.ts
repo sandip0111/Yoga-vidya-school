@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { LazyLoadImageModule } from 'ng-lazyload-image';
 
 @Component({
   selector: 'app-gallery',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, LazyLoadImageModule],
   templateUrl: './gallery.component.html',
   styleUrls: ['./gallery.component.css']
 })
@@ -19,6 +20,7 @@ export class GalleryComponent implements OnInit {
   slug:any='';
 
   displayImages:image[]=[];
+  folowers: string= "https://my-s3-images-bucket.s3.amazonaws.com/img/flower-color.png";
   constructor(private activatedRoute: ActivatedRoute) {
     this.slug = this.activatedRoute.snapshot.routeConfig?.path;
     if(this.slug == 'pranic-purification'){

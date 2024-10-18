@@ -14,6 +14,7 @@ export class FaqComponent implements OnInit {
   openIndex: number | null = null;
   faqs: faq[] = [];
   slug: any = '';
+  isPranicPage: boolean = false;
   constructor(private activatedRoute: ActivatedRoute, private router: Router) {
     this.slug = this.activatedRoute.snapshot.routeConfig?.path;
   }
@@ -26,7 +27,9 @@ export class FaqComponent implements OnInit {
     }
   }
   ngOnInit() {
-
+    if(this.slug == "pranic-purification"){
+      this.isPranicPage = true;
+    }
   }
   ngOnChanges(changes: SimpleChanges):void {
     if(changes['data'].currentValue?.length > 0) {
