@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-6 borderall">
       <div class="mb-3" *ngIf="feesData?.amount">
-        <h2>Course Fee: {{ feesData?.amount }} {{ feesData?.currency }}</h2>
+        <h2>{{courseText !=''? courseText:'Course'}} Fee: {{ feesData?.amount }} {{ feesData?.currency }}</h2>
       </div>
       <div class="mb-3">
         <h2>What Does This Yoga Course</h2>
@@ -17,7 +17,7 @@
       </div>
       <div class="mb-3">
         <h2>What Is <span>Not Included</span> In This</h2>
-        <h2>Yoga Package?s</h2>
+        <h2>Yoga Package?</h2>
         <div class="lists">
           <ul>
             <li *ngFor="let item of not_includes">

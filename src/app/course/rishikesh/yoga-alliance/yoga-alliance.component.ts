@@ -64,7 +64,7 @@ For continued education in yoga and after having successfully completed the 100 
       this.noContent = true;
       this.content = `
       <p style="font-size:18px">
-      The 300 Hour Yoga Teacher Training in Rishikesh at Yoga Vidya School is a certified program with Yoga Alliance USA. It is an advanced course that you can join after you have successfully completed the foundational 200 hours yoga teacher training course. This yoga course is for those individuals who are physically and mentally fit and want to further deepen their practice by learning advanced yoga skills as they pave the way for self-realization.
+      The 300 Hour Yoga Teacher Training in Rishikesh at Yoga Vidya School is a certified program with Yoga Alliance USA which provides yoga teaching certification in India which is recognised internationally. It is an advanced course that you can join after you have successfully completed the foundational 200 hours yoga teacher training course. This yoga course is for those individuals who are physically and mentally fit and want to further deepen their practice by learning advanced yoga skills as they pave the way for self-realization.
       </p>
       <p style="font-size:18px">
       Yoga Alliance is a non-profit organization that oversees yoga activities around the world. Although it is not directly involved in conducting yoga teacher training programs, it is instrumental in defining guidelines and chalking out an outline for Yoga TTCs to be followed by yoga schools around the globe. Besides, individuals who complete their yoga teacher training programs from accredited schools like Yoga Vidya School can register themselves as an RYT or a Registered Yoga Teacher with Yoga Alliance. Since, Yoga Alliance is a regulatory body, you can find data of registered yoga teachers  (RYT) and registered yoga schools (RYS) on its portal.
@@ -83,13 +83,13 @@ As an RYT, you can now teach yoga on an international platform catering to yoga 
       this.content = `
       <p style="font-size:18px">
 The 200 Hour Yoga Teacher Training in Bali at Yoga Vidya School is a certified and registered course with Yoga Alliance USA.
-Get fundamental knowledge of timeless yoga practices amidst the lush landscapes of Bali.  Our deeply invigorating 200 hour yoga teacher training in Bali course is a life transformative course specifically targeted towards aspiring yogis and yoginis who want to deepen their practice of yoga amidst the stunning locales of Bali.
+Get fundamental knowledge of timeless yoga practices amidst the lush landscapes of Bali. Our deeply invigorating yoga instructor training Bali course is a life transformative course specifically targeted towards aspiring yogis and yoginis who want to deepen their practice of yoga amidst the stunning locales of Bali.
       </p>
       <p style="font-size:18px">
-      Our 200 Hour Yoga Teacher Training in Bali program is a comprehensive course with a well-designed curriculum encompassing the most updated knowledge of yoga practices. Besides, our 200 hour yoga teacher training in Bali course meets all the expectations and criteria as laid down by Yoga Alliance, USA,  an apex, regulatory organization that sets standards for different levels of yoga teacher training courses and broadly outlines the curriculum to be followed in these intensive yoga TTC courses. Yoga Alliance USA can also be looked upon as a global community of yoga professionals who can share knowledge as well as access the latest techniques and knowledge on yoga.
+      Our bali yoga teacher training 200 hour program is a comprehensive course with a well-designed curriculum encompassing the most updated knowledge of yoga practices. Besides, our 200 hour yoga teacher training in Bali course meets all the expectations and criteria as laid down by Yoga Alliance, USA,  an apex, regulatory organization that sets standards for different levels of yoga instructor training bali and broadly outlines the curriculum to be followed in these intensive yoga TTC courses. Yoga Alliance USA can also be looked upon as a global community of yoga professionals who can share knowledge as well as access the latest techniques and knowledge on yoga.
       </p>
        <p style="font-size:18px">
-       Yoga Alliance also displays data of Registered Yoga Schools or RYS and certified yoga professionals (RYT) worldwide on its website. So, upon successful completion of your 200 Hour Yoga Teacher Training in Bali from a certified yoga school like Yoga Vidya School, you promptly become eligible to register as an RYT on the Yoga Alliance USA website.
+       Yoga Alliance also displays data of Registered Yoga Schools or RYS and certified yoga professionals (RYT) worldwide on its website. So, upon successful completion of your 200 Hour Yoga Teacher Training in Bali from a certified yoga school like Yoga Vidya School, you promptly become eligible to register as an RYT on the Yoga Alliance USA website with completing your yoga instructor certification bali.
 Empowered with a badge of an RYT200, you can now begin teaching yoga internationally.
       </p>
       `

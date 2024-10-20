@@ -13,6 +13,7 @@ export class TestimonialsComponent implements OnInit {
   slug: any = '';
   isParnicPage = false;
   is300BaliPage = false;
+  is200BaliPage = false;
   testimonials:testimonial[]=[];
   
   constructor(private activatedRoute: ActivatedRoute) {
@@ -53,6 +54,9 @@ export class TestimonialsComponent implements OnInit {
 
     if(this.slug == '300-hour-yoga-teacher-training-in-bali'){
       this.is300BaliPage = true;
+    }
+    else if(this.slug == '200-hour-yoga-teacher-training-in-bali'){
+      this.is200BaliPage = true;
     }
    }
 

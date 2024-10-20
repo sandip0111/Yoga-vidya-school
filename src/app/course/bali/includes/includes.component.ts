@@ -14,6 +14,7 @@ export class IncludesComponent implements OnInit {
    not_includes:item[] = [];
    image:any='https://my-s3-images-bucket.s3.amazonaws.com/images/inschool-yoga_retreat_doaezs.jpg';
    courseFee:any='';
+   courseText:any='';
 
   slug: any='';
   feesData: any;
@@ -21,6 +22,7 @@ export class IncludesComponent implements OnInit {
     this.slug = this.activatedRoute.snapshot.routeConfig?.path
 
     if(this.slug == '200-hour-yoga-teacher-training-in-bali'){
+      this.courseText = 'Yoga Training Bali';
 
       this.amenities = [
         { text: "21 nights shared room accommodation with attached bathroom." },

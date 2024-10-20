@@ -1,8 +1,8 @@
 <section class="fee" *ngIf="list.length > 0">
   <div><img src="https://my-s3-images-bucket.s3.amazonaws.com/img/flower-color.png" class="flower-img" /></div>
-  <h2>What’s <span>Covered in The Course</span></h2>
+  <h2>What’s <span>Covered in {{courseName != ''? courseName: 'The Course?'}}</span></h2>
   <h2>
-    We provide best {{feesData?.title}} at affordable
+    We provide the best {{feesData?.title}} at affordable
     price.
   </h2>
   <div class="row">

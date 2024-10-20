@@ -19,12 +19,12 @@ export class AboutBaliComponent implements OnInit {
     this.slug = this.activatedRoute.snapshot.routeConfig?.path
     if (this.slug == '200-hour-yoga-teacher-training-in-bali') {
       this.aboutItems = {
-        title: '200 hour',
+        title: 'Transform life with 200-hour',
         span: 'Yoga Teacher Training in Bali',
         desc: `
         <p>Yoga Vidya School welcomes you to join the 200 hours yoga teacher training in Bali. Our 200 hour yoga teacher training Bali program is an accredited course registered with Yoga Alliance USA.
-         Yoga Vidya School’s Bali yoga teacher training is guided by yoga teachers and yoga masters having years of experience teaching yoga. Helmed by Acharya Prashant Jakhmola,
-         our 200 hour yoga teacher training in Bali covers different aspects of yoga. From the traditional Hatha yoga/ Ashtanga, Vinyasa flow yoga, pranayama, meditation, Kriya, Bandha, yogic philosophy, anatomy and teaching methodology,
+         Yoga Vidya School’s bali yoga teacher training 200 hour is guided by certified yoga instructors and yoga masters having years of experience teaching yoga. Helmed by Acharya Prashant Jakhmola,
+         our 200 hour yoga TTC in bali covers different aspects of yoga. From the traditional Hatha yoga/ Ashtanga, Vinyasa flow yoga, pranayama, meditation, Kriya, Bandha, yogic philosophy, anatomy and teaching methodology,
          our 200 hour yoga teacher training in Bali covers different aspects of yoga practice.
          </p>
          <p>Nestled in charming Ubud area, As We stopped with Balian village Yoga Vidya School offers the much needed calm and tranquil ambiance for pursuing your yoga teacher training in Bali.

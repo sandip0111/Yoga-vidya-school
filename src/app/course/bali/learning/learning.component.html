@@ -1,6 +1,6 @@
 <section class="learning" *ngIf="week1.length > 0">
   <div><img src="https://my-s3-images-bucket.s3.amazonaws.com/img/flower-color.png" class="flower-img" /></div>
-  <h2>What You Will <span>Learn In This {{is300HourBaliCourse? 'Yoga Instructor Course Bali': 'Course'}}?</span></h2>
+  <h2>What You Will <span>Learn In This {{h2Content != ''? h2Content: 'Course'}}?</span></h2>
   <small *ngIf="weekPara">{{weekPara}}</small>
   <!-- <small
     >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod

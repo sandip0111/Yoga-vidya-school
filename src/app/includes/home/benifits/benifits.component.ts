@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-benifits',
@@ -31,7 +32,14 @@ export class BenifitsComponent implements OnInit {
       count: '20'
     }
   ];
-  constructor() { }
+  slug:any = '';
+  pContent= ''
+  constructor(private activatedRoute: ActivatedRoute) {
+    this.slug = this.activatedRoute.snapshot.routeConfig?.path;
+    if (this.slug == '200-hour-yoga-teacher-training-in-bali') {
+      this.pContent = '200 hour yoga teacher training retreats.';
+    }
+   }
 
   ngOnInit() {
   }

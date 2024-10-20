@@ -19,45 +19,45 @@ export class LearningComponent implements OnInit {
   slug: any;
   weeKTitle: string='';
   weekPara:any='';
-  is300HourBaliCourse: boolean= false;
+  h2Content: string ='';
   constructor(private activatedRoute: ActivatedRoute, private router: Router) {
 
     this.slug = this.activatedRoute.snapshot.routeConfig?.path;
 
     if(this.slug == '200-hour-yoga-teacher-training-in-bali'){
-
+      this.h2Content = "Yoga Teaching Course Bali";
       this.week1=[
         `This is a week to introduce you to the world of Authentic Yoga practices. It starts with the Hatha Yoga Classes focused on- Pawan Mutasana Series covering joint and bone movement to prepare for the correct and advance yoga asanas.  Students will gain insights on the traditional way of doing Surya Namaskar as per different yoga traditions.
          In the Ashtanga Yoga Classes, we will teach you about standing foundational sequence of Ashtanga Yoga Primary series, also known as Yoga Chikitsa or Yoga Therapy.
          For Pranayama and Meditation, in the first week, we will focus on developing your mind and body to connect with your inner self and to regulate the Prana through the purification of the body.
-         The first week of this yoga program is exciting for those who want to explore the yogic philosophy, as we introduce you to the Shat Darshana, and the purpose of Yoga as per Yoga Sutras of Patanjali.
+         The first week of this 200 hour yoga teacher training in bali program is exciting for those who want to explore the yogic philosophy, as we introduce you to the Shat Darshana, and the purpose of Yoga as per Yoga Sutras of Patanjali.
         `,
         'Introduction to Authentic Yoga Practices'
       ]
       this.week2=[
-      `We cover Vinyasa with the different types of flow and transitions required between the practice of Asanas. The students will start understanding the correct formation of the postures, with more synchronisation with breath and awareness. The continuous practice of this synchronisation will make you feel the special kind of control in your whole body, making it smooth and effortless even in some of the tough asanas which you always want to avoid.
-       In the Yogic Anatomy Classes, you will understand the mechanism of the internal and external organs, muscles, bones and joints of the body, letting you practice yoga with more safety.
+      `We cover Vinyasa with the different types of flow and transitions required between the practice of Asanas. At our 200 hour yoga teacher training in bali the students will start understanding the correct formation of the postures, with more synchronisation with breath and awareness. The continuous practice of this synchronisation will make you feel the special kind of control in your whole body, making it smooth and effortless even in some of the tough asanas which you always want to avoid.
+       In the Yogic Anatomy Classes, covered in our yoga teaching course bali you will understand the mechanism of the internal and external organs, muscles, bones and joints of the body, letting you practice yoga with more safety.
        The Philosophy Class in the second week of Yoga TTC is dedicated to the study of Sankya Yoga and Vedant Philosophy, in addition to continuation of Yoga Sutras.
       `,
       'Learning Vinyasa  Synchronizations, Yogic Anatomy and Yoga Philosophy'
       ]
       this.week3=[
-        `After completing the second stage of purifying the Nadis (The panic or energy channels) through deeper practice of Pranayama, this week will make yourefreshed and more prepared to experience the deeper energy of yoga.  The Meditation Classes will let you attain the higher level of concentration and connection, by exploring more of Taratak, Ajanta Japa, and ChidakashDharana, etc. By the end of this week, you will also start to chant major Yogic Mantras and can feel a spiritual awakening inside you.
+        `After completing the second stage of purifying the Nadis (The panic or energy channels) through deeper practice of Pranayama, this week will make yourefreshed and more prepared to experience the deeper energy of yoga. The meditation classes covered in our 200 hour yoga teacher training in bali will let you attain the higher level of concentration and connection, by exploring more of Taratak, Ajanta Japa, and ChidakashDharana, etc. By the end of this week, you will also start to chant major Yogic Mantras and can feel a spiritual awakening inside you.
         For Hatha Yoga and Ashtanga Yoga, the third week is dedicated on static asana practice , in which you will understand the modifications and variations of the advanced versions. You will feel more flexible and more strong in your asana practice.
         `,
         'Hatha Yoga and Ashtanga Yoga Static Asana Practice, Meditation and Mantra Chanting '
       ]
       this.week4=[
-       `During this final week of 200 hours in Bali, the students will get skilled with wide range of Hatha Yoga and Ashtanga Yoga Asanas related to standing, sitting, kneeling, prone, supine and Inversion Poses. You will start identifying and observing the movement of each muscles, joints and bones in specific yoga asana, making you understand the effects of asana more mindfully. Your postures will be more correct now, with maximum stability and strength.
+       `During this final week of 200 hour yoga teacher training in bali, the students will get skilled with a wide range of Hatha Yoga and Ashtanga Yoga Asanas related to standing, sitting, kneeling, prone, supine and Inversion Poses. You will start identifying and observing the movement of each muscles, joints and bones in specific yoga asana, making you understand the effects of asana more mindfully. Your postures will be more correct now, with maximum stability and strength.
        In this week, youwillhave more connection with your breathe and more clarity in mind with the practices of Pranayama and Meditation. All the Shatkarmas or Cleansing practices such as Dhouti,Vasti, Neti andNooliare finished. The students will reach at the final chapters of Yogic Philosophies related to Patanajali Yoga Sutra, Vedanta, Sankya and Buddhist Philosopy.
-       The Teaching Methodology classes are at final phase helping you to understand how to create the intelligent sequences and classes, with correct hands on adjustment. You will gain the confidence and a voice of an expert Yoga Teacher on the end day of week 4.
+       The Teaching Methodology classes are at final phase helping you to understand how to create the intelligent sequences and classes, with correct hands on adjustment making you a great certified yoga instructor with yoga certification, yoga alliance which is internationally recognised and valued. You will gain the confidence and a voice of an expert Yoga Teacher on the end day of week 4.
       `,
       'Learning and Enhancements of Asana practice, Shatkarmas, Yogic Philosophies and Teaching Methodology'
       ]
 
     }
     else if(this.slug == '300-hour-yoga-teacher-training-in-bali'){
-      this.is300HourBaliCourse = true;
+      this.h2Content = "Yoga Instructor Course Bali";
       this.week1=[
         `<p><strong>Hatha Yoga classes</strong></p><p> Include the history of this style of yoga along with the foundational practice of asanas. Besides, the focus is also on understanding the upper body for asana practice and strengthening the asana series. Lastly, the asana philosophy and its many purposes are discussed in the classes. </p><p><strong>Pranayama yoga module</strong></p><p> Includes the practice of Pranayama Yoga Body Purification along with the concept of Pranamaya Kosha and its functionality. Furthermore, the module also includes purification methods and tranquilising practices. Besides, the concept of Dasham Vayu is explained along with its functionality. </p><p><strong>Philosophy classes</strong></p><p> This class will throw light on the famed Yoga sutras of Sage Patanjali and will cover its history. Besides, there is a brief discussion on Samadhi Pada. Furthermore, Klesha and its various repercussions on the mind are discussed. Lastly, a perspective is given pertaining to the quality of yoga practitioners and how these individual nuanced qualities affect the overall yoga training. Sutras from Patanjali Yoga Sutras discussed are: </p><ul class="orange-tick"><li>Yoga Samadhi</li><li>Yoga Sadhana</li><li>Yoga Vibhuti</li><li>Yoga Kaivalya</li></ul><p><strong>Shatkarma and meditation </strong></p><p> The Shatkarma modules will include the application of Jal Neti, Rabar Neti and Sutra Neti. In meditation, the traditional meditative posture is discussed along with concentration methods. Lastly, Yoga Nidra pertaining to the first and second levels is discussed. </p><p><strong>Alignment and adjustment and Ashtanga Vinyasa practice</strong></p><p> The course includes alignment of the entire Ashtanga Primary Series besides its complete practice. A lead on the Mysore style is discussed. </p>
         `
@@ -144,6 +144,8 @@ Secure the credence and competence of a yoga maestro on the last day of week 4 o
       ]
 
     }
+
+
 
    }
   selectedData(type:number,selected:string){

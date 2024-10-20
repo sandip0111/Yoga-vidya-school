@@ -15,10 +15,14 @@ export class FeeStructureComponent implements OnInit {
   feesData:any;
   slug:any='';
   list: item[] = [];
+  courseName: any='';
   constructor(private router: Router, private activatedRoute: ActivatedRoute) {
     this.slug = this.activatedRoute.snapshot.routeConfig?.path;
 
     if(this.slug == '200-hour-yoga-teacher-training-in-bali' || this.slug == '300-hour-yoga-teacher-training-in-bali'){
+      if(this.slug == '200-hour-yoga-teacher-training-in-bali'){
+        this.courseName = 'Yoga Instructor Course Bali?';
+      }
       this.list = [
        {
          image: 'https://placehold.co/80x80',
