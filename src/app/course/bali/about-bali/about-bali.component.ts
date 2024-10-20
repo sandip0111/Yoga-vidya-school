@@ -41,19 +41,19 @@ Reconnect with your inner being and unearth the many innate intricacies of yoga 
         title: '300 hour',
         span: 'Yoga Teacher Training in Bali',
         desc: `
-<p>Experience earnest physical, mental and spiritual transformation with our 300-hour yoga teacher training program at the Yoga Vidya School, Ubud, Bali. Get enamoured by the spell-binding countryside of Bali known for its verdant rice fields, beautiful beaches and a profound spiritual heritage. Our 300 hour yoga TTC in Bali is a positively transformative program well intended towards aspiring yogis who have successfully completed their 200 hour yoga TTC and are looking to gain more deeper knowledge. This program is also devised for seasoned practitioners who want to further explore the realms of yoga amidst the tranquil beauty and serenity that the island province of Bali offers.</p>
+<p>Experience earnest physical, mental and spiritual transformation with our 300 hour yoga teacher training in bali program at the Yoga Vidya School, Ubud, Bali. Get enamored by the spell-binding countryside of Bali known for its verdant rice fields, beautiful beaches and a profound spiritual heritage. Our 300 hour yoga TTC in Bali is a positively transformative program well intended towards aspiring yogis who have successfully completed their 200 hour yoga teacher training and are looking to gain more deeper knowledge. This program is also devised for seasoned practitioners who want to further explore the realms of yoga amidst the tranquil beauty and serenity that the island province of Bali offers.</p>
 <p>We at Yoga Vidya School invite you to embark on a yogic path that transcends the physical realm while nudging you towards your innate light.</p>
 
-<p>Get ready for a transformative journey amidst the scenic locales of Bali by enrolling in our profoundly enriching 300 hour yoga TTC at Ubud, Bali. Yoga Vidya School offers a sanctuary of yoga at Bali where the magical&nbsp; ambience and the Balinese vibrant culture would nudge you&nbsp; towards becoming a certified 300 hour yoga preacher.</p>
+<p>Get ready for a transformative journey amidst the scenic locales of Bali by enrolling in our profoundly enriching  best 300 hour yoga teacher training at Ubud, Bali. Yoga Vidya School offers a sanctuary of yoga at Bali where the magical&nbsp; ambience and the Balinese vibrant culture would nudge you&nbsp; towards becoming a certified 300 hour yoga preacher.</p>
 
-<p>The 300 hour yoga teacher training in Bali at Yoga Vidya School is an exhaustive and comprehensive yoga teacher training course targeted towards intermediate and advanced level yoga practitioners. This all inclusive Yoga Alliance USA certified course by Yoga Vidya School endeavours to offer the very best yoga teacher training in Bali.</p>
+<p>The 300 hour yoga teacher training in Bali at Yoga Vidya School is an exhaustive and comprehensive yoga instructor training bali targeted towards intermediate and advanced level yoga practitioners. This all inclusive Yoga Alliance USA certified course by Yoga Vidya School endeavours to offer the very best yoga teacher training in Bali.</p>
 
 <p>The 300 hour yoga TTC in Bali will empower you with deep knowledge and understanding of yoga principals and other nuanced aspects of yogic sciences. Anyone who is an advanced level practitioner and has completed the mandatory 200 hour yoga teacher training course is welcome to join this transformative course. Our globally valid&nbsp; Yoga Alliance USA certified program will empower you to practise advanced level yoga at both personal and professional levels.</p>
 
-<p>This 300 hour yoga TTC in Bali offered by Yoga Vidya School is helmed by acclaimed and professional yoga masters. This all encompassing course will delve into an in-depth study of advanced physical yogic postures or asanas, transformative pranayama and meditation sessions along-with yogic anatomy and physiology. Furthermore, advanced level sequencing and adjustments and other yogic aspects are also part of the curriculum.</p>
+<p>This best 300 hour yoga teacher training offered by Yoga Vidya School is helmed by acclaimed and professional yoga masters. This all encompassing course will delve into an in-depth study of advanced physical yogic postures or asanas, transformative pranayama and meditation sessions along-with yogic anatomy and physiology. Furthermore, advanced level sequencing and adjustments and other yogic aspects are also part of the curriculum.</p>
 
 <p>Furthermore, contemporary and scientific perspectives pertaining to psychology, physiology and neurosciences in relation to yogic patterns are also delved upon in this course.</p>
-<p>So, if you are eager and hungry for advanced level yogic knowledge after completing your 200 hour yoga TTC , then this 300 hour yoga TTC in Bali will be in sync with your innate yogic abilities.</p>
+<p>So, if you are eager and hungry for advanced level yogic knowledge after completing your 200 hour yoga TTC , then this  300 yoga TTC in bali in Bali will be in sync with your innate yogic abilities.</p>
         `,
         image: 'https://my-s3-images-bucket.s3.amazonaws.com/img/image_1674216026424.jfif',
         alt: '300 yoga teacher training in bali',
@@ -61,9 +61,9 @@ Reconnect with your inner being and unearth the many innate intricacies of yoga 
     <div class="row mb-5">
     <div class="col-md-6 align-items-center">
     <div>
-<h2><span>Why Study 300 Hour Yoga Teacher Training in Ubud, Bali?</span></h2>
+<h2><span>Why Study 300 hour yoga training in Ubud, Bali?</span></h2>
 <div>
-<p>As mentioned above, the island province of Bali&nbsp; abounds with scenic beauty that augurs well with any spiritual practice such as yoga. Below we will enlist a few more pointers as to why you should embark on the 300 hour yoga teacher training in Ubud, Bali. Let&#39;s take a look.</p>
+<p>As mentioned above, the island province of Bali&nbsp; abounds with scenic beauty that augurs well with any spiritual practice such as yoga. Below we will enlist a few more pointers as to why you should embark on the 300 hour yoga training in Ubud, Bali. Let&#39;s take a look.</p>
 
 <ul class="orange-tick" style="text-align:start">
 <li>Bali is blessed with natural beauty in the form of rolling mountains, lush green paddy fields and tranquil beaches. Yoga when done amidst tranquil and scenic environs entails more immersive and transformative experiences.</li>
@@ -89,9 +89,9 @@ Reconnect with your inner being and unearth the many innate intricacies of yoga 
 </div>
     <div class="col-md-6 align-items-center">
     <div>
-<h2><span>Why come on this transformative journey of 300 hour yoga TTC in Bali?</span></h2>
+<h2><span>Why come on this transformative journey of 300 hour yoga teacher training in Bali?</span></h2>
 <div>
-<p>As mentioned in the above sections, Bali offers a perfect backdrop for pursuing the arduous 300 hour yoga TTC in Bali. However, the program in itself offers many nuanced benefits such as the following:</p>
+<p>As mentioned in the above sections, Bali offers a perfect backdrop for pursuing the arduous 300 hour yoga teacher training in Bali. However, the program in itself offers many nuanced benefits such as the following:</p>
 
 <h4>Strength and Stability</h4>
 
@@ -99,11 +99,11 @@ Reconnect with your inner being and unearth the many innate intricacies of yoga 
 
 <h4>Tools and techniques</h4>
 
-<p>Yoga Vidya School at Ubud, Bali has an highly organised curriculum that encapsulates the traditional wisdom of yogic sages with contemporary scientific knowledge pertaining to neurosciences, anatomy and psychology. The 300 hour yoga TTC in Bali program will equip its students with an array of yogic tools such as physical asanas, ensuing bandhas, meditation and pranayama to beget an enriching experience of personalised transformation along-with advanced yogic practices nudged by ancient yogic philosophies.</p>
+<p>Yoga Vidya School at Ubud, Bali has an highly organized curriculum that encapsulates the traditional wisdom of yogic sages with contemporary scientific knowledge pertaining to neurosciences, anatomy and psychology. The 300 hour yoga TTC in Bali program will equip its students with an array of yogic tools such as physical asanas, ensuing bandhas, meditation and pranayama to beget an enriching experience of personalized transformation along-with advanced yogic practices nudged by ancient yogic philosophies.</p>
 
 <h4>Manifestation through practice and teaching</h4>
 
-<p>This 300 hour long yoga TTC in Bali program is an experiential course that offers you the best knowledge coupled with deep innate experiences at every level. This 300 hour yoga teacher training follows an immersive format including concepts and tools that accord you with a sense of embodiment and achievement so that you gain knowledge with confidence. You will be surprised with your own abilities both at the physical and spiritual levels which will inspire you to grow for years to come.</p>
+<p>This 300 hour long yoga TTC in Bali program is an experiential course that offers you the best knowledge coupled with deep innate experiences at every level. This 300 hour yoga training follows an immersive format including concepts and tools that accord you with a sense of embodiment and achievement so that you gain knowledge with confidence. You will be surprised with your own abilities both at the physical and spiritual levels which will inspire you to grow for years to come.</p>
 
 </div>
 </div>
@@ -121,14 +121,14 @@ Reconnect with your inner being and unearth the many innate intricacies of yoga 
 	<li>Learn and experience advanced breathing and meditation techniques for deeper states of relaxation, concentration, and self-awareness</li>
 	<li>Deepen your understanding of the human body&#39;s dynamism and its connection to yoga</li>
 	<li>Attend workshops on specific topics like yoga therapy, prenatal yoga, or inversions and specialise yourself in several areas</li>
-	<li>&nbsp;Bali Yoga Retreat or TTC connects with like-minded individuals and form a supportive community of yoga teachers and practitioners</li>
+	<li>&nbsp;Bali Yoga Retreat or yoga instructor certification connects with like-minded individuals and form a supportive community of yoga teachers and practitioners</li>
 	<li>The training also facilitates personal transformation and helps you develop qualities like patience, compassion, kindness, determination, concentration, and self-discipline</li>
-	<li>Commence your yoga career and work at advanced studios, retreats, workshops, and even conduct your own teacher training programs</li>
+	<li>Commence your yoga career and work at advanced studios, retreats, workshops, and even conduct your own  yoga for beginners to advance programs</li>
 </ul>
 
 <p>&nbsp;</p>
 
-<h2><span>The Curriculum Of 300 Hour Yoga Teacher Training in Bali, certified by Yoga Alliance:&nbsp;</span></h2>
+<h2><span>The Curriculum Of 300 hour yoga ttc in bali, certified by Yoga Alliance:&nbsp;</span></h2>
 
 <ul class="orange-tick" style="text-align:start">
 	<li>Primary to&nbsp; Intermediate Advanced&nbsp; Hatha Yoga (Asana and Philosophy)</li>

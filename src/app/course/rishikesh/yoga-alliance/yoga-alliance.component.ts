@@ -98,11 +98,11 @@ Empowered with a badge of an RYT200, you can now begin teaching yoga internation
       this.noContent = true;
       this.content = `
       <p style="font-size:18px">
-The 300 Hour Yoga Teacher Training in Bali at Yoga Vidya School is an accredited and registered course with Yoga Alliance USA. You can enroll into this advanced yoga training once you have completed the foundational 200 hours yoga teacher training program.
+The 300 hour yoga teacher training in bali at Yoga Vidya School is an accredited and registered course with Yoga Alliance USA. You can enroll into this advanced yoga training once you have completed the foundational 200 hours yoga teacher training program.
       </p>
       <p style="font-size:18px">
 Immerse in in-depth yoga practices amidst the spell-binding countryside of Bali. Our profoundly enriching 300 hour yoga teacher training in Bali course is a positively transformative program designed for seasoned practitioners who want to further delve into the realms of yoga amidst the tranquil beauty and serenity of Bali.
-Our 300 Hour Yoga Teacher Training in Bali course is a holistic program with a detailed curriculum encompassing advanced yoga practices. From advanced Hatha yoga and Ashtanga Yoga practices to deep diving into ancient texts and scriptures, our classroom as well as yoga sessions are deeply rooted in authentic and traditional practices. From Shatkarmas, advanced Ayurveda sessions, deep meditative and advanced pranayama techniques to niche and advanced teaching techniques, we help bring out the best in you.
+Our 300 hour yoga ttc in bali is a holistic program with a detailed curriculum encompassing advanced yoga practices. From advanced Hatha yoga and Ashtanga Yoga practices to deep diving into ancient texts and scriptures, our classroom as well as yoga sessions are deeply rooted in authentic and traditional practices. From Shatkarmas, advanced Ayurveda sessions, deep meditative and advanced pranayama techniques to niche and advanced teaching techniques, we help bring out the best in you.
 Besides, our course fulfills all the criteria laid down by Yoga Alliance, USA, which is a regulatory organization that defines standards for different levels of yoga teacher training courses and broadly outlines the curriculum to be followed in these 4-week long yoga TTC courses. Yoga Alliance also maintains data of Registered Yoga Schools or RYS and certified yoga professionals (RYT) across the world on its website.
 </p>
 <p style="font-size:18px">

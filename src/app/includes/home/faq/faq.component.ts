@@ -15,8 +15,9 @@ export class FaqComponent implements OnInit {
   faqs: faq[] = [];
   slug: any = '';
   isPranicPage: boolean = false;
+  is300BaliPage: boolean = false;
   constructor(private activatedRoute: ActivatedRoute, private router: Router) {
-    this.slug = this.activatedRoute.snapshot.routeConfig?.path;
+    this.slug = this.activatedRoute.snapshot.routeConfig?.path;    
   }
 
   toggleDescription(index: number) {
@@ -29,6 +30,9 @@ export class FaqComponent implements OnInit {
   ngOnInit() {
     if(this.slug == "pranic-purification"){
       this.isPranicPage = true;
+    }
+    if(this.slug == '300-hour-yoga-teacher-training-in-bali'){
+      this.is300BaliPage = true;
     }
   }
   ngOnChanges(changes: SimpleChanges):void {

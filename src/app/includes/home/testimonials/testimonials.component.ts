@@ -12,6 +12,7 @@ import { ActivatedRoute } from '@angular/router';
 export class TestimonialsComponent implements OnInit {
   slug: any = '';
   isParnicPage = false;
+  is300BaliPage = false;
   testimonials:testimonial[]=[];
   
   constructor(private activatedRoute: ActivatedRoute) {
@@ -48,6 +49,10 @@ export class TestimonialsComponent implements OnInit {
         rating:5
       }
     ]
+    }
+
+    if(this.slug == '300-hour-yoga-teacher-training-in-bali'){
+      this.is300BaliPage = true;
     }
    }
 
