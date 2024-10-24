@@ -23,7 +23,7 @@ export class WatchVideoComponent implements OnInit {
      if(this.slug == '200-hour-yoga-teacher-training-in-bali'){
       this.content = `
       <p>Embark on a life-transforming journey as you join Yoga Vidya School’s revolutionary 200 Hour Yoga Teacher Training in Bali. Learn authentic and traditional forms of yoga as you are introduced to foundational principles and practices in yoga. Engage in the traditional Hatha yoga and Ashtanga Yoga asana styles, delve into ancient and much revered Indian texts of Bhagavad Gita and the Patanjali Sutras, indulge in immersive pranayama and meditation sessions and other yoga practices as you dwell in the coastal beauty of Bali.</p>
-      <p>Deepen your yoga knowledge and skills as you further delve deeper into advanced asana practices and immerse into the profound wisdom of ancient yogic philosophy. Experience these authentic and traditional yoga practices amidst the beauty of the island nation of Bali.</p>
+      <p>Depend your yoga knowledge and skills as you further delve deeper into advanced asana practices and immerse into the profound wisdom of ancient yogic philosophy. With a yoga instructor course bali experience these authentic and traditional yoga practices amidst the beauty of the island nation of Bali.</p>
       `
      }
      else if(this.slug == '300-hour-yoga-teacher-training-in-bali'){

@@ -16,6 +16,7 @@ export class CurriculumComponent implements OnInit {
   slug: any='';
   currData: any;
   title: any = '';
+  is300Course= false;
   constructor(private activatedRoute:ActivatedRoute,private router:Router) {
     this.slug = this.activatedRoute.snapshot.routeConfig?.path
     if(this.slug == '200-hour-yoga-teacher-training-in-bali'){
@@ -100,7 +101,7 @@ export class CurriculumComponent implements OnInit {
 
     }
     else if(this.slug == "300-hour-yoga-teacher-training-in-bali"){
-
+      this.is300Course = true;
       this.items = [
         {
           image: 'https://placehold.co/50x50',

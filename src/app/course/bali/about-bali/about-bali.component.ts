@@ -22,13 +22,9 @@ export class AboutBaliComponent implements OnInit {
         title: 'Transform life with 200-hour',
         span: 'Yoga Teacher Training in Bali',
         desc: `
-        <p>Yoga Vidya School welcomes you to join the 200 hours yoga teacher training in Bali. Our 200 hour yoga teacher training Bali program is an accredited course registered with Yoga Alliance USA.
-         Yoga Vidya School’s bali yoga teacher training 200 hour is guided by certified yoga instructors and yoga masters having years of experience teaching yoga. Helmed by Acharya Prashant Jakhmola,
-         our 200 hour yoga TTC in bali covers different aspects of yoga. From the traditional Hatha yoga/ Ashtanga, Vinyasa flow yoga, pranayama, meditation, Kriya, Bandha, yogic philosophy, anatomy and teaching methodology,
-         our 200 hour yoga teacher training in Bali covers different aspects of yoga practice.
+        <p>Yoga Vidya School welcomes you to join the 200 hour yoga teacher training in Bali. Our 200 hour yoga teacher training Bali program is an accredited course registered with Yoga Alliance USA. Yoga Vidya School’s bali yoga teacher training 200 hour is guided by certified yoga instructors and yoga masters having years of experience teaching yoga. Helmed by Acharya Prashant Jakhmola, our 200 hour yoga TTC in bali covers different aspects of yoga. From the traditional Hatha yoga/ Ashtanga, Vinyasa flow yoga, pranayama, meditation, Kriya, Bandha, yogic philosophy, anatomy and teaching methodology, our 200 hour yoga teacher training in Bali covers different aspects of yoga practice.
          </p>
-         <p>Nestled in charming Ubud area, As We stopped with Balian village Yoga Vidya School offers the much needed calm and tranquil ambiance for pursuing your yoga teacher training in Bali.
-Reconnect with your inner being and unearth the many innate intricacies of yoga as you pursue our 200 hour yoga TTC at our magical space in Balian, Bali.
+         <p>Nestled in charming Ubud area, our residential facility at Ananda Ubud Resort offers the much needed calm and tranquil ambiance with luxury, for pursuing your yoga teacher training in Bali. Reconnect with your inner being and unearth the many innate intricacies of yoga as you pursue our 200 hour yoga TTC at our magical space in Ananad Ubud Resort, Bali.
 </p>
         `,
         image: 'https://my-s3-images-bucket.s3.amazonaws.com/images/bali_200_npa2hj.jpg',

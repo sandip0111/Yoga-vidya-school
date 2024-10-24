@@ -16,6 +16,7 @@ export class YogaAllianceComponent implements OnInit {
   noContent:boolean=false;
   title: any='';
   content:any='';
+  is300baliCourse= false;
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute,protected sanitizer: DomSanitizer) {
     this.slug = this.activatedRoute.snapshot.routeConfig?.path;
@@ -96,6 +97,7 @@ Empowered with a badge of an RYT200, you can now begin teaching yoga internation
     }
     else if(this.slug == '300-hour-yoga-teacher-training-in-bali'){
       this.noContent = true;
+      this.is300baliCourse= true;
       this.content = `
       <p style="font-size:18px">
 The 300 hour yoga teacher training in bali at Yoga Vidya School is an accredited and registered course with Yoga Alliance USA. You can enroll into this advanced yoga training once you have completed the foundational 200 hours yoga teacher training program.

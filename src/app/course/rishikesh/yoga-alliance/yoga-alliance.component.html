@@ -1,7 +1,7 @@
 <section class="yoga-alliance-section" *ngIf="noContent">
   <div class="row">
     <div class="col-md-6 p-50">
-      <h2>Yoga Alliance <span>USA Certified</span> {{title}} Course</h2>
+      <h2>Yoga Alliance <span>USA Certified</span> {{is300baliCourse? '300 hour yoga teacher training in bali': title +' Course' }}</h2>
        <div [innerHTML]="sanitizer.bypassSecurityTrustHtml(content)">
 
        </div>

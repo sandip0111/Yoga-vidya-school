@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { WebapiService } from '../../webapi.service';
 import { FormsModule } from '@angular/forms';
 import { NgxSpinnerService } from "ngx-spinner";
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 
 
 @Component({
@@ -11,12 +12,27 @@ import { NgxSpinnerService } from "ngx-spinner";
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.css'
 })
-export class FooterComponent {
-  subscribeData:any={}
-
-  constructor(private webService: WebapiService,private spinner: NgxSpinnerService){
-
+export class FooterComponent implements OnInit{
+  subscribeData:any={};
+  footerAddress: string="";
+  slug: any = "";
+  constructor(private webService: WebapiService,private spinner: NgxSpinnerService, private router: Router){
+    this.footerAddress = "Near Kailashanand Gaushala,Mateshwari Hospital Jonk Village Post, Swarg Ashram Rishikesh, Uttarakhand 249304";
+    
   }
+  ngOnInit(): void {
+    // Subscribe to router events to capture URL after navigation
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        // Get the full URL path after the domain
+        this.slug = event.urlAfterRedirects; // or event.url for the actual path
+        if(this.slug == '/200-hour-yoga-teacher-training-in-bali' || this.slug == '/300-hour-yoga-teacher-training-in-bali'){
+          this.footerAddress = "Ananda Ubud Resort, Jl. Raya Sanggingan, Kedewatan, Kecamatan Ubud, Kabupaten Gianyar, Bali 80571, Indonesia"
+        }
+      }
+    });
+  }
+  
 
   subscribeHere(data:any){
     this.spinner.show();

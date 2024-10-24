@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit,Input, SimpleChanges } from '@angular/core';
+import { Component, OnInit,Input, SimpleChanges, Renderer2, ElementRef } from '@angular/core';
 import { WebapiService } from '../../webapi.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { FormsModule } from '@angular/forms';
@@ -20,7 +20,7 @@ export class BannerComponent implements OnInit {
  courseName: any;
  isRegistrationPageLabelToggle = false;
  sliderImage:any='https://my-s3-images-bucket.s3.amazonaws.com/images/InternalBackground_lticg8.jpg'
-  constructor(private webapiService: WebapiService,private spinner:NgxSpinnerService,private router: Router, private activatedRoute: ActivatedRoute) {
+  constructor(private renderer: Renderer2, private el: ElementRef, private webapiService: WebapiService,private spinner:NgxSpinnerService,private router: Router, private activatedRoute: ActivatedRoute) {
     this.slug = this.activatedRoute.snapshot.routeConfig?.path;
     if(this.slug == '200-hour-yoga-teacher-training-in-bali' || this.slug == 'yoga-retreat-in-bali' || this.slug == '300-hour-yoga-teacher-training-in-bali'){
       this.sliderImage = 'https://my-s3-images-bucket.s3.amazonaws.com/images/image_1688020831747_aqnfh1.jpg'
@@ -50,6 +50,8 @@ export class BannerComponent implements OnInit {
     ) {
       this.isRegistrationPageLabelToggle = true;
     }
+
+    this.renderer.setStyle(this.el.nativeElement, '--bg-image', `url(${this.sliderImage})`);
     
   }
 

@@ -32,7 +32,7 @@ export class LearningComponent implements OnInit {
          For Pranayama and Meditation, in the first week, we will focus on developing your mind and body to connect with your inner self and to regulate the Prana through the purification of the body.
          The first week of this 200 hour yoga teacher training in bali program is exciting for those who want to explore the yogic philosophy, as we introduce you to the Shat Darshana, and the purpose of Yoga as per Yoga Sutras of Patanjali.
         `,
-        'Introduction to Authentic Yoga Practices'
+        'Introduction to Authentic Yoga Training Bali'
       ]
       this.week2=[
       `We cover Vinyasa with the different types of flow and transitions required between the practice of Asanas. At our 200 hour yoga teacher training in bali the students will start understanding the correct formation of the postures, with more synchronisation with breath and awareness. The continuous practice of this synchronisation will make you feel the special kind of control in your whole body, making it smooth and effortless even in some of the tough asanas which you always want to avoid.
