@@ -1,7 +1,7 @@
 <!-- about.component.html -->
 
 <section class="about-section py-5">
-  <div><img src="https://my-s3-images-bucket.s3.amazonaws.com/img/flower-color.png" class="flower-img" /></div>
+  <div><img loading="lazy" alt="Not Loaded" src="https://my-s3-images-bucket.s3.amazonaws.com/img/flower-color.png" class="flower-img" /></div>
   <small>Welcome To</small>
   <h1>
     {{ aboutItems.title }} <span>{{ aboutItems.span }}</span>
@@ -12,7 +12,7 @@
     </div>
     <div class="col-md-12" *ngIf="aboutItems.image">
       <div class="about-section_big_image">
-        <img src="{{ aboutItems.image }}" alt="About Image" />
+        <img loading="lazy" src="{{ aboutItems.image }}" alt="About Image" />
       </div>
     </div>
     <div class="col-md-12 image d-flex justify-content-center">

@@ -1,5 +1,5 @@
 <section class="code-conduct py-5" *ngIf="cdData && guidelines.length > 0">
-  <div><img src="https://my-s3-images-bucket.s3.amazonaws.com/img/flower-color.png" class="flower-img" /></div>
+  <div><img loading="lazy" alt="Not Loaded" src="https://my-s3-images-bucket.s3.amazonaws.com/img/flower-color.png" class="flower-img" /></div>
   <h2>Code of Conduct at <span>{{cdData?.title}}</span></h2>
   <span>Sodales ut etiam sit amet nisl purus. Magna etiam tempor orci eu.</span>
   <span> Molestie nunc non blandit massa enim.</span>
@@ -8,7 +8,7 @@
       <div class="list">
         <ul>
           <li *ngFor="let item of guidelines">
-            <img src="https://my-s3-images-bucket.s3.amazonaws.com/img/starcheck.png" /> {{item.text}}
+            <img loading="lazy" alt="Not Loaded" src="https://my-s3-images-bucket.s3.amazonaws.com/img/starcheck.png" /> {{item.text}}
           </li>
         </ul>
       </div>
