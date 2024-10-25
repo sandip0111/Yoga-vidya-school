@@ -3,7 +3,7 @@
 <section class="excursions-rishikesh-section py-5" *ngIf="noContent">
   <div class="row text-center">
     <div class="col-md-12">
-      <div><img src="https://my-s3-images-bucket.s3.amazonaws.com/img/flower-color.png" class="flower-img" /></div>
+      <div><img loading="lazy" alt="Not Loaded" src="https://my-s3-images-bucket.s3.amazonaws.com/img/flower-color.png" class="flower-img" /></div>
       <h2>Excursions for <span>{{exsData?.title}}</span></h2>
       <small>{{exsData?.desc}}</small>
     </div>
@@ -12,7 +12,7 @@
 
     <div class="col-md-6 image">
       <div class="imageback">
-        <img
+        <img loading="lazy"
           src="{{exsData?.row1?.img}}"
           class="img-fluid"
           alt="About Image"
@@ -44,7 +44,7 @@
     </div>
     <div class="col-md-6 image">
       <div class="imageback">
-        <img
+        <img loading="lazy"
           src="{{exsData?.row2?.img}}"
           class="img-fluid"
           alt="About Image"
@@ -56,7 +56,7 @@
 
     <div class="col-md-6 image">
       <div class="imageback">
-        <img
+        <img loading="lazy"
           src="{{exsData?.row3?.img}}"
           class="img-fluid"
           alt="About Image"

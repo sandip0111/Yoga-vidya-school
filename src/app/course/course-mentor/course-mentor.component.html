@@ -1,13 +1,13 @@
 <section class="mentors" *ngIf="courseMentor.length > 0">
   <div class="row justify-content-center">
     <div class="col-md-12">
-      <div><img src="https://my-s3-images-bucket.s3.amazonaws.com/img/flower-color.png" class="flower-img" /></div>
+      <div><img loading="lazy" alt="Not Loaded" src="https://my-s3-images-bucket.s3.amazonaws.com/img/flower-color.png" class="flower-img" /></div>
       <h2>Choose the <span>Online Yoga Class</span> and the Time Slot You Like</h2>
     </div>
     <div class="col-md-3" *ngFor="let men of courseMentor">
       <div class="card">
         <div class="card-image relative">
-          <img
+          <img loading="lazy"
             alt="Card Image"
             class="card-img-top"
             src="{{imageUrl}}{{men.image}}"

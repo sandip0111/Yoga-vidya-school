@@ -10,7 +10,7 @@
         <div class="lists">
           <ul>
             <li *ngFor="let item of amenities">
-              <img src="https://my-s3-images-bucket.s3.amazonaws.com/img/check-green.png" /> {{ item.text }}
+              <img loading="lazy" alt="Not Loaded" src="https://my-s3-images-bucket.s3.amazonaws.com/img/check-green.png" /> {{ item.text }}
             </li>
           </ul>
         </div>
@@ -21,7 +21,7 @@
         <div class="lists">
           <ul>
             <li *ngFor="let item of not_includes">
-              <img src="https://my-s3-images-bucket.s3.amazonaws.com/img/check-green.png" /> {{ item.text }}
+              <img loading="lazy" alt="Not Loaded" src="https://my-s3-images-bucket.s3.amazonaws.com/img/check-green.png" /> {{ item.text }}
             </li>
           </ul>
         </div>
@@ -29,7 +29,7 @@
     </div>
     <div class="col-md-6">
       <div class="img-border">
-        <img [src]="image" class="img-fluid" alt="About Image" />
+        <img loading="lazy" [src]="image" class="img-fluid" alt="About Image" />
       </div>
     </div>
   </div>
