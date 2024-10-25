@@ -3,7 +3,7 @@
 <section class="workshop-section py-5">
   <div class="row py-4">
     <div class="col-md-12">
-      <div><img src="https://my-s3-images-bucket.s3.amazonaws.com/img/flower-color.png" class="flower-img" /></div>
+      <div><img loading="lazy" alt="Not Loaded" src="https://my-s3-images-bucket.s3.amazonaws.com/img/flower-color.png" class="flower-img" /></div>
       <h2>Yoga Vidya School <span>Online Offerings</span></h2>
       <small>Explore our Free and Paid Virtual Package for online yoga classes and courses to keep working on self-transformation,</small>
       <small>personal empowerment and sound holistic health while staying at your home or your preferred location.</small>
@@ -13,13 +13,13 @@
     <div class="col-md-6" *ngFor="let item of workshops">
       <div class="workshop">
           <div class="col-md-12">
-            <img src="https://my-s3-images-bucket.s3.amazonaws.com/img/Logo.png" />
+            <img loading="lazy" alt="Not Loaded" src="https://my-s3-images-bucket.s3.amazonaws.com/img/Logo.png" />
           </div>
           <div class="details">
             <h3>{{item.title}}</h3>
             <h3>{{item.title2}}</h3>
             <div class="text">{{item.description}}</div>
-            <div class="but"><a [href]="item.url">Enroll Now</a><img src="https://my-s3-images-bucket.s3.amazonaws.com/img/arrow.png" /></div>
+            <div class="but"><a [href]="item.url">Enroll Now</a><img loading="lazy" alt="Not Loaded" src="https://my-s3-images-bucket.s3.amazonaws.com/img/arrow.png" /></div>
           </div>
           <div class="right-img">
             <img [src]="'https://my-s3-images-bucket.s3.amazonaws.com/img/' + item.img" alt="{{ item.title }}" />
