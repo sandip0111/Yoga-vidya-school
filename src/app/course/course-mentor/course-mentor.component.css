@@ -41,13 +41,17 @@
         margin-top: 5px;
         width: 85%;
         display: inline-block;
-
+        
         i {
             padding: 6px;
             background: #fff;
             color: rgba(249, 117, 30, 1);
             border-radius: 50%;
             margin-right: 5px;
-        }
+        }        
+    }
+
+    .time2 {
+        width: 95%!important;
     }
 }
