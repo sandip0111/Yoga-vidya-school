@@ -29,14 +29,16 @@ export class CourseMentorComponent {
           image: "image_1695634116777.jpeg",
           intro: "",
           time:"5:30 AM - 6:30 AM (IST)",
-          price:"Rs. 1999/USD 30"
+          price:"Rs. 1999/USD 40"
         },
         {
           name: "Acharya Prashant Jakhmola",
           image: "image_1673271873934.jfif",
           intro: "Morning Sadhana",
-          time:"6:30 AM - 7:45 AM (IST)",
-          price:"Rs. 2999/USD 60"
+          time:"6:00 AM(IST) - Yoga Sadhana",
+          time1:"7:30 AM(IST) - Advance Yoga",
+          time2:"5:30 PM(IST) - Prayanama Sadhana",
+          price:"Rs. 1499/USD 30"
         },
         {
           name: "Shiva",
@@ -152,6 +154,8 @@ interface mentorTimings {
   name: string;
   intro: string;
   time: string;
+  time1?: string;
+  time2?: string;
   price: string;
   image: string;
 }
