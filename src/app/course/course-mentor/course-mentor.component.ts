@@ -14,13 +14,15 @@ import { CommonModule } from '@angular/common';
 export class CourseMentorComponent {
  slug:any = '';
  imageUrl:string = '';
- courseMentor:mentorTimings[]=[]
+ courseMentor:mentorTimings[]=[];
+ isShowAddToCart: boolean = false;
 
   constructor(private webapiService: WebapiService, private _activatedRoute: ActivatedRoute, private router: Router){
     this.slug = this._activatedRoute.snapshot.routeConfig?.path;
     this.imageUrl = this.webapiService.imageUrl;
 
     if(this.slug == 'online-yoga-classes'){
+      this.isShowAddToCart = true;
       this.courseMentor = [
         {
           name: "Anuj",

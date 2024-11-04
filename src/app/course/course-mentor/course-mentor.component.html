@@ -18,6 +18,12 @@
           <p class="card-text">{{men.intro}}</p>
           <a *ngIf="men.time" href="javascript:void(0)" class="button">{{men.time}}</a>
           <a *ngIf="men.price" href="javascript:void(0)" class="button">{{men.price}}</a>
+          <a *ngIf="isShowAddToCart"   
+            href="/add-to-cart"
+            class="button"
+            target="_blank"
+            >Add To Cart</a
+         >
         </div>
       </div>
     </div>
