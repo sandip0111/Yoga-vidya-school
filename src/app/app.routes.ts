@@ -77,7 +77,7 @@ export const routes: Routes = [
   {path:"testimonial", component:TestinomialComponent},
   {path:'yoga-teacher/acharya-prashant-jakhmola/:id', component: YogateacherComponent },
   {path:'confirmation', component: SuccessPaymentComponent },
-  // {path:'add-to-cart', component: AddToCartComponent },
+  {path:'add-to-cart', component: AddToCartComponent },
   {path:"book-now", component:BookNowComponent},
   {path:"contact-us", component:ContactComponent},
   {path:"checkout/:id",component:CheckoutComponent},
