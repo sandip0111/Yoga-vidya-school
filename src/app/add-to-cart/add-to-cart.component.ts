@@ -25,12 +25,12 @@ export class AddToCartComponent implements AfterViewInit, OnDestroy {
   observer!: IntersectionObserver;
   isFixed: boolean = false; // Track if the card is fixed
   timeoutId: any; // Timeout ID for stability checking
-
+  totalAmount: any;
   constructor(private renderer: Renderer2, private cartService: CartService) {}
 
   ngOnInit(): void {
     this.courses = this.cartService.getItems();
-    //this.updateTotalAmount();
+    this.updateTotalAmount();
   }
 
   ngAfterViewInit(): void {
@@ -79,5 +79,15 @@ export class AddToCartComponent implements AfterViewInit, OnDestroy {
     }
     // Clear any pending timeouts
     clearTimeout(this.timeoutId);
+  }
+
+  removeItem(id: number): void {
+    this.cartService.removeItem(id);
+    this.courses = this.cartService.getItems();
+    this.updateTotalAmount();
+  }
+
+  updateTotalAmount(): void {
+    this.totalAmount = this.cartService.getTotalAmount();
   }
   }

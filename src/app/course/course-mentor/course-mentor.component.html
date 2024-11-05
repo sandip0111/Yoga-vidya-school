@@ -21,9 +21,9 @@
           <a *ngIf="men.time2" href="javascript:void(0)" class="button time2">{{men.time2}}</a>
           <a *ngIf="men.price" href="javascript:void(0)" class="button">{{men.price}}</a>
           <a *ngIf="isShowAddToCart"   
-            href="/add-to-cart"
+            href="#"
             class="button"
-            target="_blank"
+            (click)="addToCart($event, men.id)"
             >Add To Cart</a
          >
         </div>

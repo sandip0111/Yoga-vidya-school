@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { CartItem, CartService } from '../../../cart.service';
+import { WebapiService } from '../../../webapi.service';
 
 @Component({
   selector: 'app-about-rishikesh',
@@ -13,7 +15,8 @@ export class AboutRishikeshComponent implements OnInit {
   slug: any = '';
   aboutContent: any = {};
   ispranicPurificationImg = false;
-  constructor(private activatedRoute: ActivatedRoute, private router: Router) {
+  course?: CartItem;
+  constructor(private activatedRoute: ActivatedRoute, private router: Router, private cartService: CartService, private webapiService: WebapiService) {
 
     this.slug = this.activatedRoute.snapshot.routeConfig?.path;
     if (this.slug == '100-hours-yoga-teacher-training-in-rishikesh') {
@@ -299,6 +302,33 @@ export class AboutRishikeshComponent implements OnInit {
   }
 
   ngOnInit() {
-  }
+    this.getCourseBySlug(this.slug);
+    }
+  
+    addToCart(event: Event): void {
+      event.preventDefault();
+  
+     if(this.course != undefined){
+    this.cartService.addItem(this.course);
+     }
+      
+      this.router.navigate(['/add-to-cart']);
+    }
+  
+    getCourseBySlug(slug: any) {
+      let data = {
+        "slug": slug
+      }
+      this.webapiService.getCourseById(data).subscribe((res: any) => {
+        
+      this.course = {
+        id: res.data[0]._id,
+        title: res.data[0].coursetitle,
+        shortDescription: res.data[0].shortDesc,
+        price: 0,
+        quantity: 1
+      } 
+      })
+    }
 
 }

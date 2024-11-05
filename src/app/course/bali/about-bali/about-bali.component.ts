@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { DomSanitizer } from '@angular/platform-browser';
+import { WebapiService } from '../../../webapi.service';
+import { CartItem, CartService } from '../../../cart.service';
+import { title } from 'process';
 
 @Component({
   selector: 'app-about-bali',
@@ -11,10 +14,12 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['./about-bali.component.css']
 })
 export class AboutBaliComponent implements OnInit {
+
   slug: any = '';
   aboutItems: any;
+  course?: CartItem;
 
-  constructor(private activatedRoute: ActivatedRoute, private router: Router, protected sanitizer: DomSanitizer) {
+  constructor(private cartService: CartService, private activatedRoute: ActivatedRoute, private router: Router, protected sanitizer: DomSanitizer, private webapiService: WebapiService ) {
     //  console.log(this.activatedRoute.snapshot.routeConfig?.path,'--');
     this.slug = this.activatedRoute.snapshot.routeConfig?.path
     if (this.slug == '200-hour-yoga-teacher-training-in-bali') {
@@ -1184,6 +1189,33 @@ A watering hole for adventure freaks and solo travellers, Peru with its gorgeous
   }
 
   ngOnInit() {
+	this.getCourseBySlug(this.slug);
+  }
+
+  addToCart(event: Event): void {
+    event.preventDefault();
+
+   if(this.course != undefined){
+	this.cartService.addItem(this.course);
+   }
+    
+    this.router.navigate(['/add-to-cart']);
+  }
+
+  getCourseBySlug(slug: any) {
+    let data = {
+      "slug": slug
+    }
+    this.webapiService.getCourseById(data).subscribe((res: any) => {
+      
+		this.course = {
+			id: res.data[0]._id,
+			title: res.data[0].coursetitle,
+			shortDescription: res.data[0].shortDesc,
+			price: 0,
+			quantity: 1
+		} 
+    })
   }
 
 }
