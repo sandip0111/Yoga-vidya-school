@@ -93,7 +93,14 @@ export class ScheduleComponent implements OnInit {
             return { ...y, trainer: mentor };
           });
         }
-      
+      if(this.slug == 'yoga-retreat-in-peru'){
+        this.eventList = this.eventList.map((y: { trainer: string; mode : string, subTitle: string}) =>{ 
+          var mentor = 'Prashant J Yoga';
+          var mode = 'Samadhi Sacred Valley, peru';
+          var subTitle = 'Ashtanga | Pranayama | Philosophy | Meditation';
+          return { ...y, trainer: mentor, mode: mode, subTitle: subTitle };
+        });
+      }
     }
     else{
       this.eventList = [];

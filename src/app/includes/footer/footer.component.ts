@@ -26,8 +26,12 @@ export class FooterComponent implements OnInit{
       if (event instanceof NavigationEnd) {
         // Get the full URL path after the domain
         this.slug = event.urlAfterRedirects; // or event.url for the actual path
-        if(this.slug == '/200-hour-yoga-teacher-training-in-bali' || this.slug == '/300-hour-yoga-teacher-training-in-bali'){
-          this.footerAddress = "Ananda Ubud Resort, Jl. Raya Sanggingan, Kedewatan, Kecamatan Ubud, Kabupaten Gianyar, Bali 80571, Indonesia"
+        if(this.slug == '/200-hour-yoga-teacher-training-in-bali' || this.slug == '/300-hour-yoga-teacher-training-in-bali' || this.slug == '/yoga-retreat-in-bali'){
+          this.footerAddress = "Ahamta retreat, Jl. Sri Wedari No.46, Ubud, Kecamatan Ubud, Kabupaten Gianyar, Bali 80571, Indonesia"
+        }
+        if(this.slug =='/yoga-retreat-in-peru'){
+          this.footerAddress = `Samadhi Sacred Valley,
+                                Huayllabamba 08670, Peru`;
         }
       }
     });

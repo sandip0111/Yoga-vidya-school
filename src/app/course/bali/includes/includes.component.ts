@@ -27,7 +27,7 @@ export class IncludesComponent implements OnInit {
       this.amenities = [
         { text: "21 nights shared room accommodation with attached bathroom." },
 
-        { text: "Accommodation and Food at beautiful Ananda Ubud Resort " },
+        { text: "Accommodation and Food at beautiful Ahamta retreat, Jl. Sri Wedari No.46, Ubud, Kecamatan Ubud, Kabupaten Gianyar, Bali 80571, Indonesia " },
         { text: "24x7 Filtered drinking water and hot water." },
         { text: "Well-designed Course Material." },
         { text: "Shat Kriyas or Yogic Cleansing Kit." },
@@ -87,7 +87,7 @@ export class IncludesComponent implements OnInit {
       this.amenities = [
         { text: "28 nights shared room accommodation with attached bathroom." },
 
-        { text: "Accommodation and Food at beautiful Ananda Ubud Resort" },
+        { text: "Accommodation and Food at beautiful Ahamta retreat, Jl. Sri Wedari No.46, Ubud, Kecamatan Ubud, Kabupaten Gianyar, Bali 80571, Indonesia" },
         { text: "24x7 Filtered drinking water and hot water." },
         { text: "Well-designed Course Material." },
         { text: "Shat Kriyas or Yogic Cleansing Kit." },

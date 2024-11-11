@@ -36,7 +36,7 @@ export class FeeStructureComponent implements OnInit {
        },
        {
          image: 'https://placehold.co/80x80',
-         title: 'Accommodation at beautiful Ananda Ubud Resort ',
+         title: 'Accommodation at beautiful Ahamta retreat, Jl. Sri Wedari No.46, Ubud, Kecamatan Ubud, Kabupaten Gianyar, Bali 80571, Indonesia ',
          text: '',
        },
        {
