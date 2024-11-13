@@ -1,0 +1,51 @@
+.container {
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+  }  
+
+
+  
+  .registration-card {
+    border: none;
+    border-radius: 8px;
+    transition: box-shadow 0.3s ease-in-out;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    margin-bottom: 10px;
+    min-width: 300px;
+  }
+  
+  
+  
+  h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #f47019;
+  }
+  .btn-primary {
+    background-image: linear-gradient(to right, #f47019, #d55502);
+    border: none;
+  }
+
+  .is-invalid {
+    border-color: #dc3545; /* Bootstrap danger color */
+  }
+  
+  .text-danger {
+    font-size: 0.875rem;
+  }
+  
+
+  @media (min-width: 768px) {
+    .container {
+      flex-direction: row; /* Horizontal layout on larger screens */
+      max-width: 1500px;
+    }
+    .register-content{
+      max-width: 900px;
+    }
+
+    .registration-card {
+      min-width: 400px;
+    }
+  }
