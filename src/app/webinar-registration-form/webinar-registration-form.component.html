@@ -1,0 +1,87 @@
+<div class="container justify-content-center mt-5">
+     <div class="p-4 register-content">
+        <h2 class="mb-2">
+          Yoga Webinars
+        </h2>
+        <p class="mb-4">Join Prashant J Yoga’s exclusive webinars for a holistic approach to yoga and wellness. The main purpose of these yoga webinars is to provide an accessible and immersive platform for individuals to deepen their yoga practice, enhance their well-being, and gain valuable insights into various aspects of yoga. Through expert guidance of Prashant Jakhmoli ji, participants can explore techniques on a variety of topics, from asanas and pranayama to meditation and yoga philosophy, ensuring a comprehensive learning experience. Attend the yoga webinar with us and enjoy the interactive experience where you can learn at your own pace and receive personalized instructions. Connect with the like-minded individuals, ultimately fostering physical, mental, and spiritual growth. Whether you're looking to enhance your physical practice, deepen your meditation experience, or understand yoga on a more profound level, these webinars are your gateway to a balanced and fulfilled life.</p>
+        <h2 class="mb-2">
+          Beyond the Breath
+        </h2>
+        <p>Mark your calendar for a transformative webinar called “Beyond the Breath, which is going to be held on November 24th 2024 under Prashant ji's guidance, that dives deep into the art of pranic purification. This session will teach you how to purify your energy through breath control and Pranayama, releasing toxins and revitalizing your life force, or "prana." When your prana flows freely, you experience greater mental sharpness, emotional resilience, and overall well being. This webinar offers you an entry point into these benefits, providing essential techniques that can shift your health and perspective.</p>
+     </div>
+    <div class="card registration-card flex-fill p-4">
+      <h2 class="text-center mb-4">Webinar Registration</h2>
+      <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+          <label for="name" class="form-label">Name</label>
+          <input
+            type="text"
+            id="name"
+            formControlName="name"
+            class="form-control"
+            [ngClass]="{'is-invalid': submitted && registrationForm.get('name')?.invalid}"
+          />
+          <div *ngIf="submitted && registrationForm.get('name')?.invalid" class="text-danger">
+            Name is required.
+          </div>
+        </div>
+  
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input
+            type="email"
+            id="email"
+            formControlName="email"
+            class="form-control"
+            [ngClass]="{'is-invalid': submitted && registrationForm.get('email')?.invalid}"
+          />
+          <div *ngIf="submitted && registrationForm.get('email')?.invalid" class="text-danger">
+            Please enter a valid email.
+          </div>
+        </div>
+  
+        <div class="mb-3">
+          <label for="phone" class="form-label">Phone Number</label>
+          <input
+            type="text"
+            id="phone"
+            formControlName="phone"
+            class="form-control"
+            [ngClass]="{'is-invalid': submitted && registrationForm.get('phone')?.invalid}"
+          />
+          <div *ngIf="submitted && registrationForm.get('phone')?.invalid" class="text-danger">
+            Phone number is required.
+          </div>
+        </div>
+  
+        <div class="mb-3">
+          <label for="city" class="form-label">City</label>
+          <input
+            type="text"
+            id="city"
+            formControlName="city"
+            class="form-control"
+            [ngClass]="{'is-invalid': submitted && registrationForm.get('city')?.invalid}"
+          />
+          <div *ngIf="submitted && registrationForm.get('city')?.invalid" class="text-danger">
+            City is required.
+          </div>
+        </div>
+  
+        <div class="mb-3">
+          <label for="company" class="form-label">Company (Optional)</label>
+          <input
+            type="text"
+            id="company"
+            formControlName="company"
+            class="form-control"
+          />
+        </div>
+  
+        <button type="submit" class="btn btn-primary">
+          Register
+        </button>
+      </form>
+    </div>
+  </div>
+  

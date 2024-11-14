@@ -36,8 +36,9 @@
           <div class="details">
             <div><img loading="lazy" alt="Not Loaded" src="https://my-s3-images-bucket.s3.amazonaws.com/img/time.png" />{{event.time}}</div>
             <div><img loading="lazy" alt="Not Loaded" src="https://my-s3-images-bucket.s3.amazonaws.com/img/calendar1.png" />{{event.date}}</div>
-            <div><img loading="lazy" alt="Not Loaded" src="https://my-s3-images-bucket.s3.amazonaws.com/img/vcam.png" />{{event.mode}}</div>
-            <div><img loading="lazy" alt="Not Loaded" src="https://my-s3-images-bucket.s3.amazonaws.com/img/doc.png" />{{event.perk}}</div>
+            <div *ngIf="slug != 'yoga-retreat-in-peru'"><img loading="lazy" alt="Not Loaded" src="https://my-s3-images-bucket.s3.amazonaws.com/img/vcam.png" />{{event.mode}}</div>
+            <div *ngIf="slug == 'yoga-retreat-in-peru'"><img loading="lazy" alt="Not Loaded" src="assets/yoga-retreat.png" />{{event.mode}}</div>
+            <div *ngIf="slug != 'yoga-retreat-in-peru'"><img loading="lazy" alt="Not Loaded" src="https://my-s3-images-bucket.s3.amazonaws.com/img/doc.png" />{{event.perk}}</div>
           </div>
         </div>
       </div>
