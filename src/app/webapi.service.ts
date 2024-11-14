@@ -78,6 +78,11 @@ export class WebapiService {
   getAllEvents(id = "") {
     return this.http.get(this.url + "api/v1/getAllEvents");
   }
+
+  registerWebinarUser(data: any){
+    return this.http.post(this.url + "api/v1/registerWebinarUser", data);
+  }
+
   getAllOnlineEvents(id = "") {
     return this.http.get(this.url + "api/v1/getAllOnlineEvents");
   }
