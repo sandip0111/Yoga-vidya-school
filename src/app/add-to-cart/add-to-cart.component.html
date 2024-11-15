@@ -1,31 +1,53 @@
 <div class="container mt-5">
-  <h2 class="mb-4">Add to Cart - <small>Online Courses</small></h2>
+  <h2 class="mb-4 title">Add to Cart</h2>
 
-  <div class="row">
-    <!-- Loop through the courses in your Angular component -->
-    <div class="col-md-4" *ngFor="let course of courses">
-      <div class="card mb-4">
-        <div class="card-body d-flex flex-column">
-          <h5 class="card-title">{{ course.title }}</h5>
-          <p class="card-text">{{ course.shortDescription }}</p>
-          <h6 class="card-subtitle">{{course.price !=0 ? 'Rs ' + course.price : 'Free'}}</h6>
-          <div class="d-flex justify-content-end mt-auto">
-            <!-- <button class="button"> Add </button> -->
-            <button class="button" (click)="removeItem(course.id)">Remove</button>
+  <h4 class="small_text">Online Courses</h4>
+  <div class="addToCard_wrapper">
+    <div class="">
+      <div class="row">
+        <!-- Loop through the courses in your Angular component -->
+        <div class="col-md-12" *ngFor="let course of courses">
+          <div class="card_box mb-4">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">{{ course.title }}</h5>
+              <p class="card-text">{{ course.shortDescription }}</p>
+
+              <div class="card_amount_area">
+                <!-- <button class="button"> Add </button> -->
+                <h6 class="card-subtitle">
+                  {{ course.price != 0 ? "Rs " + course.price : "Free" }}
+                </h6>
+                <button
+                  class="button danger mt-0"
+                  (click)="removeItem(course.id)"
+                >
+                  Remove
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <div #orderCard class="card mb-1 card-btn">
-    <div class="card-body d-flex flex-column justify-content-start align-items-start">
-      <span >Total payble amount: <b>Rs {{totalAmount}}</b></span>
-      <button type="button" class="button">Place Order</button>
+    <div #orderCard class="card_box card_sticky mb-1 h_fit">
+      <div class="amount_body">
+        <h3>Amount</h3>
+        <p class="amount_details">
+          Total payble amount: <b>Rs {{ totalAmount }}</b>
+        </p>
+        <div class="amount_btn_group">
+          <button type="button" class="button">Place Order</button>
+        </div>
+      </div>
     </div>
   </div>
-  <div *ngIf="isFixed" class="card mb-1 card-btn fixed">
-    <div class="card-body d-flex flex-column justify-content-start align-items-start">
-      <span >Total payble amount: <b>Rs {{totalAmount}}</b></span>
+  <div *ngIf="isFixed" class="card mb-1 fixed">
+    <div
+      class="card-body d-flex flex-column justify-content-start align-items-start"
+    >
+      <span
+        >Total payble amount: <b>Rs {{ totalAmount }}</b></span
+      >
       <button type="button" class="button">Place Order</button>
     </div>
   </div>
