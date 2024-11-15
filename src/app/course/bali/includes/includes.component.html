@@ -4,7 +4,7 @@
       <div class="mb-3" *ngIf="feesData?.amount">
         <h2>{{courseText !=''? courseText:'Course'}} Fee: {{ feesData?.amount }} {{ feesData?.currency }}</h2>
       </div>
-      <div class="mb-3">
+      <div *ngIf="!hideIncludeSection" class="mb-3">
         <h2>What Does This Yoga Course</h2>
         <h2><span>Package Include?</span></h2>
         <div class="lists">

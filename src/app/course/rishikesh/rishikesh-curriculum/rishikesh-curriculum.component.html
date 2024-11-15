@@ -28,7 +28,7 @@
               </p> -->
           </div>
           </div>
-          <div class="plus-icon">
+          <div *ngIf="slug != 'adjustment-and-alignment' && slug != 'adjustment-and-alignment-level-2'" class="plus-icon">
             <i class="fa-solid fa-plus" *ngIf="selectedIndex!=i"></i>
             <i class="fa-solid fa-minus" *ngIf="selectedIndex==i"></i>
           </div>

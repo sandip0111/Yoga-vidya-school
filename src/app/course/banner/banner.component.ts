@@ -19,10 +19,11 @@ export class BannerComponent implements OnInit {
  slug:any='';
  courseName: any;
  isRegistrationPageLabelToggle = false;
+ isRegistrationPageLabelToggleForAdjusment = false;
  sliderImage:any='https://my-s3-images-bucket.s3.amazonaws.com/images/InternalBackground_lticg8.jpg'
   constructor(private renderer: Renderer2, private el: ElementRef, private webapiService: WebapiService,private spinner:NgxSpinnerService,private router: Router, private activatedRoute: ActivatedRoute) {
     this.slug = this.activatedRoute.snapshot.routeConfig?.path;
-    if(this.slug == '200-hour-yoga-teacher-training-in-bali' || this.slug == 'yoga-retreat-in-bali' || this.slug == '300-hour-yoga-teacher-training-in-bali'){
+    if(this.slug == '200-hour-yoga-teacher-training-in-bali' || this.slug == 'yoga-retreat-in-bali' || this.slug == '300-hour-yoga-teacher-training-in-bali' || this.slug == 'adjustment-and-alignment' || this.slug == 'adjustment-and-alignment-level-2'){
       this.sliderImage = 'https://my-s3-images-bucket.s3.amazonaws.com/images/image_1688020831747_aqnfh1.jpg'
     }
     else if(this.slug == 'yoga-retreat-in-mysore-india'){
@@ -46,10 +47,15 @@ export class BannerComponent implements OnInit {
        this.slug == '200-hour-yoga-teacher-training-in-bali' ||
        this.slug == '300-hour-yoga-teacher-training-in-bali' ||
        this.slug == '200-hour-yoga-teacher-training-in-kerala-india' ||
-        this.slug == '300-hour-yoga-teacher-training-in-kerala-india'
+        this.slug == '300-hour-yoga-teacher-training-in-kerala-india'          
     ) {
       this.isRegistrationPageLabelToggle = true;
     }
+
+    if(this.slug == 'adjustment-and-alignment' ||
+      this.slug == 'adjustment-and-alignment-level-2'){
+        this.isRegistrationPageLabelToggleForAdjusment = true;
+      }
 
     this.renderer.setStyle(this.el.nativeElement, '--bg-image', `url(${this.sliderImage})`);
     

@@ -150,19 +150,19 @@ export class AboutRishikeshComponent implements OnInit {
       };
     }
 
-    else if(this.slug == 'adjustment-amp-alignment-level-1'){
+    else if(this.slug == 'adjustment-and-alignment'){
       this.aboutContent = {
-        image: "https://my-s3-images-bucket.s3.amazonaws.com/img/image_1674308332559.jpg",
+        image: "assets/adjustmentAndAlignment.jpeg",
         title: "Adjustment",
-        secondTitle: "& Alignment Level 1",
+        secondTitle: "& Alignment",
         desc: `
 <p>The Asana Alignment and Adjustment course was personally constructed by the head teacher of the Yoga Vidya school <a href='https://www.yogavidyaschool.com/mentor/acharya-prashant-jakhmola'>Prashant Jakhmola</a>, who has many years experience in designing and teaching at yoga teacher training courses and various yoga programs in India, Nepal, China, Russia and Indonesia. The present course is ideal choice for all yoga practitioners who requires basement for their asana practice.</p><p><strong>Who is this course for ?</strong></p><p>The Asana Alignment and Adjustment Level 1 course is designed for those people who haven’t done any <a href='https://www.yogavidyaschool.com'>Yoga Teacher Training Course</a> and thinking to do, but need a preparation. In addition, this course is suitable for people who need further guidance in order to improve their personal self yoga practice. Absolute beginners in yoga also can find this course is very helpful to step on the yoga path.</p>
         `
       };
     }
-    else if(this.slug == 'adjustment-amp-alignment-level-2'){
+    else if(this.slug == 'adjustment-and-alignment-level-2'){
       this.aboutContent = {
-        image: "https://my-s3-images-bucket.s3.amazonaws.com/img/image_1674308332559.jpg",
+        image: "assets/adjustmentAndAlignment.jpeg",
         title: "Adjustment",
         secondTitle: "& Alignment Level 2",
         desc: `

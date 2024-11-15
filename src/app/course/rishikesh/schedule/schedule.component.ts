@@ -87,7 +87,7 @@ export class ScheduleComponent implements OnInit {
         space: `${event.seat} spaces Available`,
       })).slice(0, 3);
       if(this.slug == '200-hour-yoga-teacher-training-in-bali' ||
-        this.slug == '300-hour-yoga-teacher-training-in-bali'){
+        this.slug == '300-hour-yoga-teacher-training-in-bali' || this.slug == 'adjustment-and-alignment' || this.slug == 'adjustment-and-alignment-level-2'){
           this.eventList = this.eventList.map((y: { trainer: string; }) =>{ 
             var mentor = 'Prashant J Yoga';
             return { ...y, trainer: mentor };
