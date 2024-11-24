@@ -40,8 +40,14 @@
       >Buy Now</a
     > -->
       <a
-        *ngIf="slug != 'pranayama-course-online-pranarambha'"
+        *ngIf="slug != 'pranayama-course-online-pranarambha' && slug != 'breath-detox-yoga'"
         href="/book-now"
+        class="button"
+        >Enroll in the course</a
+      >
+      <a
+        *ngIf="slug == 'breath-detox-yoga'"
+        href="/breath-detox-yoga/student-register"
         class="button"
         >Enroll in the course</a
       >
