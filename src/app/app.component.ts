@@ -6,7 +6,7 @@ import { SpinnerComponent } from './includes/spinner/spinner.component';
 import { ModalModule } from './modal/modal.module';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CourseModalComponent } from './modal/course-modal/course-modal.component';
-import { WebinarModalComponent } from './modal/webinar-modal/webinar-modal.component';
+// import { WebinarModalComponent } from './modal/webinar-modal/webinar-modal.component';
 
 @Component({
   selector: 'app-root',
@@ -30,13 +30,13 @@ export class AppComponent implements OnInit {
       }, 30000); 
     };
 
-    let isOpenWebinarModal = sessionStorage.getItem('OpenWebinarModal');
-    if(isOpenWebinarModal == null){
-      setTimeout(() => {
-        this.openWebinarModal();
-        sessionStorage.setItem('OpenWebinarModal', 'true');
-      }, 40000);
-   };
+  //   let isOpenWebinarModal = sessionStorage.getItem('OpenWebinarModal');
+  //   if(isOpenWebinarModal == null){
+  //     setTimeout(() => {
+  //       this.openWebinarModal();
+  //       sessionStorage.setItem('OpenWebinarModal', 'true');
+  //     }, 40000);
+  //  };
   }
 
   openModal() {
@@ -50,15 +50,15 @@ export class AppComponent implements OnInit {
     });
   }
 
-    openWebinarModal() {
-      this.modalService.open(WebinarModalComponent, {
-        windowClass: 'webinar-registration-modal-class',
-        size:'lg',
-        ariaLabelledBy: 'modal-basic-title',
-        backdrop: 'static',  // Prevent closing by clicking outside
-        keyboard: false,  // Prevent closing with the ESC key
-        centered: true     
-      });
-  }
+  //   openWebinarModal() {
+  //     this.modalService.open(WebinarModalComponent, {
+  //       windowClass: 'webinar-registration-modal-class',
+  //       size:'lg',
+  //       ariaLabelledBy: 'modal-basic-title',
+  //       backdrop: 'static',  // Prevent closing by clicking outside
+  //       keyboard: false,  // Prevent closing with the ESC key
+  //       centered: true     
+  //     });
+  // }
   title = 'yoga-vidya-school';
 }
