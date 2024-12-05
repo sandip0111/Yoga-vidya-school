@@ -25,11 +25,8 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { TrainerDetailComponent } from './trainers/trainer-detail/trainer-detail.component';
 import { AddToCartComponent } from './add-to-cart/add-to-cart.component';
 import { WebinarRegistrationFormComponent } from './webinar-registration-form/webinar-registration-form.component';
-<<<<<<< HEAD
 import { PaymentProceedComponent } from './payment-proceed/payment-proceed.component';
-=======
 import { RegistrationFormComponent } from './student/registration-form/registration-form.component';
->>>>>>> adfec04d73d7fca14f215eb70dadb232d5fd963f
 
 export const routes: Routes = [
 
