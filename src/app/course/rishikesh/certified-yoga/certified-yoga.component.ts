@@ -116,7 +116,7 @@ export class CertifiedYogaComponent implements OnInit {
     else if(this.slug == 'yoga-retreat-in-rishikesh-india' || this.slug == 'yoga-retreat-in-kerala-india'){
       this.noContent = true;
     }
-    else if(this.slug == 'pranayama-therapy-course-online' || this.slug == 'adjustment-amp-alignment-level-1' || this.slug == 'adjustment-amp-alignment-level-2' || this.slug == 'yoga-teacher-training-in-india' || this.slug == 'drop-in-yoga-classes' || this.slug == 'pranic-purification' || this.slug == '21-days-ashtanga-yoga-immersion' || this.slug == 'yoga-for-weight-loss' || this.slug == 'online-hip-opening-workshop' || this.slug == '200-hours-yoga-teacher-training-online'){
+    else if(this.slug == 'pranayama-therapy-course-online' || this.slug == 'adjustment-and-alignment' || this.slug == 'adjustment-and-alignment-level-2' || this.slug == 'yoga-teacher-training-in-india' || this.slug == 'drop-in-yoga-classes' || this.slug == 'pranic-purification' || this.slug == '21-days-ashtanga-yoga-immersion' || this.slug == 'yoga-for-weight-loss' || this.slug == 'online-hip-opening-workshop' || this.slug == '200-hours-yoga-teacher-training-online'){
       this.noContent = true;
     }
   }

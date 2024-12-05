@@ -25,6 +25,7 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { TrainerDetailComponent } from './trainers/trainer-detail/trainer-detail.component';
 import { AddToCartComponent } from './add-to-cart/add-to-cart.component';
 import { WebinarRegistrationFormComponent } from './webinar-registration-form/webinar-registration-form.component';
+import { RegistrationFormComponent } from './student/registration-form/registration-form.component';
 
 export const routes: Routes = [
 
@@ -50,8 +51,8 @@ export const routes: Routes = [
   {path:'yoga-retreat-in-rishikesh-india', component: RishikeshIndexComponent},
   {path:'yoga-retreat-in-kerala-india', component: RishikeshIndexComponent},
   {path:'pranayama-therapy-course-online', component: RishikeshIndexComponent},
-  {path:'adjustment-amp-alignment-level-1', component: RishikeshIndexComponent},
-  {path:'adjustment-amp-alignment-level-2', component: RishikeshIndexComponent},
+  {path:'adjustment-and-alignment', component: RishikeshIndexComponent},
+  {path:'adjustment-and-alignment-level-2', component: RishikeshIndexComponent},
   {path:'yoga-teacher-training-in-india', component: RishikeshIndexComponent},
   {path:'drop-in-yoga-classes', component: RishikeshIndexComponent},
   {path:'pranic-purification', component: RishikeshIndexComponent},
@@ -83,5 +84,7 @@ export const routes: Routes = [
   {path:"contact-us", component:ContactComponent},
   {path:"checkout/:id",component:CheckoutComponent},
   {path:"webinar-registration",component:WebinarRegistrationFormComponent},
+  { path:'breath-detox-yoga/student-register', component:RegistrationFormComponent},
   { path: '**', pathMatch: 'full',  component: PagenotfoundComponent },
+  
 ];

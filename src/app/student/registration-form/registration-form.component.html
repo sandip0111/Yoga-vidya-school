@@ -1,0 +1,99 @@
+<div class="container mt-5">
+    <div class="card shadow-hover">
+      <div class="card-header text-white text-center">
+        <h5 class="title">{{courseName}} Course Registration Form</h5>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+          <!-- First Name -->
+          <div class="mb-3">
+            <label for="firstName" class="form-label">First Name</label>
+            <input
+              type="text"
+              id="firstName"
+              class="form-control"
+              formControlName="firstName"
+              [ngClass]="{'is-invalid': submitted && f.firstName.errors}"
+            />
+            <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+              First Name is required.
+            </div>
+          </div>
+  
+          <!-- Last Name -->
+          <div class="mb-3">
+            <label for="lastName" class="form-label">Last Name</label>
+            <input
+              type="text"
+              id="lastName"
+              class="form-control"
+              formControlName="lastName"
+            />
+          </div>
+  
+          <!-- Email -->
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input
+              type="email"
+              id="email"
+              class="form-control"
+              formControlName="email"
+              [ngClass]="{'is-invalid': submitted && f.email.errors}"
+            />
+            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+              Email is required and must be a valid email.
+            </div>
+          </div>
+  
+          <!-- Phone Number -->
+          <div class="mb-3">
+            <label for="phoneNumber" class="form-label">Phone Number</label>
+            <input
+              type="number"
+              id="phoneNumber"
+              class="form-control"
+              formControlName="phoneNumber"
+            />
+          </div>
+  
+          <!-- City -->
+          <div class="mb-3">
+            <label for="city" class="form-label">City</label>
+            <input
+              type="text"
+              id="city"
+              class="form-control"
+              formControlName="city"
+              [ngClass]="{'is-invalid': submitted && f.city.errors}"
+            />
+            <div *ngIf="submitted && f.city.errors" class="invalid-feedback">
+              City is required.
+            </div>
+          </div>
+  
+          <!-- Password -->
+          <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input
+              type="password"
+              id="password"
+              class="form-control"
+              formControlName="password"
+              [ngClass]="{'is-invalid': submitted && f.password.errors}"
+            />
+            <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+              Password is required.
+            </div>
+          </div>
+  
+          <!-- Submit Button -->
+          <div class="d-flex justify-content-center">
+            <button type="submit" class="btn btn-primary w-100">Register</button>
+          </div>
+        </form>
+      </div>
+      
+    </div>
+  </div>
+  

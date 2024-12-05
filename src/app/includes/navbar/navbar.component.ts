@@ -39,6 +39,7 @@ export class NavbarComponent implements OnInit {
     ] },
     { title: 'Online Yoga Workshop', link: '#', submenu: [
       { title: 'Online Yoga Classes', link: '/online-yoga-classes' },
+      { title: 'Yoga Webinar Registration', link: '/webinar-registration' },
       { title: 'Breath Detox Yoga', link: '/breath-detox-yoga' },
       { title: 'Prana Arambha', link: '/pranayama-course-online-pranarambha' },
       { title: 'Foundations of Spirituality', link: '/foundation-of-spirituality-an-online-spiritual-awakening-course' },
@@ -70,8 +71,8 @@ export class NavbarComponent implements OnInit {
           { title: 'Pranic Purification', link: '/pranic-purification' },
           { title: '21 Days Ashtanga Yoga Immersion', link: '/21-days-ashtanga-yoga-immersion' },
           { title: 'Pranayama Therapy Course Online', link: '/pranayama-therapy-course-online' },
-          { title: 'Adjustment & Alignment Level 1', link: '/adjustment-amp-alignment-level-1' },
-          { title: 'Adjustment & Alignment Level 2', link: '/adjustment-amp-alignment-level-2' },
+          { title: 'Adjustment & Alignment', link: '/adjustment-and-alignment' },
+          { title: 'Adjustment & Alignment Level 2', link: '/adjustment-and-alignment-level-2' },
           { title: 'Yoga Teacher Training in India', link: '/yoga-teacher-training-in-india' },
           { title: 'Drop-in Yoga Classes', link: '/drop-in-yoga-classes' },
           { title: 'Yoga for Weight Loss', link: '/yoga-for-weight-loss' },

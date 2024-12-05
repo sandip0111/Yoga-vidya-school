@@ -101,7 +101,7 @@ export class AboutRishikeshComponent implements OnInit {
         title: "200 Hour",
         secondTitle: "Yoga Teacher Training in Kerala, India",
         desc: `
-<p>Travel to the land of glistening backwaters, the abode of nature&#39;s healing legacy, a place&nbsp;blessed with beauty that is akin to heaven, and the land of exotic fauna, Yoga Vidya School&nbsp;welcomes you to an extensive 200 Hour Yoga Teacher Training in Kerala, India. Travel into a&nbsp;world where time stands still with nature&#39;s bounty expressed through its picturesque and&nbsp;exceptionally clean beaches, lush rainforests, and hospitality expressed in its vibrant culture&nbsp;and ancient wisdom that thrives even after all these millennia. You are invited to experience&nbsp;and witness the positive transformation of the mind, body, and spirit through authentic&nbsp;teachings and practices of the Hatha and Ashtanga Yoga forms under the guidance of India&#39;s&nbsp;noted yoga masters. Redesign your diet and lifestyle that is aligned with the principles of&nbsp;Ayurveda and transition towards a more balanced body and mind. Be on your way to a&nbsp;Yoga Alliance certified yoga teacher and a yogi of finesse imbibed from theoretical teachings&nbsp;from the sacred books of yoga and Vedas with Yoga Vidya School&#39;s 200 Hour Yoga Teacher&nbsp;Training in Kerala.</p>
+<p>Travel to the land of glistening backwaters, the above of nature's healing legacy, a place blessed with beauty that is akin to heaven, and the land of exotic fauna, Yoga Vidya School welcomes you to an extensive 200 Hour Yoga Teacher Training in Kerala, India. Travel into a world where time stands still with nature's bounty expressed through its picturesque and exceptionally clean beaches, lush rainforests, and hospitality expressed in its vibrant culture and ancient wisdom that thrives even after all these millennia. You are invited to experience and witness the positive transformation of the mind, body, and spirit through authentic teachings and practices of the Hatha and Ashtanga Yoga forms under the guidance of India's noted yoga masters. Redesign your diet and lifestyle that is aligned with the principles of Ayurveda and transition towards a more balanced body and mind. We also suggest you join our rejuvenative yoga retreats at Bali, which will allow you to experience the maximum healing powers of Yoga, to transform your overall wellness. Introduce yourself to the like-minded communities while discovering a blend of relaxation and enlightenment. Whether you are a beginner or a seasoned practitioner, joining the <a href='200-hour-yoga-teacher-training-in-bali'>200 Hour Yoga TTC in Bali</a> As well as Kerala will support you to deepen your practice. Be on your way to becoming a Yoga Alliance certified yoga teacher and a yogi of finesse imbibed from theoretical teachings from the sacred books of yoga and Vedas with Yoga Vidya School's 200 Hour Yoga Teacher Training in Kerala.</p>
         `
       };
 
@@ -113,7 +113,7 @@ export class AboutRishikeshComponent implements OnInit {
         title: "300 Hour",
         secondTitle: "Yoga Teacher Training in Kerala, India",
         desc: `
-<p>Yoga Vidya School in Kerala, the noted destination for spiritual and vedic immersions, invites you to come along this sojourn of advanced yoga practices to further hone your skills and deepen your wisdom of the yogic art form through the 300 Hour Yoga TTC in Kerala. Take a step further into the world of yoga underneath the spellbinding shadow of the land of backwaters, exotic fauna and a humble lifestyle, Kerala. Become an advanced level yogi and indulge in more serious teachings of Hatha and Ashtanga Yoga in both theory and practice with exploratory references from the ancient text of yoga, the Bhagavad Gita, the Sutras of Patanjali, the Hatha Yoga Pradipika and more. Upon completion of a 200 hour Yoga TTC, continue the journey of learning and teaching with our intensive 300 Hour Yoga Teacher Training in Kerala and be on your way to transition into a 300 Hour Yoga Alliance recognised yoga teacher and practitioner.</p>
+<p>Yoga Vidya School in Kerala, the noted destination for spiritual and vedic immersions, invites you to come along this sojourn of advanced yoga practices to further hone your skills and deepen your wisdom of the yogic art form through the 300 Hour Yoga TTC in Kerala. Take a step further into the world of yoga underneath the spellbinding shadow of the land of backwaters, exotic fauna and a humble lifestyle, Kerala. Become an advanced level yogi and indulge in more serious teachings of Hatha and Ashtanga Yoga in both theory and practice with exploratory references from the ancient text of yoga, the Bhagavad Gita, the Sutras of Patanjali, the Hatha Yoga Pradipika and more. We also offer the 200 hour and <a href="300-hour-yoga-teacher-training-in-bali">300 Yoga TTC in Bali</a>, for those seeking a magical and enchanting ambience to embark on a yogic journey. Get inspired by experienced international yoga trainers and be a part of an extremely supportive community by joining our courses in Bali as well. Upon completion of a 200 hour Yoga TTC, continue the journey of learning and teaching with our intensive 300 Hour Yoga Teacher Training in Kerala and be on your way to transition into a 300 Hour Yoga Alliance recognised yoga teacher and practitioner.</p>
         `
       };
 
@@ -153,19 +153,19 @@ export class AboutRishikeshComponent implements OnInit {
       };
     }
 
-    else if(this.slug == 'adjustment-amp-alignment-level-1'){
+    else if(this.slug == 'adjustment-and-alignment'){
       this.aboutContent = {
-        image: "https://my-s3-images-bucket.s3.amazonaws.com/img/image_1674308332559.jpg",
+        image: "assets/adjustmentAndAlignment.jpeg",
         title: "Adjustment",
-        secondTitle: "& Alignment Level 1",
+        secondTitle: "& Alignment",
         desc: `
 <p>The Asana Alignment and Adjustment course was personally constructed by the head teacher of the Yoga Vidya school <a href='https://www.yogavidyaschool.com/mentor/acharya-prashant-jakhmola'>Prashant Jakhmola</a>, who has many years experience in designing and teaching at yoga teacher training courses and various yoga programs in India, Nepal, China, Russia and Indonesia. The present course is ideal choice for all yoga practitioners who requires basement for their asana practice.</p><p><strong>Who is this course for ?</strong></p><p>The Asana Alignment and Adjustment Level 1 course is designed for those people who haven’t done any <a href='https://www.yogavidyaschool.com'>Yoga Teacher Training Course</a> and thinking to do, but need a preparation. In addition, this course is suitable for people who need further guidance in order to improve their personal self yoga practice. Absolute beginners in yoga also can find this course is very helpful to step on the yoga path.</p>
         `
       };
     }
-    else if(this.slug == 'adjustment-amp-alignment-level-2'){
+    else if(this.slug == 'adjustment-and-alignment-level-2'){
       this.aboutContent = {
-        image: "https://my-s3-images-bucket.s3.amazonaws.com/img/image_1674308332559.jpg",
+        image: "assets/adjustmentAndAlignment.jpeg",
         title: "Adjustment",
         secondTitle: "& Alignment Level 2",
         desc: `
@@ -273,7 +273,7 @@ export class AboutRishikeshComponent implements OnInit {
 <p>The Online Yoga Teacher Training of Yoga Vidya School is exclusively designed by Prashant Jakhamola, popular as Prashant J Yoga on Internet and Youtube. This special program is designed to make you a dedicated yoga practitioner as Sadhaka or devotee of the Yogic Science and the tradition. It is 12 weeks long course covers the deeper details of Hatha Yoga and Ashtanga Yoga with special focus on Alignments and Adjustments, along with Meditation, Pranayama, Philosophy and Teaching Methodology.</p>
 <h2>Online Yoga Teacher Training at Yoga Vidya School Details:<strong> </strong></h2>
 
-<p style="margin-left:0cm; margin-right:0cm"><strong>Date:</strong> 7<sup>th</sup> July to 20<sup>th</sup> September</p>
+<p style="margin-left:0cm; margin-right:0cm"><strong>Date:</strong> 7<sup>th</sup> Febuary</p>
 
 <p><strong>Duration:</strong> 12 Weeks</p>
 
@@ -281,13 +281,14 @@ export class AboutRishikeshComponent implements OnInit {
 
 <p><strong>Timing Options:</strong></p>
 
-<p><strong>1<sup>st</sup> Batch:</strong> 7:00 AM to 9:30 AM (IST)<br />
-<strong>2<sup>nd</sup> Batch:</strong> 9:30 AM to 12:30 PM<br />
-<strong>3<sup>rd</sup> Batch: </strong>4:00 PM to 6:45 PM</p>
-
+<!-- <p><strong>1<sup>st</sup> Batch:</strong> 7:00 AM to 9:30 AM (IST)-->
+<p>05:00 AM - 07:30 AM (GMT)</p>
+<!-- <strong>2<sup>nd</sup> Batch:</strong> 9:30 AM to 12:30 PM<br />-->
+<p>06:00 AM - 08:30 AM (CET)</p>
+<!-- <strong>3<sup>rd</sup> Batch: </strong>4:00 PM to 6:45 PM</p>-->
+<p>10:30 AM  - 01:00 PM (IST)</p> 
 <p>&nbsp;</p>
-
-<h3 style="margin-left:0cm; margin-right:0cm">Online Hatha Yoga Teacher Training:</h3>
+<!-- <h3 style="margin-left:0cm; margin-right:0cm">Online Hatha Yoga Teacher Training:</h3>
 
 <p>7:00 AM to 9:30 AM (IST) and 9:30 AM to 12:30 PM (IST)</p>
 
@@ -295,7 +296,7 @@ export class AboutRishikeshComponent implements OnInit {
 
 <h3>Online Ashtanga Yoga Teacher Training:</h3>
 
-<p>4:00 PM to 6:45 PM (India Time)</p>
+<p>4:00 PM to 6:45 PM (India Time)</p>-->
 `
       };
     }

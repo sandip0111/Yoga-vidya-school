@@ -220,7 +220,7 @@ export class GalleryComponent implements OnInit {
         },
       ]
     }
-    else if(this.slug == 'pranayama-therapy-course-online' || this.slug == 'adjustment-amp-alignment-level-1' || this.slug == 'adjustment-amp-alignment-level-2' || this.slug == 'yoga-teacher-training-in-india' || this.slug == 'drop-in-yoga-classes'){
+    else if(this.slug == 'pranayama-therapy-course-online' || this.slug == 'adjustment-and-alignment' || this.slug == 'adjustment-and-alignment-level-2' || this.slug == 'yoga-teacher-training-in-india' || this.slug == 'drop-in-yoga-classes'){
       this.displayImages = [
         {
           image:"https://my-s3-images-bucket.s3.amazonaws.com/images/Gallery1_p2mk26.jpg"
@@ -578,7 +578,7 @@ export class GalleryComponent implements OnInit {
         },
       ]
     }
-    else if(this.slug == 'pranayama-therapy-course-online' || this.slug == 'adjustment-amp-alignment-level-1' || this.slug == 'adjustment-amp-alignment-level-2' || this.slug == 'yoga-teacher-training-in-india' || this.slug == 'drop-in-yoga-classes' || this.slug == 'pranic-purification'){
+    else if(this.slug == 'pranayama-therapy-course-online' || this.slug == 'adjustment-and-alignment' || this.slug == 'adjustment-and-alignment-level-2' || this.slug == 'yoga-teacher-training-in-india' || this.slug == 'drop-in-yoga-classes' || this.slug == 'pranic-purification'){
       this.displayImages = [
         {
           image:"https://my-s3-images-bucket.s3.amazonaws.com/images/Gallery1_p2mk26.jpg"
@@ -879,7 +879,7 @@ export class GalleryComponent implements OnInit {
         },
       ]
     }
-    else if(this.slug == 'pranayama-therapy-course-online' || this.slug == 'adjustment-amp-alignment-level-1' || this.slug == 'adjustment-amp-alignment-level-2' || this.slug == 'yoga-teacher-training-in-india' || this.slug == 'drop-in-yoga-classes' || this.slug == 'pranic-purification'){
+    else if(this.slug == 'pranayama-therapy-course-online' || this.slug == 'adjustment-and-alignment' || this.slug == 'adjustment-and-alignment-level-2' || this.slug == 'yoga-teacher-training-in-india' || this.slug == 'drop-in-yoga-classes' || this.slug == 'pranic-purification'){
       this.displayImages = [
         {
           image:"https://my-s3-images-bucket.s3.amazonaws.com/images/Gallery1_p2mk26.jpg"
@@ -1134,7 +1134,7 @@ export class GalleryComponent implements OnInit {
         }
       ]
     }
-    else if(this.slug == 'pranayama-therapy-course-online' || this.slug == 'adjustment-amp-alignment-level-1' || this.slug == 'adjustment-amp-alignment-level-2' || this.slug == 'yoga-teacher-training-in-india' || this.slug == 'drop-in-yoga-classes' || this.slug == 'pranic-purification' || this.slug == '21-days-ashtanga-yoga-immersion' || this.slug == 'yoga-for-weight-loss' || this.slug == 'yoga-retreat-in-bali' || this.slug == 'yoga-retreat-in-mysore-india'){
+    else if(this.slug == 'pranayama-therapy-course-online' || this.slug == 'adjustment-and-alignment' || this.slug == 'adjustment-and-alignment-level-2' || this.slug == 'yoga-teacher-training-in-india' || this.slug == 'drop-in-yoga-classes' || this.slug == 'pranic-purification' || this.slug == '21-days-ashtanga-yoga-immersion' || this.slug == 'yoga-for-weight-loss' || this.slug == 'yoga-retreat-in-bali' || this.slug == 'yoga-retreat-in-mysore-india'){
       this.displayImages = [
         {
           image:"https://my-s3-images-bucket.s3.amazonaws.com/images/accomodation_pqonex.jpg"

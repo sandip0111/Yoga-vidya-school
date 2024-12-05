@@ -15,7 +15,7 @@ export class IncludesComponent implements OnInit {
    image:any='https://my-s3-images-bucket.s3.amazonaws.com/images/inschool-yoga_retreat_doaezs.jpg';
    courseFee:any='';
    courseText:any='';
-
+   hideIncludeSection = false;
   slug: any='';
   feesData: any;
   constructor(private activatedRoute:ActivatedRoute,private router:Router) {
@@ -45,7 +45,7 @@ export class IncludesComponent implements OnInit {
       this.image = 'https://my-s3-images-bucket.s3.amazonaws.com/images/FERN8247_mp1qxh.jpg';
 
     }
-    else if(this.slug == '200-hours-yoga-teacher-training-in-rishikesh' || this.slug == '100-hours-yoga-teacher-training-in-rishikesh' || this.slug=='200-horas-de-formacioacuten-de-profesores-de-yoga-en-rishikesh' || this.slug=='300-hours-yoga-teacher-training-in-rishikesh' || this.slug=='200-hour-yoga-teacher-training-scholarship-in-rishikesh' || this.slug=='300-hour-yoga-teacher-training-scholarship-in-rishikesh' || this.slug=='200-hour-yoga-teacher-training-in-kerala-india' || this.slug=='300-hour-yoga-teacher-training-in-kerala-india' || this.slug == 'pranayama-therapy-course-online' || this.slug == 'adjustment-amp-alignment-level-1' || this.slug == 'adjustment-amp-alignment-level-2' || this.slug == 'yoga-teacher-training-in-india' || this.slug == 'drop-in-yoga-classes'){
+    else if(this.slug == '200-hours-yoga-teacher-training-in-rishikesh' || this.slug == '100-hours-yoga-teacher-training-in-rishikesh' || this.slug=='200-horas-de-formacioacuten-de-profesores-de-yoga-en-rishikesh' || this.slug=='300-hours-yoga-teacher-training-in-rishikesh' || this.slug=='200-hour-yoga-teacher-training-scholarship-in-rishikesh' || this.slug=='300-hour-yoga-teacher-training-scholarship-in-rishikesh' || this.slug=='200-hour-yoga-teacher-training-in-kerala-india' || this.slug=='300-hour-yoga-teacher-training-in-kerala-india' || this.slug == 'pranayama-therapy-course-online' || this.slug == 'yoga-teacher-training-in-india' || this.slug == 'drop-in-yoga-classes'){
       this.amenities = [
         { text: "28 nights shared room accommodation with attached bathroom." },
 
@@ -60,6 +60,15 @@ export class IncludesComponent implements OnInit {
 
       ];
        this.not_includes = [
+        { text: "Additional Charges for Private Room $200 USD." },
+        { text: "Additional Charges for Air Conditioning Room $150 USD." },
+        { text: "Additional Charges for Pick and Drop and for any taxi services." },
+      ];
+    }
+    else if(this.slug == 'adjustment-and-alignment' || this.slug == 'adjustment-and-alignment-level-2'){
+      this.amenities = [ { text: "" }];
+      this.hideIncludeSection = true;
+      this.not_includes = [
         { text: "Additional Charges for Private Room $200 USD." },
         { text: "Additional Charges for Air Conditioning Room $150 USD." },
         { text: "Additional Charges for Pick and Drop and for any taxi services." },
