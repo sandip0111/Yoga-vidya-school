@@ -1,0 +1,75 @@
+<div class="payment_card">
+  <div class="row">
+    <div class="col-sm-12 p-0 box">
+      <div class="card rounded-0 border-0 card2" id="paypage">
+        <div class="form-card">
+          <h2 id="heading2" class="text-danger">Payment Method</h2>
+          <div class="radio-group">
+            <div class="radio" data-value="credit">
+              <img
+                src="https://i.imgur.com/28akQFX.jpg"
+                width="200px"
+                height="60px"
+              />
+            </div>
+            <div class="radio" data-value="paypal">
+              <img
+                src="https://i.imgur.com/5QFsx7K.jpg"
+                width="200px"
+                height="60px"
+              />
+            </div>
+            <br />
+          </div>
+          <label class="pay">Name</label>
+          <input type="text" name="holdername" placeholder="John Smith" />
+          <div class="row">
+            <div class="col-8 col-md-6">
+              <label class="pay">Number</label>
+              <input
+                type="text"
+                name="cardno"
+                id="cr_no"
+                placeholder="0000-0000-0000-0000"
+                minlength="19"
+                maxlength="19"
+              />
+            </div>
+            <div class="col-4 col-md-6">
+              <label class="pay">price</label>
+              <input
+                type="text"
+                name="price"
+                placeholder="1246"
+                class="placeicon"
+                [readOnly]="true"
+              />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <label class="pay">Email</label>
+            </div>
+            <div class="col-md-12">
+              <input
+                type="email"
+                name="email"
+                id="exp"
+                placeholder="Amit@1235gmail.com"
+                minlength="5"
+                maxlength="5"
+              />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <button type="submit" class="button payment-btn">
+                Make a payment
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

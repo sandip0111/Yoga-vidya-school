@@ -25,6 +25,7 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { TrainerDetailComponent } from './trainers/trainer-detail/trainer-detail.component';
 import { AddToCartComponent } from './add-to-cart/add-to-cart.component';
 import { WebinarRegistrationFormComponent } from './webinar-registration-form/webinar-registration-form.component';
+import { PaymentProceedComponent } from './payment-proceed/payment-proceed.component';
 
 export const routes: Routes = [
 
@@ -83,5 +84,6 @@ export const routes: Routes = [
   {path:"contact-us", component:ContactComponent},
   {path:"checkout/:id",component:CheckoutComponent},
   {path:"webinar-registration",component:WebinarRegistrationFormComponent},
+  {path:"proceed-payment",component:PaymentProceedComponent},
   { path: '**', pathMatch: 'full',  component: PagenotfoundComponent },
 ];
