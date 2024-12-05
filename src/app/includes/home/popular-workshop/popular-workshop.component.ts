@@ -25,7 +25,7 @@ export class PopularWorkshopComponent implements OnInit {
     {
       title: 'Adjustment& Alignment 1',
       location: 'Rishikesh',
-      link: '/adjustment-amp-alignment-level-1',
+      link: '/adjustment-and-alignment',
       image: 'https://my-s3-images-bucket.s3.amazonaws.com/images/adjustAlign_cpouxz.jpg'
     }
   ]

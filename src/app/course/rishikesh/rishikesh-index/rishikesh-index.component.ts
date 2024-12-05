@@ -473,6 +473,14 @@ export class RishikeshIndexComponent implements OnInit {
         if(this.slug == 'pranic-purification'){
           this.schEventData = {};
         }
+        else if(this.slug == 'adjustment-and-alignment' || this.slug == 'adjustment-and-alignment-level-2'){
+          this.schEventData = {
+            title:res.data[0].coursetitle,
+            events:this.upEventData,
+            url:res.data[0].slug,
+            loc:'Bali'
+          }
+        }
         else{
           this.schEventData = {
             title:res.data[0].coursetitle,

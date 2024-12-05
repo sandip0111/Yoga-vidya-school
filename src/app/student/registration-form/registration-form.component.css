@@ -1,0 +1,37 @@
+.shadow-hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.3s ease-in-out;
+  }
+  
+  .shadow-hover:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  }
+  
+  .card-header h5 {
+    font-size: 1.25rem;
+    margin: 0;
+  }
+  
+  .card-footer {
+    background-color: #f8f9fa;
+  }
+
+  .container{
+    max-width: 500px;
+    margin-bottom: 30px;
+  }
+
+  .btn-primary{
+    background-image: linear-gradient(to right, #f47019, #d55502);background-color: #f47019;
+    border: none;
+  }
+  .card-header{
+    background-color: #f47019;
+  }
+
+  input:focus {
+    outline: none; /* Removes the default outline */
+    border-color: #f47019; /* Sets the border color */
+    box-shadow: 0 0 5px rgba(244, 112, 25, 0.5); /* Optional: Adds a subtle glow effect */
+  }
+  

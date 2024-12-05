@@ -26,7 +26,7 @@ export class FooterComponent implements OnInit{
       if (event instanceof NavigationEnd) {
         // Get the full URL path after the domain
         this.slug = event.urlAfterRedirects; // or event.url for the actual path
-        if(this.slug == '/200-hour-yoga-teacher-training-in-bali' || this.slug == '/300-hour-yoga-teacher-training-in-bali' || this.slug == '/yoga-retreat-in-bali'){
+        if(this.slug == '/200-hour-yoga-teacher-training-in-bali' || this.slug == '/300-hour-yoga-teacher-training-in-bali' || this.slug == '/yoga-retreat-in-bali' || this.slug == '/adjustment-and-alignment' || this.slug == '/adjustment-and-alignment-level-2'){
           this.footerAddress = "Ahamta retreat, Jl. Sri Wedari No.46, Ubud, Kecamatan Ubud, Kabupaten Gianyar, Bali 80571, Indonesia"
         }
         if(this.slug =='/yoga-retreat-in-peru'){
