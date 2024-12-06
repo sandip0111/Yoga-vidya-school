@@ -9,16 +9,21 @@ html {
   justify-content: center;
   color: #fff;
   border-radius: 5px;
-  padding: 5px 10px;
-  width: 7rem;
+  padding: 8px 26px;
+  width: fit-content;
   border: none;
   font-weight: 600;
   font-size: 17px !important;
-  display: flex;
+  display: inline-block;
   align-items: center;
   text-decoration: none;
   align-items: center;
   gap: 20px;
+
+  &.my_btn{
+    display: flex;
+    padding: 5px 10px;
+  }
 
   &.danger {
     background: var(--danger);
