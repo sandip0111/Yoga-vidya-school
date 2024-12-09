@@ -8,6 +8,7 @@ import {
   Renderer2,
   ViewChild,
 } from '@angular/core';
+import { CartItem, CartService } from '../cart.service';
 
 @Component({
   selector: 'app-add-to-cart',
@@ -18,46 +19,19 @@ import {
 })
 
 export class AddToCartComponent implements AfterViewInit, OnDestroy {
-  courses = [
-    {
-      id: 1,
-      title: 'Breath Detox Course Online',
-      shortDescription:
-        'This is 7 days breath detox practice:Where you will get the 7 recorded videos, each day. Each video practice will be preparation for the next day',
-      selected: true,
-      price: 'Rs 1899',
-    },
-    {
-      id: 2,
-      title: 'Hip Opening Yoga Workshop Online',
-      shortDescription:
-        '21 days course has two main components - an elaborate warm-up series to prepare your muscles for high-intensity movements, and a number of sequences focussed on the muscles around the hip joints, hamstrings, inner leg, frontal thighs, and gluteal muscles.',
-      selected: false,
-      price: 'Rs 2799',
-    },
-    {
-      id: 3,
-      title:
-        'PRANA  ARAMBHA – An Exclusive Online Pranayama Course by Prashant J Yoga',
-      shortDescription:
-        'PRANA  ARAMBHA  is 10 days Pranic Course (Online Yoga Course). Join Online Pranayama Course now.',
-      selected: true,
-      price: 'Rs 899',
-    },
-    {
-      id: 4,
-      title: 'योग शास्त्र / योग ग्रंथ अध्यन',
-      shortDescription: 'Yoga Philosophy Course Free.',
-      selected: false,
-      price: 'Rs 3899',
-    },
-  ];
+
+  courses: CartItem[] = [];
   @ViewChild('orderCard', { static: false }) orderCard!: ElementRef;
   observer!: IntersectionObserver;
   isFixed: boolean = false; // Track if the card is fixed
   timeoutId: any; // Timeout ID for stability checking
+  totalAmount: any;
+  constructor(private renderer: Renderer2, private cartService: CartService) {}
 
-  constructor(private renderer: Renderer2) {}
+  ngOnInit(): void {
+    this.courses = this.cartService.getItems();
+    this.updateTotalAmount();
+  }
 
   ngAfterViewInit(): void {
     setTimeout(() => {
@@ -105,5 +79,15 @@ export class AddToCartComponent implements AfterViewInit, OnDestroy {
     }
     // Clear any pending timeouts
     clearTimeout(this.timeoutId);
+  }
+
+  removeItem(id: number): void {
+    this.cartService.removeItem(id);
+    this.courses = this.cartService.getItems();
+    this.updateTotalAmount();
+  }
+
+  updateTotalAmount(): void {
+    this.totalAmount = this.cartService.getTotalAmount();
   }
   }
