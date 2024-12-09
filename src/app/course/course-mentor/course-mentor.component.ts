@@ -33,10 +33,9 @@ export class CourseMentorComponent {
           name: "Acharya Prashant Jakhmola",
           image: "image_1673271873934.jfif",
           intro: "Morning Sadhana",
-          time:"6:00 AM(IST) - Yoga Sadhana",
-          time1:"7:30 AM(IST) - Advance Yoga",
-          time2:"5:30 PM(IST) - Prayanama Sadhana",
-          price:"Rs. 1499/USD 30"
+          time:"6:00 AM (IST) Yoga Sadhana",
+          time1:"9:30 AM (IST) Yoga With Variations",
+          price:"Rs. 2999/USD 70"
         },
         {
           name: "Shiva",
