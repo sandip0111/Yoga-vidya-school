@@ -326,7 +326,8 @@ export class AboutRishikeshComponent implements OnInit {
         id: res.data[0]._id,
         title: res.data[0].coursetitle,
         shortDescription: res.data[0].shortDesc,
-        price: 0,
+        priceINR: 0,
+        priceUSD:0,
         quantity: 1
       } 
       })

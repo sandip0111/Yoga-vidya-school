@@ -9,11 +9,13 @@ import {
   ViewChild,
 } from '@angular/core';
 import { CartItem, CartService } from '../cart.service';
+import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-to-cart',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './add-to-cart.component.html',
   styleUrl: './add-to-cart.component.css',
 })
@@ -26,12 +28,28 @@ export class AddToCartComponent implements AfterViewInit, OnDestroy {
   isFixed: boolean = false; // Track if the card is fixed
   timeoutId: any; // Timeout ID for stability checking
   totalAmount: any;
-  constructor(private renderer: Renderer2, private cartService: CartService) {}
+  selectedCurrency: string = '';
+  options?: { label: string; value: string }[] = [];
+  constructor(private renderer: Renderer2, private cartService: CartService, private router: Router) {}
 
   ngOnInit(): void {
-    this.courses = this.cartService.getItems();
-    this.updateTotalAmount();
+    this.courses = this.cartService.getItems();    
+    this.options = [
+      { label: 'INR', value: 'INR' },
+      { label: 'USD', value: 'USD' },
+      
+    ];
+    this.selectedCurrency ='INR';
+    this.cartService.setCurrency(this.selectedCurrency);
+    this.updateTotalAmount(this.selectedCurrency);
   }
+
+  onOptionChange(selected: string): void {
+    console.log('Selected option:', selected);
+    this.selectedCurrency = selected;
+    this.cartService.setCurrency(selected);
+    this.updateTotalAmount(this.selectedCurrency);
+}
 
   ngAfterViewInit(): void {
     setTimeout(() => {
@@ -82,12 +100,17 @@ export class AddToCartComponent implements AfterViewInit, OnDestroy {
   }
 
   removeItem(id: number): void {
-    this.cartService.removeItem(id);
+    this.cartService.removeItem(id, this.selectedCurrency);
     this.courses = this.cartService.getItems();
-    this.updateTotalAmount();
+    this.updateTotalAmount(this.selectedCurrency);
   }
 
-  updateTotalAmount(): void {
-    this.totalAmount = this.cartService.getTotalAmount();
+  updateTotalAmount(currency: string): void {
+    var amount = this.cartService.getTotalAmount(currency);
+    this.totalAmount = (currency =="INR"? 'Rs. ': 'USD ') + amount; 
   }
+
+  placeOrder(): void{
+    this.router.navigate(['/proceed-payment']);
   }
+}

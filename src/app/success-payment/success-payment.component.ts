@@ -16,6 +16,7 @@ export class SuccessPaymentComponent {
 
   sessionId: any;
   onlinesessionId: any;
+  onlineLiveClassesSessionId:any;
   message: string = '';
   paidFlag: any = "default";
   reuseUrl: any;
@@ -33,7 +34,7 @@ export class SuccessPaymentComponent {
     this.spinner.show();
     this.sessionId = sessionStorage.getItem('session');
     this.onlinesessionId = sessionStorage.getItem('onlinesession');
-
+    this.onlineLiveClassesSessionId = sessionStorage.getItem('onlineLiveClassesSessionId');    
     if (this.sessionId) {
       setTimeout(() => {
         this.getpaymentResult(this.sessionId);
@@ -42,6 +43,11 @@ export class SuccessPaymentComponent {
     if (this.onlinesessionId) {
       setTimeout(() => {
         this.getpaymentResultV2(this.onlinesessionId);
+      }, 1500)
+    }
+    if(this.onlineLiveClassesSessionId){
+      setTimeout(() => {
+        this.getpaymentResultLiveClasses(this.onlineLiveClassesSessionId);
       }, 1500)
     }
   }
@@ -90,6 +96,27 @@ export class SuccessPaymentComponent {
     });
   }
 
+  getpaymentResultLiveClasses(sessionId: any) {
+    let val = {
+      sessionId: sessionId,
+      dbPay: sessionStorage.getItem('onlineLiveClassDbPay')
+    }
+    this.webapiService.getPaymentResultAndSendMailForLiveClass(val).subscribe((res: any) => {
+      console.log(res, '--');
+      if (res.status == "success") {
+        this.paidFlag = "true";
+        this.ordId = res.paymtId;
+        this.amount = `${res.amount} ${res.currency}`;
+        this.spinner.hide();
+      }
+      else {
+        this.paidFlag = "false";
+        this.reuseUrl = res.sessionId;
+        this.spinner.hide();
+      }
+    });
+  }
+
   getcurrentDate() {
     const today = new Date(); // get current date and time
     const year = today.getFullYear(); // get year (YYYY)
@@ -109,6 +136,8 @@ export class SuccessPaymentComponent {
     this.router.navigate(['/'])
     sessionStorage.removeItem('onlinedbPay');
     sessionStorage.removeItem('onlinesession');
+    sessionStorage.removeItem('onlineLiveClassesSessionId');
+    sessionStorage.removeItem('onlineLiveClassDbPay');
   }
 
 }

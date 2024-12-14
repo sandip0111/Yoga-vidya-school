@@ -2,73 +2,108 @@
   <div class="row">
     <div class="col-sm-12 p-0 box">
       <div class="card rounded-0 border-0 card2" id="paypage">
-        <div class="form-card">
-          <h2 id="heading2" class="text-danger">Payment Method</h2>
-          <div class="radio-group">
-            <div class="radio" data-value="credit">
-              <img
-                src="https://i.imgur.com/28akQFX.jpg"
-                width="200px"
-                height="60px"
-              />
+        <form [formGroup]="paymentForm" (ngSubmit)="onSubmit()">
+          <div class="form-card">
+            <h2 id="heading2" class="text-danger">Payment Method</h2>
+            <div class="radio-group">
+              <div class="radio">
+                <img
+                  src="https://i.imgur.com/28akQFX.jpg"
+                  width="200px"
+                  height="60px"
+                />
+              </div>
+              <div class="radio">
+                <img
+                  src="https://i.imgur.com/5QFsx7K.jpg"
+                  width="200px"
+                  height="60px"
+                />
+              </div>
+              <br />
             </div>
-            <div class="radio" data-value="paypal">
-              <img
-                src="https://i.imgur.com/5QFsx7K.jpg"
-                width="200px"
-                height="60px"
-              />
-            </div>
-            <br />
-          </div>
-          <label class="pay">Name</label>
-          <input type="text" name="holdername" placeholder="John Smith" />
-          <div class="row">
-            <div class="col-8 col-md-6">
-              <label class="pay">Number</label>
+            <div class="mb-4">
+              <label class="pay">Name</label>
               <input
                 type="text"
-                name="cardno"
-                id="cr_no"
-                placeholder="0000-0000-0000-0000"
-                minlength="19"
-                maxlength="19"
+                name="holdername"
+                placeholder="John Smith"
+                formControlName="holderName"
               />
+              <div *ngIf="paymentForm.get('holderName')?.hasError('required') && submitted">
+                <span class="text-danger">Name is required.</span>
+              </div>
             </div>
-            <div class="col-4 col-md-6">
-              <label class="pay">price</label>
-              <input
-                type="text"
-                name="price"
-                placeholder="1246"
-                class="placeicon"
-                [readOnly]="true"
-              />
+
+            <div class="row mb-4">
+              <div class="col-md-12">
+                <label class="pay">Email</label>
+              </div>
+              <div class="col-md-12">
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="abc@1235gmail.com"
+                  formControlName="email"
+                />
+                <div *ngIf="paymentForm.get('email')?.hasError('required') && submitted">
+                  <span class="text-danger">Email is required.</span>
+                </div>
+                <div *ngIf="paymentForm.get('email')?.hasError('email') &&  paymentForm.get('email')?.touched">
+                  <span class="text-danger">Enter a valid email.</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="row mb-4">
+              <div class="col-md-12 mb-4">
+                <label class="pay">Mobile Number</label>
+                <input
+                  type="text"
+                  name="mobile"
+                  placeholder="123456789"
+                  formControlName="mobile"
+                />
+                <div *ngIf="paymentForm.get('mobile')?.hasError('required') && submitted">
+                  <span class="text-danger">Mobile number is required.</span>
+                </div>
+                <!-- <div *ngIf="paymentForm.get('mobile')?.hasError('pattern') && paymentForm.get('mobile')?.touched">
+                  <span class="text-danger">Enter a valid mobile number.</span>
+                </div> -->
+              </div>
+              <div class="col-md-6">
+                <label class="pay">Currency</label>
+                <input
+                  type="text"
+                  name="currency"
+                  formControlName="currency"
+                  [(ngModel)]="currency"
+                  class="placeicon"
+                  readonly
+                />
+              </div>
+              <div class="col-md-6">
+                <label class="pay">Price</label>
+                <input
+                  type="text"
+                  name="price"
+                  formControlName="price"
+                  [(ngModel)]="price"
+                  class="placeicon"
+                  readonly
+                />
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <button type="submit" class="button payment-btn">
+                  Make a payment
+                </button>
+              </div>
             </div>
           </div>
-          <div class="row">
-            <div class="col-md-12">
-              <label class="pay">Email</label>
-            </div>
-            <div class="col-md-12">
-              <input
-                type="email"
-                name="email"
-                id="exp"
-                placeholder="Amit@1235gmail.com"
-                minlength="5"
-                maxlength="5"
-              />
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-6">
-              <button type="submit" class="button payment-btn">
-                Make a payment
-              </button>
-            </div>
-          </div>
-        </div>
+        </form>
       </div>
     </div>
   </div>

@@ -33,7 +33,8 @@ export class CourseMentorComponent {
           intro: "",
           time:"5:30 AM - 6:30 AM (IST)",
           price:"Rs. 1999/USD 40",
-          priceInIndian: 1999
+          priceInIndian: 1999,
+          priceInUSD:40,
         },
         {
           id: 2,
@@ -42,7 +43,9 @@ export class CourseMentorComponent {
           intro: "Morning Sadhana",
           time:"6:00 AM (IST) Yoga Sadhana",
           time1:"9:30 AM (IST) Yoga With Variations",
-          price:"Rs. 2999/USD 70"
+          price:"Rs. 2999/USD 70",
+          priceInIndian: 2999,
+          priceInUSD: 70
         },
         {
           id: 3,
@@ -51,7 +54,8 @@ export class CourseMentorComponent {
           intro: "Ashtanga Yoga",
           time:"4:00 PM – 5:00 PM (IST)",
           price:"Rs. 1499/ USD 30",
-          priceInIndian: 1499
+          priceInIndian: 1499,
+          priceInUSD: 30
         },
         {
           id: 4,
@@ -60,7 +64,8 @@ export class CourseMentorComponent {
           intro: "Women Wellness",
           time:"5:30 PM – 6:30 PM (IST)",
           price:"Rs. 1499/USD 30",
-          priceInIndian: 1499
+          priceInIndian: 1499,
+          priceInUSD: 30
         }
       ]
     }
@@ -161,10 +166,12 @@ export class CourseMentorComponent {
       const mentor = this.courseMentor.find(i => i.id == id);
       this.course = {
         id: id,
-        title: mentor?.name + " online class",
+        title: mentor?.name + " online yoga class",
         shortDescription: mentor?.time + (mentor?.time1 != undefined ? (', '+ mentor?.time1) : "") + (mentor?.time2 != undefined ? (', '+ mentor?.time2) : ""),
-        price: mentor?.priceInIndian != undefined ? mentor?.priceInIndian: 0,
-        quantity: 1
+        priceINR: mentor?.priceInIndian != undefined ? mentor?.priceInIndian: 0,
+        priceUSD: mentor?.priceInUSD != undefined ? mentor?.priceInUSD: 0,
+        quantity: 1,
+        priceInfo: mentor?.price
        }
     }
    
@@ -185,6 +192,7 @@ interface mentorTimings {
   time2?: string;
   price: string;
   priceInIndian?: number;
+  priceInUSD?: number;
   image: string;
   id?: number;
 }

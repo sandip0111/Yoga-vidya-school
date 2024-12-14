@@ -1212,7 +1212,8 @@ A watering hole for adventure freaks and solo travellers, Peru with its gorgeous
 			id: res.data[0]._id,
 			title: res.data[0].coursetitle,
 			shortDescription: res.data[0].shortDesc,
-			price: 0,
+			priceINR: 0,
+			priceUSD: 0,
 			quantity: 1
 		} 
     })

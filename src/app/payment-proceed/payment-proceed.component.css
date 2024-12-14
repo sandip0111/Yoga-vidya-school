@@ -24,7 +24,6 @@
   border: none;
   border: 1px solid lightgrey;
   border-radius: 0px;
-  margin-bottom: 25px;
   margin-top: 2px;
   width: 100%;
   box-sizing: border-box;
@@ -44,6 +43,8 @@
   outline-width: 0;
 }
 
+
+
 .btn-info {
   color: #ffffff !important;
 }
@@ -51,7 +52,6 @@
 /*Imaged Radio Buttons*/
 .radio-group {
   position: relative;
-  margin-bottom: 25px;
 }
 
 .radio {

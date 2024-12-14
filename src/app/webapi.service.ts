@@ -136,6 +136,11 @@ export class WebapiService {
   stripe(data: any) {
     return this.http.post(this.url + "api/v1/stripe", data);
   }
+
+  checkoutStripeForLiveClasses(data: any) {
+    return this.http.post(this.url + "api/v1/checkoutStripeForLiveClasses", data);
+  }
+
   ccavenue(data: any) {
     return this.http.post(this.url + "api/v1/cc_test", data);
   }
@@ -144,6 +149,9 @@ export class WebapiService {
   }
   getPaymentResponseV2(data: any) {
     return this.http.post(this.url + "api/v1/getPaymentResponseV2", data);
+  }
+  getPaymentResultAndSendMailForLiveClass(data: any) {
+    return this.http.post(this.url + "api/v1/getPaymentResultAndSendMailForLiveClass", data);
   }
   createStudent(data: any) {
     return this.http.post(this.url + "api/v1/createStudent", data);

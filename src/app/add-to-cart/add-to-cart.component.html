@@ -15,7 +15,10 @@
               <div class="card_amount_area">
                 <!-- <button class="button"> Add </button> -->
                 <h6 class="card-subtitle">
-                  {{ course.price != 0 ? "Rs " + course.price : "Free" }}
+                  {{ course.priceInfo }}
+                </h6>
+                <h6 class="card-subtitle">
+                  Quanity: {{ course.quantity}}
                 </h6>
                 <button
                   class="button danger mt-0"
@@ -32,23 +35,46 @@
     <div #orderCard class="card_box card_sticky mb-1 h_fit">
       <div class="amount_body">
         <h3>Amount</h3>
+        <div>
+          <label for="package">Payment Currency</label>
+          <select
+          class="form-select mt-2"
+          [(ngModel)]="selectedCurrency"
+          (change)="onOptionChange(selectedCurrency)"
+      >
+          <option *ngFor="let option of options" [value]="option.value">
+              {{ option.label }}
+          </option>
+      </select>
+        </div>
         <p class="amount_details">
-          Total payble amount: <b>Rs {{ totalAmount }}</b>
+          Total payble amount: <b>{{ totalAmount }}</b>
         </p>
         <div class="amount_btn_group">
-          <button type="button" class="button">Place Order</button>
+          <button type="button" class="button" (click)="placeOrder()">Place Order</button>
         </div>
       </div>
     </div>
   </div>
   <div *ngIf="isFixed" class="card mb-1 fixed">
+    <div class="m-2">
+      <label for="package">Payment Currency</label>
+      <select
+        class="form-select mt-2"
+        [(ngModel)]="selectedCurrency"
+        (change)="onOptionChange(selectedCurrency)">
+        <option *ngFor="let option of options" [value]="option.value">
+            {{ option.label }}
+        </option>
+      </select>
+    </div>
     <div
       class="card-body d-flex flex-column justify-content-start align-items-start"
     >
       <span
-        >Total payble amount: <b>Rs {{ totalAmount }}</b></span
+        >Total payble amount: <b>{{ totalAmount }}</b></span
       >
-      <button type="button" class="button">Place Order</button>
+      <button type="button" class="button" (click)="placeOrder()">Place Order</button>
     </div>
   </div>
 </div>

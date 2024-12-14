@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { EventBusService } from '../../event-bus.service';
+import { CartService } from '../../cart.service';
 
 @Component({
   selector: 'app-navbar',
@@ -11,6 +13,7 @@ import { RouterModule } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
   loginUser:any='';
+  cartItemTotal: any = 0;
   menuItems: MenuItem[] = [
     { title: 'Home', link: '/' },
     { title: 'About', link: '#', submenu: [
@@ -80,8 +83,15 @@ export class NavbarComponent implements OnInit {
         ] }
   ];
   loginButton: MenuItem = { title: 'Login', link: '/login', iconClass: 'fas fa-lock' };
+  constructor(private eventBus: EventBusService, private cartService: CartService){
 
+  }
   ngOnInit(): void {
+    var items = this.cartService.getItems();
+    this.cartItemTotal = items.reduce((total, item) => total + item.quantity, 0);
+    this.eventBus.on('cart-icon', (data) => {
+      this.cartItemTotal = data.message;
+    });
     // console.log(this.menuItems,'--');
     if (typeof sessionStorage !== "undefined") {
       this.loginUser = sessionStorage.getItem('loginId');

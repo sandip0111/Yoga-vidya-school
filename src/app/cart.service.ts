@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
+import { EventBusService } from './event-bus.service';
 
 export interface CartItem {
   id: number;
   title: string;
   shortDescription: string;
-  price: number;
+  priceINR: number;
+  priceUSD: number;
   quantity: number;
+  priceInfo?: string
 }
 
 @Injectable({
@@ -13,9 +16,10 @@ export interface CartItem {
 })
 export class CartService {
   private cartKey = 'cartItems';
+  private currency = 'currency';
   private items: CartItem[] = [];
 
-  constructor() {
+  constructor(private eventBus: EventBusService) {
     this.loadCart();
   }
 
@@ -23,9 +27,19 @@ export class CartService {
     localStorage.setItem(this.cartKey, JSON.stringify(this.items));
   }
 
+  setCurrency(currency: string){
+    localStorage.setItem(this.currency, currency);
+  }
+
+  getCurrency(){
+    return localStorage.getItem(this.currency);
+  }
+
   private loadCart(): void {
-    const savedCart = localStorage.getItem(this.cartKey);
-    this.items = savedCart ? JSON.parse(savedCart) : [];
+    if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
+      const savedCart = localStorage.getItem(this.cartKey);
+      this.items = savedCart ? JSON.parse(savedCart) : [];
+    }
   }
 
   getItems(): CartItem[] {
@@ -42,11 +56,29 @@ export class CartService {
     }
 
     this.saveCart();
+    this.sendEventBus();
   }
 
-  removeItem(itemId: number): void {
-    this.items = this.items.filter(item => item.id !== itemId);
+  removeItem(itemId: number, currency: string): void {
+    var onlineCourse = this.items.find(i=> i.id == itemId);
+    if(onlineCourse != null){
+      if(onlineCourse.quantity == 1){
+      this.items = this.items.filter(item => item.id !== itemId);
+      }else{
+        var index = this.items.indexOf(onlineCourse);
+        if(index> -1){
+          this.items[index].quantity -=1;
+        }
+      }
+    }   
     this.saveCart();
+    this.getTotalAmount(currency);
+    this.sendEventBus();
+  }
+   
+  sendEventBus(){
+    var totalQuantity = this.items.reduce((total, item) => total + item.quantity, 0);
+    this.eventBus.emit('cart-icon', { message: totalQuantity });
   }
 
   clearCart(): void {
@@ -54,7 +86,13 @@ export class CartService {
     localStorage.removeItem(this.cartKey);
   }
 
-  getTotalAmount(): number {
-    return this.items.reduce((total, item) => total + item.price * item.quantity, 0);
+  getTotalAmount(currency: string): number {
+    var total = 0;
+    if(currency == 'USD'){
+      total = this.items.reduce((total, item) => total + item.priceUSD * item.quantity, 0);
+    } else if(currency == 'INR'){
+      total = this.items.reduce((total, item) => total + item.priceINR * item.quantity, 0);
+    }
+   return total;
   }
 }
