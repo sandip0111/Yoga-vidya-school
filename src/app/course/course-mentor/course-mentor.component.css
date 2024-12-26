@@ -1,57 +1,145 @@
 .mentors,
 .benefits {
-    text-align: center;
-    padding: 40px 40px;
-    background: radial-gradient(circle, hsla(0, 0%, 100%, 1) 60%, rgba(249, 117, 30, 0.21) 130%);
-    background: -moz-radial-gradient(circle, hsla(0, 0%, 100%, 1) 60%, rgba(249, 117, 30, 0.21) 130%);
-    background: -webkit-radial-gradient(circle, hsla(0, 0%, 100%, 1) 60%, rgba(249, 117, 30, 0.21) 130%);
+  text-align: center;
+  padding: 40px 40px;
+  background: radial-gradient(
+    circle,
+    hsla(0, 0%, 100%, 1) 60%,
+    rgba(249, 117, 30, 0.21) 130%
+  );
+  background: -moz-radial-gradient(
+    circle,
+    hsla(0, 0%, 100%, 1) 60%,
+    rgba(249, 117, 30, 0.21) 130%
+  );
+  background: -webkit-radial-gradient(
+    circle,
+    hsla(0, 0%, 100%, 1) 60%,
+    rgba(249, 117, 30, 0.21) 130%
+  );
 
-    .card {
-        border: 0.94px solid #F9751E;
-        padding: 10px;
-
-        .card-body {
-            padding: 0;
-        }
+ /* Card styling */
+.card {
+    border: 0.94px solid #f9751e;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+  }
+  
+  /* Flexbox layout for the card container */
+  .card-container {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: stretch; /* Stretch items to ensure equal height */
+    height: 100%; /* Make sure the card takes full height */
+  }
+  
+  /* Image container styling */
+  .card-image {
+    flex: 1;
+    max-width: 40%; /* Restrict image to 40% of the width */
+    height: 100%; /* Ensure it takes full height of the container */
+    overflow: hidden;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Image styling */
+  .card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensure image covers the container area */
+  }
+  
+  /* Content section for the description (beside the image) */
+  .content-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 10px;
+    height: 100%; /* Make sure content takes full height */
+  }
+  
+  /* Heading styling */
+  .fw-600 {
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  
+  /* Description styling (handles the number of words/content) */
+  .description {
+    font-size: 10px;
+    margin-top: 10px;
+    overflow: hidden; /* Ensure content doesn't overflow */
+    flex-grow: 1; /* Allow the description to grow and occupy available space */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis; /* Adds "..." if the content overflows */
+  }
+  
+  /* Card body below the image and content section */
+  .card-body {
+    margin-top: 20px;
+    padding: 0;
+  }
+  
+  /* Button styling */
+  .button {
+    background: rgba(249, 117, 30, 1);
+    color: #fff;
+    border-radius: 40px;
+    padding: 1px 10px;
+    font-weight: 600;
+    font-size: 17px !important;
+    display: inline-block;
+    text-decoration: none;
+    margin-top: 5px;
+    width: 85%;
+    display: inline-block;
+    
+    i {
+        padding: 6px;
+        background: #fff;
+        color: rgba(249, 117, 30, 1);
+        border-radius: 50%;
+        margin-right: 5px;
+    }        
+}
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .card-container {
+      flex-direction: column; /* Stack the image and content vertically */
+      gap: 10px; /* Reduce the gap between sections */
     }
-
-    .fw-600 {
-        font-weight: 600;
-    }
-
+  
     .card-image {
-        height: 260px;
-        overflow: hidden;
+      max-width: 100%; /* Allow the image to take full width */
+      flex: auto;
     }
+  
+    .content-section {
+      text-align: center; /* Center content in mobile view */
+    }
+  
+    /* Adjust the description section */
+    .description {
+      -webkit-line-clamp: 3; /* Limit the description to 3 lines for smaller screens */
+    }
+  }
+  
+  
 
-    .time-range {
-        font-size: 28px;
-        font-weight: normal;
-    }
-
-    .button {
-        background: rgba(249, 117, 30, 1);
-        color: #fff;
-        border-radius: 40px;
-        padding: 1px 10px;
-        font-weight: 600;
-        font-size: 17px !important;
-        display: inline-block;
-        text-decoration: none;
-        margin-top: 5px;
-        width: 85%;
-        display: inline-block;
-        
-        i {
-            padding: 6px;
-            background: #fff;
-            color: rgba(249, 117, 30, 1);
-            border-radius: 50%;
-            margin-right: 5px;
-        }        
-    }
-
-    .time2 {
-        width: 95%!important;
-    }
+  .time2 {
+    width: 95% !important;
+  }
 }

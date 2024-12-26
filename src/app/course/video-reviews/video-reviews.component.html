@@ -1,0 +1,27 @@
+<div class="menu">
+  <div class="menu--wrapper">
+    <div class="menu--item card" *ngFor="let video of videos">
+      <div class="video-container">
+        <video
+          #videoPlayer
+          [src]="video"
+          muted
+          preload="metadata"
+        ></video>
+        <div
+          class="play-button"
+          #playButton
+          (click)="playVideo(videoPlayer, playButton)"
+        >
+          <img src="assets/play-icon.png" alt="Play" />
+        </div>
+      </div>
+      <div class="card-content">
+        <h3></h3>
+        <p>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

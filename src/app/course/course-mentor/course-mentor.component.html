@@ -6,32 +6,42 @@
     </div>
     <div class="col-md-3" *ngFor="let men of courseMentor">
       <div class="card">
-        <div class="card-image relative">
-          <img loading="lazy"
-            alt="Card Image"
-            class="card-img-top"
-            src="{{imageUrl}}{{men.image}}"
-          />
+        <div class="card-container">
+          <!-- Image Section -->
+          <div class="card-image">
+            <img
+              loading="lazy"
+              alt="Card Image"
+              class="card-img-top"
+              [src]="imageUrl + men.image"
+            />
+          </div>
+      
+          <!-- Content Section -->
+          <div class="content-section">
+            <p class="description">{{ men.description }}</p>
+          </div>
         </div>
-        <div class="card-body">
-          <div class="heading fw-600">{{men.name}}</div>
-          <p class="card-text">{{men.intro}}</p>
-          <a *ngIf="men.time" href="javascript:void(0)" class="button">{{men.time}}</a>
-          <a *ngIf="men.time1" href="javascript:void(0)" class="button">{{men.time1}}</a>
-          <a *ngIf="men.time2" href="javascript:void(0)" class="button time2">{{men.time2}}</a>
-          <a *ngIf="men.price" href="javascript:void(0)" class="button">{{men.price}}</a>
-          <a *ngIf="isShowAddToCart"   
-            href="#"
-            class="button"
-            (click)="addToCart($event, men.id)"
-            >Add To Cart</a
-         >
-        </div>
-      </div>
+          <div class="card-body">
+            <div class="heading fw-600">{{ men.name }}</div>
+            <p class="card-text">{{ men.intro }}</p>
+            <a *ngIf="men.time" href="javascript:void(0)" class="button">{{ men.time }}</a>
+            <a *ngIf="men.time1" href="javascript:void(0)" class="button">{{ men.time1 }}</a>
+            <a *ngIf="men.time2" href="javascript:void(0)" class="button time2">{{ men.time2 }}</a>
+            <a *ngIf="men.price" href="javascript:void(0)" class="button">{{ men.price }}</a>
+            <a
+              *ngIf="isShowAddToCart"
+              href="#"
+              class="button"
+              (click)="addToCart($event, men.id)"
+              >Add To Cart</a
+            >
+          </div>
+        
+      </div>      
     </div>
     <div class="col-md-12 my-3 time-range">
       <h2>Monday –Thursday (Live Sessions)</h2>
-      <h2>Friday – Sunday (Self Practice)</h2>
     </div>
     <app-start-class></app-start-class>
   </div>

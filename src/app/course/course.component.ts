@@ -17,6 +17,7 @@ import { TestimonialsComponent } from '../includes/home/testimonials/testimonial
 import { FaqComponent } from '../includes/home/faq/faq.component';
 import { CourseMentorComponent } from './course-mentor/course-mentor.component';
 import { SafePipe } from '../safe.pipe';
+import { VideoReviewsComponent } from "./video-reviews/video-reviews.component";
 
 @Component({
   selector: 'app-course',
@@ -37,8 +38,9 @@ import { SafePipe } from '../safe.pipe';
     MeetComponent,
     FaqComponent,
     CourseMentorComponent,
-    SafePipe
-  ],
+    SafePipe,
+    VideoReviewsComponent
+],
   templateUrl: './course.component.html',
   styleUrl: './course.component.css'
 })

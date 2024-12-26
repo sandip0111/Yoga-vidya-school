@@ -1,5 +1,5 @@
 import { Component, OnInit,Renderer2,Inject } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
+import { CommonModule, DOCUMENT } from '@angular/common';
 import { BannerComponent } from '../../banner/banner.component';
 import { BottomNavComponent } from '../../../includes/home/bottom-nav/bottom-nav.component';
 import { AboutRishikeshComponent } from '../about-rishikesh/about-rishikesh.component';
@@ -29,6 +29,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { Meta,Title } from '@angular/platform-browser';
 import { LearningComponent } from '../../bali/learning/learning.component';
 import { BottomNavCourseComponent } from '../../../includes/home/bottom-nav-course/bottom-nav-course.component';
+import { VideoReviewsComponent } from "../../video-reviews/video-reviews.component";
 
 @Component({
   selector: 'app-rishikesh-index',
@@ -57,8 +58,10 @@ import { BottomNavCourseComponent } from '../../../includes/home/bottom-nav-cour
     DailyScheduleComponent,
     YogaAllianceComponent,
     LearningComponent,
-    BottomNavCourseComponent
-  ],
+    BottomNavCourseComponent,
+    VideoReviewsComponent,
+    CommonModule
+],
   templateUrl: './rishikesh-index.component.html',
   styleUrls: ['./rishikesh-index.component.css']
 })
@@ -74,6 +77,7 @@ export class RishikeshIndexComponent implements OnInit {
   schData:any;
   bannerData:any;
   schEventData:any={};
+  isPranicPurification = false;
   constructor(private webapiService: WebapiService,private activatedRoute: ActivatedRoute,private router:Router,private spinner: NgxSpinnerService,private _renderer2: Renderer2,
     @Inject(DOCUMENT) private _document: Document,private title: Title, private meta: Meta) {
     this.slug = this.activatedRoute.snapshot.routeConfig?.path;
@@ -472,6 +476,7 @@ export class RishikeshIndexComponent implements OnInit {
         });
         if(this.slug == 'pranic-purification'){
           this.schEventData = {};
+          this.isPranicPurification = true;
         }
         else if(this.slug == 'adjustment-and-alignment' || this.slug == 'adjustment-and-alignment-level-2'){
           this.schEventData = {

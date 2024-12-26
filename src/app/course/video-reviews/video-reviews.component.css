@@ -1,0 +1,123 @@
+/* Outer container for the horizontal scroll */
+.menu {
+  display: flex;
+  overflow-x: auto; /* Enable horizontal scrolling */
+  overflow-y: hidden; /* Hide vertical scrolling */
+  scroll-behavior: smooth; /* Smooth scrolling effect */
+  gap: 30px; /* 30px spacing between cards */
+  padding: 1rem; /* Add padding around the scrolling container */
+}
+
+/* Wrapper for the card items */
+.menu--wrapper {
+  display: flex;
+}
+
+/* Individual card styling */
+.menu--item {
+  flex: 0 0 auto;
+  width: 300px; /* Default card width */
+  height: 400px; /* Fixed card height */
+  background: #f9f9f9; /* Light background color */
+  border-radius: 8px; /* Rounded corners */
+  margin-right: 30px;
+  border-color: chocolate;
+  border-radius: 10px;
+  overflow: hidden; /* Clip content inside the card */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Initial shadow */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animation for hover effect */
+}
+
+.menu--item:hover {
+  transform: translateY(-10px); /* Lift card slightly on hover */
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Enhance shadow on hover */
+}
+
+/* Video container occupies top 2/3 of the card height */
+.video-container {
+  position: relative;
+  height: 66.67%; /* Top 2/3 of card */
+  overflow: hidden; /* Clip overflowing video */
+}
+
+/* Video styling */
+.video-container video {
+  width: 100%; /* Fill width */
+  height: 100%; /* Fill height */
+  object-fit: cover; /* Maintain aspect ratio, cover area */
+}
+
+/* Play button overlay */
+.play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+}
+
+.play-button img {
+  width: 24px;
+  height: 24px;
+}
+
+/* Card content occupies bottom 1/3 of the card */
+.card-content {
+  padding: 1rem;
+  text-align: center; /* Center-align text */
+  height: 33.33%; /* Bottom 1/3 of the card */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Title styling */
+.card-content h3 {
+  margin: 0.5rem 0;
+  font-size: 1.2rem;
+}
+
+.card-content p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+/* Responsive design for mobile */
+@media (max-width: 768px) {
+  .menu--item {
+    width: 250px; /* Smaller width for mobile */
+    height: 350px; /* Adjusted height for smaller screens */
+  }
+
+  .card-content h3 {
+    font-size: 1rem; /* Adjust font size for smaller screens */
+  }
+
+  .card-content p {
+    font-size: 0.8rem; /* Adjust font size for smaller screens */
+  }
+}
+
+/* Hide scrollbar while keeping functionality */
+.menu::-webkit-scrollbar {
+  display: none; /* For Webkit browsers */
+}
+
+.menu {
+  -ms-overflow-style: none; /* For IE and Edge */
+  scrollbar-width: none; /* For Firefox */
+}
+
+.menu--item:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}

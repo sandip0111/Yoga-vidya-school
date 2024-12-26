@@ -30,42 +30,53 @@ export class CourseMentorComponent {
           id: 1,
           name: "Anuj",
           image: "image_1695634116777.jpeg",
-          intro: "",
-          time:"5:30 AM - 6:30 AM (IST)",
-          price:"Rs. 1999/USD 40",
+          intro: "Hatha Yoga",
+          time:"5:00 AM - 6:00 AM (IST)",
+          price:"Rs. 1999/USD 50",
           priceInIndian: 1999,
-          priceInUSD:40,
+          priceInUSD:50,
         },
         {
           id: 2,
           name: "Acharya Prashant Jakhmola",
           image: "image_1673271873934.jfif",
-          intro: "Morning Sadhana",
-          time:"6:00 AM (IST) Yoga Sadhana",
-          time1:"9:30 AM (IST) Yoga With Variations",
+          intro: "Yoga Sadhana",
+          time:"6:00 AM - 7:00 AM (IST)",
           price:"Rs. 2999/USD 70",
           priceInIndian: 2999,
           priceInUSD: 70
         },
+        // {
+        //   id: 3,
+        //   name: "Shiva",
+        //   image: "image_1718605139191.jpeg",
+        //   intro: "Ashtanga Yoga",
+        //   time:"4:00 PM – 5:00 PM (IST)",
+        //   price:"Rs. 1499/ USD 30",
+        //   priceInIndian: 1499,
+        //   priceInUSD: 30
+        // },
         {
           id: 3,
-          name: "Shiva",
-          image: "image_1718605139191.jpeg",
-          intro: "Ashtanga Yoga",
-          time:"4:00 PM – 5:00 PM (IST)",
-          price:"Rs. 1499/ USD 30",
-          priceInIndian: 1499,
-          priceInUSD: 30
+          name: "Taniya",
+          image: "image_1675243508012.jpg",
+          intro: "Women Wellness Yoga",
+          time:"7:30 AM – 8:30 AM (IST)",
+          time1:"5:30 PM – 6:30 PM (IST)",
+          price:"Rs. 1999/USD 40",
+          priceInIndian: 1999,
+          priceInUSD: 40
         },
         {
           id: 4,
-          name: "Taniya",
-          image: "image_1675243508012.jpg",
-          intro: "Women Wellness",
-          time:"5:30 PM – 6:30 PM (IST)",
-          price:"Rs. 1499/USD 30",
-          priceInIndian: 1499,
-          priceInUSD: 30
+          name: "Shivam Joshi",
+          description:"Join Shivam Joshi’s classes in this holistic journey towards physical vitality and mental clarity. Experience the profound benefits of a practice rooted in tradition of Hatha Yoga and Iyengar Yoga. These 90-minute online classes focus on mastering foundational asanas with precision and care. Incorporating the principles of Iyengar Yoga, you’ll learn to achieve perfect alignment using supportive props. Highly recommended yoga sessions to master",
+          image: "image_1673271925503.jpeg",
+          intro: "Iyengar/ Yoga Therapy ",
+          time:"6:30 PM – 8:00 PM (IST)",
+          price:"Rs. 2499/ USD 60",
+          priceInIndian: 2499,
+          priceInUSD: 60
         }
       ]
     }
@@ -187,6 +198,7 @@ export class CourseMentorComponent {
 interface mentorTimings {
   name: string;
   intro: string;
+  description?: string;
   time: string;
   time1?: string;
   time2?: string;
