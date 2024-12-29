@@ -70,6 +70,18 @@ export class VideoReviewsComponent implements OnInit {
     
   }
 
+  isInView(index: number): boolean {
+    // Determine if the video is in the viewport or close to it
+    const item = this.el.nativeElement.querySelectorAll('.menu--item')[index];
+    const rect = item.getBoundingClientRect();
+    return rect.top < window.innerHeight && rect.bottom >= 0;
+  }
+  
+  onVideoLoaded(event: Event): void {
+    const video = event.target as HTMLVideoElement;
+    video.style.visibility = 'visible'; // Show video once loaded
+  }
+
   private addEventListeners(): void {
     // Handle mouse wheel scrolling
     this.menu.addEventListener('wheel', this.handleMouseWheel.bind(this));

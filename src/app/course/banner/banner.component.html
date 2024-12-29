@@ -37,7 +37,7 @@
               <div class="form-inputs">
                 <input type="text" placeholder="Name" name="name" [(ngModel)]="inquiryData.name"/>
                 <input type="text" placeholder="Email" name="email" [(ngModel)]="inquiryData.to" />
-                <select  name="courseDate" [(ngModel)]="inquiryData.courseDate">
+                <select *ngIf="slug != 'breath-detox-yoga' && slug != 'pranayama-course-online-pranarambha' && slug !='foundation-of-spirituality-an-online-spiritual-awakening-course'"  name="courseDate" [(ngModel)]="inquiryData.courseDate">
                 <option value="undefined">Select Course Date</option>
                   <option *ngFor="let date of datesItem" value="{{ date.startDate | date : 'dd MMMM y' }} ~ {{date.endDate | date : 'dd MMMM y'}}">
                     {{ date.startDate | date : "dd MMMM y" }} -
@@ -45,7 +45,7 @@
                   </option>
                 </select>
                 <input type="number" placeholder="Your Contact Number"  name="contactNumber" [(ngModel)]="inquiryData.contactNumber" />
-                <textarea placeholder="Your Message" rows="2" name="message" [(ngModel)]="inquiryData.message"></textarea>
+                <textarea placeholder="Your Message" rows="2" *ngIf="slug != 'breath-detox-yoga' && slug != 'pranayama-course-online-pranarambha' && slug !='foundation-of-spirituality-an-online-spiritual-awakening-course'" name="message" [(ngModel)]="inquiryData.message"></textarea>
                 <input class="button" type="submit" value="Enquiry" />
               </div>
             </form>

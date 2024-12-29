@@ -23,7 +23,6 @@ export class MyAccountComponent {
   }
 
   ngOnInit(): void {
-    this.spinner.show();
     setTimeout(() => {
       this.title.setTitle('My Account');
       this.meta.updateTag({ name: 'keywords', content: '' });
@@ -33,9 +32,7 @@ export class MyAccountComponent {
       this._renderer2.setAttribute(link, 'href', canonicalUrl);
     }, 1000)
 
-    // setTimeout(() => {
-    //   this.spinner.hide();
-    // }, 1500);
+    
     this.loginId = sessionStorage.getItem('loginId');
     if (this.loginId) {
       this.getUserById(this.loginId);
@@ -74,9 +71,8 @@ export class MyAccountComponent {
         res.course.introUrl = safeUrl;
         this.courseArrData.push(res.course);
         // this.getOnlineCourseVideosV2(res.course.wistiaProjectId);
-        this.spinner.hide()
+        
       }
-      // console.log(this.courseArrData, '--');
     });
 
   }
@@ -230,7 +226,7 @@ export class MyAccountComponent {
 
 
     });
-
+    this.spinner.hide();
   }
 
 
