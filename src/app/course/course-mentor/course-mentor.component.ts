@@ -59,6 +59,7 @@ export class CourseMentorComponent {
         {
           id: 3,
           name: "Taniya",
+          description: "This class is designed for all the females from menarche to menopause, with a holistic approach combining ancient yoga wisdom with modern lifestyle tips to empower women to take control of their health and wellbeing. In this transformative journey, you will explore: <ul> <li>Transformative asanas to awaken vitality and strength in the physical body</li> <li> Healthy eating habits to nourish and balance your body</li> <li> Pranayama techniques to calm and soothe the nervous system </li><li> Restorative asanas to release tension and promote relaxation during the menstrual cycle</li><ul> Join us to rediscover your inner strength, balance your hormones, and cultivate overall wellbeing. Together, let's address the unique challenges women face due to hormonal issues and embark on a path towards radiant health, happiness, and fulfillment.",
           image: "image_1675243508012.jpg",
           intro: "Women Wellness Yoga",
           time:"7:30 AM – 8:30 AM (IST)",
