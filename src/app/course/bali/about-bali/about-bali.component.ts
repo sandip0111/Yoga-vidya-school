@@ -5,11 +5,12 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { WebapiService } from '../../../webapi.service';
 import { CartItem, CartService } from '../../../cart.service';
 import { title } from 'process';
+import { WatchVideoComponent } from "../watch-video/watch-video.component";
 
 @Component({
   selector: 'app-about-bali',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, WatchVideoComponent],
   templateUrl: './about-bali.component.html',
   styleUrls: ['./about-bali.component.css']
 })
@@ -18,6 +19,7 @@ export class AboutBaliComponent implements OnInit {
   slug: any = '';
   aboutItems: any;
   course?: CartItem;
+  ispranayamaCourseOnlinePranarambha = false;
 
   constructor(private cartService: CartService, private activatedRoute: ActivatedRoute, private router: Router, protected sanitizer: DomSanitizer, private webapiService: WebapiService ) {
     //  console.log(this.activatedRoute.snapshot.routeConfig?.path,'--');
@@ -381,6 +383,7 @@ export class AboutBaliComponent implements OnInit {
       }
     }
     else if (this.slug == 'pranayama-course-online-pranarambha') {
+	  this.ispranayamaCourseOnlinePranarambha = true;
       this.aboutItems = {
         title: 'PRANA ARAMBHA -',
         span: 'An Exclusive Online Pranayama Course by Prashant J Yoga',
@@ -484,7 +487,7 @@ I am saying this because I have experienced the miracles of Pranayama in my life
 
 <p>Just 30 minutes regular.</p>
 
-<p>Once again I want to stop you here, And want you to think again. if you are dedicated, disciplined, and really want positive changes in your life, then only continue reading. If for now you don&rsquo;t find this information valuable for you, then I would say sorry this course is not for you.</p>
+<!-- <p>Once again I want to stop you here, And want you to think again. if you are dedicated, disciplined, and really want positive changes in your life, then only continue reading. If for now you don&rsquo;t find this information valuable for you, then I would say sorry this course is not for you.</p>-->
 
 <p>And if you are going ahead, please commit to me that you will practice this for given time. And maintain the consistency of the practice. As you all know the key to any success is continuity. There are three things which makes any practice fruitful.</p>
 
@@ -512,12 +515,12 @@ I am saying this because I have experienced the miracles of Pranayama in my life
 
 <h2><span>Let&rsquo;s understand the practice Prana Arambha</span></h2>
 
-<p>PRANA&nbsp; ARAMBHA&nbsp; is 10 days Pranic Course (Online Yoga Course).</p>
+<!-- <p>PRANA&nbsp; ARAMBHA&nbsp; is 10 days Pranic Course (Online Yoga Course).</p>
 
 <p>It has 10 recorded videos sessions (each will be max. 30 minutes)</p>
 
-<p>You have to master over this course in 21 days including regular practice. You can unlock one video at a time. Next video practice will be available after 24 hours of the previous video.</p>
-
+<p>You have to master over this course in 21 days including regular practice. You can unlock one video at a time. Next video practice will be available after 24 hours of the previous video.</p>-->
+<p>PRANA&nbsp; ARAMBHA&nbsp; consists of 13 videos which help you master the art of ancient pranayama practices as described in traditional yogic texts. This course is a 5 hours pranic sadhana in which the next video will get unlocked only after completing the previous video. This ensures structured and progressive learning experience.</p>
 <p>In this exclusive course i have explained some very important and necessary Pranic practices of today&rsquo;s time which can bring you the steadiness of the mind.</p>
 
 <p>This is a short course which doesn&rsquo;t need much time so I believe you can devote your 30 minutes to this inner spiritual development.</p>
@@ -526,9 +529,10 @@ I am saying this because I have experienced the miracles of Pranayama in my life
 
 <h2><span>How Long You will Have Access?</span></h2>
 
-<p>I believe that when we do not have punctuality, we do not utilize the time properly. So in this course I have set the time period. You can access the videos of this pranayama course only for 2 months. It is therefore necessary for you to watch the videos and practice the teachings regularly. You must make resolutions to yourself and commit to it.</p>
+<!--<p>I believe that when we do not have punctuality, we do not utilize the time properly. So in this course I have set the time period. You can access the videos of this pranayama course only for 2 months. It is therefore necessary for you to watch the videos and practice the teachings regularly. You must make resolutions to yourself and commit to it.</p>
 
-<p>Though this course designed is for 12 days but understanding the busyness of life, I want to give you more time, to master these practices, therefore is offered with an access of 60 days.</p>
+<p>Though this course designed is for 12 days but understanding the busyness of life, I want to give you more time, to master these practices, therefore is offered with an access of 60 days.</p>-->
+<p>I believe that when we do not have punctuality, we do not utilize the time properly. So in this course I have set the time period. You can access the videos of this pranayama course only for 3 months. It is therefore necessary for you to watch the videos and practice the teachings regularly. You must make resolutions to yourself and commit to it.</p>
 
 <p>&nbsp;</p>
 
