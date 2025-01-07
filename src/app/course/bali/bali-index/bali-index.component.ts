@@ -59,6 +59,7 @@ import { BottomNavCourseComponent } from '../../../includes/home/bottom-nav-cour
 export class BaliIndexComponent implements OnInit {
   slug:any ='';
   faqData: any;
+  ispranayamaCourseOnlinePranarambha = false;
   upEventData:any;
   youtubeVideoData:any;
   accomData:any;
@@ -70,7 +71,9 @@ export class BaliIndexComponent implements OnInit {
   constructor(private webapiService: WebapiService,private activatedRoute: ActivatedRoute,private router:Router,private spinner:NgxSpinnerService,private _renderer2: Renderer2,
     @Inject(DOCUMENT) private _document: Document,private title: Title, private meta: Meta) {
     this.slug = this.activatedRoute.snapshot.routeConfig?.path;
-
+    if(this.slug == 'pranayama-course-online-pranarambha'){
+      this.ispranayamaCourseOnlinePranarambha = true;
+    }
     if(this.slug){
       this.getCourseBySlug(this.slug);
     }

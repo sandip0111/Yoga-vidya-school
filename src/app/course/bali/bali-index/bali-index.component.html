@@ -12,7 +12,7 @@
 <app-code-conduct [data]="codecond"></app-code-conduct>
 <app-yoga-alliance [data]="codecond"></app-yoga-alliance>
 <app-schedule [data]="schEventData"></app-schedule>
-<app-watch-video [data]="youtubeVideoData"></app-watch-video>
+<app-watch-video [data]="youtubeVideoData" *ngIf="!ispranayamaCourseOnlinePranarambha"></app-watch-video>
 <app-testimonials></app-testimonials>
 <app-gallery></app-gallery>
 <app-video-testimonials *ngIf="slug!='yoga-retreat-in-mysore-india' && slug!='pranayama-course-online-pranarambha' && slug!='foundation-of-spirituality-an-online-spiritual-awakening-course' && slug!='yoga-history-and-philosophy' && slug!='yoga-retreat-in-peru'" ></app-video-testimonials>
