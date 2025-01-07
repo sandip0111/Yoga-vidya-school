@@ -38,10 +38,7 @@
     flex-direction: row;
     gap: 20px;
     align-items: stretch; /* Stretch items to ensure equal height */
-    height: 90%; /* Make sure the card takes full height */
-  }
-  .card-body{
-    height: 10%;
+    height: 100%; /* Make sure the card takes full height */
   }
   
   .card-text{
@@ -99,6 +96,17 @@
     -webkit-box-orient: vertical;
     text-overflow: ellipsis; /* Adds "..." if the content overflows */
   }
+
+  p ul {
+    list-style-position: outside; /* Ensures bullets align outside the content */
+    padding-left: 20px; /* Adds indentation to the list */
+    margin: 10px 0; /* Adds spacing around the list */
+  }
+  
+  p ul li {
+    line-height: 1.6; /* Adjust line height for better readability */
+    font-size: 16px; /* Optional: Adjust font size */
+  }
   
   /* Card body below the image and content section */
   .card-body {
@@ -118,7 +126,7 @@
     margin-right: 10px;
     text-decoration: none;
     margin-top: 5px;
-    width: 85%;
+    width: 250px;
     display: inline-block;
     
     i {
@@ -152,6 +160,8 @@
     .description {
       -webkit-line-clamp: 3; /* Limit the description to 3 lines for smaller screens */
     }
+
+    
   }
   
   
