@@ -170,7 +170,7 @@ export class CourseVideoComponent {
         this.getFedbackV2(val2);
       }
 
-      if(day == 11 && this.slug == 'pranayama-course-online-pranarambha'){
+      if(day >=11 && this.slug == 'pranayama-course-online-pranarambha'){
         let val4 = {
           courseId: this.courseList._id,
           studentId: this.userId,
@@ -205,7 +205,7 @@ export class CourseVideoComponent {
       if (res.count > 0) {
       }
       else {
-        alert('Please upload Day 5 review video first!!');
+        alert('Please upload Day 9 review video first!!');
         location.reload();
       }
     });
