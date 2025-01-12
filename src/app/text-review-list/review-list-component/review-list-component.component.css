@@ -1,0 +1,55 @@
+.scroll-container {
+  width: 100%; /* Full width */
+  overflow: hidden; /* Hide overflowing content */
+  position: relative; /* Ensure proper positioning */
+  background-color: #f9f9f9;
+  padding: 1px 0;
+}
+
+.scroll-content {
+  display: flex; /* Arrange items horizontally */
+  animation: scroll infinite linear; /* Continuous scrolling */
+  gap: 10px; /* Add spacing between items */
+}
+.scroll-container:hover .marquee {
+  animation-play-state: paused; /* Pause scrolling on hover */
+}
+.review {
+  min-width: 250px; /* Decrease width for reviews */
+  max-width: 250px;
+  background: #ffffff; /* Background for each review */
+  border-radius: 8px;
+  padding: 8px; /* Reduce padding inside reviews */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: justify;
+}
+
+.review-author {
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.review-content {
+  font-size: 1rem;
+  color: #333;
+  font-size: 10px;
+}
+
+.review-regards {
+  font-style: italic;
+  color: #888;
+  margin-top: 12px;
+}
+/* Pause scrolling when hovered */
+.scroll-container:hover .scroll-content {
+  animation-play-state: paused;
+}
+/* Keyframes for infinite scrolling */
+@keyframes scroll {
+  0% {
+    transform: translateX(0); /* Start position */
+  }
+  100% {
+    transform: translateX(-100%); /* Scroll through first half */
+  }
+}

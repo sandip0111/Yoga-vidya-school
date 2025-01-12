@@ -18,6 +18,7 @@ import { FaqComponent } from '../includes/home/faq/faq.component';
 import { CourseMentorComponent } from './course-mentor/course-mentor.component';
 import { SafePipe } from '../safe.pipe';
 import { VideoReviewsComponent } from "./video-reviews/video-reviews.component";
+import {ReviewListComponentComponent} from "../text-review-list/review-list-component/review-list-component.component";
 
 @Component({
   selector: 'app-course',
@@ -39,7 +40,8 @@ import { VideoReviewsComponent } from "./video-reviews/video-reviews.component";
     FaqComponent,
     CourseMentorComponent,
     SafePipe,
-    VideoReviewsComponent
+    VideoReviewsComponent,
+    ReviewListComponentComponent
 ],
   templateUrl: './course.component.html',
   styleUrl: './course.component.css'

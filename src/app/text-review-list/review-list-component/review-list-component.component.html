@@ -1,0 +1,16 @@
+<div class="scroll-container">
+  <div class="scroll-content" [ngStyle]="{ animationDuration: speed + 's' }">
+    <!-- Original content -->
+    <div class="review" *ngFor="let review of reviews">
+      <p class="review-author">{{ review.author }}</p>
+      <p class="review-content">{{ review.content }}</p>
+      <p class="review-regards">{{ review.regards }}</p>
+    </div>
+    <!-- Duplicate content for seamless scrolling -->
+    <div class="review" *ngFor="let review of reviews">
+      <p class="review-author">{{ review.author }}</p>
+      <p class="review-content">{{ review.content }}</p>
+      <p class="review-regards">{{ review.regards }}</p>
+    </div>
+  </div>
+</div>
