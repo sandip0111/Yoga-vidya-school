@@ -26,6 +26,8 @@ import { CommonModule } from '@angular/common';
 import { YogaAllianceComponent } from '../../rishikesh/yoga-alliance/yoga-alliance.component';
 import { ScheduleComponent } from '../../rishikesh/schedule/schedule.component';
 import { BottomNavCourseComponent } from '../../../includes/home/bottom-nav-course/bottom-nav-course.component';
+import { ReviewListComponentComponent } from "../../../text-review-list/review-list-component/review-list-component.component";
+import { VideoReviewsComponent } from "../../video-reviews/video-reviews.component";
 @Component({
   selector: 'app-bali-index',
   standalone: true,
@@ -51,8 +53,10 @@ import { BottomNavCourseComponent } from '../../../includes/home/bottom-nav-cour
     BenifitsComponent,
     YogaAllianceComponent,
     ScheduleComponent,
-    BottomNavCourseComponent
-  ],
+    BottomNavCourseComponent,
+    ReviewListComponentComponent,
+    VideoReviewsComponent
+],
   templateUrl: './bali-index.component.html',
   styleUrls: ['./bali-index.component.css'],
 })
