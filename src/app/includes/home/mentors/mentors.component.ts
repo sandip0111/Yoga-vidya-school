@@ -119,30 +119,30 @@ export class MentorsComponent implements OnInit {
     }
     else if(this.slug =='online-yoga-classes'){
       this.mentors = [
-        {
-          name: "Acharya Prashant Jakhmola",
-          picture: "image_1673271873934.jfif",
-          intro: "Pranayama, Asanas ",
-          slug: "acharya-prashant-jakhmola"
-        },
-        {
-          name: "Anuj",
-          picture: "image_1695634116777.jpeg",
-          intro: "",
-          slug: "anuj"
-        },
-        {
-          name: "Taniya",
-          picture: "image_1675243508012.jpg",
-          intro: "Hatha/ Yoga Therapy",
-          slug: "taniya"
-        },
-        {
-          name: "Shiva",
-          picture: "image_1718605139191.jpeg",
-          intro: "Ashtanga Yoga",
-          slug: "shiva"
-        }
+        // {
+        //   name: "Acharya Prashant Jakhmola",
+        //   picture: "image_1673271873934.jfif",
+        //   intro: "Pranayama, Asanas ",
+        //   slug: "acharya-prashant-jakhmola"
+        // },
+        // {
+        //   name: "Anuj",
+        //   picture: "image_1695634116777.jpeg",
+        //   intro: "",
+        //   slug: "anuj"
+        // },
+        // {
+        //   name: "Taniya",
+        //   picture: "image_1675243508012.jpg",
+        //   intro: "Hatha/ Yoga Therapy",
+        //   slug: "taniya"
+        // },
+        // {
+        //   name: "Shiva",
+        //   picture: "image_1718605139191.jpeg",
+        //   intro: "Ashtanga Yoga",
+        //   slug: "shiva"
+        // }
       ]
     }
     else if (this.slug == '200-hours-yoga-teacher-training-online') {
