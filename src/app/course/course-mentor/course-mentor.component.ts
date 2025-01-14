@@ -29,6 +29,9 @@ export class CourseMentorComponent {
         {
           id: 1,
           name: "Anuj",
+          description:`
+          <p>Anuj class is based on Mobility to recover from long years of spinal & Hip compression from long hours of sitting on desk job or from your sedentary lifestyle. Classes are designed with Hatha yoga 3 series of sequences which include backbending, hip opening, inversion and therapeutic methods. Classes are very progressive and you wont see its as repetitive, every month there is new offering and curated with personal attention on each students need, also largely focused on self practice and how to approach practice on your own on the days off</p
+          <br/><p><strong>Excited to see you</strong></p>`,
           image: "image_1695634116777.jpeg",
           intro: "Hatha Yoga",
           time:"5:00 AM - 6:00 AM (IST)",
