@@ -16,8 +16,10 @@ export class BannerComponent implements OnInit {
  @Input() data: any;
  datesItem:any;
  inquiryData:any={}
+ isMuted = false;
  slug:any='';
  courseName: any;
+ videoElement?: HTMLVideoElement;
  isRegistrationPageLabelToggle = false;
  isRegistrationPageLabelToggleForAdjusment = false;
  sliderImage:any='https://my-s3-images-bucket.s3.amazonaws.com/images/InternalBackground_lticg8.jpg'
@@ -61,7 +63,22 @@ export class BannerComponent implements OnInit {
     
   }
 
-  ngOnInit() {
+  ngOnInit() {  
+  }
+
+  ngAfterViewInit() {
+
+    if(this.slug == 'pranayama-course-online-pranarambha'){
+      this.videoElement = document.getElementById('backgroundVideo') as HTMLVideoElement;
+
+    // Ensure video plays automatically on reload (with muted state)
+    if (this.videoElement) {
+      this.videoElement.play().catch((err) => {
+        // Handle cases where autoplay may be blocked (e.g., no user interaction)
+        console.error("Autoplay blocked, waiting for user interaction", err);
+      });
+    }
+    }
   }
 
   ngOnChanges(changes: SimpleChanges):void {
@@ -69,7 +86,19 @@ export class BannerComponent implements OnInit {
     this.datesItem = changes['data']?.currentValue?.event;
     this.courseName = changes['data']?.currentValue?.courseName
   }
+  toggleMute() {
+    if (this.videoElement) {
+      this.isMuted = !this.isMuted;
+      this.videoElement.muted = this.isMuted;
 
+      // If unmuted, ensure the video starts playing with sound
+      if (!this.isMuted) {
+        this.videoElement.play().catch((err) => {
+          console.error("Error playing video after unmute", err);
+        });
+      }
+    }
+  }
 
   saveInquiry(data: any) {
     if (data.name && data.to) {
