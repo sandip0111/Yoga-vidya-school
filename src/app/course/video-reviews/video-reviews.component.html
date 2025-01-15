@@ -1,26 +1,22 @@
 <div class="menu">
+  <!-- First menu wrapper for the first set of videos -->
   <div class="menu--wrapper">
-    <div
-    class="menu--item card"
-    *ngFor="let video of videos; let i = index"
-  >
-    <div class="video-container">
-      <video
-        #videoPlayer
-        [src]="isInView(i) ? video : null"
-        muted
-        preload="metadata"
-        (loadeddata)="onVideoLoaded($event)"
-      ></video>
-      <div
-        class="play-button"
-        #playButton
-        (click)="playVideo(videoPlayer, playButton)"
-      >
-        <img src="assets/play-icon.png" alt="Play" />
+    <div class="menu--item card" *ngFor="let video of videos; let i = index">
+      <div class="video-container">
+        <video #videoPlayer [src]="video" muted preload="metadata"></video>
+        <div class="play-button" #playButton (click)="playVideo(videoPlayer, playButton)">
+          <img src="assets/play-icon.png" alt="Play" />
+        </div>
+      </div>
+    </div>
+    <div class="menu--item card" *ngFor="let video of videos; let i = index">
+      <div class="video-container">
+        <video #videoPlayer [src]="video" muted preload="metadata"></video>
+        <div class="play-button" #playButton (click)="playVideo(videoPlayer, playButton)">
+          <img src="assets/play-icon.png" alt="Play" />
+        </div>
       </div>
     </div>
   </div>
-  
-  </div>
+ 
 </div>
