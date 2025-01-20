@@ -1,0 +1,27 @@
+.floating-btn {
+    position: fixed;
+    bottom: 20px;  /* Adjust the distance from the bottom */
+    left: 20px;    /* Adjust the distance from the left */
+    width: 60px;   /* Button width */
+    height: 60px;  /* Button height */
+    border-radius: 50%;  /* Make the button circular */
+    background-color: #ff5722;  /* Button color */
+    color: white;
+    font-size: 30px;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    z-index: 1000;  /* Ensure the button is above other elements */
+  }
+  
+  .floating-btn:hover {
+    background-color: #e64a19;  /* Hover color */
+  }
+  
+  .floating-btn:focus {
+    outline: none;  /* Remove focus outline */
+  }
+  
