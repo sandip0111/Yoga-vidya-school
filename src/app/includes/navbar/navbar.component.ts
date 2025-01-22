@@ -42,9 +42,9 @@ export class NavbarComponent implements OnInit {
     ] },
     { title: 'Online Yoga Workshop', link: '#', submenu: [
       { title: 'Online Yoga Classes', link: '/online-yoga-classes' },
-      { title: 'Yoga Webinar Registration', link: '/webinar-registration' },
-      { title: 'Breath Detox Yoga', link: '/breath-detox-yoga' },
       { title: 'Prana Arambha', link: '/pranayama-course-online-pranarambha' },
+      { title: 'Yoga Webinar Registration', link: '/webinar-registration' },
+      { title: 'Breath Detox Yoga', link: '/breath-detox-yoga' },      
       { title: 'Foundations of Spirituality', link: '/foundation-of-spirituality-an-online-spiritual-awakening-course' },
       { title: 'Yoga Inversion Workshop', link: '/yoga-inversion-workshop-headstand' },
       { title: 'योग शास्त्र / योग ग्रंथ अध्यन', link: '/yoga-philosophy-course-free' },
