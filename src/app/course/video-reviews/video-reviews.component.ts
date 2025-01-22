@@ -21,9 +21,9 @@ export class VideoReviewsComponent implements OnInit {
     'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/VID-20241216-WA0002.mp4',
     'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/VID-20241216-WA0003.mp4',
     'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/VID-20241216-WA0004.mp4',
-    'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/VID-20241216-WA0005.mp4',
-    'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/VID-20241216-WA0006.mp4',
-    'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/VID-20241216-WA0007.mp4',
+    'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/WA0005.mp4',
+    'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/WA0006.mp4',
+    'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/WA0007.mp4',
   ];
 
   @ViewChildren('videoPlayer') videoPlayers!: QueryList<
