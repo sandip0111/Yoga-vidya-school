@@ -41,11 +41,13 @@
                 Your browser does not support the video tag.
               </video> -->
               <video
-                id="plyrID"
+               [attr.id]="'plyrID-' +  i"
                 controls
                 playsinline
                 (play)="onVideoPlay(dt.updateId)"
                 controlsList="nodownload"
+                (timeupdate)="onTimeUpdate($event, dt?.dayNumber)"
+                #videoPlayer
               >
                 <source src="{{ dt.url }}" type="video/mp4" />
               </video>

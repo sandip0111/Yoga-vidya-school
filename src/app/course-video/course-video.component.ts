@@ -1,4 +1,4 @@
-import { Component,Renderer2, Inject  } from '@angular/core';
+import { Component,Renderer2, Inject, ViewChild  } from '@angular/core';
 import { WebapiService } from '../webapi.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from "ngx-spinner";
@@ -25,6 +25,9 @@ export class CourseVideoComponent {
   spinner1 = 'sp1';
   bdQues: any = [];
   onlineCheck: boolean = false;
+  @ViewChild('videoPlayer') videoElement: any;
+  isCallbackTriggered = false;
+  accessLog: any;
 
   constructor(private webapiService: WebapiService, private _activatedRoute: ActivatedRoute, private router: Router, private spinner: NgxSpinnerService, private title: Title, private meta: Meta,@Inject(DOCUMENT) private _document: Document, private _renderer2: Renderer2) {
 
@@ -122,6 +125,7 @@ export class CourseVideoComponent {
   getAccessLog(stuId: any, cId: any) {
     this.webapiService.getAccessLog({ studentId: stuId, courseId: cId }).subscribe((res: any) => {
       // console.log(res, '----------');
+      this.accessLog = res.data;
       let current = new Date();
       if (res.count == 1 && res.data.nextSchedule.length > 0) {
         for (let index = 0; index < res.data.nextSchedule.length; index++) {
@@ -154,6 +158,9 @@ export class CourseVideoComponent {
   }
 
   setDataFeedbackV2(day: any) {
+    if (this.slug == 'pranayama-course-online-pranarambha') {
+       this.getAccessLog(this.userId, this.courseList._id)
+    }
     // this.spinner.show();
     if (day > 1) {
       let val = {
@@ -188,7 +195,7 @@ export class CourseVideoComponent {
 
         }
       });
-      console.log(this.reverseArr, '--');
+      //console.log(this.reverseArr, '--');
     }
     else {
       if (this.slug != 'pranayama-course-online-pranarambha') {
@@ -451,7 +458,7 @@ export class CourseVideoComponent {
         this.spinner.hide();
         this.reverseArr = [];
       }
-      console.log(this.reverseArr, '------');
+      //console.log(this.reverseArr, '------');
 
     });
   }
@@ -491,7 +498,7 @@ export class CourseVideoComponent {
         this.reverseArr = [];
       }
 
-      console.log(this.reverseArr, '--');
+      //console.log(this.reverseArr, '--');
 
     });
   }
@@ -538,6 +545,45 @@ export class CourseVideoComponent {
     });
   }
 
+  onTimeUpdate(event: Event, dayNumber: number) {
+    const video = event.target as HTMLVideoElement;
+    const currentTime = video.currentTime;
+    const duration = video.duration;
+
+    const progress = (currentTime / duration) * 100;
+
+    if (progress >= 50 && progress <= 90 && !this.isCallbackTriggered) {
+      this.isCallbackTriggered = true; 
+      this.onVideoProgressComplete(dayNumber);
+    }
+  }
+
+  // Callback function
+  onVideoProgressComplete(dayNumber: number) {
+    var isChanged = false;
+    var currentDate = new Date();
+    this.accessLog.nextSchedule.forEach((day : any) => {
+      if ((day.day === dayNumber + 1) && (new Date(day.nextShowDate).getTime() > currentDate.getTime())) {
+         day.nextShowDate = new Date();
+         isChanged = true;
+      }
+    });
+   if(isChanged){
+    let val = {
+      nextSchedule: this.accessLog.nextSchedule,
+      studentId: this.accessLog.studentId,
+      courseId: this.accessLog.courseId,
+      _id : this.accessLog._id
+    }
+    isChanged = false;
+    this.webapiService.createAccessLog(val).subscribe((res: any) => {
+
+
+    });
+   }
+    
+  }
+
   getVideoFile(e: any) {
     console.log(e.target.files[0].type, '==');
     if (e.target.files[0].type == "video/mp4" || e.target.files[0].type == "video/mov" || e.target.files[0].type == "video/avi" || e.target.files[0].type == "video/heic" || e.target.files[0].type == "video/hevc" || e.target.files[0].type == "video/quicktime") {
@@ -546,7 +592,7 @@ export class CourseVideoComponent {
       formData.append('video', e.target.files[0]);
       formData.append('type', 'return');
       this.webapiService.uploadVideo(formData).subscribe((res: any) => {
-        console.log(res);
+        //console.log(res);
         if (res.status == "ok") {
           alert('upload success');
           this.spinner.hide(this.spinner1);
@@ -725,6 +771,7 @@ export class CourseVideoComponent {
       'studentId': this.userId,
       'playsCount': "1"
     }
+    this.isCallbackTriggered = false;
     this.webapiService.createAnalytics(val).subscribe((res: any) => {
       // console.log(res, '--------------');
     });
