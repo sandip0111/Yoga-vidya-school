@@ -22,6 +22,7 @@
   padding: 8px; /* Reduce padding inside reviews */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   text-align: justify;
+  border: 1px solid #ccc; /* Add a border around each review */
 }
 
 .review-author {
