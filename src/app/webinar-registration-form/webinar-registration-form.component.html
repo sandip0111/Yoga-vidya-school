@@ -1,6 +1,6 @@
 <div class="container justify-content-center mt-5">
   <div class="p-4 register-content">
-    <h2 class="mb-2">
+    <h2 class="mb-2 text-center">
       Yoga Webinars
     </h2>
     <p class="mb-4">Join Prashant J Yoga’s exclusive webinars for a holistic approach to yoga and wellness. The main
@@ -12,16 +12,19 @@
       instructions. Connect with the like-minded individuals, ultimately fostering physical, mental, and spiritual
       growth. Whether you're looking to enhance your physical practice, deepen your meditation experience, or understand
       yoga on a more profound level, these webinars are your gateway to a balanced and fulfilled life.</p>
-    <!-- <h2 class="mb-2">
-          Beyond the Breath
-        </h2>
-        <p>Mark your calendar for a transformative webinar called “Beyond the Breath, which is going to be held on November 24th 2024 under Prashant ji's guidance, that dives deep into the art of pranic purification. This session will teach you how to purify your energy through breath control and Pranayama, releasing toxins and revitalizing your life force, or "prana." When your prana flows freely, you experience greater mental sharpness, emotional resilience, and overall well being. This webinar offers you an entry point into these benefits, providing essential techniques that can shift your health and perspective.</p>
-      -->
-
-    <div *ngIf="selectedOption != null">
-      <h2>{{ selectedOption.title }}</h2>
+     
+    <h2 class="text-center">Upcoming Webinars</h2>
+    <div *ngIf="selectedOption != null" class="mb-3">
+      <h3 class="mb-2">{{ selectedOption.title }}</h3>
       <p>{{ selectedOption.description }}</p>
     </div>
+    <h2 class="text-center">Watch Our Past Webinars</h2>
+    <div class="mb-3">
+    <h3 class="mb-2">
+      Beyond the Breath
+    </h3>
+    <p>Mark your calendar for a transformative webinar called “Beyond the Breath, which is going to be held on November 24th 2024 under Prashant ji's guidance, that dives deep into the art of pranic purification. This session will teach you how to purify your energy through breath control and Pranayama, releasing toxins and revitalizing your life force, or "prana." When your prana flows freely, you experience greater mental sharpness, emotional resilience, and overall well being. This webinar offers you an entry point into these benefits, providing essential techniques that can shift your health and perspective.</p>
+  </div>
 
   </div>
   <div class="card registration-card flex-fill p-4">
@@ -55,8 +58,8 @@
       </div>
 
       <div class="mb-3">
-        <!-- <label for="city" class="form-label">City</label> -->
-        <!-- <input
+         <label for="city" class="form-label">City</label>
+         <input
             type="text"
             id="city"
             formControlName="city"
@@ -65,10 +68,11 @@
           />
           <div *ngIf="submitted && registrationForm.get('city')?.invalid" class="text-danger">
             City is required.
-          </div> -->
-        <label for="upcomingWebiner" class="form-label">Upcoming Webinar</label>
-        <div>
-          <select id="dropdown" class="form-control" formControlName="webiner" (ngModelChange)="onSelectionChange($event)">
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="upcomingWebiner" class="form-label">Upcoming Webinar</label>
+          <select id="dropdown" class="form-control" formControlName="webinar" (ngModelChange)="onSelectionChange($event)">
 
             <!-- <option value="" disabled>-- Select an Option --</option> -->
             <option *ngFor="let option of dropdownOptions" [value]="option.value">
@@ -76,16 +80,13 @@
             </option>
           </select>
         </div>
-      </div>
+      
       <div class="mb-3">
-        <label for="fees" class="form-label">Fees</label>
-        <input type="text" id="fees" formControlName="fees" class="form-control" [value]="selectedOption.feesINR" />
+        <label for="fees" class="form-label">Fees(INR)</label>
+        <input disabled type="text" id="fees" class="form-control" [value]="selectedOption.feesINR" />
       </div>
 
-      <div class="mb-3">
-        <label for="company" class="form-label">Company (Optional)</label>
-        <input type="text" id="company" formControlName="company" class="form-control" />
-      </div>
+     
 
       <button type="submit" class="btn btn-primary">
         Register

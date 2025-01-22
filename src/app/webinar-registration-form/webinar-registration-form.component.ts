@@ -10,7 +10,6 @@ import {
 import { WebapiService } from '../webapi.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
-import { FormControl } from '@angular/forms';
 @Component({
   selector: 'app-webinar-registration-form',
   standalone: true,
@@ -22,8 +21,9 @@ export class WebinarRegistrationFormComponent implements OnInit {
   registrationForm: FormGroup;
   submitted = false;
   selectedOption: any;
+  
   dropdownOptions = [
-    { value: 'option1', label: 'Kundalini parichay', title: 'Kundalini parichay', 
+    { value: "Kundalini parichay", label: 'Kundalini parichay', title: 'Kundalini parichay', 
 description: `It is the term used for sleeping dormant potential force in every human organism, 
 which is not yet awakened . The recite point of this force is root of the spinal
 column. until this energy is not awakened, Person remains in illusion and unaware 
@@ -48,20 +48,26 @@ fesUSD: ''
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       phone: ['', Validators.required],
-      webiner: [''],
-      company: [''], // Optional
+      webinar: [''],
+      city:[''] // Optional
     });
   }
   
   ngOnInit(): void {
     this.selectedOption = this.dropdownOptions[0];
-    this.registrationForm.value.webinar = this.selectedOption
+    this.registrationForm.patchValue({
+      webinar: this.selectedOption.value
+    });
+    console.log(this.registrationForm.get('webinar'));
+    //this.registrationForm.get('webiner')?.setValue(this.selectedOption.label);
   }
 
 
   onSelectionChange(selectedValue: any) {
     this.selectedOption = selectedValue;
-    this.registrationForm.value.webinar = this.selectedOption
+    this.registrationForm.patchValue({
+      webinar: this.selectedOption.value
+    });
   }
   onSubmit() {
     this.submitted = true;
