@@ -89,6 +89,9 @@ export class WebapiService {
   login(data: any) {
     return this.http.post(this.url + "api/v1/loginWeb", data);
   }
+  changeStudentPassword(data: any){
+    return this.http.post(this.url + "api/v1/changePassword", data);
+  }
   getUserById(id: any) {
     return this.http.get(this.url + "api/v1/student/" + id);
   }
