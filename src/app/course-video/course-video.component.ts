@@ -1,10 +1,11 @@
-import { Component,Renderer2, Inject, ViewChild  } from '@angular/core';
+import { Component,Renderer2, Inject, ViewChild, AfterViewInit, ElementRef  } from '@angular/core';
 import { WebapiService } from '../webapi.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from "ngx-spinner";
 import { Title, Meta } from '@angular/platform-browser';
 import { CommonModule,DOCUMENT } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import Hls from 'hls.js';
 @Component({
   selector: 'app-course-video',
   standalone: true,
@@ -50,7 +51,6 @@ export class CourseVideoComponent {
 
   ngOnInit(): void {
     this.userId = sessionStorage.getItem('loginId');
-
     if(!this.userId){
       this.router.navigate(['/login']);
     }
@@ -59,6 +59,28 @@ export class CourseVideoComponent {
       const link = this._document.querySelector('link[rel="canonical"]');
       this._renderer2.setAttribute(link, 'href', canonicalUrl);
   }
+
+  setHlsOrMp4VideoURL(isM3U8: boolean, upadteId: any, videoSrc: string, isShow: boolean) {
+    const id = 'plyrID-'+ upadteId;
+    const video = document.getElementById(id) as HTMLVideoElement;
+    if(isShow){
+      if(isM3U8){
+        if (Hls.isSupported()) {
+          const hls = new Hls();
+          hls.loadSource(videoSrc);
+          hls.attachMedia(video);
+          
+        } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+          video.src = videoSrc;
+        
+        }
+      }
+      else {
+        video.src = videoSrc;
+      }
+    }
+  }
+
 
   getCourseBySlug(slug: any) {
     this.spinner.show();
@@ -87,7 +109,7 @@ export class CourseVideoComponent {
                 this.setDataFeedbackV3(1)
               }
               this.paidVideoVerifyUser(res.data[0]._id);
-              this.getAccessLog(this.userId, res.data[0]._id)
+              
             }, 2000);
           }
           else {
@@ -202,6 +224,15 @@ export class CourseVideoComponent {
         this.setDataFeedbackV3(1);
       }
     }
+    setTimeout(() => {
+      if(this.slug == 'pranayama-course-online-pranarambha'){
+        if(this.reverseArr.length > 0)
+        this.reverseArr.forEach((video : any) => {
+          const isM3U8 = this.isM3U8File(video.url);        
+          this.setHlsOrMp4VideoURL(isM3U8, video.updateId, video.url, video.isShow);
+        });
+      }
+    }, 2000);  
 
 
   }
@@ -429,7 +460,7 @@ export class CourseVideoComponent {
       // console.log(res, '--arr');
       if (res.length > 0) {
         // this.spinner.hide();
-        this.reverseArr = res.slice().sort((a: any, b: any) => a.sortBy - b.sortBy);
+        this.reverseArr = res.slice().sort((a: any, b: any) => a.sortBy - b.sortBy);        
         this.reverseArr[0].isShow = true;
         this.reverseArr[0].isVideoShown = true;
         this.reverseArr[0].dayNumber = 1;
@@ -452,15 +483,28 @@ export class CourseVideoComponent {
             }
           }
         }
+        this.getAccessLog(this.userId, id);
         this.spinner.hide();
       }
       else {
         this.spinner.hide();
         this.reverseArr = [];
       }
-      //console.log(this.reverseArr, '------');
+      setTimeout(() => {
+        if(this.slug == 'pranayama-course-online-pranarambha'){
+          if(this.reverseArr.length > 0)
+          this.reverseArr.forEach((video : any) => {
+            const isM3U8 = this.isM3U8File(video.url);        
+            this.setHlsOrMp4VideoURL(isM3U8, video.updateId, video.url, video.isShow);
+          });
+        }
+      }, 2000);      
 
     });
+  }
+
+  private isM3U8File(url: string): boolean {
+    return url.includes('.m3u8');
   }
 
   getOnlineCourseVideos(id: any) {
@@ -552,7 +596,7 @@ export class CourseVideoComponent {
 
     const progress = (currentTime / duration) * 100;
 
-    if (progress >= 50 && progress <= 90 && !this.isCallbackTriggered) {
+    if (progress >= 50 && progress <= 100 && !this.isCallbackTriggered) {
       this.isCallbackTriggered = true; 
       this.onVideoProgressComplete(dayNumber);
     }

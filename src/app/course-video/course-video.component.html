@@ -40,7 +40,7 @@
               >
                 Your browser does not support the video tag.
               </video> -->
-              <video
+              <video *ngIf=" slug != 'pranayama-course-online-pranarambha'"
                [attr.id]="'plyrID-' +  i"
                 controls
                 playsinline
@@ -51,6 +51,16 @@
               >
                 <source src="{{ dt.url }}" type="video/mp4" />
               </video>
+              <video *ngIf=" slug == 'pranayama-course-online-pranarambha'"
+              [attr.id]="'plyrID-' +  dt.updateId"
+               controls
+               playsinline
+               (play)="onVideoPlay(dt.updateId)"
+               controlsList="nodownload"
+               (timeupdate)="onTimeUpdate($event, dt?.dayNumber)"
+               #videoPlayer
+             >              
+             </video>
             </div>
           </div>
           <div class="col-lg-4 mt-3">
