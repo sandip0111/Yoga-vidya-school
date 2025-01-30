@@ -115,10 +115,10 @@ export class CheckoutComponent {
 
   priceConvert(e: any) {
     if (this.checkData.package == "Basic" && e.target.value == "INR") {
-      this.price = "Rs. 3,999";
+      this.price = "Rs. 2,499";
     }
     else if (this.checkData.package == "Basic" && e.target.value == "USD") {
-      this.price = "70 USD";
+      this.price = "60 USD";
 
     }
     else if (this.checkData.package == "Standard" && e.target.value == "INR") {
@@ -143,10 +143,10 @@ export class CheckoutComponent {
   }
   setPrice(e: any) {
     if (e.target.value == "Basic" && this.checkData.currency == "INR") {
-      this.price = "Rs. 3,999";
+      this.price = "Rs. 2,499";
     }
     else if (e.target.value == "Basic" && this.checkData.currency == "USD") {
-      this.price = "70 USD";
+      this.price = "60 USD";
 
     }
     else if (e.target.value == "Standard" && this.checkData.currency == "INR") {
@@ -201,7 +201,7 @@ export class CheckoutComponent {
             sessionStorage.setItem('loginId-checkout', res.studentId);
             if (this.slug == "pranayama-course-online-pranarambha") {
               if (data.package == "Basic" && data.currency == "INR") {
-                this.initializePayment("price_1NI6oxSEQq0H4GuEW24DMpTn", data.email);  //  price_1NI6oxSEQq0H4GuEW24DMpTn price_1NInGmSDnZBoIVm7fv2upett
+                this.initializePayment("price_1QmsTUSEQq0H4GuEZfWd5UJu", data.email);  //  price_1NI6oxSEQq0H4GuEW24DMpTn price_1NInGmSDnZBoIVm7fv2upett
               }
               else if (data.package == "Standard" && data.currency == "INR") {
                 this.initializePayment("price_1NI6oxSEQq0H4GuERpBbilF2", data.email);
@@ -211,7 +211,7 @@ export class CheckoutComponent {
                 this.initializePayment("price_1NI6oxSEQq0H4GuEx9fdhEd0", data.email);
               }
               else if (data.package == "Basic" && data.currency == "USD") {
-                this.initializePayment("price_1NIRakSEQq0H4GuEFjQApuYp", data.email);
+                this.initializePayment("price_1QmychSEQq0H4GuEAipCDoPU", data.email);
               }
               else if (data.package == "Standard" && data.currency == "USD") {
                 this.initializePayment("price_1NIRatSEQq0H4GuE0DOlcCNa", data.email);
@@ -238,7 +238,7 @@ export class CheckoutComponent {
         if (this.slug == "pranayama-course-online-pranarambha") {
           if (data.package == "Basic" && data.currency == "INR") {
             this.spinner.hide();
-            this.initializePayment("price_1NI6oxSEQq0H4GuEW24DMpTn", data.email);    //price_1NI7hnSEQq0H4GuETCleI6Uo  price_1NI6oxSEQq0H4GuEW24DMpTn
+            this.initializePayment("price_1QmsTUSEQq0H4GuEZfWd5UJu", data.email);    //price_1NI7hnSEQq0H4GuETCleI6Uo  price_1NI6oxSEQq0H4GuEW24DMpTn
           }
           else if (data.package == "Standard" && data.currency == "INR") {
             this.spinner.hide();
@@ -251,7 +251,7 @@ export class CheckoutComponent {
           }
           else if (data.package == "Basic" && data.currency == "USD") {
             this.spinner.hide();
-            this.initializePayment("price_1NIRakSEQq0H4GuEFjQApuYp", data.email);
+            this.initializePayment("price_1QmychSEQq0H4GuEAipCDoPU", data.email);
           }
           else if (data.package == "Standard" && data.currency == "USD") {
             this.spinner.hide();
