@@ -60,26 +60,30 @@ export class CourseVideoComponent {
       this._renderer2.setAttribute(link, 'href', canonicalUrl);
   }
 
-  setHlsOrMp4VideoURL(isM3U8: boolean, upadteId: any, videoSrc: string, isShow: boolean) {
-    const id = 'plyrID-'+ upadteId;
+  setHlsOrMp4VideoURL(isM3U8: boolean, updateId: any, videoSrc: string, isShow: boolean) {
+    const id = 'plyrID-' + updateId;
     const video = document.getElementById(id) as HTMLVideoElement;
-    if(isShow){
-      if(isM3U8){
-        if (Hls.isSupported()) {
-          const hls = new Hls();
-          hls.loadSource(videoSrc);
-          hls.attachMedia(video);
-          
-        } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-          video.src = videoSrc;
-        
-        }
-      }
-      else {
+    
+    if (!video || !isShow) return;  
+    //Check if the current source is already set to avoid unnecessary reload
+    if (video.src.trim() !== '' && video.src !== null) {
+      console.log("already")
+      return;
+    }
+    
+    if (isM3U8) {
+      if (Hls.isSupported()) {
+        const hls = new Hls();
+        hls.loadSource(videoSrc);
+        hls.attachMedia(video);
+      } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
         video.src = videoSrc;
       }
+    } else {
+      video.src = videoSrc;
     }
   }
+  
 
 
   getCourseBySlug(slug: any) {
@@ -226,11 +230,13 @@ export class CourseVideoComponent {
     }
     setTimeout(() => {
       if(this.slug == 'pranayama-course-online-pranarambha'){
-        if(this.reverseArr.length > 0)
-        this.reverseArr.forEach((video : any) => {
+        if(this.reverseArr.length > 0){
+          var video = this.reverseArr.find((i: any) =>i.dayNumber == day);         
           const isM3U8 = this.isM3U8File(video.url);        
-          this.setHlsOrMp4VideoURL(isM3U8, video.updateId, video.url, video.isShow);
-        });
+          this.setHlsOrMp4VideoURL(isM3U8, video.updateId, video.url, video.isShow); 
+          //console.log("setTimeout single");      
+        }
+        
       }
     }, 2000);  
 
@@ -239,7 +245,7 @@ export class CourseVideoComponent {
 
   getFedbackV2Day5(val: any) {
     this.webapiService.getFeedbackByCourse(val).subscribe((res: any) => {
-      console.log(res, 'day 6');
+      //console.log(res, 'day 6');
       if (res.count > 0) {
       }
       else {
@@ -496,9 +502,10 @@ export class CourseVideoComponent {
           this.reverseArr.forEach((video : any) => {
             const isM3U8 = this.isM3U8File(video.url);        
             this.setHlsOrMp4VideoURL(isM3U8, video.updateId, video.url, video.isShow);
+            
           });
         }
-      }, 2000);      
+      }, 4000);      
 
     });
   }
@@ -579,7 +586,7 @@ export class CourseVideoComponent {
 
   getFedback(val: any) {
     this.webapiService.getFeedbackByCourse(val).subscribe((res: any) => {
-      console.log(res.count, '--------------');
+     // console.log(res.count, '--------------');
       if (res.count > 0) {
         this.feedbackCounter = true;
       }
@@ -629,7 +636,7 @@ export class CourseVideoComponent {
   }
 
   getVideoFile(e: any) {
-    console.log(e.target.files[0].type, '==');
+    //console.log(e.target.files[0].type, '==');
     if (e.target.files[0].type == "video/mp4" || e.target.files[0].type == "video/mov" || e.target.files[0].type == "video/avi" || e.target.files[0].type == "video/heic" || e.target.files[0].type == "video/hevc" || e.target.files[0].type == "video/quicktime") {
       this.spinner.show(this.spinner1);
       const formData = new FormData();
