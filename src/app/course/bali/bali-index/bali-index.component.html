@@ -17,7 +17,7 @@
 <app-testimonials *ngIf ="slug != 'pranayama-course-online-pranarambha'"></app-testimonials>
 <app-video-reviews *ngIf="slug == 'pranayama-course-online-pranarambha'"></app-video-reviews>
 <app-review-list-component *ngIf="slug == 'pranayama-course-online-pranarambha'"></app-review-list-component>
-<app-gallery></app-gallery>
+<app-gallery *ngIf="slug!='pranayama-course-online-pranarambha'"></app-gallery>
 <app-video-testimonials *ngIf="slug!='yoga-retreat-in-mysore-india' && slug!='pranayama-course-online-pranarambha' && slug!='foundation-of-spirituality-an-online-spiritual-awakening-course' && slug!='yoga-history-and-philosophy' && slug!='yoga-retreat-in-peru'" ></app-video-testimonials>
 <app-achievements *ngIf="slug!='yoga-retreat-in-mysore-india' && slug!='pranayama-course-online-pranarambha' && slug!='foundation-of-spirituality-an-online-spiritual-awakening-course' && slug!='yoga-history-and-philosophy' && slug!='yoga-retreat-in-peru'"></app-achievements>
 <app-faq [data]="faqData"></app-faq>
