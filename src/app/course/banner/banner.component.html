@@ -87,7 +87,10 @@
                 </select>
                 <input type="number" placeholder="Your Contact Number" name="contactNumber" [(ngModel)]="inquiryData.contactNumber" />
                 <textarea placeholder="Your Message" rows="2" *ngIf="slug != 'breath-detox-yoga' && slug != 'pranayama-course-online-pranarambha' && slug !='foundation-of-spirituality-an-online-spiritual-awakening-course'" name="message" [(ngModel)]="inquiryData.message"></textarea>
-                <input class="button" type="submit" value="Enquiry" />
+                <div class="d-flex justify-content-between">
+                  <input class="button" type="submit" value="Enquiry" />
+                  <a *ngIf="slug == 'pranayama-course-online-pranarambha'" href="https://wa.me/919818660954" class="footer-button"><img loading="lazy" src="https://my-s3-images-bucket.s3.amazonaws.com/img/whatsapp.png" alt="whatsapp"/>whatsapp</a>
+                </div>
             </div>
         </form>
     </div>
