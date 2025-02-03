@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit,Input, SimpleChanges, Renderer2, ElementRef } from '@angular/core';
+import { Component, OnInit,Input, SimpleChanges, Renderer2, ElementRef, ViewChild } from '@angular/core';
 import { WebapiService } from '../../webapi.service';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { Router,ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -22,6 +22,7 @@ export class BannerComponent implements OnInit {
  videoElement?: HTMLVideoElement;
  isRegistrationPageLabelToggle = false;
  isRegistrationPageLabelToggleForAdjusment = false;
+ @ViewChild('nameInput') nameInput?: ElementRef;
  sliderImage:any='https://my-s3-images-bucket.s3.amazonaws.com/images/InternalBackground_lticg8.jpg'
   constructor(private renderer: Renderer2, private el: ElementRef, private webapiService: WebapiService,private spinner:NgxSpinnerService,private router: Router, private activatedRoute: ActivatedRoute) {
     this.slug = this.activatedRoute.snapshot.routeConfig?.path;
@@ -81,6 +82,12 @@ export class BannerComponent implements OnInit {
         //console.error('Error trying to play the video:', error);
       });
     }
+    }
+  }
+
+  highlightRegisterForm() {
+    if (this.nameInput?.nativeElement) {
+     this.nameInput.nativeElement.focus();
     }
   }
 

@@ -1,4 +1,4 @@
-import { Component, OnInit,Inject,Renderer2 } from '@angular/core';
+import { Component, OnInit,Inject,Renderer2, ViewChild, ElementRef } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { BottomNavComponent } from '../../../includes/home/bottom-nav/bottom-nav.component';
 import { AboutBaliComponent } from '../about-bali/about-bali.component';
@@ -72,6 +72,9 @@ export class BaliIndexComponent implements OnInit {
   currData:any;
   schEventData:any={};
   bannerData:any= {};
+  @ViewChild('banner', { read: ElementRef }) banner!: ElementRef;
+  @ViewChild(BannerComponent) appBannerComponent!: BannerComponent;
+  isBannerVisible = true; 
   constructor(private webapiService: WebapiService,private activatedRoute: ActivatedRoute,private router:Router,private spinner:NgxSpinnerService,private _renderer2: Renderer2,
     @Inject(DOCUMENT) private _document: Document,private title: Title, private meta: Meta) {
     this.slug = this.activatedRoute.snapshot.routeConfig?.path;
@@ -134,6 +137,36 @@ export class BaliIndexComponent implements OnInit {
     if(link){
       this._renderer2.setAttribute(link, 'href', canonicalUrl);
     }
+  }
+
+  ngAfterViewInit() {
+     // Dynamically button hide and show when banneris not visible in viewport
+    this.observeBannerVisibility();
+  }
+
+  scrollToBanner() {
+    if (this.banner?.nativeElement) {
+      // Scroll to the banner
+      this.banner.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+      // Wait for scrolling to complete, then call highlight function in the child component
+      setTimeout(() => {
+        this.appBannerComponent.highlightRegisterForm();
+      }, 500);
+    }
+  }
+
+  private observeBannerVisibility() {
+    if (!this.banner) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        this.isBannerVisible = entry.isIntersecting;
+      },
+      { threshold: 0.1 } // Adjust threshold as needed
+    );
+
+    observer.observe(this.banner.nativeElement);
   }
 
   getCourseBySlug(slug: any) {
