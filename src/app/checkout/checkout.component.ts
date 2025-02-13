@@ -121,6 +121,10 @@ export class CheckoutComponent {
       this.price = "60 USD";
 
     }
+    else if (this.checkData.package == "Basic" && e.target.value == "EUR") {
+      this.price = "60 EUR";
+
+    }
     else if (this.checkData.package == "Standard" && e.target.value == "INR") {
       this.price = "Rs. 4,999";
 
@@ -147,6 +151,10 @@ export class CheckoutComponent {
     }
     else if (e.target.value == "Basic" && this.checkData.currency == "USD") {
       this.price = "60 USD";
+
+    }
+    else if (e.target.value == "Basic" && this.checkData.currency == "EUR") {
+      this.price = "60 EUR";
 
     }
     else if (e.target.value == "Standard" && this.checkData.currency == "INR") {
@@ -212,6 +220,9 @@ export class CheckoutComponent {
               }
               else if (data.package == "Basic" && data.currency == "USD") {
                 this.initializePayment("price_1QmychSEQq0H4GuEAipCDoPU", data.email);
+              }
+              else if (data.package == "Basic" && data.currency == "EUR") {
+                this.initializePayment("price_1Qq8OGSEQq0H4GuExvBjijrv", data.email);
               }
               else if (data.package == "Standard" && data.currency == "USD") {
                 this.initializePayment("price_1NIRatSEQq0H4GuE0DOlcCNa", data.email);
