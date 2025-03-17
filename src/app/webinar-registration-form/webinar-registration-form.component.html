@@ -13,21 +13,22 @@
       growth. Whether you're looking to enhance your physical practice, deepen your meditation experience, or understand
       yoga on a more profound level, these webinars are your gateway to a balanced and fulfilled life.</p>
      
-    <h2 class="text-center">Upcoming Webinars</h2>
+    <!-- <h2 class="text-center">Upcoming Webinars</h2> -->
     <div *ngIf="selectedOption != null" class="mb-3">
-      <h3 class="mb-2">{{ selectedOption.title }}</h3>
+      <h3 class="mb-2 text-center">{{ selectedOption.title }} <a href="#register-form" class="join-now" (click)="scrollToForm($event)"
+        >JOIN NOW</a></h3>
       <p>{{ selectedOption.description }}</p>
     </div>
-    <h2 class="text-center">Watch Our Past Webinars</h2>
+    <!-- <h2 class="text-center">Watch Our Past Webinars</h2> -->
     <div class="mb-3">
-    <h3 class="mb-2">
+    <h3 class="mb-2 text-center">
       Beyond the Breath
     </h3>
     <p>Mark your calendar for a transformative webinar called “Beyond the Breath, which is going to be held on November 24th 2024 under Prashant ji's guidance, that dives deep into the art of pranic purification. This session will teach you how to purify your energy through breath control and Pranayama, releasing toxins and revitalizing your life force, or "prana." When your prana flows freely, you experience greater mental sharpness, emotional resilience, and overall well being. This webinar offers you an entry point into these benefits, providing essential techniques that can shift your health and perspective.</p>
   </div>
 
   </div>
-  <div class="card registration-card flex-fill p-4">
+  <div class="card registration-card flex-fill p-4" id="register-form">
     <h2 class="text-center mb-4">Webinar Registration</h2>
     <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
       <div class="mb-3">
@@ -71,7 +72,7 @@
           </div>
         </div>
         <div class="mb-3">
-          <label for="upcomingWebiner" class="form-label">Upcoming Webinar</label>
+          <label for="upcomingWebiner" class="form-label">Webinar</label>
           <select id="dropdown" class="form-control" formControlName="webinar" (ngModelChange)="onSelectionChange($event)">
 
             <!-- <option value="" disabled>-- Select an Option --</option> -->
@@ -81,9 +82,26 @@
           </select>
         </div>
       
-      <div class="mb-3">
+      <div *ngIf="false" class="mb-3">
         <label for="fees" class="form-label">Fees(INR)</label>
         <input disabled type="text" id="fees" class="form-control" [value]="selectedOption.feesINR" />
+      </div>
+
+      <div class="mb-3">
+        <label for="refferalCode" class="form-label">Refferal Code</label>
+         <input
+            type="text"
+            id="refferalCode"
+            formControlName="refferalCode"
+            class="form-control"
+            [ngClass]="{'is-invalid': submitted && registrationForm.get('refferalCode')?.invalid}"
+          />
+          <!-- <div *ngIf="submitted && registrationForm.get('refferalCode')?.invalid" class="text-danger">
+            Refferal Code is mandatory.
+          </div> -->
+          <div *ngIf="registrationForm.get('refferalCode')?.errors?.['invalidReferral']" class="text-danger">
+            {{ registrationForm.get('refferalCode')?.errors?.['invalidReferral'] }}
+          </div>
       </div>
 
      

@@ -79,6 +79,14 @@ export class WebapiService {
     return this.http.get(this.url + "api/v1/getAllEvents");
   }
 
+  getKundaliniParichayRefferalCode() {
+    return this.http.get(this.url + "api/v1/getKundaliniParichayRefferalCode");
+  }
+
+  getWebinarVideosByName(data: any) {
+    return this.http.post(this.url + "api/v1/getWebinarVideosByName", data);
+  }
+
   registerWebinarUser(data: any){
     return this.http.post(this.url + "api/v1/registerWebinarUser", data);
   }

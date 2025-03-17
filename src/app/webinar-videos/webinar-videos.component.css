@@ -1,0 +1,14 @@
+.video-container video {
+    width: 100%;
+    height: auto;
+    border: 1px solid #ccc;
+  }
+
+  .text-center{
+    text-align: center;
+  }
+  h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #f47019;
+  }

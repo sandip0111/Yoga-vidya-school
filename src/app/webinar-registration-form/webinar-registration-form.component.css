@@ -38,6 +38,21 @@
     border-color: #dc3545; /* Bootstrap danger color */
   }
   
+  .join-now {
+    background-color: #f47019;; /* Green background */
+    border: none;
+    color: white;
+    padding: 12px 24px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    border-radius: 25px;
+    transition: background-color 0.3s ease;
+  }
+  
+  
+  
   .text-danger {
     font-size: 0.875rem;
   }

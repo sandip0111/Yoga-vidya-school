@@ -33,7 +33,16 @@ export class LoginComponent {
     this.webapiService.login(data).subscribe((res: any) => {
       if (res.user) {
         sessionStorage.setItem('loginId', res.user.id);
-        window.location.href = '/my-account';
+        if(res.user.isWebinarUser) {
+          sessionStorage.setItem('webinarLoginId', res.user.id);
+          sessionStorage.setItem('isWebinarUser', res.user.isWebinarUser);
+          window.location.href = '/webinar-video/swar-sadhana';
+        }else{
+          sessionStorage.setItem('loginId', res.user.id);
+          sessionStorage.setItem('isWebinarUser', res.user.isWebinarUser);
+          window.location.href = '/my-account';
+        }
+        
       }
       else {
         this.spinner.hide();

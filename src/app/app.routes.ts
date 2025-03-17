@@ -27,6 +27,7 @@ import { AddToCartComponent } from './add-to-cart/add-to-cart.component';
 import { WebinarRegistrationFormComponent } from './webinar-registration-form/webinar-registration-form.component';
 import { PaymentProceedComponent } from './payment-proceed/payment-proceed.component';
 import { RegistrationFormComponent } from './student/registration-form/registration-form.component';
+import { WebinarVideosComponent } from './webinar-videos/webinar-videos.component';
 
 export const routes: Routes = [
 
@@ -87,6 +88,7 @@ export const routes: Routes = [
   {path:"webinar-registration",component:WebinarRegistrationFormComponent},
   {path:"proceed-payment",component:PaymentProceedComponent},
   { path:'breath-detox-yoga/student-register', component:RegistrationFormComponent},
+  { path:'webinar-video/:name', component:WebinarVideosComponent},
   { path: '**', pathMatch: 'full',  component: PagenotfoundComponent },
 
 ];
