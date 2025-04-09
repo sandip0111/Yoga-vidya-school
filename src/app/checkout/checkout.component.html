@@ -16,10 +16,32 @@
                   >
                 </div>
               </div>
+
+              <div *ngIf="slug === 'pranic-purification'" class="row align-items-center">
+                <div class="col">
+                  <span> {{ formattedPranicDate }}</span>
+                </div>
+                <div class="col-auto">
+                  <span class="h6"
+                    ><strong>{{ pranicDuration }}</strong></span
+                  >
+                </div>
+              </div>
             </li>
           </ul>
         </div>
       </div>
+      <h4 *ngIf="slug === 'pranic-purification'" class="card-title text-center text-uppercase mt-5 mb-3">Payment in USD (Foreign Account Holder)</h4>
+      <div *ngIf="slug === 'pranic-purification'" class="paypal-logo text-center">
+        <a href="https://www.paypal.me/yogavidyafoundation">
+          <img
+            src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/checkout-logo-large.png"
+            alt="paypal"
+            class="img-fluid"
+          />
+        </a>
+      </div>
+      <h5 *ngIf="slug === 'pranic-purification'" class="disclaimer text-uppercase mt-3">NOTE: If you are using PayPal for payment, please upload the screenshot of the payment in the WhatsApp group</h5>
     </div>
     <div class="col-md-6">
       <h2>Checkout</h2>
@@ -66,7 +88,7 @@
           </select>
         </div>
 
-        <div>
+        <div *ngIf="slug !== 'pranic-purification'">
           <label for="package">Package</label>
           <select
             class="form-control mb-3"
@@ -81,7 +103,7 @@
           </select>
         </div>
 
-        <div class="" *ngIf="!oldStudent">
+        <div class="" *ngIf="slug === 'pranic-purification' || (!oldStudent && slug !== 'pranic-purification')">
           <label for="name">Name</label>
           <input
             type="text"
@@ -89,6 +111,27 @@
             id="name"
             [(ngModel)]="checkData.name"
             placeholder="Enter your Name"
+          />
+        </div>
+
+        <div class="" *ngIf="slug === 'pranic-purification'">
+          <label for="name">WhatsApp Number</label>
+          <input
+            type="text"
+            class="form-control mb-3"
+            id="phoneNumber"
+            [(ngModel)]="checkData.phoneNumber"
+            placeholder="Enter WhatsApp Number with country code"
+          />
+        </div>
+        <div *ngIf="slug === 'pranic-purification'">
+          <label for="name">Address</label>
+          <input
+            type="text"
+            class="form-control mb-3"
+            id="address"
+            [(ngModel)]="checkData.address"
+            placeholder="Enter Address"
           />
         </div>
 

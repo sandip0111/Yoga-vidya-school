@@ -148,6 +148,10 @@ export class WebapiService {
     return this.http.post(this.url + "api/v1/stripe", data);
   }
 
+  checkoutStripeForPranicPurification(data: any) {
+    return this.http.post(this.url + "api/v1/checkoutStripeForPranicPurification", data);
+  }
+
   checkoutStripeForLiveClasses(data: any) {
     return this.http.post(this.url + "api/v1/checkoutStripeForLiveClasses", data);
   }
@@ -161,9 +165,14 @@ export class WebapiService {
   getPaymentResponseV2(data: any) {
     return this.http.post(this.url + "api/v1/getPaymentResponseV2", data);
   }
+  getPaymentResultPranicPurification(data: any) {
+    return this.http.post(this.url + "api/v1/getPaymentResultPranicPurification", data);
+  }
+
   getPaymentResultAndSendMailForLiveClass(data: any) {
     return this.http.post(this.url + "api/v1/getPaymentResultAndSendMailForLiveClass", data);
   }
+
   createStudent(data: any) {
     return this.http.post(this.url + "api/v1/createStudent", data);
   }

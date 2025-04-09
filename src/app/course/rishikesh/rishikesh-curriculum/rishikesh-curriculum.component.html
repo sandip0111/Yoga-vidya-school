@@ -7,11 +7,11 @@
       <h2><span>Transformative {{title}} Curriculum!</span></h2>
     </div>
     <div *ngIf="isItPranicRoute" class="row">
-      <h4>Start Date: <span>2nd December</span></h4>
-      <h6 >Time: 5:30PM to 6:30PM (IST)</h6>
-      <small>International Transfers: <span class="cut-text">$60</span> New Year Special Price <span class="amount">$30</span> </small>
+      <h4>Start Date: <span>{{pranicDate}}</span></h4>
+      <h6 >Time: {{pranicDuration}}</h6>
+      <small>International Transfers: <span class="cut-text">$60</span> New Year Special Price <span class="amount">$55</span> </small>
       <div class="col-12 text-center mt-4">
-      <button class="btn btn-primary register-btn" (click)="registerClick()" >Register Now Button</button>
+      <button class="btn btn-primary register-btn" (click)="registerClick()" >Register Now</button>
       </div>
     </div>
     <div class="col-md-12 text-left mb-3 faq" *ngFor="let cur of curriculum; let i = index">
