@@ -24,6 +24,9 @@ export class CheckoutComponent {
   paymentHandler: any = null;
   stripeCounter: boolean = false;
   ccCounter: boolean = false;
+  pranicDuration : string | null | undefined;
+  pranicDate :  Date | null | undefined;
+  formattedPranicDate :  string | null | undefined;
 
   constructor(private webapiService: WebapiService, private _activatedRoute: ActivatedRoute, private router: Router, private title: Title, private spinner: NgxSpinnerService,@Inject(DOCUMENT) private _document: Document, private _renderer2: Renderer2) {
     this._activatedRoute.params.subscribe(params => {
@@ -38,6 +41,21 @@ export class CheckoutComponent {
       const canonicalUrl = 'https://www.yogavidyaschool.com' + this.router.url;
       const link = this._document.querySelector('link[rel="canonical"]');
       this._renderer2.setAttribute(link, 'href', canonicalUrl);
+      if(this.slug === 'pranic-purification'){       
+        const storedDateStr = sessionStorage.getItem('pranicDate');
+        if (storedDateStr) {
+           this.pranicDate =  new Date(storedDateStr);
+           this.formattedPranicDate = this.pranicDate.toDateString();
+        }
+        this.pranicDuration = sessionStorage.getItem('pranicDuration');
+        if(!this.pranicDate){
+          const date = new Date("2025-04-27");
+          this.pranicDate = date;
+          this.pranicDuration = "7PM to 8PM (IST)";
+          sessionStorage.setItem('pranicDate', date.toISOString());
+          sessionStorage.setItem('pranicDuration', this.pranicDuration);
+        }
+      }
     }, 1000);
     this.getCourseBySlug(this.slug);
     // console.log(this.checkData);
@@ -81,26 +99,29 @@ export class CheckoutComponent {
     // console.log(data, '--');
     // const email = this.isValidEmail(e.target.value);
     // if (email) {
-    let val = {
-      email: e.target.value.toLowerCase(),
-      course: this.courseList._id
+    if(this.slug !== 'pranic-purification')
+    {
+      let val = {
+        email: e.target.value.toLowerCase(),
+        course: this.courseList._id
+      }
+      // if (!sessionStorage.getItem('loginId')) {
+      this.webapiService.checkEmail(val).subscribe((res: any) => {
+        // console.log(res, '--');
+        if (res.status == "ok" && res.coursePurchased == false) {
+          this.oldStudent = true;
+          sessionStorage.setItem('loginId-checkout', res.id);
+        }
+        else if (res.status == "ok" && res.coursePurchased == true) {
+          alert("Already Enrolled for this course");
+          window.location.href = '/login';
+        }
+        else {
+          this.oldStudent = false;
+          sessionStorage.removeItem('loginId-checkout');
+        }
+      });
     }
-    // if (!sessionStorage.getItem('loginId')) {
-    this.webapiService.checkEmail(val).subscribe((res: any) => {
-      // console.log(res, '--');
-      if (res.status == "ok" && res.coursePurchased == false) {
-        this.oldStudent = true;
-        sessionStorage.setItem('loginId-checkout', res.id);
-      }
-      else if (res.status == "ok" && res.coursePurchased == true) {
-        alert("Already Enrolled for this course");
-        window.location.href = '/login';
-      }
-      else {
-        this.oldStudent = false;
-        sessionStorage.removeItem('loginId-checkout');
-      }
-    });
     // }
 
     // }
@@ -114,36 +135,49 @@ export class CheckoutComponent {
   }
 
   priceConvert(e: any) {
-    if (this.checkData.package == "Basic" && e.target.value == "INR") {
-      this.price = "Rs. 2,499";
-    }
-    else if (this.checkData.package == "Basic" && e.target.value == "USD") {
-      this.price = "60 USD";
+    if(this.slug !== 'pranic-purification')
+      {
+        if (this.checkData.package == "Basic" && e.target.value == "INR") {
+          this.price = "Rs. 2,499";
+          }
+          else if (this.checkData.package == "Basic" && e.target.value == "USD") {
+            this.price = "60 USD";
 
-    }
-    else if (this.checkData.package == "Basic" && e.target.value == "EUR") {
-      this.price = "60 EUR";
+          }
+          else if (this.checkData.package == "Basic" && e.target.value == "EUR") {
+            this.price = "60 EUR";
 
-    }
-    else if (this.checkData.package == "Standard" && e.target.value == "INR") {
-      this.price = "Rs. 4,999";
+          }
+          else if (this.checkData.package == "Standard" && e.target.value == "INR") {
+            this.price = "Rs. 4,999";
 
-    }
-    else if (this.checkData.package == "Standard" && e.target.value == "USD") {
-      this.price = "90 USD";
+          }
+          else if (this.checkData.package == "Standard" && e.target.value == "USD") {
+            this.price = "90 USD";
 
-    }
-    else if (this.checkData.package == "Premium" && e.target.value == "INR") {
-      this.price = "Rs. 5,999";
+          }
+          else if (this.checkData.package == "Premium" && e.target.value == "INR") {
+            this.price = "Rs. 5,999";
 
-    }
-    else if (this.checkData.package == "Premium" && e.target.value == "USD") {
-      this.price = "100 USD";
+          }
+          else if (this.checkData.package == "Premium" && e.target.value == "USD") {
+            this.price = "100 USD";
 
-    }
-    else {
-      this.price = "";
-    }
+          }
+          else {
+            this.price = "";
+          }
+       } else {
+        if(e.target.value == "INR"){
+          this.price = "3499 INR";
+        }
+        else if(e.target.value == "USD"){
+          this.price = "55 USD";
+        }
+        else if(e.target.value == "EUR"){
+          this.price = "52 EUR";
+        }
+       }
   }
   setPrice(e: any) {
     if (e.target.value == "Basic" && this.checkData.currency == "INR") {
@@ -182,116 +216,153 @@ export class CheckoutComponent {
     // if (data.mode == "STRIPE") {
 
     this.spinner.show();
-    if (data.email) {
+    if(this.slug !== 'pranic-purification')
+      {
+        if (data.email) {
 
-      if (this.slug == "pranayama-course-online-pranarambha" && !data.package) {
-        alert("Please select a package..");
-        this.spinner.hide();
-        return
-      }
-      if (this.oldStudent == false && !data.name) {
-        alert('Name is Required!');
-        this.spinner.hide();
-        return
-      }
-      sessionStorage.setItem('tempCourse', this.courseList._id);
-      let pass = this.genratePass(6)
-      if (this.oldStudent == false) {
-        let signup = {
-          firstName: data.name,
-          email: data.email.toLowerCase(),
-          password: pass,
-          isActive: true,
-          source: "web"
-        }
-        this.webapiService.createStudent(signup).subscribe((res: any) => {
-          if (res.status == "ok") {
-            sessionStorage.setItem('loginId-checkout', res.studentId);
+          if (this.slug == "pranayama-course-online-pranarambha" && !data.package) {
+            alert("Please select a package..");
+            this.spinner.hide();
+            return
+          }
+          if (this.oldStudent == false && !data.name) {
+            alert('Name is Required!');
+            this.spinner.hide();
+            return
+          }
+          sessionStorage.setItem('tempCourse', this.courseList._id);
+          let pass = this.genratePass(6)
+          if (this.oldStudent == false) {
+            let signup = {
+              firstName: data.name,
+              email: data.email.toLowerCase(),
+              password: pass,
+              isActive: true,
+              source: "web"
+            }
+            this.webapiService.createStudent(signup).subscribe((res: any) => {
+              if (res.status == "ok") {
+                sessionStorage.setItem('loginId-checkout', res.studentId);
+                if (this.slug == "pranayama-course-online-pranarambha") {
+                  if (data.package == "Basic" && data.currency == "INR") {
+                    this.initializePayment("price_1QmsTUSEQq0H4GuEZfWd5UJu", data.email);  //  price_1NI6oxSEQq0H4GuEW24DMpTn price_1NInGmSDnZBoIVm7fv2upett
+                  }
+                  else if (data.package == "Standard" && data.currency == "INR") {
+                    this.initializePayment("price_1NI6oxSEQq0H4GuERpBbilF2", data.email);
+
+                  }
+                  else if (data.package == "Premium" && data.currency == "INR") {
+                    this.initializePayment("price_1NI6oxSEQq0H4GuEx9fdhEd0", data.email);
+                  }
+                  else if (data.package == "Basic" && data.currency == "USD") {
+                    this.initializePayment("price_1QmychSEQq0H4GuEAipCDoPU", data.email);
+                  }
+                  else if (data.package == "Basic" && data.currency == "EUR") {
+                    this.initializePayment("price_1Qq8OGSEQq0H4GuExvBjijrv", data.email);
+                  }
+                  else if (data.package == "Standard" && data.currency == "USD") {
+                    this.initializePayment("price_1NIRatSEQq0H4GuE0DOlcCNa", data.email);
+                  }
+                  else if (data.package == "Premium" && data.currency == "USD") {
+                    this.initializePayment("price_1NIRbNSEQq0H4GuEeLvnyPu2", data.email);
+                  }
+                }
+                else {
+                  if (this.courseList.priceId) {
+                    this.initializePayment(this.courseList.priceId, data.email)
+                  }
+                }
+              }
+              else {
+                alert("Fail to registered.");
+                this.spinner.hide();
+              }
+
+            });
+
+          }
+          else {
             if (this.slug == "pranayama-course-online-pranarambha") {
               if (data.package == "Basic" && data.currency == "INR") {
-                this.initializePayment("price_1QmsTUSEQq0H4GuEZfWd5UJu", data.email);  //  price_1NI6oxSEQq0H4GuEW24DMpTn price_1NInGmSDnZBoIVm7fv2upett
+                this.spinner.hide();
+                this.initializePayment("price_1QmsTUSEQq0H4GuEZfWd5UJu", data.email);    //price_1NI7hnSEQq0H4GuETCleI6Uo  price_1NI6oxSEQq0H4GuEW24DMpTn
               }
               else if (data.package == "Standard" && data.currency == "INR") {
+                this.spinner.hide();
                 this.initializePayment("price_1NI6oxSEQq0H4GuERpBbilF2", data.email);
 
               }
               else if (data.package == "Premium" && data.currency == "INR") {
+                this.spinner.hide();
                 this.initializePayment("price_1NI6oxSEQq0H4GuEx9fdhEd0", data.email);
               }
               else if (data.package == "Basic" && data.currency == "USD") {
+                this.spinner.hide();
                 this.initializePayment("price_1QmychSEQq0H4GuEAipCDoPU", data.email);
               }
-              else if (data.package == "Basic" && data.currency == "EUR") {
-                this.initializePayment("price_1Qq8OGSEQq0H4GuExvBjijrv", data.email);
-              }
               else if (data.package == "Standard" && data.currency == "USD") {
+                this.spinner.hide();
                 this.initializePayment("price_1NIRatSEQq0H4GuE0DOlcCNa", data.email);
               }
               else if (data.package == "Premium" && data.currency == "USD") {
+                this.spinner.hide();
                 this.initializePayment("price_1NIRbNSEQq0H4GuEeLvnyPu2", data.email);
+              }
+              else {
+                this.spinner.hide();
               }
             }
             else {
               if (this.courseList.priceId) {
+                this.spinner.hide();
                 this.initializePayment(this.courseList.priceId, data.email)
               }
+              else {
+                this.spinner.hide();
+              }
             }
-          }
-          else {
-            alert("Fail to registered.");
-            this.spinner.hide();
-          }
 
-        });
-
-      }
-      else {
-        if (this.slug == "pranayama-course-online-pranarambha") {
-          if (data.package == "Basic" && data.currency == "INR") {
-            this.spinner.hide();
-            this.initializePayment("price_1QmsTUSEQq0H4GuEZfWd5UJu", data.email);    //price_1NI7hnSEQq0H4GuETCleI6Uo  price_1NI6oxSEQq0H4GuEW24DMpTn
-          }
-          else if (data.package == "Standard" && data.currency == "INR") {
-            this.spinner.hide();
-            this.initializePayment("price_1NI6oxSEQq0H4GuERpBbilF2", data.email);
-
-          }
-          else if (data.package == "Premium" && data.currency == "INR") {
-            this.spinner.hide();
-            this.initializePayment("price_1NI6oxSEQq0H4GuEx9fdhEd0", data.email);
-          }
-          else if (data.package == "Basic" && data.currency == "USD") {
-            this.spinner.hide();
-            this.initializePayment("price_1QmychSEQq0H4GuEAipCDoPU", data.email);
-          }
-          else if (data.package == "Standard" && data.currency == "USD") {
-            this.spinner.hide();
-            this.initializePayment("price_1NIRatSEQq0H4GuE0DOlcCNa", data.email);
-          }
-          else if (data.package == "Premium" && data.currency == "USD") {
-            this.spinner.hide();
-            this.initializePayment("price_1NIRbNSEQq0H4GuEeLvnyPu2", data.email);
-          }
-          else {
-            this.spinner.hide();
           }
         }
         else {
-          if (this.courseList.priceId) {
-            this.spinner.hide();
-            this.initializePayment(this.courseList.priceId, data.email)
-          }
-          else {
-            this.spinner.hide();
-          }
+          alert("email is required.");
+          this.spinner.hide();
         }
-
+      } else 
+      {
+        if (!data.email) {
+          alert("email is required.");
+          this.spinner.hide();
+          return;
+        }
+        if (!data.name) {
+          alert("Name is required.");
+          this.spinner.hide();
+          return;
+        }
+        if (!data.phoneNumber) {
+          alert("WhatsApp Number is required.");
+          this.spinner.hide();
+          return;
+        }if(this.price == "" || !this.price) {
+          alert("please select a currency");
+          this.spinner.hide();
+          return;
+        }
+        var {price, currency} = this.extractPriceAndCurrency(this.price) || { price: 0, currency: "" };
+        let signup = {
+          name: data.name,
+          email: data.email.toLowerCase(),
+          phoneNumber: data.phoneNumber,
+          address: data.address,          
+          price:price,
+          currency:currency,
+          courseStartDate: this.pranicDate,
+          courseTimeDuration: this.pranicDuration
+        }
+        this.spinner.hide();
+        this.initializePaymentForPranicPurification(signup);
       }
-    }
-    else {
-      alert("email is required.");
-      this.spinner.hide();
-    }
 
     // }
     // else {
@@ -432,6 +503,49 @@ export class CheckoutComponent {
     //   this.invokeStripe();
     // }
   }
+
+  initializePaymentForPranicPurification(data: any) {
+    
+    this.spinner.show();
+    
+    this.webapiService.checkoutStripeForPranicPurification(data).subscribe((res: any) => {
+      // console.log(res, '--------------');
+      this.spinner.hide();
+      if (res.sessionId) {
+        // this.inquiryData = {};
+        sessionStorage.setItem('pranicPurificationSessionId', res.sessionId)
+        sessionStorage.setItem('dbPay', res.payDbId);
+        // this.spinner.hide();
+        // this.paymentHandler.redirectToCheckout({
+        //   sessionId: res.sessionId
+        // })
+        window.location.href = res.url;
+      }
+      else {
+        alert("Session Genration failed! please try again");
+        this.spinner.hide();
+      }
+
+    });
+    // }
+    // else {
+    //   this.invokeStripe();
+    // }
+  }
+
+  extractPriceAndCurrency(value: string): { price: number; currency: string } | null {
+    const match = value.match(/^(\d+)\s*([A-Z]+)$/);
+  
+    if (match) {
+      return {
+        price: parseInt(match[1], 10), 
+        currency: match[2] 
+      };
+    }
+  
+    return null;
+  }
+  
 
   invokeStripe() {
     if (!window.document.getElementById('stripe-script')) {

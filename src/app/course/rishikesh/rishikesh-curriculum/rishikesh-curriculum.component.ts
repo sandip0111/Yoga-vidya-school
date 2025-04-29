@@ -1,6 +1,6 @@
 import { Component, OnInit,Input, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-rishikesh-curriculum',
@@ -17,10 +17,19 @@ export class RishikeshCurriculumComponent implements OnInit {
   slug: any = '';
   title:any='';
   isItPranicRoute= false;
-  constructor(private activatedRoute: ActivatedRoute) {
+  pranicDate?: string;
+  pranicDuration?: string;
+  constructor(private activatedRoute: ActivatedRoute, private router: Router) {
      this.slug = this.activatedRoute.snapshot.routeConfig?.path;
      if(this.slug == "pranic-purification"){
         this.isItPranicRoute = true;
+        const date = new Date("2025-04-27");
+        const day = date.getDate();
+        const month = date.toLocaleString('en-US', { month: 'long' });
+        this.pranicDate = `${day} ${month}`;
+        this.pranicDuration = "7PM to 8PM (IST)";
+        sessionStorage.setItem('pranicDate', date.toISOString());
+        sessionStorage.setItem('pranicDuration', this.pranicDuration);
       }
    }
 
@@ -44,7 +53,12 @@ export class RishikeshCurriculumComponent implements OnInit {
   }
 
   registerClick() {
-     window.open('https://www.yogavidyaschool.com/book-now', '_blank');
+    if(this.slug != "pranic-purification"){
+      window.open('https://www.yogavidyaschool.com/book-now', '_blank');
+    } else{
+      this.router.navigate(['checkout', this.slug]);
+    }
+     
     
     }
 }

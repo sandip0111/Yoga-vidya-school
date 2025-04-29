@@ -17,6 +17,7 @@ export class SuccessPaymentComponent {
   sessionId: any;
   onlinesessionId: any;
   onlineLiveClassesSessionId:any;
+  pranicPurificationSessionId: any;
   message: string = '';
   paidFlag: any = "default";
   reuseUrl: any;
@@ -34,7 +35,8 @@ export class SuccessPaymentComponent {
     this.spinner.show();
     this.sessionId = sessionStorage.getItem('session');
     this.onlinesessionId = sessionStorage.getItem('onlinesession');
-    this.onlineLiveClassesSessionId = sessionStorage.getItem('onlineLiveClassesSessionId');    
+    this.onlineLiveClassesSessionId = sessionStorage.getItem('onlineLiveClassesSessionId');   
+    this.pranicPurificationSessionId = sessionStorage.getItem('pranicPurificationSessionId');
     if (this.sessionId) {
       setTimeout(() => {
         this.getpaymentResult(this.sessionId);
@@ -48,6 +50,12 @@ export class SuccessPaymentComponent {
     if(this.onlineLiveClassesSessionId){
       setTimeout(() => {
         this.getpaymentResultLiveClasses(this.onlineLiveClassesSessionId);
+      }, 1500)
+    }
+
+    if(this.pranicPurificationSessionId){
+      setTimeout(() => {
+        this.getPaymentResultPranicPurification(this.pranicPurificationSessionId);
       }, 1500)
     }
   }
@@ -117,6 +125,27 @@ export class SuccessPaymentComponent {
     });
   }
 
+  getPaymentResultPranicPurification(pranicPurificationSessionId: any) {
+    let val = {
+      pranicPurificationSessionId: pranicPurificationSessionId,
+      payDbId: sessionStorage.getItem('dbPay')
+    }
+    this.webapiService.getPaymentResultPranicPurification(val).subscribe((res: any) => {
+      console.log(res, '--');
+      if (res.status == "success") {
+        this.paidFlag = "true";
+        this.ordId = res.paymtId;
+        this.amount = `${res.amount} ${res.currency}`;
+        this.spinner.hide();
+      }
+      else {
+        this.paidFlag = "false";
+        this.reuseUrl = res.sessionId;
+        this.spinner.hide();
+      }
+    });
+  }
+
   getcurrentDate() {
     const today = new Date(); // get current date and time
     const year = today.getFullYear(); // get year (YYYY)
@@ -138,6 +167,9 @@ export class SuccessPaymentComponent {
     sessionStorage.removeItem('onlinesession');
     sessionStorage.removeItem('onlineLiveClassesSessionId');
     sessionStorage.removeItem('onlineLiveClassDbPay');
+    sessionStorage.removeItem('pranicPurificationSessionId');
+    sessionStorage.removeItem('pranicDate');
+    sessionStorage.removeItem('pranicDuration');
   }
 
 }
