@@ -28,19 +28,6 @@ export class CourseMentorComponent {
       this.courseMentor = [
         {
           id: 1,
-          name: "Anuj",
-          description:`
-          <p>Anuj class is based on Mobility to recover from long years of spinal & Hip compression from long hours of sitting on desk job or from your sedentary lifestyle. Classes are designed with Hatha yoga 3 series of sequences which include backbending, hip opening, inversion and therapeutic methods. Classes are very progressive and you wont see its as repetitive, every month there is new offering and curated with personal attention on each students need, also largely focused on self practice and how to approach practice on your own on the days off</p
-          <br/><p><strong>Excited to see you</strong></p>`,
-          image: "image_1695634116777.jpeg",
-          intro: "Hatha Yoga",
-          time:"5:00 AM - 6:00 AM (IST)",
-          price:"Rs. 1999/USD 50",
-          priceInIndian: 1999,
-          priceInUSD:50,
-        },
-        {
-          id: 2,
           name: "Acharya Prashant Jakhmola",
           image: "image_1673271873934.jfif",
           intro: "Yoga Sadhana",
@@ -49,6 +36,20 @@ export class CourseMentorComponent {
           priceInIndian: 2999,
           priceInUSD: 70
         },
+        {
+          id: 2,
+          name: "Anuj",
+          description:`
+          <p>Anuj class is based on Mobility to recover from long years of spinal & Hip compression from long hours of sitting on desk job or from your sedentary lifestyle. Classes are designed with Hatha yoga 3 series of sequences which include backbending, hip opening, inversion and therapeutic methods. Classes are very progressive and you wont see its as repetitive, every month there is new offering and curated with personal attention on each students need, also largely focused on self practice and how to approach practice on your own on the days off.</p
+          <br/><p><strong>Excited to see you</strong></p>`,
+          image: "image_1695634116777.jpeg",
+          intro: "Hatha Yoga",
+          time:"5:00 AM - 6:00 AM (IST)",
+          price:"Rs. 1999/USD 50",
+          priceInIndian: 1999,
+          priceInUSD:50,
+        },
+        
         // {
         //   id: 3,
         //   name: "Shiva",
@@ -84,7 +85,7 @@ export class CourseMentorComponent {
         {
           id: 4,
           name: "Shivam Joshi",
-          description:"Join Shivam Joshi’s classes in this holistic journey towards physical vitality and mental clarity. Experience the profound benefits of a practice rooted in tradition of Hatha Yoga and Iyengar Yoga. These 90-minute online classes focus on mastering foundational asanas with precision and care. Incorporating the principles of Iyengar Yoga, you’ll learn to achieve perfect alignment using supportive props. Highly recommended yoga sessions to master",
+          description:"Join Shivam Joshi’s classes in this holistic journey towards physical vitality and mental clarity. Experience the profound benefits of a practice rooted in tradition of Hatha Yoga and Iyengar Yoga. These 90-minute online classes focus on mastering foundational asanas with precision and care. Incorporating the principles of Iyengar Yoga, you’ll learn to achieve perfect alignment using supportive props. Highly recommended yoga sessions to master.",
           image: "image_1673271925503.jpeg",
           intro: "Iyengar/ Yoga Therapy ",
           time:"6:30 PM – 8:00 PM (IST)",
