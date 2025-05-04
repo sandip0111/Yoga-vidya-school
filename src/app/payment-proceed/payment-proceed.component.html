@@ -93,6 +93,7 @@
                     [selectFirstCountry]="false"
                     [selectedCountryISO]="CountryISO.India"
                     [maxLength]="15"
+                    (countryChange)="onCountryChange($event)"
                     name="mobile"
                     (input)="onPhoneInputChange()"
                     formControlName="mobile">
@@ -110,15 +111,20 @@
               </div>
               <div class="col-md-6">
                 <label class="pay">Currency</label>
-                <input
-                  type="text"
+                <select
+                  class="placeicon"
                   name="currency"
                   formControlName="currency"
                   [(ngModel)]="currency"
-                  class="placeicon"
-                  readonly
-                />
+                  (change)="onCurrencyChange($event)"
+                  required
+                >
+                  <option value="" disabled selected>Select</option>
+                  <option *ngFor="let option of currencyOptions" [value]="option">{{ option }}</option>
+                </select>
               </div>
+              
+              
               <div class="col-md-6">
                 <label class="pay">Price</label>
                 <input
@@ -130,6 +136,7 @@
                   readonly
                 />
               </div>
+              
             </div>
 
             <div class="row">

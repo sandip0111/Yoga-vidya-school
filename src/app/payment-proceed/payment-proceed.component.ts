@@ -1,12 +1,10 @@
-declare var intlTelInputUtils: any;
 import { CommonModule } from '@angular/common';
-import { Component,ElementRef, ViewChild,AfterViewInit, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CartService } from '../cart.service';
 import { WebapiService } from '../webapi.service';
 import { NgxSpinnerService } from 'ngx-spinner';
-import  intlTelInput   from 'intl-tel-input';
-import { NgxIntlTelInputComponent, NgxIntlTelInputModule } from 'ngx-intl-tel-input';
+import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 import { SearchCountryField } from 'ngx-intl-tel-input';
 import { CountryISO } from 'ngx-intl-tel-input';
 
@@ -32,28 +30,67 @@ export class PaymentProceedComponent implements OnInit {
       holderName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       mobile: ['', Validators.required],
-      currency: [{value: '', disabled: true}],
+      currency: ['', Validators.required],
       price: [{ value: '', disabled: true }], // Read-only field
     });
   }
   phoneError: string = '';
+  currencyOptions: string[] = [];
+  isPhoneValid: boolean = false;
 
   ngOnInit(): void {
-    this.paymentForm.value.currency = this.cartService.getCurrency();
-    this.paymentForm.value.price = this.cartService.getTotalAmount(this.paymentForm.value.currency);
-    this.currency = this.paymentForm.value.currency;
-    this.price = this.paymentForm.value.price;
+    // this.paymentForm.value.currency = this.cartService.getCurrency();
+    // this.paymentForm.value.price = this.cartService.getTotalAmount(this.paymentForm.value.currency);
+    // this.currency = this.paymentForm.value.currency;
+    // this.price = this.paymentForm.value.price;
     this.invokeStripe();
   }
 
   onPhoneInputChange(): void {
-    const isInvalid = this.paymentForm.controls['mobile'].invalid;
+    const control = this.paymentForm.controls['mobile'];
+    this.isPhoneValid = control.valid;
   
-    if (isInvalid) {
+    if (!this.isPhoneValid) {
       this.phoneError = 'Invalid phone number';
-    } else {
-      this.phoneError = '';
+      this.currencyOptions = [];
+      this.paymentForm.patchValue({ currency: '', price: ''});
+      return;
     }
+  
+    this.phoneError = '';
+  
+    const phoneValue = control.value;
+    const countryCode = phoneValue?.countryCode;
+  
+    if (countryCode === 'IN') {
+      this.currencyOptions = ['INR', 'USD'];
+    } else {
+      this.currencyOptions = ['USD'];
+    }
+  
+    // Auto-select the first option
+    this.paymentForm.patchValue({ currency: this.currencyOptions[0] });
+    this.updatePrice();
+  }
+
+  onCountryChange(country: any): void {
+    
+    this.phoneError = '';
+    this.currencyOptions = [];
+    this.paymentForm.patchValue({ currency: '', price: '' });
+    this.paymentForm.controls['mobile'].setValue(null);
+ 
+  }
+
+  onCurrencyChange(event: Event): void {
+    const selectedCurrency = (event.target as HTMLSelectElement).value;
+    this.updatePrice(selectedCurrency);
+  }
+  
+  updatePrice(currency?: string): void {
+    const selected = currency || this.paymentForm.get('currency')?.value;
+    this.price = this.cartService.getTotalAmount(selected);
+    this.paymentForm.patchValue({ price: this.price });
   }
 
   onSubmit(): void {
@@ -95,18 +132,18 @@ export class PaymentProceedComponent implements OnInit {
       script.id = 'stripe-script';
       script.type = 'text/javascript';
       script.src = 'https://js.stripe.com/v3/';
-      script.onload = () => {
-        this.paymentHandler = (<any>window).Stripe(
-          'pk_test_51LTjKYSDnZBoIVm7pF6anOLQhi4oPrvRNYuOP0fF0wOptRzE1m0QqtvAOo1wi6VUVb5cMgThi8FGGeSUhZ10KRIW00zlCy2Ff0', // Replace with your own publishable key
-          { locale: 'auto' }
-        );
-      };
       // script.onload = () => {
       //   this.paymentHandler = (<any>window).Stripe(
-      //     'pk_live_51LJJXISEQq0H4GuE8KMgQV23uQA21MqJLP8XsL3fNZBpwRmX9n8VK4CdcBbeSNbnptLCNn7SScrNvIERlhyKsO1c00ILj5f3hP', // Replace with your own publishable key
+      //     'pk_test_51LTjKYSDnZBoIVm7pF6anOLQhi4oPrvRNYuOP0fF0wOptRzE1m0QqtvAOo1wi6VUVb5cMgThi8FGGeSUhZ10KRIW00zlCy2Ff0', // Replace with your own publishable key
       //     { locale: 'auto' }
       //   );
       // };
+      script.onload = () => {
+        this.paymentHandler = (<any>window).Stripe(
+          'pk_live_51LJJXISEQq0H4GuE8KMgQV23uQA21MqJLP8XsL3fNZBpwRmX9n8VK4CdcBbeSNbnptLCNn7SScrNvIERlhyKsO1c00ILj5f3hP', // Replace with your own publishable key
+          { locale: 'auto' }
+        );
+      };
       window.document.body.appendChild(script);
     }
   }

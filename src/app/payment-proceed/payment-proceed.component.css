@@ -32,6 +32,25 @@
   letter-spacing: 1px;
 }
 
+select.placeicon {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  appearance: none; /* Removes default arrow in most browsers */
+  background: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D%22292%22%20height%3D%22292%22%20viewBox%3D%220%200%20292%20292%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cpath%20fill%3D%22%23333%22%20d%3D%22M287%2069.4c5.1-5.1%205.1-13.3%200-18.4l-21.2-21.2c-5.1-5.1-13.3-5.1-18.4%200L146%20131%2044.6%2029.6c-5.1-5.1-13.3-5.1-18.4%200L5%2045.8c-5.1%205.1-5.1%2013.3%200%2018.4l133%20133c5.1%205.1%2013.3%205.1%2018.4%200l133-133z%22/%3E%3C/svg%3E") no-repeat right 12px center;
+  background-size: 12px;
+  font-size: 14px;
+  color: #333;
+  background-color: #fff;
+}
+
+select.placeicon:disabled {
+  background-color: #f0f0f0;
+  color: #aaa;
+  cursor: not-allowed;
+}
+
 .form-card input:focus,
 .form-card textarea:focus {
   -moz-box-shadow: none !important;
@@ -172,4 +191,12 @@ ngx-intl-tel-input input::placeholder {
 ngx-intl-tel-input input[disabled] {
 	background-color: #e5eaf1;
 }
+
+@media (max-width: 576px) {
+  select.placeicon {
+    font-size: 16px;
+    padding: 12px;
+  }
+}
+
 

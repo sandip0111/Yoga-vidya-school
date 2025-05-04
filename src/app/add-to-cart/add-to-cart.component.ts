@@ -106,8 +106,9 @@ export class AddToCartComponent implements AfterViewInit, OnDestroy {
   }
 
   updateTotalAmount(currency: string): void {
-    var amount = this.cartService.getTotalAmount(currency);
-    this.totalAmount = (currency =="INR"? 'Rs. ': 'USD ') + amount; 
+    var amountInr = this.cartService.getTotalAmount(currency);
+    var amountUsd = this.cartService.getTotalAmount("USD");
+    this.totalAmount = "Rs." + amountInr + " / $" + amountUsd;
   }
 
   placeOrder(): void{
