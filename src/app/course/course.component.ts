@@ -117,7 +117,7 @@ export class CourseComponent {
           //   return itemDate >= currentDate;
           // });
           this.introLink = 'https://www.youtube.com/embed/'+ res.data[0].courseintrovideoId;
-          // console.log(this.introLink,'--');
+           //console.log(this.introLink,'--');
 
           this.title.setTitle(res.data[0].metaTitle);
           this.meta.updateTag({ name: 'keywords', content: res.data[0].metaKeyword });
