@@ -57,13 +57,23 @@
 
             <div class="row mb-4">
               <div class="col-md-12 mb-4">
-                <label class="pay">Mobile Number</label>
-                <input
+                <label class="pay">Mobile Number</label><br>
+                <!-- <input
                   type="text"
                   name="mobile"
                   placeholder="123456789"
                   formControlName="mobile"
-                />
+                /> -->
+
+                  <input  
+                  type="tel"
+                  name="mobile"
+                  #phoneInput
+                  class="form-control"
+                  placeholder="1234567890"
+                  formControlName="mobile"
+                  style="width: 210%;"/>
+    
                 <div *ngIf="paymentForm.get('mobile')?.hasError('required') && submitted">
                   <span class="text-danger">Mobile number is required.</span>
                 </div>
