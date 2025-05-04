@@ -57,7 +57,7 @@
 
             <div class="row mb-4">
               <div class="col-md-12 mb-4">
-                <label class="pay">Mobile Number</label><br>
+                <label class="pay">Whatsapp Number</label><br>
                 <!-- <input
                   type="text"
                   name="mobile"
@@ -65,18 +65,45 @@
                   formControlName="mobile"
                 /> -->
 
-                  <input  
+                  <!-- <input  
                   type="tel"
                   name="mobile"
                   #phoneInput
                   class="form-control"
-                  placeholder="1234567890"
+                  placeholder=""
                   formControlName="mobile"
                   style="width: 210%;"/>
     
-                <div *ngIf="paymentForm.get('mobile')?.hasError('required') && submitted">
-                  <span class="text-danger">Mobile number is required.</span>
-                </div>
+                  <div *ngIf="paymentForm.get('mobile')?.errors && submitted">
+                    <span class="text-danger" *ngIf="paymentForm.get('mobile')?.hasError('required')">
+                      Mobile number is required.
+                    </span>
+                    <span class="text-danger" *ngIf="paymentForm.get('mobile')?.hasError('invalidPhone')">
+                      Please enter a valid mobile number.
+                    </span>
+                  </div> -->
+                  <ngx-intl-tel-input
+                    [cssClass]="'form-control phone_input'"
+                    [separateDialCode]="true"
+                    [preferredCountries]="['in', 'us']"
+                    [enableAutoCountrySelect]="true"
+                    [enablePlaceholder]="true"
+                    [searchCountryFlag]="true"
+                    [searchCountryField]="searchFields"
+                    [selectFirstCountry]="false"
+                    [selectedCountryISO]="CountryISO.India"
+                    [maxLength]="15"
+                    name="mobile"
+                    (input)="onPhoneInputChange()"
+                    formControlName="mobile">
+                  </ngx-intl-tel-input>
+
+                  <!-- Validation message -->
+                  <div *ngIf="phoneError" class="text-danger mt-1">
+                    {{ phoneError }}
+                  </div>
+
+
                 <!-- <div *ngIf="paymentForm.get('mobile')?.hasError('pattern') && paymentForm.get('mobile')?.touched">
                   <span class="text-danger">Enter a valid mobile number.</span>
                 </div> -->

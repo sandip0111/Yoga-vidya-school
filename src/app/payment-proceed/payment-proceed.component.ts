@@ -1,26 +1,31 @@
 declare var intlTelInputUtils: any;
 import { CommonModule } from '@angular/common';
-import { Component,ElementRef, ViewChild,AfterViewInit } from '@angular/core';
+import { Component,ElementRef, ViewChild,AfterViewInit, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CartService } from '../cart.service';
 import { WebapiService } from '../webapi.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import  intlTelInput   from 'intl-tel-input';
+import { NgxIntlTelInputComponent, NgxIntlTelInputModule } from 'ngx-intl-tel-input';
+import { SearchCountryField } from 'ngx-intl-tel-input';
+import { CountryISO } from 'ngx-intl-tel-input';
 
 
 @Component({
   selector: 'app-payment-proceed',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, CommonModule],
+  imports: [FormsModule, ReactiveFormsModule, CommonModule, NgxIntlTelInputModule],
   templateUrl: './payment-proceed.component.html',
   styleUrl: './payment-proceed.component.css'
 })
-export class PaymentProceedComponent implements AfterViewInit{
+export class PaymentProceedComponent implements OnInit {
   paymentForm: FormGroup;
   currency: any;
   submitted: boolean = false;
   price: any;
   paymentHandler: any = null;
+  CountryISO = CountryISO;
+  searchFields = [SearchCountryField.Name, SearchCountryField.DialCode, SearchCountryField.Iso2];
 
   constructor(private fb: FormBuilder, private cartService: CartService, private webapiService: WebapiService,  private spinner: NgxSpinnerService) {
     this.paymentForm = this.fb.group({
@@ -31,22 +36,7 @@ export class PaymentProceedComponent implements AfterViewInit{
       price: [{ value: '', disabled: true }], // Read-only field
     });
   }
-  @ViewChild('phoneInput') phoneInput!: ElementRef;
-iti: any;  // Use `any` to avoid type issues from @types/intl-tel-input
-
-ngAfterViewInit(): void {
-  this.iti = intlTelInput(this.phoneInput.nativeElement, {
-    separateDialCode: true,
-    initialCountry: 'auto',
-    geoIpLookup: (callback: (countryCode: string) => void) => {
-      fetch('https://ipinfo.io/json')
-        .then((res) => res.json())
-        .then((data) => callback(data.country))
-        .catch(() => callback('us'));
-    },
-    utilsScript: 'assets/intl-tel-input/utils.js' // Must match path in angular.json
-  }as any);
-}
+  phoneError: string = '';
 
   ngOnInit(): void {
     this.paymentForm.value.currency = this.cartService.getCurrency();
@@ -56,22 +46,33 @@ ngAfterViewInit(): void {
     this.invokeStripe();
   }
 
+  onPhoneInputChange(): void {
+    const isInvalid = this.paymentForm.controls['mobile'].invalid;
+  
+    if (isInvalid) {
+      this.phoneError = 'Invalid phone number';
+    } else {
+      this.phoneError = '';
+    }
+  }
+
   onSubmit(): void {
     this.submitted = true;
-     //var intlTelInputUtils: any;
+    const isInvalid = this.paymentForm.controls['mobile'].invalid;
+  
+    if (isInvalid) {
+      this.phoneError = 'Invalid phone number';
+      return;
+    }
+    
 
     if (this.paymentForm.valid) {
-      //if (this.iti && this.iti.isValidNumber()) {
-        const fullPhoneNumber = this.iti.getNumber(intlTelInputUtils.numberFormat.E164);
-        console.log('fullPhoneNumber',fullPhoneNumber);
-        // Update the form with the formatted number
-        this.paymentForm.patchValue({ mobile: fullPhoneNumber });
-      //}
+     
       console.log('Form Data:', this.paymentForm.getRawValue());
       this.spinner.show();
       var data = this.paymentForm.getRawValue();
       var courseList = this.cartService.getItems();
-      let val = { name: data.holderName, email: data.email, phone: data.mobile, currency: data.currency, paymentStatus: "due", price: data.price, courses: courseList}
+      let val = { name: data.holderName, email: data.email, phone: data.mobile.e164Number, currency: data.currency, paymentStatus: "due", price: data.price, courses: courseList}
     
       this.webapiService.checkoutStripeForLiveClasses(val).subscribe((res: any) => {
         this.spinner.hide();
