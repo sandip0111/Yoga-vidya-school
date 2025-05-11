@@ -7,6 +7,7 @@
       <p class="card-text">Amount: {{ amount }}</p>
       <p class="card-text">Thank you for your payment!</p>
       <p *ngIf="sessionId" class="card-text">Check your email for details.</p>
+      <p *ngIf="onlineLiveClassesSessionId"  class="card-text">Check your email or whatsapp for details.</p>
       <p>
         <a
           *ngIf="sessionId"
