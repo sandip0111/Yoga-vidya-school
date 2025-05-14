@@ -204,7 +204,10 @@ export class CourseMentorComponent {
    if(this.course != undefined){
 	   this.cartService.addItem(this.course);
    };  
-    this.router.navigate(['/add-to-cart']);
+   // this.router.navigate(['/add-to-cart']);
+   this.router.navigate(['/add-to-cart']).then(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
   }
 
 }
