@@ -193,4 +193,12 @@ export class WebapiService {
   createAnalytics(data: any) {
     return this.http.post(this.url + "api/v1/createAnalytics", data);
   }
+
+  createRazorpayOrder(data: any) {
+    return this.http.post(this.url + "api/v1/createRazorpayOrder", data);
+  }
+
+  verifyRazorpayPayment(data: any) {   
+    return this.http.post(this.url + "api/v1/verifyRazorpayPaymentAndSendMail", data);
+  }
 }

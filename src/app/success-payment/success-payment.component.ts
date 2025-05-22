@@ -18,6 +18,7 @@ export class SuccessPaymentComponent {
   onlinesessionId: any;
   onlineLiveClassesSessionId:any;
   pranicPurificationSessionId: any;
+  onlineClassRazorpayPaymentId : any;
   message: string = '';
   paidFlag: any = "default";
   reuseUrl: any;
@@ -37,6 +38,7 @@ export class SuccessPaymentComponent {
     this.onlinesessionId = sessionStorage.getItem('onlinesession');
     this.onlineLiveClassesSessionId = sessionStorage.getItem('onlineLiveClassesSessionId');   
     this.pranicPurificationSessionId = sessionStorage.getItem('pranicPurificationSessionId');
+    this.onlineClassRazorpayPaymentId = sessionStorage.getItem('online_class_razorpay_payment_id');
     if (this.sessionId) {
       setTimeout(() => {
         this.getpaymentResult(this.sessionId);
@@ -50,6 +52,12 @@ export class SuccessPaymentComponent {
     if(this.onlineLiveClassesSessionId){
       setTimeout(() => {
         this.getpaymentResultLiveClasses(this.onlineLiveClassesSessionId);
+      }, 1500)
+    }
+    
+    if(this.onlineClassRazorpayPaymentId){
+      setTimeout(() => {
+        this.getpaymentResultLiveClassesRazorPay(this.onlineClassRazorpayPaymentId);
       }, 1500)
     }
 
@@ -125,6 +133,30 @@ export class SuccessPaymentComponent {
     });
   }
 
+  getpaymentResultLiveClassesRazorPay(razorpay_payment_id: any) {
+    const paymentResult = {
+      razorpay_payment_id: razorpay_payment_id,
+      razorpay_order_id: sessionStorage.getItem('online_class_razorpay_order_id'),
+      razorpay_signature: sessionStorage.getItem('online_class_razorpay_signature'),
+      payDbId: sessionStorage.getItem('onlineLiveClassDbPayRazor')
+    };
+    this.webapiService.verifyRazorpayPayment(paymentResult).subscribe((res: any) => {
+        console.log(res, '--');
+        if (res.status == "success") {
+          this.paidFlag = "true";
+          this.ordId = res.paymtId;
+          this.amount = `${res.amount} ${res.currency}`;
+          this.spinner.hide();
+        }
+        else {
+          this.paidFlag = "false";
+          this.reuseUrl = res.sessionId;
+          this.spinner.hide();
+        }
+    });
+    
+  }
+
   getPaymentResultPranicPurification(pranicPurificationSessionId: any) {
     let val = {
       pranicPurificationSessionId: pranicPurificationSessionId,
@@ -170,6 +202,10 @@ export class SuccessPaymentComponent {
     sessionStorage.removeItem('pranicPurificationSessionId');
     sessionStorage.removeItem('pranicDate');
     sessionStorage.removeItem('pranicDuration');
+    sessionStorage.removeItem('online_class_razorpay_payment_id');
+    sessionStorage.removeItem('online_class_razorpay_order_id');
+    sessionStorage.removeItem('online_class_razorpay_signature');
+    sessionStorage.removeItem('onlineLiveClassDbPayRazor');
   }
 
 }

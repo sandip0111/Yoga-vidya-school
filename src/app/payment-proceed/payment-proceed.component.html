@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-sm-12 p-0 box">
       <div class="card rounded-0 border-0 card2" id="paypage">
-        <form [formGroup]="paymentForm" (ngSubmit)="onSubmit()">
+        <form [formGroup]="paymentForm" >
           <div class="form-card">
             <h2 id="heading2" class="text-danger">Payment Method</h2>
             <div class="radio-group">
@@ -139,10 +139,15 @@
               
             </div>
 
-            <div class="row">
-              <div class="col-md-6">
-                <button type="submit" class="button payment-btn">
-                  Make a payment
+           <div class="row">
+              <div class="col-md-6 mb-2">
+                <button type="button" class="button payment-btn btn-primary w-100" (click)="onStripePayment()">
+                  Pay with Stripe
+                </button>
+              </div>
+              <div class="col-md-6 mb-2">
+                <button type="button" class="button payment-btn btn-dark w-100" (click)="onRazorpayPayment()">
+                  Pay with Razorpay
                 </button>
               </div>
             </div>

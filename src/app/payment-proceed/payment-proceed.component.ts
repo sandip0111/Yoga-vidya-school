@@ -7,8 +7,9 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 import { SearchCountryField } from 'ngx-intl-tel-input';
 import { CountryISO } from 'ngx-intl-tel-input';
+import { Router } from '@angular/router';
 
-
+declare var Razorpay: any;
 @Component({
   selector: 'app-payment-proceed',
   standalone: true,
@@ -23,9 +24,10 @@ export class PaymentProceedComponent implements OnInit {
   price: any;
   paymentHandler: any = null;
   CountryISO = CountryISO;
+
   searchFields = [SearchCountryField.Name, SearchCountryField.DialCode, SearchCountryField.Iso2];
 
-  constructor(private fb: FormBuilder, private cartService: CartService, private webapiService: WebapiService,  private spinner: NgxSpinnerService) {
+  constructor(private fb: FormBuilder, private router: Router, private cartService: CartService, private webapiService: WebapiService,  private spinner: NgxSpinnerService) {
     this.paymentForm = this.fb.group({
       holderName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -44,6 +46,7 @@ export class PaymentProceedComponent implements OnInit {
     // this.currency = this.paymentForm.value.currency;
     // this.price = this.paymentForm.value.price;
     this.invokeStripe();
+    this.loadRazorpayScript();
   }
 
   onPhoneInputChange(): void {
@@ -93,7 +96,7 @@ export class PaymentProceedComponent implements OnInit {
     this.paymentForm.patchValue({ price: this.price });
   }
 
-  onSubmit(): void {
+  onStripePayment(): void {
     this.submitted = true;
     const isInvalid = this.paymentForm.controls['mobile'].invalid;
   
@@ -154,4 +157,97 @@ export class PaymentProceedComponent implements OnInit {
     
    
   }
+
+  loadRazorpayScript() {
+    if (!document.getElementById('razorpay-script')) {
+      const script = document.createElement('script');
+      script.id = 'razorpay-script';
+      script.src = 'https://checkout.razorpay.com/v1/checkout.js';
+      script.onload = () => {
+        console.log('Razorpay script loaded.');
+      };
+      document.body.appendChild(script);
+    }
+  }
+
+  onRazorpayPayment(): void {
+  this.submitted = true;
+  const isInvalid = this.paymentForm.controls['mobile'].invalid;
+  if (isInvalid) {
+    this.phoneError = 'Invalid phone number';
+    return;
+  }
+  if (this.paymentForm.valid) {
+      const data = this.paymentForm.getRawValue();
+      const courseList = this.cartService.getItems();
+      
+
+      const paymentData = {
+        name: data.holderName,
+        email: data.email,
+        phone: data.mobile.e164Number,
+        currency: data.currency,
+        price: data.price,
+        courses: courseList,
+        paymentStatus: 'due'
+      };
+
+      this.spinner.show();
+
+      // Call your API to create an order ID for Razorpay
+      this.webapiService.createRazorpayOrder(paymentData).subscribe((res: any) => {
+      this.spinner.hide();
+
+      if (res && res.orderId && res.key) {
+        const options = {
+          key: res.key, // key_id passed from backend
+          amount: data.price * 100, // in paise
+          currency: data.currency,
+          name: 'Yoga Vidya School',
+          description: 'Live Class Payment',
+          order_id: res.orderId,
+          handler: (response: any) => {
+            // After payment success
+            sessionStorage.setItem('online_class_razorpay_payment_id',  response.razorpay_payment_id);
+            sessionStorage.setItem('online_class_razorpay_order_id',  response.razorpay_order_id);
+            sessionStorage.setItem('online_class_razorpay_signature',  response.razorpay_signature);
+            sessionStorage.setItem('onlineLiveClassDbPayRazor',  res.payDbId );
+            this.router.navigate(['/confirmation']);
+            // const paymentResult = {
+            //   razorpay_payment_id: response.razorpay_payment_id,
+            //   razorpay_order_id: response.razorpay_order_id,
+            //   razorpay_signature: response.razorpay_signature,
+            //   payDbId: res.payDbId // optional, if needed for tracking
+            // };
+            // this.webapiService.verifyRazorpayPayment(paymentResult).subscribe(() => {
+            //   alert('Payment Successful!');
+            // }, () => {
+            //   alert('Payment verification failed.');
+            // });
+          },
+          prefill: {
+            name: data.holderName,
+            email: data.email,
+            contact: data.mobile.e164Number
+          },
+          notes: {
+            courses: JSON.stringify(courseList)
+          },
+          theme: {
+            color: '#3399cc'
+          }
+        };
+
+        const rzp = new Razorpay(options);
+        rzp.open();
+      } 
+    }, err => {
+      this.spinner.hide();
+      
+      });
+
+    }
+ }
+
+
 }
