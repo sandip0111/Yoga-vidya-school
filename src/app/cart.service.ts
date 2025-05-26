@@ -60,7 +60,7 @@ export class CartService {
     this.sendEventBus();
   }
 
-  removeItem(itemId: number, currency: string): void {
+  removeItem(itemId: number, currency?: string): void {
     var onlineCourse = this.items.find(i=> i.id == itemId);
     if(onlineCourse != null){
       if(onlineCourse.quantity == 1){
@@ -73,7 +73,10 @@ export class CartService {
       }
     }   
     this.saveCart();
-    this.getTotalAmount(currency);
+    if(currency != null && currency != undefined){
+      this.getTotalAmount(currency);
+    }
+    
     this.sendEventBus();
   }
    

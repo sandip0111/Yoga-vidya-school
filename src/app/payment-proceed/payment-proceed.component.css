@@ -1,9 +1,7 @@
 /*Right Side Card*/
 .payment_card {
   width: 100%;
-  max-width: 540px;
   margin-inline: auto;
-  padding: 40px 20px;
 }
 .card2 {
   padding: 25px;
@@ -141,6 +139,45 @@ select.placeicon:disabled {
 	outline: none;
 }
 
+.addToCard_wrapper {
+  display: grid;
+  grid-template-columns: 60fr 40fr;
+  gap: 40px;
+  margin-bottom: 40px;
+}
+.title {
+  width: 100%;
+  text-align: center;
+}
+.card-text {
+  margin-block-start: 10px;
+}
+.card_amount_area {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.small_text {
+  color: var(--tw-primary-light);
+}
+.card_box {
+  border: 0.94px solid var(--tw-gray-300-light);
+  padding: 20px;
+  border-radius: 10px;
+  -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+  .card-body {
+    padding: 0;
+  }
+}
+.card_sticky {
+  position: sticky;
+  top: 10px;
+}
+
 @media screen and (max-width: 479px) {
 	.iti .iti__country-list {
 		width: 88.3vw;
@@ -192,10 +229,41 @@ ngx-intl-tel-input input[disabled] {
 	background-color: #e5eaf1;
 }
 
+.custom-btn-orange {
+  border-color: #f47019;
+  color: #f47019;
+  width: 300px;
+}
+
+.custom-btn-orange:hover,
+.custom-btn-orange:focus {
+  background-color: #f47019;
+  color: white;
+  border-color: #f47019;
+}
+
+.form-check-input:checked {
+  background-color: #f47019;
+  border-color: #f47019;
+}
+
+/* Checkbox outline when focused */
+.form-check-input:focus {
+  box-shadow: 0 0 0 0.2rem rgba(244, 112, 25, 0.25);
+  border-color: #f47019;
+}
+
 @media (max-width: 576px) {
   select.placeicon {
     font-size: 16px;
     padding: 12px;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  .addToCard_wrapper {
+    grid-template-columns: 1fr;
+    gap: 20px;
   }
 }
 

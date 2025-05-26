@@ -76,8 +76,8 @@ export class CourseMentorComponent {
 `,
           image: "image_1675243508012.jpg",
           intro: "Women Wellness Yoga",
-          time:"7:30 AM – 8:30 AM (IST)",
-          time1:"5:30 PM – 6:30 PM (IST)",
+          time:"5:30 PM – 6:30 PM (IST)",
+          time1:"",
           price:"Rs. 1999/USD 40",
           priceInIndian: 1999,
           priceInUSD: 40
@@ -205,7 +205,7 @@ export class CourseMentorComponent {
 	   this.cartService.addItem(this.course);
    };  
    // this.router.navigate(['/add-to-cart']);
-   this.router.navigate(['/add-to-cart']).then(() => {
+   this.router.navigate(['/proceed-payment']).then(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
   }

@@ -1,159 +1,215 @@
-<div class="payment_card">
-  <div class="row">
-    <div class="col-sm-12 p-0 box">
-      <div class="card rounded-0 border-0 card2" id="paypage">
-        <form [formGroup]="paymentForm" >
-          <div class="form-card">
-            <h2 id="heading2" class="text-danger">Payment Method</h2>
-            <div class="radio-group">
-              <div class="radio">
-                <img
-                  src="https://i.imgur.com/28akQFX.jpg"
-                  width="200px"
-                  height="60px"
-                />
-              </div>
-              <div class="radio">
-                <img
-                  src="https://i.imgur.com/5QFsx7K.jpg"
-                  width="200px"
-                  height="60px"
-                />
-              </div>
-              <br />
-            </div>
-            <div class="mb-4">
-              <label class="pay">Name</label>
-              <input
-                type="text"
-                name="holdername"
-                placeholder="John Smith"
-                formControlName="holderName"
-              />
-              <div *ngIf="paymentForm.get('holderName')?.hasError('required') && submitted">
-                <span class="text-danger">Name is required.</span>
-              </div>
-            </div>
-
-            <div class="row mb-4">
-              <div class="col-md-12">
-                <label class="pay">Email</label>
-              </div>
-              <div class="col-md-12">
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="abc@1235gmail.com"
-                  formControlName="email"
-                />
-                <div *ngIf="paymentForm.get('email')?.hasError('required') && submitted">
-                  <span class="text-danger">Email is required.</span>
-                </div>
-                <div *ngIf="paymentForm.get('email')?.hasError('email') &&  paymentForm.get('email')?.touched">
-                  <span class="text-danger">Enter a valid email.</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="row mb-4">
-              <div class="col-md-12 mb-4">
-                <label class="pay">Whatsapp Number</label><br>
-                <!-- <input
-                  type="text"
-                  name="mobile"
-                  placeholder="123456789"
-                  formControlName="mobile"
-                /> -->
-
-                  <!-- <input  
-                  type="tel"
-                  name="mobile"
-                  #phoneInput
-                  class="form-control"
-                  placeholder=""
-                  formControlName="mobile"
-                  style="width: 210%;"/>
-    
-                  <div *ngIf="paymentForm.get('mobile')?.errors && submitted">
-                    <span class="text-danger" *ngIf="paymentForm.get('mobile')?.hasError('required')">
-                      Mobile number is required.
-                    </span>
-                    <span class="text-danger" *ngIf="paymentForm.get('mobile')?.hasError('invalidPhone')">
-                      Please enter a valid mobile number.
-                    </span>
-                  </div> -->
-                  <ngx-intl-tel-input
-                    [cssClass]="'form-control phone_input'"
-                    [separateDialCode]="true"
-                    [preferredCountries]="['in', 'us']"
-                    [enableAutoCountrySelect]="true"
-                    [enablePlaceholder]="true"
-                    [searchCountryFlag]="true"
-                    [searchCountryField]="searchFields"
-                    [selectFirstCountry]="false"
-                    [selectedCountryISO]="CountryISO.India"
-                    [maxLength]="15"
-                    (countryChange)="onCountryChange($event)"
-                    name="mobile"
-                    (input)="onPhoneInputChange()"
-                    formControlName="mobile">
-                  </ngx-intl-tel-input>
-
-                  <!-- Validation message -->
-                  <div *ngIf="phoneError" class="text-danger mt-1">
-                    {{ phoneError }}
-                  </div>
-
-
-                <!-- <div *ngIf="paymentForm.get('mobile')?.hasError('pattern') && paymentForm.get('mobile')?.touched">
-                  <span class="text-danger">Enter a valid mobile number.</span>
-                </div> -->
-              </div>
-              <div class="col-md-6">
-                <label class="pay">Currency</label>
-                <select
-                  class="placeicon"
-                  name="currency"
-                  formControlName="currency"
-                  [(ngModel)]="currency"
-                  (change)="onCurrencyChange($event)"
-                  required
+ 
+<div class="container mt-5">
+  <div class="d-flex justify-content-between align-items-center mb-4">    
+    <h4 class="small_text">Online Classes</h4>
+    <div class="dropdown mb-3">
+    <button class="btn custom-btn-orange dropdown-toggle" type="button" data-bs-toggle="dropdown">
+      Add More Classes
+    </button>
+    <ul class="dropdown-menu p-3" style="max-height: 300px; overflow-y: auto;">
+      <li *ngFor="let course of availableCourses">
+        <div class="form-check">
+          <input class="form-check-input"
+                type="checkbox"
+                [id]="course.id"
+                [value]="course"
+                [checked]="isCourseSelected(course)"
+                (change)="onCourseToggle(course, $event)"
                 >
-                  <option value="" disabled selected>Select</option>
-                  <option *ngFor="let option of currencyOptions" [value]="option">{{ option }}</option>
-                </select>
-              </div>
-              
-              
-              <div class="col-md-6">
-                <label class="pay">Price</label>
-                <input
-                  type="text"
-                  name="price"
-                  formControlName="price"
-                  [(ngModel)]="price"
-                  class="placeicon"
-                  readonly
-                />
-              </div>
-              
-            </div>
+          <label class="form-check-label" [for]="course.id">{{ course.title }}</label>
+        </div>
+      </li>
+    </ul>
+    </div>
+  </div>
+  <div class="addToCard_wrapper">
+    <div class="">
+      <div class="row">
+        <!-- Loop through the courses in your Angular component -->
+        <div class="col-md-12" *ngFor="let course of courses">
+          <div class="card_box mb-4">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">{{ course.title }}</h5>
+              <p class="card-text">{{ course.shortDescription }}</p>
 
-           <div class="row">
-              <div class="col-md-6 mb-2">
-                <button type="button" class="button payment-btn btn-primary w-100" (click)="onStripePayment()">
-                  Pay with Stripe
-                </button>
-              </div>
-              <div class="col-md-6 mb-2">
-                <button type="button" class="button payment-btn btn-dark w-100" (click)="onRazorpayPayment()">
-                  Pay with Razorpay
+              <div class="card_amount_area">
+                <!-- <button class="button"> Add </button> -->
+                <h6 class="card-subtitle">
+                  {{ course.priceInfo }}
+                </h6>
+                <h6 class="card-subtitle">
+                  Quanity: {{ course.quantity}}
+                </h6>
+                <button
+                  class="button danger mt-0"
+                  (click)="removeItem(course.id)"
+                >
+                  Remove
                 </button>
               </div>
             </div>
           </div>
-        </form>
+        </div>
       </div>
     </div>
-  </div>
+    <div class="payment_card">
+      <div class="row">
+        <div class="col-sm-12 p-0 box">
+          <div class="card rounded-0 border-0 card2" id="paypage">
+            <form [formGroup]="paymentForm" >
+              <div class="form-card">
+                <h2 id="heading2" class="text-danger">Payment Method</h2>
+                <div class="radio-group">
+                  <div class="radio">
+                    <img
+                      src="https://i.imgur.com/28akQFX.jpg"
+                      width="200px"
+                      height="60px"
+                    />
+                  </div>
+                  <div class="radio">
+                    <img
+                      src="https://i.imgur.com/5QFsx7K.jpg"
+                      width="200px"
+                      height="60px"
+                    />
+                  </div>
+                  <br />
+                </div>
+                <div class="mb-4">
+                  <label class="pay">Name</label>
+                  <input
+                    type="text"
+                    name="holdername"
+                    placeholder="John Smith"
+                    formControlName="holderName"
+                  />
+                  <div *ngIf="paymentForm.get('holderName')?.hasError('required') && submitted">
+                    <span class="text-danger">Name is required.</span>
+                  </div>
+                </div>
+
+                <div class="row mb-4">
+                  <div class="col-md-12">
+                    <label class="pay">Email</label>
+                  </div>
+                  <div class="col-md-12">
+                    <input
+                      type="email"
+                      name="email"
+                      placeholder="abc@1235gmail.com"
+                      formControlName="email"
+                    />
+                    <div *ngIf="paymentForm.get('email')?.hasError('required') && submitted">
+                      <span class="text-danger">Email is required.</span>
+                    </div>
+                    <div *ngIf="paymentForm.get('email')?.hasError('email') &&  paymentForm.get('email')?.touched">
+                      <span class="text-danger">Enter a valid email.</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row mb-4">
+                  <div class="col-md-12 mb-4">
+                    <label class="pay">Whatsapp Number</label><br>
+                    <!-- <input
+                      type="text"
+                      name="mobile"
+                      placeholder="123456789"
+                      formControlName="mobile"
+                    /> -->
+
+                      <!-- <input  
+                      type="tel"
+                      name="mobile"
+                      #phoneInput
+                      class="form-control"
+                      placeholder=""
+                      formControlName="mobile"
+                      style="width: 210%;"/>
+        
+                      <div *ngIf="paymentForm.get('mobile')?.errors && submitted">
+                        <span class="text-danger" *ngIf="paymentForm.get('mobile')?.hasError('required')">
+                          Mobile number is required.
+                        </span>
+                        <span class="text-danger" *ngIf="paymentForm.get('mobile')?.hasError('invalidPhone')">
+                          Please enter a valid mobile number.
+                        </span>
+                      </div> -->
+                      <ngx-intl-tel-input
+                        [cssClass]="'form-control phone_input'"
+                        [separateDialCode]="true"
+                        [preferredCountries]="['in', 'us']"
+                        [enableAutoCountrySelect]="true"
+                        [enablePlaceholder]="true"
+                        [searchCountryFlag]="true"
+                        [searchCountryField]="searchFields"
+                        [selectFirstCountry]="false"
+                        [selectedCountryISO]="CountryISO.India"
+                        [maxLength]="15"
+                        (countryChange)="onCountryChange($event)"
+                        name="mobile"
+                        (input)="onPhoneInputChange()"
+                        formControlName="mobile">
+                      </ngx-intl-tel-input>
+
+                      <!-- Validation message -->
+                      <div *ngIf="phoneError" class="text-danger mt-1">
+                        {{ phoneError }}
+                      </div>
+
+
+                    <!-- <div *ngIf="paymentForm.get('mobile')?.hasError('pattern') && paymentForm.get('mobile')?.touched">
+                      <span class="text-danger">Enter a valid mobile number.</span>
+                    </div> -->
+                  </div>
+                  <div class="col-md-6">
+                    <label class="pay">Currency</label>
+                    <select
+                      class="placeicon"
+                      name="currency"
+                      formControlName="currency"
+                      [(ngModel)]="currency"
+                      (change)="onCurrencyChange($event)"
+                      required
+                    >
+                      <option value="" disabled selected>Select</option>
+                      <option *ngFor="let option of currencyOptions" [value]="option">{{ option }}</option>
+                    </select>
+                  </div>
+                  
+                  
+                  <div class="col-md-6">
+                    <label class="pay">Price</label>
+                    <input
+                      type="text"
+                      name="price"
+                      formControlName="price"
+                      [(ngModel)]="price"
+                      class="placeicon"
+                      readonly
+                    />
+                  </div>
+                  
+                </div>
+
+              <div class="row">
+                  <div class="col-md-6 mb-2">
+                    <button type="button" class="button payment-btn btn-primary w-100" (click)="onStripePayment()">
+                      Pay with Stripe
+                    </button>
+                  </div>
+                  <div class="col-md-6 mb-2">
+                    <button type="button" class="button payment-btn btn-dark w-100" (click)="onRazorpayPayment()">
+                      Pay with Razorpay
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>  
 </div>
