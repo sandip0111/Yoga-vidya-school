@@ -23,7 +23,7 @@ export class RishikeshCurriculumComponent implements OnInit {
      this.slug = this.activatedRoute.snapshot.routeConfig?.path;
      if(this.slug == "pranic-purification"){
         this.isItPranicRoute = true;
-        const date = new Date("2025-04-27");
+        const date = new Date("2025-07-24");
         const day = date.getDate();
         const month = date.toLocaleString('en-US', { month: 'long' });
         this.pranicDate = `${day} ${month}`;

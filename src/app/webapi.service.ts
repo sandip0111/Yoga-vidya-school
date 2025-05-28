@@ -201,4 +201,20 @@ export class WebapiService {
   verifyRazorpayPayment(data: any) {   
     return this.http.post(this.url + "api/v1/verifyRazorpayPaymentAndSendMail", data);
   }
+
+   checkoutRazorpayNewPranaarabha(data: any) {
+    return this.http.post(this.url + "api/v1/checkoutRazorpayNewPranaarabha", data);
+  }
+
+  getRazorpayPaymentResultForPranarambha(data: any) {   
+    return this.http.post(this.url + "api/v1/getRazorpayPaymentResultForPranarambha", data);
+  }
+
+  checkoutRazorpayForPranicPurification(data: any) {
+    return this.http.post(this.url + "api/v1/checkoutRazorpayForPranicPurification", data);
+  }
+
+  getRazorPaymentResultPranicPurification(data: any) {   
+    return this.http.post(this.url + "api/v1/getRazorPaymentResultPranicPurification", data);
+  }
 }

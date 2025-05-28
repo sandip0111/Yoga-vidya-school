@@ -71,7 +71,7 @@ export class NavbarComponent implements OnInit {
           ]},
         ] },
         { title: 'More Yoga Classes', link: '#', submenu: [
-          { title: 'Pranic Purification', link: '/pranic-purification' },
+          { title: 'Pranayama Sadhana (21 days)', link: '/pranic-purification' },
           { title: '21 Days Ashtanga Yoga Immersion', link: '/21-days-ashtanga-yoga-immersion' },
           { title: 'Pranayama Therapy Course Online', link: '/pranayama-therapy-course-online' },
           { title: 'Adjustment & Alignment', link: '/adjustment-and-alignment' },

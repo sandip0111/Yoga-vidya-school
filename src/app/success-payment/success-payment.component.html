@@ -6,11 +6,11 @@
       <p class="card-text">Order ID: {{ ordId }}</p>
       <p class="card-text">Amount: {{ amount }}</p>
       <p class="card-text">Thank you for your payment!</p>
-      <p *ngIf="sessionId" class="card-text">Check your email for details.</p>
-      <p *ngIf="onlineLiveClassesSessionId || onlineClassRazorpayPaymentId"  class="card-text">Check your email or whatsapp for details.</p>
+      <p *ngIf="sessionId" class="card-text">Check your email for details or whatsapp for details..</p>
+      <p *ngIf="onlineLiveClassesSessionId || pranaArambhaRazorpayPaymentId || onlineClassRazorpayPaymentId"  class="card-text">Check your email or whatsapp for details.</p>
       <p>
         <a
-          *ngIf="sessionId"
+          *ngIf="sessionId || pranaArambhaRazorpayPaymentId"
           href="javascript:void(0)"
           class="btn btn-primary border-0"
           style="background: #f9751e"
@@ -18,7 +18,7 @@
           >Go to Home</a
         >
         <a
-          *ngIf="onlinesessionId || onlineLiveClassesSessionId || pranicPurificationSessionId || onlineClassRazorpayPaymentId"
+          *ngIf="onlinesessionId || onlineLiveClassesSessionId || pranicPurificationRazorPaySessionId || pranicPurificationSessionId || onlineClassRazorpayPaymentId"
           href="javascript:void(0)"
           class="btn btn-primary border-0"
           style="background: #f9751e"
