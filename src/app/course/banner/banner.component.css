@@ -5,6 +5,30 @@
     background-size: cover;
     background-position: center;
 
+   .floating-register-btn {
+        position: absolute;
+        bottom: 150px;
+        right: 60px;
+        z-index: 9999;
+        }
+
+    .register-btn {
+        background-color: #ff6600;
+        color: white;
+        font-size: 1.2rem;
+        padding: 12px 24px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        transition: background-color 0.3s ease;
+    }
+
+    .register-btn:hover {
+        background-color: #e65c00;
+    }
+
+
     .banner-text {
         text-align: left;
         padding-top: 40px;

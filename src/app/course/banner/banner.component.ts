@@ -22,6 +22,7 @@ export class BannerComponent implements OnInit {
  videoElement?: HTMLVideoElement;
  isRegistrationPageLabelToggle = false;
  isRegistrationPageLabelToggleForAdjusment = false;
+ @ViewChild('bannerSection', { static: false }) bannerSection!: ElementRef;
  @ViewChild('nameInput') nameInput?: ElementRef;
  sliderImage:any='https://my-s3-images-bucket.s3.amazonaws.com/images/InternalBackground_lticg8.jpg'
   constructor(private renderer: Renderer2, private el: ElementRef, private webapiService: WebapiService,private spinner:NgxSpinnerService,private router: Router, private activatedRoute: ActivatedRoute) {
@@ -58,9 +59,7 @@ export class BannerComponent implements OnInit {
     if(this.slug == 'adjustment-and-alignment' ||
       this.slug == 'adjustment-and-alignment-level-2'){
         this.isRegistrationPageLabelToggleForAdjusment = true;
-      }
-
-    this.renderer.setStyle(this.el.nativeElement, '--bg-image', `url(${this.sliderImage})`);
+      }   
     
   }
 
@@ -68,7 +67,15 @@ export class BannerComponent implements OnInit {
   }
 
   ngAfterViewInit() {
+    if(this.slug !== 'pranic-purification'){
+      this.renderer.setStyle(this.bannerSection.nativeElement, '--bg-image', `url(${this.sliderImage})`);
+    } 
+    else 
+    {
+      this.renderer.setStyle(this.bannerSection.nativeElement, 'background-image', `url(${this.sliderImage})`);
+      this.renderer.setStyle(this.bannerSection.nativeElement, 'height', '500px');
 
+    }
     if(this.slug == 'pranayama-course-online-pranarambha'){
       this.videoElement = document.getElementById('backgroundVideo') as HTMLVideoElement;
       this.videoElement.muted = true;
@@ -149,5 +156,9 @@ export class BannerComponent implements OnInit {
 
 
   }
+
+  registerClick() {   
+      this.router.navigate(['checkout', this.slug]);   
+    }
 
 }

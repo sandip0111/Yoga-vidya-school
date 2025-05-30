@@ -1,5 +1,11 @@
-<section class="banner-section" id="bnner_section" *ngIf="slug != 'pranayama-course-online-pranarambha'">
-  <div class="row">
+<section #bannerSection class="banner-section" id="bnner_section" *ngIf="slug != 'pranayama-course-online-pranarambha'">
+  <div *ngIf="slug === 'pranic-purification'" class="blur-overlay"></div>
+
+  <!-- Your Register Button -->
+  <div class="floating-register-btn" *ngIf="slug === 'pranic-purification'">
+   <button class="register-btn" (click)="registerClick()">Register Now</button>
+  </div>
+  <div *ngIf="slug != 'pranic-purification'" class="row">
     <div class="col-md-6">
       <!-- <div class="banner-text">
         <small>Best Yoga School In Rishikesh</small>
@@ -89,7 +95,7 @@
                 <textarea placeholder="Your Message" rows="2" *ngIf="slug != 'breath-detox-yoga' && slug != 'pranayama-course-online-pranarambha' && slug !='foundation-of-spirituality-an-online-spiritual-awakening-course'" name="message" [(ngModel)]="inquiryData.message"></textarea>
                 <div class="d-flex justify-content-between">
                   <input class="button" type="submit" value="Enquiry" />
-                  <a *ngIf="slug == 'pranayama-course-online-pranarambha'" href="https://wa.me/919818660954" class="footer-button"><img loading="lazy" src="https://my-s3-images-bucket.s3.amazonaws.com/img/whatsapp.png" alt="whatsapp"/>whatsapp</a>
+                  <a *ngIf="slug == 'pranayama-course-online-pranarambha'" href="https://wa.me/917351912811" class="footer-button"><img loading="lazy" src="https://my-s3-images-bucket.s3.amazonaws.com/img/whatsapp.png" alt="whatsapp"/>whatsapp</a>
                 </div>
             </div>
         </form>
