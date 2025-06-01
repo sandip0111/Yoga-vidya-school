@@ -38,7 +38,7 @@ export class PaymentProceedComponent implements OnInit {
           name: "Anuj",         
           image: "image_1695634116777.jpeg",
           intro: "Hatha Yoga",
-          time:"5:00 AM - 6:00 AM (IST)",
+          time:"5:30 AM - 6:30 AM (IST)",
           price:"Rs. 1999/USD 50",
           priceInIndian: 1999,
           priceInUSD:50,
