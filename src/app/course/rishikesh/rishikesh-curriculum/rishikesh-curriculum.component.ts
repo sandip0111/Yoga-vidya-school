@@ -57,6 +57,7 @@ export class RishikeshCurriculumComponent implements OnInit {
       window.open('https://www.yogavidyaschool.com/book-now', '_blank');
     } else{
       this.router.navigate(['checkout', this.slug]);
+      window.scrollTo(0, 0);
     }
      
     

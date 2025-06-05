@@ -141,6 +141,17 @@ h4 span {
     padding: 10px 8px;
     font-size: 18px;
     border-color: #F9751E;
+    animation: pulse 2s ease-in-out infinite;
   }
+
+  /* Pulse keyframes */
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
   
   

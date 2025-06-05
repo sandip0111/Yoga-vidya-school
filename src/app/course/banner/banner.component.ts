@@ -68,7 +68,9 @@ export class BannerComponent implements OnInit {
 
   ngAfterViewInit() {
     if(this.slug !== 'pranic-purification'){
-      this.renderer.setStyle(this.bannerSection.nativeElement, '--bg-image', `url(${this.sliderImage})`);
+      if(this.bannerSection){
+        this.renderer.setStyle(this.bannerSection.nativeElement, '--bg-image', `url(${this.sliderImage})`);
+      }
     } 
     else 
     {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -12,7 +12,8 @@ import { WatchVideoComponent } from "../watch-video/watch-video.component";
   standalone: true,
   imports: [CommonModule, WatchVideoComponent],
   templateUrl: './about-bali.component.html',
-  styleUrls: ['./about-bali.component.css']
+  styleUrls: ['./about-bali.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class AboutBaliComponent implements OnInit {
 
@@ -444,7 +445,7 @@ I am saying this because I have experienced the miracles of Pranayama in my life
 <p>10- <strong>Makes you a Giver</strong> - Don &#39;t you want to be able to help others, and give the society a new direction? Don&#39;t you want the individuals at higher positions in society consult from you. This will happen automatically once you become a Pranayama practitioner because the expansion of your energy will not limited to you alone if you make this practice as a routine. The energy of the pranayama sadhaka begins to travel outside his physical body. And can impress every single person and this is a reason a Pranayama sadhka shines in the crowd.</p>
 
 <p>What benefits I have mentioned above are not confined to only writing. It can practically happen in your life once you practice pranayama through this only pranayama course. I am sure you are the one who wants to bring all these changes into your life. And want to give your life a balanced direction.</p>
-<div class="d-flex justify-content-center" style="width: 100%"><a href="checkout/pranayama-course-online-pranarambha" class="button" style="">Get Access</a></div>
+<div class="d-flex justify-content-center" style="width: 100%"><a href="checkout/pranayama-course-online-pranarambha" class="get_access_btn" style="">Get Access</a></div>
 <br/>
 <p><img alt="pranayama course online pranarambha" class="img-fluid" src="https://my-s3-images-bucket.s3.amazonaws.com/img/image_1683206274526.jpg" style="box-shadow: 0px 23.77px 23.77px 0px rgba(0, 0, 0, 0.55); border-radius: 10px;" /></p>
 
@@ -482,7 +483,7 @@ I am saying this because I have experienced the miracles of Pranayama in my life
 
 <p>&nbsp;</p>
 
-<a href="checkout/pranayama-course-online-pranarambha" class="button" style="">Get Access</a>
+<div class="d-flex justify-content-center" style="width: 100%"><a href="checkout/pranayama-course-online-pranarambha" class="get_access_btn" style="">Get Access</a></div>
 <br/>
 <h2><span>How many hours should I practice Pranayama?</span></h2>
 
@@ -544,7 +545,7 @@ I am saying this because I have experienced the miracles of Pranayama in my life
 <p>There is no level of any practice. Even a simple Practice can be an advance for some people. It depends on subtle state of your mind. Many Yogis when they achieve something higher, they come back to basic because through basics (when there is no struggle or not much physical effort is needed) you can lead your mind effortlessly.</p>
 
 <p>This is for all levels &ndash; beginner, intermediate of advance. Those who call themselves beginner, they will master these techniques and continue regularly but those who are experienced practitioners they go more deeper into these practises, spending more time with inner communication, they will work more on stability and equality of mind. And develop the feeling of Samatvam (complete equilibrium)</p>
-<div class="d-flex justify-content-center" style="width: 100%"><a href="checkout/pranayama-course-online-pranarambha" class="button" style="">Get Access</a></div>
+<div class="d-flex justify-content-center" style="width: 100%"><a href="checkout/pranayama-course-online-pranarambha" class="get_access_btn" style="">Get Access</a></div>
 <br/>
         `
       }

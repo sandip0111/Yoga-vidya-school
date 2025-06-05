@@ -2,6 +2,9 @@
   <div *ngIf="slug === 'pranic-purification'" class="blur-overlay"></div>
 
   <!-- Your Register Button -->
+  <div class="floating-register-btn" *ngIf="slug === 'pranic-purification'">
+   <button class="register-btn" (click)="registerClick()">Register Now</button>
+  </div>
   <div *ngIf="slug != 'pranic-purification'" class="row">
     <div class="col-md-6">
       <!-- <div class="banner-text">
@@ -59,45 +62,28 @@
   </div>
 </section>
 <section class="banner" *ngIf="slug == 'pranayama-course-online-pranarambha'">
+  
     <!-- Video Section -->
     <div class="video-container">
         <video muted autoplay loop playsinline controls id="backgroundVideo" class="background-video">
             <source src="https://d3mzqk1fxuwngx.cloudfront.net/reviews/pranarambha_intro.mp4?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAWGOLULIWBNKET5SM%2F20250106%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250106T163245Z&X-Amz-Expires=3600&X-Amz-Signature=bd6d68f4499c266e99fa1d35bf90b00551ac35dbc778f4838cc74787908c8375&X-Amz-SignedHeaders=host&x-id=GetObject" type="video/mp4">
             Your browser does not support the video tag.
         </video>
+        
     </div>
-<div class="form-container">
-  <button class="modern-btn" (click)="registerClick()">Register Now</button>
-</div>
-
 
     <!-- Form Section -->
-    <!--<div class="form">
-      
-         <h3 *ngIf="slug != 'yoga-retreat-in-mysore-india' && slug !='yoga-retreat-in-peru' && !isRegistrationPageLabelToggle && !isRegistrationPageLabelToggleForAdjusment">Want To Practice Pranayama Sadhana!</h3>
-        <h3 *ngIf="slug != 'yoga-retreat-in-mysore-india' && slug !='yoga-retreat-in-peru' && isRegistrationPageLabelToggle && !isRegistrationPageLabelToggleForAdjusment">Want To Become Expert Yoga Teacher!</h3>
-        <h3 *ngIf="slug != 'yoga-retreat-in-mysore-india' && slug !='yoga-retreat-in-peru' && isRegistrationPageLabelToggleForAdjusment">Want To learn Adjusment and Alignments!</h3>
-        <h3 *ngIf="slug == 'yoga-retreat-in-mysore-india' || slug =='yoga-retreat-in-peru'">Interested In This Retreat ?</h3>
-        <small *ngIf="slug == 'yoga-retreat-in-mysore-india' || slug =='yoga-retreat-in-peru'">Sign Up Here !</small>
-        <small *ngIf="slug != 'yoga-retreat-in-mysore-india' && slug !='yoga-retreat-in-peru'">Apply Now - We Are Taking Admissions.</small>
-        <form #inquiry="ngForm" (ngSubmit)="saveInquiry(inquiryData)">
-            <div class="form-inputs">
-                <input #nameInput type="text" placeholder="Name" name="name" [(ngModel)]="inquiryData.name" />
-                <input type="text" placeholder="Email" name="email" [(ngModel)]="inquiryData.to" />
-                <select *ngIf="slug != 'breath-detox-yoga' && slug != 'pranayama-course-online-pranarambha' && slug !='foundation-of-spirituality-an-online-spiritual-awakening-course'" name="courseDate" [(ngModel)]="inquiryData.courseDate">
-                    <option value="undefined">Select Course Date</option>
-                    <option *ngFor="let date of datesItem" value="{{ date.startDate | date : 'dd MMMM y' }} ~ {{date.endDate | date : 'dd MMMM y'}}">
-                        {{ date.startDate | date : "dd MMMM y" }} -
-                        {{ date.endDate | date : "dd MMMM y" }}
-                    </option>
-                </select>
-                <input type="number" placeholder="Your Contact Number" name="contactNumber" [(ngModel)]="inquiryData.contactNumber" />
-                <textarea placeholder="Your Message" rows="2" *ngIf="slug != 'breath-detox-yoga' && slug != 'pranayama-course-online-pranarambha' && slug !='foundation-of-spirituality-an-online-spiritual-awakening-course'" name="message" [(ngModel)]="inquiryData.message"></textarea>
-                <div class="d-flex justify-content-between">
-                  <input class="button" type="submit" value="Enquiry" />
-                  <a *ngIf="slug == 'pranayama-course-online-pranarambha'" href="https://wa.me/917351912811" class="footer-button"><img loading="lazy" src="https://my-s3-images-bucket.s3.amazonaws.com/img/whatsapp.png" alt="whatsapp"/>whatsapp</a>
-                </div>
-            </div>
-        </form>
-    </div> -->
+    <div class="form">
+      <h3 *ngIf="slug != 'yoga-retreat-in-mysore-india' && slug !='yoga-retreat-in-peru' && !isRegistrationPageLabelToggle && !isRegistrationPageLabelToggleForAdjusment">Want To Practice Pranayama Sadhana!</h3>
+            <h3>Well-Researched Course to: </h3>
+            <ol>
+              <li>Improve Health & Spiritual Wellbeing</li>
+              <li>Enhance the Quality of Life</li>
+              <li>Break the Cycle of Addictions</li>
+            </ol>
+         <div class="d-flex mt-4">
+           <button class="modern-btn" (click)="registerClick()">Register Now</button>       
+           <!-- <button class="modern-btn"  href="https://wa.me/917351912811" ><img loading="lazy" src="https://my-s3-images-bucket.s3.amazonaws.com/img/whatsapp.png" alt="whatsapp"/>Whatsapp</button> -->
+         </div>   
+    </div>
 </section>

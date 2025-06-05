@@ -19,6 +19,7 @@ declare var Razorpay: any;
 })
 export class PaymentProceedComponent implements OnInit {
   paymentForm: FormGroup;
+  emailSuggestion: string = '';
   currency: any;
   courses: CartItem[] = [];
   availableCourses: CartItem[] = [];
@@ -109,6 +110,46 @@ export class PaymentProceedComponent implements OnInit {
     this.invokeStripe();
     this.loadRazorpayScript();
   }
+
+ 
+
+checkEmail(): void {
+  const emailControl = this.paymentForm.get('email');
+  if (!emailControl) return;
+
+  const email = emailControl.value?.trim();
+  this.emailSuggestion = '';
+
+  if (!email || !email.includes('@')) return;
+
+  const [local, domain] = email.split('@');
+  const tld = domain?.split('.').pop();
+
+  const typoDomains: any = {
+    'gamil.com': 'gmail.com',
+    'gmial.com': 'gmail.com',
+    'gnail.com': 'gmail.com',
+    'hotnail.com': 'hotmail.com',
+    'yaho.com': 'yahoo.com',
+    'outllok.com': 'outlook.com',
+    'icloud.co': 'icloud.com',
+    'gmail.con': 'gmail.com',
+    'gmail.cmo': 'gmail.com',
+    'gmail.co': 'gmail.com'
+  };
+
+  const correctedDomain = typoDomains[domain?.toLowerCase()];
+  if (correctedDomain) {
+    this.emailSuggestion = `Wrong email format, Did you mean: ${local}@${correctedDomain}?`;
+    return;
+  }
+
+  const allowedTLDs = ['com', 'net', 'org', 'in', 'edu', 'gov'];
+  if (tld && !allowedTLDs.includes(tld.toLowerCase())) {
+    this.emailSuggestion = `Wrong email format ".${tld}" — did you mean ".com"?`;
+  }
+}
+
 
   onPhoneInputChange(): void {
     const control = this.paymentForm.controls['mobile'];

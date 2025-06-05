@@ -59,23 +59,20 @@
             <form [formGroup]="paymentForm" >
               <div class="form-card">
                 <h2 id="heading2" class="text-danger">Payment Method</h2>
-                <div class="radio-group">
+                <!-- <div class="radio-group">
+                 
                   <div class="radio">
-                    <img
-                      src="https://i.imgur.com/28akQFX.jpg"
-                      width="200px"
-                      height="60px"
-                    />
-                  </div>
-                  <div class="radio">
+                    <a href="https://www.paypal.me/yogavidyafoundation">
                     <img
                       src="https://i.imgur.com/5QFsx7K.jpg"
                       width="200px"
                       height="60px"
                     />
+                    </a>
                   </div>
+                  
                   <br />
-                </div>
+                </div> -->
                 <div class="mb-4">
                   <label class="pay">Name</label>
                   <input
@@ -97,6 +94,7 @@
                     <input
                       type="email"
                       name="email"
+                      (blur)="checkEmail()"
                       placeholder="abc@1235gmail.com"
                       formControlName="email"
                     />
@@ -105,6 +103,9 @@
                     </div>
                     <div *ngIf="paymentForm.get('email')?.hasError('email') &&  paymentForm.get('email')?.touched">
                       <span class="text-danger">Enter a valid email.</span>
+                    </div>
+                    <div *ngIf="emailSuggestion" class="text-warning">
+                      {{ emailSuggestion }}
                     </div>
                   </div>
                 </div>
@@ -193,18 +194,24 @@
                   
                 </div>
 
-              <div class="row">
-                  <div class="col-md-6 mb-2">
-                    <button type="button" class="button payment-btn btn-primary w-100" (click)="onStripePayment()">
-                      Pay with Stripe
-                    </button>
-                  </div>
-                  <div class="col-md-6 mb-2">
-                    <button type="button" class="button payment-btn btn-dark w-100" (click)="onRazorpayPayment()">
-                      Pay with Razorpay
-                    </button>
-                  </div>
-                </div>
+              
+              <div class="d-flex w-100 justify-content-start gap-3 mt-3">
+          
+                <button type="button" style="border-color: #f9751e" class="payment-button" (click)="onRazorpayPayment()">
+                  <img src="assets/razor.svg" alt="Razorpay" width="128" height="32" />
+                </button>
+        
+                <button type="button" style="border-color: #f9751e" class="payment-button" (click)="onStripePayment()">
+                   <img src="assets/stripe.png" alt="Stripe"  width="128" height="35">
+                </button>
+                <button type="button" href="https://www.paypal.me/yogavidyafoundation"style="border-color: #f9751e" class="payment-button">
+                    <img src="assets/paypal.png" alt="PayPal" width="128" height="30">
+              </button>
+             </div>
+                <h3 class="text-uppercase mt-3">Payment Instructions: </h3>
+                <h5 class="disclaimer text-uppercase mt-3">International Users should use Stripe for payment. </h5>
+                <h5 class="disclaimer text-uppercase mt-3">Indian Users should use Razorpay For UPI payment </h5>
+                <h5 class="disclaimer text-uppercase mt-3">If you are using PayPal for payment, please upload the screenshot of the payment in the WhatsApp group</h5>
               </div>
             </form>
           </div>

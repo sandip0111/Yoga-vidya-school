@@ -30,18 +30,9 @@
             </li>
           </ul>
         </div>
-      </div>
-      <h4 *ngIf="slug === 'pranic-purification'" class="card-title text-center text-uppercase mt-5 mb-3">Payment in USD (Foreign Account Holder)</h4>
-      <div *ngIf="slug === 'pranic-purification'" class="paypal-logo text-center">
-        <a href="https://www.paypal.me/yogavidyafoundation">
-          <img
-            src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/checkout-logo-large.png"
-            alt="paypal"
-            class="img-fluid"
-          />
-        </a>
-      </div>
-      <h5 *ngIf="slug === 'pranic-purification'" class="disclaimer text-uppercase mt-3">NOTE: If you are using PayPal for payment, please upload the screenshot of the payment in the WhatsApp group</h5>
+      </div>     
+      
+     
     </div>
     <div class="col-md-6">
       <h2>Checkout</h2>
@@ -57,6 +48,9 @@
             [(ngModel)]="checkData.email"
             placeholder="Enter your email"
           />
+           <div *ngIf="emailSuggestion" class="text-warning">
+              {{ emailSuggestion }}
+           </div>
         </div>
 
         <!-- <div>
@@ -158,23 +152,36 @@
           />
         </div>
         <div class="d-flex w-100 justify-content-start gap-3 mt-3">
+          
           <a
             href="javascript:void(0)"
-            style="background-color: #f9751e"
-            class="btn btn-primary w-40 border-0"
-            (click)="checkoutData(checkData, false)"
-          >
-            Pay with Stripe
-          </a>
-          <a
-            href="javascript:void(0)"
-            style="background-color: #f9751e"
-            class="btn btn-primary w-40 border-0"
+            style="border-color: #f9751e"
+            class="payment-button"
             (click)="checkoutData(checkData, true)"
           >
-            Pay with Razorpay
+           <img src="assets/razor.svg" alt="Razorpay" width="128" height="32" />
+           
           </a>
+        
+        <a
+            href="javascript:void(0)"
+            style="border-color: #f9751e"
+            class="payment-button"
+            (click)="checkoutData(checkData, false)"
+          >
+            <img src="assets/stripe.png" alt="Stripe"  width="128" height="35">
+          </a>
+          <a href="https://www.paypal.me/yogavidyafoundation"  style="border-color: #f9751e"
+            class="payment-button" target="_blank">
+          <img src="assets/paypal.png" alt="PayPal" width="128" height="30">
+        </a>
         </div>
+        
+
+         <h3 class="text-uppercase mt-3">Payment Instructions: </h3>
+         <h5 class="disclaimer text-uppercase mt-3">International Users should use Stripe for payment. </h5>
+         <h5 class="disclaimer text-uppercase mt-3">Indian Users should use Razorpay For UPI payment </h5>
+         <h5 class="disclaimer text-uppercase mt-3">If you are using PayPal for payment, please upload the screenshot of the payment in the WhatsApp group</h5>
       </div>
     </div>
   </div>

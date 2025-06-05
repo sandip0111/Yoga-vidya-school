@@ -34,6 +34,8 @@ export class CheckoutComponent {
   phoneError: string = '';
   amount: number= 0;
   CountryISO = CountryISO;
+  emailSuggestion: string | null = null;
+  
   @ViewChild('phoneRef', { static: false }) phoneRef!: NgxIntlTelInputComponent;
   searchFields = [SearchCountryField.Name, SearchCountryField.DialCode, SearchCountryField.Iso2];
   currencyOptions: string[] = [];
@@ -132,6 +134,42 @@ export class CheckoutComponent {
     //     }
     //   });
     // } 
+
+    const input = (e.target as HTMLInputElement).value.trim();
+  this.emailSuggestion = null;
+
+  if (!input || !input.includes('@')) return;
+
+  const domain = input.split('@')[1]?.toLowerCase();
+  if (!domain) return;
+
+  const typoDomains: Record<string, string> = {
+    'gamil.com': 'gmail.com',
+    'gmial.com': 'gmail.com',
+    'gnail.com': 'gmail.com',
+    'hotnail.com': 'hotmail.com',
+    'yaho.com': 'yahoo.com',
+    'outllok.com': 'outlook.com',
+    'icloud.co': 'icloud.com',
+    'gmail.con': 'gmail.com',
+    'gmail.cmo': 'gmail.com',
+    'gmail.co': 'gmail.com'
+  };
+
+  if (typoDomains[domain]) {
+    this.emailSuggestion = `Wrong email format, Did you mean @${typoDomains[domain]}?`;
+    return;
+  }
+
+  // Optional: add TLD check here too
+  const tld = domain.split('.').pop();
+  const allowedTLDs = ['com', 'net', 'org', 'in', 'edu', 'gov', 'co', 'io', 'sg'];
+
+  if (tld && !allowedTLDs.includes(tld)) {
+    this.emailSuggestion = `Wrong email format ".${tld}" — did you mean ".com"?`;
+  }
+
+    
   }
 
  

@@ -15,7 +15,7 @@
      
     <!-- <h2 class="text-center">Upcoming Webinars</h2> -->
     <div *ngIf="selectedOption != null" class="mb-3">
-      <h3 class="mb-2 text-center">{{ selectedOption.title }} <a href="#register-form" class="join-now" (click)="scrollToForm($event)"
+      <h3 class="mb-2 text-center">{{ selectedOption.title }} <a href="{{selectedOption.link}}" class="join-now" (click)="scrollToForm($event, selectedOption)"
         >JOIN NOW</a></h3>
       <p>{{ selectedOption.description }}</p>
     </div>
@@ -28,7 +28,7 @@
   </div>
 
   </div>
-  <div class="card registration-card flex-fill p-4" id="register-form">
+  <!-- <div class="card registration-card flex-fill p-4" id="register-form">
     <h2 class="text-center mb-4">Webinar Registration</h2>
     <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
       <div class="mb-3">
@@ -75,7 +75,6 @@
           <label for="upcomingWebiner" class="form-label">Webinar</label>
           <select id="dropdown" class="form-control" formControlName="webinar" (ngModelChange)="onSelectionChange($event)">
 
-            <!-- <option value="" disabled>-- Select an Option --</option> -->
             <option *ngFor="let option of dropdownOptions" [value]="option.value">
               {{ option.label }}
             </option>
@@ -95,11 +94,11 @@
             formControlName="refferalCode"
             class="form-control"
             [ngClass]="{'is-invalid': submitted && registrationForm.get('refferalCode')?.invalid}"
-          />
+          /> -->
           <!-- <div *ngIf="submitted && registrationForm.get('refferalCode')?.invalid" class="text-danger">
             Refferal Code is mandatory.
           </div> -->
-          <div *ngIf="registrationForm.get('refferalCode')?.errors?.['invalidReferral']" class="text-danger">
+          <!-- <div *ngIf="registrationForm.get('refferalCode')?.errors?.['invalidReferral']" class="text-danger">
             {{ registrationForm.get('refferalCode')?.errors?.['invalidReferral'] }}
           </div>
       </div>
@@ -110,5 +109,5 @@
         Register
       </button>
     </form>
-  </div>
+  </div> -->
 </div>

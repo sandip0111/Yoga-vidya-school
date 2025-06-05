@@ -23,7 +23,7 @@ export class WebinarRegistrationFormComponent implements OnInit {
   selectedOption: any;
   
   dropdownOptions = [
-    { value: "Swar Sadhana", label: 'Swar Sadhana', title: 'Swar Sadhana', 
+    { value: "Swar Sadhana", label: 'Swar Sadhana', title: 'Swar Sadhana', link:"https://swaryoga.yogavidyaschool.com/",
 description: `Get ready to dive into the transformative workshop on SWAR SADHANA🧘. This powerful session will guide you through the ancient technique of harnessing your energy to drive your actions. Your physical body is fully controlled by two energies present in nature. SUN 🌞 and MOON 🌑. These two energies are flowing constantly in your body and can be controlled by your right and left nostril. 
 👃 Swar sadhana is a way to get mastery over these two energies to get spontaneous mastery over your actions. 
 This is an ancient method given by SHIVA to PARVATI. 
@@ -78,15 +78,15 @@ fesUSD: ''
   }
 
 
-  scrollToForm(event: Event) {
+  scrollToForm(event: Event, selectedOption: any) {
     event.preventDefault(); // Prevent default anchor behavior (page reload)
-    
+    window.open(selectedOption.link, '_blank');
     // Get the form element by ID
-    const element = document.getElementById('register-form');
-    if (element) {
-      // Scroll the element into view with smooth behavior
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+    // const element = document.getElementById('register-form');
+    // if (element) {
+    //   // Scroll the element into view with smooth behavior
+    //   element.scrollIntoView({ behavior: 'smooth' });
+    // }
   }
 
   onSelectionChange(selectedValue: any) {
