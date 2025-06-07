@@ -1,109 +1,157 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit,Input, SimpleChanges, Renderer2, ElementRef, ViewChild } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  SimpleChanges,
+  Renderer2,
+  ElementRef,
+  ViewChild,
+} from '@angular/core';
 import { WebapiService } from '../../webapi.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { FormsModule, NgForm } from '@angular/forms';
-import { Router,ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-banner',
   standalone: true,
-  imports: [CommonModule,FormsModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './banner.component.html',
-  styleUrls: ['./banner.component.css']
+  styleUrls: ['./banner.component.css'],
 })
 export class BannerComponent implements OnInit {
- @Input() data: any;
- datesItem:any;
- inquiryData:any={}
- isMuted = false;
- slug:any='';
- courseName: any;
- videoElement?: HTMLVideoElement;
- isRegistrationPageLabelToggle = false;
- isRegistrationPageLabelToggleForAdjusment = false;
- @ViewChild('bannerSection', { static: false }) bannerSection!: ElementRef;
- @ViewChild('nameInput') nameInput?: ElementRef;
- sliderImage:any='https://my-s3-images-bucket.s3.amazonaws.com/images/InternalBackground_lticg8.jpg'
-  constructor(private renderer: Renderer2, private el: ElementRef, private webapiService: WebapiService,private spinner:NgxSpinnerService,private router: Router, private activatedRoute: ActivatedRoute) {
+  @Input() data: any;
+  datesItem: any;
+  inquiryData: any = {};
+  isMuted = false;
+  slug: any = '';
+  courseName: any;
+  videoElement?: HTMLVideoElement;
+  isRegistrationPageLabelToggle = false;
+  isRegistrationPageLabelToggleForAdjusment = false;
+  @ViewChild('bannerSection', { static: false }) bannerSection!: ElementRef;
+  @ViewChild('nameInput') nameInput?: ElementRef;
+  sliderImage: string =
+    'https://my-s3-images-bucket.s3.amazonaws.com/images/InternalBackground_lticg8.jpg';
+  constructor(
+    private renderer: Renderer2,
+    private el: ElementRef,
+    private webapiService: WebapiService,
+    private spinner: NgxSpinnerService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
+  ) {
     this.slug = this.activatedRoute.snapshot.routeConfig?.path;
-    if(this.slug == '200-hour-yoga-teacher-training-in-bali' || this.slug == 'yoga-retreat-in-bali' || this.slug == '300-hour-yoga-teacher-training-in-bali' || this.slug == 'adjustment-and-alignment' || this.slug == 'adjustment-and-alignment-level-2'){
-      this.sliderImage = 'https://my-s3-images-bucket.s3.amazonaws.com/images/image_1688020831747_aqnfh1.jpg'
+    if (
+      this.slug == '200-hour-yoga-teacher-training-in-bali' ||
+      this.slug == 'yoga-retreat-in-bali' ||
+      this.slug == '300-hour-yoga-teacher-training-in-bali' ||
+      this.slug == 'adjustment-and-alignment' ||
+      this.slug == 'adjustment-and-alignment-level-2'
+    ) {
+      this.sliderImage =
+        'https://my-s3-images-bucket.s3.amazonaws.com/images/image_1688020831747_aqnfh1.jpg';
+    } else if (this.slug == 'yoga-retreat-in-mysore-india') {
+      this.sliderImage =
+        'https://my-s3-images-bucket.s3.amazonaws.com/img/image_1692698338795.jpg';
+    } else if (
+      this.slug == '200-hour-yoga-teacher-training-in-kerala-india' ||
+      this.slug == 'yoga-retreat-in-kerala-india' ||
+      this.slug == 'breath-detox-yoga' ||
+      this.slug ==
+        'foundation-of-spirituality-an-online-spiritual-awakening-course' ||
+      this.slug == 'yoga-inversion-workshop-headstand' ||
+      this.slug == 'yoga-philosophy-course-free' ||
+      this.slug == 'yoga-history-and-philosophy' ||
+      this.slug == 'online-hip-opening-workshop'
+    ) {
+      this.sliderImage =
+        'https://my-s3-images-bucket.s3.amazonaws.com/images/deafult_banner_ockzmy.jpg';
+    } else if (this.slug == 'pranayama-course-online-pranarambha') {
+      this.sliderImage =
+        'https://my-s3-images-bucket.s3.amazonaws.com/img/image_1683209101048.JPG';
+    } else if (this.slug == 'yoga-retreat-in-peru') {
+      this.sliderImage =
+        'https://my-s3-images-bucket.s3.amazonaws.com/img/image_1721289105818.jpeg';
     }
-    else if(this.slug == 'yoga-retreat-in-mysore-india'){
-      this.sliderImage = 'https://my-s3-images-bucket.s3.amazonaws.com/img/image_1692698338795.jpg'
-    }
-    else if(this.slug == '200-hour-yoga-teacher-training-in-kerala-india' || this.slug=='yoga-retreat-in-kerala-india' || this.slug=='breath-detox-yoga' || this.slug == 'foundation-of-spirituality-an-online-spiritual-awakening-course' || this.slug=='yoga-inversion-workshop-headstand' || this.slug=='yoga-philosophy-course-free' || this.slug=='yoga-history-and-philosophy' || this.slug == 'online-hip-opening-workshop'){
-      this.sliderImage = 'https://my-s3-images-bucket.s3.amazonaws.com/images/deafult_banner_ockzmy.jpg'
-    }
-    else if(this.slug == 'pranayama-course-online-pranarambha'){
-      this.sliderImage = 'https://my-s3-images-bucket.s3.amazonaws.com/img/image_1683209101048.JPG'
-    }
-    else if(this.slug == 'yoga-retreat-in-peru'){
-      this.sliderImage = 'https://my-s3-images-bucket.s3.amazonaws.com/img/image_1721289105818.jpeg';
-    }
-    if(this.slug == '100-hours-yoga-teacher-training-in-rishikesh' ||
-       this.slug == '200-horas-de-formacioacuten-de-profesores-de-yoga-en-rishikesh' ||
-       this.slug == '200-hours-yoga-teacher-training-in-rishikesh' ||
-       this.slug == '300-hours-yoga-teacher-training-in-rishikesh' ||
-       this.slug == '200-hour-yoga-teacher-training-scholarship-in-rishikesh' ||
-       this.slug == '300-hour-yoga-teacher-training-scholarship-in-rishikesh' ||
-       this.slug == '200-hour-yoga-teacher-training-in-bali' ||
-       this.slug == '300-hour-yoga-teacher-training-in-bali' ||
-       this.slug == '200-hour-yoga-teacher-training-in-kerala-india' ||
-        this.slug == '300-hour-yoga-teacher-training-in-kerala-india'          
+    if (
+      this.slug == '100-hours-yoga-teacher-training-in-rishikesh' ||
+      this.slug ==
+        '200-horas-de-formacioacuten-de-profesores-de-yoga-en-rishikesh' ||
+      this.slug == '200-hours-yoga-teacher-training-in-rishikesh' ||
+      this.slug == '300-hours-yoga-teacher-training-in-rishikesh' ||
+      this.slug == '200-hour-yoga-teacher-training-scholarship-in-rishikesh' ||
+      this.slug == '300-hour-yoga-teacher-training-scholarship-in-rishikesh' ||
+      this.slug == '200-hour-yoga-teacher-training-in-bali' ||
+      this.slug == '300-hour-yoga-teacher-training-in-bali' ||
+      this.slug == '200-hour-yoga-teacher-training-in-kerala-india' ||
+      this.slug == '300-hour-yoga-teacher-training-in-kerala-india'
     ) {
       this.isRegistrationPageLabelToggle = true;
     }
 
-    if(this.slug == 'adjustment-and-alignment' ||
-      this.slug == 'adjustment-and-alignment-level-2'){
-        this.isRegistrationPageLabelToggleForAdjusment = true;
-      }   
-    
+    if (
+      this.slug == 'adjustment-and-alignment' ||
+      this.slug == 'adjustment-and-alignment-level-2'
+    ) {
+      this.isRegistrationPageLabelToggleForAdjusment = true;
+    }
   }
 
-  ngOnInit() {  
-  }
+  ngOnInit() {}
 
   ngAfterViewInit() {
-    if(this.slug !== 'pranic-purification'){
-      if(this.bannerSection){
-        this.renderer.setStyle(this.bannerSection.nativeElement, '--bg-image', `url(${this.sliderImage})`);
+    if (this.slug !== 'pranic-purification') {
+      if (this.bannerSection) {
+        this.renderer.setStyle(
+          this.bannerSection.nativeElement,
+          '--bg-image',
+          `url(${this.sliderImage})`
+        );
       }
-    } 
-    else 
-    {
-      this.renderer.setStyle(this.bannerSection.nativeElement, 'background-image', `url(${this.sliderImage})`);
-      this.renderer.setStyle(this.bannerSection.nativeElement, 'height', '500px');
-
+    } else {
+      this.renderer.setStyle(
+        this.bannerSection.nativeElement,
+        'background-image',
+        `url(${this.sliderImage})`
+      );
+      this.renderer.setStyle(
+        this.bannerSection.nativeElement,
+        'height',
+        '500px'
+      );
     }
-    if(this.slug == 'pranayama-course-online-pranarambha'){
-      this.videoElement = document.getElementById('backgroundVideo') as HTMLVideoElement;
+    if (this.slug == 'pranayama-course-online-pranarambha') {
+      this.videoElement = document.getElementById(
+        'backgroundVideo'
+      ) as HTMLVideoElement;
       this.videoElement.muted = true;
-    // Ensure video plays automatically on reload (with muted state)
-    if (this.videoElement) {
-      this.videoElement.play().then(() => {
-        if (this.videoElement) {
-          
-        }
-      }).catch((error) => {
-        //console.error('Error trying to play the video:', error);
-      });
-    }
+      // Ensure video plays automatically on reload (with muted state)
+      if (this.videoElement) {
+        this.videoElement
+          .play()
+          .then(() => {
+            if (this.videoElement) {
+            }
+          })
+          .catch((error) => {
+            //console.error('Error trying to play the video:', error);
+          });
+      }
     }
   }
 
   highlightRegisterForm() {
     if (this.nameInput?.nativeElement) {
-     this.nameInput.nativeElement.focus();
+      this.nameInput.nativeElement.focus();
     }
   }
 
-  ngOnChanges(changes: SimpleChanges):void {
+  ngOnChanges(changes: SimpleChanges): void {
     // console.log(changes['data'].currentValue);
     this.datesItem = changes['data']?.currentValue?.event;
-    this.courseName = changes['data']?.currentValue?.courseName
+    this.courseName = changes['data']?.currentValue?.courseName;
   }
   toggleMute() {
     if (this.videoElement) {
@@ -113,7 +161,7 @@ export class BannerComponent implements OnInit {
       // If unmuted, ensure the video starts playing with sound
       if (!this.isMuted) {
         this.videoElement.play().catch((err) => {
-          console.error("Error playing video after unmute", err);
+          console.error('Error playing video after unmute', err);
         });
       }
     }
@@ -129,38 +177,35 @@ export class BannerComponent implements OnInit {
       //   }
       // }
       // else {
-        if (data.courseDate) {
-          let arr = data.courseDate.split("~");
-          data.startDate = arr[0];
-        }
-        else {
-          data.startDate = '-';
-        }
+      if (data.courseDate) {
+        let arr = data.courseDate.split('~');
+        data.startDate = arr[0];
+      } else {
+        data.startDate = '-';
+      }
       // }
-      data.courseName = this.courseName
+      data.courseName = this.courseName;
       data.type = 1;
       this.webapiService.saveInquiry(data).subscribe((res: any) => {
-
-        if (res.status == "ok") {
+        if (res.status == 'ok') {
           this.spinner.hide();
           alert(res.msg);
           this.inquiryData = {};
-        }
-        else {
+        } else {
           alert('something went wrong');
         }
-      })
-    }
-    else {
-      alert("Name and email are required");
+      });
+    } else {
+      alert('Name and email are required');
       this.spinner.hide();
     }
-
-
   }
 
-  registerClick() {   
-      this.router.navigate(['checkout', this.slug]);   
+  registerClick(slug: string) {
+    if (slug == 'breath-detox-yoga') {
+      this.router.navigate(['breath-detox-yoga', 'student-register']);
+    } else {
+      this.router.navigate(['checkout', this.slug]);
     }
-
+  }
 }

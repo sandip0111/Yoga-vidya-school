@@ -1,320 +1,317 @@
 .banner-section {
-    background-color: #f5f5f5;
-    padding: 20px 50px;
-    background-image: var(--bg-image);
-    background-size: cover;
-    background-position: center;
+  background-color: #f5f5f5;
+  padding: 20px 50px;
+  background-image: var(--bg-image);
+  background-size: cover;
+  background-position: center;
 
-   .floating-register-btn {
-        position: absolute;
-        bottom: 150px;
-        right: 60px;
-        z-index: 9999;
-        }
+  .floating-register-btn {
+    position: absolute;
+    bottom: 150px;
+    right: 60px;
+    z-index: 9999;
+  }
 
-    .register-btn {
-        background-color: #ff6600;
-        color: white;
-        font-size: 1.2rem;
-        padding: 12px 24px;
-        border: none;
-        border-radius: 8px;
-        cursor: pointer;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-        transition: background-color 0.3s ease;
-        animation: pulse 2s ease-in-out infinite;
+  .register-btn {
+    background-color: #ff6600;
+    color: white;
+    font-size: 1.2rem;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  .register-btn:hover {
+    background-color: #e65c00;
+  }
+
+  .banner-text {
+    text-align: left;
+    padding-top: 40px;
+
+    small {
+      padding: 0;
     }
 
-    .register-btn:hover {
-        background-color: #e65c00;
+    h2 {
+      font-weight: 500;
+      font-size: 48px;
+      line-height: 53px;
+      color: rgba(249, 117, 30, 1);
     }
 
+    .banner-desc {
+      color: #000;
+      font-size: 15px;
+    }
+  }
 
-    .banner-text {
-        text-align: left;
-        padding-top: 40px;
+  .video-button {
+    padding: 8px 26px;
+    border-radius: 10px;
+    text-decoration: none;
+    display: inline-block;
+    font-weight: 500 !important;
+    font-size: 18px !important;
+    color: #000 !important;
+    margin-top: 5px;
+    border: 1px solid rgba(249, 117, 30, 1);
+    margin-left: 10px;
+  }
 
-        small {
-            padding: 0;
-        }
+  .free-ad {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    margin-top: 20px;
 
-        h2 {
-            font-weight: 500;
-            font-size: 48px;
-            line-height: 53px;
-            color: rgba(249, 117, 30, 1);
+    div {
+      display: flex;
+      align-items: center;
+      gap: 5px;
 
-        }
+      img {
+        width: 22px;
+      }
+    }
+  }
 
-        .banner-desc {
-            color: #000;
-            font-size: 15px;
+  .slider {
+    background-repeat: no-repeat;
+    background-size: 76%;
+    background-position: 10%;
 
-        }
+    .inner {
+      img {
+        width: 80%;
+      }
+    }
+  }
 
+  .form {
+    border: 4px solid #f5711a;
+    box-shadow: 0px 20px 20px 0px #00000040;
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 20px;
+    margin: 0px 90px;
+
+    h3 {
+      font-size: 22px;
+      text-align: center;
+      width: 100%;
+      margin-bottom: 10px;
     }
 
-    .video-button {
-        padding: 8px 26px;
+    small {
+      padding: 0;
+      font-size: 15px;
+      text-align: center;
+      width: 100%;
+      margin-bottom: 20px;
+    }
+
+    .form-inputs {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      input {
+        border: 0.5px solid #f5711a;
+        box-shadow: 0px 4px 4px 0px #0000001a;
         border-radius: 10px;
-        text-decoration: none;
-        display: inline-block;
-        font-weight: 500 !important;
-        font-size: 18px !important;
-        color: #000 !important;
-        margin-top: 5px;
-        border: 1px solid rgba(249, 117, 30, 1);
-        margin-left: 10px;
+        padding: 10px;
+      }
+
+      select {
+        border: 0.5px solid #f5711a;
+        box-shadow: 0px 4px 4px 0px #0000001a;
+        border-radius: 10px;
+        padding: 10px;
+      }
+
+      textarea {
+        border: 0.5px solid #f5711a;
+        box-shadow: 0px 4px 4px 0px #0000001a;
+        border-radius: 10px;
+        padding: 10px;
+      }
     }
-
-    .free-ad {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        font-size: 13px;
-        margin-top: 20px;
-
-        div {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-
-            img {
-                width: 22px;
-            }
-        }
-    }
-
-    .slider {
-        background-repeat: no-repeat;
-        background-size: 76%;
-        background-position: 10%;
-
-        .inner {
-            img {
-                width: 80%;
-            }
-        }
-    }
-
-    .form {
-        border: 4px solid #F5711A;
-        box-shadow: 0px 20px 20px 0px #00000040;
-        background: #FFFFFF;
-        border-radius: 20px;
-        padding: 20px;
-        margin: 0px 90px;
-        h3{
-            font-size: 22px;
-            text-align: center;
-            width: 100%;
-            margin-bottom: 10px;
-        }        
-        small{
-            padding: 0;
-            font-size: 15px;
-            text-align: center;
-            width: 100%;
-            margin-bottom: 20px;
-        }
-
-        .form-inputs {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-
-            input {
-                border: 0.5px solid #F5711A;
-                box-shadow: 0px 4px 4px 0px #0000001A;
-                border-radius: 10px;
-                padding: 10px;
-            }
-            select{
-              border: 0.5px solid #F5711A;
-              box-shadow: 0px 4px 4px 0px #0000001A;
-              border-radius: 10px;
-              padding: 10px;
-            }
-            textarea{
-              border: 0.5px solid #F5711A;
-              box-shadow: 0px 4px 4px 0px #0000001A;
-              border-radius: 10px;
-              padding: 10px;
-            }
-        }
-    }
+  }
 }
-@media screen and (max-width: 900px) and (min-width: 300px) {
-    .banner-section .form {
-        margin: 0px 0px;
-    }
 
+@media screen and (max-width: 900px) and (min-width: 300px) {
+  .banner-section .form {
+    margin: 0px 0px;
+  }
 }
 
 .banner {
+  display: flex;
+  justify-content: space-between;
+  background-color: #f5f5f5;
+  padding: 20px 0px;
+  background-size: cover;
+  background-position: center;
+
+  .video-container {
+    position: relative;
+    flex-grow: 1;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .form {
+    border: 4px solid #f5711a;
+    box-shadow: 0px 20px 20px 0px #00000040;
+    background: #ffffff;
+    border-radius: 20px;
     display: flex;
-    justify-content: space-between; 
-    background-color: #f5f5f5;
-    padding: 20px 0px;
-    background-size: cover;
-    background-position: center;
+    flex-direction: column;
+    align-items: center;
+    width: 40%;
+    padding: 20px;
+    margin: 0px 20px;
+
+    h3 {
+      font-size: 22px;
+      width: 100%;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    small {
+      padding: 0;
+      font-size: 15px;
+      width: 100%;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .modern-btn {
+      background-color: #ff6600;
+      color: white;
+      font-size: 1rem;
+      padding: 12px 16px;
+      margin-left: 30px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.3s ease;
+
+      /* apply the pulse animation */
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    .modern-btn:hover {
+      background-color: #f5711a;
+      transform: translateY(-2px);
+    }
+
+    .form-inputs {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      input {
+        border: 0.5px solid #f5711a;
+        box-shadow: 0px 4px 4px 0px #0000001a;
+        border-radius: 10px;
+        padding: 10px;
+      }
+
+      select {
+        border: 0.5px solid #f5711a;
+        box-shadow: 0px 4px 4px 0px #0000001a;
+        border-radius: 10px;
+        padding: 10px;
+      }
+
+      textarea {
+        border: 0.5px solid #f5711a;
+        box-shadow: 0px 4px 4px 0px #0000001a;
+        border-radius: 10px;
+        padding: 10px;
+      }
+    }
+  }
+
+  .footer-button {
+    background: rgba(249, 117, 30, 1);
+    border-radius: 10px;
+    border: 0.5px solid #f5711a;
+    padding: 10px 5px 0px 5px;
+    color: #fff;
+    text-decoration: none;
+    margin-top: 25px;
+    font-size: 14px;
+
+    img {
+      width: 20px !important;
+      margin-right: 3px;
+    }
+  }
+
+  .background-video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .mute-toggle {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+  }
+
+  .sound-indicator {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .banner {
+    flex-direction: column;
+    align-items: center;
 
     .video-container {
-        position: relative;
-        flex-grow: 1;
-        height: 100%;
-        width: 100%;
-        overflow: hidden;
+      width: 100%;
     }
+
     .form {
-        border: 4px solid #F5711A;
-        box-shadow: 0px 20px 20px 0px #00000040;
-        background: #FFFFFF;
-        border-radius: 20px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 40%;
-        padding: 20px;
-        margin: 0px 20px;
-        h3{
-            font-size: 22px;
-            width: 100%;
-            text-align: center;
-            margin-bottom: 10px;
-        }          
-        small{
-            padding: 0;
-            font-size: 15px;
-            width: 100%;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        
-
-            .modern-btn {
-                background-color: #ff6600;
-                color: white;
-                font-size: 1rem;
-                padding: 12px 16px;
-                margin-left: 30px;
-                border: none;
-                border-radius: 8px;
-                cursor: pointer;
-                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-                transition: background-color 0.3s ease;
-                
-                /* apply the pulse animation */
-                 animation: pulse 2s ease-in-out infinite;
-                }
-
-                .modern-btn:hover {
-                    background-color: #F5711A;
-                    transform: translateY(-2px);
-                }
-
-                
-        .form-inputs {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-
-            input {
-                border: 0.5px solid #F5711A;
-                box-shadow: 0px 4px 4px 0px #0000001A;
-                border-radius: 10px;
-                padding: 10px;
-            }
-            select{
-              border: 0.5px solid #F5711A;
-              box-shadow: 0px 4px 4px 0px #0000001A;
-              border-radius: 10px;
-              padding: 10px;
-            }
-            textarea{
-              border: 0.5px solid #F5711A;
-              box-shadow: 0px 4px 4px 0px #0000001A;
-              border-radius: 10px;
-              padding: 10px;
-            }
-        }
+      width: 80%;
+      margin-top: 20px;
     }
-
-    .footer-button{
-        background: rgba(249, 117, 30, 1);
-        border-radius: 10px;
-        border: 0.5px solid #F5711A;
-        padding: 10px 5px 0px 5px;
-        color: #fff;
-        text-decoration: none;
-        margin-top: 25px;
-        font-size: 14px;
-        
-        img {
-            width: 20px !important;
-            margin-right: 3px;
-        }
-    }
-
-    .background-video {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-    }
-
-    .mute-toggle {
-        position: absolute;
-        top: 10px;
-        left: 10px;
-        background: rgba(0, 0, 0, 0.5);
-        color: white;
-        border: none;
-        padding: 10px;
-        cursor: pointer;
-      }
-      
-      .sound-indicator {
-        position: absolute;
-        bottom: 20px;
-        left: 20px;
-        background-color: rgba(0, 0, 0, 0.5);
-        color: white;
-        border: none;
-        padding: 10px;
-        cursor: pointer;
-      }
-   
-}
-@media screen and (max-width: 768px) {
-    .banner {
-        flex-direction: column;
-        align-items: center;
-        .video-container {
-            width: 100%;
-        }
-    
-        .form {
-            width: 80%;
-            margin-top: 20px;
-        }
-    }
-
-   
+  }
 }
 
 /* Pulse keyframes */
 @keyframes pulse {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1);
   }
+
   50% {
     transform: scale(1.1);
   }
 }
-
-
-
-
-
-

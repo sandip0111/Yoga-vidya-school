@@ -5,7 +5,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { WebapiService } from '../../../webapi.service';
 import { CartItem, CartService } from '../../../cart.service';
 import { title } from 'process';
-import { WatchVideoComponent } from "../watch-video/watch-video.component";
+import { WatchVideoComponent } from '../watch-video/watch-video.component';
 
 @Component({
   selector: 'app-about-bali',
@@ -13,18 +13,23 @@ import { WatchVideoComponent } from "../watch-video/watch-video.component";
   imports: [CommonModule, WatchVideoComponent],
   templateUrl: './about-bali.component.html',
   styleUrls: ['./about-bali.component.css'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class AboutBaliComponent implements OnInit {
-
   slug: any = '';
   aboutItems: any;
   course?: CartItem;
   ispranayamaCourseOnlinePranarambha = false;
 
-  constructor(private cartService: CartService, private activatedRoute: ActivatedRoute, private router: Router, protected sanitizer: DomSanitizer, private webapiService: WebapiService ) {
+  constructor(
+    private cartService: CartService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
+    protected sanitizer: DomSanitizer,
+    private webapiService: WebapiService
+  ) {
     //  console.log(this.activatedRoute.snapshot.routeConfig?.path,'--');
-    this.slug = this.activatedRoute.snapshot.routeConfig?.path
+    this.slug = this.activatedRoute.snapshot.routeConfig?.path;
     if (this.slug == '200-hour-yoga-teacher-training-in-bali') {
       this.aboutItems = {
         title: 'Transform life with 200-hour',
@@ -35,12 +40,11 @@ export class AboutBaliComponent implements OnInit {
          <p>Nestled in charming Ubud area, our residential facility at Ahamta retreat, Jl. Sri Wedari No.46, Ubud, Kecamatan Ubud, Kabupaten Gianyar, Bali 80571, Indonesia offers the much needed calm and tranquil ambiance with luxury, for pursuing your yoga teacher training in Bali. Reconnect with your inner being and unearth the many innate intricacies of yoga as you pursue our 200 hour yoga TTC at our magical space in Ahamta retreat, Jl. Sri Wedari No.46, Ubud, Kecamatan Ubud, Kabupaten Gianyar, Bali 80571, Indonesia, Bali.
 </p>
         `,
-        image: 'https://my-s3-images-bucket.s3.amazonaws.com/images/bali_200_npa2hj.jpg',
-        alt: '200 yoga teacher training in bali'
-      }
-
-    }
-    else if (this.slug == "300-hour-yoga-teacher-training-in-bali") {
+        image:
+          'https://my-s3-images-bucket.s3.amazonaws.com/images/bali_200_npa2hj.jpg',
+        alt: '200 yoga teacher training in bali',
+      };
+    } else if (this.slug == '300-hour-yoga-teacher-training-in-bali') {
       this.aboutItems = {
         title: '300 hour',
         span: 'Yoga Teacher Training in Bali',
@@ -59,7 +63,8 @@ export class AboutBaliComponent implements OnInit {
 <p>Furthermore, contemporary and scientific perspectives pertaining to psychology, physiology and neurosciences in relation to yogic patterns are also delved upon in this course.</p>
 <p>So, if you are eager and hungry for advanced level yogic knowledge after completing your 200 hour yoga TTC , then this  300 yoga TTC in bali in Bali will be in sync with your innate yogic abilities.</p>
         `,
-        image: 'https://my-s3-images-bucket.s3.amazonaws.com/img/image_1674216026424.jfif',
+        image:
+          'https://my-s3-images-bucket.s3.amazonaws.com/img/image_1674216026424.jfif',
         alt: '300 yoga teacher training in bali',
         subjectInfo: `
     <div class="row mb-5">
@@ -151,10 +156,9 @@ export class AboutBaliComponent implements OnInit {
 	<li>Master-level Teaching Methodology II</li>
 	<li>Deeper Concepts of Ayurveda</li>
 </ul>
-        `
-      }
-    }
-    else if (this.slug == 'yoga-retreat-in-bali') {
+        `,
+      };
+    } else if (this.slug == 'yoga-retreat-in-bali') {
       this.aboutItems = {
         title: 'Yoga retreat',
         span: 'in Bali',
@@ -167,7 +171,8 @@ export class AboutBaliComponent implements OnInit {
 
 <p>Prashant J Yoga has specially designed the program to cater to the preferences and meet the expectations of yoga lovers and especially those who are practicing yoga for some time but still struggling to understand the correct path and methods of synchronising the breath and movements.&nbsp;</p>
     `,
-        image: 'https://my-s3-images-bucket.s3.amazonaws.com/images/FERN8271_fjodwd.jpg',
+        image:
+          'https://my-s3-images-bucket.s3.amazonaws.com/images/FERN8271_fjodwd.jpg',
         alt: 'Yoga retreat in bali',
         subjectInfo: `
         <h2>Retreat Overview</h2>
@@ -314,10 +319,9 @@ export class AboutBaliComponent implements OnInit {
 
 <p><strong>By Road:</strong> If you are already on the Island, you can use local transport like taxis and buses to reach our Bali Yoga Retreat.</p>
 
-        `
-      }
-    }
-    else if (this.slug == 'yoga-retreat-in-mysore-india') {
+        `,
+      };
+    } else if (this.slug == 'yoga-retreat-in-mysore-india') {
       this.aboutItems = {
         title: 'Yoga retreat',
         span: 'in Mysore, India',
@@ -327,7 +331,8 @@ export class AboutBaliComponent implements OnInit {
 <p>One of the most trusted and trending Yoga Teachers on Internet, Prashant Ji has conceptualised and created this amazing Yoga Program after thorough research and dedication. He has offered a very special opportunity of learning age old tradition of Ghat Sadhana and Prana Sanyam in Mysore, popular known as Ashtanga Capital of the World. This Yoga Retreat is also a deeper immersion in the philosophical and spiritual aspect of Yogic science.</p>
 
     `,
-        image: 'https://my-s3-images-bucket.s3.amazonaws.com/images/IMG_7533_fv5f6d.jpg',
+        image:
+          'https://my-s3-images-bucket.s3.amazonaws.com/images/IMG_7533_fv5f6d.jpg',
         alt: 'Yoga retreat in Mysore, India',
         subjectInfo: `
         <h2><span>Yoga Retreat Schedule Information</span></h2>
@@ -380,11 +385,10 @@ export class AboutBaliComponent implements OnInit {
 
 <p><img alt="Yoga retreat in mysore" class="img-fluid" src="https://my-s3-images-bucket.s3.amazonaws.com/images/FERN8241_bshq8b.jpg" style="box-shadow: 0px 23.77px 23.77px 0px rgba(0, 0, 0, 0.55); border-radius: 10px;" /></p>
 
-        `
-      }
-    }
-    else if (this.slug == 'pranayama-course-online-pranarambha') {
-	  this.ispranayamaCourseOnlinePranarambha = true;
+        `,
+      };
+    } else if (this.slug == 'pranayama-course-online-pranarambha') {
+      this.ispranayamaCourseOnlinePranarambha = true;
       this.aboutItems = {
         title: 'PRANA ARAMBHA -',
         span: 'An Exclusive Online Pranayama Course by Prashant J Yoga',
@@ -547,22 +551,25 @@ I am saying this because I have experienced the miracles of Pranayama in my life
 <p>This is for all levels &ndash; beginner, intermediate of advance. Those who call themselves beginner, they will master these techniques and continue regularly but those who are experienced practitioners they go more deeper into these practises, spending more time with inner communication, they will work more on stability and equality of mind. And develop the feeling of Samatvam (complete equilibrium)</p>
 <div class="d-flex justify-content-center" style="width: 100%"><a href="checkout/pranayama-course-online-pranarambha" class="get_access_btn" style="">Get Access</a></div>
 <br/>
-        `
-      }
-
-    }
-    else if (this.slug == 'breath-detox-yoga') {
+        `,
+      };
+    } else if (this.slug == 'breath-detox-yoga') {
       this.aboutItems = {
         title: 'Breath Detox',
         span: 'Course Online',
         desc: `
-        <p><img alt="breath detox" class="img-fluid" src="https://my-s3-images-bucket.s3.amazonaws.com/img/image_1679305096358.png" />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<img alt="breath detox" class="img-fluid" src="https://my-s3-images-bucket.s3.amazonaws.com/img/image_1679305113396.png" /></p>
+        <p>
+			<img alt="breath detox" class="img-fluid" src="https://my-s3-images-bucket.s3.amazonaws.com/img/image_1679305096358.png" />
+			<img alt="breath detox" class="img-fluid" src="https://my-s3-images-bucket.s3.amazonaws.com/img/image_1679305113396.png" />
+		</p>
 
-<p>It is very necessary to have Satvik Intelligence in the practice of Pranayama, because the practice of Pranayama is incomplete without a satvik mind.</p>
+		<p>
+			It is very necessary to have Satvik Intelligence in the practice of Pranayama, because the practice of Pranayama is incomplete without a satvik mind.
+		</p>
 
-<p>&nbsp;</p>
+		<p>&nbsp;</p>
 
-<p><iframe frameborder="0" height="300px" scrolling="no" src="https://www.youtube.com/embed/JEToUoPXdKw" width="100%"></iframe></p>
+		<p><iframe frameborder="0" height="300px" scrolling="no" src="https://www.youtube.com/embed/JEToUoPXdKw" width="100%"></iframe></p>
         `,
         image: '',
         alt: 'Breath Detox Course Online',
@@ -823,11 +830,12 @@ In this class you will learn the quality of breath and how to correct the qualit
 <strong>My Intention and the Mission of the school is to spread the pure Yogic and Vedanta knowledge that helps people to live more consciously and happily. If this beautiful inspiring idea resonates with you then share it with your friends and be an influencer of meaningful healthy life.</strong></p>
 
 <p><strong><img alt="breath detox" class="img-fluid" src="https://my-s3-images-bucket.s3.amazonaws.com/img/image_1679305364702.jpg"  style="box-shadow: 0px 23.77px 23.77px 0px rgba(0, 0, 0, 0.55); border-radius: 10px;"/></strong></p>
-        `
-      }
-
-    }
-    else if (this.slug == 'foundation-of-spirituality-an-online-spiritual-awakening-course') {
+        `,
+      };
+    } else if (
+      this.slug ==
+      'foundation-of-spirituality-an-online-spiritual-awakening-course'
+    ) {
       this.aboutItems = {
         title: 'Foundation of Spirituality:',
         span: 'An Online Spiritual Awakening Course',
@@ -842,7 +850,7 @@ In this class you will learn the quality of breath and how to correct the qualit
         `,
         image: '',
         alt: 'Foundation of Spirituality',
-        subjectInfo:`
+        subjectInfo: `
         <h2> <span>What You Will Learn In This Course ?</span></h2>
 
 <p>&nbsp;</p>
@@ -897,11 +905,9 @@ In this class you will learn the quality of breath and how to correct the qualit
 <h2><span>Requirements</span></h2>
 
 <p>No previous knowledge or tools required.</p>
-        `
-      }
-
-    }
-    else if (this.slug == 'yoga-inversion-workshop-headstand') {
+        `,
+      };
+    } else if (this.slug == 'yoga-inversion-workshop-headstand') {
       this.aboutItems = {
         title: 'Yoga Inversion Workshop -',
         span: 'Yoga Teacher Training in Bali',
@@ -933,9 +939,10 @@ In this class you will learn the quality of breath and how to correct the qualit
 <p>&nbsp;</p>
 
         `,
-        image: 'https://my-s3-images-bucket.s3.amazonaws.com/img/image_1687256669449.jpeg',
+        image:
+          'https://my-s3-images-bucket.s3.amazonaws.com/img/image_1687256669449.jpeg',
         alt: 'Headstand with PrashantJ Yoga',
-        subjectInfo:`
+        subjectInfo: `
         <h2><span>This Online Yoga Workshop will focus on variations of Headstand or Sirsasana:</span></h2>
 
 <ol style="list-style:none">
@@ -990,11 +997,9 @@ In this class you will learn the quality of breath and how to correct the qualit
 <p>&nbsp;</p>
 
 <p><img alt="Yoga Inversion Workshop" class="img-fluid sectionImg shadow" src="https://my-s3-images-bucket.s3.amazonaws.com/img/image_1687169402195.jpg" style="box-shadow: 0px 23.77px 23.77px 0px rgba(0, 0, 0, 0.55); border-radius: 10px;" /></p>
-        `
-      }
-
-    }
-    else if (this.slug == 'yoga-philosophy-course-free') {
+        `,
+      };
+    } else if (this.slug == 'yoga-philosophy-course-free') {
       this.aboutItems = {
         title: 'योग शास्त्र /',
         span: 'योग ग्रंथ अध्यन',
@@ -1006,9 +1011,10 @@ In this class you will learn the quality of breath and how to correct the qualit
 
 <p><span style="font-size:20px">इस श्रृंखला मैं पहला ग्रंथ जो पढ़ाया जाएगा वो पतंजलि योग सूत्र है।&nbsp;</span></p>
         `,
-        image: 'https://my-s3-images-bucket.s3.amazonaws.com/img/image_1687935108018.jpeg',
+        image:
+          'https://my-s3-images-bucket.s3.amazonaws.com/img/image_1687935108018.jpeg',
         alt: 'योग शास्त्र / योग ग्रंथ अध्यन',
-        subjectInfo:`
+        subjectInfo: `
         <h2><span>महत्वपूर्ण बिंदु:</span>&nbsp;</h2>
 
 <p><br />
@@ -1020,11 +1026,9 @@ In this class you will learn the quality of breath and how to correct the qualit
 <p>&nbsp;</p>
 
 <p><img alt="yoga philosophy course free" class="img-fluid" src="https://my-s3-images-bucket.s3.amazonaws.com/img/image_1687935090661.jpeg" style="box-shadow: 0px 23.77px 23.77px 0px rgba(0, 0, 0, 0.55); border-radius: 10px;" /></p>
-        `
-      }
-
-    }
-    else if (this.slug == 'yoga-history-and-philosophy') {
+        `,
+      };
+    } else if (this.slug == 'yoga-history-and-philosophy') {
       this.aboutItems = {
         title: 'Yogic Scriptures',
         span: 'Study',
@@ -1033,10 +1037,8 @@ In this class you will learn the quality of breath and how to correct the qualit
         `,
         image: '',
         alt: '',
-      }
-
-    }
-    else if (this.slug == 'yoga-retreat-in-peru') {
+      };
+    } else if (this.slug == 'yoga-retreat-in-peru') {
       this.aboutItems = {
         title: 'Yoga Retreat',
         span: 'in Peru',
@@ -1048,9 +1050,10 @@ In this class you will learn the quality of breath and how to correct the qualit
 <p>A trustworthy name in the world of yoga , Acharya Prashant &nbsp;has conceptualised and created this unique Yoga program with dedication and thorough research. He is now offering an Ashtanga Yoga Retreat in Peru which will inculcate all the age-old and niche learnings of Ashtanga Yoga from Mysore, the &lsquo;Ashtanga Capital of the World&rsquo;. This Yoga Retreat will also delve into deep immersion practices from a philosophical and spiritual perspective of yoga.<br />
 &nbsp;</p>
         `,
-        image: 'https://my-s3-images-bucket.s3.amazonaws.com/img/image_1721289400809.jpg',
+        image:
+          'https://my-s3-images-bucket.s3.amazonaws.com/img/image_1721289400809.jpg',
         alt: 'Yoga Retreat in Peru',
-        subjectInfo:`
+        subjectInfo: `
         <h2><span>Peru Ashtanga Vinyasa Retreat Practice Areas</span></h2>
 
 <p>In this Retreat, we take you through primary series of Ashtanga Vinyasa and introduction to 2nd series of Ashtanga</p>
@@ -1190,42 +1193,38 @@ We are located at the Sacred Valley, one hour away from Cusco City which is a UN
 <p>
 A watering hole for adventure freaks and solo travellers, Peru with its gorgeous landscapes, lip-smacking food and comparatively cheaper prices is an attractive destination for aspiring yogis and yoginis.
 </p>
-    `
-      }
-
+    `,
+      };
     }
-
   }
 
   ngOnInit() {
-	this.getCourseBySlug(this.slug);
+    this.getCourseBySlug(this.slug);
   }
 
   addToCart(event: Event): void {
     event.preventDefault();
 
-   if(this.course != undefined){
-	this.cartService.addItem(this.course);
-   }
-    
+    if (this.course != undefined) {
+      this.cartService.addItem(this.course);
+    }
+
     this.router.navigate(['/add-to-cart']);
   }
 
   getCourseBySlug(slug: any) {
     let data = {
-      "slug": slug
-    }
+      slug: slug,
+    };
     this.webapiService.getCourseById(data).subscribe((res: any) => {
-      
-		this.course = {
-			id: res.data[0]._id,
-			title: res.data[0].coursetitle,
-			shortDescription: res.data[0].shortDesc,
-			priceINR: 0,
-			priceUSD: 0,
-			quantity: 1
-		} 
-    })
+      this.course = {
+        id: res.data[0]._id,
+        title: res.data[0].coursetitle,
+        shortDescription: res.data[0].shortDesc,
+        priceINR: 0,
+        priceUSD: 0,
+        quantity: 1,
+      };
+    });
   }
-
 }

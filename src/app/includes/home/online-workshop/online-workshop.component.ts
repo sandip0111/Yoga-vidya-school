@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { contact } from '../../../enum/details';
 
 @Component({
   selector: 'app-online-workshop',
@@ -9,6 +10,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./online-workshop.component.css']
 })
 export class OnlineWorkshopComponent implements OnInit {
+  contactEnum = contact;
   workshops:workshop[]=[
     {
       img:"workshop1.png",
@@ -17,7 +19,7 @@ export class OnlineWorkshopComponent implements OnInit {
       title2:"",
       link:"Enroll Now",
       contact:"Get Any Question ?",
-      mobile:"+91 9818660954",
+      mobile:this.contactEnum.whatsapp,
       image:"https://my-s3-images-bucket.s3.amazonaws.com/images/free-wkshop_jtvkw7.jpg",
       url:"/breath-detox-yoga"
     },
@@ -28,7 +30,7 @@ export class OnlineWorkshopComponent implements OnInit {
       title2:"",
       link:"Enroll Now",
       contact:"Get Any Question ?",
-      mobile:"+91 9818660954",
+      mobile:this.contactEnum.whatsapp,
       image:"https://my-s3-images-bucket.s3.amazonaws.com/images/paid-wkshop_guyohr.jpg",
       url:"/"
     },

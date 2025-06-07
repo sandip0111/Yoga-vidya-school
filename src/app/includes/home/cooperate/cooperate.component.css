@@ -41,3 +41,6 @@
 .destination:hover .inner {
     bottom: 0 !important; /* Slide up to reveal the text */
 }
+.contentPart {
+    align-items: center;
+}
