@@ -1,4 +1,11 @@
-import { Component, OnInit,Inject,Renderer2, ViewChild, ElementRef } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Inject,
+  Renderer2,
+  ViewChild,
+  ElementRef,
+} from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { BottomNavComponent } from '../../../includes/home/bottom-nav/bottom-nav.component';
 import { AboutBaliComponent } from '../about-bali/about-bali.component';
@@ -19,15 +26,15 @@ import { FaqComponent } from '../../../includes/home/faq/faq.component';
 import { BenifitsComponent } from '../../../includes/home/benifits/benifits.component';
 import { BannerComponent } from '../../banner/banner.component';
 import { WebapiService } from '../../../webapi.service';
-import { ActivatedRoute,Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { Meta,Title } from '@angular/platform-browser';
+import { Meta, Title } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { YogaAllianceComponent } from '../../rishikesh/yoga-alliance/yoga-alliance.component';
 import { ScheduleComponent } from '../../rishikesh/schedule/schedule.component';
 import { BottomNavCourseComponent } from '../../../includes/home/bottom-nav-course/bottom-nav-course.component';
-import { ReviewListComponentComponent } from "../../../text-review-list/review-list-component/review-list-component.component";
-import { VideoReviewsComponent } from "../../video-reviews/video-reviews.component";
+import { ReviewListComponentComponent } from '../../../text-review-list/review-list-component/review-list-component.component';
+import { VideoReviewsComponent } from '../../video-reviews/video-reviews.component';
 @Component({
   selector: 'app-bali-index',
   standalone: true,
@@ -55,41 +62,48 @@ import { VideoReviewsComponent } from "../../video-reviews/video-reviews.compone
     ScheduleComponent,
     BottomNavCourseComponent,
     ReviewListComponentComponent,
-    VideoReviewsComponent
-],
+    VideoReviewsComponent,
+  ],
   templateUrl: './bali-index.component.html',
   styleUrls: ['./bali-index.component.css'],
 })
 export class BaliIndexComponent implements OnInit {
-  slug:any ='';
+  slug: any = '';
   faqData: any;
   ispranayamaCourseOnlinePranarambha = false;
-  upEventData:any;
-  youtubeVideoData:any;
-  accomData:any;
-  feesData: any ={};
-  codecond: any={};
-  currData:any;
-  schEventData:any={};
-  bannerData:any= {};
+  upEventData: any;
+  youtubeVideoData: any;
+  accomData: any;
+  feesData: any = {};
+  codecond: any = {};
+  currData: any;
+  schEventData: any = {};
+  bannerData: any = {};
   @ViewChild('banner', { read: ElementRef }) banner!: ElementRef;
   @ViewChild(BannerComponent) appBannerComponent!: BannerComponent;
-  isBannerVisible = true; 
-  constructor(private webapiService: WebapiService,private activatedRoute: ActivatedRoute,private router:Router,private spinner:NgxSpinnerService,private _renderer2: Renderer2,
-    @Inject(DOCUMENT) private _document: Document,private title: Title, private meta: Meta) {
+  isBannerVisible = true;
+  constructor(
+    private webapiService: WebapiService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
+    private spinner: NgxSpinnerService,
+    private _renderer2: Renderer2,
+    @Inject(DOCUMENT) private _document: Document,
+    private title: Title,
+    private meta: Meta
+  ) {
     this.slug = this.activatedRoute.snapshot.routeConfig?.path;
-    if(this.slug == 'pranayama-course-online-pranarambha'){
+    if (this.slug == 'pranayama-course-online-pranarambha') {
       this.ispranayamaCourseOnlinePranarambha = true;
     }
-    if(this.slug){
+    if (this.slug) {
       this.getCourseBySlug(this.slug);
     }
   }
 
   ngOnInit() {
     this.spinner.show();
-    if (this.slug == "200-hour-yoga-teacher-training-in-bali") {
-
+    if (this.slug == '200-hour-yoga-teacher-training-in-bali') {
       let script = this._renderer2.createElement('script');
       script.type = `application/ld+json`;
       script.text = `
@@ -129,25 +143,27 @@ export class BaliIndexComponent implements OnInit {
         }
       }`;
       this._renderer2.appendChild(this._document.head, script);
-
     }
 
     const canonicalUrl = 'https://www.yogavidyaschool.com' + this.router.url;
     const link = this._document.querySelector('link[rel="canonical"]');
-    if(link){
+    if (link) {
       this._renderer2.setAttribute(link, 'href', canonicalUrl);
     }
   }
 
   ngAfterViewInit() {
-     // Dynamically button hide and show when banneris not visible in viewport
+    // Dynamically button hide and show when banneris not visible in viewport
     this.observeBannerVisibility();
   }
 
   scrollToBanner() {
     if (this.banner?.nativeElement) {
       // Scroll to the banner
-      this.banner.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      this.banner.nativeElement.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
 
       // Wait for scrolling to complete, then call highlight function in the child component
       setTimeout(() => {
@@ -171,8 +187,8 @@ export class BaliIndexComponent implements OnInit {
 
   getCourseBySlug(slug: any) {
     let data = {
-      "slug": slug
-    }
+      slug: slug,
+    };
     this.webapiService.getCourseById(data).subscribe((res: any) => {
       // console.log(res.data, 'course Data');
       const currentDate = new Date();
@@ -180,47 +196,49 @@ export class BaliIndexComponent implements OnInit {
         this.spinner.hide();
         this.faqData = res.data[0].content;
         // this.currData = res.data[0].curriculumInfo;
-        this.upEventData = res.data[0]?.upcomingEventInfo.filter((item: any) => {
-          const itemDate = new Date(item.startDate);
-          return itemDate >= currentDate;
-        });
+        this.upEventData = res.data[0]?.upcomingEventInfo.filter(
+          (item: any) => {
+            const itemDate = new Date(item.startDate);
+            return itemDate >= currentDate;
+          }
+        );
         this.bannerData = {
           event: this.upEventData,
-          courseName:res.data[0].coursetitle
-        }
+          courseName: res.data[0].coursetitle,
+        };
         // this.schData = {
         //   title: res.data[0].coursetitle,
         //   schedule:res.data[0].scheduleInfo
         // }
         this.schEventData = {
-          title:res.data[0].coursetitle,
-          events:this.upEventData,
-          url:res.data[0].slug,
-          loc:'Bali'
-        }
+          title: res.data[0].coursetitle,
+          events: this.upEventData,
+          url: res.data[0].slug,
+          loc: 'Bali',
+        };
         this.currData = {
-          title:res.data[0].coursetitle,
-          curr:res.data[0].curriculumInfo
-        }
+          title: res.data[0].coursetitle,
+          curr: res.data[0].curriculumInfo,
+        };
         this.youtubeVideoData = {
-          title:res.data[0].coursetitle,
-          videoId:res.data[0].courseintrovideoId
-        }
+          title: res.data[0].coursetitle,
+          videoId: res.data[0].courseintrovideoId,
+        };
 
         this.accomData = {
-          accom:res.data[0].accommodationInfo[0]?.para,
-          food:res.data[0].foodInfo[0]?.para
-        }
+          accom: res.data[0].accommodationInfo[0]?.para,
+          food: res.data[0].foodInfo[0]?.para,
+        };
 
         this.feesData = {
-          title:res.data[0].coursetitle,
-          amount:res.data[0].feeInfo[0]?.amount,
-          currency:res.data[0].feeInfo[0]?.currency,
-        }
+          title: res.data[0].coursetitle,
+          amount: res.data[0].feeInfo[0]?.amount,
+          currency: res.data[0].feeInfo[0]?.currency,
+        };
 
         this.codecond = {
-          title:res.data[0].coursetitle
-        }
+          title: res.data[0].coursetitle,
+        };
 
         // this.courseList = res.data[0];
         // this.courseName = res.data[0].coursetitle;
@@ -232,14 +250,19 @@ export class BaliIndexComponent implements OnInit {
         // let url = `https://www.youtube.com/embed/${res.data[0].courseintrovideoId}`
         // this.safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url);
         this.title.setTitle(res.data[0].metaTitle);
-        this.meta.updateTag({ name: 'keywords', content: res.data[0].metaKeyword });
-        this.meta.updateTag({ name: 'description', content: res.data[0].metaDescription });
+        this.meta.updateTag({
+          name: 'keywords',
+          content: res.data[0].metaKeyword,
+        });
+        this.meta.updateTag({
+          name: 'description',
+          content: res.data[0].metaDescription,
+        });
         // this.checkForCourse(this.userId, res.data[0]._id);
-      }
-      else {
+      } else {
         this.router.navigate(['/']);
         this.spinner.hide();
       }
-    })
+    });
   }
 }

@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import {
   Component,
   ElementRef,
+  Input,
   OnInit,
   QueryList,
   ViewChildren,
@@ -16,15 +17,8 @@ import {
   encapsulation: ViewEncapsulation.Emulated,
 })
 export class VideoReviewsComponent implements OnInit {
-  videos = [
-    'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/VID-20241216-WA0001.mp4',
-    'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/VID-20241216-WA0002.mp4',
-    'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/VID-20241216-WA0003.mp4',
-    'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/VID-20241216-WA0004.mp4',
-    'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/WA0005.mp4',
-    'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/WA0006.mp4',
-    'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/WA0007.mp4',
-  ];
+  @Input() specialvideo: boolean = false;
+  videos: string[] = [];
 
   @ViewChildren('videoPlayer') videoPlayers!: QueryList<
     ElementRef<HTMLVideoElement>
@@ -39,6 +33,33 @@ export class VideoReviewsComponent implements OnInit {
   constructor(private el: ElementRef) {}
 
   ngOnInit(): void {
+    if (this.specialvideo) {
+      this.videos = [
+        'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/pranic_testimonial1.mp4',
+        'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/pranic_testimonial2.mp4',
+        'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/pranic_testimonial3.mp4',
+        'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/pranic_testimonial4.mp4',
+        'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/pranaarambha1.mp4',
+        'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/pranic_testimonial5.mp4',
+        'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/VID-20241216-WA0001.mp4',
+        'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/VID-20241216-WA0002.mp4',
+        'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/VID-20241216-WA0003.mp4',
+        'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/VID-20241216-WA0004.mp4',
+        'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/WA0005.mp4',
+        'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/WA0006.mp4',
+        'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/WA0007.mp4',
+      ];
+    } else {
+      this.videos = [
+        'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/VID-20241216-WA0001.mp4',
+        'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/VID-20241216-WA0002.mp4',
+        'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/VID-20241216-WA0003.mp4',
+        'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/VID-20241216-WA0004.mp4',
+        'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/WA0005.mp4',
+        'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/WA0006.mp4',
+        'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/WA0007.mp4',
+      ];
+    }
     this.menuWrapper = this.el.nativeElement.querySelector('.menu--wrapper');
     this.menuWrapper.addEventListener(
       'mouseenter',
