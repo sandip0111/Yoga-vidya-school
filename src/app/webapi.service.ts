@@ -1,13 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
+import { environment } from './course/enum';
 @Injectable({
   providedIn: 'root'
 })
 export class WebapiService {
-  // private url = 'http://localhost:3000/';
-  // public imageUrl = "http://localhost:3000/public/images/";
-  private url = 'https://yogavidyaschool.com:3000/';
+  private url = environment.apiUrl;
   public imageUrl = "https://my-s3-images-bucket.s3.amazonaws.com/img/";
   public imageUrlv2 = "https://yogavidyaschool.com:3000/public/img/";
   private youtubeApiKey = "AIzaSyBBWKHx71MmwvADlvncUc8ivZuJ0k5Wi44";
