@@ -43,6 +43,11 @@ export class BannerComponent implements OnInit {
     private activatedRoute: ActivatedRoute
   ) {
     this.slug = this.activatedRoute.snapshot.routeConfig?.path;
+  }
+  ngOnInit() {
+    this.backGroundImageSet();
+  }
+  backGroundImageSet() {
     if (
       this.slug == '200-hour-yoga-teacher-training-in-bali' ||
       this.slug == 'yoga-retreat-in-bali' ||
@@ -98,11 +103,8 @@ export class BannerComponent implements OnInit {
       this.isRegistrationPageLabelToggleForAdjusment = true;
     }
   }
-
-  ngOnInit() {}
-
   ngAfterViewInit() {
-    if (this.slug !== 'pranic-purification') {
+    if (this.slug !== 'pranic-purification' && this.slug != 'breath-detox-yoga') {
       if (this.bannerSection) {
         this.renderer.setStyle(
           this.bannerSection.nativeElement,
