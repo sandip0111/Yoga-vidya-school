@@ -788,18 +788,18 @@ export class CheckoutComponent {
       script.id = 'stripe-script';
       script.type = 'text/javascript';
       script.src = 'https://js.stripe.com/v3/';
-      script.onload = () => {
-        this.paymentHandler = (<any>window).Stripe(
-          'pk_test_51LTjKYSDnZBoIVm7pF6anOLQhi4oPrvRNYuOP0fF0wOptRzE1m0QqtvAOo1wi6VUVb5cMgThi8FGGeSUhZ10KRIW00zlCy2Ff0', // Replace with your own publishable key
-          { locale: 'auto' }
-        );
-      };
       // script.onload = () => {
       //   this.paymentHandler = (<any>window).Stripe(
-      //     'pk_live_51LJJXISEQq0H4GuE8KMgQV23uQA21MqJLP8XsL3fNZBpwRmX9n8VK4CdcBbeSNbnptLCNn7SScrNvIERlhyKsO1c00ILj5f3hP', // Replace with your own publishable key
+      //     'pk_test_51LTjKYSDnZBoIVm7pF6anOLQhi4oPrvRNYuOP0fF0wOptRzE1m0QqtvAOo1wi6VUVb5cMgThi8FGGeSUhZ10KRIW00zlCy2Ff0', // Replace with your own publishable key
       //     { locale: 'auto' }
       //   );
       // };
+      script.onload = () => {
+        this.paymentHandler = (<any>window).Stripe(
+          'pk_live_51LJJXISEQq0H4GuE8KMgQV23uQA21MqJLP8XsL3fNZBpwRmX9n8VK4CdcBbeSNbnptLCNn7SScrNvIERlhyKsO1c00ILj5f3hP', // Replace with your own publishable key
+          { locale: 'auto' }
+        );
+      };
       window.document.body.appendChild(script);
     }
 
