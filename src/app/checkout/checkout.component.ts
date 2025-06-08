@@ -389,7 +389,7 @@ export class CheckoutComponent {
                 if (this.slug == 'pranayama-course-online-pranarambha') {
                   if (data.package == 'Basic' && data.currency == 'INR') {
                     this.initializePayment(
-                      'price_1NI7hnSEQq0H4GuEWS5qIffa',
+                      'price_1QmsTUSEQq0H4GuEZfWd5UJu',
                       data.email
                     ); // price_1NInGmSDnZBoIVm7fv2upett price_1QmsTUSEQq0H4GuEZfWd5UJu //price_1NI7hnSEQq0H4GuEWS5qIffa
                     //price_1NI6oxSEQq0H4GuEW24DMpTn
