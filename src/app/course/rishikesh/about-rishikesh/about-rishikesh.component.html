@@ -1,13 +1,12 @@
 <!-- about.component.html -->
 
 <section class="about-rishikesh-section py-5">
-  <div class="row mb-3 align-items-center">
+  <div *ngIf="slug != 'pranic-purification'" class="row mb-3 align-items-center">
     <div class="col-md-6">
-      <div class="imageback" [ngClass]="{'pranic-purification-img': ispranicPurificationImg}">
+      <div class="imageback" >
         <img
           src="{{ this.aboutContent.image }}"
-          class="img-fluid"
-          [ngClass]="{'pranic-purification-img': ispranicPurificationImg}"  
+          class="img-fluid"         
           alt="{{ this.aboutContent.title }} {{
             this.aboutContent.secondTitle
           }}"
@@ -31,7 +30,36 @@
       </div>
     </div>
   </div>
-
+  <div *ngIf="slug == 'pranic-purification'" class="mb-3">
+    
+      <div class="image-container" >
+        <img
+          src="{{ this.aboutContent.image }}"
+          style="border-radius: 10px;"
+          class="img-fluid pranic-purification-img"  
+          alt="{{ this.aboutContent.title }} {{
+            this.aboutContent.secondTitle
+          }}"
+        />
+      </div>
+    
+    <div class="position: relative; z-index: 1;">
+      <div>
+        <small class="text-left p-0">Yoga Vidya Present's</small>
+        <h1>
+          {{ this.aboutContent.title }}
+          <span>{{ this.aboutContent.secondTitle }}</span>
+        </h1>
+        <div *ngIf="this.aboutContent.subTitle" class="col-12">
+          <h4>
+            {{ this.aboutContent.subTitle}}
+          </h4>
+        </div>
+        
+        <div [innerHTML]="this.aboutContent.desc"></div>
+      </div>
+    </div>
+  </div>
   <div
     class="row mb-5"
     *ngIf="slug == '300-hours-yoga-teacher-training-in-rishikesh'"
