@@ -5,8 +5,9 @@ import {
   Renderer2,
   ViewChild,
   ElementRef,
+  PLATFORM_ID,
 } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { BottomNavComponent } from '../../../includes/home/bottom-nav/bottom-nav.component';
 import { AboutBaliComponent } from '../about-bali/about-bali.component';
 import { CurriculumComponent } from '../curriculum/curriculum.component';
@@ -90,7 +91,8 @@ export class BaliIndexComponent implements OnInit {
     private _renderer2: Renderer2,
     @Inject(DOCUMENT) private _document: Document,
     private title: Title,
-    private meta: Meta
+    private meta: Meta,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {
     this.slug = this.activatedRoute.snapshot.routeConfig?.path;
     if (this.slug == 'pranayama-course-online-pranarambha') {
@@ -173,7 +175,7 @@ export class BaliIndexComponent implements OnInit {
   }
 
   private observeBannerVisibility() {
-    if (!this.banner) return;
+    if (!isPlatformBrowser(this.platformId) || !this.banner) return;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -266,3 +268,4 @@ export class BaliIndexComponent implements OnInit {
     });
   }
 }
+

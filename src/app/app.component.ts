@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './includes/header/header.component';
 import { FooterComponent } from './includes/footer/footer.component';
@@ -6,6 +6,7 @@ import { SpinnerComponent } from './includes/spinner/spinner.component';
 import { ModalModule } from './modal/modal.module';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CourseModalComponent } from './modal/course-modal/course-modal.component';
+import { isPlatformBrowser } from '@angular/common';
 // import { WebinarModalComponent } from './modal/webinar-modal/webinar-modal.component';
 
 @Component({
@@ -19,16 +20,18 @@ import { CourseModalComponent } from './modal/course-modal/course-modal.componen
 
 export class AppComponent implements OnInit {
 
-  constructor(private modalService: NgbModal) {}
+  constructor(private modalService: NgbModal, @Inject(PLATFORM_ID) private platformId: Object) {}
   
   ngOnInit(): void {
-    let isOpenCourseModal = sessionStorage.getItem('OpenCourseModal');
-    if(isOpenCourseModal == null){
-      setTimeout(() => {
-        this.openModal();
-        sessionStorage.setItem('OpenCourseModal', 'true');
-      }, 30000); 
-    };
+    if (isPlatformBrowser(this.platformId)) {
+      let isOpenCourseModal = sessionStorage.getItem('OpenCourseModal');
+      if(isOpenCourseModal == null){
+        setTimeout(() => {
+          this.openModal();
+          sessionStorage.setItem('OpenCourseModal', 'true');
+        }, 30000); 
+      };
+    }
 
   //   let isOpenWebinarModal = sessionStorage.getItem('OpenWebinarModal');
   //   if(isOpenWebinarModal == null){

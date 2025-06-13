@@ -1,3 +1,44 @@
+@if(slug === '200-hours-yoga-teacher-training-online'){
+<section class="ttc-banner-section" id="bnner_section">
+  <div class="floating-register-btn">
+    <button class="register-btn" (click)="registerClick(slug)">
+      Register Now
+    </button>
+  </div>
+</section>
+<div
+  id="carouselExampleInterval"
+  class="carousel slide image-slide"
+  data-bs-ride="carousel"
+  data-bs-interval="2000"
+  data-bs-pause="false"
+>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img
+        src="https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/954A9082.jpg"
+        class="d-block w-100"
+        alt="Slide 1"
+      />
+    </div>
+    <div class="carousel-item">
+      <img
+        src="https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/20221017125032_IMG_8691.jpeg"
+        class="d-block w-100"
+        alt="Slide 2"
+      />
+    </div>
+    <div class="carousel-item">
+      <img
+        src="https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/954A7672.jpg"
+        class="d-block w-100"
+        alt="Slide 3"
+      />
+    </div>
+  </div>
+</div>
+
+}@else{
 <section
   #bannerSection
   class="banner-section"
@@ -200,3 +241,4 @@
     </div>
   </div>
 </section>
+}

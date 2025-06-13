@@ -145,6 +145,46 @@
   }
 }
 
+.ttc-banner-section {
+  padding: 2px 50px;
+
+  .floating-register-btn {
+    position: absolute;
+    bottom: 150px;
+    right: 60px;
+    z-index: 9999;
+  }
+
+  .register-btn {
+    background-color: #ff6600;
+    color: white;
+    font-size: 1.2rem;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+    animation: pulse 2s ease-in-out infinite;
+  }
+}
+
+.carousel-inner {
+  height: 500px;
+}
+
+.image-slide .carousel-item img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  object-position: bottom center;
+}
+
+.carousel-item {
+  transition: transform 3s ease-in-out !important;
+}
+
+
 @media screen and (max-width: 900px) and (min-width: 300px) {
   .banner-section .form {
     margin: 0px 0px;
@@ -306,6 +346,7 @@
 
 /* Pulse keyframes */
 @keyframes pulse {
+
   0%,
   100% {
     transform: scale(1);
