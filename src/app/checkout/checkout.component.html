@@ -10,14 +10,24 @@
                 <div class="col">
                   <span> {{ courseList?.coursetitle }}</span>
                 </div>
-                <div class="col-auto">
-                  <span class="h4"
-                    ><strong>{{ price }}</strong></span
-                  >
+                <div class="col-auto" *ngIf="amount > 0">
+                  <span class="h4">
+                    <strong [ngClass]="isDiscounted ? 'old-price' : ''">{{
+                      amount | currency : checkData.currency
+                    }}</strong>
+                  </span>
+                  <span class="h4">
+                    <strong *ngIf="isDiscounted">{{
+                      offerAmount | currency : checkData.currency
+                    }}</strong>
+                  </span>
                 </div>
               </div>
 
-              <div *ngIf="slug === 'pranic-purification'" class="row align-items-center">
+              <div
+                *ngIf="slug === 'pranic-purification'"
+                class="row align-items-center"
+              >
                 <div class="col">
                   <span> {{ formattedPranicDate }}</span>
                 </div>
@@ -30,13 +40,10 @@
             </li>
           </ul>
         </div>
-      </div>     
-      
-     
+      </div>
     </div>
     <div class="col-md-6">
       <h2>Checkout</h2>
-
       <div class="check-user">
         <div class="">
           <label for="email">Email</label>
@@ -47,30 +54,19 @@
             (change)="checkEmail($event)"
             [(ngModel)]="checkData.email"
             placeholder="Enter your email"
+            (blur)="checkCouponCode()"
           />
-           <div *ngIf="emailSuggestion" class="text-warning">
-              {{ emailSuggestion }}
-           </div>
+          <div *ngIf="emailSuggestion" class="text-warning">
+            {{ emailSuggestion }}
+          </div>
         </div>
-
-        <!-- <div>
-          <label for="package">Payment Mode</label>
-          <select
-            class="form-control mb-3"
-            name="package"
-            [(ngModel)]="checkData.mode"
-            (change)="setMode($event)"
-          >
-            <option value="undefined">Select Payment Mode</option>
-            <option value="CC">CC Avenue</option>
-            <option value="STRIPE">Stripe</option>
-          </select>
-        </div> -->
-
-                
-
-
-        <div class="" *ngIf="slug === 'pranic-purification' || (!oldStudent && slug !== 'pranic-purification')">
+        <div
+          class=""
+          *ngIf="
+            slug === 'pranic-purification' ||
+            (!oldStudent && slug !== 'pranic-purification')
+          "
+        >
           <label for="name">Name</label>
           <input
             type="text"
@@ -81,40 +77,34 @@
           />
         </div>
 
-        <div class="" >
-          <label for="name">WhatsApp Number</label> <br/>
+        <div class="">
+          <label for="name">WhatsApp Number</label> <br />
           <ngx-intl-tel-input
-                        [cssClass]="'form-control phone_input'"
-                        [separateDialCode]="true"
-                        [preferredCountries]="['in', 'us']"
-                        [enableAutoCountrySelect]="true"
-                        [enablePlaceholder]="true"
-                        [searchCountryFlag]="true"
-                        [searchCountryField]="searchFields"
-                        [selectFirstCountry]="false"
-                        [selectedCountryISO]="CountryISO.India"
-                        [maxLength]="15"    
-                        [phoneValidation]="true"
-                        #phoneInput="ngModel"
-                        required
-                        (input)="onPhoneInputChange(!!phoneInput.valid)"                 
-                        [(ngModel)]="checkData.phoneNumber"                        
-                        (countryChange)="onCountryChange($event)"
-                         >
-          </ngx-intl-tel-input><br/>
-                      <div *ngIf="phoneError" class="text-danger mt-1">
-                        {{ phoneError }}
-                      </div><br/>
-          <!-- <input
-            type="text"
-            class="form-control mb-3"
-            id="phoneNumber"
+            [cssClass]="'form-control phone_input'"
+            [separateDialCode]="true"
+            [preferredCountries]="['in', 'us']"
+            [enableAutoCountrySelect]="true"
+            [enablePlaceholder]="true"
+            [searchCountryFlag]="true"
+            [searchCountryField]="searchFields"
+            [selectFirstCountry]="false"
+            [selectedCountryISO]="CountryISO.India"
+            [maxLength]="15"
+            [phoneValidation]="true"
+            #phoneInput="ngModel"
+            required
+            (input)="onPhoneInputChange(!!phoneInput.valid)"
             [(ngModel)]="checkData.phoneNumber"
-            placeholder="Enter WhatsApp Number with country code"
-          /> -->
+            (countryChange)="onCountryChange($event)"
+          >
+          </ngx-intl-tel-input
+          ><br />
+          <div *ngIf="phoneError" class="text-danger mt-1">
+            {{ phoneError }}
+          </div>
+          <br />
         </div>
 
-        
         <div *ngIf="slug !== 'pranic-purification'">
           <label for="package">Package</label>
           <select
@@ -125,11 +115,8 @@
           >
             <option value="">Select Package</option>
             <option value="Basic">Basic</option>
-            <!-- <option value="Standard">Standard</option>
-            <option value="Premium">Premium</option> -->
           </select>
         </div>
-
         <div>
           <label for="package">Payment Currency</label>
           <select
@@ -138,8 +125,21 @@
             [(ngModel)]="checkData.currency"
             (change)="priceConvert($event)"
           >
-             <option *ngFor="let option of currencyOptions" [value]="option">{{ option }}</option>
+            <option *ngFor="let option of currencyOptions" [value]="option">
+              {{ option }}
+            </option>
           </select>
+        </div>
+        <div *ngIf="slug == 'pranayama-course-online-pranarambha'">
+          <label for="refferal">Refferal Code</label>
+          <input
+            type="text"
+            class="form-control mb-3"
+            id="refferal"
+            [(ngModel)]="checkData.code"
+            placeholder="Enter refferal code"
+            (blur)="checkDiscount()"
+          />
         </div>
         <div *ngIf="slug === 'pranic-purification'">
           <label for="name">Address</label>
@@ -152,36 +152,49 @@
           />
         </div>
         <div class="d-flex w-100 justify-content-start gap-3 mt-3">
-          
           <a
             href="javascript:void(0)"
             style="border-color: #f9751e"
             class="payment-button"
             (click)="checkoutData(checkData, true)"
           >
-           <img src="assets/razor.svg" alt="Razorpay" width="128" height="32" />
-           
+            <img
+              src="assets/razor.svg"
+              alt="Razorpay"
+              width="128"
+              height="32"
+            />
           </a>
-        
-        <a
+
+          <a
             href="javascript:void(0)"
             style="border-color: #f9751e"
             class="payment-button"
             (click)="checkoutData(checkData, false)"
           >
-            <img src="assets/stripe.png" alt="Stripe"  width="128" height="35">
+            <img src="assets/stripe.png" alt="Stripe" width="128" height="35" />
           </a>
-          <a href="https://www.paypal.me/yogavidyafoundation"  style="border-color: #f9751e"
-            class="payment-button" target="_blank">
-          <img src="assets/paypal.png" alt="PayPal" width="128" height="30">
-        </a>
+          <a
+            href="https://www.paypal.me/yogavidyafoundation"
+            style="border-color: #f9751e"
+            class="payment-button"
+            target="_blank"
+          >
+            <img src="assets/paypal.png" alt="PayPal" width="128" height="30" />
+          </a>
         </div>
-        
 
-         <h3 class="text-uppercase mt-3">Payment Instructions: </h3>
-         <h5 class="disclaimer text-uppercase mt-3">International Users should use Stripe for payment. </h5>
-         <h5 class="disclaimer text-uppercase mt-3">Indian Users should use Razorpay For UPI payment </h5>
-         <h5 class="disclaimer text-uppercase mt-3">If you are using PayPal for payment, please upload the screenshot of the payment in the WhatsApp group</h5>
+        <h3 class="text-uppercase mt-3">Payment Instructions:</h3>
+        <h5 class="disclaimer text-uppercase mt-3">
+          International Users should use Stripe for payment.
+        </h5>
+        <h5 class="disclaimer text-uppercase mt-3">
+          Indian Users should use Razorpay For UPI payment
+        </h5>
+        <h5 class="disclaimer text-uppercase mt-3">
+          If you are using PayPal for payment, please upload the screenshot of
+          the payment in the WhatsApp group
+        </h5>
       </div>
     </div>
   </div>
