@@ -17,7 +17,7 @@ export class SuccessPaymentComponent {
   sessionId: any;
   onlinesessionId: any;
   onlineLiveClassesSessionId: any;
-  pranicPurificationSessionId: any;
+  pranicPurificationSessionId: string | null = '';
   onlineClassRazorpayPaymentId: any;
   pranaArambhaRazorpayPaymentId: string | null = '';
   pranicPurificationRazorPaySessionId: any;
@@ -45,7 +45,7 @@ export class SuccessPaymentComponent {
       'onlineLiveClassesSessionId'
     );
     this.pranicPurificationSessionId = sessionStorage.getItem(
-      'pranicPurificationSessionId'
+      localstorageKey.pranicSessionId
     );
     this.onlineClassRazorpayPaymentId = sessionStorage.getItem(
       'online_class_razorpay_payment_id'
@@ -83,7 +83,6 @@ export class SuccessPaymentComponent {
 
     if (this.pranicPurificationSessionId) {
       setTimeout(() => {
-        console.log('baler stripe', this.pranicPurificationSessionId);
         this.getPaymentResultPranicPurification(
           this.pranicPurificationSessionId
         );
@@ -112,7 +111,7 @@ export class SuccessPaymentComponent {
       student: sessionStorage.getItem('loginId-checkout'),
       course: sessionStorage.getItem('tempCourse'),
       date: this.getcurrentDate(),
-      dbPay: sessionStorage.getItem('dbPay'),
+      dbPay: sessionStorage.getItem(localstorageKey.praanicPayId),
       couponCode: couponCode,
     };
     this.webapiService.getPaymentResponse(val).subscribe((res: any) => {
@@ -256,13 +255,14 @@ export class SuccessPaymentComponent {
   getPaymentResultPranicPurification(pranicPurificationSessionId: any) {
     let val = {
       pranicPurificationSessionId: pranicPurificationSessionId,
-      payDbId: sessionStorage.getItem('dbPay'),
+      payDbId: sessionStorage.getItem(localstorageKey.praanicPayId),
     };
     this.webapiService
       .getPaymentResultPranicPurification(val)
       .subscribe((res: any) => {
-        console.log(res, '--');
         if (res.status == 'success') {
+          sessionStorage.removeItem(localstorageKey.pranicSessionId);
+          sessionStorage.removeItem(localstorageKey.praanicPayId);
           this.paidFlag = 'true';
           this.ordId = res.paymtId;
           this.amount = `${res.amount} ${res.currency}`;
@@ -286,7 +286,7 @@ export class SuccessPaymentComponent {
   gotoAccount() {
     this.router.navigate(['/login']);
     sessionStorage.removeItem('tempCourse');
-    sessionStorage.removeItem('dbPay');
+    sessionStorage.removeItem(localstorageKey.praanicPayId);
     sessionStorage.removeItem('session');
     sessionStorage.removeItem('loginId-checkout');
     sessionStorage.removeItem('prana_razorpay_signature');
@@ -302,7 +302,7 @@ export class SuccessPaymentComponent {
     sessionStorage.removeItem('onlinesession');
     sessionStorage.removeItem('onlineLiveClassesSessionId');
     sessionStorage.removeItem('onlineLiveClassDbPay');
-    sessionStorage.removeItem('pranicPurificationSessionId');
+    sessionStorage.removeItem(localstorageKey.pranicSessionId);
     sessionStorage.removeItem('pranicDate');
     sessionStorage.removeItem('pranicDuration');
     sessionStorage.removeItem('online_class_razorpay_payment_id');

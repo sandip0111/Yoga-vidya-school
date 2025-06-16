@@ -549,7 +549,7 @@ export class CheckoutComponent {
       this.spinner.hide();
       if (res.sessionId) {
         sessionStorage.setItem('session', res.sessionId);
-        sessionStorage.setItem('dbPay', res.payDbId);
+        sessionStorage.setItem(localstorageKey.praanicPayId, res.payDbId);
         if (this.isDiscounted) {
           localStorage.setItem(localstorageKey.couponCode, this.couponCodeId);
         }
@@ -684,7 +684,6 @@ export class CheckoutComponent {
               color: '#3399cc',
             },
           };
-          console.log(res.amount, options);
           const rzp = new Razorpay(options);
           rzp.open();
         } else {
@@ -701,8 +700,8 @@ export class CheckoutComponent {
       .subscribe((res: any) => {
         this.spinner.hide();
         if (res.sessionId) {
-          sessionStorage.setItem('pranicPurificationSessionId', res.sessionId);
-          sessionStorage.setItem('dbPay', res.payDbId);
+          sessionStorage.setItem(localstorageKey.pranicSessionId, res.sessionId);
+          sessionStorage.setItem(localstorageKey.praanicPayId, res.payDbId);
           window.location.href = res.url;
         } else {
           alert('Session Genration failed! please try again');
@@ -779,7 +778,7 @@ export class CheckoutComponent {
       if (res.sessionId) {
         // this.inquiryData = {};
         sessionStorage.setItem('session', res.sessionId);
-        sessionStorage.setItem('dbPay', res.payDbId);
+        sessionStorage.setItem(localstorageKey.praanicPayId, res.payDbId);
         // this.spinner.hide();
         // this.paymentHandler.redirectToCheckout({
         //   sessionId: res.sessionId
