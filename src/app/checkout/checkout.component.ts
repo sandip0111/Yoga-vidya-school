@@ -861,7 +861,7 @@ export class CheckoutComponent {
   offerAmount: number = 0;
   codeError: string = '';
   checkDiscount() {
-    if (this.checkData.code == this.couponCode) {
+    if (this.couponCode && (this.checkData.code == this.couponCode)){
       this.isDiscounted = true;
       this.codeError = '';
     } else {
