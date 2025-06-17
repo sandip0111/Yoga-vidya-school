@@ -15,6 +15,7 @@ import { CountryISO } from 'ngx-intl-tel-input';
 import { paymentkey, stripePaymentKey } from '../enum/payment';
 import { checkoutModel } from '../models/checkout';
 import { localstorageKey } from '../enum/localstorage';
+import { routeEnum } from '../enum/routes';
 
 declare var Razorpay: any;
 @Component({
@@ -70,7 +71,7 @@ export class CheckoutComponent {
       const canonicalUrl = 'https://www.yogavidyaschool.com' + this.router.url;
       const link = this._document.querySelector('link[rel="canonical"]');
       this._renderer2.setAttribute(link, 'href', canonicalUrl);
-      if (this.slug === 'pranic-purification') {
+      if (this.slug === routeEnum.pranicPurification) {
         const storedDateStr = sessionStorage.getItem('pranicDate');
         if (storedDateStr) {
           this.pranicDate = new Date(storedDateStr);
@@ -89,7 +90,6 @@ export class CheckoutComponent {
     this.getCourseBySlug(this.slug);
     this.checkData.package = '';
     this.checkData.currency = '';
-    // console.log(this.checkData);
   }
 
   getCourseBySlug(slug: any) {
@@ -161,15 +161,12 @@ export class CheckoutComponent {
   }
   setPrice(e: any) {
     this.inputValidation('package');
-    if (e.target.value == 'Basic' && this.checkData.currency == 'INR') {
-      this.price = 'Rs. 2,499';
-      this.amount = 2499;
-    } else if (e.target.value == 'Basic' && this.checkData.currency == 'USD') {
-      this.price = '60 USD';
-      this.amount = 60;
-    } else if (e.target.value == 'Basic' && this.checkData.currency == 'EUR') {
-      this.price = '60 EUR';
-      this.amount = 60;
+    if (e.target.value == 'Basic') {
+      if (this.slug == routeEnum['200TTC']) {
+        this.set200TTCNormalPrice(this.checkData.currency);
+      } else {
+        this.setPranaArambhNormalPrice(this.checkData.currency);
+      }
     } else if (
       e.target.value == 'Standard' &&
       this.checkData.currency == 'INR'
@@ -198,9 +195,13 @@ export class CheckoutComponent {
   }
 
   priceConvert(e: any) {
-    if (this.slug !== 'pranic-purification') {
+    if (this.slug !== routeEnum.pranicPurification) {
       if (this.checkData.package == 'Basic') {
-        this.setPranaArambhNormalPrice(e.target.value);
+        if (this.slug == routeEnum['200TTC']) {
+          this.set200TTCNormalPrice(e.target.value);
+        } else {
+          this.setPranaArambhNormalPrice(e.target.value);
+        }
       } else if (
         this.checkData.package == 'Standard' &&
         e.target.value == 'INR'
@@ -272,14 +273,39 @@ export class CheckoutComponent {
         break;
       default:
         this.price = '';
+        this.amount = 0;
+        this.offerAmount = 0;
         break;
     }
   }
-
+  set200TTCNormalPrice(currency: string) {
+    switch (currency) {
+      case 'INR':
+        this.price = '85000 INR';
+        this.amount = 85000;
+        break;
+      case 'USD':
+        this.price = '1000 USD';
+        this.amount = 1000;
+        break;
+      case 'EUR':
+        this.price = '1000 EUR';
+        this.amount = 1000;
+        break;
+      default:
+        this.price = '';
+        this.amount = 0;
+        break;
+    }
+  }
   setPriceOnInputChange() {
-    if (this.checkData.package && this.slug !== 'pranic-purification') {
-      this.setPranaArambhNormalPrice(this.checkData.currency);
-    } else if (this.slug === 'pranic-purification') {
+    if (this.checkData.package && this.slug !== routeEnum.pranicPurification) {
+      if (this.slug == routeEnum['200TTC']) {
+        this.set200TTCNormalPrice(this.checkData.currency);
+      } else {
+        this.setPranaArambhNormalPrice(this.checkData.currency);
+      }
+    } else if (this.slug === routeEnum.pranicPurification) {
       this.setPranicNormalPrice(this.checkData.currency);
     } else {
       this.price = '';
@@ -361,12 +387,12 @@ export class CheckoutComponent {
   currencyRequired: string = '';
   checkoutData(data: checkoutModel, isRazorPay: boolean) {
     this.spinner.show();
-    if (this.slug !== 'pranic-purification') {
+    if (this.slug !== routeEnum.pranicPurification) {
       if (
         data.email &&
         data.name &&
         data.phoneNumber &&
-        this.slug == 'pranayama-course-online-pranarambha' &&
+        this.slug == routeEnum.pranOnlinePranaArambh &&
         data.package &&
         data.currency
       ) {
@@ -386,7 +412,7 @@ export class CheckoutComponent {
               sessionStorage.setItem('loginId-checkout', res.studentId);
 
               if (!isRazorPay) {
-                if (this.slug == 'pranayama-course-online-pranarambha') {
+                if (this.slug == routeEnum.pranOnlinePranaArambh) {
                   if (data.package == 'Basic' && data.currency == 'INR') {
                     this.initializePayment(
                       this.isDiscounted
@@ -460,7 +486,7 @@ export class CheckoutComponent {
             }
           });
         } else {
-          if (this.slug == 'pranayama-course-online-pranarambha') {
+          if (this.slug == routeEnum.pranOnlinePranaArambh) {
             if (data.package == 'Basic' && data.currency == 'INR') {
               this.spinner.hide();
               this.initializePayment(
@@ -516,10 +542,7 @@ export class CheckoutComponent {
         if (this.oldStudent == false && !data.name) {
           this.nameRequired = 'Name is Required';
         }
-        if (
-          this.slug == 'pranayama-course-online-pranarambha' &&
-          !data.package
-        ) {
+        if (this.slug == routeEnum.pranOnlinePranaArambh && !data.package) {
           this.packageRequired = 'Please select a package';
         }
         if (!data.phoneNumber) {
@@ -827,17 +850,10 @@ export class CheckoutComponent {
       studentId: studId,
     };
     this.webapiService.stripe(val).subscribe((res: any) => {
-      // console.log(res, '--------------');
       this.spinner.hide();
-
       if (res.sessionId) {
-        // this.inquiryData = {};
         sessionStorage.setItem('session', res.sessionId);
         sessionStorage.setItem(localstorageKey.praanicPayId, res.payDbId);
-        // this.spinner.hide();
-        // this.paymentHandler.redirectToCheckout({
-        //   sessionId: res.sessionId
-        // })
         window.location.href = res.url;
       } else {
         alert('Session Genration failed! please try again');
@@ -861,7 +877,7 @@ export class CheckoutComponent {
   offerAmount: number = 0;
   codeError: string = '';
   checkDiscount() {
-    if (this.couponCode && (this.checkData.code == this.couponCode)){
+    if (this.couponCode && this.checkData.code == this.couponCode) {
       this.isDiscounted = true;
       this.codeError = '';
     } else {

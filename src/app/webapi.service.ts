@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from './enum/environment';
 import { getCouponCodeModel } from './models/checkout';
 import { Observable } from 'rxjs';
+import { getSlugDataModel } from './models/rishikesh';
 @Injectable({
   providedIn: 'root',
 })
@@ -31,7 +32,7 @@ export class WebapiService {
   getCategoryTree(id = '') {
     return this.http.get(this.url + 'api/v1/getCategoryTree' + id);
   }
-  getCourseById(data: any) {
+  getCourseById(data: getSlugDataModel) {
     return this.http.post(this.url + 'api/v1/getCourseBySlug', data);
   }
 

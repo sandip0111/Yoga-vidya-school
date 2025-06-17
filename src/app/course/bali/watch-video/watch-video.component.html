@@ -1,14 +1,19 @@
 <section class="training-section py-5">
-  <div><img loading="lazy" alt="Not Loaded" src="https://my-s3-images-bucket.s3.amazonaws.com/img/flower-color.png" class="flower-img" /></div>
-  <h3>
-    Watch Video
-  </h3>
-  <h2 >
-    <span >{{ytData.title}}</span>
+  <div>
+    <img
+      loading="lazy"
+      alt="Not Loaded"
+      src="https://my-s3-images-bucket.s3.amazonaws.com/img/flower-color.png"
+      class="flower-img"
+    />
+  </div>
+  <h3>Watch Video</h3>
+  <h2>
+    <span>{{ ytData.title }}</span>
   </h2>
   <div class="video my-2 py-2" *ngIf="!this.ytData.videoId">
     <iframe
-    loading="lazy"
+      loading="lazy"
       width="860"
       height="500"
       src="https://www.youtube.com/embed/vPD1NGMY_8E?si=PZ1aqfhF5s0UKkaA"
@@ -21,7 +26,7 @@
   </div>
   <div class="video my-2 py-2" *ngIf="ytData.videoId">
     <iframe
-    loading="lazy"
+      loading="lazy"
       width="860"
       height="500"
       [src]="safeUrl"
@@ -32,7 +37,6 @@
       allowfullscreen=""
     ></iframe>
   </div>
-  <div *ngIf="content" class="my-2" [innerHTML]="content">
-  </div>
-  <app-start-class [data]="ytData"></app-start-class>
+  <div *ngIf="content" class="my-2" [innerHTML]="content"></div>
+  <app-start-class [data]="ytData" [slug]="slug"></app-start-class>
 </section>

@@ -23,7 +23,7 @@
 <app-watch-video
   [data]="youtubeVideoData"
   [slug]="slug"
-  *ngIf="!ispranayamaCourseOnlinePranarambha"
+  *ngIf="!ispranayamaCourseOnlinePranarambha && isYoutubeDataReady"
 ></app-watch-video>
 <app-testimonials
   *ngIf="slug != 'pranayama-course-online-pranarambha'"

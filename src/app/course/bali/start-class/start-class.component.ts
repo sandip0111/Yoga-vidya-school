@@ -11,11 +11,15 @@ import { feesStructureModel } from '../../../models/rishikesh';
 })
 export class StartClassComponent implements OnInit {
   @Input() data: feesStructureModel = new feesStructureModel();
+  @Input() slug: string = '';
   fees: feesStructureModel = new feesStructureModel();
+  href: string = '/checkout';
   constructor() {}
-  ngOnInit() {}
+  ngOnInit() {
+    this.href = `/checkout/${this.slug}`;
+  }
   ngOnChanges(changes: SimpleChanges): void {
     this.fees = changes['data'].currentValue;
-    console.log('test 2', this.fees);
+    console.log('test 3', this.slug);
   }
 }

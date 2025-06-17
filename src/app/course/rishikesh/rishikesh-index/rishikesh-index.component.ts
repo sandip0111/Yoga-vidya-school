@@ -79,6 +79,7 @@ export class RishikeshIndexComponent implements OnInit {
   bannerData: any;
   schEventData: any = {};
   isPranicPurification = false;
+  isYoutubeDataReady: boolean = false;
   constructor(
     private webapiService: WebapiService,
     private activatedRoute: ActivatedRoute,
@@ -92,7 +93,6 @@ export class RishikeshIndexComponent implements OnInit {
     this.spinner.show();
     this.slug = this.activatedRoute.snapshot.routeConfig?.path ?? '';
   }
-
   ngOnInit() {
     if (this.slug) {
       this.getCourseBySlug(this.slug);
@@ -445,7 +445,6 @@ export class RishikeshIndexComponent implements OnInit {
     this.webapiService.getCourseById(data).subscribe((res: any) => {
       const currentDate = new Date();
       if (res.data.length > 0) {
-        this.spinner.hide();
         this.faqData = res.data[0].content;
         this.currData = {
           curr: res.data[0].curriculumInfo,
@@ -492,33 +491,21 @@ export class RishikeshIndexComponent implements OnInit {
           currency: res.data[0].feeInfo[0]?.currency,
           videoId: res.data[0].courseintrovideoId,
         };
-
+        this.isYoutubeDataReady = true;
         this.accomData = {
           accom: res.data[0].accommodationInfo[0]?.para,
           food: res.data[0].foodInfo[0]?.para,
           amount: res.data[0].feeInfo[0]?.amount,
           currency: res.data[0].feeInfo[0]?.currency,
         };
-
         this.feesData = {
           title: res.data[0].coursetitle,
           amount: res.data[0].feeInfo[0]?.amount,
           currency: res.data[0].feeInfo[0]?.currency,
         };
-
         this.codecond = {
           title: res.data[0].coursetitle,
         };
-
-        // this.courseList = res.data[0];
-        // this.courseName = res.data[0].coursetitle;
-        // const currentDate = new Date();
-        // this.upcomingDates = res.data[0]?.upcomingEventInfo.filter((item: any) => {
-        //   const itemDate = new Date(item.startDate);
-        //   return itemDate >= currentDate;
-        // });
-        // let url = `https://www.youtube.com/embed/${res.data[0].courseintrovideoId}`
-        // this.safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url);
         this.title.setTitle(res.data[0].metaTitle);
         this.meta.updateTag({
           name: 'keywords',
@@ -528,7 +515,7 @@ export class RishikeshIndexComponent implements OnInit {
           name: 'description',
           content: res.data[0].metaDescription,
         });
-        // this.checkForCourse(this.userId, res.data[0]._id);
+        this.spinner.hide();
       } else {
         this.router.navigate(['/']);
         this.spinner.hide();

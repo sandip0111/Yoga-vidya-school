@@ -1,8 +1,8 @@
 <div class="row" *ngIf="fees?.amount">
   <div class="col-md-12">
-    <a href="/book-now" class="button text-center"
-      >START YOUR YOGA CLASS TODAY<br />&#64;{{ fees?.amount }}
-      {{ fees?.currency }}</a
+    <a [href]="href" class="button text-center"
+      >START YOUR YOGA CLASS TODAY<br />&#64;{{ fees.amount }}
+      {{ fees.currency }}</a
     >
   </div>
 </div>

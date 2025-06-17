@@ -84,6 +84,7 @@ export class BaliIndexComponent implements OnInit {
   @ViewChild('banner', { read: ElementRef }) banner!: ElementRef;
   @ViewChild(BannerComponent) appBannerComponent!: BannerComponent;
   isBannerVisible = true;
+  isYoutubeDataReady: boolean = false;
   constructor(
     private webapiService: WebapiService,
     private activatedRoute: ActivatedRoute,
@@ -193,12 +194,10 @@ export class BaliIndexComponent implements OnInit {
       slug: slug,
     };
     this.webapiService.getCourseById(data).subscribe((res: any) => {
-      // console.log(res.data, 'course Data');
       const currentDate = new Date();
       if (res.data.length > 0) {
         this.spinner.hide();
         this.faqData = res.data[0].content;
-        // this.currData = res.data[0].curriculumInfo;
         this.upEventData = res.data[0]?.upcomingEventInfo.filter(
           (item: any) => {
             const itemDate = new Date(item.startDate);
@@ -209,10 +208,6 @@ export class BaliIndexComponent implements OnInit {
           event: this.upEventData,
           courseName: res.data[0].coursetitle,
         };
-        // this.schData = {
-        //   title: res.data[0].coursetitle,
-        //   schedule:res.data[0].scheduleInfo
-        // }
         this.schEventData = {
           title: res.data[0].coursetitle,
           events: this.upEventData,
@@ -227,9 +222,9 @@ export class BaliIndexComponent implements OnInit {
           title: res.data[0].coursetitle,
           videoId: res.data[0].courseintrovideoId,
           amount: '',
-          currency: ''
+          currency: '',
         };
-
+        this.isYoutubeDataReady = true;
         this.accomData = {
           accom: res.data[0].accommodationInfo[0]?.para,
           food: res.data[0].foodInfo[0]?.para,

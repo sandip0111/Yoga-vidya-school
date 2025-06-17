@@ -10,3 +10,6 @@ export class feesStructureModel {
     this.videoId = '';
   }
 }
+export interface getSlugDataModel {
+  slug: string;
+}
