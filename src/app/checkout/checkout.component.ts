@@ -160,6 +160,7 @@ export class CheckoutComponent {
       });
   }
   setPrice(e: any) {
+    this.inputValidation('package');
     if (e.target.value == 'Basic' && this.checkData.currency == 'INR') {
       this.price = 'Rs. 2,499';
       this.amount = 2499;
@@ -193,6 +194,7 @@ export class CheckoutComponent {
       this.price = '';
       this.amount = 0;
     }
+    this.inputValidation('cur');
   }
 
   priceConvert(e: any) {
@@ -226,6 +228,7 @@ export class CheckoutComponent {
     } else {
       this.setPranicNormalPrice(e.target.value);
     }
+    this.inputValidation('cur');
   }
   setPranicNormalPrice(currency: string) {
     switch (currency) {
@@ -289,6 +292,7 @@ export class CheckoutComponent {
       this.phoneError = 'Invalid phone number';
       this.currencyOptions = [];
       this.checkData.currency = '';
+      this.inputValidation('cur');
       this.setPriceOnInputChange();
       return;
     }
@@ -303,6 +307,8 @@ export class CheckoutComponent {
     this.checkData.package = 'Basic';
     this.checkData.currency = this.currencyOptions[0];
     this.setPriceOnInputChange();
+    this.inputValidation('package');
+    this.inputValidation('cur');
   }
 
   onCountryChange(country: any): void {
@@ -311,30 +317,59 @@ export class CheckoutComponent {
     this.checkData.currency = '';
     this.setPriceOnInputChange();
   }
-
-  checkoutData(data: any, isRazorPay: boolean) {
+  inputValidation(type: string) {
+    if (type == 'email') {
+      if (this.checkData.email) {
+        this.emailRequired = '';
+      } else {
+        this.emailRequired = 'email is required';
+      }
+    }
+    if (type == 'name') {
+      if (this.checkData.name) {
+        this.nameRequired = '';
+      } else {
+        this.nameRequired = 'Name is Required';
+      }
+    }
+    if (type == 'package') {
+      if (this.checkData.package) {
+        this.packageRequired = '';
+      } else {
+        this.packageRequired = 'Please select a package';
+      }
+    }
+    if (type == 'phone') {
+      if (this.checkData.phoneNumber) {
+        this.phoneRequired = '';
+      } else {
+        this.phoneRequired = 'WhatsApp Number is required';
+      }
+    }
+    if (type == 'cur') {
+      if (this.checkData.currency) {
+        this.currencyRequired = '';
+      } else {
+        this.currencyRequired = 'Currency is required';
+      }
+    }
+  }
+  emailRequired: string = '';
+  nameRequired: string = '';
+  packageRequired: string = '';
+  phoneRequired: string = '';
+  currencyRequired: string = '';
+  checkoutData(data: checkoutModel, isRazorPay: boolean) {
     this.spinner.show();
     if (this.slug !== 'pranic-purification') {
-      if (data.email) {
-        if (
-          this.slug == 'pranayama-course-online-pranarambha' &&
-          !data.package
-        ) {
-          alert('Please select a package..');
-          this.spinner.hide();
-          return;
-        }
-        if (this.oldStudent == false && !data.name) {
-          alert('Name is Required!');
-          this.spinner.hide();
-          return;
-        }
-
-        if (!data.phoneNumber) {
-          alert('WhatsApp Number is required.');
-          this.spinner.hide();
-          return;
-        }
+      if (
+        data.email &&
+        data.name &&
+        data.phoneNumber &&
+        this.slug == 'pranayama-course-online-pranarambha' &&
+        data.package &&
+        data.currency
+      ) {
         sessionStorage.setItem('tempCourse', this.courseList._id);
         let pass = this.genratePass(6);
         if (this.oldStudent == false) {
@@ -475,12 +510,29 @@ export class CheckoutComponent {
           }
         }
       } else {
-        alert('email is required.');
+        if (!data.email) {
+          this.emailRequired = 'email is required';
+        }
+        if (this.oldStudent == false && !data.name) {
+          this.nameRequired = 'Name is Required';
+        }
+        if (
+          this.slug == 'pranayama-course-online-pranarambha' &&
+          !data.package
+        ) {
+          this.packageRequired = 'Please select a package';
+        }
+        if (!data.phoneNumber) {
+          this.phoneRequired = 'WhatsApp Number is required';
+        }
+        if (!data.currency) {
+          this.currencyRequired = 'Currency is required';
+        }
         this.spinner.hide();
       }
     } else {
       if (!data.email) {
-        alert('email is required.');
+        this.emailRequired = 'email is required.';
         this.spinner.hide();
         return;
       }
@@ -700,7 +752,10 @@ export class CheckoutComponent {
       .subscribe((res: any) => {
         this.spinner.hide();
         if (res.sessionId) {
-          sessionStorage.setItem(localstorageKey.pranicSessionId, res.sessionId);
+          sessionStorage.setItem(
+            localstorageKey.pranicSessionId,
+            res.sessionId
+          );
           sessionStorage.setItem(localstorageKey.praanicPayId, res.payDbId);
           window.location.href = res.url;
         } else {
@@ -804,11 +859,14 @@ export class CheckoutComponent {
   offerPrice: string = '';
   isDiscounted: boolean = false;
   offerAmount: number = 0;
+  codeError: string = '';
   checkDiscount() {
     if (this.checkData.code == this.couponCode) {
       this.isDiscounted = true;
+      this.codeError = '';
     } else {
       this.isDiscounted = false;
+      this.codeError = 'Invalid coupon code';
     }
   }
   setDiscountPrice(currency: string) {

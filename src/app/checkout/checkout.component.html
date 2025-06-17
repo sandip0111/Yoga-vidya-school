@@ -45,40 +45,50 @@
     <div class="col-md-6">
       <h2>Checkout</h2>
       <div class="check-user">
-        <div class="">
-          <label for="email">Email</label>
+        <div class="mb-3">
+          <label for="email">Email<span style="color: red">*</span></label>
           <input
             type="email"
-            class="form-control mb-3"
+            class="form-control"
             id="email"
             (change)="checkEmail($event)"
             [(ngModel)]="checkData.email"
             placeholder="Enter your email"
             (blur)="checkCouponCode()"
+            (keyup)="inputValidation('email')"
           />
-          <div *ngIf="emailSuggestion" class="text-warning">
+          <div *ngIf="emailSuggestion" class="text-danger">
             {{ emailSuggestion }}
+          </div>
+          <div *ngIf="emailRequired" class="text-danger">
+            {{ emailRequired }}
           </div>
         </div>
         <div
-          class=""
+          class="mb-3"
           *ngIf="
             slug === 'pranic-purification' ||
             (!oldStudent && slug !== 'pranic-purification')
           "
         >
-          <label for="name">Name</label>
+          <label for="name">Name<span style="color: red">*</span></label>
           <input
             type="text"
-            class="form-control mb-3"
+            class="form-control"
             id="name"
             [(ngModel)]="checkData.name"
             placeholder="Enter your Name"
+            (keyup)="inputValidation('name')"
           />
+          <div *ngIf="nameRequired" class="text-danger">
+            {{ nameRequired }}
+          </div>
         </div>
-
-        <div class="">
-          <label for="name">WhatsApp Number</label> <br />
+        <div>
+          <label for="name"
+            >WhatsApp Number<span style="color: red">*</span></label
+          >
+          <br />
           <ngx-intl-tel-input
             [cssClass]="'form-control phone_input'"
             [separateDialCode]="true"
@@ -96,19 +106,22 @@
             (input)="onPhoneInputChange(!!phoneInput.valid)"
             [(ngModel)]="checkData.phoneNumber"
             (countryChange)="onCountryChange($event)"
+            (keyup)="inputValidation('phone')"
           >
           </ngx-intl-tel-input
           ><br />
           <div *ngIf="phoneError" class="text-danger mt-1">
             {{ phoneError }}
           </div>
+          <div *ngIf="phoneRequired" class="text-danger mt-1">
+            {{ phoneRequired }}
+          </div>
           <br />
         </div>
-
-        <div *ngIf="slug !== 'pranic-purification'">
-          <label for="package">Package</label>
+        <div class="mb-3" *ngIf="slug !== 'pranic-purification'">
+          <label for="package">Package<span style="color: red">*</span></label>
           <select
-            class="form-control mb-3"
+            class="form-control"
             name="package"
             [(ngModel)]="checkData.package"
             (change)="setPrice($event)"
@@ -116,11 +129,16 @@
             <option value="">Select Package</option>
             <option value="Basic">Basic</option>
           </select>
+          <div *ngIf="packageRequired" class="text-danger">
+            {{ packageRequired }}
+          </div>
         </div>
-        <div>
-          <label for="package">Payment Currency</label>
+        <div class="mb-3">
+          <label for="currency"
+            >Payment Currency<span style="color: red">*</span></label
+          >
           <select
-            class="form-control mb-3"
+            class="form-control"
             name="package"
             [(ngModel)]="checkData.currency"
             (change)="priceConvert($event)"
@@ -129,23 +147,29 @@
               {{ option }}
             </option>
           </select>
+          <div *ngIf="currencyRequired" class="text-danger">
+            {{ currencyRequired }}
+          </div>
         </div>
-        <div *ngIf="slug == 'pranayama-course-online-pranarambha'">
-          <label for="refferal">Refferal Code</label>
+        <div class="mb-3" *ngIf="slug == 'pranayama-course-online-pranarambha'">
+          <label for="refferal">Refferal Code (Use the referral code you received when purchasing Pranayama Sadhana.)</label>
           <input
             type="text"
-            class="form-control mb-3"
+            class="form-control"
             id="refferal"
             [(ngModel)]="checkData.code"
             placeholder="Enter refferal code"
             (blur)="checkDiscount()"
           />
+          <div *ngIf="codeError" class="text-danger">
+            {{ codeError }}
+          </div>
         </div>
-        <div *ngIf="slug === 'pranic-purification'">
+        <div class="mb-3" *ngIf="slug === 'pranic-purification'">
           <label for="name">Address</label>
           <input
             type="text"
-            class="form-control mb-3"
+            class="form-control"
             id="address"
             [(ngModel)]="checkData.address"
             placeholder="Enter Address"
