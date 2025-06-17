@@ -73,6 +73,8 @@ export class RegistrationFormComponent {
           this.toastr.success(res.msg, 'success');
         }        
         this.spinner.hide();
+        this.registrationForm.reset();
+
       },
       error: (error) => {
         
