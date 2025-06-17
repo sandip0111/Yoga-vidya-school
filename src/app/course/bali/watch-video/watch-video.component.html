@@ -4,9 +4,9 @@
     Watch Video
   </h3>
   <h2 >
-    <span >{{ytData?.title}}</span>
+    <span >{{ytData.title}}</span>
   </h2>
-  <div class="video my-2 py-2" *ngIf="!this.ytData?.videoId">
+  <div class="video my-2 py-2" *ngIf="!this.ytData.videoId">
     <iframe
     loading="lazy"
       width="860"
@@ -19,7 +19,7 @@
       allowfullscreen=""
     ></iframe>
   </div>
-  <div class="video my-2 py-2" *ngIf="this.ytData?.videoId">
+  <div class="video my-2 py-2" *ngIf="ytData.videoId">
     <iframe
     loading="lazy"
       width="860"
@@ -33,17 +33,6 @@
     ></iframe>
   </div>
   <div *ngIf="content" class="my-2" [innerHTML]="content">
-    <!-- <p>
-      Begin your journey from an aspiring yogi to becoming an accomplished one
-      by taking the Yoga teacher training course in India from a recognized
-      place like that of Rishikesh which is the Yoga capital of the nation. When
-      you have the option of learning the authentic form of Yoga, then why dwell
-      around the Google pages to find out which one is the best? There is
-      nothing better to learn and gain the immense benefits of Yoga from a known
-      destination where the traditional understanding of Yoga was introduced,
-      and practiced for centuries.
-    </p>
-    <p class="bold"> Hatha | Ashtanga | Pranayama | Adjustment &amp; Alignment | Philosophy </p> -->
   </div>
   <app-start-class [data]="ytData"></app-start-class>
 </section>

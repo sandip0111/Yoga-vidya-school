@@ -36,6 +36,7 @@ import { ScheduleComponent } from '../../rishikesh/schedule/schedule.component';
 import { BottomNavCourseComponent } from '../../../includes/home/bottom-nav-course/bottom-nav-course.component';
 import { ReviewListComponentComponent } from '../../../text-review-list/review-list-component/review-list-component.component';
 import { VideoReviewsComponent } from '../../video-reviews/video-reviews.component';
+import { feesStructureModel } from '../../../models/rishikesh';
 @Component({
   selector: 'app-bali-index',
   standalone: true,
@@ -73,7 +74,7 @@ export class BaliIndexComponent implements OnInit {
   faqData: any;
   ispranayamaCourseOnlinePranarambha = false;
   upEventData: any;
-  youtubeVideoData: any;
+  youtubeVideoData: feesStructureModel = new feesStructureModel();
   accomData: any;
   feesData: any = {};
   codecond: any = {};
@@ -225,6 +226,8 @@ export class BaliIndexComponent implements OnInit {
         this.youtubeVideoData = {
           title: res.data[0].coursetitle,
           videoId: res.data[0].courseintrovideoId,
+          amount: '',
+          currency: ''
         };
 
         this.accomData = {
@@ -268,4 +271,3 @@ export class BaliIndexComponent implements OnInit {
     });
   }
 }
-
