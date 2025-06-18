@@ -1,15 +1,12 @@
 <!-- about.component.html -->
-@if(slug != "200-hours-yoga-teacher-training-online"){
+
 <section class="about-rishikesh-section py-5">
-  <div
-    *ngIf="slug != 'pranic-purification'"
-    class="row mb-3 align-items-center"
-  >
+  <div *ngIf="slug != 'pranic-purification'" class="row mb-3 align-items-center">
     <div class="col-md-6">
-      <div class="imageback">
+      <div class="imageback" >
         <img
           src="{{ this.aboutContent.image }}"
-          class="img-fluid"
+          class="img-fluid"         
           alt="{{ this.aboutContent.title }} {{
             this.aboutContent.secondTitle
           }}"
@@ -25,15 +22,15 @@
         </h1>
         <div *ngIf="this.aboutContent.subTitle" class="col-12">
           <h4>
-            {{ this.aboutContent.subTitle }}
+            {{ this.aboutContent.subTitle}}
           </h4>
         </div>
-
+        
         <div [innerHTML]="this.aboutContent.desc"></div>
       </div>
     </div>
   </div>
-  <div *ngIf="slug == 'pranic-purification'" class="row mb-3 align-items-center">
+  <div *ngIf="slug == 'pranic-purification'" class="mb-3">    
       <div class="d-flex flex-column justify-content-center align-items-center">
         <small class="p-0">Yoga Vidya Present's</small>
         <h1>
@@ -56,18 +53,7 @@
       </div>
     
     <div class="position: relative; z-index: 1;">
-      <div>
-        <small class="text-left p-0">Yoga Vidya Present's</small>
-        <h1>
-          {{ this.aboutContent.title }}
-          <span>{{ this.aboutContent.secondTitle }}</span>
-        </h1>
-        <div *ngIf="this.aboutContent.subTitle" class="col-12">
-          <h4>
-            {{ this.aboutContent.subTitle }}
-          </h4>
-        </div>
-
+      <div> 
         <div [innerHTML]="this.aboutContent.desc"></div>
       </div>
     </div>
@@ -175,64 +161,20 @@
     </div>
   </div>
   <div class="col-md-6 d-flex align-items-center">
-    <!-- <a
-        *ngIf="slug == 'online-hip-opening-workshop' ||
-               slug == '200-hours-yoga-teacher-training-online'"
-           href="#"
-          (click)="addToCart($event)"
-           class="button"
-          >Add To Cart</a
-        > -->
-    <a
-      *ngIf="
-        slug == 'online-hip-opening-workshop' ||
-        slug == '200-hours-yoga-teacher-training-online'
-      "
+     <!-- <a
+      *ngIf="slug == 'online-hip-opening-workshop' ||
+             slug == '200-hours-yoga-teacher-training-online'"
+         href="#"
+        (click)="addToCart($event)"
+         class="button"
+        >Add To Cart</a
+      > -->
+       <a
+      *ngIf="slug == 'online-hip-opening-workshop' ||
+             slug == '200-hours-yoga-teacher-training-online' "  
       href="/"
       class="button"
       >Buy Now</a
     >
   </div>
 </section>
-}@else{
-<section class="about-rishikesh-section py-5">
-  <div class="mb-3">
-    <div class="image-container">
-      <img
-        src="{{ aboutContent.image }}"
-        style="border-radius: 10px"
-        class="img-fluid pranic-purification-img"
-        alt="{{ aboutContent.title }} {{ aboutContent.secondTitle }}"
-      />
-    </div>
-
-    <div class="position: relative; z-index: 1;">
-      <div>
-        <small class="text-left p-0">Yoga Vidya Present's</small>
-        <h1>
-          {{ aboutContent.title }}
-          <span>{{ aboutContent.secondTitle }}</span>
-        </h1>
-        <div *ngIf="aboutContent.subTitle" class="col-12">
-          <h4>
-            {{ aboutContent.subTitle }}
-          </h4>
-        </div>
-
-        <div [innerHTML]="aboutContent.desc"></div>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-6 d-flex align-items-center">
-    <a
-      *ngIf="
-        slug == 'online-hip-opening-workshop' ||
-        slug == '200-hours-yoga-teacher-training-online'
-      "
-      href="/"
-      class="button"
-      >Buy Now</a
-    >
-  </div>
-</section>
-}

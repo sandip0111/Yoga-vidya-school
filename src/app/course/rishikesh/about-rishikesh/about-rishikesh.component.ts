@@ -17,8 +17,13 @@ export class AboutRishikeshComponent implements OnInit {
   aboutContent: any = {};
   ispranicPurificationImg = false;
   course?: CartItem;
-  constructor(private sanitizer: DomSanitizer, private activatedRoute: ActivatedRoute, private router: Router, private cartService: CartService, private webapiService: WebapiService) {
-
+  constructor(
+    private sanitizer: DomSanitizer,
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
+    private cartService: CartService,
+    private webapiService: WebapiService
+  ) {
     this.slug = this.activatedRoute.snapshot.routeConfig?.path;
     if (this.slug == '100-hours-yoga-teacher-training-in-rishikesh') {
       this.aboutContent = {
@@ -144,18 +149,20 @@ export class AboutRishikeshComponent implements OnInit {
       };
     } else if (this.slug == 'adjustment-and-alignment') {
       this.aboutContent = {
-        image: "https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/adjustmentAndAlignment.jpeg",
-        title: "Adjustment",
-        secondTitle: "& Alignment",
+        image:
+          'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/adjustmentAndAlignment.jpeg',
+        title: 'Adjustment',
+        secondTitle: '& Alignment',
         desc: `
 <p>The Asana Alignment and Adjustment course was personally constructed by the head teacher of the Yoga Vidya school <a href='https://www.yogavidyaschool.com/mentor/acharya-prashant-jakhmola'>Prashant Jakhmola</a>, who has many years experience in designing and teaching at yoga teacher training courses and various yoga programs in India, Nepal, China, Russia and Indonesia. The present course is ideal choice for all yoga practitioners who requires basement for their asana practice.</p><p><strong>Who is this course for ?</strong></p><p>The Asana Alignment and Adjustment Level 1 course is designed for those people who haven’t done any <a href='https://www.yogavidyaschool.com'>Yoga Teacher Training Course</a> and thinking to do, but need a preparation. In addition, this course is suitable for people who need further guidance in order to improve their personal self yoga practice. Absolute beginners in yoga also can find this course is very helpful to step on the yoga path.</p>
         `,
       };
     } else if (this.slug == 'adjustment-and-alignment-level-2') {
       this.aboutContent = {
-        image: "https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/adjustmentAndAlignment.jpeg",
-        title: "Adjustment",
-        secondTitle: "& Alignment Level 2",
+        image:
+          'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/adjustmentAndAlignment.jpeg',
+        title: 'Adjustment',
+        secondTitle: '& Alignment Level 2',
         desc: `
         <p>This Asana Alignment and Adjustment Level 2 course is designed for advanced certified practitioners who have already passed the <a href=''>200 yoga teacher training course</a>. The course aims to refine and refresh the knowledge of advanced practitioners for gaining a better comprehensive understanding of asanas, and their bodies.</p><p><strong>Why is this course important even to advanced yoga practitioners ?</strong></p><p>Our masters have been teaching in yoga teacher training courses for many years and they have noticed that although the yoga teacher training course is useful and practical its intensity leads people to misunderstand the knowledge given in the yoga teacher training course. We believe that mind and body need to study and gather the information in a peaceful gradual pace in order to digest the massive amount of yogic knowledge step by step and turn it into skills. This course is designed especially for this goal. The asana Alignment and Adjustment course was personally constructed by the head teacher of the school <a href='https://www.yogavidyaschool.com/mentor/acharya-prashant-jakhmola'>Prashant Jakhmola</a>, which has many years experience in designing and teaching yoga teacher training course and various other Yoga programs in India, Nepal, China, Russia and Indonesia.</p>
 `,
@@ -183,11 +190,12 @@ export class AboutRishikeshComponent implements OnInit {
     } else if (this.slug == 'pranic-purification') {
       this.ispranicPurificationImg = true;
       this.aboutContent = {
-        image: "https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/FERN8247.jpg",
-        title: "Pranic",
-        secondTitle: "Purification - (Online Pranayama Sadhana PrashantJ)",
-        subTitle: "21 Days - Online Pranayama Course with PrashantJ Yoga",
-        desc:this.sanitizer.bypassSecurityTrustHtml(`
+        image:
+          'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/FERN8247.jpg',
+        title: 'Pranic',
+        secondTitle: 'Purification - (Online Pranayama Sadhana PrashantJ)',
+        subTitle: '21 Days - Online Pranayama Course with PrashantJ Yoga',
+        desc: this.sanitizer.bypassSecurityTrustHtml(`
 <p>I believe you are learning and experiencing the pranayama breathing techniques through my video posts in YouTube and other social media as well. I am very happy that you have taken the first step towards the Pranayama journey by attending my free “<a href='/breath-detox-yoga'>BREATH DETOX</a>” online yoga course.&nbsp;</p><p>Oh 😯 -, maybe some of you didn’t join yoga classes yet and you are new to this page or Yoga Vidya School platform. If you are new then maybe you don’t know me well and about my teachings or <a href="/pranayama-course-online-pranarambha">online pranayama course.</a> So before you go ahead with the reading, I request and suggest you to have a short tour to my previous courses and content. It will help you to understand what I do. And definitely help you to build a small Pranayama routine in the morning. And you will be confident enough to take another step towards the self growth</p><p>When you practice pranayama yoga you get so many benefits. You become calmer, more attentive,&nbsp; joyful and lighter. And trust me, It is not limited to only these benefits from Pranayama practice, but you will get much more than this.</p><p><span style=''><em>There are many more discoveries and pranayama breathing techniques ahead&nbsp;</em></span>If you continue on this path</p><p>I have been teaching <a href='https://en.wikipedia.org/wiki/Pranayama'>Pranayama</a> for a decade now. And over these years I have received appreciative feedback from many students around the world. It inspires me more when I hear their stories, how they transform their life not only physically but mentally emotionally and energetically.</p>
 <h5 style="color: #f5711a;"><strong>Transformation I am talking about Through Pranayama classes online</strong></h5>
 <ul style="list-style: none;">
@@ -205,7 +213,8 @@ Therefore I know it for sure that pranayama can change your life too, if you giv
 &nbsp;The name itself tells the meaning- purification of pranic body (PranamayaKosha)
 The main goal of this online pranayama course is to understand your energy body and to help you to purify it in order to channelise your prana into right direction.
 </p>
-        `)};
+        `),
+      };
     } else if (this.slug == '21-days-ashtanga-yoga-immersion') {
       this.aboutContent = {
         image:
