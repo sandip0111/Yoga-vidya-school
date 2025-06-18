@@ -13,7 +13,7 @@
         }
     }
     p{
-        height: 50px;
+        
     }
     small {
         padding: 0px 200px;
@@ -31,12 +31,10 @@
         background: rgba(249, 117, 30, 1);
         color: #fff;
         border-radius: 5px;
-        padding: 5px 10px;
         font-weight: 600;
         font-size: 17px !important;
         display: inline-block;
         text-decoration: none;
-        margin-top: 40px;
         display: inline-block;
         align-items: center;
         justify-content: center;

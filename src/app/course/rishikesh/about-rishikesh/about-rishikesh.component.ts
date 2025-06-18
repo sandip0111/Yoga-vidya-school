@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { CartItem, CartService } from '../../../cart.service';
 import { WebapiService } from '../../../webapi.service';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-about-rishikesh',
@@ -16,7 +17,7 @@ export class AboutRishikeshComponent implements OnInit {
   aboutContent: any = {};
   ispranicPurificationImg = false;
   course?: CartItem;
-  constructor(private activatedRoute: ActivatedRoute, private router: Router, private cartService: CartService, private webapiService: WebapiService) {
+  constructor(private sanitizer: DomSanitizer, private activatedRoute: ActivatedRoute, private router: Router, private cartService: CartService, private webapiService: WebapiService) {
 
     this.slug = this.activatedRoute.snapshot.routeConfig?.path;
     if (this.slug == '100-hours-yoga-teacher-training-in-rishikesh') {
@@ -155,7 +156,7 @@ export class AboutRishikeshComponent implements OnInit {
 
     else if(this.slug == 'adjustment-and-alignment'){
       this.aboutContent = {
-        image: "assets/adjustmentAndAlignment.jpeg",
+        image: "https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/adjustmentAndAlignment.jpeg",
         title: "Adjustment",
         secondTitle: "& Alignment",
         desc: `
@@ -165,7 +166,7 @@ export class AboutRishikeshComponent implements OnInit {
     }
     else if(this.slug == 'adjustment-and-alignment-level-2'){
       this.aboutContent = {
-        image: "assets/adjustmentAndAlignment.jpeg",
+        image: "https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/adjustmentAndAlignment.jpeg",
         title: "Adjustment",
         secondTitle: "& Alignment Level 2",
         desc: `
@@ -198,29 +199,29 @@ export class AboutRishikeshComponent implements OnInit {
     else if(this.slug == 'pranic-purification'){
       this.ispranicPurificationImg = true;
       this.aboutContent = {
-        image: "https://my-s3-images-bucket.s3.amazonaws.com/images/FERN8247.jpg",
+        image: "https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/FERN8247.jpg",
         title: "Pranic",
-        secondTitle: "Purification - Online Pranayama (Sadhana) PrashantJ",
+        secondTitle: "Purification - (Online Pranayama Sadhana PrashantJ)",
         subTitle: "21 Days - Online Pranayama Course with PrashantJ Yoga",
-        desc: `
-<p>I believe you are learning and experiencing the pranayama breathing techniques through my video posts in YouTube and other social media as well. I am very happy that you have taken the first step towards the Pranayama journey by attending my free “<a href='/breath-detox-yoga'>BREATH DETOX</a>” online yoga course.&nbsp;</p><p>Oh 😯 -, maybe some of you didn’t join yoga classes yet and you are new to this page or Yoga Vidya School platform. If you are new then maybe you don’t know me well and about my teachings or <a href="/pranayama-course-online-pranarambha">online pranayama course.</a> So before you go ahead with the reading, I request and suggest you to have a short tour to my previous courses and content. It will help you to understand what I do. And definitely help you to build a small Pranayama routine in the morning. And you will be confident enough to take another step towards the self growth</p><p>When you practice pranayama yoga you get so many benefits. You become calmer, more attentive,&nbsp; joyful and lighter. And trust me, It is not limited to only these benefits from Pranayama practice, but you will get much more than this.</p><p><span style='text-decoration: underline;'><em>There are many more discoveries and pranayama breathing techniques ahead&nbsp;</em></span>If you continue on this path</p><p>I have been teaching <a href='https://en.wikipedia.org/wiki/Pranayama'>Pranayama</a> for a decade now. And over these years I have received appreciative feedback from many students around the world. It inspires me more when I hear their stories, how they transform their life not only physically but mentally emotionally and energetically.</p>
-<h3><strong>Transformation I am talking about Through Pranayama classes online</strong></h3>
-<ul>
-<li> People find a way to get out of difficult situations</ul>
-<li> Holistic Health- physical, mental and spiritual</ul>
-<li> Find the path and purpose</ul>
-<li> People get rid of addictions, panic attacks, confusion, stress and depression</ul>
-<li> Achieve great success in work and become much more productive</ul>
-<li> Improve their meditation and help them to dive deeper inside</ul>
-<li> For many,&nbsp;  pranayama yoga has become a great boost for their mornings</ul>
-<li>Pranayama has strong potential to change someone’s life for better. This is proved with my own experience, the transformation of many people whom I know the stories of hundreds of my students</ul>
-<li>Therefore I know it for sure that pranayama can change your life too, if you give it such an opportunity.</ul>
-<li>&nbsp;For now I invite you to my exclusive course -<strong>21 days</strong> of pranayama classes online “<strong>PRANIC PURIFICATION</strong>”</ul>
-<li>&nbsp;The name itself tells the meaning- purification of pranic body (PranamayaKosha)</ul>
-<li>The main goal of this online pranayama course is to understand your energy body and to help you to purify it in order to channelise your prana into right direction.</ul>
+        desc:this.sanitizer.bypassSecurityTrustHtml(`
+<p>I believe you are learning and experiencing the pranayama breathing techniques through my video posts in YouTube and other social media as well. I am very happy that you have taken the first step towards the Pranayama journey by attending my free “<a href='/breath-detox-yoga'>BREATH DETOX</a>” online yoga course.&nbsp;</p><p>Oh 😯 -, maybe some of you didn’t join yoga classes yet and you are new to this page or Yoga Vidya School platform. If you are new then maybe you don’t know me well and about my teachings or <a href="/pranayama-course-online-pranarambha">online pranayama course.</a> So before you go ahead with the reading, I request and suggest you to have a short tour to my previous courses and content. It will help you to understand what I do. And definitely help you to build a small Pranayama routine in the morning. And you will be confident enough to take another step towards the self growth</p><p>When you practice pranayama yoga you get so many benefits. You become calmer, more attentive,&nbsp; joyful and lighter. And trust me, It is not limited to only these benefits from Pranayama practice, but you will get much more than this.</p><p><span style=''><em>There are many more discoveries and pranayama breathing techniques ahead&nbsp;</em></span>If you continue on this path</p><p>I have been teaching <a href='https://en.wikipedia.org/wiki/Pranayama'>Pranayama</a> for a decade now. And over these years I have received appreciative feedback from many students around the world. It inspires me more when I hear their stories, how they transform their life not only physically but mentally emotionally and energetically.</p>
+<h5 style="color: #f5711a;"><strong>Transformation I am talking about Through Pranayama classes online</strong></h5>
+<ul style="list-style: none;">
+<li><span style="color: #f5711a;">&#10003;</span> People find a way to get out of difficult situations</li>
+<li><span style="color: #f5711a;">&#10003;</span> Holistic Health – physical, mental and spiritual</li>
+<li><span style="color: #f5711a;">&#10003;</span> Find the path and purpose</li>
+<li><span style="color: #f5711a;">&#10003;</span> People get rid of addictions, panic attacks, confusion, stress and depression</li>
+<li><span style="color: #f5711a;">&#10003;</span> Achieve great success in work and become much more productive</li>
+<li><span style="color: #f5711a;">&#10003;</span> Improve their meditation and help them to dive deeper inside</li>
+<li><span style="color: #f5711a;">&#10003;</span> For many, pranayama yoga has become a great boost for their mornings</li>
 </ul>
-        `
-      };
+<p>Pranayama has strong potential to change someone’s life for better. This is proved with my own experience, the transformation of many people whom I know the stories of hundreds of my students.
+Therefore I know it for sure that pranayama can change your life too, if you give it such an opportunity.
+&nbsp;For now I invite you to my exclusive course -<strong>21 days</strong> of pranayama classes online “<strong>PRANIC PURIFICATION</strong>”
+&nbsp;The name itself tells the meaning- purification of pranic body (PranamayaKosha)
+The main goal of this online pranayama course is to understand your energy body and to help you to purify it in order to channelise your prana into right direction.
+</p>
+        `)};
     }
     else if(this.slug == '21-days-ashtanga-yoga-immersion'){
       this.aboutContent = {

@@ -60,6 +60,9 @@ export class BannerComponent implements OnInit {
     } else if (this.slug == 'yoga-retreat-in-mysore-india') {
       this.sliderImage =
         'https://my-s3-images-bucket.s3.amazonaws.com/img/image_1692698338795.jpg';
+    } else if (this.slug == 'pranic-purification') {
+      this.sliderImage =
+        'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/954A0706.JPG';
     } else if (
       this.slug == '200-hour-yoga-teacher-training-in-kerala-india' ||
       this.slug == 'yoga-retreat-in-kerala-india' ||
@@ -121,7 +124,7 @@ export class BannerComponent implements OnInit {
       this.renderer.setStyle(
         this.bannerSection.nativeElement,
         'height',
-        '500px'
+        '650px'
       );
     }
     if (this.slug == 'pranayama-course-online-pranarambha') {

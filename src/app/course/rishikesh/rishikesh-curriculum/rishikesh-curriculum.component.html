@@ -8,7 +8,31 @@
     </div>
     <div *ngIf="isItPranicRoute" class="row">
       <h4>Start Date: <span>{{pranicDate}}</span></h4>
-      <h6 >Time: {{pranicDuration}}</h6>
+      <!--  <h6 >Time: {{pranicDuration}}</h6> -->
+      <div class="table-container">
+        <table class="pranic-schedule-table">
+          <thead>
+            <tr>
+              <th>Date Slot</th>
+              <th>Time Slot</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              
+              <td>24th July to 29th July</td>
+              <td>7:30 AM to 8:30 AM</td>
+            
+            </tr>
+            <tr>
+              <td>2th August to 15th August</td>
+              <td>8:30PM to 9:30PM</td>
+              
+            </tr>
+            
+          </tbody>
+        </table>
+      </div>
       <!-- <small>International Transfers: <span class="cut-text">$60</span> Price <span class="amount">$55</span> </small> -->
       <div class="col-12 text-center mt-4">
       <button class="btn btn-primary register-btn" (click)="registerClick()" >Register Now</button>
