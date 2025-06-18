@@ -1,8 +1,7 @@
 <!-- about.component.html -->
 
 <section class="about-rishikesh-section py-5">
-  @if(slug == 'pranic-purification' ||
-  slug=='200-hours-yoga-teacher-training-online'){
+  @if(slug == routeEnum.pranicPurification || slug==routeEnum['200TTC']){
   <div class="mb-3">
     <div class="d-flex flex-column justify-content-center align-items-center">
       <small class="p-0">Yoga Vidya Present's</small>
@@ -16,6 +15,13 @@
       <p *ngIf="this.aboutContent.subTitle1">
         <strong>{{ this.aboutContent.subTitle1 }}</strong>
       </p>
+      @if(slug==routeEnum['200TTC']){
+      <app-world-clock
+        [date]="date"
+        [startTime]="startTime"
+        [endTime]="endTime"
+      ></app-world-clock>
+      }
     </div>
     <div class="image-container">
       <img

@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import {
   Component,
   OnInit,
@@ -7,6 +7,8 @@ import {
   Renderer2,
   ElementRef,
   ViewChild,
+  Inject,
+  PLATFORM_ID,
 } from '@angular/core';
 import { WebapiService } from '../../webapi.service';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -41,7 +43,8 @@ export class BannerComponent implements OnInit {
     private webapiService: WebapiService,
     private spinner: NgxSpinnerService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {
     this.slug = this.activatedRoute.snapshot.routeConfig?.path;
   }
@@ -132,21 +135,23 @@ export class BannerComponent implements OnInit {
       );
     }
     if (this.slug == 'pranayama-course-online-pranarambha') {
-      this.videoElement = document.getElementById(
-        'backgroundVideo'
-      ) as HTMLVideoElement;
-      this.videoElement.muted = true;
-      // Ensure video plays automatically on reload (with muted state)
-      if (this.videoElement) {
-        this.videoElement
-          .play()
-          .then(() => {
-            if (this.videoElement) {
-            }
-          })
-          .catch((error) => {
-            //console.error('Error trying to play the video:', error);
-          });
+      if (isPlatformBrowser(this.platformId)) {
+        this.videoElement = document.getElementById(
+          'backgroundVideo'
+        ) as HTMLVideoElement;
+        this.videoElement.muted = true;
+        // Ensure video plays automatically on reload (with muted state)
+        if (this.videoElement) {
+          this.videoElement
+            .play()
+            .then(() => {
+              if (this.videoElement) {
+              }
+            })
+            .catch((error) => {
+              //console.error('Error trying to play the video:', error);
+            });
+        }
       }
     }
   }
@@ -158,7 +163,6 @@ export class BannerComponent implements OnInit {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    // console.log(changes['data'].currentValue);
     this.datesItem = changes['data']?.currentValue?.event;
     this.courseName = changes['data']?.currentValue?.courseName;
   }

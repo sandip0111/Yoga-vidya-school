@@ -14,7 +14,6 @@ import { FeeStructureComponent } from '../../bali/fee-structure/fee-structure.co
 import { CodeConductComponent } from '../../bali/code-conduct/code-conduct.component';
 import { TestimonialsComponent } from '../../../includes/home/testimonials/testimonials.component';
 import { GalleryComponent } from '../../../includes/home/gallery/gallery.component';
-import { YoutubeChannelComponent } from '../../../includes/home/youtube-channel/youtube-channel.component';
 import { WatchVideoComponent } from '../../bali/watch-video/watch-video.component';
 import { FaqComponent } from '../../../includes/home/faq/faq.component';
 import { WebapiService } from '../../../webapi.service';

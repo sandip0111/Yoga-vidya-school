@@ -6,11 +6,12 @@ import { WebapiService } from '../../../webapi.service';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { routeEnum } from '../../../enum/routes';
 import { aboutContentModel } from '../../../models/rishikesh';
+import { WorldClockComponent } from '../../world-clock/world-clock.component';
 
 @Component({
   selector: 'app-about-rishikesh',
   standalone: true,
-  imports: [CommonModule],
+  imports: [WorldClockComponent, CommonModule],
   templateUrl: './about-rishikesh.component.html',
   styleUrls: ['./about-rishikesh.component.css'],
 })
@@ -20,6 +21,9 @@ export class AboutRishikeshComponent implements OnInit {
   ispranicPurificationImg = false;
   course?: CartItem;
   routeEnum = routeEnum;
+  date: string = '';
+  startTime: string = '';
+  endTime: string = '';
   constructor(
     private sanitizer: DomSanitizer,
     private activatedRoute: ActivatedRoute,
@@ -28,6 +32,13 @@ export class AboutRishikeshComponent implements OnInit {
     private webapiService: WebapiService
   ) {
     this.slug = this.activatedRoute.snapshot.routeConfig?.path ?? '';
+  }
+
+  ngOnInit() {
+    this.getCourseBySlug(this.slug);
+    this.generateHtmlContent();
+  }
+  generateHtmlContent() {
     if (this.slug == '100-hours-yoga-teacher-training-in-rishikesh') {
       this.aboutContent = new aboutContentModel(
         'https://my-s3-images-bucket.s3.amazonaws.com/img/image_1674308332559.jpg',
@@ -217,6 +228,9 @@ The main goal of this online pranayama course is to understand your energy body 
       // `,
       //       };
     } else if (this.slug == this.routeEnum['200TTC']) {
+      this.date = '2025-09-07';
+      this.startTime = '10:30 AM';
+      this.endTime = '01:00 PM'
       this.aboutContent = new aboutContentModel(
         'https://my-s3-images-bucket.s3.amazonaws.com/images/Gallery5_zoxhnn.jpg',
         '200 Hour Yoga',
@@ -258,11 +272,6 @@ The main goal of this online pranayama course is to understand your energy body 
       );
     }
   }
-
-  ngOnInit() {
-    this.getCourseBySlug(this.slug);
-  }
-
   addToCart(event: Event): void {
     event.preventDefault();
 

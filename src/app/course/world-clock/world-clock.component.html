@@ -1,1 +1,17 @@
-<p>world-clock works!</p>
+<b>Date: {{ formattedDate }}</b>
+<p>
+  Course timming: {{ convertedStartTime }} - {{ convertedEndTime }} ({{
+    timeZoneAbbreviation
+  }})
+</p>
+<label for="zone">Select Time Zone:</label>
+<select
+  id="zone"
+  [(ngModel)]="selectedZone"
+  (change)="onZoneChange()"
+  class="form-control"
+>
+  <option *ngFor="let zone of timeZones" [value]="zone">
+    {{ zone }}
+  </option>
+</select>

@@ -20,6 +20,5 @@ export class StartClassComponent implements OnInit {
   }
   ngOnChanges(changes: SimpleChanges): void {
     this.fees = changes['data'].currentValue;
-    console.log('test 3', this.slug);
   }
 }
