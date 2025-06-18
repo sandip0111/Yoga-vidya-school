@@ -60,6 +60,9 @@ export class BannerComponent implements OnInit {
     } else if (this.slug == 'yoga-retreat-in-mysore-india') {
       this.sliderImage =
         'https://my-s3-images-bucket.s3.amazonaws.com/img/image_1692698338795.jpg';
+    } else if (this.slug == 'pranic-purification') {
+      this.sliderImage =
+        'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/954A0706.JPG';
     } else if (
       this.slug == '200-hour-yoga-teacher-training-in-kerala-india' ||
       this.slug == 'yoga-retreat-in-kerala-india' ||
@@ -128,23 +131,34 @@ export class BannerComponent implements OnInit {
           '500px'
         );
       }
-      if (this.slug == 'pranayama-course-online-pranarambha') {
-        this.videoElement = document.getElementById(
-          'backgroundVideo'
-        ) as HTMLVideoElement;
-        this.videoElement.muted = true;
-        // Ensure video plays automatically on reload (with muted state)
-        if (this.videoElement) {
-          this.videoElement
-            .play()
-            .then(() => {
-              if (this.videoElement) {
-              }
-            })
-            .catch((error) => {
-              //console.error('Error trying to play the video:', error);
-            });
-        }
+    } else {
+      this.renderer.setStyle(
+        this.bannerSection.nativeElement,
+        'background-image',
+        `url(${this.sliderImage})`
+      );
+      this.renderer.setStyle(
+        this.bannerSection.nativeElement,
+        'height',
+        '650px'
+      );
+    }
+    if (this.slug == 'pranayama-course-online-pranarambha') {
+      this.videoElement = document.getElementById(
+        'backgroundVideo'
+      ) as HTMLVideoElement;
+      this.videoElement.muted = true;
+      // Ensure video plays automatically on reload (with muted state)
+      if (this.videoElement) {
+        this.videoElement
+          .play()
+          .then(() => {
+            if (this.videoElement) {
+            }
+          })
+          .catch((error) => {
+            //console.error('Error trying to play the video:', error);
+          });
       }
     }
   }

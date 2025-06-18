@@ -34,15 +34,27 @@
     </div>
   </div>
   <div *ngIf="slug == 'pranic-purification'" class="row mb-3 align-items-center">
-    <div class="image-container">
-      <img
-        src="{{ this.aboutContent.image }}"
-        style="border-radius: 10px"
-        class="img-fluid pranic-purification-img"
-        alt="{{ this.aboutContent.title }} {{ this.aboutContent.secondTitle }}"
-      />
-    </div>
-
+      <div class="d-flex flex-column justify-content-center align-items-center">
+        <small class="p-0">Yoga Vidya Present's</small>
+        <h1>
+          {{ this.aboutContent.title }}
+          <span>{{ this.aboutContent.secondTitle }}</span>
+        </h1>
+        <h4 *ngIf="this.aboutContent.subTitle">
+            {{ this.aboutContent.subTitle}}
+        </h4>        
+      </div>
+      <div class="image-container" >
+        <img
+          src="{{ this.aboutContent.image }}"
+          style="border-radius: 10px;"
+          class="img-fluid pranic-purification-img"  
+          alt="{{ this.aboutContent.title }} {{
+            this.aboutContent.secondTitle
+          }}"
+        />
+      </div>
+    
     <div class="position: relative; z-index: 1;">
       <div>
         <small class="text-left p-0">Yoga Vidya Present's</small>

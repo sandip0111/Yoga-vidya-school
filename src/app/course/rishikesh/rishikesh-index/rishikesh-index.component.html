@@ -1,5 +1,5 @@
 <app-banner [data]="bannerData"></app-banner>
-<!-- <app-bottom-nav-course></app-bottom-nav-course> -->
+<app-bottom-nav-course *ngIf="slug !='pranic-purification'"></app-bottom-nav-course>
 <app-about-rishikesh></app-about-rishikesh>
 <app-education-categories [data]="feesData"></app-education-categories>
 <app-certified-yoga></app-certified-yoga>
