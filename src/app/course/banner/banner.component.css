@@ -150,7 +150,7 @@
 
   .floating-register-btn {
     position: absolute;
-    bottom: 150px;
+    bottom: 30px;
     right: 60px;
     z-index: 9999;
   }
@@ -170,16 +170,22 @@
 }
 
 .carousel-inner {
-  height: 500px;
+  height: 600px;
 }
 
 .image-slide .carousel-item img {
-  height: 100%;
+  height: auto;
   width: 100%;
-  object-fit: cover;
-  object-position: bottom center;
 }
-
+.img-1 {
+  transform: translateY(-70px);
+}
+.img-2 {
+  transform: translateY(-150px);
+}
+.img-3 {
+  transform: translateY(-200px);
+}
 .carousel-item {
   transition: transform 3s ease-in-out !important;
 }

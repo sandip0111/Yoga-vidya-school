@@ -1,12 +1,44 @@
 <!-- about.component.html -->
 
 <section class="about-rishikesh-section py-5">
-  <div *ngIf="slug != 'pranic-purification'" class="row mb-3 align-items-center">
+  @if(slug == 'pranic-purification' ||
+  slug=='200-hours-yoga-teacher-training-online'){
+  <div class="mb-3">
+    <div class="d-flex flex-column justify-content-center align-items-center">
+      <small class="p-0">Yoga Vidya Present's</small>
+      <h1>
+        {{ this.aboutContent.title }}
+        <span>{{ this.aboutContent.secondTitle }}</span>
+      </h1>
+      <h4 *ngIf="this.aboutContent.subTitle">
+        {{ this.aboutContent.subTitle }}
+      </h4>
+      <p *ngIf="this.aboutContent.subTitle1">
+        <strong>{{ this.aboutContent.subTitle1 }}</strong>
+      </p>
+    </div>
+    <div class="image-container">
+      <img
+        src="{{ this.aboutContent.image }}"
+        style="border-radius: 10px"
+        class="img-fluid pranic-purification-img"
+        alt="{{ this.aboutContent.title }} {{ this.aboutContent.secondTitle }}"
+      />
+    </div>
+
+    <div class="position: relative; z-index: 1;">
+      <div>
+        <div [innerHTML]="this.aboutContent.desc"></div>
+      </div>
+    </div>
+  </div>
+  } @else{
+  <div class="row mb-3 align-items-center">
     <div class="col-md-6">
-      <div class="imageback" >
+      <div class="imageback">
         <img
           src="{{ this.aboutContent.image }}"
-          class="img-fluid"         
+          class="img-fluid"
           alt="{{ this.aboutContent.title }} {{
             this.aboutContent.secondTitle
           }}"
@@ -22,42 +54,16 @@
         </h1>
         <div *ngIf="this.aboutContent.subTitle" class="col-12">
           <h4>
-            {{ this.aboutContent.subTitle}}
+            {{ this.aboutContent.subTitle }}
           </h4>
         </div>
-        
+
         <div [innerHTML]="this.aboutContent.desc"></div>
       </div>
     </div>
   </div>
-  <div *ngIf="slug == 'pranic-purification'" class="mb-3">    
-      <div class="d-flex flex-column justify-content-center align-items-center">
-        <small class="p-0">Yoga Vidya Present's</small>
-        <h1>
-          {{ this.aboutContent.title }}
-          <span>{{ this.aboutContent.secondTitle }}</span>
-        </h1>
-        <h4 *ngIf="this.aboutContent.subTitle">
-            {{ this.aboutContent.subTitle}}
-        </h4>        
-      </div>
-      <div class="image-container" >
-        <img
-          src="{{ this.aboutContent.image }}"
-          style="border-radius: 10px;"
-          class="img-fluid pranic-purification-img"  
-          alt="{{ this.aboutContent.title }} {{
-            this.aboutContent.secondTitle
-          }}"
-        />
-      </div>
-    
-    <div class="position: relative; z-index: 1;">
-      <div> 
-        <div [innerHTML]="this.aboutContent.desc"></div>
-      </div>
-    </div>
-  </div>
+  }
+
   <div
     class="row mb-5"
     *ngIf="slug == '300-hours-yoga-teacher-training-in-rishikesh'"
@@ -161,7 +167,7 @@
     </div>
   </div>
   <div class="col-md-6 d-flex align-items-center">
-     <!-- <a
+    <!-- <a
       *ngIf="slug == 'online-hip-opening-workshop' ||
              slug == '200-hours-yoga-teacher-training-online'"
          href="#"
@@ -169,9 +175,11 @@
          class="button"
         >Add To Cart</a
       > -->
-       <a
-      *ngIf="slug == 'online-hip-opening-workshop' ||
-             slug == '200-hours-yoga-teacher-training-online' "  
+    <a
+      *ngIf="
+        slug == 'online-hip-opening-workshop' ||
+        slug == '200-hours-yoga-teacher-training-online'
+      "
       href="/"
       class="button"
       >Buy Now</a

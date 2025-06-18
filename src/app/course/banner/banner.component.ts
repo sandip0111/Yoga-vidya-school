@@ -30,7 +30,8 @@ export class BannerComponent implements OnInit {
   videoElement?: HTMLVideoElement;
   isRegistrationPageLabelToggle = false;
   isRegistrationPageLabelToggleForAdjusment = false;
-  @ViewChild('bannerSection', { static: false }) bannerSection!: ElementRef<HTMLElement>;
+  @ViewChild('bannerSection', { static: false })
+  bannerSection!: ElementRef<HTMLElement>;
   @ViewChild('nameInput') nameInput?: ElementRef;
   sliderImage: string =
     'https://my-s3-images-bucket.s3.amazonaws.com/images/InternalBackground_lticg8.jpg';
@@ -107,41 +108,28 @@ export class BannerComponent implements OnInit {
     }
   }
   ngAfterViewInit() {
-    if (this.bannerSection) {
-      if (
-        this.slug !== 'pranic-purification' &&
-        this.slug != 'breath-detox-yoga'
-      ) {
-        if (this.bannerSection) {
-          this.renderer?.setStyle(
-            this.bannerSection?.nativeElement,
-            '--bg-image',
-            `url(${this.sliderImage})`
-          );
-        }
-      } else {
-        this.renderer?.setStyle(
-          this.bannerSection?.nativeElement,
-          'background-image',
+    if (
+      this.slug !== 'pranic-purification' &&
+      this.slug != 'breath-detox-yoga'
+    ) {
+      if (this.bannerSection) {
+        this.renderer.setStyle(
+          this.bannerSection.nativeElement,
+          '--bg-image',
           `url(${this.sliderImage})`
-        );
-        this.renderer?.setStyle(
-          this.bannerSection?.nativeElement,
-          'height',
-          '500px'
         );
       }
     } else {
-      // this.renderer?.setStyle(
-      //   this.bannerSection?.nativeElement,
-      //   'background-image',
-      //   `url(${this.sliderImage})`
-      // );
-      // this.renderer?.setStyle(
-      //   this.bannerSection?.nativeElement,
-      //   'height',
-      //   '650px'
-      // );
+      this.renderer.setStyle(
+        this.bannerSection.nativeElement,
+        'background-image',
+        `url(${this.sliderImage})`
+      );
+      this.renderer.setStyle(
+        this.bannerSection.nativeElement,
+        'height',
+        '650px'
+      );
     }
     if (this.slug == 'pranayama-course-online-pranarambha') {
       this.videoElement = document.getElementById(
