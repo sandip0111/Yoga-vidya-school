@@ -108,8 +108,8 @@
             (countryChange)="onCountryChange($event)"
             (keyup)="inputValidation('phone')"
           >
-          </ngx-intl-tel-input
-          ><br />
+          </ngx-intl-tel-input>
+          <br />
           <div *ngIf="phoneError" class="text-danger mt-1">
             {{ phoneError }}
           </div>
@@ -152,7 +152,10 @@
           </div>
         </div>
         <div class="mb-3" *ngIf="slug == 'pranayama-course-online-pranarambha'">
-          <label for="refferal">Refferal Code (Use the referral code you received when purchasing Pranayama Sadhana.)</label>
+          <label for="refferal"
+            >Refferal Code (Use the referral code you received when purchasing
+            Pranayama Sadhana.)</label
+          >
           <input
             type="text"
             class="form-control"
@@ -196,7 +199,12 @@
             class="payment-button"
             (click)="checkoutData(checkData, false)"
           >
-            <img src="https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/stripe.png" alt="Stripe" width="128" height="35" />
+            <img
+              src="https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/stripe.png"
+              alt="Stripe"
+              width="128"
+              height="35"
+            />
           </a>
           <a
             href="https://www.paypal.me/yogavidyafoundation"
@@ -204,7 +212,12 @@
             class="payment-button"
             target="_blank"
           >
-            <img src="https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/paypal.png" alt="PayPal" width="128" height="30" />
+            <img
+              src="https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/paypal.png"
+              alt="PayPal"
+              width="128"
+              height="30"
+            />
           </a>
         </div>
 

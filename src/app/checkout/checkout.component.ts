@@ -13,9 +13,15 @@ import {
 import { SearchCountryField } from 'ngx-intl-tel-input';
 import { CountryISO } from 'ngx-intl-tel-input';
 import { paymentkey, stripePaymentKey } from '../enum/payment';
-import { checkoutModel } from '../models/checkout';
+import {
+  checkoutModel,
+  razorPayModel,
+  SignupDataModel,
+  stripePayModel,
+} from '../models/checkout';
 import { localstorageKey } from '../enum/localstorage';
 import { routeEnum } from '../enum/routes';
+import { twoHundredTTCModel } from '../enum/details';
 
 declare var Razorpay: any;
 @Component({
@@ -388,215 +394,193 @@ export class CheckoutComponent {
   checkoutData(data: checkoutModel, isRazorPay: boolean) {
     this.spinner.show();
     if (this.slug !== routeEnum.pranicPurification) {
-      if (
-        data.email &&
-        data.name &&
-        data.phoneNumber &&
-        this.slug == routeEnum.pranOnlinePranaArambh &&
-        data.package &&
-        data.currency
-      ) {
-        sessionStorage.setItem('tempCourse', this.courseList._id);
-        let pass = this.genratePass(6);
-        if (this.oldStudent == false) {
-          let signup = {
-            firstName: data.name,
-            email: data.email.toLowerCase(),
-            password: pass,
-            isActive: true,
-            source: 'web',
-            phoneNumber: data.phoneNumber.e164Number,
-          };
-          this.webapiService.createStudent(signup).subscribe((res: any) => {
-            if (res.status == 'ok') {
-              sessionStorage.setItem('loginId-checkout', res.studentId);
-
-              if (!isRazorPay) {
-                if (this.slug == routeEnum.pranOnlinePranaArambh) {
-                  if (data.package == 'Basic' && data.currency == 'INR') {
-                    this.initializePayment(
-                      this.isDiscounted
-                        ? stripePaymentKey.discountInr
-                        : stripePaymentKey.basicInr,
-                      data.email
-                    );
-                  } else if (
-                    data.package == 'Standard' &&
-                    data.currency == 'INR'
-                  ) {
-                    this.initializePayment(
-                      stripePaymentKey.standardInr,
-                      data.email
-                    );
-                  } else if (
-                    data.package == 'Premium' &&
-                    data.currency == 'INR'
-                  ) {
-                    this.initializePayment(
-                      stripePaymentKey.premiumInr,
-                      data.email
-                    );
-                  } else if (
-                    data.package == 'Basic' &&
-                    data.currency == 'USD'
-                  ) {
-                    this.initializePayment(
-                      this.isDiscounted
-                        ? stripePaymentKey.discountUsd
-                        : stripePaymentKey.basicUsd,
-                      data.email
-                    );
-                  } else if (
-                    data.package == 'Basic' &&
-                    data.currency == 'EUR'
-                  ) {
-                    this.initializePayment(
-                      this.isDiscounted
-                        ? stripePaymentKey.discountEur
-                        : stripePaymentKey.basicEur,
-                      data.email
-                    );
-                  } else if (
-                    data.package == 'Standard' &&
-                    data.currency == 'USD'
-                  ) {
-                    this.initializePayment(
-                      stripePaymentKey.standardUsd,
-                      data.email
-                    );
-                  } else if (
-                    data.package == 'Premium' &&
-                    data.currency == 'USD'
-                  ) {
-                    this.initializePayment(
-                      stripePaymentKey.premiumUsd,
-                      data.email
-                    );
-                  }
-                } else if (this.courseList.priceId) {
-                  this.initializePayment(this.courseList.priceId, data.email);
-                }
-              } else {
-                //Razor pay
-                this.initializeRazorPayment(data);
-              }
-            } else {
-              alert('Fail to registered.');
-              this.spinner.hide();
-            }
-          });
+      let isErrMsg: boolean = false;
+      if (!data.email) {
+        this.emailRequired = 'email is required';
+        isErrMsg = true;
+      }
+      if (this.oldStudent == false && !data.name) {
+        this.nameRequired = 'Name is Required';
+        isErrMsg = true;
+      }
+      if (!data.package) {
+        this.packageRequired = 'Please select a package';
+        isErrMsg = true;
+      }
+      if (!data.phoneNumber) {
+        this.phoneRequired = 'WhatsApp Number is required';
+        isErrMsg = true;
+      }
+      if (!data.currency) {
+        this.currencyRequired = 'Currency is required';
+        isErrMsg = true;
+      }
+      if (!isErrMsg) {
+        if (this.slug == routeEnum['200TTC']) {
+          this.twoHundredTTCCheckout(data, isRazorPay);
         } else {
-          if (this.slug == routeEnum.pranOnlinePranaArambh) {
-            if (data.package == 'Basic' && data.currency == 'INR') {
-              this.spinner.hide();
-              this.initializePayment(
-                'price_1QmsTUSEQq0H4GuEZfWd5UJu',
-                data.email
-              ); //price_1NI7hnSEQq0H4GuETCleI6Uo  price_1NI6oxSEQq0H4GuEW24DMpTn
-            } else if (data.package == 'Standard' && data.currency == 'INR') {
-              this.spinner.hide();
-              this.initializePayment(
-                'price_1NI6oxSEQq0H4GuERpBbilF2',
-                data.email
-              );
-            } else if (data.package == 'Premium' && data.currency == 'INR') {
-              this.spinner.hide();
-              this.initializePayment(
-                'price_1NI6oxSEQq0H4GuEx9fdhEd0',
-                data.email
-              );
-            } else if (data.package == 'Basic' && data.currency == 'USD') {
-              this.spinner.hide();
-              this.initializePayment(
-                'price_1QmychSEQq0H4GuEAipCDoPU',
-                data.email
-              );
-            } else if (data.package == 'Standard' && data.currency == 'USD') {
-              this.spinner.hide();
-              this.initializePayment(
-                'price_1NIRatSEQq0H4GuE0DOlcCNa',
-                data.email
-              );
-            } else if (data.package == 'Premium' && data.currency == 'USD') {
-              this.spinner.hide();
-              this.initializePayment(
-                'price_1NIRbNSEQq0H4GuEeLvnyPu2',
-                data.email
-              );
-            } else {
-              this.spinner.hide();
-            }
-          } else {
-            if (this.courseList.priceId) {
-              this.spinner.hide();
-              this.initializePayment(this.courseList.priceId, data.email);
-            } else {
-              this.spinner.hide();
-            }
-          }
+          this.nonPranicPurificationCheckout(data, isRazorPay);
         }
       } else {
-        if (!data.email) {
-          this.emailRequired = 'email is required';
-        }
-        if (this.oldStudent == false && !data.name) {
-          this.nameRequired = 'Name is Required';
-        }
-        if (this.slug == routeEnum.pranOnlinePranaArambh && !data.package) {
-          this.packageRequired = 'Please select a package';
-        }
-        if (!data.phoneNumber) {
-          this.phoneRequired = 'WhatsApp Number is required';
-        }
-        if (!data.currency) {
-          this.currencyRequired = 'Currency is required';
-        }
         this.spinner.hide();
       }
     } else {
+      let isErrMsg: boolean = false;
       if (!data.email) {
         this.emailRequired = 'email is required.';
-        this.spinner.hide();
-        return;
+        isErrMsg = true;
       }
       if (!data.name) {
-        alert('Name is required.');
-        this.spinner.hide();
-        return;
+        this.nameRequired = 'Name is Required';
+        isErrMsg = true;
       }
       if (!data.phoneNumber) {
-        alert('WhatsApp Number is required.');
-        this.spinner.hide();
-        return;
+        this.phoneRequired = 'WhatsApp Number is required';
+        isErrMsg = true;
       }
       if (this.price == '' || !this.price) {
-        alert('please select a currency');
-        this.spinner.hide();
-        return;
+        this.currencyRequired = 'Currency is required';
+        isErrMsg = true;
       }
-      var { price, currency } = this.extractPriceAndCurrency(this.price) || {
-        price: 0,
-        currency: '',
-      };
-      let signup = {
-        name: data.name,
-        email: data.email.toLowerCase(),
-        phoneNumber: data.phoneNumber.e164Number,
-        address: data.address,
-        price: this.isDiscounted ? this.offerAmount : price,
-        currency: currency,
-        courseStartDate: this.pranicDate,
-        courseTimeDuration: this.pranicDuration,
-      };
+      if (!isErrMsg) {
+        this.pranicPurificationCheckOut(data, isRazorPay);
+      }
       this.spinner.hide();
-      if (!isRazorPay) {
-        this.initializePaymentForPranicPurification(signup);
+    }
+  }
+  pranicPurificationCheckOut(data: checkoutModel, isRazorPay: boolean) {
+    var { price, currency } = this.extractPriceAndCurrency(this.price) || {
+      price: 0,
+      currency: '',
+    };
+    let signup = {
+      name: data.name,
+      email: data.email.toLowerCase(),
+      phoneNumber: data.phoneNumber.e164Number,
+      address: data.address,
+      price: this.isDiscounted ? this.offerAmount : price,
+      currency: currency,
+      courseStartDate: this.pranicDate,
+      courseTimeDuration: this.pranicDuration,
+    };
+    if (!isRazorPay) {
+      this.initializePaymentForPranicPurification(signup);
+    } else {
+      this.initializeRazorPaymentForPranicPurification(signup);
+    }
+  }
+  nonPranicPurificationCheckout(data: checkoutModel, isRazorPay: boolean) {
+    sessionStorage.setItem('tempCourse', this.courseList._id);
+    let pass = this.genratePass(6);
+    if (this.oldStudent == false) {
+      this.newStudentCheckOut(data, isRazorPay, pass);
+    } else {
+      if (this.slug == routeEnum.pranOnlinePranaArambh) {
+        if (data.package == 'Basic' && data.currency == 'INR') {
+          this.spinner.hide();
+          this.initializePayment('price_1QmsTUSEQq0H4GuEZfWd5UJu', data.email); //price_1NI7hnSEQq0H4GuETCleI6Uo  price_1NI6oxSEQq0H4GuEW24DMpTn
+        } else if (data.package == 'Standard' && data.currency == 'INR') {
+          this.spinner.hide();
+          this.initializePayment('price_1NI6oxSEQq0H4GuERpBbilF2', data.email);
+        } else if (data.package == 'Premium' && data.currency == 'INR') {
+          this.spinner.hide();
+          this.initializePayment('price_1NI6oxSEQq0H4GuEx9fdhEd0', data.email);
+        } else if (data.package == 'Basic' && data.currency == 'USD') {
+          this.spinner.hide();
+          this.initializePayment('price_1QmychSEQq0H4GuEAipCDoPU', data.email);
+        } else if (data.package == 'Standard' && data.currency == 'USD') {
+          this.spinner.hide();
+          this.initializePayment('price_1NIRatSEQq0H4GuE0DOlcCNa', data.email);
+        } else if (data.package == 'Premium' && data.currency == 'USD') {
+          this.spinner.hide();
+          this.initializePayment('price_1NIRbNSEQq0H4GuEeLvnyPu2', data.email);
+        } else {
+          this.spinner.hide();
+        }
       } else {
-        this.initializeRazorPaymentForPranicPurification(signup);
+        if (this.courseList.priceId) {
+          this.spinner.hide();
+          this.initializePayment(this.courseList.priceId, data.email);
+        } else {
+          this.spinner.hide();
+        }
       }
     }
   }
+  twoHundredTTCCheckout(data: checkoutModel, isRazorPay: boolean) {
+    let signupData: SignupDataModel = {
+      name: data.name,
+      email: data.email.toLowerCase(),
+      phoneNumber: data.phoneNumber.e164Number,
+      package: data.package,
+      price: this.amount,
+      currency: data.currency,
+      courseStartDate: twoHundredTTCModel['200TTCDate'],
+      courseTimeDuration: `${twoHundredTTCModel['200TTCStart']} - ${twoHundredTTCModel['200TTCEnd']} (IST)`,
+    };
+    if (isRazorPay) {
+      this.initializeRazorPaymentFor200TTC(signupData);
+    } else {
+      this.initializePaymentFor200TTC(signupData);
+    }
+  }
 
+  newStudentCheckOut(data: checkoutModel, isRazorPay: boolean, pass: string) {
+    let signup = {
+      firstName: data.name,
+      email: data.email.toLowerCase(),
+      password: pass,
+      isActive: true,
+      source: 'web',
+      phoneNumber: data.phoneNumber.e164Number,
+    };
+    this.webapiService.createStudent(signup).subscribe((res: any) => {
+      if (res.status == 'ok') {
+        sessionStorage.setItem('loginId-checkout', res.studentId);
+        if (!isRazorPay) {
+          if (this.slug == routeEnum.pranOnlinePranaArambh) {
+            if (data.package == 'Basic' && data.currency == 'INR') {
+              this.initializePayment(
+                this.isDiscounted
+                  ? stripePaymentKey.discountInr
+                  : stripePaymentKey.basicInr,
+                data.email
+              );
+            } else if (data.package == 'Standard' && data.currency == 'INR') {
+              this.initializePayment(stripePaymentKey.standardInr, data.email);
+            } else if (data.package == 'Premium' && data.currency == 'INR') {
+              this.initializePayment(stripePaymentKey.premiumInr, data.email);
+            } else if (data.package == 'Basic' && data.currency == 'USD') {
+              this.initializePayment(
+                this.isDiscounted
+                  ? stripePaymentKey.discountUsd
+                  : stripePaymentKey.basicUsd,
+                data.email
+              );
+            } else if (data.package == 'Basic' && data.currency == 'EUR') {
+              this.initializePayment(
+                this.isDiscounted
+                  ? stripePaymentKey.discountEur
+                  : stripePaymentKey.basicEur,
+                data.email
+              );
+            } else if (data.package == 'Standard' && data.currency == 'USD') {
+              this.initializePayment(stripePaymentKey.standardUsd, data.email);
+            } else if (data.package == 'Premium' && data.currency == 'USD') {
+              this.initializePayment(stripePaymentKey.premiumUsd, data.email);
+            }
+          } else if (this.courseList.priceId) {
+            this.initializePayment(this.courseList.priceId, data.email);
+          }
+        } else {
+          this.initializeRazorPayment(data);
+        }
+      } else {
+        alert('Fail to registered.');
+        this.spinner.hide();
+      }
+    });
+  }
   genratePass(len: any) {
     var charset =
       'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_-+=<>?';
@@ -635,8 +619,7 @@ export class CheckoutComponent {
       }
     });
   }
-
-  initializeRazorPayment(data: any) {
+  initializeRazorPayment(data: checkoutModel) {
     this.spinner.show();
     let val = {
       currency: data.currency,
@@ -712,10 +695,8 @@ export class CheckoutComponent {
         }
       });
   }
-
   initializeRazorPaymentForPranicPurification(data: any) {
     this.spinner.show();
-
     this.webapiService
       .checkoutRazorpayForPranicPurification(data)
       .subscribe((res: any) => {
@@ -767,13 +748,11 @@ export class CheckoutComponent {
         }
       });
   }
-
   initializePaymentForPranicPurification(data: any) {
     this.spinner.show();
     this.webapiService
       .checkoutStripeForPranicPurification(data)
       .subscribe((res: any) => {
-        this.spinner.hide();
         if (res.sessionId) {
           sessionStorage.setItem(
             localstorageKey.pranicSessionId,
@@ -781,13 +760,86 @@ export class CheckoutComponent {
           );
           sessionStorage.setItem(localstorageKey.praanicPayId, res.payDbId);
           window.location.href = res.url;
+          this.spinner.hide();
         } else {
           alert('Session Genration failed! please try again');
           this.spinner.hide();
         }
       });
   }
-
+  initializeRazorPaymentFor200TTC(data: SignupDataModel) {
+    this.webapiService
+      .checkoutRazorpayFor200TTC(data)
+      .subscribe((res: razorPayModel) => {
+        if (res && res.orderId && res.razorpayKey) {
+          const options = {
+            key: res.razorpayKey,
+            amount: res.amount * 100,
+            currency: data.currency,
+            name: 'Yoga Vidya School',
+            description: '200 Hours Yoga TTC Payment',
+            order_id: res.orderId,
+            handler: (response: any) => {
+              localStorage.setItem(
+                localstorageKey['200TTCRzpId'],
+                response.razorpay_payment_id
+              );
+              localStorage.setItem(
+                localstorageKey['200TTCRzpOrderId'],
+                response.razorpay_order_id
+              );
+              localStorage.setItem(
+                localstorageKey['200TTCRzpSig'],
+                response.razorpay_signature
+              );
+              localStorage.setItem(
+                localstorageKey['200TTCRzpDBId'],
+                res.payDbId
+              );
+              this.router.navigate(['/confirmation']);
+            },
+            prefill: {
+              name: data.name,
+              email: data.email,
+              contact: data.phoneNumber,
+            },
+            notes: {
+              course: JSON.stringify('200 Hours Yoga TTC'),
+            },
+            theme: {
+              color: '#3399cc',
+            },
+          };
+          this.spinner.hide();
+          const rzp = new Razorpay(options);
+          rzp.open();
+        } else {
+          alert('Session Genration failed! please try again');
+          this.spinner.hide();
+        }
+      });
+  }
+  initializePaymentFor200TTC(data: SignupDataModel) {
+    this.webapiService
+      .checkoutStripeFor200TTC(data)
+      .subscribe((res: stripePayModel) => {
+        if (res.sessionId) {
+          localStorage.setItem(
+            localstorageKey['200TTCStripeSessionId'],
+            res.sessionId
+          );
+          localStorage.setItem(
+            localstorageKey['200TTCStripeDBId'],
+            res.payDbId
+          );
+          window.location.href = res.url;
+          this.spinner.hide();
+        } else {
+          alert('Session Genration failed! please try again');
+          this.spinner.hide();
+        }
+      });
+  }
   extractPriceAndCurrency(
     value: string
   ): { price: number; currency: string } | null {

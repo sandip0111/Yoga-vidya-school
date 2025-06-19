@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { CommonModule } from '@angular/common';
 import { localstorageKey } from '../enum/localstorage';
+import { razorPaymentResultModel } from '../models/checkout';
 
 @Component({
   selector: 'app-success-payment',
@@ -20,7 +21,9 @@ export class SuccessPaymentComponent {
   pranicPurificationSessionId: string | null = '';
   onlineClassRazorpayPaymentId: any;
   pranaArambhaRazorpayPaymentId: string | null = '';
-  pranicPurificationRazorPaySessionId: any;
+  pranicPurificationRazorPaySessionId: string = '';
+  twoHundredTTCRazorPaySessionId: string = '';
+  twoHundredTTCStripeSessionId: string = '';
   message: string = '';
   paidFlag: any = 'default';
   reuseUrl: any;
@@ -53,9 +56,12 @@ export class SuccessPaymentComponent {
     this.pranaArambhaRazorpayPaymentId = sessionStorage.getItem(
       'prana_razorpay_payment_id'
     );
-    this.pranicPurificationRazorPaySessionId = sessionStorage.getItem(
-      'pranic_purification_razorpay_payment_id'
-    );
+    this.pranicPurificationRazorPaySessionId =
+      sessionStorage.getItem('pranic_purification_razorpay_payment_id') ?? '';
+    this.twoHundredTTCRazorPaySessionId =
+      localStorage.getItem(localstorageKey['200TTCRzpId']) ?? '';
+    this.twoHundredTTCStripeSessionId =
+      localStorage.getItem(localstorageKey['200TTCStripeSessionId']) ?? '';
     this.couponCodeId = localStorage.getItem(localstorageKey.couponCode);
     if (this.sessionId) {
       setTimeout(() => {
@@ -84,7 +90,7 @@ export class SuccessPaymentComponent {
     if (this.pranicPurificationSessionId) {
       setTimeout(() => {
         this.getPaymentResultPranicPurification(
-          this.pranicPurificationSessionId
+          this.pranicPurificationSessionId ?? ''
         );
       }, 1500);
     }
@@ -103,6 +109,12 @@ export class SuccessPaymentComponent {
           this.pranicPurificationRazorPaySessionId
         );
       }, 1500);
+    }
+    if (this.twoHundredTTCRazorPaySessionId) {
+      this.getRazorPaymentResult200TTC(this.twoHundredTTCRazorPaySessionId);
+    }
+    if (this.twoHundredTTCStripeSessionId) {
+      this.getStripePaymentResult200TTC(this.twoHundredTTCStripeSessionId);
     }
   }
   getpaymentResult(sessionId: any, couponCode: string) {
@@ -133,7 +145,6 @@ export class SuccessPaymentComponent {
       dbPay: sessionStorage.getItem('onlinedbPay'),
     };
     this.webapiService.getPaymentResponseV2(val).subscribe((res: any) => {
-      console.log(res, '--');
       if (res.status == 'success') {
         this.paidFlag = 'true';
         this.ordId = res.paymtId;
@@ -155,7 +166,6 @@ export class SuccessPaymentComponent {
     this.webapiService
       .getPaymentResultAndSendMailForLiveClass(val)
       .subscribe((res: any) => {
-        console.log(res, '--');
         if (res.status == 'success') {
           this.paidFlag = 'true';
           this.ordId = res.paymtId;
@@ -183,7 +193,6 @@ export class SuccessPaymentComponent {
     this.webapiService
       .verifyRazorpayPayment(paymentResult)
       .subscribe((res: any) => {
-        console.log(res, '--');
         if (res.status == 'success') {
           this.paidFlag = 'true';
           this.ordId = res.paymtId;
@@ -224,7 +233,7 @@ export class SuccessPaymentComponent {
       });
   }
 
-  getRazorPaymentResultPranicPurification(razorpay_payment_id: any) {
+  getRazorPaymentResultPranicPurification(razorpay_payment_id: string) {
     const paymentResult = {
       razorpay_payment_id: razorpay_payment_id,
       razorpay_order_id: sessionStorage.getItem(
@@ -238,7 +247,6 @@ export class SuccessPaymentComponent {
     this.webapiService
       .getRazorPaymentResultPranicPurification(paymentResult)
       .subscribe((res: any) => {
-        console.log(res, '--');
         if (res.status == 'success') {
           this.paidFlag = 'true';
           this.ordId = res.orderId;
@@ -252,7 +260,7 @@ export class SuccessPaymentComponent {
       });
   }
 
-  getPaymentResultPranicPurification(pranicPurificationSessionId: any) {
+  getPaymentResultPranicPurification(pranicPurificationSessionId: string) {
     let val = {
       pranicPurificationSessionId: pranicPurificationSessionId,
       payDbId: sessionStorage.getItem(localstorageKey.praanicPayId),
@@ -282,7 +290,51 @@ export class SuccessPaymentComponent {
     const day = String(today.getDate()).padStart(2, '0'); // get day (dd) and pad with leading zero if necessary
     return `${year}-${month}-${day}`; // return date string in the format "YYYY/MM/dd"
   }
-
+  getRazorPaymentResult200TTC(razorpayPaymentId: string) {
+    const paymentResult: razorPaymentResultModel = {
+      razorpayPaymentId: razorpayPaymentId,
+      razorpayOrderId: localStorage.getItem(
+        localstorageKey['200TTCRzpOrderId']
+      ),
+      razorpaySignature: localStorage.getItem(localstorageKey['200TTCRzpSig']),
+      payDbId: localStorage.getItem(localstorageKey['200TTCRzpDBId']),
+    };
+    this.webapiService
+      .getRazorPaymentResult200TTC(paymentResult)
+      .subscribe((res: string) => {
+        if (res == 'success') {
+          this.paidFlag = 'true';
+          this.ordId = paymentResult.razorpayOrderId;
+          localStorage.removeItem(localstorageKey['200TTCRzpId']);
+          this.spinner.hide();
+        } else {
+          this.paidFlag = 'false';
+          this.spinner.hide();
+        }
+      });
+  }
+  getStripePaymentResult200TTC(sessionId: string) {
+    let val = {
+      sessionId: sessionId,
+      payDbId: localStorage.getItem(localstorageKey['200TTCStripeDBId']),
+    };
+    this.webapiService
+      .getStripePaymentResult200TTC(val)
+      .subscribe((res: any) => {
+        if (res.status == 'success') {
+          localStorage.removeItem(localstorageKey['200TTCStripeSessionId']);
+          localStorage.removeItem(localstorageKey['200TTCStripeDBId']);
+          this.paidFlag = 'true';
+          this.ordId = res.paymtId;
+          this.amount = `${res.amount} ${res.currency}`;
+          this.spinner.hide();
+        } else {
+          this.paidFlag = 'false';
+          this.reuseUrl = res.sessionId;
+          this.spinner.hide();
+        }
+      });
+  }
   gotoAccount() {
     this.router.navigate(['/login']);
     sessionStorage.removeItem('tempCourse');
@@ -295,6 +347,10 @@ export class SuccessPaymentComponent {
     sessionStorage.removeItem('pranaDbPayRazor');
     sessionStorage.removeItem('prana_razorpay_payment_amount');
     sessionStorage.removeItem('prana_razorpay_payment_currency');
+    localStorage.removeItem(localstorageKey['200TTCRzpId']);
+    localStorage.removeItem(localstorageKey['200TTCRzpOrderId']);
+    localStorage.removeItem(localstorageKey['200TTCRzpSig']);
+    localStorage.removeItem(localstorageKey['200TTCRzpDBId']);
   }
   gotoHome() {
     this.router.navigate(['/']);
@@ -313,5 +369,9 @@ export class SuccessPaymentComponent {
     sessionStorage.removeItem('pranic_purification_razorpay_signature');
     sessionStorage.removeItem('pranic_purificationDbPayRazor');
     sessionStorage.removeItem('pranic_purification_razorpay_order_id');
+    localStorage.removeItem(localstorageKey['200TTCRzpId']);
+    localStorage.removeItem(localstorageKey['200TTCRzpOrderId']);
+    localStorage.removeItem(localstorageKey['200TTCRzpSig']);
+    localStorage.removeItem(localstorageKey['200TTCRzpDBId']);
   }
 }

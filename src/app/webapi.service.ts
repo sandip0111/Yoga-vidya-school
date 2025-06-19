@@ -1,7 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from './enum/environment';
-import { getCouponCodeModel } from './models/checkout';
+import {
+  getCouponCodeModel,
+  razorPaymentResultModel,
+  razorPayModel,
+  SignupDataModel,
+  stripePayModel,
+} from './models/checkout';
 import { Observable } from 'rxjs';
 import { getSlugDataModel } from './models/rishikesh';
 @Injectable({
@@ -251,6 +257,32 @@ export class WebapiService {
   ): Observable<{ code: string; id: string }> {
     return this.http.post<{ code: string; id: string }>(
       this.url + 'api/v1/getCouponCode',
+      data
+    );
+  }
+  checkoutRazorpayFor200TTC(data: SignupDataModel): Observable<razorPayModel> {
+    return this.http.post<razorPayModel>(
+      this.url + 'api/v1/checkoutRazorpayFor200TTC',
+      data
+    );
+  }
+  getRazorPaymentResult200TTC(
+    data: razorPaymentResultModel
+  ): Observable<string> {
+    return this.http.post<string>(
+      this.url + 'api/v1/getRazorPaymentResult200TTC',
+      data
+    );
+  }
+  checkoutStripeFor200TTC(data: SignupDataModel): Observable<stripePayModel> {
+    return this.http.post<stripePayModel>(
+      this.url + 'api/v1/checkoutStripeFor200TTC',
+      data
+    );
+  }
+    getStripePaymentResult200TTC(data: any) {
+    return this.http.post(
+      this.url + 'api/v1/getStripePaymentResult200TTC',
       data
     );
   }

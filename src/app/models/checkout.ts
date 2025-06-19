@@ -35,3 +35,30 @@ export interface getCouponCodeModel {
   slug: string;
   email: string;
 }
+export interface SignupDataModel {
+  name: string;
+  email: string;
+  phoneNumber: string;
+  package: string;
+  price: number;
+  currency: string;
+  courseStartDate: string;
+  courseTimeDuration: string;
+}
+export interface razorPayModel {
+  amount: number;
+  orderId: string;
+  payDbId: string;
+  razorpayKey: string;
+}
+export interface razorPaymentResultModel {
+  razorpayPaymentId: string | null;
+  razorpayOrderId: string | null;
+  razorpaySignature: string | null;
+  payDbId: string | null;
+}
+export interface stripePayModel {
+  sessionId: string;
+  payDbId: string;
+  url: string;
+}

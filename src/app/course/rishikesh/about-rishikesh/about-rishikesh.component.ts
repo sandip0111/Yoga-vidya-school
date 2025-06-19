@@ -7,6 +7,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { routeEnum } from '../../../enum/routes';
 import { aboutContentModel } from '../../../models/rishikesh';
 import { WorldClockComponent } from '../../world-clock/world-clock.component';
+import { twoHundredTTCModel } from '../../../enum/details';
 
 @Component({
   selector: 'app-about-rishikesh',
@@ -228,9 +229,9 @@ The main goal of this online pranayama course is to understand your energy body 
       // `,
       //       };
     } else if (this.slug == this.routeEnum['200TTC']) {
-      this.date = '2025-09-07';
-      this.startTime = '10:30 AM';
-      this.endTime = '01:00 PM'
+      this.date = twoHundredTTCModel['200TTCDate'];
+      this.startTime = twoHundredTTCModel['200TTCStart'];
+      this.endTime = twoHundredTTCModel['200TTCEnd'];
       this.aboutContent = new aboutContentModel(
         'https://my-s3-images-bucket.s3.amazonaws.com/images/Gallery5_zoxhnn.jpg',
         '200 Hour Yoga',
