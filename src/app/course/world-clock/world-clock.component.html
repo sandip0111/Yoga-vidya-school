@@ -1,17 +1,23 @@
-<b>Date: {{ formattedDate }}</b>
-<p>
-  Course timming: {{ convertedStartTime }} - {{ convertedEndTime }} ({{
-    timeZoneAbbreviation
-  }})
-</p>
-<label for="zone">Select Time Zone:</label>
-<select
-  id="zone"
-  [(ngModel)]="selectedZone"
-  (change)="onZoneChange()"
-  class="form-control"
->
-  <option *ngFor="let zone of timeZones" [value]="zone">
-    {{ zone }}
-  </option>
-</select>
+<div class="main-block">
+  <div class="clock-inline">
+    <b>Date: {{ formattedDate }}</b>
+    <p>
+      Course timming: {{ convertedStartTime }} - {{ convertedEndTime }} ({{
+        timeZoneAbbreviation
+      }})
+    </p>
+  </div>
+  <div class="clock-inline">
+    <label for="zone">Select Time Zone:</label>
+    <select
+      id="zone"
+      [(ngModel)]="selectedZone"
+      (change)="onZoneChange()"
+      class="form-control"
+    >
+      <option *ngFor="let zone of timeZones" [value]="zone">
+        {{ zone }}
+      </option>
+    </select>
+  </div>
+</div>

@@ -1,0 +1,10 @@
+.main-block {
+  display: flex;
+  flex-wrap: nowrap;
+  gap:20vw;
+  margin-bottom: 20px;
+}
+.clock-inline {
+  display: flex;
+  flex-direction: column;
+}
