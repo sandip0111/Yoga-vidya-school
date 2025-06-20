@@ -139,7 +139,7 @@ export class SuccessPaymentComponent {
         this.paidFlag = 'true';
         this.ordId = res.paymtId;
         this.amount = res.amount;
-        this.cur = res.currency;
+        this.cur = this.currencySet(res.currency);
       } else {
         this.paidFlag = 'false';
         this.reuseUrl = res.sessionId;
@@ -158,7 +158,7 @@ export class SuccessPaymentComponent {
         this.paidFlag = 'true';
         this.ordId = res.paymtId;
         this.amount = res.amount;
-        this.cur = res.currency;
+        this.cur = this.currencySet(res.currency);
         this.spinner.hide();
       } else {
         this.paidFlag = 'false';
@@ -180,7 +180,7 @@ export class SuccessPaymentComponent {
           this.paidFlag = 'true';
           this.ordId = res.paymtId;
           this.amount = res.amount;
-          this.cur = res.currency;
+          this.cur = this.currencySet(res.currency);
           this.spinner.hide();
         } else {
           this.paidFlag = 'false';
@@ -208,7 +208,7 @@ export class SuccessPaymentComponent {
           this.paidFlag = 'true';
           this.ordId = res.paymtId;
           this.amount = res.amount;
-          this.cur = res.currency;
+          this.cur = this.currencySet(res.currency);
           this.spinner.hide();
         } else {
           this.paidFlag = 'false';
@@ -237,7 +237,7 @@ export class SuccessPaymentComponent {
           this.paidFlag = 'true';
           this.ordId = res.orderId;
           this.amount = res.amount;
-          this.cur = res.currency;
+          this.cur = this.currencySet(res.currency);
           this.spinner.hide();
         } else {
           this.paidFlag = 'false';
@@ -287,7 +287,7 @@ export class SuccessPaymentComponent {
           this.paidFlag = 'true';
           this.ordId = res.paymtId;
           this.amount = res.amount;
-          this.cur = res.currency;
+          this.cur = this.currencySet(res.currency);
           this.spinner.hide();
         } else {
           this.paidFlag = 'false';
@@ -322,7 +322,7 @@ export class SuccessPaymentComponent {
           this.paidFlag = 'true';
           this.ordId = paymentResult.razorpayOrderId;
           this.amount = res.amount;
-          this.cur = res.currency;
+          this.cur = this.currencySet(res.currency);
           localStorage.removeItem(localstorageKey['200TTCRzpId']);
           this.spinner.hide();
         } else {
@@ -346,7 +346,7 @@ export class SuccessPaymentComponent {
           this.paidFlag = 'true';
           this.ordId = res.paymtId;
           this.amount = res.amount;
-          this.cur = res.currency;
+          this.cur = this.currencySet(res.currency);
           this.spinner.hide();
         } else {
           this.paidFlag = 'false';
@@ -354,6 +354,17 @@ export class SuccessPaymentComponent {
           this.spinner.hide();
         }
       });
+  }
+  currencySet(currency: string) {
+    let cur: string = '';
+    if (currency == 'inr' || currency == 'INR') {
+      cur = 'INR';
+    } else if (currency == 'usd' || currency == 'USD') {
+      cur = 'USD';
+    } else if (currency == 'eur' || currency == 'EUR') {
+      cur = 'EUR';
+    }
+    return cur;
   }
   gotoAccount() {
     this.router.navigate(['/login']);
