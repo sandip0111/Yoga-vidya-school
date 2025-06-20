@@ -5,6 +5,7 @@ import {
   getCouponCodeModel,
   razorPaymentResultModel,
   razorPayModel,
+  razorPayReturnModel,
   SignupDataModel,
   stripePayModel,
 } from './models/checkout';
@@ -268,8 +269,8 @@ export class WebapiService {
   }
   getRazorPaymentResult200TTC(
     data: razorPaymentResultModel
-  ): Observable<string> {
-    return this.http.post<string>(
+  ): Observable<razorPayReturnModel> {
+    return this.http.post<razorPayReturnModel>(
       this.url + 'api/v1/getRazorPaymentResult200TTC',
       data
     );

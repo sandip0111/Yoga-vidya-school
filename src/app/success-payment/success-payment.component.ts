@@ -5,7 +5,10 @@ import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { CommonModule } from '@angular/common';
 import { localstorageKey } from '../enum/localstorage';
-import { razorPaymentResultModel } from '../models/checkout';
+import {
+  razorPaymentResultModel,
+  razorPayReturnModel,
+} from '../models/checkout';
 
 @Component({
   selector: 'app-success-payment',
@@ -15,7 +18,7 @@ import { razorPaymentResultModel } from '../models/checkout';
   styleUrl: './success-payment.component.css',
 })
 export class SuccessPaymentComponent {
-  sessionId: any;
+  sessionId: string | null = '';
   onlinesessionId: any;
   onlineLiveClassesSessionId: any;
   pranicPurificationSessionId: string | null = '';
@@ -28,7 +31,8 @@ export class SuccessPaymentComponent {
   paidFlag: any = 'default';
   reuseUrl: any;
   ordId: any;
-  amount: any;
+  amount: number = 0;
+  cur: string = '';
   couponCodeId: string | null = '';
   constructor(
     private webapiService: WebapiService,
@@ -111,10 +115,14 @@ export class SuccessPaymentComponent {
       }, 1500);
     }
     if (this.twoHundredTTCRazorPaySessionId) {
-      this.getRazorPaymentResult200TTC(this.twoHundredTTCRazorPaySessionId);
+      setTimeout(() => {
+        this.getRazorPaymentResult200TTC(this.twoHundredTTCRazorPaySessionId);
+      }, 0);
     }
     if (this.twoHundredTTCStripeSessionId) {
-      this.getStripePaymentResult200TTC(this.twoHundredTTCStripeSessionId);
+      setTimeout(() => {
+        this.getStripePaymentResult200TTC(this.twoHundredTTCStripeSessionId);
+      }, 0);
     }
   }
   getpaymentResult(sessionId: any, couponCode: string) {
@@ -130,7 +138,8 @@ export class SuccessPaymentComponent {
       if (res.status == 'success') {
         this.paidFlag = 'true';
         this.ordId = res.paymtId;
-        this.amount = `${res.amount} ${res.currency}`;
+        this.amount = res.amount;
+        this.cur = res.currency;
       } else {
         this.paidFlag = 'false';
         this.reuseUrl = res.sessionId;
@@ -148,7 +157,8 @@ export class SuccessPaymentComponent {
       if (res.status == 'success') {
         this.paidFlag = 'true';
         this.ordId = res.paymtId;
-        this.amount = `${res.amount} ${res.currency}`;
+        this.amount = res.amount;
+        this.cur = res.currency;
         this.spinner.hide();
       } else {
         this.paidFlag = 'false';
@@ -169,7 +179,8 @@ export class SuccessPaymentComponent {
         if (res.status == 'success') {
           this.paidFlag = 'true';
           this.ordId = res.paymtId;
-          this.amount = `${res.amount} ${res.currency}`;
+          this.amount = res.amount;
+          this.cur = res.currency;
           this.spinner.hide();
         } else {
           this.paidFlag = 'false';
@@ -196,7 +207,8 @@ export class SuccessPaymentComponent {
         if (res.status == 'success') {
           this.paidFlag = 'true';
           this.ordId = res.paymtId;
-          this.amount = `${res.amount} ${res.currency}`;
+          this.amount = res.amount;
+          this.cur = res.currency;
           this.spinner.hide();
         } else {
           this.paidFlag = 'false';
@@ -224,7 +236,8 @@ export class SuccessPaymentComponent {
         if (res.status == 'success') {
           this.paidFlag = 'true';
           this.ordId = res.orderId;
-          this.amount = `${res.amount} ${res.currency}`;
+          this.amount = res.amount;
+          this.cur = res.currency;
           this.spinner.hide();
         } else {
           this.paidFlag = 'false';
@@ -273,7 +286,8 @@ export class SuccessPaymentComponent {
           sessionStorage.removeItem(localstorageKey.praanicPayId);
           this.paidFlag = 'true';
           this.ordId = res.paymtId;
-          this.amount = `${res.amount} ${res.currency}`;
+          this.amount = res.amount;
+          this.cur = res.currency;
           this.spinner.hide();
         } else {
           this.paidFlag = 'false';
@@ -290,6 +304,7 @@ export class SuccessPaymentComponent {
     const day = String(today.getDate()).padStart(2, '0'); // get day (dd) and pad with leading zero if necessary
     return `${year}-${month}-${day}`; // return date string in the format "YYYY/MM/dd"
   }
+  is200TTC: boolean = false;
   getRazorPaymentResult200TTC(razorpayPaymentId: string) {
     const paymentResult: razorPaymentResultModel = {
       razorpayPaymentId: razorpayPaymentId,
@@ -301,10 +316,13 @@ export class SuccessPaymentComponent {
     };
     this.webapiService
       .getRazorPaymentResult200TTC(paymentResult)
-      .subscribe((res: string) => {
-        if (res == 'success') {
+      .subscribe((res: razorPayReturnModel) => {
+        if (res) {
+          this.is200TTC = true;
           this.paidFlag = 'true';
           this.ordId = paymentResult.razorpayOrderId;
+          this.amount = res.amount;
+          this.cur = res.currency;
           localStorage.removeItem(localstorageKey['200TTCRzpId']);
           this.spinner.hide();
         } else {
@@ -322,11 +340,13 @@ export class SuccessPaymentComponent {
       .getStripePaymentResult200TTC(val)
       .subscribe((res: any) => {
         if (res.status == 'success') {
+          this.is200TTC = true;
           localStorage.removeItem(localstorageKey['200TTCStripeSessionId']);
           localStorage.removeItem(localstorageKey['200TTCStripeDBId']);
           this.paidFlag = 'true';
           this.ordId = res.paymtId;
-          this.amount = `${res.amount} ${res.currency}`;
+          this.amount = res.amount;
+          this.cur = res.currency;
           this.spinner.hide();
         } else {
           this.paidFlag = 'false';

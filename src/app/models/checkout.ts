@@ -62,3 +62,7 @@ export interface stripePayModel {
   payDbId: string;
   url: string;
 }
+export interface razorPayReturnModel {
+  amount: number;
+  currency: string;
+}
