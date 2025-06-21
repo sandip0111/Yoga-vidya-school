@@ -206,7 +206,7 @@ export class SuccessPaymentComponent {
       .subscribe((res: any) => {
         if (res.status == 'success') {
           this.paidFlag = 'true';
-          this.ordId = res.paymtId;
+          this.ordId = res.paymentId;
           this.amount = res.amount;
           this.cur = this.currencySet(res.currency);
           this.spinner.hide();
