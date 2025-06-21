@@ -242,32 +242,8 @@ The main goal of this online pranayama course is to understand your energy body 
 <p>Becoming a Registered Yoga Teacher and spreading the positivity in the society is a rewarding endeavour. Through virtual 200 hour and 300 Hour&nbsp;<a href="https://www.yogavidyaschool.com/" style="color:#467886; text-decoration:underline">yoga teacher training</a>, we are inspired to create an opportunity for everyone to experience this intellectual journey as a way of life and help others raise their health, mentally and physically through Yoga and related practices.&nbsp;</p>
 
 <p>The Online Yoga Teacher Training of Yoga Vidya School is exclusively designed by Prashant Jakhamola, popular as Prashant J Yoga on Internet and Youtube. This special program is designed to make you a dedicated yoga practitioner as Sadhaka or devotee of the Yogic Science and the tradition. It is 12 weeks long course covers the deeper details of Hatha Yoga and Ashtanga Yoga with special focus on Alignments and Adjustments, along with Meditation, Pranayama, Philosophy and Teaching Methodology.</p>
-<h2>Online Yoga Teacher Training at Yoga Vidya School Details:<strong> </strong></h2>
 
-<p style="margin-left:0cm; margin-right:0cm"><strong>Date:</strong> 7<sup>th</sup> Febuary</p>
-
-<p><strong>Duration:</strong> 12 Weeks</p>
-
-<p><strong>Module:</strong> Live + Recordings</p>
-
-<p><strong>Timing Options:</strong></p>
-
-<!-- <p><strong>1<sup>st</sup> Batch:</strong> 7:00 AM to 9:30 AM (IST)-->
-<p>05:00 AM - 07:30 AM (GMT)</p>
-<!-- <strong>2<sup>nd</sup> Batch:</strong> 9:30 AM to 12:30 PM<br />-->
-<p>06:00 AM - 08:30 AM (CET)</p>
-<!-- <strong>3<sup>rd</sup> Batch: </strong>4:00 PM to 6:45 PM</p>-->
-<p>10:30 AM  - 01:00 PM (IST)</p> 
-<p>&nbsp;</p>
-<!-- <h3 style="margin-left:0cm; margin-right:0cm">Online Hatha Yoga Teacher Training:</h3>
-
-<p>7:00 AM to 9:30 AM (IST) and 9:30 AM to 12:30 PM (IST)</p>
-
-<p>&nbsp;</p>
-
-<h3>Online Ashtanga Yoga Teacher Training:</h3>
-
-<p>4:00 PM to 6:45 PM (India Time)</p>-->`),
+`),
         'Led by Prashant J Yoga',
         'Deepen Your Practice And Share The Sacred Wisdom Of Health And Happiness With The World By Becoming Certified Yoga Teacher!'
       );
