@@ -1,17 +1,17 @@
-import { Component,Renderer2, Inject } from '@angular/core';
-import { DOCUMENT,CommonModule } from '@angular/common';
+import { Component, Renderer2, Inject } from '@angular/core';
+import { DOCUMENT, CommonModule } from '@angular/common';
 import { Title, Meta } from '@angular/platform-browser';
 import { Router, RouterLink } from '@angular/router';
 import { WebapiService } from '../webapi.service';
-import { NgxSpinnerService } from "ngx-spinner";
+import { NgxSpinnerService } from 'ngx-spinner';
 import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-my-account',
   standalone: true,
-  imports: [CommonModule,RouterLink],
+  imports: [CommonModule, RouterLink],
   templateUrl: './my-account.component.html',
-  styleUrl: './my-account.component.css'
+  styleUrl: './my-account.component.css',
 })
 export class MyAccountComponent {
   loginId: any;
@@ -19,8 +19,16 @@ export class MyAccountComponent {
   courseArrData: any = [];
   reverseArr: any = [];
   counter: boolean = true;
-  constructor(private router: Router, private webapiService: WebapiService, private spinner: NgxSpinnerService, protected sanitizer: DomSanitizer, private title: Title, private meta: Meta, @Inject(DOCUMENT) private _document: Document, private _renderer2: Renderer2) {
-  }
+  constructor(
+    private router: Router,
+    private webapiService: WebapiService,
+    private spinner: NgxSpinnerService,
+    protected sanitizer: DomSanitizer,
+    private title: Title,
+    private meta: Meta,
+    @Inject(DOCUMENT) private _document: Document,
+    private _renderer2: Renderer2
+  ) {}
 
   ngOnInit(): void {
     setTimeout(() => {
@@ -30,18 +38,15 @@ export class MyAccountComponent {
       const canonicalUrl = 'https://www.yogavidyaschool.com' + this.router.url;
       const link = this._document.querySelector('link[rel="canonical"]');
       this._renderer2.setAttribute(link, 'href', canonicalUrl);
-    }, 1000)
+    }, 1000);
 
-    
     this.loginId = sessionStorage.getItem('loginId');
     if (this.loginId) {
       this.getUserById(this.loginId);
-    }
-    else {
+    } else {
       sessionStorage.clear();
       this.router.navigate(['/login']);
     }
-
   }
 
   getUserById(id: any) {
@@ -53,11 +58,9 @@ export class MyAccountComponent {
           for (const ids of res.Data.course) {
             this.getCourseByIdV2(ids);
           }
-        }
-        else {
+        } else {
           this.counter = false;
         }
-
       }
     });
   }
@@ -66,15 +69,13 @@ export class MyAccountComponent {
     this.webapiService.getCourseByIdV2(id).subscribe((res: any) => {
       // console.log(res?.course.length);
       if (res?.course) {
-        let url = `https://www.youtube.com/embed/${res?.course.courseintrovideoId}`
+        let url = `https://www.youtube.com/embed/${res?.course.courseintrovideoId}`;
         let safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url);
         res.course.introUrl = safeUrl;
         this.courseArrData.push(res.course);
         // this.getOnlineCourseVideosV2(res.course.wistiaProjectId);
-        
       }
     });
-
   }
 
   getcurrentDate() {
@@ -98,17 +99,18 @@ export class MyAccountComponent {
     const currentDateTime = new Date();
 
     // Calculate the date and time for the next 24 hours
-    const next24hDateTime = new Date(currentDateTime.getTime() + hour * 60 * 60 * 1000);
+    const next24hDateTime = new Date(
+      currentDateTime.getTime() + hour * 60 * 60 * 1000
+    );
 
     return next24hDateTime.toISOString();
   }
   getOnlineCourseVideosV2(course: any, slug: any) {
+    this.spinner.show();
     let val = {
-      courseId: course
-    }
+      courseId: course,
+    };
     this.webapiService.getCourseVideoV2(val).subscribe((res: any) => {
-      // console.log(res.length, '---');
-      // return
       if (res.length > 0) {
         let arr = [];
         let sum = 48;
@@ -119,58 +121,54 @@ export class MyAccountComponent {
           if (index == 1 || index == 2) {
             let nextDay = this.getNext24HourDay(24);
             let val = {
-              "day": index + 1,
-              "nextShowDate": nextDay
-            }
+              day: index + 1,
+              nextShowDate: nextDay,
+            };
             arr.push(val);
           } else if (index == 3 || index == 4) {
             let nextDay = this.getNext24HourDay(48);
             let val = {
-              "day": index + 1,
-              "nextShowDate": nextDay
-            }
+              day: index + 1,
+              nextShowDate: nextDay,
+            };
             arr.push(val);
-          }
-          else {
+          } else {
             sum = sum + 24;
-            let nextDay = this.getNext24HourDay(sum)
+            let nextDay = this.getNext24HourDay(sum);
             let val = {
-              "day": index + 1,
-              "nextShowDate": nextDay
-            }
+              day: index + 1,
+              nextShowDate: nextDay,
+            };
             arr.push(val);
           }
-
         }
         let val = {
           nextSchedule: arr,
           studentId: this.loginId,
-          courseId: course
-        }
-        this.webapiService.getAccessLog({ studentId: this.loginId, courseId: course }).subscribe((res: any) => {
-          if (res.count == 0) {
-            this.createAccessLog(val);
-            this.router.navigate(['/course-video/', slug]);
-          }
-          else {
-            this.router.navigate(['/course-video/', slug]);
-          }
-        });
-        // this.createAccessLog(val);
+          courseId: course,
+        };
+        this.webapiService
+          .getAccessLog({ studentId: this.loginId, courseId: course })
+          .subscribe((res: any) => {
+            if (res.count == 0) {
+              this.createAccessLog(val);
+              this.router.navigate(['/course-video/', slug]);
+            } else {
+              this.router.navigate(['/course-video/', slug]);
+            }
+          });
+      } else {
+        this.spinner.hide();
+        alert('No Video resource found in this course!');
       }
-      else {
-        alert("No Video resource found in this course!");
-      }
-
-
     });
   }
 
   getOnlineCourseVideos(id: any, course: any, slug: any) {
     this.spinner.show();
     let val = {
-      projectId: id
-    }
+      projectId: id,
+    };
     this.webapiService.getCourseVideo(val).subscribe((res: any) => {
       if (res.medias.length > 0) {
         let arr = [];
@@ -182,53 +180,49 @@ export class MyAccountComponent {
           if (index == 1 || index == 2) {
             let nextDay = this.getNext24HourDay(24);
             let val = {
-              "day": index + 1,
-              "nextShowDate": nextDay
-            }
+              day: index + 1,
+              nextShowDate: nextDay,
+            };
             arr.push(val);
           } else if (index == 3 || index == 4) {
             let nextDay = this.getNext24HourDay(48);
             let val = {
-              "day": index + 1,
-              "nextShowDate": nextDay
-            }
+              day: index + 1,
+              nextShowDate: nextDay,
+            };
             arr.push(val);
-          }
-          else {
+          } else {
             sum = sum + 24;
-            let nextDay = this.getNext24HourDay(sum)
+            let nextDay = this.getNext24HourDay(sum);
             let val = {
-              "day": index + 1,
-              "nextShowDate": nextDay
-            }
+              day: index + 1,
+              nextShowDate: nextDay,
+            };
             arr.push(val);
           }
-
         }
         let val = {
           nextSchedule: arr,
           studentId: this.loginId,
-          courseId: course
-        }
-        this.webapiService.getAccessLog({ studentId: this.loginId, courseId: course }).subscribe((res: any) => {
-          if (res.count == 0) {
-            this.createAccessLog(val);
-            this.spinner.hide();
-            this.router.navigate(['/course-video/', slug]);
-          }
-          else {
-            this.spinner.hide();
-            this.router.navigate(['/course-video/', slug]);
-          }
-        });
+          courseId: course,
+        };
+        this.webapiService
+          .getAccessLog({ studentId: this.loginId, courseId: course })
+          .subscribe((res: any) => {
+            if (res.count == 0) {
+              this.createAccessLog(val);
+              this.spinner.hide();
+              this.router.navigate(['/course-video/', slug]);
+            } else {
+              this.spinner.hide();
+              this.router.navigate(['/course-video/', slug]);
+            }
+          });
         // this.createAccessLog(val);
       }
-
-
     });
     this.spinner.hide();
   }
-
 
   createAccessLog(data: any) {
     this.webapiService.createAccessLog(data).subscribe((res: any) => {
@@ -258,5 +252,4 @@ export class MyAccountComponent {
     let url = `checkout/${slug}`;
     window.location.href = url;
   }
-
 }
