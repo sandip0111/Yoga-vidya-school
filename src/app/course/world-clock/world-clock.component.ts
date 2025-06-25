@@ -2,10 +2,11 @@ import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import moment from 'moment-timezone';
+import { TimezoneNameChangePipe } from '../../pipe/timezone-name-change.pipe';
 @Component({
   selector: 'app-world-clock',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, TimezoneNameChangePipe],
   templateUrl: './world-clock.component.html',
   styleUrl: './world-clock.component.css',
 })

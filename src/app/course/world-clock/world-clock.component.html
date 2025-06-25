@@ -16,7 +16,7 @@
       class="form-control"
     >
       <option *ngFor="let zone of timeZones" [value]="zone">
-        {{ zone }}
+        {{ zone | timezoneNameChange }}
       </option>
     </select>
   </div>
