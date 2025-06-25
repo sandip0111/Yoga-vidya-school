@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './includes/header/header.component';
 import { FooterComponent } from './includes/footer/footer.component';
 import { SpinnerComponent } from './includes/spinner/spinner.component';
@@ -7,6 +7,7 @@ import { ModalModule } from './modal/modal.module';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CourseModalComponent } from './modal/course-modal/course-modal.component';
 import { isPlatformBrowser } from '@angular/common';
+import { filter } from 'rxjs';
 // import { WebinarModalComponent } from './modal/webinar-modal/webinar-modal.component';
 
 @Component({
@@ -20,17 +21,30 @@ import { isPlatformBrowser } from '@angular/common';
 
 export class AppComponent implements OnInit {
 
-  constructor(private modalService: NgbModal, @Inject(PLATFORM_ID) private platformId: Object) {}
+  constructor(private modalService: NgbModal, @Inject(PLATFORM_ID) private platformId: Object, private router: Router) {}
   
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
-      let isOpenCourseModal = sessionStorage.getItem('OpenCourseModal');
-      if(isOpenCourseModal == null){
-        setTimeout(() => {
-          this.openModal();
-          sessionStorage.setItem('OpenCourseModal', 'true');
-        }, 30000); 
-      };
+      this.router.events.pipe(
+      filter((event): event is NavigationEnd => event instanceof NavigationEnd)
+      ).subscribe((event) => {
+        const currentUrl = event.urlAfterRedirects;
+        const allowedRoutes = ['/100-hours-yoga-teacher-training-in-rishikesh', '/200-hours-yoga-teacher-training-in-rishikesh', '/300-hours-yoga-teacher-training-in-rishikesh', '/200-hours-yoga-teacher-training-online', '/200-hour-yoga-teacher-training-in-bali', '/300-hour-yoga-teacher-training-in-bali']; // <- Add route paths here
+        const normalizedUrl = currentUrl.replace(/\/$/, '').toLowerCase();
+        let isOpenCourseModal = sessionStorage.getItem('OpenCourseModal');
+        if( isOpenCourseModal == null) {
+          sessionStorage.setItem('OpenCourseModal', 'false');
+        }
+        isOpenCourseModal = sessionStorage.getItem('OpenCourseModal');
+        if (allowedRoutes.map(route => route.toLowerCase()).includes(normalizedUrl) && isOpenCourseModal != 'true') {
+          setTimeout(() => {
+            this.openModal(); 
+            sessionStorage.setItem('OpenCourseModal', 'true');
+          }, 30000); // 30 seconds delay
+        };
+        
+        });
+      
     }
 
   //   let isOpenWebinarModal = sessionStorage.getItem('OpenWebinarModal');
