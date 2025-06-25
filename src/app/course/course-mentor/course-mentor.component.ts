@@ -4,6 +4,8 @@ import { ActivatedRoute,Router } from '@angular/router';
 import { WebapiService } from '../../webapi.service';
 import { CommonModule } from '@angular/common';
 import { CartItem, CartService } from '../../cart.service';
+import { DomSanitizer } from '@angular/platform-browser';
+import { SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-course-mentor',
@@ -19,7 +21,7 @@ export class CourseMentorComponent {
  courseMentor:mentorTimings[]=[];
  isShowAddToCart: boolean = false;
 
-  constructor(private cartService: CartService, private webapiService: WebapiService, private _activatedRoute: ActivatedRoute, private router: Router){
+  constructor(private cartService: CartService, private sanitizer: DomSanitizer, private webapiService: WebapiService, private _activatedRoute: ActivatedRoute, private router: Router){
     this.slug = this._activatedRoute.snapshot.routeConfig?.path;
     this.imageUrl = this.webapiService.imageUrl;
 
@@ -38,7 +40,7 @@ export class CourseMentorComponent {
         },
         {
           id: 2,
-          name: "Anuj",
+          name: "Anuj Pareek",
           description:`
           <p>Anuj class is based on Mobility to recover from long years of spinal & Hip compression from long hours of sitting on desk job or from your sedentary lifestyle. Classes are designed with Hatha yoga 3 series of sequences which include backbending, hip opening, inversion and therapeutic methods. Classes are very progressive and you wont see its as repetitive, every month there is new offering and curated with personal attention on each students need, also largely focused on self practice and how to approach practice on your own on the days off.</p
           <br/><p><strong>Excited to see you</strong></p>`,
@@ -62,7 +64,7 @@ export class CourseMentorComponent {
         // },
         {
           id: 3,
-          name: "Taniya",
+          name: "Taniya Verma",
           description: `
   <p>This class is designed for all the females from menarche to menopause, with a holistic approach combining ancient yoga wisdom with modern lifestyle tips to empower women to take control of their health and wellbeing. In this transformative journey, you will explore:</p>
   
@@ -76,7 +78,7 @@ export class CourseMentorComponent {
 `,
           image: "image_1675243508012.jpg",
           intro: "Women Wellness Yoga",
-          time:"5:30 PM – 6:30 PM (IST)",
+          time:"5:00 PM – 6:00 PM (IST)",
           time1:"",
           price:"Rs. 1999/USD 40",
           priceInIndian: 1999,
@@ -85,13 +87,28 @@ export class CourseMentorComponent {
         {
           id: 4,
           name: "Shivam Joshi",
-          description:"Join Shivam Joshi’s classes in this holistic journey towards physical vitality and mental clarity. Experience the profound benefits of a practice rooted in tradition of Hatha Yoga and Iyengar Yoga. These 90-minute online classes focus on mastering foundational asanas with precision and care. Incorporating the principles of Iyengar Yoga, you’ll learn to achieve perfect alignment using supportive props. Highly recommended yoga sessions to master.",
+          description:this.sanitizer
+          .bypassSecurityTrustHtml(` <h5 style="text-align: center">Weekend classes</h5></br> <p>Join Shivam Joshi’s classes in this holistic journey towards physical vitality and mental clarity. Experience the profound benefits of a practice rooted in tradition of Hatha Yoga and Iyengar Yoga. These 120-minute online classes focus on mastering foundational asanas with precision and care. Incorporating the principles of Iyengar Yoga, you’ll learn to achieve perfect alignment using supportive props. Highly recommended yoga sessions to master.</p>`),
           image: "image_1673271925503.jpeg",
           intro: "Iyengar/ Yoga Therapy ",
-          time:"6:30 PM – 8:00 PM (IST)",
-          price:"Rs. 2499/ USD 60",
-          priceInIndian: 2499,
-          priceInUSD: 60
+          time:"6:30 PM – 8:30 PM (IST)",
+          price:"Rs. 6000/ USD 75",
+          priceInIndian: 6000,
+          priceInUSD: 75
+        },
+        {
+          id: 5,
+          name: "Anuj Pareek",
+          description:  this.sanitizer
+          .bypassSecurityTrustHtml(` <h5 style="text-align: center">Monday/Wednesday/Friday</h5></br>
+          <p>These classes are designed for practitioners who want to move beyond the basics and take their practice to the next level. You'll be guided through advanced preparations for asanas, including arm balances, inversions, and other complex postures. The sessions also include mobility drills and therapeutic techniques to help release physical tension and improve range of motion—supporting your journey into deeper and safer practice.</p
+          <br/><p><strong>Excited to see you</strong></p>`),
+          image: "image_1695634116777.jpeg",
+          intro: "Intermediate Alignment Based Class",
+          time:"6:15 PM - 7:15 PM (IST)",
+          price:"Rs. 3500/USD 70",
+          priceInIndian: 3500,
+          priceInUSD:70,
         }
       ]
     }
@@ -192,7 +209,7 @@ export class CourseMentorComponent {
       const mentor = this.courseMentor.find(i => i.id == id);
       this.course = {
         id: id,
-        title: mentor?.name + " online yoga class",
+        title: mentor?.intro == 'Intermediate Alignment Based Class' ? mentor?.name + ' Intermediate Alignment Based Class' : mentor?.name + " online yoga class",
         shortDescription: mentor?.time + (mentor?.time1 != undefined ? (', '+ mentor?.time1) : "") + (mentor?.time2 != undefined ? (', '+ mentor?.time2) : ""),
         priceINR: mentor?.priceInIndian != undefined ? mentor?.priceInIndian: 0,
         priceUSD: mentor?.priceInUSD != undefined ? mentor?.priceInUSD: 0,
@@ -213,10 +230,12 @@ export class CourseMentorComponent {
 }
 
 
+
+
 interface mentorTimings {
   name: string;
   intro: string;
-  description?: string;
+  description?: string | SafeHtml;
   time: string;
   time1?: string;
   time2?: string;

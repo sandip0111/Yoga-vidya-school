@@ -48,7 +48,7 @@ export class PaymentProceedComponent implements OnInit {
     },
     {
       id: 2,
-      name: 'Anuj',
+      name: 'Anuj Pareek',
       image: 'image_1695634116777.jpeg',
       intro: 'Hatha Yoga',
       time: '5:30 AM - 6:30 AM (IST)',
@@ -59,11 +59,11 @@ export class PaymentProceedComponent implements OnInit {
 
     {
       id: 3,
-      name: 'Taniya',
+      name: 'Taniya Verma',
       image: 'image_1675243508012.jpg',
       intro: 'Women Wellness Yoga',
-      time: '7:30 AM – 8:30 AM (IST)',
-      time1: '5:30 PM – 6:30 PM (IST)',
+      time: '5:00 PM – 6:00 PM (IST)',
+      time1: '',
       price: 'Rs. 1999/USD 40',
       priceInIndian: 1999,
       priceInUSD: 40,
@@ -71,14 +71,23 @@ export class PaymentProceedComponent implements OnInit {
     {
       id: 4,
       name: 'Shivam Joshi',
-
       image: 'image_1673271925503.jpeg',
       intro: 'Iyengar/ Yoga Therapy ',
-      time: '6:30 PM – 8:00 PM (IST)',
-      price: 'Rs. 2499/ USD 60',
-      priceInIndian: 2499,
-      priceInUSD: 60,
+      time: '6:30 PM – 8:30 PM (IST)',
+      price: 'Rs. 6000/ USD 75',
+      priceInIndian: 6000,
+      priceInUSD: 75,
     },
+    {
+      id: 5,
+      name: "Anuj Pareek",         
+      image: "image_1695634116777.jpeg",
+      intro: "Intermediate Alignment Based Class",
+      time:"6:15 PM - 7:15 PM (IST)",
+      price:"Rs. 3500/USD 70",
+      priceInIndian: 3500,
+      priceInUSD:70,
+    }
   ];
   submitted: boolean = false;
   price: any;
@@ -102,7 +111,7 @@ export class PaymentProceedComponent implements OnInit {
     this.availableCourses = this.courseMentor.map((mentor) => {
       const course: CartItem = {
         id: mentor?.id, // Ensure you extract the ID correctly from `mentor`
-        title: `${mentor?.name} online yoga class`,
+        title: mentor?.intro == 'Intermediate Alignment Based Class' ? mentor?.name + ' Intermediate Alignment Based Class' : mentor?.name + " online yoga class",
         shortDescription:
           mentor?.time +
           (mentor?.time1 != undefined ? ', ' + mentor?.time1 : ''),
