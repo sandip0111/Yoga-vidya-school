@@ -153,6 +153,11 @@
     bottom: 30px;
     right: 60px;
     z-index: 9999;
+
+    @media (max-width: 768px) {
+      bottom: 350px;
+      right: 20px;
+    }
   }
 
   .register-btn {
@@ -166,29 +171,54 @@
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     transition: background-color 0.3s ease;
     animation: pulse 2s ease-in-out infinite;
+
+    @media (max-width: 768px) {
+      font-size: 1rem;
+      padding: 10px 20px;
+    }
   }
 }
 
 .carousel-inner {
   height: 600px;
+
+  @media (max-width: 768px) {
+    height: auto;
+  }
 }
 
 .image-slide .carousel-item img {
-  height: auto;
   width: 100%;
+  height: auto;
+  object-fit: cover;
 }
+
 .img-1 {
   transform: translateY(-70px);
+
+  @media (max-width: 768px) {
+    transform: translateY(0);
+  }
 }
 .img-2 {
   transform: translateY(-150px);
+
+  @media (max-width: 768px) {
+    transform: translateY(0);
+  }
 }
 .img-3 {
   transform: translateY(-200px);
+
+  @media (max-width: 768px) {
+    transform: translateY(0);
+  }
 }
+
 .carousel-item {
   transition: transform 3s ease-in-out !important;
 }
+
 
 
 @media screen and (max-width: 900px) and (min-width: 300px) {
