@@ -11,6 +11,7 @@ import {
 } from './models/checkout';
 import { Observable } from 'rxjs';
 import { getSlugDataModel } from './models/rishikesh';
+import { onLineVideoModel } from './models/video';
 @Injectable({
   providedIn: 'root',
 })
@@ -150,8 +151,11 @@ export class WebapiService {
     return this.http.post(this.url + 'api/v1/uploadReview', data);
   }
 
-  getCourseVideoV2(data: any) {
-    return this.http.post(this.url + 'api/v1/getCourseVideosById', data);
+  getCourseVideoV2(data: { courseId: string }): Observable<onLineVideoModel[]> {
+    return this.http.post<onLineVideoModel[]>(
+      this.url + 'api/v1/getCourseVideosById',
+      data
+    );
   }
   stripe(data: any) {
     return this.http.post(this.url + 'api/v1/stripe', data);
@@ -281,10 +285,13 @@ export class WebapiService {
       data
     );
   }
-    getStripePaymentResult200TTC(data: any) {
+  getStripePaymentResult200TTC(data: any) {
     return this.http.post(
       this.url + 'api/v1/getStripePaymentResult200TTC',
       data
     );
+  }
+  getTabVideo(data: { fileName: string }): Observable<string> {
+    return this.http.post<string>(this.url + 'api/v1/getTabVideo', data);
   }
 }

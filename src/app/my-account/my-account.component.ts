@@ -110,58 +110,64 @@ export class MyAccountComponent {
     let val = {
       courseId: course,
     };
-    this.webapiService.getCourseVideoV2(val).subscribe((res: any) => {
-      if (res.length > 0) {
-        let arr = [];
-        let sum = 48;
-        for (let index = 0; index < res.length; index++) {
-          if (index == 0) {
-            continue;
-          }
-          if (index == 1 || index == 2) {
-            let nextDay = this.getNext24HourDay(24);
-            let val = {
-              day: index + 1,
-              nextShowDate: nextDay,
-            };
-            arr.push(val);
-          } else if (index == 3 || index == 4) {
-            let nextDay = this.getNext24HourDay(48);
-            let val = {
-              day: index + 1,
-              nextShowDate: nextDay,
-            };
-            arr.push(val);
-          } else {
-            sum = sum + 24;
-            let nextDay = this.getNext24HourDay(sum);
-            let val = {
-              day: index + 1,
-              nextShowDate: nextDay,
-            };
-            arr.push(val);
-          }
+    this.webapiService
+      .getAccessLog({ studentId: this.loginId, courseId: course })
+      .subscribe((res: any) => {
+        if (res.count == 0) {
+          this.createAccessLog(val);
         }
-        let val = {
-          nextSchedule: arr,
-          studentId: this.loginId,
-          courseId: course,
-        };
-        this.webapiService
-          .getAccessLog({ studentId: this.loginId, courseId: course })
-          .subscribe((res: any) => {
-            if (res.count == 0) {
-              this.createAccessLog(val);
-              this.router.navigate(['/course-video/', slug]);
-            } else {
-              this.router.navigate(['/course-video/', slug]);
-            }
-          });
-      } else {
-        this.spinner.hide();
-        alert('No Video resource found in this course!');
-      }
-    });
+        this.router.navigate(['/course-video/', slug]);
+      });
+    // this.webapiService.getCourseVideoV2(val).subscribe((res: any) => {
+    //   if (res.length > 0) {
+    //     let arr = [];
+    //     let sum = 48;
+    //     for (let index = 0; index < res.length; index++) {
+    //       if (index == 0) {
+    //         continue;
+    //       }
+    //       if (index == 1 || index == 2) {
+    //         let nextDay = this.getNext24HourDay(24);
+    //         let val = {
+    //           day: index + 1,
+    //           nextShowDate: nextDay,
+    //         };
+    //         arr.push(val);
+    //       } else if (index == 3 || index == 4) {
+    //         let nextDay = this.getNext24HourDay(48);
+    //         let val = {
+    //           day: index + 1,
+    //           nextShowDate: nextDay,
+    //         };
+    //         arr.push(val);
+    //       } else {
+    //         sum = sum + 24;
+    //         let nextDay = this.getNext24HourDay(sum);
+    //         let val = {
+    //           day: index + 1,
+    //           nextShowDate: nextDay,
+    //         };
+    //         arr.push(val);
+    //       }
+    //     }
+    //     let val = {
+    //       nextSchedule: arr,
+    //       studentId: this.loginId,
+    //       courseId: course,
+    //     };
+    //     this.webapiService
+    //       .getAccessLog({ studentId: this.loginId, courseId: course })
+    //       .subscribe((res: any) => {
+    //         if (res.count == 0) {
+    //           this.createAccessLog(val);
+    //         }
+    //         this.router.navigate(['/course-video/', slug]);
+    //       });
+    //   } else {
+    //     this.spinner.hide();
+    //     alert('No Video resource found in this course!');
+    //   }
+    // });
   }
 
   getOnlineCourseVideos(id: any, course: any, slug: any) {

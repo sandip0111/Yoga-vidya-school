@@ -1,76 +1,95 @@
-import { Component,Renderer2, Inject, ViewChild, AfterViewInit, ElementRef  } from '@angular/core';
+import {
+  Component,
+  Renderer2,
+  Inject,
+  ViewChild,
+  AfterViewInit,
+  ElementRef,
+} from '@angular/core';
 import { WebapiService } from '../webapi.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { NgxSpinnerService } from "ngx-spinner";
+import { NgxSpinnerService } from 'ngx-spinner';
 import { Title, Meta } from '@angular/platform-browser';
-import { CommonModule,DOCUMENT } from '@angular/common';
+import { CommonModule, DOCUMENT } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import Hls from 'hls.js';
+import { onLineVideoModel } from '../models/video';
+import { localstorageKey } from '../enum/localstorage';
 @Component({
   selector: 'app-course-video',
   standalone: true,
-  imports: [CommonModule,FormsModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './course-video.component.html',
-  styleUrl: './course-video.component.css'
+  styleUrl: './course-video.component.css',
 })
 export class CourseVideoComponent {
-  reverseArr: any;
+  reverseArr: onLineVideoModel[] = [];
   feedbackCounter: boolean = false;
   studentValidated: boolean = false;
   courseList: any;
   slug: any;
   feedbackData: any = {};
   userId: any;
-  videoName: any
+  videoName: any;
   videoCounter: boolean = false;
   spinner1 = 'sp1';
   bdQues: any = [];
   onlineCheck: boolean = false;
-  @ViewChild('videoPlayer') videoElement: any;
+  @ViewChild('videoPlayer') videoElement!: ElementRef<HTMLDivElement>;
   isCallbackTriggered = false;
   accessLog: any;
 
-  constructor(private webapiService: WebapiService, private _activatedRoute: ActivatedRoute, private router: Router, private spinner: NgxSpinnerService, private title: Title, private meta: Meta,@Inject(DOCUMENT) private _document: Document, private _renderer2: Renderer2) {
-
-    this._activatedRoute.params.subscribe(params => {
+  constructor(
+    private webapiService: WebapiService,
+    private _activatedRoute: ActivatedRoute,
+    private router: Router,
+    private spinner: NgxSpinnerService,
+    private title: Title,
+    private meta: Meta,
+    @Inject(DOCUMENT) private _document: Document,
+    private _renderer2: Renderer2
+  ) {
+    this._activatedRoute.params.subscribe((params) => {
       this.slug = params['id'];
-    })
+    });
 
     this.bdQues = [
-      "What was the state of your mind and body during practice. Were you focused?",
-      "How was your breath? Was it deep, and long. Do you feel any changes while applying the techniques?",
-      "How was your practice today. Was it little easier? Did it change your mood and emotions. What is your current state after practice?",
-      "How is your focus so far. Are you feeling the improvement?",
-      "How these practices are helping you during the day?",
-      "Is it getting a benefit during your work? Are you more productive now?",
-      "What is your overall feedback? What you gained with this course ? Will you continue this practice?"
-    ]
+      'What was the state of your mind and body during practice. Were you focused?',
+      'How was your breath? Was it deep, and long. Do you feel any changes while applying the techniques?',
+      'How was your practice today. Was it little easier? Did it change your mood and emotions. What is your current state after practice?',
+      'How is your focus so far. Are you feeling the improvement?',
+      'How these practices are helping you during the day?',
+      'Is it getting a benefit during your work? Are you more productive now?',
+      'What is your overall feedback? What you gained with this course ? Will you continue this practice?',
+    ];
 
     this.getCourseBySlug(this.slug);
   }
 
   ngOnInit(): void {
     this.userId = sessionStorage.getItem('loginId');
-    if(!this.userId){
+    if (!this.userId) {
       this.router.navigate(['/login']);
     }
 
     const canonicalUrl = 'https://www.yogavidyaschool.com' + this.router.url;
-      const link = this._document.querySelector('link[rel="canonical"]');
-      this._renderer2.setAttribute(link, 'href', canonicalUrl);
+    const link = this._document.querySelector('link[rel="canonical"]');
+    this._renderer2.setAttribute(link, 'href', canonicalUrl);
   }
 
-  setHlsOrMp4VideoURL(isM3U8: boolean, updateId: any, videoSrc: string, isShow: boolean) {
+  setHlsOrMp4VideoURL(
+    isM3U8: boolean,
+    updateId: any,
+    videoSrc: string,
+    isShow: boolean
+  ) {
     const id = 'plyrID-' + updateId;
     const video = document.getElementById(id) as HTMLVideoElement;
-    
-    if (!video || !isShow) return;  
-    //Check if the current source is already set to avoid unnecessary reload
+    if (!video || !isShow) return;
     if (video.src.trim() !== '' && video.src !== null) {
-      console.log("already")
+      console.log('already');
       return;
     }
-    
     if (isM3U8) {
       if (Hls.isSupported()) {
         const hls = new Hls();
@@ -83,187 +102,158 @@ export class CourseVideoComponent {
       video.src = videoSrc;
     }
   }
-  
-
 
   getCourseBySlug(slug: any) {
     this.spinner.show();
     let data = {
-      "slug": slug
-    }
+      slug: slug,
+    };
     this.webapiService.getCourseById(data).subscribe((res: any) => {
-      // console.log(res.data, 'course Data');
       if (res.data) {
         this.courseList = res.data[0];
         this.title.setTitle(res.data[0].metaTitle);
-        this.meta.updateTag({ name: 'keywords', content: res.data[0].metaKeyword });
-        this.meta.updateTag({ name: 'description', content: res.data[0].metaDescription });
-
-        //aws
-
+        this.meta.updateTag({
+          name: 'keywords',
+          content: res.data[0].metaKeyword,
+        });
+        this.meta.updateTag({
+          name: 'description',
+          content: res.data[0].metaDescription,
+        });
         this.checkForCourse(this.userId, res.data[0]._id);
         setTimeout(() => {
           if (this.userId && this.studentValidated) {
             this.getOnlineCourseVideosV2(res.data[0]._id);
             setTimeout(() => {
               if (this.slug == 'pranayama-course-online-pranarambha') {
-                this.setDataFeedbackV3(9)
-              }
-              else {
-                this.setDataFeedbackV3(1)
+                this.setDataFeedbackV3(9);
+              } else {
+                this.setDataFeedbackV3(1);
               }
               this.paidVideoVerifyUser(res.data[0]._id);
-              
             }, 2000);
-          }
-          else {
+          } else {
             this.onlineCheck = false;
             setTimeout(() => {
               this.spinner.hide();
-            },1000)
+            }, 1000);
           }
         }, 2000);
-
-      }
-      else {
+      } else {
         this.router.navigate(['/']);
-        // this.spinner.hide();
       }
-    })
+    });
   }
 
   paidVideoVerifyUser(id: any) {
     let data = {
-      "userId": id
-    }
+      userId: id,
+    };
     this.webapiService.paidVideoVerifyUser(data).subscribe((res: any) => {
-      // console.log(res);
-      if (res.status == "ok") {
+      if (res.status == 'ok') {
         this.onlineCheck = true;
-      }
-      else {
-        this.onlineCheck = false
+      } else {
+        this.onlineCheck = false;
       }
     });
   }
 
-
-  getAccessLog(stuId: any, cId: any) {
-    this.webapiService.getAccessLog({ studentId: stuId, courseId: cId }).subscribe((res: any) => {
-      // console.log(res, '----------');
-      this.accessLog = res.data;
-      let current = new Date();
-      if (res.count == 1 && res.data.nextSchedule.length > 0) {
-        for (let index = 0; index < res.data.nextSchedule.length; index++) {
-
-          if (this.reverseArr[index + 1]?.dayNumber == res.data.nextSchedule[index].day) {
-
-            if (current.getTime() >= new Date(res.data.nextSchedule[index].nextShowDate).getTime()) {
-              this.reverseArr[index + 1].isShow = true;
+  getAccessLog(stuId: any, cId: string) {
+    this.webapiService
+      .getAccessLog({ studentId: stuId, courseId: cId })
+      .subscribe((res: any) => {
+        this.accessLog = res.data;
+        let current = new Date();
+        if (res.count == 1 && res.data.nextSchedule.length > 0) {
+          for (let index = 0; index < res.data.nextSchedule.length; index++) {
+            if (
+              this.reverseArr[index + 1]?.dayNumber ==
+              res.data.nextSchedule[index].day
+            ) {
+              if (
+                current.getTime() >=
+                new Date(res.data.nextSchedule[index].nextShowDate).getTime()
+              ) {
+                this.reverseArr[index + 1].isShow = true;
+              } else {
+                this.reverseArr[index + 1].isShow = false;
+              }
+            } else {
+              break;
             }
-            else {
-              this.reverseArr[index + 1].isShow = false;
-            }
-          }
-          else {
-            break;
           }
         }
-      }
-
-    });
+      });
   }
 
   setDataFeedbackV3(day: any) {
     let val2 = {
       courseId: this.courseList._id,
       studentId: this.userId,
-      day: day
-    }
+      day: day,
+    };
     this.getFedbackV2(val2);
   }
 
-  setDataFeedbackV2(day: any) {
+  setDataFeedbackV2(day: number, obj: onLineVideoModel) {
     if (this.slug == 'pranayama-course-online-pranarambha') {
-       this.getAccessLog(this.userId, this.courseList._id)
+      this.getAccessLog(this.userId, this.courseList._id);
     }
-    // this.spinner.show();
+    this.onlineVideoLoad(obj);
     if (day > 1) {
       let val = {
         courseId: this.courseList._id,
         studentId: this.userId,
-        day: day - 1
-      }
+        day: day - 1,
+      };
       let val2 = {
         courseId: this.courseList._id,
         studentId: this.userId,
-        day: day
-      }
+        day: day,
+      };
       if (this.slug != 'pranayama-course-online-pranarambha') {
         this.getFedbackV2(val2);
       }
-
-      if(day >=11 && this.slug == 'pranayama-course-online-pranarambha'){
+      if (day >= 11 && this.slug == 'pranayama-course-online-pranarambha') {
         let val4 = {
           courseId: this.courseList._id,
           studentId: this.userId,
-          day: 9
-        }
+          day: 9,
+        };
         this.getFedbackV2Day5(val4);
       }
       this.webapiService.getFeedbackByCourse(val).subscribe((res: any) => {
-        // console.log(res.count, '--------------');
         if (res.count > 0) {
           this.reverseArr[day].isVideoShown = true;
-        }
-        else {
+        } else {
           this.reverseArr[day].isVideoShown = false;
-
         }
       });
-      //console.log(this.reverseArr, '--');
-    }
-    else {
+    } else {
       if (this.slug != 'pranayama-course-online-pranarambha') {
         this.setDataFeedbackV3(1);
       }
     }
-    setTimeout(() => {
-      if(this.slug == 'pranayama-course-online-pranarambha'){
-        if(this.reverseArr.length > 0){
-          var video = this.reverseArr.find((i: any) =>i.dayNumber == day);         
-          const isM3U8 = this.isM3U8File(video.url);        
-          this.setHlsOrMp4VideoURL(isM3U8, video.updateId, video.url, video.isShow); 
-          //console.log("setTimeout single");      
-        }
-        
-      }
-    }, 2000);  
-
-
+    this.hlsVideoUrl();
   }
 
   getFedbackV2Day5(val: any) {
     this.webapiService.getFeedbackByCourse(val).subscribe((res: any) => {
       //console.log(res, 'day 6');
       if (res.count > 0) {
-      }
-      else {
+      } else {
         alert('Please upload Day 9 review video first!!');
         location.reload();
       }
     });
   }
 
-
-
   getFedbackV2(val: any) {
     this.webapiService.getFeedbackByCourse(val).subscribe((res: any) => {
       // console.log(res, '--------------');
       if (res.count > 0) {
         this.feedbackCounter = true;
-      }
-      else {
+      } else {
         this.feedbackCounter = false;
       }
     });
@@ -272,47 +262,43 @@ export class CourseVideoComponent {
   checkForCourse(stud: any, id: any) {
     let val = {
       course: id,
-      student: stud
-    }
+      student: stud,
+    };
     this.webapiService.getcheckCourseStudent(val).subscribe((res: any) => {
       // console.log(res, '--------------');
       if (res.count == 1) {
         this.studentValidated = true;
-      }
-      else {
+      } else {
         this.studentValidated = false;
       }
     });
   }
 
-  getVideoFileV2(e:any) {
-        this.spinner.show();
-        const formData = new FormData();
-        formData.append('video', e.target.files[0]);
-        formData.append('type', 'return');
-        this.webapiService.uploadReview(formData).subscribe((res: any) => {
-          if (res.status == "ok") {
-            this.videoName = res.videoName
-            this.feedbackData.video = res.videoName
-            alert('upload success');
-            this.spinner.hide();
-            // e.target.value = '';
-
-          }
-          else {
-            alert("something went wrong")
-          }
-        });
+  getVideoFileV2(e: any) {
+    this.spinner.show();
+    const formData = new FormData();
+    formData.append('video', e.target.files[0]);
+    formData.append('type', 'return');
+    this.webapiService.uploadReview(formData).subscribe((res: any) => {
+      if (res.status == 'ok') {
+        this.videoName = res.videoName;
+        this.feedbackData.video = res.videoName;
+        alert('upload success');
+        this.spinner.hide();
+        // e.target.value = '';
+      } else {
+        alert('something went wrong');
+      }
+    });
   }
 
   getFeedbackV2(data: any, d: any, questionList: any) {
-    if (d == 5 ) {
+    if (d == 5) {
       if (!data.video) {
         alert('Video review is compulsory');
-      }
-      else {
+      } else {
         // this.spinner.show();
-        if (this.slug == "breath-detox-yoga") {
+        if (this.slug == 'breath-detox-yoga') {
           if (Object.keys(data).length > 0) {
             let val = {
               day: d,
@@ -320,86 +306,70 @@ export class CourseVideoComponent {
               courseId: this.courseList._id,
               questionList: questionList,
               answerList: Object.values(data),
-              videoReview: this.videoName ? this.videoName : ''
+              videoReview: this.videoName ? this.videoName : '',
             };
             // console.log(val, '--');
             this.webapiService.createFeedback(val).subscribe((res: any) => {
               // console.log(res);
-              if (res.status == "ok") {
-
+              if (res.status == 'ok') {
                 alert(res.msg);
                 // this.spinner.hide();
                 this.feedbackData = {};
                 this.getCourseBySlug(this.slug);
-
-              }
-              else {
+              } else {
                 alert(res.msg);
               }
             });
+          } else {
+            alert('All feilds are compulsory');
           }
-          else {
-            alert("All feilds are compulsory");
-          }
-        }
-        else {
+        } else {
           if (Object.keys(data).length > 2) {
             data.day = d;
             data.studentId = this.userId;
             data.courseId = this.courseList._id;
             this.webapiService.createFeedback(data).subscribe((res: any) => {
               // console.log(res);
-              if (res.status == "ok") {
-
+              if (res.status == 'ok') {
                 alert(res.msg);
                 // this.spinner.hide();
                 this.feedbackData = {};
                 this.getCourseBySlug(this.slug);
-
-              }
-              else {
+              } else {
                 alert(res.msg);
               }
             });
-          }
-          else {
-            alert("All feilds are compulsory");
+          } else {
+            alert('All feilds are compulsory');
           }
         }
       }
-    }
-    else if (d == 11 && this.slug == 'pranayama-course-online-pranarambha') {
+    } else if (d == 11 && this.slug == 'pranayama-course-online-pranarambha') {
       if (!data.video) {
         alert('Video review is compulsory');
-      }
-      else {
+      } else {
         // this.spinner.show();
         let val = {
           day: 9,
           studentId: this.userId,
           courseId: this.courseList._id,
-          videoReview: this.videoName ? this.videoName : ''
+          videoReview: this.videoName ? this.videoName : '',
         };
         // console.log(val, '--');
         this.webapiService.createFeedback(val).subscribe((res: any) => {
           // console.log(res);
-          if (res.status == "ok") {
-
+          if (res.status == 'ok') {
             alert(res.msg);
             // this.spinner.hide();
             this.feedbackData = {};
             this.getCourseBySlug(this.slug);
-
-          }
-          else {
+          } else {
             alert(res.msg);
           }
         });
       }
-    }
-    else {
-      // this.spinner.show();
-      if (this.slug == "breath-detox-yoga") {
+    } else {
+      if (this.slug == 'breath-detox-yoga') {
         if (Object.keys(data).length > 0) {
           let val = {
             day: d,
@@ -407,124 +377,75 @@ export class CourseVideoComponent {
             courseId: this.courseList._id,
             questionList: questionList,
             answerList: Object.values(data),
-            videoReview: this.videoName ? this.videoName : ''
+            videoReview: this.videoName ? this.videoName : '',
           };
-          // console.log(val, '--');
           this.webapiService.createFeedback(val).subscribe((res: any) => {
-            // console.log(res);
-            if (res.status == "ok") {
-
+            if (res.status == 'ok') {
               alert(res.msg);
-              // this.spinner.hide();
               this.feedbackData = {};
               this.getCourseBySlug(this.slug);
-
-            }
-            else {
+            } else {
               alert(res.msg);
             }
           });
+        } else {
+          alert('All feilds are compulsory');
         }
-        else {
-          alert("All feilds are compulsory");
-        }
-      }
-      else {
+      } else {
         if (Object.keys(data).length > 2) {
           data.day = d;
           data.studentId = this.userId;
           data.courseId = this.courseList._id;
-          // console.log(data, '--');
           this.webapiService.createFeedback(data).subscribe((res: any) => {
-            // console.log(res);
-            if (res.status == "ok") {
-
+            if (res.status == 'ok') {
               alert(res.msg);
-              // this.spinner.hide();
               this.feedbackData = {};
               this.getCourseBySlug(this.slug);
-
-            }
-            else {
+            } else {
               alert(res.msg);
             }
           });
-        }
-        else {
-          alert("All feilds are compulsory");
+        } else {
+          alert('All feilds are compulsory');
         }
       }
     }
-
   }
 
-  getOnlineCourseVideosV2(id: any) {
+  getOnlineCourseVideosV2(id: string) {
     let val = {
-      courseId: id
-    }
-    this.webapiService.getCourseVideoV2(val).subscribe((res: any) => {
-      // console.log(res, '--arr');
-      if (res.length > 0) {
-        // this.spinner.hide();
-        this.reverseArr = res.slice().sort((a: any, b: any) => a.sortBy - b.sortBy);        
-        this.reverseArr[0].isShow = true;
-        this.reverseArr[0].isVideoShown = true;
-        this.reverseArr[0].dayNumber = 1;
-        if (this.slug == "breath-detox-yoga") {
-          this.reverseArr[0].questions = [this.bdQues[0]];
+      courseId: id,
+    };
+    this.webapiService
+      .getCourseVideoV2(val)
+      .subscribe((res: onLineVideoModel[]) => {
+        if (res.length > 0) {
+          this.reverseArr = res
+            .slice()
+            .sort((a: any, b: any) => a.sortBy - b.sortBy);
+          this.onlineVideoLoad(this.reverseArr[0]);
+          this.onTabLoad(id);
+        } else {
+          this.spinner.hide();
+          this.reverseArr = [];
         }
-        for (let index = 0; index < this.reverseArr.length; index++) {
-          if (index == 0) {
-            continue;
-          }
-          this.reverseArr[index].isShow = false;
-          this.reverseArr[index].isVideoShown = false;
-          this.reverseArr[index].dayNumber = index + 1;
-          if (this.slug == "breath-detox-yoga") {
-            if (index === this.reverseArr.length - 1) {
-              this.reverseArr[index].questions = [];
-            }
-            else {
-              this.reverseArr[index].questions = [this.bdQues[index - 1]];
-            }
-          }
-        }
-        this.getAccessLog(this.userId, id);
-        this.spinner.hide();
-      }
-      else {
-        this.spinner.hide();
-        this.reverseArr = [];
-      }
-      setTimeout(() => {
-        if(this.slug == 'pranayama-course-online-pranarambha'){
-          if(this.reverseArr.length > 0)
-          this.reverseArr.forEach((video : any) => {
-            const isM3U8 = this.isM3U8File(video.url);        
-            this.setHlsOrMp4VideoURL(isM3U8, video.updateId, video.url, video.isShow);
-            
-          });
-        }
-      }, 4000);      
-
-    });
+        this.hlsVideoUrl();
+      });
   }
-
   private isM3U8File(url: string): boolean {
     return url.includes('.m3u8');
   }
-
   getOnlineCourseVideos(id: any) {
     let val = {
-      projectId: id
-    }
+      projectId: id,
+    };
     this.webapiService.getCourseVideo(val).subscribe((res: any) => {
       if (res.medias.length > 0) {
         this.reverseArr = res.medias.slice().reverse();
         this.reverseArr[0].isShow = true;
         this.reverseArr[0].isVideoShown = true;
         this.reverseArr[0].dayNumber = 1;
-        if (this.slug == "breath-detox-yoga") {
+        if (this.slug == 'breath-detox-yoga') {
           this.reverseArr[0].questions = [this.bdQues[0]];
         }
         for (let index = 0; index < this.reverseArr.length; index++) {
@@ -534,23 +455,20 @@ export class CourseVideoComponent {
           this.reverseArr[index].isShow = false;
           this.reverseArr[index].isVideoShown = false;
           this.reverseArr[index].dayNumber = index + 1;
-          if (this.slug == "breath-detox-yoga") {
+          if (this.slug == 'breath-detox-yoga') {
             if (index === this.reverseArr.length - 1) {
               this.reverseArr[index].questions = [];
-            }
-            else {
+            } else {
               this.reverseArr[index].questions = [this.bdQues[index - 1]];
             }
           }
         }
         this.spinner.hide();
-      }
-      else {
+      } else {
         this.reverseArr = [];
       }
 
       //console.log(this.reverseArr, '--');
-
     });
   }
 
@@ -560,37 +478,32 @@ export class CourseVideoComponent {
       let val = {
         hash: hash,
         studentId: this.userId,
-        day: day
-      }
+        day: day,
+      };
       let val2 = {
         hash: hash,
         studentId: this.userId,
-        day: day + 1
-      }
+        day: day + 1,
+      };
       this.getFedback(val2);
       this.webapiService.getFeedbackByCourse(val).subscribe((res: any) => {
         // console.log(res.count > 0, '--------------');
         if (res.count > 0) {
           this.reverseArr[day].isVideoShown = true;
-        }
-        else {
+        } else {
           this.reverseArr[day].isVideoShown = false;
-
         }
       });
       // console.log(this.reverseArr, '--');
     }
-
-
   }
 
   getFedback(val: any) {
     this.webapiService.getFeedbackByCourse(val).subscribe((res: any) => {
-     // console.log(res.count, '--------------');
+      // console.log(res.count, '--------------');
       if (res.count > 0) {
         this.feedbackCounter = true;
-      }
-      else {
+      } else {
         this.feedbackCounter = false;
       }
     });
@@ -604,7 +517,7 @@ export class CourseVideoComponent {
     const progress = (currentTime / duration) * 100;
 
     if (progress >= 50 && progress <= 100 && !this.isCallbackTriggered) {
-      this.isCallbackTriggered = true; 
+      this.isCallbackTriggered = true;
       this.onVideoProgressComplete(dayNumber);
     }
   }
@@ -613,63 +526,65 @@ export class CourseVideoComponent {
   onVideoProgressComplete(dayNumber: number) {
     var isChanged = false;
     var currentDate = new Date();
-    this.accessLog.nextSchedule.forEach((day : any) => {
-      if ((day.day === dayNumber + 1) && (new Date(day.nextShowDate).getTime() > currentDate.getTime())) {
-         day.nextShowDate = new Date();
-         isChanged = true;
+    this.accessLog.nextSchedule.forEach((day: any) => {
+      if (
+        day.day === dayNumber + 1 &&
+        new Date(day.nextShowDate).getTime() > currentDate.getTime()
+      ) {
+        day.nextShowDate = new Date();
+        isChanged = true;
       }
     });
-   if(isChanged){
-    let val = {
-      nextSchedule: this.accessLog.nextSchedule,
-      studentId: this.accessLog.studentId,
-      courseId: this.accessLog.courseId,
-      _id : this.accessLog._id
+    if (isChanged) {
+      let val = {
+        nextSchedule: this.accessLog.nextSchedule,
+        studentId: this.accessLog.studentId,
+        courseId: this.accessLog.courseId,
+        _id: this.accessLog._id,
+      };
+      isChanged = false;
+      this.webapiService.createAccessLog(val).subscribe((res: any) => {});
     }
-    isChanged = false;
-    this.webapiService.createAccessLog(val).subscribe((res: any) => {
-
-
-    });
-   }
-    
   }
 
   getVideoFile(e: any) {
     //console.log(e.target.files[0].type, '==');
-    if (e.target.files[0].type == "video/mp4" || e.target.files[0].type == "video/mov" || e.target.files[0].type == "video/avi" || e.target.files[0].type == "video/heic" || e.target.files[0].type == "video/hevc" || e.target.files[0].type == "video/quicktime") {
+    if (
+      e.target.files[0].type == 'video/mp4' ||
+      e.target.files[0].type == 'video/mov' ||
+      e.target.files[0].type == 'video/avi' ||
+      e.target.files[0].type == 'video/heic' ||
+      e.target.files[0].type == 'video/hevc' ||
+      e.target.files[0].type == 'video/quicktime'
+    ) {
       this.spinner.show(this.spinner1);
       const formData = new FormData();
       formData.append('video', e.target.files[0]);
       formData.append('type', 'return');
       this.webapiService.uploadVideo(formData).subscribe((res: any) => {
         //console.log(res);
-        if (res.status == "ok") {
+        if (res.status == 'ok') {
           alert('upload success');
           this.spinner.hide(this.spinner1);
 
-          this.videoName = res.videoName
-        }
-        else {
-          alert("something went wrong")
+          this.videoName = res.videoName;
+        } else {
+          alert('something went wrong');
         }
       });
-    }
-    else {
-      alert("Please select Video file");
+    } else {
+      alert('Please select Video file');
       e.target.value = '';
     }
-
   }
 
   getFeedback(data: any, d: any, hashId: any, questionList: any) {
     if (d == 5) {
       if (!this.videoName) {
         alert('Video review is compulsory');
-      }
-      else {
+      } else {
         this.spinner.show();
-        if (this.slug == "breath-detox-yoga") {
+        if (this.slug == 'breath-detox-yoga') {
           if (Object.keys(data).length > 0) {
             let val = {
               day: d,
@@ -678,28 +593,23 @@ export class CourseVideoComponent {
               hashed_id: hashId,
               questionList: questionList,
               answerList: Object.values(data),
-              videoReview: this.videoName ? this.videoName : ''
+              videoReview: this.videoName ? this.videoName : '',
             };
             this.webapiService.createFeedback(val).subscribe((res: any) => {
               // console.log(res);
-              if (res.status == "ok") {
-
+              if (res.status == 'ok') {
                 alert(res.msg);
                 this.spinner.hide();
                 this.feedbackData = {};
                 this.getCourseBySlug(this.slug);
-
-              }
-              else {
+              } else {
                 alert(res.msg);
               }
             });
+          } else {
+            alert('All feilds are compulsory');
           }
-          else {
-            alert("All feilds are compulsory");
-          }
-        }
-        else {
+        } else {
           if (Object.keys(data).length > 2) {
             data.day = d;
             data.studentId = this.userId;
@@ -707,57 +617,47 @@ export class CourseVideoComponent {
             data.hashed_id = hashId;
             this.webapiService.createFeedback(data).subscribe((res: any) => {
               // console.log(res);
-              if (res.status == "ok") {
-
+              if (res.status == 'ok') {
                 alert(res.msg);
                 this.spinner.hide();
                 this.feedbackData = {};
                 this.getCourseBySlug(this.slug);
-
-              }
-              else {
+              } else {
                 alert(res.msg);
               }
             });
-          }
-          else {
-            alert("All feilds are compulsory");
+          } else {
+            alert('All feilds are compulsory');
           }
         }
       }
-    }
-    else if (d == 7 && this.slug == 'pranayama-course-online-pranarambha') {
+    } else if (d == 7 && this.slug == 'pranayama-course-online-pranarambha') {
       if (!this.videoName) {
         alert('Video review is compulsory');
-      }
-      else {
+      } else {
         // this.spinner.show();
         let val = {
           day: 5,
           studentId: this.userId,
           courseId: this.courseList._id,
-          videoReview: this.videoName ? this.videoName : ''
+          videoReview: this.videoName ? this.videoName : '',
         };
         // console.log(val, '--');
         this.webapiService.createFeedback(val).subscribe((res: any) => {
           // console.log(res);
-          if (res.status == "ok") {
-
+          if (res.status == 'ok') {
             alert(res.msg);
             // this.spinner.hide();
             this.feedbackData = {};
             this.getCourseBySlug(this.slug);
-
-          }
-          else {
+          } else {
             alert(res.msg);
           }
         });
       }
-    }
-    else {
+    } else {
       this.spinner.show();
-      if (this.slug == "breath-detox-yoga") {
+      if (this.slug == 'breath-detox-yoga') {
         if (Object.keys(data).length > 0) {
           let val = {
             day: d,
@@ -766,28 +666,23 @@ export class CourseVideoComponent {
             hashed_id: hashId,
             questionList: questionList,
             answerList: Object.values(data),
-            videoReview: this.videoName ? this.videoName : ''
+            videoReview: this.videoName ? this.videoName : '',
           };
           this.webapiService.createFeedback(val).subscribe((res: any) => {
             // console.log(res);
-            if (res.status == "ok") {
-
+            if (res.status == 'ok') {
               alert(res.msg);
               this.spinner.hide();
               this.feedbackData = {};
               this.getCourseBySlug(this.slug);
-
-            }
-            else {
+            } else {
               alert(res.msg);
             }
           });
+        } else {
+          alert('All feilds are compulsory');
         }
-        else {
-          alert("All feilds are compulsory");
-        }
-      }
-      else {
+      } else {
         if (Object.keys(data).length > 2) {
           data.day = d;
           data.studentId = this.userId;
@@ -795,36 +690,91 @@ export class CourseVideoComponent {
           data.hashed_id = hashId;
           this.webapiService.createFeedback(data).subscribe((res: any) => {
             // console.log(res);
-            if (res.status == "ok") {
-
+            if (res.status == 'ok') {
               alert(res.msg);
               this.spinner.hide();
               this.feedbackData = {};
               this.getCourseBySlug(this.slug);
-
-            }
-            else {
+            } else {
               alert(res.msg);
             }
           });
-        }
-        else {
-          alert("All feilds are compulsory");
+        } else {
+          alert('All feilds are compulsory');
         }
       }
     }
-
   }
 
   onVideoPlay(videoId: any) {
     let val = {
-      'videoId': videoId,
-      'studentId': this.userId,
-      'playsCount': "1"
-    }
+      videoId: videoId,
+      studentId: this.userId,
+      playsCount: '1',
+    };
     this.isCallbackTriggered = false;
     this.webapiService.createAnalytics(val).subscribe((res: any) => {
       // console.log(res, '--------------');
     });
+  }
+  onTabLoad(id: string) {
+    this.reverseArr[0].isShow = true;
+    this.reverseArr[0].isVideoShown = true;
+    this.reverseArr[0].dayNumber = 1;
+    if (this.slug == 'breath-detox-yoga') {
+      this.reverseArr[0].questions = [this.bdQues[0]];
+    }
+    for (let i = 0; i < this.reverseArr.length; i++) {
+      if (i == 0) {
+        continue;
+      }
+      this.reverseArr[i].isShow = false;
+      this.reverseArr[i].isVideoShown = false;
+      this.reverseArr[i].dayNumber = i + 1;
+      if (this.slug == 'breath-detox-yoga') {
+        if (i === this.reverseArr.length - 1) {
+          this.reverseArr[i].questions = [];
+        } else {
+          this.reverseArr[i].questions = [this.bdQues[i - 1]];
+        }
+      }
+    }
+    this.getAccessLog(this.userId, id);
+    this.spinner.hide();
+  }
+  onlineVideoLoad(obj: onLineVideoModel) {
+    const localKey =
+      localstorageKey.pranaArambhVideo + obj.title.split(' ').join('_');
+    const vidUrl = localStorage.getItem(localKey);
+    const i = this.reverseArr.indexOf(obj);
+    if (!vidUrl) {
+      this.webapiService
+        .getTabVideo({
+          fileName: obj.url,
+        })
+        .subscribe((res) => {
+          localStorage.setItem(localKey, res);
+          console.log(res);
+          this.reverseArr[i].url = res;
+        });
+    } else {
+      this.reverseArr[i].url = vidUrl;
+    }
+  }
+  hlsVideoUrl() {
+    setTimeout(() => {
+      if (this.slug == 'pranayama-course-online-pranarambha') {
+        if (this.reverseArr.length > 0)
+          this.reverseArr.forEach((video: any) => {
+            const isM3U8 = this.isM3U8File(video.url);
+            this.setHlsOrMp4VideoURL(
+              isM3U8,
+              video.updateId,
+              video.url,
+              video.isShow
+            );
+          });
+      }
+    }, 4000);
   }
 }
