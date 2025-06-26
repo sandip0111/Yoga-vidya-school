@@ -5,6 +5,7 @@ import {
   ViewChild,
   AfterViewInit,
   ElementRef,
+  ChangeDetectorRef,
 } from '@angular/core';
 import { WebapiService } from '../webapi.service';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -35,7 +36,7 @@ export class CourseVideoComponent {
   spinner1 = 'sp1';
   bdQues: any = [];
   onlineCheck: boolean = false;
-  @ViewChild('videoPlayer') videoElement!: ElementRef<HTMLDivElement>;
+  // @ViewChild('videoPlayer') videoElement!: ElementRef<HTMLDivElement>;
   isCallbackTriggered = false;
   accessLog: any;
 
@@ -47,7 +48,8 @@ export class CourseVideoComponent {
     private title: Title,
     private meta: Meta,
     @Inject(DOCUMENT) private _document: Document,
-    private _renderer2: Renderer2
+    private _renderer2: Renderer2,
+    private _changeDetect: ChangeDetectorRef
   ) {
     this._activatedRoute.params.subscribe((params) => {
       this.slug = params['id'];
@@ -194,12 +196,11 @@ export class CourseVideoComponent {
     };
     this.getFedbackV2(val2);
   }
-
   setDataFeedbackV2(day: number, obj: onLineVideoModel) {
     if (this.slug == 'pranayama-course-online-pranarambha') {
+      this.onlineVideoLoad(obj);
       this.getAccessLog(this.userId, this.courseList._id);
     }
-    this.onlineVideoLoad(obj);
     if (day > 1) {
       let val = {
         courseId: this.courseList._id,
@@ -234,7 +235,6 @@ export class CourseVideoComponent {
         this.setDataFeedbackV3(1);
       }
     }
-    this.hlsVideoUrl();
   }
 
   getFedbackV2Day5(val: any) {
@@ -429,7 +429,6 @@ export class CourseVideoComponent {
           this.spinner.hide();
           this.reverseArr = [];
         }
-        this.hlsVideoUrl();
       });
   }
   private isM3U8File(url: string): boolean {
@@ -467,8 +466,6 @@ export class CourseVideoComponent {
       } else {
         this.reverseArr = [];
       }
-
-      //console.log(this.reverseArr, '--');
     });
   }
 
@@ -739,6 +736,20 @@ export class CourseVideoComponent {
         }
       }
     }
+    setTimeout(() => {
+      if (this.slug != 'pranayama-course-online-pranarambha') {
+        if (this.reverseArr.length > 0)
+          this.reverseArr.forEach((video: any) => {
+            const isM3U8 = this.isM3U8File(video.url);
+            this.setHlsOrMp4VideoURL(
+              isM3U8,
+              video.updateId,
+              video.url,
+              video.isShow
+            );
+          });
+      }
+    }, 4000);
     this.getAccessLog(this.userId, id);
     this.spinner.hide();
   }
@@ -754,27 +765,26 @@ export class CourseVideoComponent {
         })
         .subscribe((res) => {
           localStorage.setItem(localKey, res);
-          console.log(res);
           this.reverseArr[i].url = res;
+          this._changeDetect.detectChanges();
         });
     } else {
       this.reverseArr[i].url = vidUrl;
+      this._changeDetect.detectChanges();
     }
+    this.hlsVideoUrl(this.reverseArr[i]);
   }
-  hlsVideoUrl() {
+  hlsVideoUrl(video: onLineVideoModel) {
     setTimeout(() => {
       if (this.slug == 'pranayama-course-online-pranarambha') {
-        if (this.reverseArr.length > 0)
-          this.reverseArr.forEach((video: any) => {
-            const isM3U8 = this.isM3U8File(video.url);
-            this.setHlsOrMp4VideoURL(
-              isM3U8,
-              video.updateId,
-              video.url,
-              video.isShow
-            );
-          });
+        const isM3U8 = this.isM3U8File(video.url);
+        this.setHlsOrMp4VideoURL(
+          isM3U8,
+          video.updateId,
+          video.url,
+          video.isShow
+        );
       }
-    }, 4000);
+    }, 100);
   }
 }
