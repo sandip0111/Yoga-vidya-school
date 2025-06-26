@@ -13,7 +13,7 @@
           aria-current="page"
           data-bs-toggle="tab"
           href="#tab{{ vid?.dayNumber }}"
-          (click)="setDataFeedbackV2(i + 1)"
+          (click)="setDataFeedbackV2(i + 1, vid)"
           >{{ vid.title }}</a
         >
       </li>
@@ -29,38 +29,28 @@
         <div class="row mt-3" *ngIf="dt.isShow">
           <div class="col-lg-8">
             <div class="video-container">
-              <!-- <video
-                preload="auto"
-                #videoPlayer
-                (play)="onVideoPlay(dt.updateId)"
-                src="{{ dt.url }}"
-                controls
-                controlsList="nodownload"
-                playsinline
-              >
-                Your browser does not support the video tag.
-              </video> -->
-              <video *ngIf=" slug != 'pranayama-course-online-pranarambha'"
-               [attr.id]="'plyrID-' +  i"
+              <video
+                *ngIf="slug != 'pranayama-course-online-pranarambha'"
+                [attr.id]="'plyrID-' + i"
                 controls
                 playsinline
                 (play)="onVideoPlay(dt.updateId)"
                 controlsList="nodownload"
-                (timeupdate)="onTimeUpdate($event, dt?.dayNumber)"
-                #videoPlayer
+                (timeupdate)="onTimeUpdate($event, dt.dayNumber)"
               >
-                <source src="{{ dt.url }}" type="video/mp4" />
+                <source [attr.src]="dt.url" type="video/mp4" />
               </video>
-              <video *ngIf=" slug == 'pranayama-course-online-pranarambha'"
-              [attr.id]="'plyrID-' +  dt.updateId"
-               controls
-               playsinline
-               (play)="onVideoPlay(dt.updateId)"
-               controlsList="nodownload"
-               (timeupdate)="onTimeUpdate($event, dt?.dayNumber)"
-               #videoPlayer
-             >              
-             </video>
+              <video
+                *ngIf="slug == 'pranayama-course-online-pranarambha'"
+                [attr.id]="'plyrID-' + dt.updateId"
+                controls
+                playsinline
+                (play)="onVideoPlay(dt.updateId)"
+                controlsList="nodownload"
+                (timeupdate)="onTimeUpdate($event, dt.dayNumber)"
+              >
+                <source [attr.src]="dt.url" type="video/mp4" />
+              </video>
             </div>
           </div>
           <div class="col-lg-4 mt-3">
