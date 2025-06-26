@@ -39,7 +39,7 @@ export class CourseVideoComponent {
   // @ViewChild('videoPlayer') videoElement!: ElementRef<HTMLDivElement>;
   isCallbackTriggered = false;
   accessLog: any;
-
+  videoClass: string = 'col-lg-8';
   constructor(
     private webapiService: WebapiService,
     private _activatedRoute: ActivatedRoute,
@@ -51,10 +51,10 @@ export class CourseVideoComponent {
     private _renderer2: Renderer2,
     private _changeDetect: ChangeDetectorRef
   ) {
+    this.spinner.show();
     this._activatedRoute.params.subscribe((params) => {
       this.slug = params['id'];
     });
-
     this.bdQues = [
       'What was the state of your mind and body during practice. Were you focused?',
       'How was your breath? Was it deep, and long. Do you feel any changes while applying the techniques?',
@@ -64,16 +64,18 @@ export class CourseVideoComponent {
       'Is it getting a benefit during your work? Are you more productive now?',
       'What is your overall feedback? What you gained with this course ? Will you continue this practice?',
     ];
-
-    this.getCourseBySlug(this.slug);
   }
 
   ngOnInit(): void {
+    // this.videoClass =
+    //   this.slug == 'pranayama-course-online-pranarambha'
+    //     ? 'col-lg-12'
+    //     : 'col-lg-8';
+    this.getCourseBySlug(this.slug);
     this.userId = sessionStorage.getItem('loginId');
     if (!this.userId) {
       this.router.navigate(['/login']);
     }
-
     const canonicalUrl = 'https://www.yogavidyaschool.com' + this.router.url;
     const link = this._document.querySelector('link[rel="canonical"]');
     this._renderer2.setAttribute(link, 'href', canonicalUrl);
@@ -106,7 +108,6 @@ export class CourseVideoComponent {
   }
 
   getCourseBySlug(slug: any) {
-    this.spinner.show();
     let data = {
       slug: slug,
     };
@@ -136,9 +137,6 @@ export class CourseVideoComponent {
             }, 2000);
           } else {
             this.onlineCheck = false;
-            setTimeout(() => {
-              this.spinner.hide();
-            }, 1000);
           }
         }, 2000);
       } else {
@@ -285,7 +283,6 @@ export class CourseVideoComponent {
         this.feedbackData.video = res.videoName;
         alert('upload success');
         this.spinner.hide();
-        // e.target.value = '';
       } else {
         alert('something went wrong');
       }
@@ -297,7 +294,6 @@ export class CourseVideoComponent {
       if (!data.video) {
         alert('Video review is compulsory');
       } else {
-        // this.spinner.show();
         if (this.slug == 'breath-detox-yoga') {
           if (Object.keys(data).length > 0) {
             let val = {
@@ -308,12 +304,9 @@ export class CourseVideoComponent {
               answerList: Object.values(data),
               videoReview: this.videoName ? this.videoName : '',
             };
-            // console.log(val, '--');
             this.webapiService.createFeedback(val).subscribe((res: any) => {
-              // console.log(res);
               if (res.status == 'ok') {
                 alert(res.msg);
-                // this.spinner.hide();
                 this.feedbackData = {};
                 this.getCourseBySlug(this.slug);
               } else {
@@ -329,10 +322,8 @@ export class CourseVideoComponent {
             data.studentId = this.userId;
             data.courseId = this.courseList._id;
             this.webapiService.createFeedback(data).subscribe((res: any) => {
-              // console.log(res);
               if (res.status == 'ok') {
                 alert(res.msg);
-                // this.spinner.hide();
                 this.feedbackData = {};
                 this.getCourseBySlug(this.slug);
               } else {
@@ -348,19 +339,15 @@ export class CourseVideoComponent {
       if (!data.video) {
         alert('Video review is compulsory');
       } else {
-        // this.spinner.show();
         let val = {
           day: 9,
           studentId: this.userId,
           courseId: this.courseList._id,
           videoReview: this.videoName ? this.videoName : '',
         };
-        // console.log(val, '--');
         this.webapiService.createFeedback(val).subscribe((res: any) => {
-          // console.log(res);
           if (res.status == 'ok') {
             alert(res.msg);
-            // this.spinner.hide();
             this.feedbackData = {};
             this.getCourseBySlug(this.slug);
           } else {
@@ -425,6 +412,9 @@ export class CourseVideoComponent {
             .sort((a: any, b: any) => a.sortBy - b.sortBy);
           this.onlineVideoLoad(this.reverseArr[0]);
           this.onTabLoad(id);
+          if (this.reverseArr.length == res.length) {
+            this.spinner.hide();
+          }
         } else {
           this.spinner.hide();
           this.reverseArr = [];
@@ -470,7 +460,6 @@ export class CourseVideoComponent {
   }
 
   setDataFeedback(day: any, hash: any) {
-    // this.spinner.show();
     if (day > 0) {
       let val = {
         hash: hash,
@@ -484,14 +473,12 @@ export class CourseVideoComponent {
       };
       this.getFedback(val2);
       this.webapiService.getFeedbackByCourse(val).subscribe((res: any) => {
-        // console.log(res.count > 0, '--------------');
         if (res.count > 0) {
           this.reverseArr[day].isVideoShown = true;
         } else {
           this.reverseArr[day].isVideoShown = false;
         }
       });
-      // console.log(this.reverseArr, '--');
     }
   }
 
@@ -593,7 +580,6 @@ export class CourseVideoComponent {
               videoReview: this.videoName ? this.videoName : '',
             };
             this.webapiService.createFeedback(val).subscribe((res: any) => {
-              // console.log(res);
               if (res.status == 'ok') {
                 alert(res.msg);
                 this.spinner.hide();
@@ -613,7 +599,6 @@ export class CourseVideoComponent {
             data.courseId = this.courseList._id;
             data.hashed_id = hashId;
             this.webapiService.createFeedback(data).subscribe((res: any) => {
-              // console.log(res);
               if (res.status == 'ok') {
                 alert(res.msg);
                 this.spinner.hide();
@@ -632,19 +617,15 @@ export class CourseVideoComponent {
       if (!this.videoName) {
         alert('Video review is compulsory');
       } else {
-        // this.spinner.show();
         let val = {
           day: 5,
           studentId: this.userId,
           courseId: this.courseList._id,
           videoReview: this.videoName ? this.videoName : '',
         };
-        // console.log(val, '--');
         this.webapiService.createFeedback(val).subscribe((res: any) => {
-          // console.log(res);
           if (res.status == 'ok') {
             alert(res.msg);
-            // this.spinner.hide();
             this.feedbackData = {};
             this.getCourseBySlug(this.slug);
           } else {
@@ -666,7 +647,6 @@ export class CourseVideoComponent {
             videoReview: this.videoName ? this.videoName : '',
           };
           this.webapiService.createFeedback(val).subscribe((res: any) => {
-            // console.log(res);
             if (res.status == 'ok') {
               alert(res.msg);
               this.spinner.hide();
@@ -686,7 +666,6 @@ export class CourseVideoComponent {
           data.courseId = this.courseList._id;
           data.hashed_id = hashId;
           this.webapiService.createFeedback(data).subscribe((res: any) => {
-            // console.log(res);
             if (res.status == 'ok') {
               alert(res.msg);
               this.spinner.hide();
@@ -751,7 +730,6 @@ export class CourseVideoComponent {
       }
     }, 4000);
     this.getAccessLog(this.userId, id);
-    this.spinner.hide();
   }
   onlineVideoLoad(obj: onLineVideoModel) {
     const localKey =
