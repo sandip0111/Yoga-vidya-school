@@ -76,7 +76,7 @@ export class CourseMentorComponent {
   </ul>
   <p>Join us to rediscover your inner strength, balance your hormones, and cultivate overall wellbeing. Together, let's address the unique challenges women face due to hormonal issues and embark on a path towards radiant health, happiness, and fulfillment.</p>
 `,
-          image: "image_1675243508012.jpg",
+          image: "IMG_20250331_171325_021.jpg",
           intro: "Women Wellness Yoga",
           time:"5:00 PM – 6:00 PM (IST)",
           time1:"",
