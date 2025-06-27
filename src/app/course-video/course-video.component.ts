@@ -194,7 +194,9 @@ export class CourseVideoComponent {
     };
     this.getFedbackV2(val2);
   }
+  activeIndex: number = 0;
   setDataFeedbackV2(day: number, obj: onLineVideoModel) {
+    // this.activeIndex = day - 1;
     if (this.slug == 'pranayama-course-online-pranarambha') {
       this.onlineVideoLoad(obj);
       this.getAccessLog(this.userId, this.courseList._id);
