@@ -410,7 +410,9 @@ export class CourseVideoComponent {
           this.reverseArr = res
             .slice()
             .sort((a: any, b: any) => a.sortBy - b.sortBy);
-          this.onlineVideoLoad(this.reverseArr[0]);
+          if (this.slug == 'pranayama-course-online-pranarambha') {
+            this.onlineVideoLoad(this.reverseArr[0]);
+          }
           this.onTabLoad(id);
           if (this.reverseArr.length == res.length) {
             this.spinner.hide();
@@ -763,6 +765,6 @@ export class CourseVideoComponent {
           video.isShow
         );
       }
-    }, 100);
+    }, 4000);
   }
 }
