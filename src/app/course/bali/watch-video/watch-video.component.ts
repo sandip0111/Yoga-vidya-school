@@ -48,7 +48,11 @@ export class WatchVideoComponent implements OnInit {
       url =
         'https://d3mzqk1fxuwngx.cloudfront.net/reviews/pranarambha_intro.mp4?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAWGOLULIWBNKET5SM%2F20250106%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250106T163245Z&X-Amz-Expires=3600&X-Amz-Signature=bd6d68f4499c266e99fa1d35bf90b00551ac35dbc778f4838cc74787908c8375&X-Amz-SignedHeaders=host&x-id=GetObject';
       return this.sanitizer.bypassSecurityTrustResourceUrl(url);
-    } else {
+    } else if(slug == 'pranic-purification') {
+      url = 'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/img/IMG_3461.mp4';
+      return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+    }
+     else {
       url = `https://www.youtube.com/embed/${this.ytData.videoId}`;
       return this.sanitizer.bypassSecurityTrustResourceUrl(url);
     }

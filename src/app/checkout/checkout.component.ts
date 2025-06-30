@@ -242,17 +242,15 @@ export class CheckoutComponent {
       case 'INR':
         this.price = '3499 INR';
         this.amount = 3499;
-        this.offerAmount = 3100;
+      
         break;
       case 'USD':
-        this.price = '55 USD';
-        this.amount = 55;
-        this.offerAmount = 50;
+        this.price = '45 USD';
+        this.amount = 45;
         break;
       case 'EUR':
-        this.price = '52 EUR';
-        this.amount = 52;
-        this.offerAmount = 48;
+        this.price = '40 EUR';
+        this.amount = 40;
         break;
       default:
         this.price = '';
@@ -287,16 +285,16 @@ export class CheckoutComponent {
   set200TTCNormalPrice(currency: string) {
     switch (currency) {
       case 'INR':
-        this.price = '85000 INR';
-        this.amount = 85000;
+        this.price = '105000 INR';
+        this.amount = 105000;
         break;
       case 'USD':
-        this.price = '1000 USD';
-        this.amount = 1000;
+        this.price = '1500 USD';
+        this.amount = 1500;
         break;
       case 'EUR':
-        this.price = '1000 EUR';
-        this.amount = 1000;
+        this.price = '1280 EUR';
+        this.amount = 1280;
         break;
       default:
         this.price = '';

@@ -10,7 +10,7 @@
       <li class="nav-item" *ngFor="let vid of reverseArr; let i = index">
         <a
           class="nav-link text-dark"
-          [ngClass]="i == 0 ? 'active' : ''"
+          [ngClass]="i == activeIndex ? 'active' : ''"
           aria-current="page"
           data-bs-toggle="tab"
           href="#tab{{ vid?.dayNumber }}"
