@@ -3,6 +3,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import moment from 'moment-timezone';
 import { TimezoneNameChangePipe } from '../../pipe/timezone-name-change.pipe';
+import * as ct from 'countries-and-timezones';
 @Component({
   selector: 'app-world-clock',
   standalone: true,
@@ -21,14 +22,26 @@ export class WorldClockComponent implements OnInit {
   convertedEndTime: string = '';
   formattedDate: string = '';
   timeZoneAbbreviation: string = '';
+  timeZonesWithCountries: timeZoneModel[] = [];
   ngOnInit(): void {
-    this.timeZones = moment.tz.names();
-    this.formattedDate = moment('2025-09-07').format('Do MMMM');
     this.convertedStartTime = this.updateTime(
       this.selectedZone,
       this.startTime
     );
     this.convertedEndTime = this.updateTime(this.selectedZone, this.endTime);
+    const timezones = moment.tz.names();
+    const countryTimezones: timeZoneModel[] = [];
+    for (const countryCode in ct.getAllCountries()) {
+      const country = ct.getCountry(countryCode);
+      if (country && country.timezones) {
+        country.timezones.forEach((tz) => {
+          if (timezones.includes(tz)) {
+            countryTimezones.push({ country: country.name, timezone: tz });
+          }
+        });
+      }
+    }
+    this.timeZonesWithCountries = countryTimezones;
   }
 
   updateTime(zone: string, time: string) {
@@ -57,4 +70,8 @@ export class WorldClockComponent implements OnInit {
     );
     this.convertedEndTime = this.updateTime(this.selectedZone, this.endTime);
   }
+}
+interface timeZoneModel {
+  country: string;
+  timezone: string;
 }
