@@ -35,7 +35,7 @@
                   <span class="h6"
                     ><strong>7:30 AM to 8:30 AM</strong></span
                   >
-                </div>               
+                </div>
               </div>
                -->
             </li>
@@ -179,6 +179,19 @@
             placeholder="Enter Address"
           />
         </div>
+        <div class="mb-3" *ngIf="slug == '200-hours-yoga-teacher-training-online'">
+          <label for="refferal">Online yoga class</label>
+          <select
+            class="form-control"
+            name="package"
+            [(ngModel)]="onlineClass"
+          >
+            <option value="Acharya Prashant Jakhmola">Acharya Prashant Jakhmola</option>
+            <option value="Anuj Pareek">Anuj Pareek</option>
+            <option value="Taniya Verma">Taniya Verma</option>
+            <option value="Shivam Joshi">Shivam Joshi</option>
+          </select>
+        </div>
         <div class="d-flex w-100 justify-content-start gap-3 mt-3">
           <a
             href="javascript:void(0)"
@@ -193,20 +206,6 @@
               height="32"
             />
           </a>
-
-          <!-- <a
-            href="javascript:void(0)"
-            style="border-color: #f9751e"
-            class="payment-button"
-            (click)="checkoutData(checkData, false)"
-          >
-            <img
-              src="https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/stripe.png"
-              alt="Stripe"
-              width="128"
-              height="35"
-            />
-          </a> -->
           <a
             href="https://www.paypal.me/yogavidyafoundation"
             style="border-color: #f9751e"
@@ -221,14 +220,7 @@
             />
           </a>
         </div>
-
         <h3 class="text-uppercase mt-3">Payment Instructions:</h3>
-        <!-- <h5 class="disclaimer text-uppercase mt-3">
-          International Users should use Stripe for payment.
-        </h5>
-        <h5 class="disclaimer text-uppercase mt-3">
-          Indian Users should use Razorpay For UPI payment
-        </h5> -->
         <h5 class="disclaimer text-uppercase mt-3">
           If you are using PayPal for payment, please upload the screenshot of
           the payment in the WhatsApp group

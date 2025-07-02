@@ -48,6 +48,7 @@ export class CheckoutComponent {
   CountryISO = CountryISO;
   emailSuggestion: string | null = null;
   currency: string = 'INR';
+  onlineClass: string = 'Acharya Prashant Jakhmola';
   @ViewChild('phoneRef', { static: false }) phoneRef!: NgxIntlTelInputComponent;
   searchFields = [
     SearchCountryField.Name,
@@ -242,7 +243,7 @@ export class CheckoutComponent {
       case 'INR':
         this.price = '3499 INR';
         this.amount = 3499;
-      
+
         break;
       case 'USD':
         this.price = '45 USD';
@@ -285,8 +286,8 @@ export class CheckoutComponent {
   set200TTCNormalPrice(currency: string) {
     switch (currency) {
       case 'INR':
-        this.price = '105000 INR';
-        this.amount = 105000;
+        this.price = '1050 INR';
+        this.amount = 1050;
         break;
       case 'USD':
         this.price = '1500 USD';
@@ -391,6 +392,10 @@ export class CheckoutComponent {
   currencyRequired: string = '';
   checkoutData(data: checkoutModel, isRazorPay: boolean) {
     this.spinner.show();
+    localStorage.setItem(
+      localstorageKey['200TTCOnlineClass'],
+      this.onlineClass
+    );
     if (this.slug !== routeEnum.pranicPurification) {
       let isErrMsg: boolean = false;
       if (!data.email) {
