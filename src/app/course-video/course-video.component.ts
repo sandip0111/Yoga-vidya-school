@@ -488,7 +488,6 @@ export class CourseVideoComponent {
 
   getFedback(val: any) {
     this.webapiService.getFeedbackByCourse(val).subscribe((res: any) => {
-      // console.log(res.count, '--------------');
       if (res.count > 0) {
         this.feedbackCounter = true;
       } else {
