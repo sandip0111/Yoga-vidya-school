@@ -242,7 +242,7 @@ export class CheckoutComponent {
       case 'INR':
         this.price = '3499 INR';
         this.amount = 3499;
-      
+
         break;
       case 'USD':
         this.price = '45 USD';
@@ -583,12 +583,10 @@ export class CheckoutComponent {
     var charset =
       'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_-+=<>?';
     var password = '';
-
     for (var i = 0; i < len; i++) {
       var randomIndex = Math.floor(Math.random() * charset.length);
       password += charset.charAt(randomIndex);
     }
-
     return password;
   }
 

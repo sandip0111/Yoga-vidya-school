@@ -306,6 +306,7 @@ export class SuccessPaymentComponent {
   }
   is200TTC: boolean = false;
   getRazorPaymentResult200TTC(razorpayPaymentId: string) {
+    let pass = this.genratePass(6);
     const paymentResult: razorPaymentResultModel = {
       razorpayPaymentId: razorpayPaymentId,
       razorpayOrderId: localStorage.getItem(
@@ -313,6 +314,7 @@ export class SuccessPaymentComponent {
       ),
       razorpaySignature: localStorage.getItem(localstorageKey['200TTCRzpSig']),
       payDbId: localStorage.getItem(localstorageKey['200TTCRzpDBId']),
+      password: pass,
     };
     this.webapiService
       .getRazorPaymentResult200TTC(paymentResult)
@@ -404,5 +406,15 @@ export class SuccessPaymentComponent {
     localStorage.removeItem(localstorageKey['200TTCRzpOrderId']);
     localStorage.removeItem(localstorageKey['200TTCRzpSig']);
     localStorage.removeItem(localstorageKey['200TTCRzpDBId']);
+  }
+  genratePass(len: number) {
+    const charset =
+      'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_-+=<>?';
+    let password = '';
+    for (var i = 0; i < len; i++) {
+      var randomIndex = Math.floor(Math.random() * charset.length);
+      password += charset.charAt(randomIndex);
+    }
+    return password;
   }
 }
