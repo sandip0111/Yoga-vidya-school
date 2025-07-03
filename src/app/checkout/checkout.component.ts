@@ -48,7 +48,7 @@ export class CheckoutComponent {
   CountryISO = CountryISO;
   emailSuggestion: string | null = null;
   currency: string = 'INR';
-  onlineClass: string = 'Acharya Prashant Jakhmola';
+  onlineClass: string = 'Acharya Prashant Jakhmola online yoga class';
   @ViewChild('phoneRef', { static: false }) phoneRef!: NgxIntlTelInputComponent;
   searchFields = [
     SearchCountryField.Name,
@@ -286,8 +286,8 @@ export class CheckoutComponent {
   set200TTCNormalPrice(currency: string) {
     switch (currency) {
       case 'INR':
-        this.price = '1050 INR';
-        this.amount = 1050;
+        this.price = '105000 INR';
+        this.amount = 105000;
         break;
       case 'USD':
         this.price = '1500 USD';
