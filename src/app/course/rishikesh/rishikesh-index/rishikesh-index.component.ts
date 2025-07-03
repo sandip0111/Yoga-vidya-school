@@ -93,7 +93,6 @@ export class RishikeshIndexComponent implements OnInit {
     this.slug = this.activatedRoute.snapshot.routeConfig?.path ?? '';
   }
   ngOnInit() {
-    console.log('ami eto expected keno?')
     if (this.slug) {
       this.getCourseBySlug(this.slug);
     }

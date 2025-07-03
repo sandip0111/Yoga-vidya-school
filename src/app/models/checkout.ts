@@ -56,6 +56,8 @@ export interface razorPaymentResultModel {
   razorpayOrderId: string | null;
   razorpaySignature: string | null;
   payDbId: string | null;
+  password?: string;
+  courseTitle?: string;
 }
 export interface stripePayModel {
   sessionId: string;
