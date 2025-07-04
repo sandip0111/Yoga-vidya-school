@@ -9,5 +9,4 @@ export enum localstorageKey {
   '200TTCStripeSessionId' = '200TTC_stripe_session_id',
   '200TTCStripeDBId' = '200TTC_stripe_db_id',
   'pranaArambhVideo' = 'prana_arambh',
-  '200TTCOnlineClass' = 'selected_teacher',
 }

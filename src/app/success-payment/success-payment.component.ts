@@ -315,8 +315,6 @@ export class SuccessPaymentComponent {
       razorpaySignature: localStorage.getItem(localstorageKey['200TTCRzpSig']),
       payDbId: localStorage.getItem(localstorageKey['200TTCRzpDBId']),
       password: pass,
-      courseTitle:
-        localStorage.getItem(localstorageKey['200TTCOnlineClass']) ?? '',
     };
     this.webapiService
       .getRazorPaymentResult200TTC(paymentResult)
