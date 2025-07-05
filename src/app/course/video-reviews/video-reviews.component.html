@@ -4,19 +4,32 @@
     <div class="menu--item card" *ngFor="let video of videos; let i = index">
       <div class="video-container">
         <video #videoPlayer [src]="video" muted preload="metadata"></video>
-        <div class="play-button" #playButton (click)="playVideo(videoPlayer, playButton)">
-          <img src="https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/play-icon.png" alt="Play" />
+        <div
+          class="play-button"
+          #playButton
+          (click)="playVideo(videoPlayer, playButton)"
+        >
+          <img
+            src="https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/play-icon.png"
+            alt="Play"
+          />
         </div>
       </div>
     </div>
     <div class="menu--item card" *ngFor="let video of videos; let i = index">
       <div class="video-container">
         <video #videoPlayer [src]="video" muted preload="metadata"></video>
-        <div class="play-button" #playButton (click)="playVideo(videoPlayer, playButton)">
-          <img src="https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/play-icon.png" alt="Play" />
+        <div
+          class="play-button"
+          #playButton
+          (click)="playVideo(videoPlayer, playButton)"
+        >
+          <img
+            src="https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/play-icon.png"
+            alt="Play"
+          />
         </div>
       </div>
     </div>
   </div>
- 
 </div>

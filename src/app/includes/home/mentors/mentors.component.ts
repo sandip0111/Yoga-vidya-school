@@ -4,6 +4,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { WebapiService } from '../../../webapi.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { StartClassComponent } from '../../../course/bali/start-class/start-class.component';
+import { routeEnum } from '../../../enum/routes';
 
 @Component({
   selector: 'app-mentors',
@@ -18,6 +19,7 @@ export class MentorsComponent implements OnInit {
   imageurl: string = '';
   slug: any = '';
   hideBtn = false;
+  routeList = routeEnum;
   constructor(private webapiService: WebapiService, protected sanitizer: DomSanitizer, private activatedRoute: ActivatedRoute, private router: Router) {
     this.imageurl = this.webapiService.imageUrl;
     this.slug = this.activatedRoute.snapshot.routeConfig?.path;
@@ -34,9 +36,9 @@ export class MentorsComponent implements OnInit {
           name: "Acharya Prashant Jakhmola",
           picture: "image_1673271873934.jfif",
           intro: "Pranayama, Asanas ",
-          slug: "acharya-prashant-jakhmola"   
+          slug: "acharya-prashant-jakhmola"
         },
-        
+
         {
           name: "Aparna Sharma",
           picture: "image_1673271914610.jpeg",
@@ -225,23 +227,23 @@ export class MentorsComponent implements OnInit {
 
         case "Aparna Sharma":
         item.instaLink = "https://www.instagram.com/aparnashanti_yoga";
-        break; 
+        break;
 
         case "Shivam Joshi":
           item.instaLink = "https://www.instagram.com/traditional_yoga_with_shivam";
-          break; 
+          break;
 
         case "Taniya":
           item.instaLink = "https://www.instagram.com/yogawith_taniya";
-          break; 
+          break;
 
         case "Anuj":
           item.instaLink = "https://www.instagram.com/sadhakanuj";
-          break; 
+          break;
 
         case "Shiva":
           item.instaLink = "https://www.instagram.com/yogacharya_shiva";
-          break; 
+          break;
       }
     })
 

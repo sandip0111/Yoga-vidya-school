@@ -93,13 +93,18 @@ export class NavbarComponent implements OnInit {
       ],
     },
     {
-      title: 'Online Yoga Workshop',
+      title: 'Online Yoga',
       link: '#',
       submenu: [
         { title: 'Online Yoga Classes', link: '/online-yoga-classes' },
         {
           title: 'Prana Arambha',
           link: '/pranayama-course-online-pranarambha',
+        },
+        { title: 'Pranayama Sadhana (21 days)', link: '/pranic-purification' },
+        {
+          title: '200 Hours Yoga TTC',
+          link: '/200-hours-yoga-teacher-training-online',
         },
         { title: 'Yoga Webinar Registration', link: '/webinar-registration' },
         { title: 'Breath Detox Yoga', link: '/breath-detox-yoga' },
@@ -116,10 +121,6 @@ export class NavbarComponent implements OnInit {
           link: '/yoga-philosophy-course-free',
         },
         // { title: 'Hip Opening Workshop', link: '/online-hip-opening-workshop' },
-        {
-          title: '200 Hours Yoga TTC',
-          link: '/200-hours-yoga-teacher-training-online',
-        },
         // {
         //   title: 'Yogic Scriptures Study',
         //   link: '/yoga-history-and-philosophy',
@@ -180,7 +181,6 @@ export class NavbarComponent implements OnInit {
       title: 'More Yoga Classes',
       link: '#',
       submenu: [
-        { title: 'Pranayama Sadhana (21 days)', link: '/pranic-purification' },
         // {
         //   title: '21 Days Ashtanga Yoga Immersion',
         //   link: '/21-days-ashtanga-yoga-immersion',

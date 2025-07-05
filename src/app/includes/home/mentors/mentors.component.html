@@ -1,23 +1,50 @@
 <section class="mentors">
   <div class="row justify-content-center">
     <div class="col-md-12">
-      <div><img loading="lazy" alt="Not Loaded" src="https://my-s3-images-bucket.s3.amazonaws.com/img/flower-color.png" class="flower-img" /></div>
+      <div>
+        <img
+          loading="lazy"
+          alt="Not Loaded"
+          src="https://my-s3-images-bucket.s3.amazonaws.com/img/flower-color.png"
+          class="flower-img"
+        />
+      </div>
+      @if(slug != routeList.pranicPurification){
       <h2>Our <span>Mentors</span></h2>
-      <small>A team of highly skilled and experienced yoga teachers with diverse yogic backgrounds.</small>
+      }
+      <small
+        >A team of highly skilled and experienced yoga teachers with diverse
+        yogic backgrounds.</small
+      >
       <!-- <small>Molestie nunc non blandit massa enim.</small> -->
     </div>
     <div class="col-md-3" *ngFor="let item of mentors">
       <div class="card">
-          <div class="card-image relative">
-            <div class="img-border">
-            <img [src]="imageurl +item.picture" class="card-img-top" alt="Card Image">
-            </div>
+        <div class="card-image relative">
+          <div class="img-border">
+            <img
+              [src]="imageurl + item.picture"
+              class="card-img-top"
+              alt="Card Image"
+            />
           </div>
-          <div class="card-body">
-            <div class="heading fw-600">{{item.name}}</div>
-            <p class="card-text">{{item.intro}}</p>
-            <div class="button">FOLLOW ON : <a *ngIf="item.instaLink" [href]="item.instaLink" target="_blank"><i class="fa-brands fa-instagram"></i></a><i *ngIf="!item.instaLink" class="fa-brands fa-instagram"></i> <a *ngIf="item.youTubeLink" [href]="item.youTubeLink" target="_blank"><i class="fa-brands fa-youtube"></i></a></div>
+        </div>
+        <div class="card-body">
+          <div class="heading fw-600">{{ item.name }}</div>
+          <p class="card-text">{{ item.intro }}</p>
+          <div class="button">
+            FOLLOW ON :
+            <a *ngIf="item.instaLink" [href]="item.instaLink" target="_blank"
+              ><i class="fa-brands fa-instagram"></i></a
+            ><i *ngIf="!item.instaLink" class="fa-brands fa-instagram"></i>
+            <a
+              *ngIf="item.youTubeLink"
+              [href]="item.youTubeLink"
+              target="_blank"
+              ><i class="fa-brands fa-youtube"></i
+            ></a>
           </div>
+        </div>
       </div>
     </div>
     <div *ngIf="!hideBtn" class="col-md-12">

@@ -22,6 +22,19 @@
 <app-schedule [data]="schEventData"></app-schedule>
 <!-- <app-know-more></app-know-more> -->
 <app-excursions></app-excursions>
+@if(isPranicPurification){
+<app-video-reviews
+  *ngIf="isPranicPurification"
+  [specialvideo]="true"
+></app-video-reviews>
+<app-watch-video
+  *ngIf="isYoutubeDataReady"
+  [data]="youtubeVideoData"
+  [slug]="slug"
+></app-watch-video>
+<app-faq [data]="faqData"></app-faq>
+<app-gallery></app-gallery>
+}@else{
 <app-testimonials></app-testimonials>
 <app-video-reviews
   *ngIf="isPranicPurification"
@@ -34,3 +47,4 @@
   [slug]="slug"
 ></app-watch-video>
 <app-faq [data]="faqData"></app-faq>
+}
