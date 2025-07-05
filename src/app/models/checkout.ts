@@ -9,27 +9,28 @@ export class checkoutModel {
   constructor() {
     this.name = '';
     this.email = '';
-    this.phoneNumber = {
-      number: '',
-      internationalNumber: '',
-      nationalNumber: '',
-      e164Number: '',
-      countryCode: '',
-      dialCode: '',
-    };
+    this.phoneNumber = new PhoneNumberData();
     this.package = '';
     this.currency = '';
     this.address = '';
     this.code = '';
   }
 }
-export interface PhoneNumberData {
+export class PhoneNumberData {
   number: string;
   internationalNumber: string;
   nationalNumber: string;
   e164Number: string;
   countryCode: string;
   dialCode: string;
+  constructor() {
+    this.number = '';
+    this.internationalNumber = '';
+    this.nationalNumber = '';
+    this.e164Number = '';
+    this.countryCode = '';
+    this.dialCode = '';
+  }
 }
 export interface getCouponCodeModel {
   slug: string;

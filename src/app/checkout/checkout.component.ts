@@ -15,6 +15,7 @@ import { CountryISO } from 'ngx-intl-tel-input';
 import { paymentkey, stripePaymentKey } from '../enum/payment';
 import {
   checkoutModel,
+  PhoneNumberData,
   razorPayModel,
   SignupDataModel,
   stripePayModel,
@@ -345,7 +346,9 @@ export class CheckoutComponent {
     this.phoneError = 'Invalid phone number';
     this.currencyOptions = [];
     this.checkData.currency = '';
-    this.setPriceOnInputChange();
+    this.checkData.phoneNumber = new PhoneNumberData();
+    this.amount = 0;
+    this.price = '';
   }
   inputValidation(type: string) {
     if (type == 'email') {

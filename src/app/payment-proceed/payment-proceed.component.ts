@@ -80,7 +80,7 @@ export class PaymentProceedComponent implements OnInit {
     },
     {
       id: 5,
-      name: "Anuj Pareek",         
+      name: "Anuj Pareek",
       image: "image_1695634116777.jpeg",
       intro: "Intermediate Alignment Based Class",
       time:"6:15 PM - 7:15 PM (IST)",

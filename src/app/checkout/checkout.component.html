@@ -10,7 +10,7 @@
                 <div class="col">
                   <span> {{ courseList?.coursetitle }}</span>
                 </div>
-                <div class="col-auto" *ngIf="amount > 0">
+                <div class="col-auto" *ngIf="amount > 0 && checkData.currency">
                   <span class="h4">
                     <strong [ngClass]="isDiscounted ? 'old-price' : ''">{{
                       amount | currency : checkData.currency
@@ -23,21 +23,6 @@
                   </span>
                 </div>
               </div>
-
-              <!-- <div
-                *ngIf="slug === 'pranic-purification'"
-                class="row align-items-center"
-              >
-                <div class="col">
-                  <span> 24th July to 29th July</span>
-                </div>
-                <div class="col-auto">
-                  <span class="h6"
-                    ><strong>7:30 AM to 8:30 AM</strong></span
-                  >
-                </div>
-              </div>
-               -->
             </li>
           </ul>
         </div>
@@ -110,6 +95,7 @@
             (keyup)="inputValidation('phone')"
           >
           </ngx-intl-tel-input>
+          <span>to see the price add your WhatsApp Number</span>
           <br />
           <div *ngIf="phoneError" class="text-danger mt-1">
             {{ phoneError }}
@@ -210,7 +196,8 @@
         <h3 class="text-uppercase mt-3">Payment Instructions:</h3>
         <h5 class="disclaimer text-uppercase mt-3">
           If you are using PayPal for payment, please upload the screenshot of
-          the payment in the WhatsApp group
+          the payment in the
+          <a href="mailto:info@yogavidyaschool.com" target="_blank"> Mail </a>
         </h5>
       </div>
     </div>

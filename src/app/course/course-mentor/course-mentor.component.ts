@@ -51,7 +51,7 @@ export class CourseMentorComponent {
           priceInIndian: 1999,
           priceInUSD:50,
         },
-        
+
         // {
         //   id: 3,
         //   name: "Shiva",
@@ -67,7 +67,7 @@ export class CourseMentorComponent {
           name: "Taniya Verma",
           description: `
   <p>This class is designed for all the females from menarche to menopause, with a holistic approach combining ancient yoga wisdom with modern lifestyle tips to empower women to take control of their health and wellbeing. In this transformative journey, you will explore:</p>
-  
+
   <ul>
     <li>Transformative asanas to awaken vitality and strength in the physical body.</li>
     <li>Healthy eating habits to nourish and balance your body.</li>
@@ -88,7 +88,7 @@ export class CourseMentorComponent {
           id: 4,
           name: "Shivam Joshi",
           description:this.sanitizer
-          .bypassSecurityTrustHtml(` <h5 style="text-align: center">Weekend classes</h5></br> <p>Join Shivam Joshi’s classes in this holistic journey towards physical vitality and mental clarity. Experience the profound benefits of a practice rooted in tradition of Hatha Yoga and Iyengar Yoga. These 120-minute online classes focus on mastering foundational asanas with precision and care. Incorporating the principles of Iyengar Yoga, you’ll learn to achieve perfect alignment using supportive props. Highly recommended yoga sessions to master.</p>`),
+          .bypassSecurityTrustHtml(` <h5 style="text-align: center">Saturday/Sunday</h5></br> <p>Join Shivam Joshi’s classes in this holistic journey towards physical vitality and mental clarity. Experience the profound benefits of a practice rooted in tradition of Hatha Yoga and Iyengar Yoga. These 120-minute online classes focus on mastering foundational asanas with precision and care. Incorporating the principles of Iyengar Yoga, you’ll learn to achieve perfect alignment using supportive props. Highly recommended yoga sessions to master.</p>`),
           image: "image_1673271925503.jpeg",
           intro: "Iyengar/ Yoga Therapy ",
           time:"6:30 PM – 8:30 PM (IST)",
@@ -138,7 +138,7 @@ export class CourseMentorComponent {
           intro: "Yoga Philosophy",
           time:"",
           price:""
-        },        
+        },
         {
           name: "Aparna Sharma",
           image: "image_1673271914610.jpeg",
@@ -217,10 +217,10 @@ export class CourseMentorComponent {
         priceInfo: mentor?.price
        }
     }
-   
+
    if(this.course != undefined){
 	   this.cartService.addItem(this.course);
-   };  
+   };
    // this.router.navigate(['/add-to-cart']);
    this.router.navigate(['/proceed-payment']).then(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
