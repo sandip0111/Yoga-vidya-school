@@ -3,8 +3,6 @@
   font-weight: 800;
   color: #e50a1f;
   a {
-    color: #e50a1f;
-    text-decoration: none;
     cursor: pointer;
   }
 }
@@ -136,4 +134,18 @@ ngx-intl-tel-input input[disabled] {
   color: #999;
   margin-right: 10px;
   font-weight: bold;
+}
+.whatsapp-div {
+  display: flex;
+  gap: 10px;
+  span {
+    font-size: 15px;
+    color: #e1600b;
+    font-weight: 500;
+  }
+}
+@media screen and (max-width: 910px) and (min-width: 300px) {
+  .whatsapp-div {
+    flex-direction: column;
+  }
 }

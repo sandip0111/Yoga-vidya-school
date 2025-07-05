@@ -75,35 +75,35 @@
             >WhatsApp Number<span style="color: red">*</span></label
           >
           <br />
-          <ngx-intl-tel-input
-            [cssClass]="'form-control phone_input'"
-            [separateDialCode]="true"
-            [preferredCountries]="['in', 'us']"
-            [enableAutoCountrySelect]="true"
-            [enablePlaceholder]="true"
-            [searchCountryFlag]="true"
-            [searchCountryField]="searchFields"
-            [selectFirstCountry]="false"
-            [selectedCountryISO]="CountryISO.India"
-            [maxLength]="15"
-            [phoneValidation]="true"
-            #phoneInput="ngModel"
-            required
-            (input)="onPhoneInputChange(!!phoneInput.valid)"
-            [(ngModel)]="checkData.phoneNumber"
-            (countryChange)="onCountryChange($event)"
-            (keyup)="inputValidation('phone')"
-          >
-          </ngx-intl-tel-input>
-          <span>to see the price add your WhatsApp Number</span>
-          <br />
+          <div class="whatsapp-div">
+            <ngx-intl-tel-input
+              [cssClass]="'form-control phone_input'"
+              [separateDialCode]="true"
+              [preferredCountries]="['in', 'us']"
+              [enableAutoCountrySelect]="true"
+              [enablePlaceholder]="true"
+              [searchCountryFlag]="true"
+              [searchCountryField]="searchFields"
+              [selectFirstCountry]="false"
+              [selectedCountryISO]="CountryISO.India"
+              [maxLength]="15"
+              [phoneValidation]="true"
+              #phoneInput="ngModel"
+              required
+              (input)="onPhoneInputChange(!!phoneInput.valid)"
+              [(ngModel)]="checkData.phoneNumber"
+              (countryChange)="onCountryChange($event)"
+              (keyup)="inputValidation('phone')"
+            >
+            </ngx-intl-tel-input>
+            <span>(To see the course price enter your WhatsApp Number)</span>
+          </div>
           <div *ngIf="phoneError" class="text-danger mt-1">
             {{ phoneError }}
           </div>
           <div *ngIf="phoneRequired" class="text-danger mt-1">
             {{ phoneRequired }}
           </div>
-          <br />
         </div>
         <div class="mb-3" *ngIf="slug !== 'pranic-purification'">
           <label for="package">Package<span style="color: red">*</span></label>
