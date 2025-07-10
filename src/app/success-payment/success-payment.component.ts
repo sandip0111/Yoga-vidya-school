@@ -307,6 +307,7 @@ export class SuccessPaymentComponent {
   is200TTC: boolean = false;
   getRazorPaymentResult200TTC(razorpayPaymentId: string) {
     let pass = this.genratePass(6);
+    let dueAmnt = localStorage.getItem(localstorageKey['200TTCDue']);
     const paymentResult: razorPaymentResultModel = {
       razorpayPaymentId: razorpayPaymentId,
       razorpayOrderId: localStorage.getItem(
@@ -315,6 +316,9 @@ export class SuccessPaymentComponent {
       razorpaySignature: localStorage.getItem(localstorageKey['200TTCRzpSig']),
       payDbId: localStorage.getItem(localstorageKey['200TTCRzpDBId']),
       password: pass,
+      installment:
+        localStorage.getItem(localstorageKey['200TTCInstallment']) ?? '1st',
+      dueAmnt: dueAmnt ? +dueAmnt : 0,
     };
     this.webapiService
       .getRazorPaymentResult200TTC(paymentResult)
@@ -334,9 +338,13 @@ export class SuccessPaymentComponent {
       });
   }
   getStripePaymentResult200TTC(sessionId: string) {
+    let dueAmnt = localStorage.getItem(localstorageKey['200TTCDue']);
     let val = {
       sessionId: sessionId,
       payDbId: localStorage.getItem(localstorageKey['200TTCStripeDBId']),
+      installment:
+        localStorage.getItem(localstorageKey['200TTCInstallment']) ?? '1st',
+      dueAmnt: dueAmnt ? +dueAmnt : 0,
     };
     this.webapiService
       .getStripePaymentResult200TTC(val)
@@ -384,6 +392,8 @@ export class SuccessPaymentComponent {
     localStorage.removeItem(localstorageKey['200TTCRzpOrderId']);
     localStorage.removeItem(localstorageKey['200TTCRzpSig']);
     localStorage.removeItem(localstorageKey['200TTCRzpDBId']);
+    localStorage.removeItem(localstorageKey['200TTCInstallment']);
+    localStorage.removeItem(localstorageKey['200TTCDue']);
   }
   gotoHome() {
     this.router.navigate(['/']);
@@ -406,6 +416,8 @@ export class SuccessPaymentComponent {
     localStorage.removeItem(localstorageKey['200TTCRzpOrderId']);
     localStorage.removeItem(localstorageKey['200TTCRzpSig']);
     localStorage.removeItem(localstorageKey['200TTCRzpDBId']);
+    localStorage.removeItem(localstorageKey['200TTCInstallment']);
+    localStorage.removeItem(localstorageKey['200TTCDue']);
   }
   genratePass(len: number) {
     const charset =

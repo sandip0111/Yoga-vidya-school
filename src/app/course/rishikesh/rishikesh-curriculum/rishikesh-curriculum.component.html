@@ -1,13 +1,24 @@
 <div class="know-more-section px-md-5 py-md-5 p-2">
   <div class="row">
     <div *ngIf="!isItPranicRoute" class="col-md-12">
-      <div><img loading="lazy" alt="Not Loaded" src="https://my-s3-images-bucket.s3.amazonaws.com/img/flower-color.png" class="flower-img" /></div>
+      <div>
+        <img
+          loading="lazy"
+          alt="Not Loaded"
+          src="https://my-s3-images-bucket.s3.amazonaws.com/img/flower-color.png"
+          class="flower-img"
+        />
+      </div>
       <small>Curriculum Overview</small>
       <h3 class="small-head">Unleash Your Inner Potential: Dive into Our</h3>
-      <h2><span>Transformative {{title}} Curriculum!</span></h2>
+      <h2>
+        <span>Transformative {{ title }} Curriculum!</span>
+      </h2>
     </div>
     <div *ngIf="isItPranicRoute" class="row">
-      <h4>Start Date: <span>{{pranicDate}}</span></h4>
+      <h4>
+        Start Date: <span>{{ pranicDate }}</span>
+      </h4>
       <!--  <h6 >Time: {{pranicDuration}}</h6> -->
       <div class="table-container">
         <table class="pranic-schedule-table">
@@ -24,7 +35,7 @@
             </tr>
             <tr>
               <td>30th July to 1st August</td>
-              <td>swadhyay (self practice)</td>
+              <td>Swadhyay (Self practice)</td>
             </tr>
             <tr>
               <td>2th August to 15th August</td>
@@ -35,32 +46,46 @@
       </div>
       <!-- <small>International Transfers: <span class="cut-text">$60</span> Price <span class="amount">$55</span> </small> -->
       <div class="col-12 text-center mt-4">
-      <button class="btn btn-primary register-btn" (click)="registerClick()" >Register Now</button>
+        <button class="btn btn-primary register-btn" (click)="registerClick()">
+          Register Now
+        </button>
       </div>
     </div>
-    <div class="col-md-12 text-left mb-3 faq" *ngFor="let cur of curriculum; let i = index">
+    <div
+      class="col-md-12 text-left mb-3 faq"
+      *ngFor="let cur of curriculum; let i = index"
+    >
       <div class="card">
         <div class="card-header" (click)="openCloseTab(i)">
           <div class="ques">
             <div class="icon">
-              <img loading="lazy" alt="Not Loaded" src="https://my-s3-images-bucket.s3.amazonaws.com/img/bullet.png" class="img-fluid" />
+              <img
+                loading="lazy"
+                alt="Not Loaded"
+                src="https://my-s3-images-bucket.s3.amazonaws.com/img/bullet.png"
+                class="img-fluid"
+              />
             </div>
             <div>
-            <h3>{{cur?.title}}</h3>
+              <h3>{{ cur?.title }}</h3>
               <!-- <p>
                 {{cur.para}}
               </p> -->
+            </div>
           </div>
-          </div>
-          <div *ngIf="slug != 'adjustment-and-alignment' && slug != 'adjustment-and-alignment-level-2'" class="plus-icon">
-            <i class="fa-solid fa-plus" *ngIf="selectedIndex!=i"></i>
-            <i class="fa-solid fa-minus" *ngIf="selectedIndex==i"></i>
+          <div
+            *ngIf="
+              slug != 'adjustment-and-alignment' &&
+              slug != 'adjustment-and-alignment-level-2'
+            "
+            class="plus-icon"
+          >
+            <i class="fa-solid fa-plus" *ngIf="selectedIndex != i"></i>
+            <i class="fa-solid fa-minus" *ngIf="selectedIndex == i"></i>
           </div>
         </div>
-        <div class="card-body" *ngIf="cur?.para && selectedIndex==i">
-          <div class="desc" [innerHTML]="cur?.para">
-
-          </div>
+        <div class="card-body" *ngIf="cur?.para && selectedIndex == i">
+          <div class="desc" [innerHTML]="cur?.para"></div>
         </div>
       </div>
     </div>

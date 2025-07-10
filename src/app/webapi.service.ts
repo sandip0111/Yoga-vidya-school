@@ -294,4 +294,9 @@ export class WebapiService {
   getTabVideo(data: { fileName: string }): Observable<string> {
     return this.http.post<string>(this.url + 'api/v1/getTabVideo', data);
   }
+  getPaymentDetailsById(id: string | null) {
+    return this.http.post(this.url + 'api/v1/getPaymentDetailsById', {
+      id: id,
+    });
+  }
 }

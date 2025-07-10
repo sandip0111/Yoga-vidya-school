@@ -1,25 +1,31 @@
- 
 <div class="container mt-5">
-  <div class="d-flex justify-content-between align-items-center mb-4">    
+  <div class="d-flex justify-content-between align-items-center mb-4">
     <h4 class="small_text">Online Classes</h4>
     <div class="dropdown mb-3">
-    <button class="btn custom-btn-orange dropdown-toggle" type="button" data-bs-toggle="dropdown">
-      Add More Classes
-    </button>
-    <ul class="dropdown-menu p-3" style="max-height: 300px; overflow-y: auto;">
-      <li *ngFor="let course of availableCourses">
-        <div class="form-check">
-          <input class="form-check-input"
-                type="checkbox"
-                [id]="course.id"
-                [value]="course"
-                [checked]="isCourseSelected(course)"
-                (change)="onCourseToggle(course, $event)"
-                >
-          <label class="form-check-label" [for]="course.id">{{ course.title }}</label>
-        </div>
-      </li>
-    </ul>
+      <button
+        class="btn custom-btn-orange dropdown-toggle"
+        type="button"
+        data-bs-toggle="dropdown"
+      >
+        Add More Classes
+      </button>
+      <ul class="dropdown-menu p-3" style="max-height: 300px; overflow-y: auto">
+        <li *ngFor="let course of availableCourses">
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              [id]="course.id"
+              [value]="course"
+              [checked]="isCourseSelected(course)"
+              (change)="onCourseToggle(course, $event)"
+            />
+            <label class="form-check-label" [for]="course.id">{{
+              course.title
+            }}</label>
+          </div>
+        </li>
+      </ul>
     </div>
   </div>
   <div class="addToCard_wrapper">
@@ -37,9 +43,7 @@
                 <h6 class="card-subtitle">
                   {{ course.priceInfo }}
                 </h6>
-                <h6 class="card-subtitle">
-                  Quanity: {{ course.quantity}}
-                </h6>
+                <h6 class="card-subtitle">Quanity: {{ course.quantity }}</h6>
                 <button
                   class="button danger mt-0"
                   (click)="removeItem(course.id)"
@@ -56,11 +60,11 @@
       <div class="row">
         <div class="col-sm-12 p-0 box">
           <div class="card rounded-0 border-0 card2" id="paypage">
-            <form [formGroup]="paymentForm" >
+            <form [formGroup]="paymentForm">
               <div class="form-card">
                 <h2 id="heading2" class="text-danger">Payment Method</h2>
                 <!-- <div class="radio-group">
-                 
+
                   <div class="radio">
                     <a href="https://www.paypal.me/yogavidyafoundation">
                     <img
@@ -70,7 +74,7 @@
                     />
                     </a>
                   </div>
-                  
+
                   <br />
                 </div> -->
                 <div class="mb-4">
@@ -81,7 +85,12 @@
                     placeholder="John Smith"
                     formControlName="holderName"
                   />
-                  <div *ngIf="paymentForm.get('holderName')?.hasError('required') && submitted">
+                  <div
+                    *ngIf="
+                      paymentForm.get('holderName')?.hasError('required') &&
+                      submitted
+                    "
+                  >
                     <span class="text-danger">Name is required.</span>
                   </div>
                 </div>
@@ -98,10 +107,20 @@
                       placeholder="abc@1235gmail.com"
                       formControlName="email"
                     />
-                    <div *ngIf="paymentForm.get('email')?.hasError('required') && submitted">
+                    <div
+                      *ngIf="
+                        paymentForm.get('email')?.hasError('required') &&
+                        submitted
+                      "
+                    >
                       <span class="text-danger">Email is required.</span>
                     </div>
-                    <div *ngIf="paymentForm.get('email')?.hasError('email') &&  paymentForm.get('email')?.touched">
+                    <div
+                      *ngIf="
+                        paymentForm.get('email')?.hasError('email') &&
+                        paymentForm.get('email')?.touched
+                      "
+                    >
                       <span class="text-danger">Enter a valid email.</span>
                     </div>
                     <div *ngIf="emailSuggestion" class="text-warning">
@@ -112,7 +131,7 @@
 
                 <div class="row mb-4">
                   <div class="col-md-12 mb-4">
-                    <label class="pay">Whatsapp Number</label><br>
+                    <label class="pay">Whatsapp Number</label><br />
                     <!-- <input
                       type="text"
                       name="mobile"
@@ -120,7 +139,7 @@
                       formControlName="mobile"
                     /> -->
 
-                      <!-- <input  
+                    <!-- <input
                       type="tel"
                       name="mobile"
                       #phoneInput
@@ -128,7 +147,7 @@
                       placeholder=""
                       formControlName="mobile"
                       style="width: 210%;"/>
-        
+
                       <div *ngIf="paymentForm.get('mobile')?.errors && submitted">
                         <span class="text-danger" *ngIf="paymentForm.get('mobile')?.hasError('required')">
                           Mobile number is required.
@@ -137,28 +156,28 @@
                           Please enter a valid mobile number.
                         </span>
                       </div> -->
-                      <ngx-intl-tel-input
-                        [cssClass]="'form-control phone_input'"
-                        [separateDialCode]="true"
-                        [preferredCountries]="['in', 'us']"
-                        [enableAutoCountrySelect]="true"
-                        [enablePlaceholder]="true"
-                        [searchCountryFlag]="true"
-                        [searchCountryField]="searchFields"
-                        [selectFirstCountry]="false"
-                        [selectedCountryISO]="CountryISO.India"
-                        [maxLength]="15"
-                        (countryChange)="onCountryChange($event)"
-                        name="mobile"
-                        (input)="onPhoneInputChange()"
-                        formControlName="mobile">
-                      </ngx-intl-tel-input>
+                    <ngx-intl-tel-input
+                      [cssClass]="'form-control phone_input'"
+                      [separateDialCode]="true"
+                      [preferredCountries]="['in', 'us']"
+                      [enableAutoCountrySelect]="true"
+                      [enablePlaceholder]="true"
+                      [searchCountryFlag]="true"
+                      [searchCountryField]="searchFields"
+                      [selectFirstCountry]="false"
+                      [selectedCountryISO]="CountryISO.India"
+                      [maxLength]="15"
+                      (countryChange)="onCountryChange($event)"
+                      name="mobile"
+                      (input)="onPhoneInputChange()"
+                      formControlName="mobile"
+                    >
+                    </ngx-intl-tel-input>
 
-                      <!-- Validation message -->
-                      <div *ngIf="phoneError" class="text-danger mt-1">
-                        {{ phoneError }}
-                      </div>
-
+                    <!-- Validation message -->
+                    <div *ngIf="phoneError" class="text-danger mt-1">
+                      {{ phoneError }}
+                    </div>
 
                     <!-- <div *ngIf="paymentForm.get('mobile')?.hasError('pattern') && paymentForm.get('mobile')?.touched">
                       <span class="text-danger">Enter a valid mobile number.</span>
@@ -175,11 +194,15 @@
                       required
                     >
                       <option value="" disabled selected>Select</option>
-                      <option *ngFor="let option of currencyOptions" [value]="option">{{ option }}</option>
+                      <option
+                        *ngFor="let option of currencyOptions"
+                        [value]="option"
+                      >
+                        {{ option }}
+                      </option>
                     </select>
                   </div>
-                  
-                  
+
                   <div class="col-md-6">
                     <label class="pay">Price</label>
                     <input
@@ -191,32 +214,53 @@
                       readonly
                     />
                   </div>
-                  
                 </div>
 
-              
-              <div class="d-flex w-100 justify-content-start gap-3 mt-3">
-          
-                <button type="button" style="border-color: #f9751e" class="payment-button" (click)="onRazorpayPayment()">
-                  <img src="assets/razor.svg" alt="Razorpay" width="128" height="32" />
-                </button>
-        
-                <!-- <button type="button" style="border-color: #f9751e" class="payment-button" (click)="onStripePayment()">
+                <div class="d-flex w-100 justify-content-start gap-3 mt-3">
+                  <button
+                    type="button"
+                    style="border-color: #f9751e"
+                    class="payment-button"
+                    (click)="onRazorpayPayment()"
+                  >
+                    <img
+                      src="assets/razor.svg"
+                      alt="Razorpay"
+                      width="128"
+                      height="32"
+                    />
+                  </button>
+
+                  <!-- <button type="button" style="border-color: #f9751e" class="payment-button" (click)="onStripePayment()">
                    <img src="https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/stripe.png" alt="Stripe"  width="128" height="35">
                 </button> -->
-                <button type="button" href="https://www.paypal.me/yogavidyafoundation"style="border-color: #f9751e" class="payment-button">
-                    <img src="https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/paypal.png" alt="PayPal" width="128" height="30">
-              </button>
-             </div>
-                <h3 class="text-uppercase mt-3">Payment Instructions: </h3>
-                <!-- <h5 class="disclaimer text-uppercase mt-3">International Users should use Stripe for payment. </h5>
-                <h5 class="disclaimer text-uppercase mt-3">Indian Users should use Razorpay For UPI payment </h5> -->
-                <h5 class="disclaimer text-uppercase mt-3">If you are using PayPal for payment, please upload the screenshot of the payment in the WhatsApp group</h5>
+                  <button
+                    type="button"
+                    href="https://www.paypal.me/yogavidyafoundation"
+                    style="border-color: #f9751e"
+                    class="payment-button"
+                  >
+                    <img
+                      src="https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/paypal.png"
+                      alt="PayPal"
+                      width="128"
+                      height="30"
+                    />
+                  </button>
+                </div>
+                <h3 class="text-uppercase mt-3">Payment Instructions:</h3>
+                <h5 class="disclaimer text-uppercase mt-3">
+                  If you are using PayPal for payment, please upload the
+                  screenshot of the payment in the
+                  <a href="mailto:info@yogavidyaschool.com" target="_blank">
+                    yoga vidya mail
+                  </a>
+                </h5>
               </div>
             </form>
           </div>
         </div>
       </div>
     </div>
-  </div>  
+  </div>
 </div>

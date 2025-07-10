@@ -45,6 +45,7 @@ export interface SignupDataModel {
   currency: string;
   courseStartDate: string;
   courseTimeDuration: string;
+  id?: string;
 }
 export interface razorPayModel {
   amount: number;
@@ -58,6 +59,8 @@ export interface razorPaymentResultModel {
   razorpaySignature: string | null;
   payDbId: string | null;
   password?: string;
+  installment?: string;
+  dueAmnt: number;
 }
 export interface stripePayModel {
   sessionId: string;

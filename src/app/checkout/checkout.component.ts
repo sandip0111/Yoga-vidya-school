@@ -56,6 +56,11 @@ export class CheckoutComponent {
     SearchCountryField.Iso2,
   ];
   currencyOptions: string[] = [];
+  firstInstAmnt: number = 0;
+  secondInstAmnt: number = 0;
+  routeEnum = routeEnum;
+  isInstallment: boolean = false;
+  paymentId: string | null = '';
   constructor(
     private webapiService: WebapiService,
     private _activatedRoute: ActivatedRoute,
@@ -63,11 +68,13 @@ export class CheckoutComponent {
     private title: Title,
     private spinner: NgxSpinnerService,
     @Inject(DOCUMENT) private _document: Document,
-    private _renderer2: Renderer2
+    private _renderer2: Renderer2,
+    private actRoute: ActivatedRoute
   ) {
     this._activatedRoute.params.subscribe((params) => {
       this.slug = params['id'];
     });
+    this.paymentId = this.actRoute.snapshot.queryParamMap.get('id');
   }
 
   ngOnInit(): void {
@@ -95,10 +102,31 @@ export class CheckoutComponent {
       }
     }, 1000);
     this.getCourseBySlug(this.slug);
-    this.checkData.package = '';
-    this.checkData.currency = '';
+    if (this.paymentId) {
+      this.getPaymentDetailsById();
+    }
   }
-
+  getPaymentDetailsById() {
+    this.webapiService
+      .getPaymentDetailsById(this.paymentId)
+      .subscribe((res: any) => {
+        console.log(res);
+        this.checkData.name = res.name;
+        this.checkData.email = res.email;
+        this.checkData.phoneNumber = {
+          number: '9876543210',
+          internationalNumber: '+91 98765 43210',
+          nationalNumber: '098765 43210',
+          e164Number: '+919876543210',
+          countryCode: 'IN',
+          dialCode: '+91',
+        };
+        this.checkData.package = res.package;
+        this.currencyOptions = [res.currency];
+        this.checkData.currency = this.currencyOptions[0];
+        this.amount = res.dueAmount;
+      });
+  }
   getCourseBySlug(slug: any) {
     let data = {
       slug: slug,
@@ -107,8 +135,6 @@ export class CheckoutComponent {
       if (res.data.length > 0) {
         this.courseList = res.data[0];
         this.title.setTitle('Checkout');
-        this.checkData.email = '';
-        this.checkData = new checkoutModel();
       } else {
         this.router.navigate(['/']);
       }
@@ -288,6 +314,8 @@ export class CheckoutComponent {
       case 'INR':
         this.price = '105000 INR';
         this.amount = 105000;
+        this.firstInstAmnt = 50000;
+        this.secondInstAmnt = 55000;
         break;
       case 'USD':
         this.price = '1500 USD';
@@ -329,6 +357,7 @@ export class CheckoutComponent {
     }
     this.phoneError = '';
     const phoneValue = this.checkData.phoneNumber;
+    console.log(this.checkData.phoneNumber);
     const countryCode = phoneValue?.countryCode?.toLowerCase();
     if (countryCode === 'in') {
       this.currencyOptions = ['INR', 'USD', 'EUR'];
@@ -514,10 +543,11 @@ export class CheckoutComponent {
       email: data.email.toLowerCase(),
       phoneNumber: data.phoneNumber.e164Number,
       package: data.package,
-      price: this.amount,
+      price: this.isInstallment ? this.firstInstAmnt : this.amount,
       currency: data.currency,
       courseStartDate: twoHundredTTCModel['200TTCDate'],
       courseTimeDuration: `${twoHundredTTCModel['200TTCStart']} - ${twoHundredTTCModel['200TTCEnd']} (IST)`,
+      id: this.paymentId ?? undefined,
     };
     if (isRazorPay) {
       this.initializeRazorPaymentFor200TTC(signupData);
@@ -795,6 +825,14 @@ export class CheckoutComponent {
                 localstorageKey['200TTCRzpDBId'],
                 res.payDbId
               );
+              localStorage.setItem(
+                localstorageKey['200TTCInstallment'],
+                this.isInstallment ? '1st' : '2nd'
+              );
+              localStorage.setItem(
+                localstorageKey['200TTCDue'],
+                this.isInstallment ? this.secondInstAmnt.toString() : '0'
+              );
               this.router.navigate(['/confirmation']);
             },
             prefill: {
@@ -830,6 +868,14 @@ export class CheckoutComponent {
           localStorage.setItem(
             localstorageKey['200TTCStripeDBId'],
             res.payDbId
+          );
+          localStorage.setItem(
+            localstorageKey['200TTCInstallment'],
+            this.isInstallment ? '1st' : '2nd'
+          );
+          localStorage.setItem(
+            localstorageKey['200TTCDue'],
+            this.isInstallment ? this.secondInstAmnt.toString() : '0'
           );
           window.location.href = res.url;
           this.spinner.hide();
