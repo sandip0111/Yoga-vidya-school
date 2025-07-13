@@ -17,7 +17,7 @@ export class FaqComponent implements OnInit {
   isPranicPage: boolean = false;
   is300BaliPage: boolean = false;
   constructor(private activatedRoute: ActivatedRoute, private router: Router) {
-    this.slug = this.activatedRoute.snapshot.routeConfig?.path;    
+    this.slug = this.activatedRoute.snapshot.routeConfig?.path;
   }
 
   toggleDescription(index: number) {

@@ -171,28 +171,33 @@ export class AboutRishikeshComponent implements OnInit {
       this.ispranicPurificationImg = true;
       this.aboutContent = new aboutContentModel(
         'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/FERN8247.jpg',
-        'Pranic Purification',
-        ' - (Online Pranayama Sadhana)',
+        'PRANIC PURIFICATION',
+        ' - (21 Days - Online Pranayama Journey with PrashantJ Yoga)',
         this.sanitizer
-          .bypassSecurityTrustHtml(`<p>I believe you are learning and experiencing the pranayama breathing techniques through my video posts in YouTube and other social media as well. I am very happy that you have taken the first step towards the Pranayama journey by attending my free “<a href='/breath-detox-yoga'>BREATH DETOX</a>” online yoga course.&nbsp;</p><p>Oh 😯 -, maybe some of you didn’t join yoga classes yet and you are new to this page or Yoga Vidya School platform. If you are new then maybe you don’t know me well and about my teachings or <a href="/pranayama-course-online-pranarambha">online pranayama Journey.</a> So before you go ahead with the reading, I request and suggest you to have a short tour to my previous courses and content. It will help you to understand what I do. And definitely help you to build a small Pranayama routine in the morning. And you will be confident enough to take another step towards the self growth</p><p>When you practice pranayama yoga you get so many benefits. You become calmer, more attentive,&nbsp; joyful and lighter. And trust me, It is not limited to only these benefits from Pranayama practice, but you will get much more than this.</p><p><span style=''><em>There are many more discoveries and pranayama breathing techniques ahead&nbsp;</em></span>If you continue on this path</p><p>I have been teaching <a href='https://en.wikipedia.org/wiki/Pranayama'>Pranayama</a> for a decade now. And over these years I have received appreciative feedback from many students around the world. It inspires me more when I hear their stories, how they transform their life not only physically but mentally emotionally and energetically.</p>
-<h5 style="color: #f5711a;"><strong>Transformation I am talking about Through Pranayama classes online</strong></h5>
-<ul style="list-style: none;">
-<li><span style="color: #f5711a;">&#10003;</span> People find a way to get out of difficult situations</li>
-<li><span style="color: #f5711a;">&#10003;</span> Holistic Health – physical, mental and spiritual</li>
-<li><span style="color: #f5711a;">&#10003;</span> Find the path and purpose</li>
-<li><span style="color: #f5711a;">&#10003;</span> People get rid of addictions, panic attacks, confusion, stress and depression</li>
-<li><span style="color: #f5711a;">&#10003;</span> Achieve great success in work and become much more productive</li>
-<li><span style="color: #f5711a;">&#10003;</span> Improve their meditation and help them to dive deeper inside</li>
-<li><span style="color: #f5711a;">&#10003;</span> For many, pranayama yoga has become a great boost for their mornings</li>
-</ul>
-<p>Pranayama has strong potential to change someone’s life for better. This is proved with my own experience, the transformation of many people whom I know the stories of hundreds of my students.
-Therefore I know it for sure that pranayama can change your life too, if you give it such an opportunity.
-&nbsp;For now I invite you to my exclusive course -<strong>21 days</strong> of pranayama classes online “<strong>PRANIC PURIFICATION</strong>”
-&nbsp;The name itself tells the meaning- purification of pranic body (PranamayaKosha)
-The main goal of this online pranayama course is to understand your energy body and to help you to purify it in order to channelise your prana into right direction.
-</p>
-        `),
-        '21 Days - Online Pranayama Journey with PrashantJ Yoga'
+          .bypassSecurityTrustHtml(`<p>Namaste and Welcome to Pranic Purification – A 21-Day Online Pranayama Sadhana</p>
+            <p>Dear Seeker of Light,</p>
+            <p>It is no coincidence that you have arrived on this page. Your presence here is a sign that your soul is ready to embark on a deeper journey inward — a journey of breath, healing, and inner transformation. And I want to assure you: you are making the right choice by joining Pranic Purification.</p>
+            <p>For over a decade, I have had the divine opportunity to guide countless souls across the world through the sacred science of Pranayama. The experiences shared by students have been nothing short of miraculous. Many have healed from deep emotional wounds, chronic illnesses, depression, and anxiety. Some have even reversed long-standing conditions that modern medicine could not fully address.</p>
+            <p>But beyond healing, something even more profound happens — transformation.
+            Clarity returns. Joy awakens. The mind sharpens. Energy flows freely. Many students have begun sharing this wisdom with their children and families, witnessing beautiful changes in their homes — enhanced memory, calmness, deeper focus, and a growing sense of peace.</p>
+            <p>Pranayama is more than just breathwork. It is a gateway to pranic intelligence, to spiritual awakening, and to harmony with the universe within and around us.</p>
+            <p>I have gathered some real stories of transformation below, so you can feel inspired and trust the process ahead. This 21-day sadhana is not just a course — it is a sacred space, a spiritual commitment to yourself, and a powerful purification of the body, mind, and energy system.</p>
+            <h5 style="color: #f5711a; margin-top: 35px"><strong>Transformation I am talking about Through Pranayama classes online</strong></h5>
+            <ul style="list-style: none;">
+            <li><span style="color: #f5711a;">&#10003;</span> People find a way to get out of difficult situations</li>
+            <li><span style="color: #f5711a;">&#10003;</span> Holistic Health – physical, mental and spiritual</li>
+            <li><span style="color: #f5711a;">&#10003;</span> Find the path and purpose</li>
+            <li><span style="color: #f5711a;">&#10003;</span> People get rid of addictions, panic attacks, confusion, stress and depression</li>
+            <li><span style="color: #f5711a;">&#10003;</span> Achieve great success in work and become much more productive</li>
+            <li><span style="color: #f5711a;">&#10003;</span> Improve their meditation and help them to dive deeper inside</li>
+            <li><span style="color: #f5711a;">&#10003;</span> For many, pranayama yoga has become a great boost for their mornings</li>
+            </ul>
+            <p>Pranayama has strong potential to change someone’s life for better. This is proved with my own experience, the transformation of many people whom I know the stories of hundreds of my students.
+            Therefore I know it for sure that pranayama can change your life too, if you give it such an opportunity. For now I invite you to my exclusive course -<strong>21 days</strong> of pranayama classes online “<strong>PRANIC PURIFICATION</strong>” The name itself tells the meaning- purification of pranic body (PranamayaKosha)
+            The main goal of this online pranayama course is to understand your energy body and to help you to purify it in order to channelise your prana into right direction.
+            </p>`
+          ),
+        ''
       );
     } else if (this.slug == '21-days-ashtanga-yoga-immersion') {
       //       this.aboutContent = {
