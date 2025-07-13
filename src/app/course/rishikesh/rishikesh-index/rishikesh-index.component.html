@@ -1,3 +1,39 @@
+@if(isPranicPurification){
+<app-banner [data]="bannerData"></app-banner>
+<app-bottom-nav-course
+  *ngIf="
+    slug != 'pranic-purification' &&
+    slug != '200-hours-yoga-teacher-training-online'
+  "
+></app-bottom-nav-course>
+<app-about-rishikesh></app-about-rishikesh>
+<app-education-categories [data]="feesData"></app-education-categories>
+<app-certified-yoga></app-certified-yoga>
+<app-rishikesh-curriculum [data]="currData"></app-rishikesh-curriculum>
+<app-watch-video
+  *ngIf="isYoutubeDataReady"
+  [data]="youtubeVideoData"
+  [slug]="slug"
+></app-watch-video>
+<app-learning></app-learning>
+<app-benifits></app-benifits>
+<app-daily-schedule [data]="schData"></app-daily-schedule>
+<app-includes [data]="youtubeVideoData"></app-includes>
+<app-choose-us [data]="codecond"></app-choose-us>
+<app-mentors></app-mentors>
+<app-services [data]="accomData"></app-services>
+<app-fee-structure [data]="feesData"></app-fee-structure>
+<app-code-conduct [data]="codecond"></app-code-conduct>
+<app-yoga-alliance [data]="codecond"></app-yoga-alliance>
+<app-schedule [data]="schEventData"></app-schedule>
+<app-excursions></app-excursions>
+<app-video-reviews
+  *ngIf="isPranicPurification"
+  [specialvideo]="true"
+></app-video-reviews>
+<app-faq [data]="faqData"></app-faq>
+<app-gallery></app-gallery>
+}@else{
 <app-banner [data]="bannerData"></app-banner>
 <app-bottom-nav-course
   *ngIf="
@@ -20,21 +56,7 @@
 <app-code-conduct [data]="codecond"></app-code-conduct>
 <app-yoga-alliance [data]="codecond"></app-yoga-alliance>
 <app-schedule [data]="schEventData"></app-schedule>
-<!-- <app-know-more></app-know-more> -->
 <app-excursions></app-excursions>
-@if(isPranicPurification){
-<app-video-reviews
-  *ngIf="isPranicPurification"
-  [specialvideo]="true"
-></app-video-reviews>
-<app-watch-video
-  *ngIf="isYoutubeDataReady"
-  [data]="youtubeVideoData"
-  [slug]="slug"
-></app-watch-video>
-<app-faq [data]="faqData"></app-faq>
-<app-gallery></app-gallery>
-}@else{
 <app-testimonials></app-testimonials>
 <app-video-reviews
   *ngIf="isPranicPurification"

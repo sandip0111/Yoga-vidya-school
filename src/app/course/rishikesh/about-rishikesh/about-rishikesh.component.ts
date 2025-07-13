@@ -182,7 +182,7 @@ export class AboutRishikeshComponent implements OnInit {
             Clarity returns. Joy awakens. The mind sharpens. Energy flows freely. Many students have begun sharing this wisdom with their children and families, witnessing beautiful changes in their homes — enhanced memory, calmness, deeper focus, and a growing sense of peace.</p>
             <p>Pranayama is more than just breathwork. It is a gateway to pranic intelligence, to spiritual awakening, and to harmony with the universe within and around us.</p>
             <p>I have gathered some real stories of transformation below, so you can feel inspired and trust the process ahead. This 21-day sadhana is not just a course — it is a sacred space, a spiritual commitment to yourself, and a powerful purification of the body, mind, and energy system.</p>
-            <h5 style="color: #f5711a; margin-top: 35px"><strong>Transformation I am talking about Through Pranayama classes online</strong></h5>
+            <h5 style="color: #f5711a;"><strong>Transformation I am talking about Through Pranayama classes online</strong></h5>
             <ul style="list-style: none;">
             <li><span style="color: #f5711a;">&#10003;</span> People find a way to get out of difficult situations</li>
             <li><span style="color: #f5711a;">&#10003;</span> Holistic Health – physical, mental and spiritual</li>
