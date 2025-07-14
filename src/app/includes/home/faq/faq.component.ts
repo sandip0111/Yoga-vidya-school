@@ -1,16 +1,17 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit,Input, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { routeEnum } from '../../../enum/routes';
 
 @Component({
   selector: 'app-faq',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './faq.component.html',
-  styleUrls: ['./faq.component.css']
+  styleUrls: ['./faq.component.css'],
 })
 export class FaqComponent implements OnInit {
-  @Input() data:any;
+  @Input() data: any;
   openIndex: number | null = null;
   faqs: faq[] = [];
   slug: any = '';
@@ -22,29 +23,30 @@ export class FaqComponent implements OnInit {
 
   toggleDescription(index: number) {
     if (this.openIndex === index) {
-      this.openIndex = null; // Close the currently open item if it's clicked again
+      this.openIndex = null;
     } else {
-      this.openIndex = index; // Open the new item and close any previously open item
+      this.openIndex = index;
     }
   }
   ngOnInit() {
-    if(this.slug == "pranic-purification"){
+    if (this.slug == routeEnum.pranicPurification) {
       this.isPranicPage = true;
     }
-    if(this.slug == '300-hour-yoga-teacher-training-in-bali'){
+    if (this.slug == routeEnum['300HourTTCBali']) {
       this.is300BaliPage = true;
     }
   }
-  ngOnChanges(changes: SimpleChanges):void {
-    if(changes['data'].currentValue?.length > 0) {
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['data'].currentValue?.length > 0) {
       this.faqs = changes['data'].currentValue;
-    }
-    else{
+    } else {
       this.faqs = [];
     }
-    if(this.faqs.length != 0){
-      if(this.slug == "pranic-purification"){
-        this.faqs = this.faqs.filter(i => i.title != "How to book this course?");
+    if (this.faqs.length != 0) {
+      if (this.slug == routeEnum.pranicPurification) {
+        this.faqs = this.faqs.filter(
+          (i) => i.title != 'How to book this course?'
+        );
       }
     }
   }
