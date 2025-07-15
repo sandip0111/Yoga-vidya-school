@@ -91,40 +91,42 @@
             >WhatsApp Number<span style="color: red">*</span></label
           >
           @if(paymentId){
-            <input type="text"
-              class="form-control"
-              [(ngModel)]="checkData.phoneNumber.e164Number"
-              [readOnly]="true"/>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="checkData.phoneNumber.e164Number"
+            [readOnly]="true"
+          />
           }@else{
-            <div class="whatsapp-div" >
-              <ngx-intl-tel-input
-                [cssClass]="'form-control phone_input'"
-                [separateDialCode]="true"
-                [preferredCountries]="['in', 'us']"
-                [enableAutoCountrySelect]="true"
-                [enablePlaceholder]="true"
-                [searchCountryFlag]="true"
-                [searchCountryField]="searchFields"
-                [selectFirstCountry]="false"
-                [selectedCountryISO]="CountryISO.India"
-                [maxLength]="15"
-                [phoneValidation]="true"
-                #phoneInput="ngModel"
-                required
-                (input)="onPhoneInputChange(!!phoneInput.valid)"
-                [(ngModel)]="checkData.phoneNumber"
-                (countryChange)="onCountryChange($event)"
-                (keyup)="inputValidation('phone')"
-              >
-              </ngx-intl-tel-input>
-              <span>(To see the course price enter your WhatsApp Number)</span>
-            </div>
-            <div *ngIf="phoneError" class="text-danger mt-1">
-              {{ phoneError }}
-            </div>
-            <div *ngIf="phoneRequired" class="text-danger mt-1">
-              {{ phoneRequired }}
-            </div>
+          <div class="whatsapp-div">
+            <ngx-intl-tel-input
+              [cssClass]="'form-control phone_input'"
+              [separateDialCode]="true"
+              [preferredCountries]="['in', 'us']"
+              [enableAutoCountrySelect]="true"
+              [enablePlaceholder]="true"
+              [searchCountryFlag]="true"
+              [searchCountryField]="searchFields"
+              [selectFirstCountry]="false"
+              [selectedCountryISO]="CountryISO.India"
+              [maxLength]="15"
+              [phoneValidation]="true"
+              #phoneInput="ngModel"
+              required
+              (input)="onPhoneInputChange(!!phoneInput.valid)"
+              [(ngModel)]="checkData.phoneNumber"
+              (countryChange)="onCountryChange($event)"
+              (keyup)="inputValidation('phone')"
+            >
+            </ngx-intl-tel-input>
+            <span>(To see the course price enter your WhatsApp Number)</span>
+          </div>
+          <div *ngIf="phoneError" class="text-danger mt-1">
+            {{ phoneError }}
+          </div>
+          <div *ngIf="phoneRequired" class="text-danger mt-1">
+            {{ phoneRequired }}
+          </div>
           }
         </div>
         <div
@@ -216,6 +218,19 @@
               alt="Razorpay"
               width="128"
               height="32"
+            />
+          </a>
+          <a
+            href="javascript:void(0)"
+            style="border-color: #f9751e"
+            class="payment-button"
+            (click)="checkoutData(checkData, false)"
+          >
+            <img
+              src="https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/stripe.png"
+              alt="Stripe"
+              width="128"
+              height="35"
             />
           </a>
           <a

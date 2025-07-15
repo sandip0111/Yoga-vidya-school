@@ -338,10 +338,12 @@ export class SuccessPaymentComponent {
       });
   }
   getStripePaymentResult200TTC(sessionId: string) {
+    let pass = this.genratePass(6);
     let dueAmnt = localStorage.getItem(localstorageKey['200TTCDue']);
     let val = {
       sessionId: sessionId,
       payDbId: localStorage.getItem(localstorageKey['200TTCStripeDBId']),
+      password: pass,
       installment:
         localStorage.getItem(localstorageKey['200TTCInstallment']) ?? '1st',
       dueAmnt: dueAmnt ? +dueAmnt : 0,
