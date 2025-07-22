@@ -60,7 +60,9 @@
         <li class="nav-item">
           <a class="nav-link card-button my_btn" href="/add-to-cart">
             <i class="fa-solid fa-cart-shopping"></i>
-            <span *ngIf="cartItemTotal != 0" class="number">{{cartItemTotal}}</span>
+            <span *ngIf="cartItemTotal != 0" class="number">{{
+              cartItemTotal
+            }}</span>
           </a>
         </li>
         <li class="nav-item" *ngIf="!loginUser">
@@ -68,9 +70,10 @@
             <i class="{{ loginButton.iconClass }}"></i> {{ loginButton.title }}
           </a>
         </li>
+        <li><a href="/contact-us" class="video-button">Contact us</a></li>
       </ul>
       <ul class="navbar-nav" *ngIf="loginUser">
-        <li class="nav-item dropdown" *ngIf="loginButton">
+        <li class="nav-item dropdown">
           <a class="nav-link login-button dropdown-toggle">
             <i class="fa-user fas"></i>
           </a>

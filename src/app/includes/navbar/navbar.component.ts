@@ -12,7 +12,7 @@ import { CartService } from '../../cart.service';
   styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit {
-  loginUser: any = '';
+  loginUser: string | null = null;
   cartItemTotal: any = 0;
   menuItems: MenuItem[] = [
     { title: 'Home', link: '/' },
@@ -211,7 +211,11 @@ export class NavbarComponent implements OnInit {
   constructor(
     private eventBus: EventBusService,
     private cartService: CartService
-  ) {}
+  ) {
+    if (typeof sessionStorage !== 'undefined') {
+      this.loginUser = sessionStorage.getItem('loginId');
+    }
+  }
   ngOnInit(): void {
     var items = this.cartService.getItems();
     this.cartItemTotal = items.reduce(
@@ -221,10 +225,6 @@ export class NavbarComponent implements OnInit {
     this.eventBus.on('cart-icon', (data) => {
       this.cartItemTotal = data.message;
     });
-    // console.log(this.menuItems,'--');
-    if (typeof sessionStorage !== 'undefined') {
-      this.loginUser = sessionStorage.getItem('loginId');
-    }
   }
   preventCollapse(event: MouseEvent) {
     event.stopPropagation();
