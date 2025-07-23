@@ -1,11 +1,16 @@
 <!-- about.component.html -->
 
-<section
-  class="workshop-section"
->
-  <div class="row py-4">
+<section class="workshop-section">
+  <div class="row">
     <div class="col-md-12">
-      <div><img src="https://my-s3-images-bucket.s3.amazonaws.com/img/flower-white.png" loading="lazy" alt="Not Loaded" class="flower-img"></div>
+      <div>
+        <img
+          [src]="s3Bucket.flowerWhite"
+          loading="lazy"
+          alt="Not Loaded"
+          class="flower-img"
+        />
+      </div>
       <h2 class="text-white">What We Offer At Yoga Vidya School</h2>
       <!-- <small class="text-white"
         >Lacus suspendisse faucibus interdum posuere lorem ipsum dolor sit amet.
@@ -17,27 +22,40 @@
     <div class="col-md-6 workshop" *ngFor="let item of offers">
       <div class="row">
         <div class="col-md-12">
-          <div class="heading text-center">{{item.boxHeading}}</div>
+          <div class="heading text-center">{{ item.boxHeading }}</div>
         </div>
         <div class="details">
           <div class="inner-details">
             <div class="row">
               <div class="col-md-8">
-                <h2>{{item.titleBox1}}</h2>
-                <small
-                  >{{item.paraBox1}}
-                </small>
+                <h2>{{ item.titleBox1 }}</h2>
+                <small>{{ item.paraBox1 }} </small>
                 <div class="list">
-                  <img loading="lazy" alt="Not Loaded" src="https://my-s3-images-bucket.s3.amazonaws.com/img/calendar.png" />
-                  <div>{{item.dateTimeBox1}}</div>
+                  <img
+                    loading="lazy"
+                    alt="Not Loaded"
+                    src="https://my-s3-images-bucket.s3.amazonaws.com/img/calendar.png"
+                  />
+                  <div>{{ item.dateTimeBox1 }}</div>
                 </div>
                 <div class="list">
-                  <img loading="lazy" alt="Not Loaded" src="https://my-s3-images-bucket.s3.amazonaws.com/img/user.png" />
-                  <div>Duration : {{item.durationBox1}}</div>
+                  <img
+                    loading="lazy"
+                    alt="Not Loaded"
+                    src="https://my-s3-images-bucket.s3.amazonaws.com/img/user.png"
+                  />
+                  <div>Duration : {{ item.durationBox1 }}</div>
                 </div>
                 <div class="but">
-                  <a href="{{item.url1}}" class="text-white text-decoration-none">
-                    Enroll Now<img loading="lazy" alt="Not Loaded" src="https://my-s3-images-bucket.s3.amazonaws.com/img/arrow-white.png" />
+                  <a
+                    href="{{ item.url1 }}"
+                    class="text-white text-decoration-none"
+                  >
+                    Enroll Now<img
+                      loading="lazy"
+                      alt="Not Loaded"
+                      src="https://my-s3-images-bucket.s3.amazonaws.com/img/arrow-white.png"
+                    />
                   </a>
                 </div>
               </div>
@@ -52,26 +70,39 @@
           <div class="inner-details">
             <div class="row">
               <div class="col-md-8">
-                <h2>{{item.titleBox2}}</h2>
-                <small
-                  >{{item.paraBox2}}
-                </small>
+                <h2>{{ item.titleBox2 }}</h2>
+                <small>{{ item.paraBox2 }} </small>
                 <div class="list">
-                  <img loading="lazy" alt="Not Loaded" src="https://my-s3-images-bucket.s3.amazonaws.com/img/calendar.png" />
-                  <div>{{item.dateTimeBox2}}</div>
+                  <img
+                    loading="lazy"
+                    alt="Not Loaded"
+                    src="https://my-s3-images-bucket.s3.amazonaws.com/img/calendar.png"
+                  />
+                  <div>{{ item.dateTimeBox2 }}</div>
                 </div>
                 <div class="list">
-                  <img loading="lazy" alt="Not Loaded" src="https://my-s3-images-bucket.s3.amazonaws.com/img/user.png" />
-                  <div>Duration : {{item.durationBox2}}</div>
+                  <img
+                    loading="lazy"
+                    alt="Not Loaded"
+                    src="https://my-s3-images-bucket.s3.amazonaws.com/img/user.png"
+                  />
+                  <div>Duration : {{ item.durationBox2 }}</div>
                 </div>
                 <div class="but">
-                  <a class="text-white text-decoration-none" href="{{item.url2}}">
-                  Enroll Now<img loading="lazy" alt="Not Loaded" src="https://my-s3-images-bucket.s3.amazonaws.com/img/arrow-white.png" />
+                  <a
+                    class="text-white text-decoration-none"
+                    href="{{ item.url2 }}"
+                  >
+                    Enroll Now<img
+                      loading="lazy"
+                      alt="Not Loaded"
+                      src="https://my-s3-images-bucket.s3.amazonaws.com/img/arrow-white.png"
+                    />
                   </a>
                 </div>
               </div>
               <div class="col-md-4">
-                <img [src]="item.imgBox2"  alt="img" class="trainer-img" />
+                <img [src]="item.imgBox2" alt="img" class="trainer-img" />
               </div>
             </div>
           </div>
@@ -79,7 +110,16 @@
       </div>
     </div>
     <div class="col-md-12 text-center my-3 text-white">
-      Yoga Vidya School is a leading name in the international yoga community, renowned for offering exceptional yoga services, classes, retreats and courses. We offer both online and offline programs guided by Prashant J Yoga and our experienced Yoga Teachers, ensuring yoga enthusiasts receive top-notch yogic education and personalized attention. The comprehensive curriculum created after through research, covers various yoga practices, from movements to meditations, making it easy for participants to deepen their understanding and enhance their practice. Whether you choose to join in person or virtually, Yoga Vidya School promises a transformative and enriching experience in the world of yoga.
+      Yoga Vidya School is a leading name in the international yoga community,
+      renowned for offering exceptional yoga services, classes, retreats and
+      courses. We offer both online and offline programs guided by Prashant J
+      Yoga and our experienced Yoga Teachers, ensuring yoga enthusiasts receive
+      top-notch yogic education and personalized attention. The comprehensive
+      curriculum created after through research, covers various yoga practices,
+      from movements to meditations, making it easy for participants to deepen
+      their understanding and enhance their practice. Whether you choose to join
+      in person or virtually, Yoga Vidya School promises a transformative and
+      enriching experience in the world of yoga.
     </div>
     <div class="col-md-12 text-center my-3">
       <a href="#upcoming-events" class="button-white">Our Upcoming Events</a>

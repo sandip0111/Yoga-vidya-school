@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { s3Bucket } from '../../../enum/s3Bucket';
 
 @Component({
   selector: 'app-popular-workshop',
@@ -9,6 +10,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./popular-workshop.component.css']
 })
 export class PopularWorkshopComponent implements OnInit {
+  s3Bucket = s3Bucket;
   workshops: workshop[] = [
     {
       title: 'Yoga Retreat in Bali',

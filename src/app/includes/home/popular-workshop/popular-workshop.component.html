@@ -1,12 +1,27 @@
 <section class="workshops">
   <div class="row">
     <div class="col-md-12">
-      <div><img loading="lazy" alt="Not Loaded"src="https://my-s3-images-bucket.s3.amazonaws.com/img/flower-color.png" class="flower-img"></div>
+      <div>
+        <img
+          loading="lazy"
+          alt="Not Loaded"
+          [src]="s3Bucket.flower"
+          class="flower-img"
+        />
+      </div>
       <h2>Our Popular <span>Yoga Yoga Retreats/Workshops</span></h2>
-      <small>In addition to Yoga TTCs, Yoga Vidya School offers various short yoga courses, Yoga Retreats and Yoga Workshops </small>
-      <small>related to Asanas, Pranayama, Mindfulness, Yogic Philosophy, Ayurveda etc. These programs are available in India and</small>
-      <small>abroad for beginners, intermediate and advanced levels of practitioners.</small>
-
+      <small
+        >In addition to Yoga TTCs, Yoga Vidya School offers various short yoga
+        courses, Yoga Retreats and Yoga Workshops
+      </small>
+      <small
+        >related to Asanas, Pranayama, Mindfulness, Yogic Philosophy, Ayurveda
+        etc. These programs are available in India and</small
+      >
+      <small
+        >abroad for beginners, intermediate and advanced levels of
+        practitioners.</small
+      >
     </div>
     <div class="col-md-4 my-5" *ngFor="let item of workshops">
       <div class="card">
@@ -21,7 +36,7 @@
           <div class="heading fw-600">{{ item.title }}</div>
           <div class="dis-flex">
             <p class="card-text">Location : {{ item.location }}</p>
-            <a href="{{item.link}}" class="read-more">Read More</a>
+            <a href="{{ item.link }}" class="read-more">Read More</a>
           </div>
         </div>
       </div>

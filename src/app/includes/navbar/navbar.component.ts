@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { EventBusService } from '../../event-bus.service';
 import { CartService } from '../../cart.service';
+import { s3Bucket } from '../../enum/s3Bucket';
 
 @Component({
   selector: 'app-navbar',
@@ -93,7 +94,7 @@ export class NavbarComponent implements OnInit {
       ],
     },
     {
-      title: 'Online Yoga',
+      title: 'Online Yoga Programmes',
       link: '#',
       submenu: [
         { title: 'Online Yoga Classes', link: '/online-yoga-classes' },
@@ -128,79 +129,12 @@ export class NavbarComponent implements OnInit {
       ],
     },
     {
-      title: 'Yoga Retreats',
-      link: '#',
-      submenu: [
-        {
-          title: 'Rishikesh',
-          link: '#',
-          submenu: [
-            {
-              title: 'Yoga Retreats in Rishikesh',
-              link: '/yoga-retreat-in-rishikesh-india',
-            },
-          ],
-        },
-        {
-          title: 'Bali',
-          link: '#',
-          submenu: [
-            { title: 'Yoga Retreats in Bali', link: '/yoga-retreat-in-bali' },
-          ],
-        },
-        // {
-        //   title: 'Mysore',
-        //   link: '#',
-        //   submenu: [
-        //     {
-        //       title: 'Yoga Retreats in Mysore',
-        //       link: '/yoga-retreat-in-mysore-india',
-        //     },
-        //   ],
-        // },
-        // {
-        //   title: 'Peru',
-        //   link: '#',
-        //   submenu: [
-        //     { title: 'Yoga Retreats in Peru', link: '/yoga-retreat-in-peru' },
-        //   ],
-        // },
-        // {
-        //   title: 'Kerala',
-        //   link: '#',
-        //   submenu: [
-        //     {
-        //       title: 'Yoga Retreats in Kerala',
-        //       link: '/yoga-retreat-in-kerala-india',
-        //     },
-        //   ],
-        // },
-      ],
+      title: 'Contact Us',
+      link: 'contact-us',
     },
     {
-      title: 'More Yoga Classes',
+      title: 'Blog',
       link: '#',
-      submenu: [
-        // {
-        //   title: '21 Days Ashtanga Yoga Immersion',
-        //   link: '/21-days-ashtanga-yoga-immersion',
-        // },
-        // {
-        //   title: 'Pranayama Therapy Course Online',
-        //   link: '/pranayama-therapy-course-online',
-        // },
-        { title: 'Adjustment & Alignment', link: '/adjustment-and-alignment' },
-        // {
-        //   title: 'Adjustment & Alignment Level 2',
-        //   link: '/adjustment-and-alignment-level-2',
-        // },
-        {
-          title: 'Yoga Teacher Training in India',
-          link: '/yoga-teacher-training-in-india',
-        },
-        // { title: 'Drop-in Yoga Classes', link: '/drop-in-yoga-classes' },
-        // { title: 'Yoga for Weight Loss', link: '/yoga-for-weight-loss' },
-      ],
     },
   ];
   loginButton: MenuItem = {
@@ -216,6 +150,7 @@ export class NavbarComponent implements OnInit {
       this.loginUser = sessionStorage.getItem('loginId');
     }
   }
+  s3Bucket = s3Bucket;
   ngOnInit(): void {
     var items = this.cartService.getItems();
     this.cartItemTotal = items.reduce(

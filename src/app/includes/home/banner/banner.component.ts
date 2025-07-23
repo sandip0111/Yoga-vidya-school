@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { s3Bucket } from '../../../enum/s3Bucket';
 
 @Component({
   selector: 'app-banner',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./banner.component.css']
 })
 export class BannerComponent implements OnInit {
-
+  s3Bucket = s3Bucket;
   constructor() { }
 
   ngOnInit() {

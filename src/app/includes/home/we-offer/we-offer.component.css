@@ -1,103 +1,99 @@
 .workshop-section {
-    text-align: center;
-    background: url('https://my-s3-images-bucket.s3.amazonaws.com/img/offer-bg.webp'); 
-    background-size: cover;
+  text-align: center;
+  background: url("https://my-s3-images-bucket.s3.amazonaws.com/img/offer-bg.webp");
+  background-size: cover;
 
-    h2 {
-        font-size: 28px;
-        color: #000;
-    }
+  h2 {
+    font-size: 28px;
+    color: #000;
+  }
 
-    small {
-        font-size: 19px;
+  small {
+    font-size: 19px;
     padding: 0;
+  }
+
+  .heading {
+    font-weight: 700;
+    font-size: 40px;
+    color: rgba(245, 113, 26, 1);
+  }
+
+  .list {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+
+    img {
+      width: 28px;
     }
+  }
 
-    .heading {
-        font-weight: 700;
-        font-size: 40px;
-        color: rgba(245, 113, 26, 1);
+  .workshop {
+    border: 1px solid rgba(249, 117, 30, 1);
+    background: rgba(255, 245, 222, 1);
+    text-align: left;
+    padding: 30px 50px;
+    border-radius: 10px;
+    position: relative;
 
-    }
+    .details {
+      background: rgba(249, 117, 30, 1);
+      border-radius: 10px;
+      padding: 0 6px 6px 0px;
+      margin-bottom: 10px;
+      .inner-details {
+        border: 0.83px solid rgba(249, 117, 30, 1);
+        padding: 15px;
+        background: #fff;
+        border-radius: 10px;
+        .trainer-img {
+          width: 100%;
+          margin-top: 15%;
+        }
+      }
 
-    .list {
-        display: flex;
+      small {
+        padding: 0;
+        font-size: 19px;
+        padding: 0;
+      }
+
+      h3 {
+        font-size: 25px;
+        font-weight: 500;
+      }
+
+      h2 {
+        font-size: 30px;
+        font-weight: 600;
+      }
+
+      .but {
+        background: rgba(249, 117, 30, 1);
+        color: #fff;
+        padding: 7px 10px;
+        margin-top: 10px;
+        display: inline-flex;
+        justify-content: center;
         align-items: center;
         gap: 10px;
-        margin-top: 10px;
 
         img {
-            width: 28px;
+          margin-bottom: 0px;
+          width: 24%;
         }
+      }
     }
 
-    .workshop {
-        border: 1px solid rgba(249, 117, 30, 1);
-        background: rgba(255, 245, 222, 1);
-        text-align: left;
-        padding: 30px 50px;
-        border-radius: 10px;
-        position: relative;
+    .contact {
+      margin-top: 10px;
 
-
-
-        .details {
-            background: rgba(249, 117, 30, 1);
-            border-radius: 10px;
-            padding: 0 6px 6px 0px;
-            margin-bottom: 10px;
-            .inner-details {
-                border: 0.83px solid rgba(249, 117, 30, 1);
-                padding: 15px;
-                background: #fff;
-                border-radius: 10px;
-                .trainer-img{
-                    width: 100%;
-                    margin-top: 15%;
-                }
-            }
-
-            small {
-                padding: 0;
-                font-size: 19px;
-    padding: 0;
-            }
-
-            h3 {
-                font-size: 25px;
-                font-weight: 500;
-            }
-
-            h2 {
-                font-size: 30px;
-                font-weight: 600;
-            }
-
-            .but {
-                background: rgba(249, 117, 30, 1);
-                color: #fff;
-                padding: 7px 10px;
-                margin-top: 10px;
-                display: inline-flex;
-                justify-content: center;
-                align-items: center;
-                gap: 10px;
-
-                img {
-                    margin-bottom: 0px;
-                    width: 24%;
-                }
-            }
-        }
-
-        .contact {
-            margin-top: 10px;
-
-            small {
-                padding: 0;
-                display: block;
-            }
-        }
-
+      small {
+        padding: 0;
+        display: block;
+      }
     }
+  }
 }

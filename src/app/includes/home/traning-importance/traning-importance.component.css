@@ -1,26 +1,35 @@
-
-.training-section{
-
-    text-align: center;
-    padding: 40px 40px;
-    background: radial-gradient(circle, rgba(255, 245, 219, 0.94) 60%, rgba(249, 117, 30, 0.21) 110%);
-    background: -moz-radial-gradient(circle, rgba(255, 245, 219, 0.94) 60%, rgba(249, 117, 30, 0.21) 110%);
-    background: -webkit-radial-gradient(circle, rgba(255, 245, 219, 0.94) 60%, rgba(249, 117, 30, 0.21) 110%);
-    h2{
-        span{
-            color: #f47019;
-        }
+.training-section {
+  text-align: center;
+  padding: 40px 40px;
+  background: radial-gradient(
+    circle,
+    rgba(255, 245, 219, 0.94) 60%,
+    rgba(249, 117, 30, 0.21) 110%
+  );
+  background: -moz-radial-gradient(
+    circle,
+    rgba(255, 245, 219, 0.94) 60%,
+    rgba(249, 117, 30, 0.21) 110%
+  );
+  background: -webkit-radial-gradient(
+    circle,
+    rgba(255, 245, 219, 0.94) 60%,
+    rgba(249, 117, 30, 0.21) 110%
+  );
+  h2 {
+    span {
+      color: #f47019;
     }
-    p{
-        font-size: 18px;
-    }
-    small{
-        padding: 0px 200px;
+  }
+  p {
+    font-size: 18px;
+  }
+  small {
+    padding: 0px 200px;
     display: inline-block;
     font-size: 17px;
-    }
-    iframe{
-        box-shadow: 0px 20px 20px 0px #00000040;
-
-    }
+  }
+  iframe {
+    box-shadow: 0px 20px 20px 0px #00000040;
+  }
 }

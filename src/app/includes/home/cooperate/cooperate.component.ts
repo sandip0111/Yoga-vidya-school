@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { s3Bucket } from '../../../enum/s3Bucket';
 
 @Component({
   selector: 'app-cooperate',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cooperate.component.css']
 })
 export class CooperateComponent implements OnInit {
-
+  s3Bucket = s3Bucket;
   constructor() { }
 
   ngOnInit() {

@@ -1,102 +1,69 @@
-<!-- about.component.html -->
-
 <section class="services-section accomation_sec">
   <div class="background_img"></div>
   <div class="upper">
-    <div><img loading="lazy" alt="Not Loaded" src="https://my-s3-images-bucket.s3.amazonaws.com/img/flower-color.png" class="flower-img" /></div>
-    <h2 class="mt-2">ENJOY YOGA ROOMS &<span>YOGIC FOOD</span></h2>
+    <div>
+      <img
+        loading="lazy"
+        alt="Not Loaded"
+        [src]="s3Bucket.flower"
+        class="flower-img"
+      />
+    </div>
+    <h2 class="mt-2">ENJOY YOGA ROOMS mukta di kal amake teams e call o korbe r amake office eo jedin jabe sedin dakbe &<span>YOGIC FOOD</span></h2>
   </div>
   <div class="bottom">
     <div class="middle-text">
-      <div class="accomodation">
-        <div class="text-left">
-          <!-- <small class="text-left">more About Our Services</small> -->
-          <h3 class="title"><span>Accommodation</span></h3>
-          <p>
-            Yoga Vidya School ashram or accommodation facility is the perfect
-            place to live and experience yogic life. Located in the lush green
-            Himalayas near Rajaji forest reserve, we provide one of the most
-            peaceful and serene venues in Rishikesh, unlike the concrete jungles
-            of touristy areas in Rishikesh. We are located far from the heavy
-            touristy traffic area, allowing our students to focus entirely on
-            their yogic practices during the yoga teacher training and yoga
-            retreats. The healing and peaceful natural environment of trees and
-            birds offers the chance to connect deeper with the nature. The rooms
-            are equipped with all the modern facilities such as Wifi, 24X7 hot
-            water, attached Western toilets, etc. Beautiful Himalayan and Sunset
-            View from the Resting/Self-studying Area promotes calmness and
-            rejuvenation after long-intensive sessions during the day
-          </p>
-          <div class=""><a href="#" class="button">Read More</a></div>
-        </div>
+      <div class="accomodation_image">
+        <img
+          class="img-fluid"
+          [src]="s3Bucket.room2"
+          alt="Accommodation"
+        />
       </div>
       <div class="accomodation_image">
-        <img class="img-fluid" src="https://my-s3-images-bucket.s3.amazonaws.com/images/IMG_6828_cchusm.jpg" alt="Accommodation" />
-        <!-- <iframe
-    width="600"
-    height="660"
-      src="https://www.youtube.com/embed/vPD1NGMY_8E?si=PZ1aqfhF5s0UKkaA"
-      title="YouTube video player"
-      frameborder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-      referrerpolicy="strict-origin-when-cross-origin"
-      allowfullscreen
-    ></iframe> -->
+        <img
+          class="img-fluid"
+          [src]="s3Bucket.room3"
+          alt="Accommodation"
+        />
+      </div>
+      <div class="col-md-12">
+        <img
+          class="img-fluid"
+          [src]="s3Bucket.room3"
+          alt="Accommodation"
+        />
       </div>
     </div>
-    <div class="bottom-abs">
-        <div class="services">
-          <img class="img-fluid br-10" src="https://my-s3-images-bucket.s3.amazonaws.com/images/acc4_ikf9ta.jpg" alt="Accomdation" />
-          <!-- <div class="icon">
-            <img src="https://my-s3-images-bucket.s3.amazonaws.com/img/room-service.png" alt="Accomdation" />
-          </div>
-          <div class="text">
-            <h2>Pick Up Drop</h2>
-            <span>Immersive Experience: </span>Engage in a deeply transformative
-            journey at the heart of yoga's origin, providing an unparalleled
-            immersive experience.
-          </div>
-          <div class="count">03</div> -->
+    <!-- <div class="bottom-abs">
+      <div class="services">
+        <img
+          class="img-fluid br-10"
+          src="https://my-s3-images-bucket.s3.amazonaws.com/images/acc4_ikf9ta.jpg"
+          alt="Accomdation"
+        />
       </div>
-        <div class="services">
-          <img class="img-fluid br-10" src="https://my-s3-images-bucket.s3.amazonaws.com/images/acc3_hbccdh.jpg" alt="Accomdation" />
-          <!-- <div class="icon">
-            <img src="https://my-s3-images-bucket.s3.amazonaws.com/img/room-service.png" alt="Accomdation" />
-          </div>
-          <div class="text">
-            <h2>Pick Up Drop</h2>
-            <span>Immersive Experience: </span>Engage in a deeply transformative
-            journey at the heart of yoga's origin, providing an unparalleled
-            immersive experience.
-          </div>
-          <div class="count">03</div> -->
+      <div class="services">
+        <img
+          class="img-fluid br-10"
+          src="https://my-s3-images-bucket.s3.amazonaws.com/images/acc3_hbccdh.jpg"
+          alt="Accomdation"
+        />
       </div>
-        <div class="services">
-          <img class="img-fluid br-10" src="https://my-s3-images-bucket.s3.amazonaws.com/images/acc2_zwdgpr.jpg" alt="Accomdation" />
-          <!-- <div class="icon">
-            <img src="https://my-s3-images-bucket.s3.amazonaws.com/img/room-service.png" alt="Accomdation" />
-          </div>
-          <div class="text">
-            <h2>Pick Up Drop</h2>
-            <span>Immersive Experience: </span>Engage in a deeply transformative
-            journey at the heart of yoga's origin, providing an unparalleled
-            immersive experience.
-          </div>
-          <div class="count">03</div> -->
+      <div class="services">
+        <img
+          class="img-fluid br-10"
+          src="https://my-s3-images-bucket.s3.amazonaws.com/images/acc2_zwdgpr.jpg"
+          alt="Accomdation"
+        />
       </div>
-        <div class="services">
-          <img class="img-fluid br-10" src="https://my-s3-images-bucket.s3.amazonaws.com/images/acc1_e2fcux.jpg" alt="Accomdation" />
-          <!-- <div class="icon">
-            <img src="https://my-s3-images-bucket.s3.amazonaws.com/img/room-service.png" alt="Accomdation" />
-          </div>
-          <div class="text">
-            <h2>Pick Up Drop</h2>
-            <span>Immersive Experience: </span>Engage in a deeply transformative
-            journey at the heart of yoga's origin, providing an unparalleled
-            immersive experience.
-          </div>
-          <div class="count">03</div> -->
+      <div class="services">
+        <img
+          class="img-fluid br-10"
+          src="https://my-s3-images-bucket.s3.amazonaws.com/images/acc1_e2fcux.jpg"
+          alt="Accomdation"
+        />
       </div>
-    </div>
+    </div> -->
   </div>
 </section>

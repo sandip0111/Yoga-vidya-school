@@ -16,6 +16,10 @@
   .namaste {
     font-family: "Julee", cursive;
     font-size: 30px;
+    text-align: center;
+  }
+  .readMore{
+    text-align: center;
   }
 }
 

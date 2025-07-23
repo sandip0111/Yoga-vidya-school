@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { s3Bucket } from '../../../enum/s3Bucket';
 
 @Component({
   selector: 'app-we-offer',
@@ -9,6 +10,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./we-offer.component.css']
 })
 export class WeOfferComponent implements OnInit {
+  s3Bucket = s3Bucket;
   offers:offer[]=[
     {
       boxHeading:"In-School",

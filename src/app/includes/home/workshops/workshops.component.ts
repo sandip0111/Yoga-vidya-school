@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { WebapiService } from '../../../webapi.service';
+import { s3Bucket } from '../../../enum/s3Bucket';
 @Component({
   selector: 'app-workshops',
   standalone: true,
@@ -9,9 +10,8 @@ import { WebapiService } from '../../../webapi.service';
   styleUrls: ['./workshops.component.css']
 })
 export class WorkshopsComponent implements OnInit {
-  workshops: workshop[] = [
-
-  ]
+  workshops: workshop[] = []
+  s3Bucket = s3Bucket;
   constructor(private webapiService:WebapiService) { }
 
   ngOnInit() {
