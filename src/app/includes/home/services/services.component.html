@@ -9,34 +9,22 @@
         class="flower-img"
       />
     </div>
-    <h2 class="mt-2">ENJOY YOGA ROOMS &<span>YOGIC FOOD</span></h2>
+    <h2 class="mt-2">ENJOY YOGA ROOMS & <span>YOGIC FOOD</span></h2>
   </div>
   <div class="bottom">
-    <div class="middle-text">
-      <div class="accomodation_image">
-        <img
-          class="img-fluid"
-          [src]="s3Bucket.room2"
-          alt="Accommodation"
-        />
+    <div class="middle-text image-grid">
+      <div class="grid-item">
+        <img class="img-fluid" [src]="s3Bucket.room2" alt="Room 1" />
       </div>
-      <div class="accomodation_image">
-        <img
-          class="img-fluid"
-          [src]="s3Bucket.room3"
-          alt="Accommodation"
-        />
+      <div class="grid-item">
+        <img class="img-fluid" [src]="s3Bucket.room3" alt="Room 2" />
       </div>
-      <!-- <div class="col-md-12">
-        <img
-          class="img-fluid"
-          [src]="s3Bucket.room3"
-          alt="Accommodation"
-        />
-      </div> -->
+      <div class="grid-item full-width">
+        <img class="img-fluid" [src]="s3Bucket.food" alt="Yogic Food" />
+      </div>
     </div>
-     <div class="bottom-abs">
-      <!-- <div class="services">
+    <!-- <div class="bottom-abs">
+      <div class="services">
         <img
           class="img-fluid br-10"
           src="https://my-s3-images-bucket.s3.amazonaws.com/images/acc4_ikf9ta.jpg"
@@ -56,14 +44,14 @@
           src="https://my-s3-images-bucket.s3.amazonaws.com/images/acc2_zwdgpr.jpg"
           alt="Accomdation"
         />
-      </div> -->
+      </div>
       <div class="services">
         <img
           class="img-fluid br-10"
-          src="https://my-s3-images-bucket.s3.amazonaws.com/images/food_dwn1yl.jpg"
+          [src]="s3Bucket.food"
           alt="Accomdation"
         />
       </div>
-    </div> 
+    </div> -->
   </div>
 </section>

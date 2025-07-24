@@ -66,6 +66,20 @@
       }
     }
   }
+  .image-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+
+  .grid-item {
+    object-fit: cover;
+    border-radius: 10px; /* You can adjust or control this via .br-10 */
+  }
+
+  /* Make last image span across both columns */
+  .full-width {
+    grid-column: span 2;
+  }
 
   .middle-text {
     position: relative;
@@ -82,7 +96,7 @@
     @media (max-width: 767px) {
       & {
         display: flex;
-        flex-direction: column-reverse;
+        flex-direction: column;
       }
     }
   }
@@ -162,14 +176,23 @@
     left: 0;
     width: 100%;
     height: 500px;
-    background: url("https://my-s3-images-bucket.s3.amazonaws.com/img/services-bg.webp") no-repeat
-      center center;
+    background: url("https://my-s3-images-bucket.s3.amazonaws.com/img/services-bg.webp")
+      no-repeat center center;
     background-size: cover;
     /* background-attachment: fixed; */
     z-index: 0;
   }
 }
 
-.br-10{
+.br-10 {
   border-radius: 10px;
+}
+.middle-text.three-column {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 767px) {
+  .middle-text.three-column {
+    grid-template-columns: 1fr;
+  }
 }

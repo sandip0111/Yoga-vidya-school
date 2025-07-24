@@ -59,24 +59,12 @@
         </li>
       </ul>
     </div>
-    <div class="collapse navbar-collapse flex-direction-row-reverse">
+    <div
+      class="collapse navbar-collapse flex-direction-row-reverse"
+      id="navbarNav"
+    >
       <ul class="navbar-nav">
-        <li class="nav-item me-3">
-          <a class="nav-link card-button my_btn" href="/add-to-cart">
-            <i class="fa-solid fa-cart-shopping"></i>
-            <span *ngIf="cartItemTotal != 0" class="number">{{
-              cartItemTotal
-            }}</span>
-          </a>
-        </li>
-        <li class="nav-item" *ngIf="!loginUser">
-          <a class="nav-link login-button" href="{{ loginButton.link }}">
-            <i class="{{ loginButton.iconClass }}"></i> {{ loginButton.title }}
-          </a>
-        </li>
-      </ul>
-      <ul class="navbar-nav" *ngIf="loginUser">
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown" *ngIf="loginUser">
           <a class="nav-link login-button dropdown-toggle">
             <i class="fa-user fas"></i>
           </a>
@@ -92,6 +80,22 @@
             </li>
           </ul>
         </li>
+        <li class="nav-item">
+          <a class="nav-link card-button my_btn" href="/add-to-cart">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span *ngIf="cartItemTotal != 0" class="number">
+              {{ cartItemTotal }}
+            </span>
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="!loginUser">
+          <a class="nav-link login-button" href="{{ loginButton.link }}">
+            <i class="{{ loginButton.iconClass }}"></i> {{ loginButton.title }}
+          </a>
+        </li>
+      </ul>
+      <ul class="navbar-nav" >
+
       </ul>
     </div>
   </div>
