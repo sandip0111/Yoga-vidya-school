@@ -115,15 +115,16 @@
     max-width: 1260px;
     margin-inline: auto;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 30px;
-    margin-block-start: clamp(40px, 4rem, 100px);
+    margin-bottom: 10px;
+    /* grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px; */
+    margin-block-start: clamp(40px, 2rem, 100px);
   }
 
   .services {
     position: relative;
-    width: 100%;
-    border: 1px solid var(--tw-primary-clarity-light);
+    /* width: 100%; */
+    /* border: 1px solid var(--tw-primary-clarity-light); */
     border-radius: 10px;
     width: 100%;
     .icon {
