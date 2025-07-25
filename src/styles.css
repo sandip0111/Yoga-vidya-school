@@ -61,7 +61,7 @@
   --danger_active: #c21b2b;
 }
 html {
-  /* overflow-x: hidden; */
+  overflow-x: hidden;
 }
 body {
   max-width: 1450px;

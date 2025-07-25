@@ -1,8 +1,13 @@
 <div class="row" *ngIf="fees?.amount">
-  <div class="col-md-12">
+  <div class="col-md-12" *ngIf="isOnline200ttc">
     <a [href]="href" class="button text-center"
       >START YOUR YOGA CLASS TODAY<br />&#64;{{ fees.amount }}
       {{ fees.currency }}</a
     >
+  </div>
+  <div class="col-md-12" *ngIf="!isOnline200ttc">
+    <a href="javascript:void(0)" (click)="scrollToTop()" class="button text-center"
+      >ENROLL YOUR YOGA CLASS TODAY
+    </a>
   </div>
 </div>

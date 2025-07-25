@@ -133,8 +133,8 @@ export class NavbarComponent implements OnInit {
       link: 'contact-us',
     },
     {
-      title: 'Blog',
-      link: '#',
+      title: 'Blogs',
+      link: '/blogs',
     },
   ];
   loginButton: MenuItem = {

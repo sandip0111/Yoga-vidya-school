@@ -14,11 +14,22 @@ export class StartClassComponent implements OnInit {
   @Input() slug: string = '';
   fees: feesStructureModel = new feesStructureModel();
   href: string = '/checkout';
+  isOnline200ttc: boolean = false;
   constructor() {}
   ngOnInit() {
     this.href = `/checkout/${this.slug}`;
+    if (this.slug === '200-hours-yoga-teacher-training-online') {
+      this.isOnline200ttc = true;
+    }
   }
   ngOnChanges(changes: SimpleChanges): void {
     this.fees = changes['data'].currentValue;
   }
+
+  scrollToTop(): void {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth' 
+        });
+      }
 }
