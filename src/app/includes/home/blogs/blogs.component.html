@@ -1,26 +1,43 @@
 <section class="blogs">
   <div class="row">
     <div class="col-md-12">
-      <div><img loading="lazy" alt="flower-img" src="https://my-s3-images-bucket.s3.amazonaws.com/img/flower-color.png" class="flower-img" /></div>
-      <h2>Yoga Vidya School <span>Blogs</span></h2>
-      <small>The best health blogs and your go-to-go guide for Yoga Asanas, Meditation, Pranayama, Yoga lifestyle, Breath Work, Healthy Diet, Wellness Traveland Yoga Courses and Retreats around the World.</small>
+      <div>
+        <img
+          loading="lazy"
+          alt="flower-img"
+          [src]="s3Bucket.flower"
+          class="flower-img"
+        />
+      </div>
+      <h2><span>Blog</span></h2>
+      <small>
+        The best health blog and your go-to-go guide for Yoga Asanas,
+        Meditation, Pranayama, Yoga lifestyle, Breath Work, Healthy Diet,
+        Wellness Traveland Yoga Courses and Retreats around the World.
+      </small>
     </div>
     <div class="col-md-3" *ngFor="let item of blogs">
       <div class="card">
-          <div class="card-image relative">
-            <img [src]="imageUrl +item.image" class="card-img-top" alt="Card Image">
-            <div class="date">
-              <div class="day">03</div>
-              <div class="month">Jun</div>
-            </div>
+        <div class="card-image relative">
+          <img
+            [src]="imageUrl + item.image"
+            class="card-img-top"
+            alt="Card Image"
+          />
+          <div class="date">
+            <div class="day">03</div>
+            <div class="month">Jun</div>
           </div>
-          <div class="card-body">
-            <div class="heading fw-600">{{item.title}}</div>
-            <p class="card-text">
-              {{item.shortDesc | slice:0:100}}
-            </p>
-            <a routerLink="/blog/{{item.slug}}" class="read-more">Read More -></a>
-          </div>
+        </div>
+        <div class="card-body">
+          <div class="heading fw-600">{{ item.title }}</div>
+          <p class="card-text">
+            {{ item.shortDesc | slice : 0 : 100 }}
+          </p>
+          <a routerLink="/blog/{{ item.slug }}" class="read-more"
+            >Read More -></a
+          >
+        </div>
       </div>
     </div>
   </div>

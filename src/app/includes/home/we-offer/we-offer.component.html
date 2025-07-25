@@ -11,7 +11,7 @@
           class="flower-img"
         />
       </div>
-      <h2 class="text-white">What We Offer At Yoga Vidya School</h2>
+      <h2 class="text-white">What We Offer At Yoga Vidya School</h2>
       <!-- <small class="text-white"
         >Lacus suspendisse faucibus interdum posuere lorem ipsum dolor sit amet.
       </small>
@@ -24,19 +24,20 @@
         <div class="col-md-12">
           <div class="heading text-center">{{ item.boxHeading }}</div>
         </div>
+        @for(itemBody of item.boxBody; track itemBody.titleBox) {
         <div class="details">
           <div class="inner-details">
             <div class="row">
               <div class="col-md-8">
-                <h2>{{ item.titleBox1 }}</h2>
-                <small>{{ item.paraBox1 }} </small>
+                <h2>{{ itemBody.titleBox }}</h2>
+                <small>{{ itemBody.paraBox }} </small>
                 <div class="list">
                   <img
                     loading="lazy"
                     alt="Not Loaded"
                     src="https://my-s3-images-bucket.s3.amazonaws.com/img/calendar.png"
                   />
-                  <div>{{ item.dateTimeBox1 }}</div>
+                  <div>{{ itemBody.dateTimeBox }}</div>
                 </div>
                 <div class="list">
                   <img
@@ -44,69 +45,29 @@
                     alt="Not Loaded"
                     src="https://my-s3-images-bucket.s3.amazonaws.com/img/user.png"
                   />
-                  <div>Duration : {{ item.durationBox1 }}</div>
+                  <div>Duration : {{ itemBody.durationBox }}</div>
                 </div>
                 <div class="but">
                   <a
-                    href="{{ item.url1 }}"
+                    href="{{ itemBody.url }}"
                     class="text-white text-decoration-none"
                   >
-                    Enroll Now<img
+                    Explore more details<img
                       loading="lazy"
                       alt="Not Loaded"
-                      src="https://my-s3-images-bucket.s3.amazonaws.com/img/arrow-white.png"
+                      [src]="s3Bucket.whiteArrow"
                     />
                   </a>
                 </div>
               </div>
               <div class="col-md-4">
-                <img [src]="item.imgBox1" alt="img" class="trainer-img" />
+                <img [src]="itemBody.imgBox" alt="img" class="trainer-img" />
               </div>
             </div>
           </div>
         </div>
         <br />
-        <div class="details">
-          <div class="inner-details">
-            <div class="row">
-              <div class="col-md-8">
-                <h2>{{ item.titleBox2 }}</h2>
-                <small>{{ item.paraBox2 }} </small>
-                <div class="list">
-                  <img
-                    loading="lazy"
-                    alt="Not Loaded"
-                    src="https://my-s3-images-bucket.s3.amazonaws.com/img/calendar.png"
-                  />
-                  <div>{{ item.dateTimeBox2 }}</div>
-                </div>
-                <div class="list">
-                  <img
-                    loading="lazy"
-                    alt="Not Loaded"
-                    src="https://my-s3-images-bucket.s3.amazonaws.com/img/user.png"
-                  />
-                  <div>Duration : {{ item.durationBox2 }}</div>
-                </div>
-                <div class="but">
-                  <a
-                    class="text-white text-decoration-none"
-                    href="{{ item.url2 }}"
-                  >
-                    Enroll Now<img
-                      loading="lazy"
-                      alt="Not Loaded"
-                      src="https://my-s3-images-bucket.s3.amazonaws.com/img/arrow-white.png"
-                    />
-                  </a>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <img [src]="item.imgBox2" alt="img" class="trainer-img" />
-              </div>
-            </div>
-          </div>
-        </div>
+        }
       </div>
     </div>
     <div class="col-md-12 text-center my-3 text-white">
@@ -121,8 +82,8 @@
       in person or virtually, Yoga Vidya School promises a transformative and
       enriching experience in the world of yoga.
     </div>
-    <div class="col-md-12 text-center my-3">
+    <!-- <div class="col-md-12 text-center my-3">
       <a href="#upcoming-events" class="button-white">Our Upcoming Events</a>
-    </div>
+    </div> -->
   </div>
 </section>
