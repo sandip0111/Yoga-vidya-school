@@ -133,7 +133,7 @@ export class NavbarComponent implements OnInit {
       link: 'contact-us',
     },
     {
-      title: 'Blogs',
+      title: 'Blog',
       link: '/blogs',
     },
   ];
