@@ -1,4 +1,5 @@
-<!-- <div class="footer-section">
+@if(slug != '/') {
+<div class="footer-section">
   <div class="footer-upper">
     <div class="row footer-upper-inner">
       <div class="col-md-12">
@@ -12,14 +13,14 @@
         </small>
       </div>
       <div class="col-ms-12 my-3">
-        <a href="https://wa.me/917351912811" class="footer-button"
+        <!-- <a href="https://wa.me/917351912811" class="footer-button"
           ><img
             loading="lazy"
             src="https://my-s3-images-bucket.s3.amazonaws.com/img/whatsapp.png"
             alt="whatsapp"
           />
           Whatsapp</a
-        >
+        > -->
         <a href="/contact-us" class="footer-button"
           ><img
             src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAA3UlEQVR4nO3UMUpDQRSF4Y/YBeICBLMGsXANRhDSC5ZuwS1kC7aWVoKrEAJ2pvapC7CwU0YCN/ASJ3FefKDFO3CYgTtzfubOMHT6TzrBC9Iv/YxRDjBrITyFH3OAPVy3EH6HYQ4wiHEcx9ymNeOVrCW94jzmfUzwURD8iSvsxt5TPOUAuSMe4H5D+AOOai2+qdXWAuZ+xyV20MMF3hrUfwQsPMVh1PdxG57PRW26Zm8RINV6XL+4kjsqBqRwhbNwVbC+MSA1dAfQuEXbfA9pw4P4plFLkArHOUCnv9EXQRITVqHzZgIAAAAASUVORK5CYII="
@@ -29,307 +30,6 @@
       </div>
       <div class="col-md-12">
         <div class="subscribe">
-          <h2>Subscribe Now To Receive Updates</h2>
-          <small
-            >Stay connected with Yoga Vidya School by subscribing our
-            newsletter. Be the first to know our special yoga events, online and
-            offline , and insightful articles on Yoga and Healthy Lifestyle.
-          </small>
-          <div class="subscribe-form">
-            <input
-              type="email"
-              name="email"
-              [(ngModel)]="subscribeData.email"
-              placeholder="Please enter your email"
-              required
-            />
-            <button type="button" (click)="subscribeHere(subscribeData)">
-              Subscribe
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-3 col-xs-6">
-      <div class="footer-logo">
-        <img
-          loading="lazy"
-          src="https://my-s3-images-bucket.s3.amazonaws.com/img/Logo.png"
-          alt="logo"
-        />
-      </div>
-      <div class="footer-address">
-        {{ footerAddress }}
-      </div>
-    </div>
-    <div class="col-md-3 col-xs-6">
-      <div class="footer-menu">
-        <div class="footer-menu-title">Quick Links</div>
-        <ul>
-          <li><a href="/mentors">Our Trainers</a></li>
-          <li><a href="/blogs">Blogs</a></li>
-          <li><a href="/gallery">Yoga Gallery</a></li>
-          <li><a href="/faq">FAQ</a></li>
-          <li><a href="/testimonial">Testimonial</a></li>
-          <li><a href="/book-now">Credit / Debit Card Payment</a></li>
-          <li><a href="/about-us">About Us</a></li>
-          <li><a href="/contact-us">Contact Us</a></li>
-          <li><a href="/terms-and-condition">T & C</a></li>
-          <li><a href="/privacy-policy">Privacy Policy</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="col-md-3">
-      <div class="footer-menu">
-        <div class="footer-menu-title">Useful Links</div>
-        <ul>
-          <li>
-            <a href="/100-hours-yoga-teacher-training-in-rishikesh"
-              >100 Hour Yoga Teacher Training Rishikesh</a
-            >
-          </li>
-          <li>
-            <a href="/200-hours-yoga-teacher-training-in-rishikesh"
-              >200 Hour Yoga Teacher Training Rishikesh</a
-            >
-          </li>
-          <li>
-            <a href="/300-hours-yoga-teacher-training-in-rishikesh"
-              >300 Hour Yoga Teacher Training Rishikesh</a
-            >
-          </li>
-          <li>
-            <a href="/yoga-retreat-in-rishikesh-india"
-              >Yoga Retreats in Rishikesh</a
-            >
-          </li>
-          <li>
-            <a href="/adjustment-and-alignment"
-              >Adjustment and Alignment In Rishikesh</a
-            >
-          </li>
-          <li><a href="/">Best Yoga School in Rishikesh</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="col-md-3">
-      <div class="footer-menu">
-        <div class="footer-menu-title">Registered Office</div>
-        <div class="footer-address-right">
-          Wellness Retreat By YVS LLP 11 Floor-0 Plot No 214 Raheja Centre, Free
-          Press Journal Marg, Nariman Point
-        </div>
-        <div class="footer-address-right">+91-9818660954</div>
-        <div class="footer-address-right">info&#64;yogavidyaschool.com</div>
-        <div class="social-icons">
-          <a href="https://www.instagram.com/yogavidyaschool/"
-            ><i class="fa-brands fa-instagram"></i
-          ></a>
-          <a href="https://www.youtube.com/c/prashantjyoga"
-            ><i class="fa-brands fa-youtube"></i
-          ></a>
-          <a href="https://www.facebook.com/yogavidyarishikesh/"
-            ><i class="fa-brands fa-facebook"></i
-          ></a>
-          <a href="https://twitter.com/Yogavidyaschool"
-            ><i class="fa-brands fa-twitter"></i
-          ></a>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="row new-footer">
-    <div class="col-md-3 col-xs-6">
-      <div class="footer-menu-new">
-        <div class="footer-menu-title">Important Links</div>
-        <ul>
-          <li><a href="/">Yoga School In Rishikesh</a></li>
-          <li>
-            <a href="/300-hours-yoga-teacher-training-in-rishikesh"
-              >300 Hour Yoga TTC In Rishikesh</a
-            >
-          </li>
-          <li>
-            <a href="/100-hours-yoga-teacher-training-in-rishikesh"
-              >100 Hour Yoga Teacher Training In Rishikesh</a
-            >
-          </li>
-          <li><a href="/online-yoga-classes">Online Yoga Classes</a></li>
-          <li><a href="/online-yoga-classes">Live Online Yoga Classes</a></li>
-          <li><a href="/">Sattvic</a></li>
-          <li><a href="/">Sattvic Food Diet</a></li>
-          <li>
-            <a href="/200-hour-yoga-teacher-training-in-bali"
-              >200 Hour Yoga TTC In Bali</a
-            >
-          </li>
-          <li>
-            <a href="/how-to-become-a-certified-yoga-teacher"
-              >How To Become A Yoga Teacher</a
-            >
-          </li>
-        </ul>
-      </div>
-    </div>
-    <div class="col-md-3 col-xs-6 margin-top-2">
-      <div class="footer-menu-new">
-        <ul>
-          <li><a href="/">Yoga Teacher Training in Rishikesh</a></li>
-          <li><a href="/">Best Yoga Teacher Training In Rishikesh</a></li>
-          <li>
-            <a href="/yoga-teacher-training-in-india"
-              >Yoga Teacher Training In Rishikesh India</a
-            >
-          </li>
-          <li>
-            <a href="/200-hour-yoga-teacher-training-in-bali"
-              >Yoga Teacher Training In Bali</a
-            >
-          </li>
-          <li>
-            <a href="/300-hour-yoga-teacher-training-in-bali"
-              >Yoga Instructor Course Bali</a
-            >
-          </li>
-          <li>
-            <a href="/300-hour-yoga-teacher-training-in-bali"
-              >Yoga Instructor Training Bali</a
-            >
-          </li>
-          <li>
-            <a href="/300-hours-yoga-teacher-training-in-rishikesh"
-              >Yoga TTC In Rishikesh</a
-            >
-          </li>
-          <li>
-            <a href="/200-hour-yoga-teacher-training-in-bali"
-              >Yoga Teaching Course Bali</a
-            >
-          </li>
-          <li>
-            <a href="/200-hours-yoga-teacher-training-in-rishikesh"
-              >Yoga Courses In Rishikesh</a
-            >
-          </li>
-          <li>
-            <a href="/300-hours-yoga-teacher-training-in-rishikesh"
-              >Best Yoga Classes In Rishikesh</a
-            >
-          </li>
-          <li>
-            <a href="/pranic-purification">Pranayama Breathing Techniques</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-    <div class="col-md-3 col-xs-6 margin-top-2">
-      <div class="footer-menu-new">
-        <ul>
-          <li><a href="/">Yoga Alliance International India</a></li>
-          <li><a href="/">Yoga Alliance In India</a></li>
-          <li>
-            <a href="/300-hours-yoga-teacher-training-in-rishikesh"
-              >Yoga Certification Rishikesh</a
-            >
-          </li>
-          <li>
-            <a href="/200-hour-yoga-teacher-training-in-bali"
-              >Yoga Teacher Certification Bali</a
-            >
-          </li>
-          <li>
-            <a href="/yoga-retreat-in-rishikesh-india"
-              >Wellness Retreat In Rishikesh</a
-            >
-          </li>
-          <li>
-            <a href="/yoga-retreat-in-rishikesh-india"
-              >Yoga Retreats In Rishikesh
-            </a>
-          </li>
-          <li>
-            <a href="/yoga-retreat-in-rishikesh-india"
-              >Yoga Retreats In India</a
-            >
-          </li>
-          <li>
-            <a href="/yoga-retreat-in-rishikesh-india"
-              >Rishikesh Yoga Retreat</a
-            >
-          </li>
-          <li>
-            <a href="/yoga-retreat-in-rishikesh-india"
-              >Best Yoga Centers In Rishikesh</a
-            >
-          </li>
-          <li>
-            <a href="/yoga-retreat-in-rishikesh-india"
-              >Yoga Center In Rishikesh</a
-            >
-          </li>
-          <li>
-            <a href="/yoga-retreat-in-rishikesh-india"
-              >Yoga Retreat In Rishikesh</a
-            >
-          </li>
-        </ul>
-      </div>
-    </div>
-    <div class="col-md-3 col-xs-6 margin-top-2">
-      <div class="footer-menu-new">
-        <ul>
-          <li>
-            <a href="/100-hours-yoga-teacher-training-in-rishikesh"
-              >100 Hour Yoga Teacher Training Rishikesh</a
-            >
-          </li>
-          <li>
-            <a href="/200-hours-yoga-teacher-training-in-rishikesh"
-              >200 Hour Yoga Teacher Training In Rishikesh</a
-            >
-          </li>
-          <li>
-            <a href="/200-hours-yoga-teacher-training-in-rishikesh"
-              >200 Hour Yoga Teacher Training Course In Rishikesh</a
-            >
-          </li>
-          <li>
-            <a href="/200-hours-yoga-teacher-training-in-rishikesh"
-              >200 Hour Yoga Teacher Training In Rishikesh India</a
-            >
-          </li>
-          <li>
-            <a href="/200-hours-yoga-teacher-training-in-rishikesh"
-              >200 Hour Yoga TTC In Rishikesh</a
-            >
-          </li>
-          <li>
-            <a href="/200-hour-yoga-teacher-training-in-bali"
-              >200 Hour Yoga Teacher Training In Bali</a
-            >
-          </li>
-          <li>
-            <a href="/300-hour-yoga-teacher-training-in-bal"
-              >300 Hour Yoga Teacher Training In Bali</a
-            >
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-12 text-center footer-bottom">
-      All Right Reserved &#64; Yoga Vidya School 2024
-    </div>
-  </div>
-</div> -->
-<div class="footer-section">
-  <div class="footer-upper-new">
-    <div class="row footer-upper-inner">
-      <div class="col-md-12">
-        <div class="subscribe-new">
           <h2>Subscribe Now To Receive Updates</h2>
           <small
             >Stay connected with Yoga Vidya School by subscribing our
@@ -626,3 +326,306 @@
     </div>
   </div>
 </div>
+} @else{
+<div class="footer-section">
+  <div class="footer-upper-new">
+    <div class="row footer-upper-inner">
+      <div class="col-md-12">
+        <div class="subscribe-new">
+          <h2>Subscribe Now To Receive Updates</h2>
+          <small
+            >Stay connected with Yoga Vidya School by subscribing our
+            newsletter. Be the first to know our special yoga events, online and
+            offline , and insightful articles on Yoga and Healthy Lifestyle.
+          </small>
+          <div class="subscribe-form">
+            <input
+              type="email"
+              name="email"
+              [(ngModel)]="subscribeData.email"
+              placeholder="Please enter your email"
+              required
+            />
+            <button type="button" (click)="subscribeHere(subscribeData)">
+              Subscribe
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 col-xs-6">
+      <div class="footer-logo">
+        <img
+          loading="lazy"
+          src="https://my-s3-images-bucket.s3.amazonaws.com/img/Logo.png"
+          alt="logo"
+        />
+      </div>
+      <div class="footer-address">
+        {{ footerAddress }}
+      </div>
+    </div>
+    <div class="col-md-3 col-xs-6">
+      <div class="footer-menu">
+        <div class="footer-menu-title">Quick Links</div>
+        <ul>
+          <li><a href="/mentors">Our Trainers</a></li>
+          <li><a href="/blogs">Blogs</a></li>
+          <li><a href="/gallery">Yoga Gallery</a></li>
+          <li><a href="/faq">FAQ</a></li>
+          <li><a href="/testimonial">Testimonial</a></li>
+          <li><a href="/book-now">Credit / Debit Card Payment</a></li>
+          <li><a href="/about-us">About Us</a></li>
+          <li><a href="/contact-us">Contact Us</a></li>
+          <li><a href="/terms-and-condition">T & C</a></li>
+          <li><a href="/privacy-policy">Privacy Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="footer-menu">
+        <div class="footer-menu-title">Useful Links</div>
+        <ul>
+          <li>
+            <a href="/100-hours-yoga-teacher-training-in-rishikesh"
+              >100 Hour Yoga Teacher Training Rishikesh</a
+            >
+          </li>
+          <li>
+            <a href="/200-hours-yoga-teacher-training-in-rishikesh"
+              >200 Hour Yoga Teacher Training Rishikesh</a
+            >
+          </li>
+          <li>
+            <a href="/300-hours-yoga-teacher-training-in-rishikesh"
+              >300 Hour Yoga Teacher Training Rishikesh</a
+            >
+          </li>
+          <li>
+            <a href="/yoga-retreat-in-rishikesh-india"
+              >Yoga Retreats in Rishikesh</a
+            >
+          </li>
+          <li>
+            <a href="/adjustment-and-alignment"
+              >Adjustment and Alignment In Rishikesh</a
+            >
+          </li>
+          <li><a href="/">Best Yoga School in Rishikesh</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="footer-menu">
+        <div class="footer-menu-title">Registered Office</div>
+        <div class="footer-address-right">
+          Wellness Retreat By YVS LLP 11 Floor-0 Plot No 214 Raheja Centre, Free
+          Press Journal Marg, Nariman Point
+        </div>
+        <div class="footer-address-right">+91-9818660954</div>
+        <div class="footer-address-right">info&#64;yogavidyaschool.com</div>
+        <div class="social-icons">
+          <a href="https://www.instagram.com/yogavidyaschool/"
+            ><i class="fa-brands fa-instagram"></i
+          ></a>
+          <a href="https://www.youtube.com/c/prashantjyoga"
+            ><i class="fa-brands fa-youtube"></i
+          ></a>
+          <a href="https://www.facebook.com/yogavidyarishikesh/"
+            ><i class="fa-brands fa-facebook"></i
+          ></a>
+          <a href="https://twitter.com/Yogavidyaschool"
+            ><i class="fa-brands fa-twitter"></i
+          ></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="row new-footer">
+      <div class="col-md-3 col-xs-6">
+        <div class="footer-menu-new">
+          <div class="footer-menu-title">Important Links</div>
+          <ul>
+            <li><a href="/">Yoga School In Rishikesh</a></li>
+            <li>
+              <a href="/300-hours-yoga-teacher-training-in-rishikesh"
+                >300 Hour Yoga TTC In Rishikesh</a
+              >
+            </li>
+            <li>
+              <a href="/100-hours-yoga-teacher-training-in-rishikesh"
+                >100 Hour Yoga Teacher Training In Rishikesh</a
+              >
+            </li>
+            <li><a href="/online-yoga-classes">Online Yoga Classes</a></li>
+            <li><a href="/online-yoga-classes">Live Online Yoga Classes</a></li>
+            <li><a href="/">Sattvic</a></li>
+            <li><a href="/">Sattvic Food Diet</a></li>
+            <li>
+              <a href="/200-hour-yoga-teacher-training-in-bali"
+                >200 Hour Yoga TTC In Bali</a
+              >
+            </li>
+            <li>
+              <a href="/how-to-become-a-certified-yoga-teacher"
+                >How To Become A Yoga Teacher</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-3 col-xs-6 margin-top-2">
+        <div class="footer-menu-new">
+          <ul>
+            <li><a href="/">Yoga Teacher Training in Rishikesh</a></li>
+            <li><a href="/">Best Yoga Teacher Training In Rishikesh</a></li>
+            <li>
+              <a href="/yoga-teacher-training-in-india"
+                >Yoga Teacher Training In Rishikesh India</a
+              >
+            </li>
+            <li>
+              <a href="/200-hour-yoga-teacher-training-in-bali"
+                >Yoga Teacher Training In Bali</a
+              >
+            </li>
+            <li>
+              <a href="/300-hour-yoga-teacher-training-in-bali"
+                >Yoga Instructor Course Bali</a
+              >
+            </li>
+            <li>
+              <a href="/300-hour-yoga-teacher-training-in-bali"
+                >Yoga Instructor Training Bali</a
+              >
+            </li>
+            <li>
+              <a href="/300-hours-yoga-teacher-training-in-rishikesh"
+                >Yoga TTC In Rishikesh</a
+              >
+            </li>
+            <li>
+              <a href="/200-hour-yoga-teacher-training-in-bali"
+                >Yoga Teaching Course Bali</a
+              >
+            </li>
+            <li>
+              <a href="/200-hours-yoga-teacher-training-in-rishikesh"
+                >Yoga Courses In Rishikesh</a
+              >
+            </li>
+            <li>
+              <a href="/300-hours-yoga-teacher-training-in-rishikesh"
+                >Best Yoga Classes In Rishikesh</a
+              >
+            </li>
+            <li>
+              <a href="/pranic-purification">Pranayama Breathing Techniques</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-3 col-xs-6 margin-top-2">
+        <div class="footer-menu-new">
+          <ul>
+            <li><a href="/">Yoga Alliance International India</a></li>
+            <li><a href="/">Yoga Alliance In India</a></li>
+            <li>
+              <a href="/300-hours-yoga-teacher-training-in-rishikesh"
+                >Yoga Certification Rishikesh</a
+              >
+            </li>
+            <li>
+              <a href="/200-hour-yoga-teacher-training-in-bali"
+                >Yoga Teacher Certification Bali</a
+              >
+            </li>
+            <li>
+              <a href="/yoga-retreat-in-rishikesh-india"
+                >Wellness Retreat In Rishikesh</a
+              >
+            </li>
+            <li>
+              <a href="/yoga-retreat-in-rishikesh-india"
+                >Yoga Retreats In Rishikesh
+              </a>
+            </li>
+            <li>
+              <a href="/yoga-retreat-in-rishikesh-india"
+                >Yoga Retreats In India</a
+              >
+            </li>
+            <li>
+              <a href="/yoga-retreat-in-rishikesh-india"
+                >Rishikesh Yoga Retreat</a
+              >
+            </li>
+            <li>
+              <a href="/yoga-retreat-in-rishikesh-india"
+                >Best Yoga Centers In Rishikesh</a
+              >
+            </li>
+            <li>
+              <a href="/yoga-retreat-in-rishikesh-india"
+                >Yoga Center In Rishikesh</a
+              >
+            </li>
+            <li>
+              <a href="/yoga-retreat-in-rishikesh-india"
+                >Yoga Retreat In Rishikesh</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-3 col-xs-6 margin-top-2">
+        <div class="footer-menu-new">
+          <ul>
+            <li>
+              <a href="/100-hours-yoga-teacher-training-in-rishikesh"
+                >100 Hour Yoga Teacher Training Rishikesh</a
+              >
+            </li>
+            <li>
+              <a href="/200-hours-yoga-teacher-training-in-rishikesh"
+                >200 Hour Yoga Teacher Training In Rishikesh</a
+              >
+            </li>
+            <li>
+              <a href="/200-hours-yoga-teacher-training-in-rishikesh"
+                >200 Hour Yoga Teacher Training Course In Rishikesh</a
+              >
+            </li>
+            <li>
+              <a href="/200-hours-yoga-teacher-training-in-rishikesh"
+                >200 Hour Yoga Teacher Training In Rishikesh India</a
+              >
+            </li>
+            <li>
+              <a href="/200-hours-yoga-teacher-training-in-rishikesh"
+                >200 Hour Yoga TTC In Rishikesh</a
+              >
+            </li>
+            <li>
+              <a href="/200-hour-yoga-teacher-training-in-bali"
+                >200 Hour Yoga Teacher Training In Bali</a
+              >
+            </li>
+            <li>
+              <a href="/300-hour-yoga-teacher-training-in-bal"
+                >300 Hour Yoga Teacher Training In Bali</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div> -->
+  <div class="row">
+    <div class="col-md-12 text-center footer-bottom">
+      All Right Reserved &#64; Yoga Vidya School 2024
+    </div>
+  </div>
+</div>
+}
