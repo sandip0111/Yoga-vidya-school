@@ -13,12 +13,16 @@
     align-items: flex-start;
     justify-content: center;
   }
+  .img-fluid {
+    max-width: 44%;
+    border-radius: 5px;
+  }
   .namaste {
     font-family: "Julee", cursive;
     font-size: 30px;
     text-align: center;
   }
-  .readMore{
+  .readMore {
     text-align: center;
   }
 }
@@ -57,5 +61,8 @@
   }
   .about-section_content__box {
     text-align: center;
+  }
+  .img-fluid {
+    max-width: 100% !important;
   }
 }
