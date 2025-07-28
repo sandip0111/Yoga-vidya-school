@@ -15,14 +15,17 @@
 .flex-direction-row-reverse {
   flex-direction: row-reverse;
 }
+.mainMenu {
+  padding-left: 140px;
+}
 #navbarNav {
-  flex-grow: 1;
-  gap: 30px;
+  /* flex-grow: 1;
+  gap: 30px; */
   ul {
     gap: 10px;
     li {
       a {
-        font-size: 15px;
+        font-size: 16px;
         font-weight: bold;
         color: #000;
       }
@@ -107,6 +110,9 @@
 @media screen and (max-width: 900px) and (min-width: 300px) {
   .mtn-35 {
     margin: auto;
+  }
+  .mainMenu {
+    padding-left: 0 !important;
   }
 }
 

@@ -1,5 +1,5 @@
 section.contact {
-  background-image: url("https://my-s3-images-bucket.s3.amazonaws.com/images/contactUs.be730257c3ec05a1_ukgldz.jpg");
+  background-image: url("../../assets/contactUs.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   padding: 70px 0;
