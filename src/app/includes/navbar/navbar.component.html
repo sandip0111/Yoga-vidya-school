@@ -1,34 +1,39 @@
 <nav class="navbar navbar-expand-lg navbar-bg">
-  <div class="nav-container">
+  <div class="nav-container container-fluid">
     <a class="navbar-brand" href="/">
       <img [src]="s3Bucket.mainLogo" style="height: 40px" />
     </a>
+
     <button
       class="navbar-toggler"
       type="button"
       data-bs-toggle="collapse"
-      data-bs-target="#navbarNav"
-      aria-controls="navbarNav"
+      data-bs-target="#mainNavbar"
+      aria-controls="mainNavbar"
       aria-expanded="false"
       aria-label="Toggle navigation"
     >
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav me-auto">
+
+    <!-- CENTER MENU -->
+    <div
+      class="collapse navbar-collapse justify-content-center"
+      style="flex-grow: 0"
+      id="mainNavbar"
+    >
+      <ul class="navbar-nav mainMenu">
         <li class="nav-item dropdown" *ngFor="let menuItem of menuItems">
           <a
             class="nav-link"
             href="{{ menuItem.link }}"
             *ngIf="!menuItem.submenu"
-            >{{ menuItem.title }}</a
           >
-          <a
-            class="nav-link dropdown-toggle"
-            href="#"
-            *ngIf="menuItem.submenu"
-            >{{ menuItem.title }}</a
-          >
+            {{ menuItem.title }}
+          </a>
+          <a class="nav-link dropdown-toggle" href="#" *ngIf="menuItem.submenu">
+            {{ menuItem.title }}
+          </a>
           <ul class="dropdown-menu" *ngIf="menuItem.submenu">
             <li
               *ngFor="let subMenuItem of menuItem.submenu"
@@ -38,8 +43,9 @@
                 class="dropdown-item"
                 href="{{ subMenuItem.link }}"
                 *ngIf="!subMenuItem.submenu"
-                >{{ subMenuItem.title }}</a
               >
+                {{ subMenuItem.title }}
+              </a>
               <div class="dropdown dropend" *ngIf="subMenuItem.submenu">
                 <a class="dropdown-item dropdown-toggle" href="#">{{
                   subMenuItem.title
@@ -49,8 +55,9 @@
                     <a
                       class="dropdown-item"
                       href="{{ nestedSubMenuItem.link }}"
-                      >{{ nestedSubMenuItem.title }}</a
                     >
+                      {{ nestedSubMenuItem.title }}
+                    </a>
                   </li>
                 </ul>
               </div>
@@ -59,17 +66,20 @@
         </li>
       </ul>
     </div>
+
+    <!-- RIGHT MENU (LOGIN / CART) -->
     <div
-      class="collapse navbar-collapse flex-direction-row-reverse"
-      id="navbarNav"
+      class="collapse navbar-collapse justify-content-end"
+      style="flex-grow: 0"
+      id="mainNavbar"
     >
-      <ul class="navbar-nav">
+      <ul class="navbar-nav" style="gap: 10px">
         <li class="nav-item dropdown" *ngIf="loginUser">
           <a class="nav-link login-button dropdown-toggle">
             <i class="fa-user fas"></i>
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="/my-account">My Acount</a></li>
+            <li><a class="dropdown-item" href="/my-account">My Account</a></li>
             <li>
               <a
                 class="dropdown-item"
@@ -88,14 +98,11 @@
             </span>
           </a>
         </li>
-        <li class="nav-item" *ngIf="!loginUser">
+        <li class="nav-item" *ngIf="loginButton.isShow">
           <a class="nav-link login-button" href="{{ loginButton.link }}">
             <i class="{{ loginButton.iconClass }}"></i> {{ loginButton.title }}
           </a>
         </li>
-      </ul>
-      <ul class="navbar-nav" >
-
       </ul>
     </div>
   </div>

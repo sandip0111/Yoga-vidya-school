@@ -2,36 +2,30 @@
   background-color: #fdf0dd;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
+
 .nav-container {
   display: flex;
-  flex-wrap: inherit;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   padding: 0 3rem;
-  gap: 40px;
   width: 100%;
 }
 
-.flex-direction-row-reverse {
-  flex-direction: row-reverse;
-}
+/* Center align menu in desktop */
 .mainMenu {
-  padding-left: 140px;
+  gap: 20px;
+  padding-left: 0;
 }
-#navbarNav {
-  /* flex-grow: 1;
-  gap: 30px; */
-  ul {
-    gap: 10px;
-    li {
-      a {
-        font-size: 16px;
-        font-weight: bold;
-        color: #000;
-      }
-    }
-  }
+
+/* Main nav item style */
+.navbar-nav li a {
+  font-size: 16px;
+  font-weight: bold;
+  color: #000;
 }
+
+/* Login and cart button styles */
 .login-button {
   background-image: linear-gradient(to right, #f47019, #d55502);
   padding: 6px 26px;
@@ -46,6 +40,7 @@
   justify-content: center;
   min-height: 50px;
 }
+
 .card-button {
   position: relative;
   background-image: linear-gradient(to right, #f47019, #d55502);
@@ -59,11 +54,11 @@
   justify-content: center;
   min-height: 50px;
 }
-.card-button .number {
+
+.number {
   position: absolute;
   display: flex;
   align-items: center;
-  gap: 10px;
   justify-content: center;
   font-size: 14px;
   background: #fff;
@@ -73,16 +68,11 @@
   width: 26px;
   height: 26px;
   border-radius: 50%;
-  box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.1);
-  -webkit-box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.1);
-  -moz-box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.1);
-}
-/* Main dropdown hover */
-.navbar-nav .dropdown:hover > .dropdown-menu {
-  display: block;
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Submenu dropdown hover */
+/* Dropdowns */
+.navbar-nav .dropdown:hover > .dropdown-menu,
 .dropdown-menu .dropdown:hover > .dropdown-menu {
   display: block;
 }
@@ -98,7 +88,6 @@
   display: none;
 }
 
-/* Ensure nested dropdowns align to the right */
 .dropend > .dropdown-menu {
   left: 100%;
   right: auto;
@@ -107,24 +96,21 @@
   margin-top: -35px;
 }
 
-@media screen and (max-width: 900px) and (min-width: 300px) {
+@media screen and (max-width: 900px) {
   .mtn-35 {
     margin: auto;
   }
   .mainMenu {
     padding-left: 0 !important;
+    flex-direction: column;
+    align-items: start;
+    gap: 10px;
   }
-}
-
-.video-button {
-  padding: 8px 26px;
-  border-radius: 10px;
-  text-decoration: none;
-  display: inline-block;
-  font-weight: 500 !important;
-  font-size: 18px !important;
-  color: #000 !important;
-  margin-top: 5px;
-  border: 1px solid rgba(249, 117, 30, 1);
-  margin-left: 10px;
+  .navbar-nav {
+    flex-direction: column !important;
+    width: 100%;
+  }
+  .nav-item {
+    width: 100%;
+  }
 }
