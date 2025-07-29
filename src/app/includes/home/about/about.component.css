@@ -56,6 +56,15 @@ section {
 .about-section_content__box {
   width: 100%;
 }
+.banner_image{
+  width: 100%;
+  height: clamp(460px, 30vw, 588px);
+  object-fit: cover;
+}
+
+p {
+  text-align: center;
+}
 
 @media only screen and (max-width: 767px) {
   .about-section_image__content__box {
