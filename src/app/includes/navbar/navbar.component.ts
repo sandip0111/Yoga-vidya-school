@@ -49,14 +49,14 @@ export class NavbarComponent implements OnInit {
         title: '',
         link: '',
         iconClass: '',
-        isShow: false
+        isShow: false,
       };
     } else {
       this.loginButton = {
         title: 'Login',
         link: '/login',
         iconClass: 'fas fa-lock',
-        isShow: true
+        isShow: true,
       };
     }
     this.menuItems = [
@@ -155,6 +155,10 @@ export class NavbarComponent implements OnInit {
             link: '/200-hours-yoga-teacher-training-online',
           },
           { title: 'Yoga Webinar Registration', link: '/webinar-registration' },
+          {
+            title: 'Swara Sadhana',
+            link: 'https://swaryoga.yogavidyaschool.com/#register-form',
+          },
           { title: 'Breath Detox Yoga', link: '/breath-detox-yoga' },
           {
             title: 'Foundations of Spirituality',
