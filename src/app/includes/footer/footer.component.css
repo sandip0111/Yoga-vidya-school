@@ -263,6 +263,7 @@
     small {
       padding: 0px 80px;
       padding: 0px 23px;
+      font-weight: 300;
     }
   }
   .subscribe-form {

@@ -57,6 +57,7 @@ export class BlogComponent {
   }
 
   onTableDataChange(event: any) {
+    this.spinner.show();
     this.filter.pageNo = event;
     this.getAllBlogs();
     this.p = event;
