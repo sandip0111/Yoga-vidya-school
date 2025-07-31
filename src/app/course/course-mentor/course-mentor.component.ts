@@ -84,18 +84,18 @@ export class CourseMentorComponent {
           priceInIndian: 1999,
           priceInUSD: 40
         },
-        {
-          id: 4,
-          name: "Shivam Joshi",
-          description:this.sanitizer
-          .bypassSecurityTrustHtml(` <h5 style="text-align: center">Saturday/Sunday</h5></br> <p>Join Shivam Joshi’s classes in this holistic journey towards physical vitality and mental clarity. Experience the profound benefits of a practice rooted in tradition of Hatha Yoga and Iyengar Yoga. These 120-minute online classes focus on mastering foundational asanas with precision and care. Incorporating the principles of Iyengar Yoga, you’ll learn to achieve perfect alignment using supportive props. Highly recommended yoga sessions to master.</p>`),
-          image: "image_1673271925503.jpeg",
-          intro: "Iyengar/ Yoga Therapy ",
-          time:"6:30 PM – 8:30 PM (IST)",
-          price:"Rs. 6000/ USD 75",
-          priceInIndian: 6000,
-          priceInUSD: 75
-        },
+        // {
+        //   id: 4,
+        //   name: "Shivam Joshi",
+        //   description:this.sanitizer
+        //   .bypassSecurityTrustHtml(` <h5 style="text-align: center">Saturday/Sunday</h5></br> <p>Join Shivam Joshi’s classes in this holistic journey towards physical vitality and mental clarity. Experience the profound benefits of a practice rooted in tradition of Hatha Yoga and Iyengar Yoga. These 120-minute online classes focus on mastering foundational asanas with precision and care. Incorporating the principles of Iyengar Yoga, you’ll learn to achieve perfect alignment using supportive props. Highly recommended yoga sessions to master.</p>`),
+        //   image: "image_1673271925503.jpeg",
+        //   intro: "Iyengar/ Yoga Therapy ",
+        //   time:"6:30 PM – 8:30 PM (IST)",
+        //   price:"Rs. 6000/ USD 75",
+        //   priceInIndian: 6000,
+        //   priceInUSD: 75
+        // },
         {
           id: 5,
           name: "Anuj Pareek",
