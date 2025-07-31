@@ -155,7 +155,6 @@
     small {
       padding: 0px 80px;
       padding: 0px 23px;
-      font-size: 16px;
     }
   }
   .footer-upper-new {
@@ -243,6 +242,28 @@
   }
   .footer-upper-new {
     padding: 20px;
+  }
+  .footer-upper{
+    margin-bottom: 24rem !important;
+  }
+  .subscribe {
+    background: rgba(255, 245, 222, 1);
+    padding: 20px 30px;
+    border-radius: 10px;
+    color: #000;
+    position: absolute;
+    left: 50%;
+    width: 70%;
+    max-width: 900px;
+    transform: translateX(-50%);
+    h2 {
+      font-weight: 300;
+      font-size: 25px;
+    }
+    small {
+      padding: 0px 80px;
+      padding: 0px 23px;
+    }
   }
   .subscribe-form {
     background: transparent !important;

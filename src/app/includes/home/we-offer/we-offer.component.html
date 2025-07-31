@@ -35,7 +35,7 @@
                   <img
                     loading="lazy"
                     alt="Not Loaded"
-                    src="https://my-s3-images-bucket.s3.amazonaws.com/img/calendar.png"
+                    [src]="s3Bucket.calender"
                   />
                   <div>{{ itemBody.dateTimeBox }}</div>
                 </div>
@@ -43,9 +43,27 @@
                   <img
                     loading="lazy"
                     alt="Not Loaded"
-                    src="https://my-s3-images-bucket.s3.amazonaws.com/img/user.png"
+                    [src]="s3Bucket.person"
                   />
                   <div>Duration : {{ itemBody.durationBox }}</div>
+                </div>
+                @if(itemBody.paraBox2){
+                <small>{{ itemBody.paraBox2 }} </small>
+                <div class="list">
+                  <img
+                    loading="lazy"
+                    alt="Not Loaded"
+                    [src]="s3Bucket.calender"
+                  />
+                  <div>{{ itemBody.dateTimeBox2 }}</div>
+                </div>
+                <div class="list">
+                  <img
+                    loading="lazy"
+                    alt="Not Loaded"
+                    [src]="s3Bucket.person"
+                  />
+                  <div>Duration : {{ itemBody.durationBox2 }}</div>
                 </div>
                 <div class="but">
                   <a
@@ -59,6 +77,7 @@
                     />
                   </a>
                 </div>
+                }
               </div>
               <div class="col-md-4">
                 <img [src]="itemBody.imgBox" alt="img" class="trainer-img" />

@@ -85,9 +85,6 @@ section.contact textarea:focus {
   box-shadow: none;
 }
 
-
-
-
 .orange-btn {
   background: #f9751e !important;
   background-size: 100px !important;
@@ -101,5 +98,8 @@ section.contact textarea:focus {
   text-decoration: none;
   font-size: 20px;
   margin-top: 15px;
-
+}
+.formBlock {
+  display: flex;
+  justify-content: flex-end;
 }

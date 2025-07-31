@@ -17,22 +17,24 @@ export class WeOfferComponent implements OnInit {
       boxHeading: 'In-Person',
       boxBody: [
         {
-          titleBox: 'Yoga Teacher Training',
-          paraBox: `Yoga Alliance Certified  100, 200, 300 and 500 Hr. Yoga TTCs`,
-          dateTimeBox: 'Starts on 3rd of Every Month',
+          titleBox: 'Yoga Teacher Training - in Rishikhes',
+          paraBox: `Yoga Alliance Certified 100, 200 and 300 HRS`,
+          dateTimeBox: 'Next Batch Starts: 3rd October 2025',
           imgBox: s3Bucket.offer1,
-          durationBox: '14 Days to 30 Days ',
+          durationBox: '28 days',
           url: `/${routeEnum.rishkesh200}`,
         },
-        // {
-        //   titleBox: 'Yoga Retreats and Wellness Stays ',
-        //   paraBox:
-        //     'Private and Group Retreats covering Asanas, Meditation, Pranayama, Ayurveda Guided Local Excursions ',
-        //   dateTimeBox: 'Every Monday',
-        //   imgBox: s3Bucket.offer2,
-        //   durationBox: '3 Days to 15 Days ',
-        //   url: `/${routeEnum.yogaRetreat}`,
-        // },
+        {
+          titleBox: 'Yoga Teacher Training - in Bali',
+          paraBox: 'Yoga Alliance Certified 100, 200, 500 HRS',
+          paraBox2: 'Yoga Alliance Certified 300 HRS',
+          dateTimeBox: 'Next Batch Starts: November 2025',
+          dateTimeBox2: 'Next Batch Starts: December 2025',
+          imgBox: s3Bucket.offer2,
+          durationBox: '28 days',
+          durationBox2: '28 days',
+          url: `/${routeEnum.yogaRetreat}`,
+        },
       ],
     },
     {
@@ -40,7 +42,7 @@ export class WeOfferComponent implements OnInit {
       boxBody: [
         {
           titleBox: 'Guided Virtual Session',
-          paraBox: `Daily Yoga Classes, Yoga Workshops and 200 Hour Yoga Teacher Training Private Classes also Available`,
+          paraBox: `Daily Yoga Classes`,
           dateTimeBox: 'First Monday of Every Months',
           imgBox: s3Bucket.offer3,
           durationBox: 'One Month for Classes',
@@ -70,8 +72,11 @@ interface offer {
 interface subOffer {
   titleBox: string;
   paraBox: string;
+  paraBox2?: string;
   dateTimeBox: string;
+  dateTimeBox2?: string;
   imgBox: s3Bucket;
   durationBox: string;
+  durationBox2?: string;
   url: string;
 }

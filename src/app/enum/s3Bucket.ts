@@ -15,6 +15,8 @@ export enum s3Bucket {
   offer2 = "https://my-s3-images-bucket.s3.amazonaws.com/images/onluneoff_vriefa.jpg",
   offer3 = "https://my-s3-images-bucket.s3.amazonaws.com/images/online3_pseqg1.jpg",
   offer4 = "https://my-s3-images-bucket.s3.amazonaws.com/images/onlinr2_lunr65.jpg",
+  calender = "https://my-s3-images-bucket.s3.amazonaws.com/img/calendar.png",
+  person = "https://my-s3-images-bucket.s3.amazonaws.com/img/user.png"
 }
 export enum youtubeLink {
   trainingImportance = "https://www.youtube.com/embed/t7l1cqDj1tA?si=ZJCQXJYDLzDwLLvm"

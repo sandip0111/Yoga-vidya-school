@@ -253,9 +253,9 @@ iframe {
   .workshop-section .workshop .details {
     padding: 20px 10px 20px 7px !important;
   }
-  .footer-section .subscribe {
+  /* .footer-section .subscribe {
     display: none;
-  }
+  } */
   .banner-section .slider .inner img {
     display: none !important;
   }
@@ -503,7 +503,7 @@ iframe {
     height: 520px;
     background-color: white;
   }
-  .webinar-registration-modal-class .modal-content{ 
+  .webinar-registration-modal-class .modal-content{
     border: 5px solid rgba(249, 117, 30, 1);
   }
 

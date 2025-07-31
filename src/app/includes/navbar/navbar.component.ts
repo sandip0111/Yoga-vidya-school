@@ -157,7 +157,7 @@ export class NavbarComponent implements OnInit {
           { title: 'Yoga Webinar Registration', link: '/webinar-registration' },
           {
             title: 'Swara Sadhana',
-            link: 'https://swaryoga.yogavidyaschool.com/#register-form',
+            link: 'https://swaryoga.yogavidyaschool.com',
           },
           { title: 'Breath Detox Yoga', link: '/breath-detox-yoga' },
           {

@@ -1,15 +1,15 @@
-@if(slug != '/') {
+@if(slug != '/' && slug != blogRoute) {
 <div class="footer-section">
   <div class="footer-upper">
     <div class="row footer-upper-inner">
       <div class="col-md-12">
         <h2>Help Us To Serve You Better</h2>
         <small>
-          At Yoga Vidya School, we are dedicated to provide an exceptional yoga
-          teachings and services. Connect with us to let us know how we can
-          enhance your yoga journey with us. Embrace the wisdom of yoga in its
-          authentic form and embark on a life changing journey of health,
-          happiness, peace and love.
+          At Yoga Vidya School, we are committed to offering support to every
+          person interested in the authentic study of yoga. Please connect with
+          us at <b>{{ contact.email }}</b> and let us know how we can enhance
+          your yoga journey with us. Step into a path of health, peace, joy, and
+          self-discovery.
         </small>
       </div>
       <div class="col-ms-12 my-3">
@@ -21,20 +21,25 @@
           />
           Whatsapp</a
         > -->
-        <a href="/contact-us" class="footer-button"
+        <!-- <a href="/contact-us" class="footer-button"
           ><img
             src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAA3UlEQVR4nO3UMUpDQRSF4Y/YBeICBLMGsXANRhDSC5ZuwS1kC7aWVoKrEAJ2pvapC7CwU0YCN/ASJ3FefKDFO3CYgTtzfubOMHT6TzrBC9Iv/YxRDjBrITyFH3OAPVy3EH6HYQ4wiHEcx9ymNeOVrCW94jzmfUzwURD8iSvsxt5TPOUAuSMe4H5D+AOOai2+qdXWAuZ+xyV20MMF3hrUfwQsPMVh1PdxG57PRW26Zm8RINV6XL+4kjsqBqRwhbNwVbC+MSA1dAfQuEXbfA9pw4P4plFLkArHOUCnv9EXQRITVqHzZgIAAAAASUVORK5CYII="
             alt="email"
           />Contact Us</a
-        >
+        > -->
       </div>
       <div class="col-md-12">
         <div class="subscribe">
           <h2>Subscribe Now To Receive Updates</h2>
-          <small
-            >Stay connected with Yoga Vidya School by subscribing our
-            newsletter. Be the first to know our special yoga events, online and
-            offline , and insightful articles on Yoga and Healthy Lifestyle.
+          <small style="font-weight: 300;">
+            <span style="font-size: 20px;">
+              Stay connected with Yoga Vidya School by subscribing to our
+              newsletter.
+            </span>
+            <br />
+            Be the first to know our special yoga events -online and offline-
+            <br />
+            and insightful articles on Yoga and Healthy Lifestyle.
           </small>
           <div class="subscribe-form">
             <input

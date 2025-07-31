@@ -3,6 +3,8 @@ import { WebapiService } from '../../webapi.service';
 import { FormsModule } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { routeEnum } from '../../enum/routes';
+import { contact } from '../../enum/details';
 
 @Component({
   selector: 'app-footer',
@@ -15,6 +17,9 @@ export class FooterComponent implements OnInit {
   subscribeData: any = {};
   footerAddress: string = '';
   slug: string = '';
+  route = routeEnum;
+  blogRoute: string = `/${this.route.blogs}`;
+  contact = contact;
   constructor(
     private webService: WebapiService,
     private spinner: NgxSpinnerService,
