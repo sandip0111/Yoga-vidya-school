@@ -17,8 +17,7 @@ export class FooterComponent implements OnInit {
   subscribeData: any = {};
   footerAddress: string = '';
   slug: string = '';
-  route = routeEnum;
-  blogRoute: string = `/${this.route.blogs}`;
+  blogRoute = `/${routeEnum.blogs}`;
   contact = contact;
   constructor(
     private webService: WebapiService,
@@ -53,7 +52,6 @@ export class FooterComponent implements OnInit {
   subscribeHere(data: any) {
     this.spinner.show();
     if (data.email && this.validateEmail(data.email)) {
-      //  console.log(data,'-');
       this.webService.createSubscriber(data).subscribe((res: any) => {
         console.log(res);
         if (res.status == 'ok') {

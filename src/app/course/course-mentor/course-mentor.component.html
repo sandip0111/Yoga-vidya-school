@@ -1,9 +1,17 @@
 <section class="mentors" *ngIf="courseMentor.length > 0">
   <div class="row justify-content-center">
     <div class="col-md-12">
-      <div><img loading="lazy" alt="Not Loaded" src="https://my-s3-images-bucket.s3.amazonaws.com/img/flower-color.png"
-          class="flower-img" /></div>
-      <h2>Choose the <span>Online Yoga Class</span> and the Time Slot You Like</h2>
+      <div>
+        <img
+          loading="lazy"
+          alt="Not Loaded"
+          src="https://my-s3-images-bucket.s3.amazonaws.com/img/flower-color.png"
+          class="flower-img"
+        />
+      </div>
+      <h2>
+        Choose the <span>Online Yoga Class</span> and the Time Slot You Like
+      </h2>
     </div>
     <div class="col-md-12 my-3 time-range">
       <h2>Monday –Thursday (Live Sessions)</h2>
@@ -13,43 +21,59 @@
         <div class="card-container">
           <!-- Image Section -->
           <div class="card-image">
-            <img loading="lazy" alt="Card Image" class="card-img-top" [src]="imageUrl + men.image" />            
+            <img
+              loading="lazy"
+              alt="Card Image"
+              class="card-img-top"
+              [src]="imageUrl + men.image"
+            />
           </div>
 
           <!-- Content Section -->
           <div class="content-section">
             <div class="heading fw-600">{{ men.name }}</div>
             <p class="card-text">{{ men.intro }}</p>
-           
-            <div class="d-flex justify-content-evenly"> 
+
+            <div class="d-flex justify-content-evenly">
               <!-- <b> <a href="/book-now" class="button "  style="font-size: 24px !important;">Book Now!</a></b>  -->
-              <b><a *ngIf="isShowAddToCart" class="button blinking" href="#" (click)="addToCart($event, men.id)" style="font-size: 24px !important;"
-              >Book Now!</a></b>         
-        
+              <b
+                ><a
+                  *ngIf="isShowAddToCart"
+                  class="button blinking"
+                  (click)="addToCart($event, men.id)"
+                  style="font-size: 24px !important"
+                  >Book Now!</a
+                ></b
+              >
             </div>
-              <!-- <div class="d-flex justify-content-evenly"> 
-                <a *ngIf="isShowAddToCart" class="button" href="#" class="button" (click)="addToCart($event, men.id)">Add To Cart</a>          
+            <!-- <div class="d-flex justify-content-evenly">
+                <a *ngIf="isShowAddToCart" class="button" href="#" class="button" (click)="addToCart($event, men.id)">Add To Cart</a>
               </div> -->
-                <div class="d-flex justify-content-center">
-              <a *ngIf="men.time" href="javascript:void(0)" class="button">{{ men.time }}</a>
-              <a *ngIf="men.time1" href="javascript:void(0)" class="button">{{ men.time1 }}</a>
-              <a *ngIf="men.time2" href="javascript:void(0)" class="button time2">{{ men.time2 }}</a>
+            <div class="d-flex justify-content-center">
+              <a *ngIf="men.time" href="javascript:void(0)" class="button">{{
+                men.time
+              }}</a>
+              <a *ngIf="men.time1" href="javascript:void(0)" class="button">{{
+                men.time1
+              }}</a>
+              <a
+                *ngIf="men.time2"
+                href="javascript:void(0)"
+                class="button time2"
+                >{{ men.time2 }}</a
+              >
             </div>
-                <!-- <div class="d-flex justify-content-evenly">
+            <!-- <div class="d-flex justify-content-evenly">
                 <a *ngIf="men.price" href="javascript:void(0)" (click)="addToCart($event, men.id)" class="button">{{ men.price }}</a>
               </div>   -->
-            
+
             <div class="description" [innerHTML]="men.description"></div>
-            
-            
           </div>
         </div>
-        <div class="card-body">          
-          
-        </div>
+        <div class="card-body"></div>
       </div>
     </div>
-    
+
     <app-start-class></app-start-class>
   </div>
 </section>
