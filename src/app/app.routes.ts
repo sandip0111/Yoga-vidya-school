@@ -28,6 +28,7 @@ import { WebinarRegistrationFormComponent } from './webinar-registration-form/we
 import { PaymentProceedComponent } from './payment-proceed/payment-proceed.component';
 import { RegistrationFormComponent } from './student/registration-form/registration-form.component';
 import { WebinarVideosComponent } from './webinar-videos/webinar-videos.component';
+import { CertifiedComponent } from './certified/certified.component';
 
 export const routes: Routes = [
   { path: '', component: IndexComponent },
@@ -131,6 +132,14 @@ export const routes: Routes = [
   {
     path: 'breath-detox-yoga/student-register',
     component: RegistrationFormComponent,
+  },
+  {
+    path: 'get-certified-in-rishikesh',
+    component: CertifiedComponent,
+  },
+  {
+    path: 'get-certified-in-bali',
+    component: CertifiedComponent,
   },
   { path: 'webinar-video/:name', component: WebinarVideosComponent },
   { path: '**', pathMatch: 'full', component: PagenotfoundComponent },
