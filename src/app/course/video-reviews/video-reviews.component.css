@@ -15,7 +15,12 @@
 }
 
 
-
+.section-title {
+  color: #f37021;
+  font-size: 2rem;
+  margin-bottom: 40px;
+  text-align: center; 
+}
 
 
 .menu--wrapper {

@@ -3,11 +3,31 @@ import { BannerComponent } from './banner/banner.component';
 import { ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { TrainningPathComponent } from './trainning-path/trainning-path.component';
+import { aboutContentModel } from '../models/rishikesh';
+import { s3Bucket } from '../enum/s3Bucket';
+import { CommonModule } from '@angular/common';
+import { AboutComponent } from './about/about.component';
+import { WhyRishikeshComponent } from "./why-rishikesh/why-rishikesh.component";
+import { IncludesComponent } from "./includes/includes.component";
+import { VideoReviewsComponent } from "../course/video-reviews/video-reviews.component";
+import { ReadyComponent } from "./ready/ready.component";
+import { WhyBaliComponent } from "./why-bali/why-bali.component";
+import { IncludesBaliComponent } from "./includes-bali/includes-bali.component";
 
 @Component({
   selector: 'app-certified',
   standalone: true,
-  imports: [BannerComponent, TrainningPathComponent],
+  imports: [BannerComponent,
+    TrainningPathComponent,
+    AboutComponent,
+    CommonModule,
+    WhyRishikeshComponent,
+    IncludesComponent,
+    VideoReviewsComponent,
+    ReadyComponent,
+    WhyBaliComponent,
+    IncludesBaliComponent
+  ],
   templateUrl: './certified.component.html',
   styleUrl: './certified.component.css'
 })
@@ -15,6 +35,8 @@ export class CertifiedComponent {
   imgSlug: string = '';
   bannerTitle: string = '';
   bannerSubtitle: string = '';
+  s3Bucket = s3Bucket;
+  aboutContent: aboutContentModel = new aboutContentModel('', '', '', '');
   slug: string = '';
     constructor(
       private spinner: NgxSpinnerService,
@@ -27,6 +49,7 @@ export class CertifiedComponent {
     ngOnInit() {
       this.setImageSlug();
       this.setBannerTitle();
+      this.setAboutContent();
       this.spinner.hide();
     }
 
@@ -48,5 +71,19 @@ export class CertifiedComponent {
         this.bannerTitle = 'Experience traditional yoga in the heart of paradise';
         this.bannerSubtitle = 'Train with a lineage-rooted school in the spiritual and serene setting of Ubud, Bali. Let the energy of nature, the power of breath, and ancient teachings guide you through a life-changing journey.';
       }
+    }
+
+    private setAboutContent() {
+      // Logic to set about content based on the slug or other conditions
+      if(this.slug === 'get-certified-in-rishikesh') {
+        this.aboutContent = new aboutContentModel(
+          s3Bucket.certifiedRishikeshAbout,
+          'Get certified as a Yoga Teacher in Rishikesh, India — the world capital of yoga.',
+          '',
+          'Join us at Yoga Vidya School for a transformational journey rooted in traditional practice, deep wisdom, and immersive experience.'      
+          
+        );
+      }
+      
     }
 }

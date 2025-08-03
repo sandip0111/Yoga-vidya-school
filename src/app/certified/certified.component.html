@@ -1,2 +1,10 @@
 <app-banner [imgSlug]="imgSlug" [bannerTitle]="bannerTitle" [bannerSubtitle]="bannerSubtitle"></app-banner>
+<app-about [aboutContent]="aboutContent" *ngIf="slug == 'get-certified-in-rishikesh'"></app-about>
+<app-why-rishikesh *ngIf="slug == 'get-certified-in-rishikesh'"></app-why-rishikesh>
+<app-why-bali *ngIf="slug == 'get-certified-in-bali'"></app-why-bali>
 <app-trainning-path [slug]="slug"></app-trainning-path>
+<app-includes *ngIf="slug == 'get-certified-in-rishikesh'"></app-includes>
+<app-includes-bali *ngIf="slug == 'get-certified-in-bali'"></app-includes-bali>
+<app-video-reviews></app-video-reviews>
+<app-ready *ngIf="slug == 'get-certified-in-rishikesh'"></app-ready>
+

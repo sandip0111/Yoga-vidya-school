@@ -22,7 +22,9 @@ export enum s3Bucket {
   rishikesh200 = "https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/IMG_1048.JPEG",
   rishikesh300 = "https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/79d6792b-ce4b-458f-808a-af171e291224.jpg",
   bali100 = "https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/954A9876.JPG",
-  bali300 = "https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/954A0799.JPG"
+  bali300 = "https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/954A0799.JPG",
+  certifiedRishikeshAbout = "https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/IMG_1587.JPG",
+  certifiedWhyBali = "https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/IMG_2828.JPG",
 }
 export enum youtubeLink {
   trainingImportance = "https://www.youtube.com/embed/t7l1cqDj1tA?si=ZJCQXJYDLzDwLLvm"
