@@ -8,10 +8,14 @@
     />
   </div>
   <div class="row headingBlock">
+    @if(slug == route.rishikesh){
     <h3 class="col-md-12">Choose Your Training Path</h3>
     <h4 class="col-md-12" style="color: #f47019">
       Next Batches Starts: October the 3rd 2025
     </h4>
+    }@else{
+    <h3>Our Bali Teacher Training Courses</h3>
+    }
   </div>
   @if(slug == route.rishikesh){
   <div class="row align-items-center mainContent">
@@ -20,7 +24,7 @@
       <p>
         <b>Perfect for:</b> Beginners or those deepening their personal practice
       </p>
-      <ul>
+      <ul class="responsiveList">
         <li>Fundamentals of Hatha Yoga</li>
         <li>Ashtanga Vinyasa Primary Serie</li>
         <li>Introduction to Yogic Philosophy</li>
@@ -44,7 +48,7 @@
       />
     </div>
   </div>
-  <div class="row align-items-center mainContent">
+  <div class="row align-items-center mainContent rishikesh2">
     <div class="col-md-6">
       <img
         loading="lazy"
@@ -56,7 +60,7 @@
     <div class="col-md-6 contentrishi">
       <h4 style="color: #f47019">📗 200-Hour Yoga Teacher Training</h4>
       <p><b>Perfect for:</b> Aspiring teachers or serious practitioners</p>
-      <ul>
+      <ul class="responsiveList">
         <li>Certified by Yoga Alliance</li>
         <li>In-depth Asana, Anatomy, and Teaching Methodology</li>
         <li>Philosophy, Mudra, Mantra, Pranayama & Meditation</li>
@@ -79,7 +83,7 @@
         <b>Perfect for:</b> Certified teachers (200 hour Yoga Alliance) who want
         to go deeper
       </p>
-      <ul>
+      <ul class="responsiveList">
         <li>Advanced Hatha & Ashtanga Techniques</li>
         <li>Pranayama & Kriya Practices</li>
         <li>Yoga Philosophy, Therapeutic Adjustments & Teaching Practicum</li>
@@ -114,7 +118,7 @@
         asana, pranayama, meditation and philosophy in a supportive, immersive
         environment.
       </p>
-      <ul>
+      <ul class="responsiveList">
         <li>Duration: 12 Days</li>
         <li>Certification: Yoga Vidya School (no Yoga Alliance)</li>
         <li>
@@ -122,13 +126,13 @@
         </li>
         <li>Next Batch: November the 3rd</li>
       </ul>
-      <button
+      <!-- <button
         class="button"
         style="margin-top: 0"
         (click)="goToLink(route.bali200)"
       >
         See more details
-      </button>
+      </button> -->
     </div>
     <div class="col-md-6">
       <img
@@ -139,14 +143,14 @@
       />
     </div>
   </div>
-  <div class="row align-items-center mainContent">
+  <div class="row align-items-center mainContent rishikesh2">
     <div class="col-md-6">
-      <img
+      <!-- <img
         loading="lazy"
         class="img-fluid imgRishi100"
         alt="rishikesh100"
         [src]="s3Bucket.rishikesh200"
-      />
+      /> -->
     </div>
     <div class="col-md-6 contentrishi">
       <h4 style="color: #f47019">
@@ -157,13 +161,12 @@
         yoga teacher.<br />Explore traditional Hatha Yoga, Ashtanga, Pranayama,
         Anatomy, and Yogic Philosophy with experienced teachers.
       </p>
-      <ul>
+      <ul class="responsiveList">
         <li>Duration: 21 Days</li>
         <li>Certification: Yoga Alliance (RYT 200)</li>
         <li>Ideal for: Aspiring teachers or serious practitioners</li>
         <li>Next Batch: November the 3rd</li>
       </ul>
-      <p style="font-weight: 800">✅ International Certification</p>
       <button
         class="button"
         style="margin-top: 0"
@@ -176,7 +179,7 @@
   <div class="row align-items-center mainContent">
     <div class="col-md-6 contentrishi">
       <h4 style="color: #f47019">
-        🧘‍♀️ 300-Hour Yoga Teacher Training – Deepen Your Practice
+        🧘‍♀️ 300-Hour Yoga Teacher Training - Deepen Your Practice
       </h4>
       <p>
         For 200-hour certified teachers ready to level up their teaching and
@@ -184,7 +187,7 @@
         <br />This advanced course dives deep into subtle practices, advanced
         asana, Pranayama, and the science of the mind.
       </p>
-      <ul>
+      <ul class="responsiveList">
         <li>Duration: 28 Days</li>
         <li>Certification: Yoga Alliance (RYT 300)</li>
         <li>Ideal for: Experienced teachers and committed practitioners</li>
@@ -200,8 +203,8 @@
     <div class="col-md-6">
       <img
         loading="lazy"
-        class="img-fluid imgRishi100"
-        style="height: 40rem;"
+        class="img-fluid imgRishi100 resposnsiveBali300"
+        style="height: 40rem"
         alt="rishikesh100"
         [src]="s3Bucket.bali300"
       />

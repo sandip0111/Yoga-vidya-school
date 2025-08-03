@@ -6,5 +6,5 @@
 <app-includes *ngIf="slug == 'get-certified-in-rishikesh'"></app-includes>
 <app-includes-bali *ngIf="slug == 'get-certified-in-bali'"></app-includes-bali>
 <app-video-reviews></app-video-reviews>
-<app-ready *ngIf="slug == 'get-certified-in-rishikesh'"></app-ready>
+<app-ready [slug]="slug"></app-ready>
 

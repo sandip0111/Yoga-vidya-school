@@ -24,7 +24,13 @@
   .contentrishi {
     padding: 20px 0 !important;
   }
-  /* .mainContent {
-    padding: 50px !important;
-  } */
+  .rishikesh2 {
+    flex-direction: column-reverse;
+  }
+  .responsiveList{
+    padding-left: 45px;
+  }
+  .resposnsiveBali300{
+    height: 30rem !important;
+  }
 }

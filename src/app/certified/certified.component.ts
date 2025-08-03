@@ -55,10 +55,10 @@ export class CertifiedComponent {
 
     private setImageSlug() {
       if(this.slug === 'get-certified-in-rishikesh') {
-        this.imgSlug = 'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/954A7672.jpg';
+        this.imgSlug = this.s3Bucket.rishikeshAbout;
       }
       else if(this.slug === 'get-certified-in-bali') {
-        this.imgSlug = 'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/954A9431.JPG';
+        this.imgSlug = this.s3Bucket.baliAbout;
       }
     }
 
@@ -74,16 +74,14 @@ export class CertifiedComponent {
     }
 
     private setAboutContent() {
-      // Logic to set about content based on the slug or other conditions
       if(this.slug === 'get-certified-in-rishikesh') {
         this.aboutContent = new aboutContentModel(
           s3Bucket.certifiedRishikeshAbout,
           'Get certified as a Yoga Teacher in Rishikesh, India — the world capital of yoga.',
           '',
-          'Join us at Yoga Vidya School for a transformational journey rooted in traditional practice, deep wisdom, and immersive experience.'      
-          
+          'Join us at Yoga Vidya School for a transformational journey rooted in traditional practice, deep wisdom, and immersive experience.'
         );
       }
-      
+
     }
 }

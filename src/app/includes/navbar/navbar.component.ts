@@ -107,20 +107,20 @@ export class NavbarComponent implements OnInit {
             //   // },
             // ],
           },
-          {
-            title: 'Get Certified in Bali',
-            link: `/${routeEnum.bali}`,
-            // submenu: [
-            //   {
-            //     title: '200 Hour Yoga TTC',
-            //     link: '/200-hour-yoga-teacher-training-in-bali',
-            //   },
-            //   {
-            //     title: '300 Hour Yoga TTC',
-            //     link: '/300-hour-yoga-teacher-training-in-bali',
-            //   },
-            // ],
-          },
+          // {
+          //   title: 'Get Certified in Bali',
+          //   link: `/${routeEnum.bali}`,
+          //   // submenu: [
+          //   //   {
+          //   //     title: '200 Hour Yoga TTC',
+          //   //     link: '/200-hour-yoga-teacher-training-in-bali',
+          //   //   },
+          //   //   {
+          //   //     title: '300 Hour Yoga TTC',
+          //   //     link: '/300-hour-yoga-teacher-training-in-bali',
+          //   //   },
+          //   // ],
+          // },
           // {
           //   title: 'Get Certified in Kerala',
           //   link: '#',

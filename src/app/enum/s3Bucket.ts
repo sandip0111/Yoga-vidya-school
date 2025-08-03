@@ -25,6 +25,8 @@ export enum s3Bucket {
   bali300 = "https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/954A0799.JPG",
   certifiedRishikeshAbout = "https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/IMG_1587.JPG",
   certifiedWhyBali = "https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/IMG_2828.JPG",
+  rishikeshAbout = "https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/954A7672.jpg",
+  baliAbout = "https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/954A9431.JPG"
 }
 export enum youtubeLink {
   trainingImportance = "https://www.youtube.com/embed/t7l1cqDj1tA?si=ZJCQXJYDLzDwLLvm"
