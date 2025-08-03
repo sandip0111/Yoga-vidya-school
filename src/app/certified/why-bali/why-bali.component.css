@@ -1,0 +1,63 @@
+.why-bali-section {
+    padding: 60px 20px;
+    background: #f8eed8;
+}
+
+.why-bali-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 40px;
+}
+
+.why-bali-text {
+    flex: 1 1 500px;
+}
+
+.why-bali-text h2 {
+    font-size: 2rem;
+    color: #d35400;
+    margin-bottom: 20px;
+}
+
+.why-bali-text ul {
+    list-style: none;
+    padding: 0;
+    font-size: 1.1rem;
+    color: #444;
+    line-height: 1.8;
+}
+
+.why-bali-text li {
+    margin-bottom: 12px;
+}
+
+
+
+.imageback {
+    width: 100%;
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    min-height: 320px;
+    -webkit-box-shadow: 6px 6px 0px 0px var(--tw-primary-light);
+    -moz-box-shadow: 6px 6px 0px 0px var(--tw-primary-light);
+    box-shadow: 6px 6px 0px 0px var(--tw-primary-light);
+    max-height: 380px;
+
+    & img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        max-height: 380px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .imageback {
+        min-height: 200px;
+    }
+
+}

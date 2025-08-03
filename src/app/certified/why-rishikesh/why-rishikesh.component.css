@@ -1,0 +1,32 @@
+.why-rishikesh-section {
+    padding: 60px 15px;
+    background-color: #fff;
+    color: #333;
+}
+
+.why-rishikesh-section .main-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #f37021;
+    margin-bottom: 20px;
+}
+
+.why-rishikesh-section .lead-paragraph {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+}
+
+.why-rishikesh-section .highlights {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #444;
+    margin: 20px 0;
+}
+
+.why-rishikesh-section .final-line {
+    font-style: italic;
+    font-size: 1.1rem;
+    color: #555;
+}
+
+

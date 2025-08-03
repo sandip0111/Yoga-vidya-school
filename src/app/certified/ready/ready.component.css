@@ -1,0 +1,41 @@
+.ready-section {
+  background: linear-gradient(135deg, #fef5f0, #ffe5d0);
+  padding: 80px 20px;
+  text-align: center;
+  border-radius: 20px;
+  margin: 40px 0;
+}
+
+.ready-container {
+  max-width: 800px;
+  margin: auto;
+}
+
+.ready-title {
+  font-size: 2.5rem;
+  color: #d35400;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.ready-subtitle {
+  font-size: 1.2rem;
+  color: #555;
+  margin-bottom: 30px;
+  line-height: 1.6;
+}
+
+.ready-button {
+  display: inline-block;
+  background-color: #d35400;
+  color: white;
+  padding: 14px 30px;
+  border-radius: 30px;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.ready-button:hover {
+  background-color: #a84300;
+}

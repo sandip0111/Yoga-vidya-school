@@ -1,0 +1,32 @@
+<section class="about-rishikesh-section py-5">
+    <div class="row mb-3 align-items-center">
+    <div class="col-md-6">
+      <div class="imageback">
+        <img
+          src="{{ this.aboutContent.image }}"
+          class="img-fluid"
+          loading="lazy"
+          alt="{{ this.aboutContent.title }} {{
+            this.aboutContent.secondTitle
+          }}"
+        />
+      </div>
+    </div>
+    <div class="col-md-6 d-flex align-items-center">
+      <div>
+        <small class="text-left p-0">Yoga Vidya Present's</small>
+        <h3>
+          {{ this.aboutContent.title }}
+          <span>{{ this.aboutContent.secondTitle }}</span>
+        </h3>
+        <div *ngIf="this.aboutContent.subTitle" class="col-12">
+          <h4>
+            {{ this.aboutContent.subTitle }}
+          </h4>
+        </div>
+
+        <div [innerHTML]="this.aboutContent.desc"></div>
+      </div>
+    </div>
+  </div>
+</section>
