@@ -13,3 +13,15 @@
 .mainContent {
   padding: 0 50px;
 }
+@media only screen and (max-width: 767px) {
+  .imgRishi100 {
+    padding: 10px 0 !important;
+    border-radius: 10px !important;
+  }
+  .contentrishi {
+    padding: 20px 0 !important;
+  }
+  /* .mainContent {
+    padding: 50px !important;
+  } */
+}
