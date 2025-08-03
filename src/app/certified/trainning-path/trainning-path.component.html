@@ -1,0 +1,211 @@
+<div>
+  <div class="d-flex justify-content-center">
+    <img
+      loading="lazy"
+      alt="flower"
+      [src]="s3Bucket.flower"
+      class="flower-img"
+    />
+  </div>
+  <div class="row headingBlock">
+    <h3 class="col-md-12">Choose Your Training Path</h3>
+    <h4 class="col-md-12" style="color: #f47019">
+      Next Batches Starts: October the 3rd 2025
+    </h4>
+  </div>
+  @if(slug == route.rishikesh){
+  <div class="row align-items-center mainContent">
+    <div class="col-md-6 contentrishi">
+      <h4 style="color: #f47019">📘 100-Hour Yoga Teacher Training</h4>
+      <p>
+        <b>Perfect for:</b> Beginners or those deepening their personal practice
+      </p>
+      <ul>
+        <li>Fundamentals of Hatha Yoga</li>
+        <li>Ashtanga Vinyasa Primary Serie</li>
+        <li>Introduction to Yogic Philosophy</li>
+        <li>Basic Pranayama & Meditation Techniques</li>
+        <li>Duration: 14 days</li>
+      </ul>
+      <button
+        class="button"
+        style="margin-top: 0"
+        (click)="goToLink(route.rishikesh100)"
+      >
+        See more details
+      </button>
+    </div>
+    <div class="col-md-6">
+      <img
+        loading="lazy"
+        class="img-fluid imgRishi100"
+        alt="rishikesh100"
+        [src]="s3Bucket.rishikesh100"
+      />
+    </div>
+  </div>
+  <div class="row align-items-center mainContent">
+    <div class="col-md-6">
+      <img
+        loading="lazy"
+        class="img-fluid imgRishi100"
+        alt="rishikesh200"
+        [src]="s3Bucket.rishikesh200"
+      />
+    </div>
+    <div class="col-md-6 contentrishi">
+      <h4 style="color: #f47019">📗 200-Hour Yoga Teacher Training</h4>
+      <p><b>Perfect for:</b> Aspiring teachers or serious practitioners</p>
+      <ul>
+        <li>Certified by Yoga Alliance</li>
+        <li>In-depth Asana, Anatomy, and Teaching Methodology</li>
+        <li>Philosophy, Mudra, Mantra, Pranayama & Meditation</li>
+        <li>Duration: 28 days</li>
+      </ul>
+      <p style="font-weight: 800">✅ International Certification</p>
+      <button
+        class="button"
+        style="margin-top: 0"
+        (click)="goToLink(route.rishkesh200)"
+      >
+        See more details
+      </button>
+    </div>
+  </div>
+  <div class="row align-items-center mainContent">
+    <div class="col-md-6 contentrishi">
+      <h4 style="color: #f47019">📙 300-Hour Yoga Teacher Training</h4>
+      <p>
+        <b>Perfect for:</b> Certified teachers (200 hour Yoga Alliance) who want
+        to go deeper
+      </p>
+      <ul>
+        <li>Advanced Hatha & Ashtanga Techniques</li>
+        <li>Pranayama & Kriya Practices</li>
+        <li>Yoga Philosophy, Therapeutic Adjustments & Teaching Practicum</li>
+      </ul>
+      <p style="font-weight: 800">✅ Advanced Level</p>
+      <button
+        class="button"
+        style="margin-top: 0"
+        (click)="goToLink(route.rishikesh300)"
+      >
+        See more details
+      </button>
+    </div>
+    <div class="col-md-6">
+      <img
+        loading="lazy"
+        class="img-fluid imgRishi100"
+        alt="rishikesh300"
+        [src]="s3Bucket.rishikesh300"
+      />
+    </div>
+  </div>
+  } @else{
+  <div class="row align-items-center mainContent">
+    <div class="col-md-6 contentrishi">
+      <h4 style="color: #f47019">
+        🧘‍♂️ 100-Hour Yoga Teacher Training - Foundation Course
+      </h4>
+      <p>
+        A perfect start for those beginning their yogic journey or looking to
+        deepen their self-practice.<br />You'll learn the core principles of
+        asana, pranayama, meditation and philosophy in a supportive, immersive
+        environment.
+      </p>
+      <ul>
+        <li>Duration: 12 Days</li>
+        <li>Certification: Yoga Vidya School (no Yoga Alliance)</li>
+        <li>
+          Ideal for: Self-growth, experience-building, and TTC preparation
+        </li>
+        <li>Next Batch: November the 3rd</li>
+      </ul>
+      <button
+        class="button"
+        style="margin-top: 0"
+        (click)="goToLink(route.bali200)"
+      >
+        See more details
+      </button>
+    </div>
+    <div class="col-md-6">
+      <img
+        loading="lazy"
+        class="img-fluid imgRishi100"
+        alt="bali100"
+        [src]="s3Bucket.bali100"
+      />
+    </div>
+  </div>
+  <div class="row align-items-center mainContent">
+    <div class="col-md-6">
+      <img
+        loading="lazy"
+        class="img-fluid imgRishi100"
+        alt="rishikesh100"
+        [src]="s3Bucket.rishikesh200"
+      />
+    </div>
+    <div class="col-md-6 contentrishi">
+      <h4 style="color: #f47019">
+        🧘‍♀️ 200-Hour Yoga Teacher Training - Become a Certified Teacher
+      </h4>
+      <p>
+        The complete foundational course to become a Yoga Alliance certified
+        yoga teacher.<br />Explore traditional Hatha Yoga, Ashtanga, Pranayama,
+        Anatomy, and Yogic Philosophy with experienced teachers.
+      </p>
+      <ul>
+        <li>Duration: 21 Days</li>
+        <li>Certification: Yoga Alliance (RYT 200)</li>
+        <li>Ideal for: Aspiring teachers or serious practitioners</li>
+        <li>Next Batch: November the 3rd</li>
+      </ul>
+      <p style="font-weight: 800">✅ International Certification</p>
+      <button
+        class="button"
+        style="margin-top: 0"
+        (click)="goToLink(route.bali200)"
+      >
+        See more details
+      </button>
+    </div>
+  </div>
+  <div class="row align-items-center mainContent">
+    <div class="col-md-6 contentrishi">
+      <h4 style="color: #f47019">
+        🧘‍♀️ 300-Hour Yoga Teacher Training – Deepen Your Practice
+      </h4>
+      <p>
+        For 200-hour certified teachers ready to level up their teaching and
+        practice.
+        <br />This advanced course dives deep into subtle practices, advanced
+        asana, Pranayama, and the science of the mind.
+      </p>
+      <ul>
+        <li>Duration: 28 Days</li>
+        <li>Certification: Yoga Alliance (RYT 300)</li>
+        <li>Ideal for: Experienced teachers and committed practitioners</li>
+      </ul>
+      <button
+        class="button"
+        style="margin-top: 0"
+        (click)="goToLink(route.bali300)"
+      >
+        See more details
+      </button>
+    </div>
+    <div class="col-md-6">
+      <img
+        loading="lazy"
+        class="img-fluid imgRishi100"
+        style="height: 40rem;"
+        alt="rishikesh100"
+        [src]="s3Bucket.bali300"
+      />
+    </div>
+  </div>
+  }
+</div>

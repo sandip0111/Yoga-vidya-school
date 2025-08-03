@@ -1,0 +1,15 @@
+.headingBlock {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+.imgRishi100 {
+  padding: 50px;
+  border-radius: 80px;
+}
+.contentrishi {
+  padding-left: 5rem;
+}
+.mainContent {
+  padding: 0 50px;
+}

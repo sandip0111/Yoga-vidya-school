@@ -16,7 +16,13 @@ export enum s3Bucket {
   offer3 = "https://my-s3-images-bucket.s3.amazonaws.com/images/online3_pseqg1.jpg",
   offer4 = "https://my-s3-images-bucket.s3.amazonaws.com/images/onlinr2_lunr65.jpg",
   calender = "https://my-s3-images-bucket.s3.amazonaws.com/img/calendar.png",
-  person = "https://my-s3-images-bucket.s3.amazonaws.com/img/user.png"
+  person = "https://my-s3-images-bucket.s3.amazonaws.com/img/user.png",
+  hero = "https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/IMG_6446.JPG",
+  rishikesh100 = "https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/IMG_1614.JPG",
+  rishikesh200 = "https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/IMG_1048.JPEG",
+  rishikesh300 = "https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/79d6792b-ce4b-458f-808a-af171e291224.jpg",
+  bali100 = "https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/954A9876.JPG",
+  bali300 = "https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/954A0799.JPG"
 }
 export enum youtubeLink {
   trainingImportance = "https://www.youtube.com/embed/t7l1cqDj1tA?si=ZJCQXJYDLzDwLLvm"

@@ -7,5 +7,9 @@ export enum routeEnum {
   'yogaRetreat' = 'yoga-retreat-in-rishikesh-india',
   'rishikesh100' = '100-hours-yoga-teacher-training-in-rishikesh',
   'rishikesh300' = '300-hours-yoga-teacher-training-in-rishikesh',
-  'blogs' = 'blogs'
+  'blogs' = 'blogs',
+  'rishikesh' = 'get-certified-in-rishikesh',
+  'bali' = 'get-certified-in-bali',
+  'bali200' = '200-hour-yoga-teacher-training-in-bali',
+  'bali300' = '300-hour-yoga-teacher-training-in-bali'
 }
