@@ -11,5 +11,6 @@ export enum routeEnum {
   'rishikesh' = 'get-certified-in-rishikesh',
   'bali' = 'get-certified-in-bali',
   'bali200' = '200-hour-yoga-teacher-training-in-bali',
-  'bali300' = '300-hour-yoga-teacher-training-in-bali'
+  'bali300' = '300-hour-yoga-teacher-training-in-bali',
+  'bDtox' = 'breath-detox-yoga'
 }

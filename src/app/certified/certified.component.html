@@ -1,10 +1,11 @@
 <app-banner [imgSlug]="imgSlug" [bannerTitle]="bannerTitle" [bannerSubtitle]="bannerSubtitle"></app-banner>
-<app-about [aboutContent]="aboutContent" *ngIf="slug == 'get-certified-in-rishikesh'"></app-about>
-<app-why-rishikesh *ngIf="slug == 'get-certified-in-rishikesh'"></app-why-rishikesh>
-<app-why-bali *ngIf="slug == 'get-certified-in-bali'"></app-why-bali>
+<app-about [aboutContent]="aboutContent" *ngIf="slug == routEnum.rishikesh"></app-about>
+<app-why-rishikesh *ngIf="slug == routEnum.rishikesh"></app-why-rishikesh>
+<app-why-bali *ngIf="slug == routEnum.bali"></app-why-bali>
 <app-trainning-path [slug]="slug"></app-trainning-path>
-<app-includes *ngIf="slug == 'get-certified-in-rishikesh'"></app-includes>
-<app-includes-bali *ngIf="slug == 'get-certified-in-bali'"></app-includes-bali>
+<app-includes *ngIf="slug == routEnum.rishikesh"></app-includes>
+<app-includes-bali *ngIf="slug == routEnum.bali"></app-includes-bali>
+<app-bonus></app-bonus>
 <app-video-reviews></app-video-reviews>
 <app-ready [slug]="slug"></app-ready>
 

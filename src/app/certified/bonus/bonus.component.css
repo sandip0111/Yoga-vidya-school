@@ -1,0 +1,21 @@
+.main-block {
+  background: #f8eed8;
+  padding-top: 92px;
+  padding-bottom: 92px;
+  .head-block {
+    text-align: center;
+    h2 {
+      font-weight: 700;
+    }
+    h5 {
+      color: #f5711a;
+      font-size: 23px;
+    }
+  }
+}
+.content-block{
+  text-align: center;
+  p, b{
+    font-size: 20px;
+  }
+}
