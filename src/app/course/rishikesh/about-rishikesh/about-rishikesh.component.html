@@ -55,7 +55,9 @@
     </div>
     <div class="col-md-6 d-flex align-items-center">
       <div>
-        <small class="text-left p-0">Yoga Vidya Present's</small>
+        <small class="text-left p-0" *ngIf="slug != routeEnum.rishkesh200"
+          >Yoga Vidya Present's</small
+        >
         <h1>
           {{ this.aboutContent.title }}
           <span>{{ this.aboutContent.secondTitle }}</span>

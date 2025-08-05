@@ -14,6 +14,8 @@ import { WebapiService } from '../../webapi.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import { routeEnum } from '../../enum/routes';
+import { s3Bucket } from '../../enum/s3Bucket';
 
 @Component({
   selector: 'app-banner',
@@ -35,6 +37,8 @@ export class BannerComponent implements OnInit {
   @ViewChild('bannerSection', { static: false })
   bannerSection!: ElementRef<HTMLElement>;
   @ViewChild('nameInput') nameInput?: ElementRef;
+  routeEnum = routeEnum;
+  s3Bucket = s3Bucket;
   sliderImage: string =
     'https://my-s3-images-bucket.s3.amazonaws.com/images/InternalBackground_lticg8.jpg';
   constructor(

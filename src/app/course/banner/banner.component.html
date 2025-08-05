@@ -1,4 +1,4 @@
-@if(slug === '200-hours-yoga-teacher-training-online'){
+@if(slug === routeEnum['200TTC']){
 <section class="ttc-banner-section" id="bnner_section">
   <div class="floating-register-btn">
     <button class="register-btn" (click)="registerClick(slug)">
@@ -55,7 +55,29 @@
     <span class="visually-hidden">Next</span>
   </button>
 </div>
-}@else{
+}@else if(slug === routeEnum.rishkesh200){
+<section style="padding: 0">
+  <div class="row">
+    <div class="col-md-12">
+      <div style="position: relative">
+        <div class="inner image">
+          <img
+            [src]="s3Bucket.rishikesh200Banner"
+            class="img-fluid banner_image"
+            alt="Banner Image"
+          />
+          <div class="banner-text-overlay">
+            Transform Your Life with 200-Hour Yoga TTC in Rishikesh
+          </div>
+          <div class="banner-subtitle-overlay">
+            Enroll for next Batch: October 3rd 2025 – Yoga Alliance Certified
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+} @else{
 <section
   #bannerSection
   class="banner-section"
@@ -63,8 +85,6 @@
   *ngIf="slug != 'pranayama-course-online-pranarambha'"
 >
   <div *ngIf="slug === 'pranic-purification'" class="blur-overlay"></div>
-
-  <!-- Your Register Button -->
   @if(slug === 'pranic-purification' || slug === 'breath-detox-yoga'){
   <div class="floating-register-btn">
     <button class="register-btn" (click)="registerClick(slug)">
@@ -73,29 +93,7 @@
   </div>
   }@else{
   <div class="row">
-    <div class="col-md-6">
-      <!-- <div class="banner-text">
-        <small>Best Yoga School In Rishikesh</small>
-        <h2>Awaken Your Inner Yogi:</h2>
-        <h2> Rishikesh's Acclaimed Haven for Yoga Mastery</h2>
-        <div class="banner-desc my-4">Discover Rishikesh's tranquil embrace, nurturing yoga mastery. Embrace serene landscapes, sacred rivers, and renowned gurus for soulful transformation.</div>
-      </div>
-      <div>
-        <a href="#" class="button">Enroll Now</a>
-        <a href="#" class="video-button"><i class="fas fa-play"></i> Enroll Now</a>
-      </div>
-      <div class="free-ad">
-        <div>
-          <img src="https://my-s3-images-bucket.s3.amazonaws.com/img/right-tick.png" class="img-fluid" alt="Banner Image" /> 3- Days Free Trial
-        </div>
-        <div>
-          <img src="https://my-s3-images-bucket.s3.amazonaws.com/img/right-tick.png" class="img-fluid" alt="Banner Image" /> 2- Days Free Trial
-        </div>
-        <div>
-          <img src="https://my-s3-images-bucket.s3.amazonaws.com/img/right-tick.png" class="img-fluid" alt="Banner Image" /> 2- Days Free Trial
-        </div>
-      </div> -->
-    </div>
+    <div class="col-md-6"></div>
     <div class="col-md-6">
       <div class="slider">
         <div class="inner">

@@ -30,6 +30,7 @@ import { LearningComponent } from '../../bali/learning/learning.component';
 import { BottomNavCourseComponent } from '../../../includes/home/bottom-nav-course/bottom-nav-course.component';
 import { VideoReviewsComponent } from '../../video-reviews/video-reviews.component';
 import { feesStructureModel } from '../../../models/rishikesh';
+import { routeEnum } from '../../../enum/routes';
 
 @Component({
   selector: 'app-rishikesh-index',
@@ -79,6 +80,7 @@ export class RishikeshIndexComponent implements OnInit {
   schEventData: any = {};
   isPranicPurification = false;
   isYoutubeDataReady: boolean = false;
+  routEnum = routeEnum;
   constructor(
     private webapiService: WebapiService,
     private activatedRoute: ActivatedRoute,

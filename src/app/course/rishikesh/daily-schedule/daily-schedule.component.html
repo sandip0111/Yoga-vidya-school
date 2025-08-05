@@ -1,111 +1,277 @@
+@if(slug==routeEnum.rishkesh200){
+<section class="daily-schedule-section" *ngIf="schedule?.length > 0">
+  <div class="row">
+    <div class="col-md-12 mb-4">
+      <div>
+        <img
+          loading="lazy"
+          alt="Not Loaded"
+          src="https://my-s3-images-bucket.s3.amazonaws.com/img/flower-color.png"
+          class="flower-img"
+        />
+      </div>
+    </div>
+    <div class="col-md-6">
+      <h2 style="color: #f9751e">📚 What You'll Learn</h2>
+      <p>
+        This course covers the core pillars of traditional yogic knowledge and
+        modern pedagogy, designed to support your growth as both a practitioner
+        and a teacher.
+      </p>
+      <div class="card" style="width: 100%">
+        <div class="card-header" style="font-weight: 500">
+          🧘‍♂️ Asana Practice
+        </div>
+        <div class="card-body card-content">
+          <ul>
+            <li><b>Ashtanga Yoga</b> - Full primary series, 5x per week</li>
+            <li><b>Hatha Yoga</b> - 60+ Asanas, taught with precision and care</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card" style="width: 100%">
+        <div class="card-header" style="font-weight: 500">
+          🌬️ Pranayama & Meditation
+        </div>
+        <div class="card-body card-content">
+          <ul>
+            <li>Multiple breathwork techniques to balance and energize</li>
+            <li>
+              10+ meditation styles including mindful and dynamic meditations
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="card" style="width: 100%">
+        <div class="card-header" style="font-weight: 500">
+          🧠 Yogic Wisdom
+        </div>
+        <div class="card-body card-content">
+          <ul>
+            <li>Engaging sessions on <b>Yoga Philosophy</b> and <b>Ethics</b></li>
+            <li><b>Teaching Methodology</b>: sequencing, demonstration & cueing</li>
+            <li><b>Anatomy & Adjustments</b>: practical and intuitive learning from day one</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card" style="width: 100%">
+        <div class="card-header" style="font-weight: 500">
+          🌿 Ayurvedic Insights
+        </div>
+        <div class="card-body card-content">
+          <ul>
+            <li>Ayurveda sessions on body types and herbs</li>
+            <li>Learn how to heal without allopathy</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Time</th>
+            <th>Activity</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let sch of schedule">
+            <td>{{ sch.time }}</td>
+            <td>{{ sch.activity }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+}@else{
 <section class="daily-schedule-section" *ngIf="schedule?.length > 0">
   <div class="row">
     <div class="col-md-12">
-      <div><img loading="lazy" alt="Not Loaded" src="https://my-s3-images-bucket.s3.amazonaws.com/img/flower-color.png" class="flower-img" /></div>
+      <div>
+        <img
+          loading="lazy"
+          alt="Not Loaded"
+          src="https://my-s3-images-bucket.s3.amazonaws.com/img/flower-color.png"
+          class="flower-img"
+        />
+      </div>
       <h3 class="small-head">Daily Schedule Overview</h3>
-      <h2>Daily Schedule for<span> {{title}}</span></h2>
+      <h2>
+        Daily Schedule for<span> {{ title }}</span>
+      </h2>
     </div>
     <div class="col-md-12 px-md-5 p-2">
       <table class="table">
         <thead>
-        <tr>
-          <th>Time</th>
-          <th>Activity</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let sch of schedule">
-          <td>{{sch.time}}</td>
-          <td>{{sch.activity}}</td>
-        </tr>
-        <!-- <tr>
-          <td>06:30 AM - 08:00 AM</td>
-          <td>Asana</td>
-        </tr>
-        <tr>
-          <td>08:00 AM - 08:45 AM</td>
-          <td>Pranayama</td>
-        </tr>
-        <tr>
-          <td>09:00 AM - 10:00 AM</td>
-          <td>Breakfastt</td>
-        </tr>
-        <tr>
-          <td>10:15 AM - 11:15 AM</td>
-          <td>Mantra / Alignment & Adjustment</td>
-        </tr>
-        <tr>
-          <td>11:00 AM - 12:00 PM</td>
-          <td>Yoga Phylosophy</td>
-        </tr>
-        <tr>
-          <td>12:00 PM - 03:00 PM</td>
-          <td>Lunch & Rest</td>
-        </tr>
-        <tr>
-          <td>03:00 PM - 04:00 PM</td>
-          <td>Anatomy / Teaching Methodology</td>
-        </tr>
-        <tr>
-          <td>04:15 PM - 05:45 PM</td>
-          <td>Asana Practice With Alignment</td>
-        </tr>
-        <tr>
-          <td>06:00 PM - 07:00 PM</td>
-          <td>Meditation</td>
-        </tr>
-        <tr>
-          <td>07:30 P.M</td>
-          <td>Dinner</td>
-        </tr> -->
-      </tbody>
+          <tr>
+            <th>Time</th>
+            <th>Activity</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let sch of schedule">
+            <td>{{ sch.time }}</td>
+            <td>{{ sch.activity }}</td>
+          </tr>
+          <!-- <tr>
+            <td>06:30 AM - 08:00 AM</td>
+            <td>Asana</td>
+          </tr>
+          <tr>
+            <td>08:00 AM - 08:45 AM</td>
+            <td>Pranayama</td>
+          </tr>
+          <tr>
+            <td>09:00 AM - 10:00 AM</td>
+            <td>Breakfastt</td>
+          </tr>
+          <tr>
+            <td>10:15 AM - 11:15 AM</td>
+            <td>Mantra / Alignment & Adjustment</td>
+          </tr>
+          <tr>
+            <td>11:00 AM - 12:00 PM</td>
+            <td>Yoga Phylosophy</td>
+          </tr>
+          <tr>
+            <td>12:00 PM - 03:00 PM</td>
+            <td>Lunch & Rest</td>
+          </tr>
+          <tr>
+            <td>03:00 PM - 04:00 PM</td>
+            <td>Anatomy / Teaching Methodology</td>
+          </tr>
+          <tr>
+            <td>04:15 PM - 05:45 PM</td>
+            <td>Asana Practice With Alignment</td>
+          </tr>
+          <tr>
+            <td>06:00 PM - 07:00 PM</td>
+            <td>Meditation</td>
+          </tr>
+          <tr>
+            <td>07:30 P.M</td>
+            <td>Dinner</td>
+          </tr> -->
+        </tbody>
       </table>
     </div>
   </div>
 </section>
 
-<section class="daily-schedule-section" *ngIf="schedule?.length > 0 && slug == '100-hours-yoga-teacher-training-in-rishikesh'">
+<section
+  class="daily-schedule-section"
+  *ngIf="
+    schedule?.length > 0 &&
+    slug == '100-hours-yoga-teacher-training-in-rishikesh'
+  "
+>
   <div class="row">
     <div class="col-md-12">
-      <div><img loading="lazy" alt="Not Loaded" src="https://my-s3-images-bucket.s3.amazonaws.com/img/flower-color.png" class="flower-img" /></div>
-      <!-- <h3 class="small-head">Daily Schedule Overview</h3> -->
-      <h2><span>{{title}}</span> is Suitable for those who..</h2>
+      <div>
+        <img
+          loading="lazy"
+          alt="Not Loaded"
+          src="https://my-s3-images-bucket.s3.amazonaws.com/img/flower-color.png"
+          class="flower-img"
+        />
+      </div>
+      <h2>
+        <span>{{ title }}</span> is Suitable for those who..
+      </h2>
     </div>
     <div class="col-md-12 px-md-5 p-2">
       <ul style="list-style-type: none">
-        <li>1. Are newcomers looking for a structured and an all-round perspective towards learning yoga</li>
-        <li>2. Look at yoga as a hobby and have been practicing and studying it casually</li>
-        <li>3. Are interested in understanding yoga in a holistic way by gaining solid foundation</li>
-        <li>4. Are looking to practice yoga asanas by employing correct techniques and knowledge</li>
-        <li>5. Are seeking to apply yoga as a physical therapy for various health problems</li>
-        <li>6. Are looking to learn different  stress relieving techniques for achieving deep, emotional and full body relaxation</li>
-        <li>7. Are looking to find balance of the mind and body and connect with their inner soul</li>
-        <li>8. Are keen to understand Yogic Philosophy, Pranayama and Meditation Practices</li>
-        <li>9. Are registered RYT and looking to garner CE or Continued Education training </li>
+        <li>
+          1. Are newcomers looking for a structured and an all-round perspective
+          towards learning yoga
+        </li>
+        <li>
+          2. Look at yoga as a hobby and have been practicing and studying it
+          casually
+        </li>
+        <li>
+          3. Are interested in understanding yoga in a holistic way by gaining
+          solid foundation
+        </li>
+        <li>
+          4. Are looking to practice yoga asanas by employing correct techniques
+          and knowledge
+        </li>
+        <li>
+          5. Are seeking to apply yoga as a physical therapy for various health
+          problems
+        </li>
+        <li>
+          6. Are looking to learn different stress relieving techniques for
+          achieving deep, emotional and full body relaxation
+        </li>
+        <li>
+          7. Are looking to find balance of the mind and body and connect with
+          their inner soul
+        </li>
+        <li>
+          8. Are keen to understand Yogic Philosophy, Pranayama and Meditation
+          Practices
+        </li>
+        <li>
+          9. Are registered RYT and looking to garner CE or Continued Education
+          training
+        </li>
       </ul>
     </div>
   </div>
 </section>
 
-<section class="daily-schedule-section" *ngIf="schedule?.length > 0 && slug == '300-hours-yoga-teacher-training-in-rishikesh'">
+<section
+  class="daily-schedule-section"
+  *ngIf="
+    schedule?.length > 0 &&
+    slug == '300-hours-yoga-teacher-training-in-rishikesh'
+  "
+>
   <div class="row">
     <div class="col-md-12">
-      <div><img loading="lazy" alt="Not Loaded" src="https://my-s3-images-bucket.s3.amazonaws.com/img/flower-color.png" class="flower-img" /></div>
-      <!-- <h3 class="small-head">Daily Schedule Overview</h3> -->
-      <h2><span>{{title}}</span> is Suitable for those who..</h2>
+      <div>
+        <img
+          loading="lazy"
+          alt="Not Loaded"
+          src="https://my-s3-images-bucket.s3.amazonaws.com/img/flower-color.png"
+          class="flower-img"
+        />
+      </div>
+      <h2>
+        <span>{{ title }}</span> is Suitable for those who..
+      </h2>
     </div>
     <div class="col-md-12 px-md-5 p-2">
       <ul style="list-style-type: none">
-        <li>1. Have successfully completed their 200 hours Yoga TTC and want to gain advanced knowledge in yogic science.</li>
-        <li>2. Are looking forward to gain in depth knowledge of Yoga Philosophy , Yoga Anatomy with respect to biomechanics</li>
-        <li>3. Are seeking to further deepen their study of asanas and immersive yoga practices of Pranayama, Yoga Nidra and Meditation.</li>
-        <li>4. Are looking to gain confidence, expertise and experience in taking yoga classes</li>
-        <li>5. Are planning to take advanced  or intermediate level yoga sessions</li>
-        <li>6. Are truly inspired and focussed to become a 500 RYT yoga teacher and aspire to teach advanced level yoga across the world.</li>
+        <li>
+          1. Have successfully completed their 200 hours Yoga TTC and want to
+          gain advanced knowledge in yogic science.
+        </li>
+        <li>
+          2. Are looking forward to gain in depth knowledge of Yoga Philosophy ,
+          Yoga Anatomy with respect to biomechanics
+        </li>
+        <li>
+          3. Are seeking to further deepen their study of asanas and immersive
+          yoga practices of Pranayama, Yoga Nidra and Meditation.
+        </li>
+        <li>
+          4. Are looking to gain confidence, expertise and experience in taking
+          yoga classes
+        </li>
+        <li>
+          5. Are planning to take advanced or intermediate level yoga sessions
+        </li>
+        <li>
+          6. Are truly inspired and focussed to become a 500 RYT yoga teacher
+          and aspire to teach advanced level yoga across the world.
+        </li>
       </ul>
     </div>
   </div>
 </section>
-
-
-
+}

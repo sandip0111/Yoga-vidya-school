@@ -8,6 +8,7 @@ import { routeEnum } from '../../../enum/routes';
 import { aboutContentModel } from '../../../models/rishikesh';
 import { WorldClockComponent } from '../../world-clock/world-clock.component';
 import { twoHundredTTCModel } from '../../../enum/details';
+import { s3Bucket } from '../../../enum/s3Bucket';
 
 @Component({
   selector: 'app-about-rishikesh',
@@ -48,13 +49,16 @@ export class AboutRishikeshComponent implements OnInit {
         `<p>Join 100 Hour Yoga Teacher Training Course&nbsp;at Yoga Vidya School in Rishikesh, which is globally known for yoga courses along with&nbsp;yoga alliance approved. Yoga Vidya school has pledged itself to share and spread the knowledge of yoga by becoming a beacon of light. Our yoga gurus or experts are certified teachers and they have designed specialized unique yoga courses to transform students into a certified yoga teacher and passionate practitioners.</p>
    <p>This best 100 Hour Yoga Teacher Training in Rishikesh, India is for all level of students coming for yoga in Rishikesh, as we can say that yoga in India. This course is for people who are fit, want to dedicate themselves to this inner spiritual practice, want to learn Yoga and believe in spreading knowledge, want to inspire, want to bring more happiness and peace into their lives. Let&#39;s illuminate the yoga path and enlighten the journey of self-soul realizing.</p>`
       );
-    } else if (this.slug == '200-hours-yoga-teacher-training-in-rishikesh') {
+    } else if (this.slug == routeEnum.rishkesh200) {
       this.aboutContent = new aboutContentModel(
-        'https://my-s3-images-bucket.s3.amazonaws.com/img/image_1674209054855.jpg',
-        '200 Hours',
-        'Yoga Teacher Training in Rishikesh',
-        `<p>Venture out to Rishikesh, India for the powerful shift in your life &ndash; Physically, Mentally and Spiritually. The 200 Hour Yoga Teacher Training in Rishikesh at Yoga Vidya School will take you through great intentions for personal transformation. This Yoga Alliance Certified course in Rishikesh will advance your practice, empower you with best yogic techniques, awaken your energy in all aspects of life making you more confident, content and healthy. Connect to an authentic community of yoga teachers, scholars, and dedicated yogis in the Yoga Capital of the World.</p>
-       <p>From group learning to hands on practice, personal sadhna to properly aligned techniques you will have the lifetime opportunity to deeply immerse in the art of Yoga.And as a student, you will discover how to individualise and understand the Asana practice with regards to your spiritual needs and physical body.<br /> As a mentor you will have the opportunity to share this yogic journey in a way that is authentic, directional, clear and which makes your voice more clear.</p>`
+        s3Bucket.rishikesh100,
+        'Step Into the Heart of Yoga -',
+        'Rishikesh Awaits You 🕉️✨',
+        `<p>Embark on a life-changing journey to <b>Rishikesh, India</b> — where ancient wisdom meets deep personal transformation. Our <b>200-Hour Yoga Teacher Training at Yoga Vidya School</b> isn't just a course — it's a gateway to a stronger body, a clearer mind, and a deeply rooted spiritual connection. 🌿</p>
+        <p>Certified by <b>Yoga Alliance</b>, this immersive experience will refine your practice, awaken your inner power, and open you to a more confident, fulfilled, and healthy way of living. You’ll learn from dedicated yogis, scholars, and teachers in the <b>Yoga Capital of the World</b>, surrounded by a global community committed to growth and authenticity. 🌍💫</p>
+        <p>From hands-on learning and personalized guidance to sacred rituals and traditional teachings, you'll have the chance to truly embody the art of yoga — not just on the mat, but in every aspect of your life.</p>
+        <p>As a <b>student</b>, you'll understand how to align asana with your unique physical and spiritual self.</p>
+        <p>And as a <b>mentor</b>, you’ll learn how to share your voice with clarity, depth, and purpose. 🎓🧘</p>`
       );
     } else if (
       this.slug ==
@@ -195,8 +199,7 @@ export class AboutRishikeshComponent implements OnInit {
             <p>Pranayama has strong potential to change someone’s life for better. This is proved with my own experience, the transformation of many people whom I know the stories of hundreds of my students.
             Therefore I know it for sure that pranayama can change your life too, if you give it such an opportunity. For now I invite you to my exclusive course -<strong>21 days</strong> of pranayama classes online “<strong>PRANIC PURIFICATION</strong>” The name itself tells the meaning- purification of pranic body (PranamayaKosha)
             The main goal of this online pranayama course is to understand your energy body and to help you to purify it in order to channelise your prana into right direction.
-            </p>`
-          ),
+            </p>`),
         ''
       );
     } else if (this.slug == '21-days-ashtanga-yoga-immersion') {

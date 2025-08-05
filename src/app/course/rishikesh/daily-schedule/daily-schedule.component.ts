@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit,Input, SimpleChanges } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
+import { routeEnum } from '../../../enum/routes';
 
 @Component({
   selector: 'app-daily-schedule',
@@ -14,7 +15,7 @@ export class DailyScheduleComponent implements OnInit {
   schedule:any;
   title:any;
   slug:any;
-
+  routeEnum = routeEnum;
   constructor(private activatedRoute: ActivatedRoute) {
     this.slug = this.activatedRoute.snapshot.routeConfig?.path;
   }

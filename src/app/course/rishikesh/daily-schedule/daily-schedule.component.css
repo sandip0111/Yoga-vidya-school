@@ -1,37 +1,69 @@
 .daily-schedule-section {
-    text-align: center;
-    background: radial-gradient(circle, hsla(0, 0%, 100%, 1) 60%, rgba(249, 117, 30, 0.21) 130%);
-    background: -moz-radial-gradient(circle, hsla(0, 0%, 100%, 1) 60%, rgba(249, 117, 30, 0.21) 130%);
-    background: -webkit-radial-gradient(circle, hsla(0, 0%, 100%, 1) 60%, rgba(249, 117, 30, 0.21) 130%);
+  text-align: center;
+  background: radial-gradient(
+    circle,
+    hsla(0, 0%, 100%, 1) 60%,
+    rgba(249, 117, 30, 0.21) 130%
+  );
+  background: -moz-radial-gradient(
+    circle,
+    hsla(0, 0%, 100%, 1) 60%,
+    rgba(249, 117, 30, 0.21) 130%
+  );
+  background: -webkit-radial-gradient(
+    circle,
+    hsla(0, 0%, 100%, 1) 60%,
+    rgba(249, 117, 30, 0.21) 130%
+  );
 
-    table {
-        border-radius: 10px;
+  table {
+    border-radius: 10px;
 
-        th {
-            background: #F9751E;
-            color: #fff;
-            padding: 10px;
-        }
+    th {
+      background: #f9751e;
+      color: #fff;
+      padding: 10px;
+    }
 
-        td {
-            background: #FFF5DE;
-            border-bottom: 1px solid #C1C1C1;
-            padding: 10px;
-        }
-        
+    td {
+      background: #fff5de;
+      border-bottom: 1px solid #c1c1c1;
+      padding: 10px;
     }
-    table tr th:first-child {
-        border-top-left-radius: 10px;
-    }
-        
-    table tr th:last-child {
-        border-top-right-radius: 10px;
-    }
-    table tr:last-child td:first-child {
-        border-bottom-left-radius: 10px;
-    }
-        
-    table tr:last-child td:last-child {
-        border-bottom-right-radius: 10px;
-    }
+  }
+  table tr th:first-child {
+    border-top-left-radius: 10px;
+  }
+
+  table tr th:last-child {
+    border-top-right-radius: 10px;
+  }
+  table tr:last-child td:first-child {
+    border-bottom-left-radius: 10px;
+  }
+
+  table tr:last-child td:last-child {
+    border-bottom-right-radius: 10px;
+  }
+}
+.card-content {
+  text-align: left;
+  display: flex;
+  justify-content: center;
+}
+.card {
+  background: -webkit-radial-gradient(
+    circle,
+    rgba(255, 245, 219, 0.94) 60%,
+    rgba(249, 117, 30, 0.21) 110%
+  );
+  margin-bottom: 20px;
+}
+@media only screen and (max-width: 767px) {
+  .card-content {
+    text-align: left;
+    display: flex;
+    justify-content: center;
+    padding-left: 31px;
+  }
 }

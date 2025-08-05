@@ -32,7 +32,7 @@ section {
 
 .banner-subtitle-overlay {
   position: absolute;
-  top: calc(50% + 50px); /* Adjust vertical offset below main title */
+  top: calc(50% + 50px);
   left: 50%;
   transform: translateX(-50%);
   color: #f0f0f0;
@@ -42,6 +42,3 @@ section {
   max-width: 90%;
   z-index: 1;
 }
-
-
-
