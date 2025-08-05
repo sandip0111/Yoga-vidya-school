@@ -30,13 +30,15 @@
           </div>
         </div>
         <div class="card-body">
-          <div class="heading fw-600">{{ item.name }}</div>
+          <div class="heading fw-600">{{ item.name }} -></div>
           <p class="card-text">{{ item.intro }}</p>
           <div class="button">
             FOLLOW ON :
+            @if(slug != routeList.rishkesh200){
             <a *ngIf="item.instaLink" [href]="item.instaLink" target="_blank"
               ><i class="fa-brands fa-instagram"></i></a
             ><i *ngIf="!item.instaLink" class="fa-brands fa-instagram"></i>
+            }
             <a
               *ngIf="item.youTubeLink"
               [href]="item.youTubeLink"

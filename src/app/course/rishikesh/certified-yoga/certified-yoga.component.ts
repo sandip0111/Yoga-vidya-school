@@ -1,49 +1,75 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute,Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { routeEnum } from '../../../enum/routes';
+import { s3Bucket } from '../../../enum/s3Bucket';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-certified-yoga',
   standalone: true,
-  imports:[CommonModule],
+  imports: [CommonModule],
   templateUrl: './certified-yoga.component.html',
-  styleUrls: ['./certified-yoga.component.css']
+  styleUrls: ['./certified-yoga.component.css'],
 })
 export class CertifiedYogaComponent implements OnInit {
-
-  cerData:any;
+  cerData: any;
   slug: any = '';
-  noContent: boolean=false;
-  constructor(private activatedRoute: ActivatedRoute, private router: Router) {
+  noContent: boolean = false;
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private sanitizer: DomSanitizer
+  ) {
     this.slug = this.activatedRoute.snapshot.routeConfig?.path;
 
-    if(this.slug == '200-hours-yoga-teacher-training-in-rishikesh'){
+    if (this.slug == routeEnum.rishkesh200) {
       this.cerData = {
-        title1:"Become A Skilled Practitioner and a Certified Yoga Teacher in 28 Days",
-        title2:"Extraordinary Multi-Style, Exposure to 14+ Yogic Subjects in One course",
-        img1:"https://my-s3-images-bucket.s3.amazonaws.com/images/about_section_fweev7.jpg",
-        img2:"https://my-s3-images-bucket.s3.amazonaws.com/images/about_section_fweev7.jpg",
-        desc1:"<p>The main focus of this yoga course is to make every student a dedicated and great yoga practitioner. Becoming a good practitioner of yoga before becoming a yoga teacher is important for many reasons. A solid yoga practice connects you to the roots of yoga, embodying and embracing the essence of yoga, which impacts your energy, confidence and effectiveness as a Yoga Teacher. Every lesson in our 200 Hour YTTC in Rishikesh forms the foundation of self practice on which authentic and effective teaching is built.</p><p>In addition to mastering the correct Asana, Pranayama and Meditation practice, this certified yoga training fosters a deep understanding of principles and philosophies of ancient Yoga traditions. Our special Yoga Teaching and Methodology sessions enable the students gain clarity in sequencing, instructions, connect and adjust their students in a safe and nurturing environment.</p>",
-        desc2:"<p>In this Yoga training course, you will get more than 14 subjects, which will cover the ancient secrets of Yogic Life that can use in your daily living to balance personal life, social life (family) and spiritual life. The foundation of 200 hour yoga teacher training course in rishikesh is based on the research of human alignment functional Asana and the variations that happen within the adjustments.<p><p>Subjects are the soul of any educational program or course. That is why we have chosen the subjects after through research, which are very important for every Practitioner of yoga. The study of these subjects prepares every student to become a great yoga teacher or human being.</p>",
+        title1: '🧘 Become a Yoga Teacher in Just 28 Days',
+        title2: '🎓 Explore 14+ Yogic Subjects in One Transformational Course',
+        img1: s3Bucket.rishi200Certify1,
+        img2: s3Bucket.rishi200Certify2,
+        desc1: this.sanitizer.bypassSecurityTrustHtml(
+          `<b >Train deeply. Transform fully. Teach authentically.</b>
+          <p>This 200-Hour Yoga Teacher Training in Rishikesh is more than a course — it's a journey. In 28 immersive days, you'll build the foundation of a strong self-practice and the tools to guide others with clarity and confidence.</p>
+          <ul style="list-style-type: none;">
+            <li>✨ Learn from experienced teachers in the birthplace of yoga</li>
+            <li>✨ Master Asana, Pranayama & Meditation</li>
+            <li>✨ Gain a deep understanding of yogic philosophy and ethical teaching</li>
+            <li>✨ Practice real classroom teaching with guidance and feedback</li>
+          </ul>
+          <p>By the end, you'll be ready to teach not just postures, but presence</p>`
+        ),
+        desc2: sanitizer.bypassSecurityTrustHtml(
+          `<p>Our curriculum blends the wisdom of ancient yogic science with modern methods. You'll study over 14 subjects designed to support your personal and spiritual development — and prepare you as a teacher with depth and range.</p>
+          <b>What you'll explore:</b>
+          <ul>
+            <li>Yogic anatomy and functional movement</li>
+            <li>Ancient yogic psychology and ethics</li>
+            <li>Diverse teaching methodologies</li>
+            <li>Breathwork, alignment, adjustments, mantra & more</li>
+          </ul>
+          <p>Every subject is curated through years of research to help you embody yoga in daily life — as a student, a teacher, and a human being.</p>`
+        ),
       };
-    }
-    else if(this.slug == '100-hours-yoga-teacher-training-in-rishikesh'){
+    } else if (this.slug == '100-hours-yoga-teacher-training-in-rishikesh') {
       this.noContent = true;
-    }
-    else if(this.slug == '200-horas-de-formacioacuten-de-profesores-de-yoga-en-rishikesh'){
+    } else if (
+      this.slug ==
+      '200-horas-de-formacioacuten-de-profesores-de-yoga-en-rishikesh'
+    ) {
       this.noContent = true;
-    }
-    else if(this.slug == '300-hours-yoga-teacher-training-in-rishikesh'){
+    } else if (this.slug == '300-hours-yoga-teacher-training-in-rishikesh') {
       this.noContent = true;
-
-    }
-    else if(this.slug == '200-hour-yoga-teacher-training-scholarship-in-rishikesh'){
+    } else if (
+      this.slug == '200-hour-yoga-teacher-training-scholarship-in-rishikesh'
+    ) {
       this.cerData = {
-        title1:"Our 200 Hour Yoga Teacher Training Scholarship Program Overview",
-        title2:"Things You Will Discover In 200 Hour Yoga Teacher Training",
-        img1:"https://my-s3-images-bucket.s3.amazonaws.com/img/image_1681706500033.jpg",
-        img2:"https://my-s3-images-bucket.s3.amazonaws.com/img/image_1681706520699.jpg",
-        desc1:`<p>The <em>200 hour yoga teacher training scholarship program in Rishikesh</em> is for all those aspiring yoga teachers who wish to commence their yoga career, learn yoga skills, and deepen their practice without any financial burden. Through our scholarship program:</p><ol>
+        title1:
+          'Our 200 Hour Yoga Teacher Training Scholarship Program Overview',
+        title2: 'Things You Will Discover In 200 Hour Yoga Teacher Training',
+        img1: 'https://my-s3-images-bucket.s3.amazonaws.com/img/image_1681706500033.jpg',
+        img2: 'https://my-s3-images-bucket.s3.amazonaws.com/img/image_1681706520699.jpg',
+        desc1: `<p>The <em>200 hour yoga teacher training scholarship program in Rishikesh</em> is for all those aspiring yoga teachers who wish to commence their yoga career, learn yoga skills, and deepen their practice without any financial burden. Through our scholarship program:</p><ol>
 	<li>Avail free tuition with nominal charges for accommodation and food</li>
 	<li>Get yoga course materials, classroom teaching, outdoor practicals, and expert guidance for free</li>
 	<li>Get access to Wi-Fi, studying and seating areas, and other such places</li>
@@ -54,7 +80,7 @@ export class CertifiedYogaComponent implements OnInit {
 	<li>Get expert guidance under the supervision of highly-qualified and respected gurus and teachers who have dedicated their lives to the yogic sphere of the universe</li>
 	<li>Become a Yoga Alliance certified teacher and take your first step towards a successful career as Yoga Teacher or Yoga Instructor</li>
 </ol>`,
-        desc2:`
+        desc2: `
         <p>The 200 hour yoga teacher training scholarship in Rishikesh is a yoga certification comprehensive training program that helps you get deep insights into the world of yoga teaching. The curriculum has been designed to fit the needs of all the students. Hence, during the course, you will discover:</p>
         <ol>
 	<li>Fundamentals of yoga styles include Ashtanga Yoga, Hatha Yoga, Yin Yoga, Vinyasa Yoga, etc.</li>
@@ -70,15 +96,16 @@ export class CertifiedYogaComponent implements OnInit {
 	<li>Understand yoga ethics, moral values, and creative mindset in detail</li>
 </ol>`,
       };
-
-    }
-    else if(this.slug == '300-hour-yoga-teacher-training-scholarship-in-rishikesh'){
+    } else if (
+      this.slug == '300-hour-yoga-teacher-training-scholarship-in-rishikesh'
+    ) {
       this.cerData = {
-        title1:"Overview of Our 300 Hour Yoga Teacher Training Scholarship Program",
-        title2:"Who Is Eligible to Partake in the Scholarship Program?",
-        img1:"https://my-s3-images-bucket.s3.amazonaws.com/img/image_1681707215654.jpg",
-        img2:"https://my-s3-images-bucket.s3.amazonaws.com/img/image_1681707242378.JPG",
-        desc1:`<p>The 300-hour yoga teacher training scholarship program at Yoga Vidya School has been initiated so that money doesn’t act as a hindrance to your yogic evolution. With the help of our scholarship:</p><ol>
+        title1:
+          'Overview of Our 300 Hour Yoga Teacher Training Scholarship Program',
+        title2: 'Who Is Eligible to Partake in the Scholarship Program?',
+        img1: 'https://my-s3-images-bucket.s3.amazonaws.com/img/image_1681707215654.jpg',
+        img2: 'https://my-s3-images-bucket.s3.amazonaws.com/img/image_1681707242378.JPG',
+        desc1: `<p>The 300-hour yoga teacher training scholarship program at Yoga Vidya School has been initiated so that money doesn’t act as a hindrance to your yogic evolution. With the help of our scholarship:</p><ol>
 	<li>Refine your yoga practise and learn in detail about the levels of Hatha Yoga and Ashtanga Yoga</li>
 	<li>Learn how to perform yoga asanas, bandhas, mudras, meditation, etc. over your 300-hour course</li>
 	<li>Avail free tuition fee with nominal charges for 28 days of shared accommodation and three nutritious meals per day</li>
@@ -98,7 +125,7 @@ export class CertifiedYogaComponent implements OnInit {
 	<li>Receive Yoga Alliance certification on completion of your 300 hour yoga teacher training program</li>
 	<li>Become an accredited yoga teacher at a yoga school, studio, hospital, gym, fitness centre, or any other such place</li>
 </ol>`,
-        desc2:`
+        desc2: `
         <p>Undoubtedly, our 300-hour yoga teacher training scholarship program has been initiated to promote inclusivity and diversity, and hence, it is for people of all ethnicities, races, castes, and occupations. However, there is still eligibility criteria to partake in the program. It is because the 300-hour yoga TTC is an advanced level of yoga training and therefore, needs immense dedication and passion. As per our rules and regulations, any individual who meets the following requirements can participate in the program and eventually enrol in the training session.</p>
         <ol>
 	<li>Must have completed your 200-hour yoga teacher training certification</li>
@@ -109,19 +136,31 @@ export class CertifiedYogaComponent implements OnInit {
 	<li>If you can dedicate yourself to various volunteer projects</li>
 </ol>`,
       };
-    }
-    else if(this.slug == '200-hour-yoga-teacher-training-in-kerala-india' || this.slug == '300-hour-yoga-teacher-training-in-kerala-india'){
+    } else if (
+      this.slug == '200-hour-yoga-teacher-training-in-kerala-india' ||
+      this.slug == '300-hour-yoga-teacher-training-in-kerala-india'
+    ) {
       this.noContent = true;
-    }
-    else if(this.slug == 'yoga-retreat-in-rishikesh-india' || this.slug == 'yoga-retreat-in-kerala-india'){
+    } else if (
+      this.slug == 'yoga-retreat-in-rishikesh-india' ||
+      this.slug == 'yoga-retreat-in-kerala-india'
+    ) {
       this.noContent = true;
-    }
-    else if(this.slug == 'pranayama-therapy-course-online' || this.slug == 'adjustment-and-alignment' || this.slug == 'adjustment-and-alignment-level-2' || this.slug == 'yoga-teacher-training-in-india' || this.slug == 'drop-in-yoga-classes' || this.slug == 'pranic-purification' || this.slug == '21-days-ashtanga-yoga-immersion' || this.slug == 'yoga-for-weight-loss' || this.slug == 'online-hip-opening-workshop' || this.slug == '200-hours-yoga-teacher-training-online'){
+    } else if (
+      this.slug == 'pranayama-therapy-course-online' ||
+      this.slug == 'adjustment-and-alignment' ||
+      this.slug == 'adjustment-and-alignment-level-2' ||
+      this.slug == 'yoga-teacher-training-in-india' ||
+      this.slug == 'drop-in-yoga-classes' ||
+      this.slug == 'pranic-purification' ||
+      this.slug == '21-days-ashtanga-yoga-immersion' ||
+      this.slug == 'yoga-for-weight-loss' ||
+      this.slug == 'online-hip-opening-workshop' ||
+      this.slug == '200-hours-yoga-teacher-training-online'
+    ) {
       this.noContent = true;
     }
   }
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

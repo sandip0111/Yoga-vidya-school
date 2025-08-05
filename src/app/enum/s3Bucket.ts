@@ -28,7 +28,9 @@ export enum s3Bucket {
   certifiedWhyBali = "https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/IMG_2828.JPG",
   rishikeshAbout = "https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/954A7672.jpg",
   baliAbout = "https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/954A9431.JPG",
-  rishikesh200Banner = "../../../assets/_DSC3081.jpg"
+  rishikesh200Banner = "../../../assets/_DSC3081.jpg",
+  rishi200Certify1 = "../../../../assets/954A0789.JPG",
+  rishi200Certify2 = "../../../../assets/20221017123612_IMG_8678.jpeg",
 }
 export enum youtubeLink {
   trainingImportance = "https://www.youtube.com/embed/t7l1cqDj1tA?si=ZJCQXJYDLzDwLLvm"

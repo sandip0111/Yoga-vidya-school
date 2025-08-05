@@ -22,7 +22,7 @@ import { filter } from 'rxjs';
 export class AppComponent implements OnInit {
 
   constructor(private modalService: NgbModal, @Inject(PLATFORM_ID) private platformId: Object, private router: Router) {}
-  
+
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
       this.router.events.pipe(
@@ -38,44 +38,25 @@ export class AppComponent implements OnInit {
         isOpenCourseModal = sessionStorage.getItem('OpenCourseModal');
         if (allowedRoutes.map(route => route.toLowerCase()).includes(normalizedUrl) && isOpenCourseModal != 'true') {
           setTimeout(() => {
-            this.openModal(); 
+            this.openModal();
             sessionStorage.setItem('OpenCourseModal', 'true');
           }, 30000); // 30 seconds delay
         };
-        
-        });
-      
-    }
 
-  //   let isOpenWebinarModal = sessionStorage.getItem('OpenWebinarModal');
-  //   if(isOpenWebinarModal == null){
-  //     setTimeout(() => {
-  //       this.openWebinarModal();
-  //       sessionStorage.setItem('OpenWebinarModal', 'true');
-  //     }, 40000);
-  //  };
+        });
+
+    }
   }
 
   openModal() {
-    this.modalService.open(CourseModalComponent, {
-      windowClass: 'course-modal-class',
-      size:'lg',
-      ariaLabelledBy: 'modal-basic-title',
-      backdrop: 'static',  // Prevent closing by clicking outside
-      keyboard: false,  // Prevent closing with the ESC key
-      centered: true     
-    });
+    // this.modalService.open(CourseModalComponent, {
+    //   windowClass: 'course-modal-class',
+    //   size:'lg',
+    //   ariaLabelledBy: 'modal-basic-title',
+    //   backdrop: 'static',
+    //   keyboard: false,
+    //   centered: true
+    // });
   }
-
-  //   openWebinarModal() {
-  //     this.modalService.open(WebinarModalComponent, {
-  //       windowClass: 'webinar-registration-modal-class',
-  //       size:'lg',
-  //       ariaLabelledBy: 'modal-basic-title',
-  //       backdrop: 'static',  // Prevent closing by clicking outside
-  //       keyboard: false,  // Prevent closing with the ESC key
-  //       centered: true     
-  //     });
-  // }
   title = 'yoga-vidya-school';
 }

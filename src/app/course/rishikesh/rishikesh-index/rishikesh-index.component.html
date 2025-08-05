@@ -53,11 +53,26 @@
 <app-includes [data]="youtubeVideoData"></app-includes>
 <app-choose-us [data]="codecond"></app-choose-us>
 <app-mentors></app-mentors>
-<app-services [data]="accomData"></app-services>
-<app-fee-structure [data]="feesData"></app-fee-structure>
-<app-code-conduct [data]="codecond"></app-code-conduct>
-<app-yoga-alliance [data]="codecond"></app-yoga-alliance>
-<app-schedule [data]="schEventData"></app-schedule>
+<app-services
+  [data]="accomData"
+  *ngIf="slug != routEnum.rishkesh200"
+></app-services>
+<app-fee-structure
+  [data]="feesData"
+  *ngIf="slug != routEnum.rishkesh200"
+></app-fee-structure>
+<app-code-conduct
+  [data]="codecond"
+  *ngIf="slug != routEnum.rishkesh200"
+></app-code-conduct>
+<app-yoga-alliance
+  *ngIf="slug != routEnum.rishkesh200"
+  [data]="codecond"
+></app-yoga-alliance>
+<app-schedule
+  [data]="schEventData"
+  *ngIf="slug != routEnum.rishkesh200"
+></app-schedule>
 <app-excursions></app-excursions>
 <app-testimonials></app-testimonials>
 <app-video-reviews

@@ -14,10 +14,9 @@ redirectToBooKNow(url: string) {
   items = [
     { title: '200 Hours YTTC Rishikesh', subtitle: '(Duration: 28 Days)', price: '@$1300 USD', priceDescription:'(Shared Room)', btnURL:'https://www.yogavidyaschool.com/200-hours-yoga-teacher-training-in-rishikesh' },
     { title: '300 Hours YTTC Rishikesh', subtitle: '(Duration: 1 Month)', price: '@$1600 USD',  priceDescription:'(Shared Occupancy)', btnURL:'https://www.yogavidyaschool.com/300-hours-yoga-teacher-training-in-rishikesh'  },
-    // { title: '300 Hours YTTC Bali', subtitle: '(Duration: 27 Days)', price: '@$3800 USD',  priceDescription:'(Single Occupancy)', btnURL:'https://www.yogavidyaschool.com/300-hour-yoga-teacher-training-in-bali'  }
-   
+
   ];
   constructor(public activeModal: NgbActiveModal){
-    
+
   }
 }
