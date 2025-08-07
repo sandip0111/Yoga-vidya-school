@@ -27,6 +27,7 @@ export class SuccessPaymentComponent {
   pranicPurificationRazorPaySessionId: string = '';
   twoHundredTTCRazorPaySessionId: string = '';
   twoHundredTTCStripeSessionId: string = '';
+  rishikesh200RazorPaySessionId: string = '';
   message: string = '';
   paidFlag: any = 'default';
   reuseUrl: any;
@@ -64,6 +65,8 @@ export class SuccessPaymentComponent {
       sessionStorage.getItem('pranic_purification_razorpay_payment_id') ?? '';
     this.twoHundredTTCRazorPaySessionId =
       localStorage.getItem(localstorageKey['200TTCRzpId']) ?? '';
+    this.rishikesh200RazorPaySessionId =
+      localStorage.getItem(localstorageKey.rishikesh200RzpId) ?? '';
     this.twoHundredTTCStripeSessionId =
       localStorage.getItem(localstorageKey['200TTCStripeSessionId']) ?? '';
     this.couponCodeId = localStorage.getItem(localstorageKey.couponCode);
@@ -122,6 +125,13 @@ export class SuccessPaymentComponent {
     if (this.twoHundredTTCStripeSessionId) {
       setTimeout(() => {
         this.getStripePaymentResult200TTC(this.twoHundredTTCStripeSessionId);
+      }, 0);
+    }
+    if (this.rishikesh200RazorPaySessionId) {
+      setTimeout(() => {
+        this.getRazorPaymentResultRishikesh200(
+          this.rishikesh200RazorPaySessionId
+        );
       }, 0);
     }
   }
@@ -363,6 +373,35 @@ export class SuccessPaymentComponent {
         } else {
           this.paidFlag = 'false';
           this.reuseUrl = res.sessionId;
+          this.spinner.hide();
+        }
+      });
+  }
+  getRazorPaymentResultRishikesh200(razorpayPaymentId: string) {
+    const paymentResult: razorPaymentResultModel = {
+      razorpayPaymentId: razorpayPaymentId,
+      razorpayOrderId: localStorage.getItem(
+        localstorageKey.rishikesh200OrderId
+      ),
+      razorpaySignature: localStorage.getItem(localstorageKey.rishikesh200Sig),
+      payDbId: localStorage.getItem(localstorageKey.rishikesh200DBId),
+    };
+    this.webapiService
+      .getRazorPaymentResultRishikesh(paymentResult)
+      .subscribe((res: razorPayReturnModel) => {
+        if (res) {
+          this.is200TTC = true;
+          this.paidFlag = 'true';
+          this.ordId = paymentResult.razorpayOrderId;
+          this.amount = res.amount;
+          this.cur = this.currencySet(res.currency);
+          localStorage.removeItem(localstorageKey.rishikesh200RzpId);
+          localStorage.removeItem(localstorageKey.rishikesh200OrderId);
+          localStorage.removeItem(localstorageKey.rishikesh200Sig);
+          localStorage.removeItem(localstorageKey.rishikesh200DBId);
+          this.spinner.hide();
+        } else {
+          this.paidFlag = 'false';
           this.spinner.hide();
         }
       });

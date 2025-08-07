@@ -144,7 +144,13 @@
           />
           <label> Would you like to make the payment in installments?</label>
         </div>
-        <div class="mb-3" *ngIf="slug !== 'pranic-purification'">
+        <div
+          class="mb-3"
+          *ngIf="
+            slug !== routeEnum.pranicPurification &&
+            slug !== routeEnum.rishkesh200
+          "
+        >
           <label for="package">Package<span style="color: red">*</span></label>
           <select
             class="form-control"
@@ -160,13 +166,29 @@
             {{ packageRequired }}
           </div>
         </div>
+        <div class="mb-3" *ngIf="slug == routeEnum.rishkesh200">
+          <label for="room">Room<span style="color: red">*</span></label>
+          <select
+            class="form-control"
+            name="room"
+            [(ngModel)]="checkData.package"
+            (change)="setRoomPrice($event)"
+          >
+            <option *ngFor="let item of roomList" [value]="item.value">
+              {{ item.name }}
+            </option>
+          </select>
+          <div *ngIf="packageRequired" class="text-danger">
+            {{ packageRequired }}
+          </div>
+        </div>
         <div class="mb-3">
           <label for="currency"
             >Payment Currency<span style="color: red">*</span></label
           >
           <select
             class="form-control"
-            name="package"
+            name="currency"
             [(ngModel)]="checkData.currency"
             (change)="priceConvert($event)"
             [disabled]="paymentId ? true : false"

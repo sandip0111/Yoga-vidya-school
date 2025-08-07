@@ -2,7 +2,7 @@ export class checkoutModel {
   name: string;
   email: string;
   phoneNumber: PhoneNumberData;
-  package: string;
+  package: any;
   currency: string;
   address: string;
   code: string;
@@ -40,12 +40,14 @@ export interface SignupDataModel {
   name: string;
   email: string;
   phoneNumber: string;
-  package: string;
+  package?: string;
   price: number;
   currency: string;
-  courseStartDate: string;
-  courseTimeDuration: string;
+  courseStartDate?: string;
+  courseTimeDuration?: string;
   id?: string;
+  room?: string;
+  hour?: number;
 }
 export interface razorPayModel {
   amount: number;
@@ -60,7 +62,7 @@ export interface razorPaymentResultModel {
   payDbId: string | null;
   password?: string;
   installment?: string;
-  dueAmnt: number;
+  dueAmnt?: number;
 }
 export interface stripePayModel {
   sessionId: string;
@@ -70,4 +72,8 @@ export interface stripePayModel {
 export interface razorPayReturnModel {
   amount: number;
   currency: string;
+}
+export interface dropdownModel {
+  name: string;
+  value: number;
 }

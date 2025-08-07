@@ -15,6 +15,7 @@ import { CountryISO } from 'ngx-intl-tel-input';
 import { paymentkey, stripePaymentKey } from '../enum/payment';
 import {
   checkoutModel,
+  dropdownModel,
   PhoneNumberData,
   razorPayModel,
   SignupDataModel,
@@ -61,6 +62,10 @@ export class CheckoutComponent {
   routeEnum = routeEnum;
   isInstallment: boolean = false;
   paymentId: string | null = '';
+  roomList: dropdownModel[] = [
+    { name: 'Shared Room', value: 1 },
+    { name: 'Private Room', value: 2 },
+  ];
   constructor(
     private webapiService: WebapiService,
     private _activatedRoute: ActivatedRoute,
@@ -110,7 +115,6 @@ export class CheckoutComponent {
     this.webapiService
       .getPaymentDetailsById(this.paymentId)
       .subscribe((res: any) => {
-        console.log(res);
         this.checkData.name = res.name;
         this.checkData.email = res.email;
         this.checkData.phoneNumber = {
@@ -226,9 +230,45 @@ export class CheckoutComponent {
     }
     this.inputValidation('cur');
   }
-
+  setRoomPrice(event: any) {
+    this.inputValidation('room');
+    if (event.target.value == 1 || event.target.value == 2) {
+      this.currencyOptions = ['INR', 'USD'];
+      this.checkData.currency =
+        this.checkData.currency == ''
+          ? this.currencyOptions[0]
+          : this.checkData.currency;
+    } else {
+      this.currencyOptions = [];
+      this.checkData.currency = '';
+    }
+    this.rishikesh200Price();
+  }
+  rishikesh200Price() {
+    if (this.checkData.currency == 'INR' && this.checkData.package == 1) {
+      this.amount = 70000;
+    } else if (
+      this.checkData.currency == 'INR' &&
+      this.checkData.package == 2
+    ) {
+      this.amount = 85000;
+    } else if (
+      this.checkData.currency == 'USD' &&
+      this.checkData.package == 1
+    ) {
+      this.amount = 1300;
+    } else if (
+      this.checkData.currency == 'USD' &&
+      this.checkData.package == 2
+    ) {
+      this.amount = 1600;
+    }
+  }
   priceConvert(e: any) {
-    if (this.slug !== routeEnum.pranicPurification) {
+    if (
+      this.slug !== routeEnum.pranicPurification &&
+      this.slug !== routeEnum.rishkesh200
+    ) {
       if (this.checkData.package == 'Basic') {
         if (this.slug == routeEnum['200TTC']) {
           this.set200TTCNormalPrice(e.target.value);
@@ -259,6 +299,8 @@ export class CheckoutComponent {
         this.price = '';
         this.amount = 0;
       }
+    } else if (this.slug == routeEnum.rishkesh200) {
+      this.rishikesh200Price();
     } else {
       this.setPranicNormalPrice(e.target.value);
     }
@@ -349,26 +391,28 @@ export class CheckoutComponent {
   onPhoneInputChange(isValid: boolean | null | undefined): void {
     if (!isValid) {
       this.phoneError = 'Invalid phone number';
-      this.currencyOptions = [];
-      this.checkData.currency = '';
-      this.inputValidation('cur');
-      this.setPriceOnInputChange();
-      return;
-    }
-    this.phoneError = '';
-    const phoneValue = this.checkData.phoneNumber;
-    console.log(this.checkData.phoneNumber);
-    const countryCode = phoneValue?.countryCode?.toLowerCase();
-    if (countryCode === 'in') {
-      this.currencyOptions = ['INR', 'USD', 'EUR'];
+      if (this.slug !== routeEnum.rishkesh200) {
+        this.currencyOptions = [];
+        this.checkData.currency = '';
+        this.setPriceOnInputChange();
+      }
     } else {
-      this.currencyOptions = ['USD', 'EUR'];
+      this.phoneError = '';
+      if (this.slug !== routeEnum.rishkesh200) {
+        const phoneValue = this.checkData.phoneNumber;
+        const countryCode = phoneValue?.countryCode?.toLowerCase();
+        if (countryCode === 'in') {
+          this.currencyOptions = ['INR', 'USD', 'EUR'];
+        } else {
+          this.currencyOptions = ['USD', 'EUR'];
+        }
+        this.checkData.package = 'Basic';
+        this.checkData.currency = this.currencyOptions[0];
+        this.setPriceOnInputChange();
+        this.inputValidation('package');
+        this.inputValidation('cur');
+      }
     }
-    this.checkData.package = 'Basic';
-    this.checkData.currency = this.currencyOptions[0];
-    this.setPriceOnInputChange();
-    this.inputValidation('package');
-    this.inputValidation('cur');
   }
 
   onCountryChange(country: any): void {
@@ -408,6 +452,13 @@ export class CheckoutComponent {
         this.phoneRequired = 'WhatsApp Number is required';
       }
     }
+    if (type == 'room') {
+      if (this.checkData.package) {
+        this.packageRequired = '';
+      } else {
+        this.packageRequired = 'Please select a Room';
+      }
+    }
     if (type == 'cur') {
       if (this.checkData.currency) {
         this.currencyRequired = '';
@@ -434,7 +485,9 @@ export class CheckoutComponent {
         isErrMsg = true;
       }
       if (!data.package) {
-        this.packageRequired = 'Please select a package';
+        this.packageRequired = routeEnum.rishkesh200
+          ? 'Please select a room'
+          : 'Please select a package';
         isErrMsg = true;
       }
       if (!data.phoneNumber) {
@@ -448,6 +501,8 @@ export class CheckoutComponent {
       if (!isErrMsg) {
         if (this.slug == routeEnum['200TTC']) {
           this.twoHundredTTCCheckout(data, isRazorPay);
+        } else if (this.slug == routeEnum.rishkesh200) {
+          this.rishikesh200Checkout(data, isRazorPay);
         } else {
           this.nonPranicPurificationCheckout(data, isRazorPay);
         }
@@ -555,7 +610,22 @@ export class CheckoutComponent {
       this.initializePaymentFor200TTC(signupData);
     }
   }
-
+  rishikesh200Checkout(data: checkoutModel, isRazorPay: boolean) {
+    let room = this.roomList.find((item) => item.value == data.package);
+    let signupData: SignupDataModel = {
+      name: data.name,
+      email: data.email.toLowerCase(),
+      phoneNumber: data.phoneNumber.e164Number,
+      room: room?.name,
+      price: this.isInstallment ? this.firstInstAmnt : this.amount,
+      currency: data.currency,
+    };
+    if (isRazorPay) {
+      this.initializeRazorPayRish200(signupData);
+    } else {
+      this.initializePayRish200(signupData);
+    }
+  }
   newStudentCheckOut(data: checkoutModel, isRazorPay: boolean, pass: string) {
     let signup = {
       firstName: data.name,
@@ -622,7 +692,6 @@ export class CheckoutComponent {
     }
     return password;
   }
-
   initializePayment(id: string, email: string) {
     this.spinner.show();
     let val = {
@@ -885,6 +954,60 @@ export class CheckoutComponent {
         }
       });
   }
+  initializeRazorPayRish200(data: SignupDataModel) {
+    data.hour = 200;
+    this.webapiService
+      .checkoutRazorpayRishikesh(data)
+      .subscribe((res: razorPayModel) => {
+        if (res && res.orderId && res.razorpayKey) {
+          const options = {
+            key: res.razorpayKey,
+            amount: res.amount * 100,
+            currency: data.currency,
+            name: 'Yoga Vidya School',
+            description: '200 Hours Yoga TTC Payment',
+            order_id: res.orderId,
+            handler: (response: any) => {
+              localStorage.setItem(
+                localstorageKey.rishikesh200RzpId,
+                response.razorpay_payment_id
+              );
+              localStorage.setItem(
+                localstorageKey.rishikesh200OrderId,
+                response.razorpay_order_id
+              );
+              localStorage.setItem(
+                localstorageKey.rishikesh200Sig,
+                response.razorpay_signature
+              );
+              localStorage.setItem(
+                localstorageKey.rishikesh200DBId,
+                res.payDbId
+              );
+              this.router.navigate(['/confirmation']);
+            },
+            prefill: {
+              name: data.name,
+              email: data.email,
+              contact: data.phoneNumber,
+            },
+            notes: {
+              course: JSON.stringify('Rishikesh 200 Hour'),
+            },
+            theme: {
+              color: '#3399cc',
+            },
+          };
+          this.spinner.hide();
+          const rzp = new Razorpay(options);
+          rzp.open();
+        } else {
+          alert('Session Genration failed! please try again');
+          this.spinner.hide();
+        }
+      });
+  }
+  initializePayRish200(data: SignupDataModel) {}
   extractPriceAndCurrency(
     value: string
   ): { price: number; currency: string } | null {

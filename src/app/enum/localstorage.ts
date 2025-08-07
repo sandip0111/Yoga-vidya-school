@@ -11,4 +11,8 @@ export enum localstorageKey {
   'pranaArambhVideo' = 'prana_arambh',
   '200TTCInstallment' = '200TTC_installment',
   '200TTCDue' = '200TTC_due',
+  'rishikesh200RzpId' = "rishikesh_200_hour_rzp_id",
+  'rishikesh200OrderId' = "rishikesh_200_hour_rzp_order_id",
+  'rishikesh200Sig' = "rishikesh_200_hour_rzp_signature",
+  'rishikesh200DBId' = "rishikesh_200_hour_rzp_db_id",
 }

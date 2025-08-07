@@ -299,4 +299,18 @@ export class WebapiService {
       id: id,
     });
   }
+  checkoutRazorpayRishikesh(data: SignupDataModel): Observable<razorPayModel> {
+    return this.http.post<razorPayModel>(
+      this.url + 'api/v1/checkoutRazorpayRishikesh',
+      data
+    );
+  }
+  getRazorPaymentResultRishikesh(
+    data: razorPaymentResultModel
+  ): Observable<razorPayReturnModel> {
+    return this.http.post<razorPayReturnModel>(
+      this.url + 'api/v1/getRazorPaymentResultRishikesh',
+      data
+    );
+  }
 }
