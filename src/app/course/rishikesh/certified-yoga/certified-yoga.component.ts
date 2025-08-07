@@ -42,7 +42,7 @@ export class CertifiedYogaComponent implements OnInit {
         desc2: sanitizer.bypassSecurityTrustHtml(
           `<p>Our curriculum blends the wisdom of ancient yogic science with modern methods. You'll study over 14 subjects designed to support your personal and spiritual development — and prepare you as a teacher with depth and range.</p>
           <b>What you'll explore:</b>
-          <ul>
+          <ul class="ul-style">
             <li>Yogic anatomy and functional movement</li>
             <li>Ancient yogic psychology and ethics</li>
             <li>Diverse teaching methodologies</li>
