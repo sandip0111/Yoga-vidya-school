@@ -365,6 +365,10 @@ iframe {
     padding: 0;
     margin: 0;
   }
+
+  ul.ul-style {
+    margin-left: 1.8rem !important;
+  }
   .banner-section .form {
     margin: auto;
   }

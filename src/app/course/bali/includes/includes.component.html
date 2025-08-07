@@ -2,7 +2,7 @@
   <div class="row">
     @if(slug==routEnum.rishkesh200){
     <div class="mb-3" *ngIf="feesData?.amount">
-      <h2>
+      <h2 class="text-center">
         {{ courseText != "" ? courseText : "Course" }} Fee:
         {{ feesData?.amount | currency : feesData?.currency }}
       </h2>
