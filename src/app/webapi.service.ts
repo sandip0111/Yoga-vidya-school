@@ -313,4 +313,16 @@ export class WebapiService {
       data
     );
   }
+  checkoutStripeForRishikesh(data: SignupDataModel): Observable<stripePayModel> {
+    return this.http.post<stripePayModel>(
+      this.url + 'api/v1/checkoutStripeForRishikesh',
+      data
+    );
+  }
+  getStripePaymentResultRishikesh(data: any) {
+    return this.http.post(
+      this.url + 'api/v1/getStripePaymentResultRishikesh',
+      data
+    );
+  }
 }

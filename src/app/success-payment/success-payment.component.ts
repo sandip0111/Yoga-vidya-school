@@ -28,6 +28,7 @@ export class SuccessPaymentComponent {
   twoHundredTTCRazorPaySessionId: string = '';
   twoHundredTTCStripeSessionId: string = '';
   rishikesh200RazorPaySessionId: string = '';
+  rishikesh200StripeSessionId: string = '';
   message: string = '';
   paidFlag: any = 'default';
   reuseUrl: any;
@@ -69,6 +70,8 @@ export class SuccessPaymentComponent {
       localStorage.getItem(localstorageKey.rishikesh200RzpId) ?? '';
     this.twoHundredTTCStripeSessionId =
       localStorage.getItem(localstorageKey['200TTCStripeSessionId']) ?? '';
+    this.rishikesh200StripeSessionId =
+      localStorage.getItem(localstorageKey.rishikesh20StripeSessionId) ?? '';
     this.couponCodeId = localStorage.getItem(localstorageKey.couponCode);
     if (this.sessionId) {
       setTimeout(() => {
@@ -127,10 +130,10 @@ export class SuccessPaymentComponent {
         this.getStripePaymentResult200TTC(this.twoHundredTTCStripeSessionId);
       }, 0);
     }
-    if (this.rishikesh200RazorPaySessionId) {
+    if (this.rishikesh200StripeSessionId) {
       setTimeout(() => {
-        this.getRazorPaymentResultRishikesh200(
-          this.rishikesh200RazorPaySessionId
+        this.getStripePaymentResultRishikesh200(
+          this.rishikesh200StripeSessionId
         );
       }, 0);
     }
@@ -395,15 +398,39 @@ export class SuccessPaymentComponent {
           this.ordId = paymentResult.razorpayOrderId;
           this.amount = res.amount;
           this.cur = this.currencySet(res.currency);
-          localStorage.removeItem(localstorageKey.rishikesh200RzpId);
-          localStorage.removeItem(localstorageKey.rishikesh200OrderId);
-          localStorage.removeItem(localstorageKey.rishikesh200Sig);
-          localStorage.removeItem(localstorageKey.rishikesh200DBId);
           this.spinner.hide();
         } else {
           this.paidFlag = 'false';
           this.spinner.hide();
         }
+        localStorage.removeItem(localstorageKey.rishikesh200RzpId);
+        localStorage.removeItem(localstorageKey.rishikesh200OrderId);
+        localStorage.removeItem(localstorageKey.rishikesh200Sig);
+        localStorage.removeItem(localstorageKey.rishikesh200DBId);
+      });
+  }
+  getStripePaymentResultRishikesh200(sessionId: string) {
+    let val = {
+      sessionId: sessionId,
+      payDbId: localStorage.getItem(localstorageKey.rishikesh200StripeDBId),
+    };
+    this.webapiService
+      .getStripePaymentResultRishikesh(val)
+      .subscribe((res: any) => {
+        if (res.data.status == 'success') {
+          this.is200TTC = true;
+          this.paidFlag = 'true';
+          this.ordId = res.data.paymtId;
+          this.amount = res.data.amount;
+          this.cur = this.currencySet(res.data.currency);
+          this.spinner.hide();
+        } else {
+          this.paidFlag = 'false';
+          this.reuseUrl = res.data.sessionId;
+          this.spinner.hide();
+        }
+        localStorage.removeItem(localstorageKey.rishikesh20StripeSessionId);
+        localStorage.removeItem(localstorageKey.rishikesh200StripeDBId);
       });
   }
   currencySet(currency: string) {

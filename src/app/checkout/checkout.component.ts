@@ -1007,7 +1007,28 @@ export class CheckoutComponent {
         }
       });
   }
-  initializePayRish200(data: SignupDataModel) {}
+  initializePayRish200(data: SignupDataModel) {
+    data.hour = 200;
+    this.webapiService
+      .checkoutStripeForRishikesh(data)
+      .subscribe((res: stripePayModel) => {
+        if (res.sessionId) {
+          localStorage.setItem(
+            localstorageKey.rishikesh20StripeSessionId,
+            res.sessionId
+          );
+          localStorage.setItem(
+            localstorageKey.rishikesh200StripeDBId,
+            res.payDbId
+          );
+          window.location.href = res.url;
+          this.spinner.hide();
+        } else {
+          alert('Session Genration failed! please try again');
+          this.spinner.hide();
+        }
+      });
+  }
   extractPriceAndCurrency(
     value: string
   ): { price: number; currency: string } | null {
