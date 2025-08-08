@@ -83,6 +83,7 @@ export class CheckoutComponent {
   }
 
   ngOnInit(): void {
+    this.scrollToTop();
     setTimeout(() => {
       this.invokeStripe();
       this.loadRazorpayScript();
@@ -110,6 +111,12 @@ export class CheckoutComponent {
     if (this.paymentId) {
       this.getPaymentDetailsById();
     }
+  }
+  scrollToTop(): void {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
   }
   getPaymentDetailsById() {
     this.webapiService

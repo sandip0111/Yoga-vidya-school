@@ -130,6 +130,13 @@ export class SuccessPaymentComponent {
         this.getStripePaymentResult200TTC(this.twoHundredTTCStripeSessionId);
       }, 0);
     }
+    if (this.rishikesh200RazorPaySessionId) {
+      setTimeout(() => {
+        this.getRazorPaymentResultRishikesh200(
+          this.rishikesh200StripeSessionId
+        );
+      }, 0);
+    }
     if (this.rishikesh200StripeSessionId) {
       setTimeout(() => {
         this.getStripePaymentResultRishikesh200(
