@@ -80,7 +80,7 @@
   *ngIf="isPranicPurification"
   [specialvideo]="true"
 ></app-video-reviews>
-<app-gallery></app-gallery>
+<app-gallery *ngIf="slug != '200-hours-yoga-teacher-training-in-rishikesh'"></app-gallery>
 <app-watch-video
   *ngIf="isYoutubeDataReady"
   [data]="youtubeVideoData"

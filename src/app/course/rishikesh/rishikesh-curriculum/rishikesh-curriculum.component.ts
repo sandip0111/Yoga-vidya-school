@@ -19,7 +19,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class RishikeshCurriculumComponent implements OnInit {
   @Input() data: any;
   curriculum: any;
-  selectedIndex: number = 0;
+  selectedIndex: number = -1;
   slug: any = '';
   title: any = '';
   isItPranicRoute = false;
@@ -58,7 +58,11 @@ export class RishikeshCurriculumComponent implements OnInit {
     //  console.log(changes['data'].currentValue);
   }
   openCloseTab(index: number) {
-    this.selectedIndex = index;
+     if (this.selectedIndex === index) {
+    this.selectedIndex = -1; 
+  } else {
+    this.selectedIndex = index; 
+  }
   }
 
   registerClick() {
