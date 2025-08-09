@@ -80,14 +80,14 @@ export class PaymentProceedComponent implements OnInit {
     },
     {
       id: 5,
-      name: "Anuj Pareek",
-      image: "image_1695634116777.jpeg",
-      intro: "Intermediate Alignment Based Class",
-      time:"6:15 PM - 7:15 PM (IST)",
-      price:"Rs. 3500/USD 70",
+      name: 'Anuj Pareek',
+      image: 'image_1695634116777.jpeg',
+      intro: 'Intermediate Alignment Based Class',
+      time: '6:15 PM - 7:15 PM (IST)',
+      price: 'Rs. 3500/USD 70',
       priceInIndian: 3500,
-      priceInUSD:70,
-    }
+      priceInUSD: 70,
+    },
   ];
   submitted: boolean = false;
   price: any;
@@ -111,7 +111,10 @@ export class PaymentProceedComponent implements OnInit {
     this.availableCourses = this.courseMentor.map((mentor) => {
       const course: CartItem = {
         id: mentor?.id, // Ensure you extract the ID correctly from `mentor`
-        title: mentor?.intro == 'Intermediate Alignment Based Class' ? mentor?.name + ' Intermediate Alignment Based Class' : mentor?.name + " online yoga class",
+        title:
+          mentor?.intro == 'Intermediate Alignment Based Class'
+            ? mentor?.name + ' Intermediate Alignment Based Class'
+            : mentor?.name + ' online yoga class',
         shortDescription:
           mentor?.time +
           (mentor?.time1 != undefined ? ', ' + mentor?.time1 : ''),
@@ -380,17 +383,6 @@ export class PaymentProceedComponent implements OnInit {
                   res.payDbId
                 );
                 this.router.navigate(['/confirmation']);
-                // const paymentResult = {
-                //   razorpay_payment_id: response.razorpay_payment_id,
-                //   razorpay_order_id: response.razorpay_order_id,
-                //   razorpay_signature: response.razorpay_signature,
-                //   payDbId: res.payDbId // optional, if needed for tracking
-                // };
-                // this.webapiService.verifyRazorpayPayment(paymentResult).subscribe(() => {
-                //   alert('Payment Successful!');
-                // }, () => {
-                //   alert('Payment verification failed.');
-                // });
               },
               prefill: {
                 name: data.holderName,
@@ -414,5 +406,8 @@ export class PaymentProceedComponent implements OnInit {
         }
       );
     }
+  }
+  onPaypalPayment() {
+    window.open('https://www.paypal.me/yogavidyafoundation', '_blank');
   }
 }

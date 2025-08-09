@@ -63,20 +63,6 @@
             <form [formGroup]="paymentForm">
               <div class="form-card">
                 <h2 id="heading2" class="text-danger">Payment Method</h2>
-                <!-- <div class="radio-group">
-
-                  <div class="radio">
-                    <a href="https://www.paypal.me/yogavidyafoundation">
-                    <img
-                      src="https://i.imgur.com/5QFsx7K.jpg"
-                      width="200px"
-                      height="60px"
-                    />
-                    </a>
-                  </div>
-
-                  <br />
-                </div> -->
                 <div class="mb-4">
                   <label class="pay">Name</label>
                   <input
@@ -132,30 +118,6 @@
                 <div class="row mb-4">
                   <div class="col-md-12 mb-4">
                     <label class="pay">Whatsapp Number</label><br />
-                    <!-- <input
-                      type="text"
-                      name="mobile"
-                      placeholder="123456789"
-                      formControlName="mobile"
-                    /> -->
-
-                    <!-- <input
-                      type="tel"
-                      name="mobile"
-                      #phoneInput
-                      class="form-control"
-                      placeholder=""
-                      formControlName="mobile"
-                      style="width: 210%;"/>
-
-                      <div *ngIf="paymentForm.get('mobile')?.errors && submitted">
-                        <span class="text-danger" *ngIf="paymentForm.get('mobile')?.hasError('required')">
-                          Mobile number is required.
-                        </span>
-                        <span class="text-danger" *ngIf="paymentForm.get('mobile')?.hasError('invalidPhone')">
-                          Please enter a valid mobile number.
-                        </span>
-                      </div> -->
                     <ngx-intl-tel-input
                       [cssClass]="'form-control phone_input'"
                       [separateDialCode]="true"
@@ -246,9 +208,9 @@
                   </button>
                   <button
                     type="button"
-                    href="https://www.paypal.me/yogavidyafoundation"
                     style="border-color: #f9751e"
                     class="payment-button"
+                    (click)="onPaypalPayment()"
                   >
                     <img
                       src="https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/paypal.png"

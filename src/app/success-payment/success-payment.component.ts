@@ -133,7 +133,7 @@ export class SuccessPaymentComponent {
     if (this.rishikesh200RazorPaySessionId) {
       setTimeout(() => {
         this.getRazorPaymentResultRishikesh200(
-          this.rishikesh200StripeSessionId
+          this.rishikesh200RazorPaySessionId
         );
       }, 0);
     }
@@ -387,6 +387,7 @@ export class SuccessPaymentComponent {
         }
       });
   }
+  isRishikesh: boolean = false;
   getRazorPaymentResultRishikesh200(razorpayPaymentId: string) {
     const paymentResult: razorPaymentResultModel = {
       razorpayPaymentId: razorpayPaymentId,
@@ -400,7 +401,7 @@ export class SuccessPaymentComponent {
       .getRazorPaymentResultRishikesh(paymentResult)
       .subscribe((res: razorPayReturnModel) => {
         if (res) {
-          this.is200TTC = true;
+          this.isRishikesh = true;
           this.paidFlag = 'true';
           this.ordId = paymentResult.razorpayOrderId;
           this.amount = res.amount;
@@ -425,7 +426,7 @@ export class SuccessPaymentComponent {
       .getStripePaymentResultRishikesh(val)
       .subscribe((res: any) => {
         if (res.data.status == 'success') {
-          this.is200TTC = true;
+          this.isRishikesh = true;
           this.paidFlag = 'true';
           this.ordId = res.data.paymtId;
           this.amount = res.data.amount;
