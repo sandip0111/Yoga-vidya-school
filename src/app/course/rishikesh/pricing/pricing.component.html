@@ -1,0 +1,20 @@
+<section class="pricing-section">
+  <div class="section-header">
+    <i class="fas fa-bed section-icon"></i>
+    <h2 class="section-title">Pricing of 200 Hours TTC Rishikesh</h2>
+  </div>
+
+  <div class="card-container">
+    <div class="price-card" *ngFor="let item of pricing">
+      <div class="card-header">{{ item.title }}</div>
+      <!-- <img [src]="item.image" [alt]="item.title" class="room-image" /> -->
+      <div class="card-body">
+        <p class="fee-label"><strong><i class="fas fa-tags"></i> Course Fee</strong></p>
+        <p class="price-usd">${{ item.usd }}</p>
+         <hr class="price-divider" />
+        <p class="price-inr">{{ item.inr }}</p>
+        <button class="join-btn" (click)="goToCheckout(item.link)">Join Now</button>
+      </div>
+    </div>
+  </div>
+</section>

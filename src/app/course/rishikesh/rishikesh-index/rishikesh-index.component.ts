@@ -31,6 +31,8 @@ import { BottomNavCourseComponent } from '../../../includes/home/bottom-nav-cour
 import { VideoReviewsComponent } from '../../video-reviews/video-reviews.component';
 import { feesStructureModel } from '../../../models/rishikesh';
 import { routeEnum } from '../../../enum/routes';
+import { PricingComponent } from "../pricing/pricing.component";
+import { BonusComponent } from "../../../certified/bonus/bonus.component";
 
 @Component({
   selector: 'app-rishikesh-index',
@@ -62,7 +64,9 @@ import { routeEnum } from '../../../enum/routes';
     BottomNavCourseComponent,
     VideoReviewsComponent,
     CommonModule,
-  ],
+    PricingComponent,
+    BonusComponent
+],
   templateUrl: './rishikesh-index.component.html',
   styleUrls: ['./rishikesh-index.component.css'],
 })
