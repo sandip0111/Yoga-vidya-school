@@ -255,13 +255,7 @@ export class MentorsComponent implements OnInit {
           picture: 'image_1675243508012.jpg',
           intro: 'Hatha/ Yoga Therapy',
           slug: 'taniya',
-        },
-        {
-          name: 'Shivam Joshi',
-          picture: 'image_1673271925503.jpeg',
-          intro: 'Pranayama',
-          slug: 'shivam-joshi',
-        },
+        }
       ];
     }
 

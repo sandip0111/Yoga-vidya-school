@@ -50,10 +50,12 @@
 <app-rishikesh-curriculum *ngIf="slug != '200-hours-yoga-teacher-training-in-rishikesh'" [data]="currData"></app-rishikesh-curriculum>
 <app-learning></app-learning>
 <app-daily-schedule [data]="schData"></app-daily-schedule>
+<app-pricing></app-pricing>
 <app-includes [data]="youtubeVideoData"></app-includes>
-<app-rishikesh-curriculum *ngIf="slug == '200-hours-yoga-teacher-training-in-rishikesh'" [data]="currData"></app-rishikesh-curriculum>
+<app-bonus *ngIf="slug == '200-hours-yoga-teacher-training-in-rishikesh'"></app-bonus>
 <app-choose-us [data]="codecond"></app-choose-us>
 <app-mentors></app-mentors>
+<app-rishikesh-curriculum *ngIf="slug == '200-hours-yoga-teacher-training-in-rishikesh'" [data]="currData"></app-rishikesh-curriculum>
 <app-services
   [data]="accomData"
   *ngIf="slug != routEnum.rishkesh200"
@@ -80,7 +82,7 @@
   *ngIf="isPranicPurification"
   [specialvideo]="true"
 ></app-video-reviews>
-<app-gallery></app-gallery>
+<app-gallery *ngIf="slug != '200-hours-yoga-teacher-training-in-rishikesh'"></app-gallery>
 <app-watch-video
   *ngIf="isYoutubeDataReady"
   [data]="youtubeVideoData"

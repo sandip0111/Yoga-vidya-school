@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { feesStructureModel } from '../../../models/rishikesh';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-start-class',
@@ -15,7 +16,7 @@ export class StartClassComponent implements OnInit {
   fees: feesStructureModel = new feesStructureModel();
   href: string = '/checkout';
   isOnline200ttc: boolean = false;
-  constructor() {}
+  constructor( private router: Router) {}
   ngOnInit() {
     this.href = `/checkout/${this.slug}`;
     if (this.slug === '200-hours-yoga-teacher-training-online') {
@@ -32,4 +33,8 @@ export class StartClassComponent implements OnInit {
           behavior: 'smooth' 
         });
       }
+
+  goToLink(link: string) {
+    this.router.navigate([link]);
+  }
 }
