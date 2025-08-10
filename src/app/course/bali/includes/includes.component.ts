@@ -160,9 +160,6 @@ export class IncludesComponent implements OnInit {
   ngOnChanges(changes: SimpleChanges): void {
     this.feesData = changes['data'].currentValue;
   }
-  goToPaymentPage() {
-    this.router.navigate([`/checkout/${this.slug}`]);
-  }
 }
 
 interface item {
