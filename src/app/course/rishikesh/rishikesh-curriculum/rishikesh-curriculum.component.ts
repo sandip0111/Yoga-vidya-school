@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
+import { s3Bucket } from '../../../enum/s3Bucket';
 
 @Component({
   selector: 'app-rishikesh-curriculum',
@@ -25,6 +26,7 @@ export class RishikeshCurriculumComponent implements OnInit {
   isItPranicRoute = false;
   pranicDate?: string;
   pranicDuration?: string;
+  s3Bucket = s3Bucket;
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,

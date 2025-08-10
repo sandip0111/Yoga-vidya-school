@@ -95,11 +95,11 @@
           font-weight: normal;
         }
 
-        .icon {
+        /* .icon {
           img {
             width: 60%;
           }
-        }
+        } */
       }
 
       .plus-icon {
@@ -191,6 +191,14 @@ h4 span {
   font-size: 18px;
   border-color: #f9751e;
   animation: pulse 2s ease-in-out infinite;
+}
+.bullet-image_box{
+  flex-shrink: 0;
+
+}
+.bullet-image {
+  width: 100%;
+  height: 36px;
 }
 
 /* Pulse keyframes */
