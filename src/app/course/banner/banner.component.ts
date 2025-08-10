@@ -52,8 +52,30 @@ export class BannerComponent implements OnInit {
   ) {
     this.slug = this.activatedRoute.snapshot.routeConfig?.path;
   }
+  rishikesHeroImage: string = '';
+  rishikeshMainHeading: string = '';
+  rishikeshSubHeading: string = '';
   ngOnInit() {
     this.backGroundImageSet();
+    this.rishikeshBannerSet();
+  }
+  rishikeshBannerSet() {
+    switch (this.slug) {
+      case routeEnum.rishkesh200:
+        this.rishikesHeroImage = s3Bucket.rishikesh200Banner;
+        this.rishikeshMainHeading =
+          'Transform Your Life with 200-Hour Yoga TTC in Rishikesh';
+        this.rishikeshSubHeading =
+          'Enroll for next Batch: October 3rd 2025 – Yoga Alliance Certified';
+        break;
+      case routeEnum.rishikesh300:
+        this.rishikesHeroImage = '../../../assets/IMG_9926.JPG';
+        this.rishikeshMainHeading = 'Transform your inner and teaching journey';
+        this.rishikeshSubHeading = 'deepen presence, wisdom & embodiment';
+        break;
+      default:
+        break;
+    }
   }
   backGroundImageSet() {
     if (
@@ -106,7 +128,6 @@ export class BannerComponent implements OnInit {
     ) {
       this.isRegistrationPageLabelToggle = true;
     }
-
     if (
       this.slug == 'adjustment-and-alignment' ||
       this.slug == 'adjustment-and-alignment-level-2'

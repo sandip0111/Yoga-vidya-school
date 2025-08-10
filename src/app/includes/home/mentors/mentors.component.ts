@@ -30,7 +30,6 @@ export class MentorsComponent implements OnInit {
     this.slug = this.activatedRoute.snapshot.routeConfig?.path;
 
     if (
-      this.slug == '300-hours-yoga-teacher-training-in-rishikesh' ||
       this.slug == '100-hours-yoga-teacher-training-in-rishikesh' ||
       this.slug ==
         '200-horas-de-formacioacuten-de-profesores-de-yoga-en-rishikesh' ||
@@ -230,7 +229,10 @@ export class MentorsComponent implements OnInit {
           slug: 'shubham-uniyal',
         },
       ];
-    } else if( this.slug == this.routeList.rishkesh200 ) {
+    } else if (
+      this.slug == this.routeList.rishkesh200 ||
+      this.slug == this.routeList.rishikesh300
+    ) {
       this.mentors = [
         {
           name: 'Swami Atmatattwananda Sarawati',
@@ -255,7 +257,7 @@ export class MentorsComponent implements OnInit {
           picture: 'image_1675243508012.jpg',
           intro: 'Hatha/ Yoga Therapy',
           slug: 'taniya',
-        }
+        },
       ];
     }
 

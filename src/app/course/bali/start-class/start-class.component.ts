@@ -2,6 +2,7 @@ import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { feesStructureModel } from '../../../models/rishikesh';
 import { Router } from '@angular/router';
+import { routeEnum } from '../../../enum/routes';
 
 @Component({
   selector: 'app-start-class',
@@ -16,6 +17,7 @@ export class StartClassComponent implements OnInit {
   fees: feesStructureModel = new feesStructureModel();
   href: string = '/checkout';
   isOnline200ttc: boolean = false;
+  routEnum = routeEnum;
   constructor( private router: Router) {}
   ngOnInit() {
     this.href = `/checkout/${this.slug}`;
@@ -30,7 +32,7 @@ export class StartClassComponent implements OnInit {
   scrollToTop(): void {
         window.scrollTo({
           top: 0,
-          behavior: 'smooth' 
+          behavior: 'smooth'
         });
       }
 

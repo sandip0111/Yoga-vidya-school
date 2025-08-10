@@ -31,7 +31,8 @@ export enum s3Bucket {
   rishikesh200Banner = "../../../assets/_DSC3081.jpg",
   rishi200Certify1 = "../../../../assets/954A0789.JPG",
   rishi200Certify2 = "../../../../assets/20221017123612_IMG_8678.jpeg",
-  lotusBullet = "https://my-s3-images-bucket.s3.amazonaws.com/img/bullet.png"
+  lotusBullet = "https://my-s3-images-bucket.s3.amazonaws.com/img/bullet.png",
+  rishikesh300Banner = "../../../assets/IMG_9926.jpg"
 }
 export enum youtubeLink {
   trainingImportance = "https://www.youtube.com/embed/t7l1cqDj1tA?si=ZJCQXJYDLzDwLLvm"

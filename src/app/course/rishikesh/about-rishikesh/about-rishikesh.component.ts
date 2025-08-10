@@ -70,13 +70,18 @@ export class AboutRishikeshComponent implements OnInit {
         'DE FORMACIÓN DE PROFESORES DE YOGA EN RISHIKESH',
         '<p>Aventúrate en Rishikesh, India, para experimentar un poderoso cambio en tu vida: física, mental y espiritualmente. La formación de profesores de yoga de 200 horas en Yoga Vidya School te llevará a través de grandes intenciones de transformación personal. Este curso certificado por Yoga Alliance te hará avanzar&nbsp; en tu práctica, te capacitará con las mejores técnicas yóguicas, despertará tu energía en todos los aspectos de la vida y te hará más seguro, contento y saludable. Conéctate con una auténtica comunidad de profesores de yoga, eruditos y yoguis dedicados en la Capital Mundial del Yoga.</p><p>Desde el aprendizaje en grupo hasta la ejecución de la práctica , la sadhana personal y las técnicas de correcta alineación, tendrás la oportunidad de sumergirte profundamente en el arte del Yoga. En este curso de formación de Yoga, tendrás&nbsp; más de 14 asignaturas, que cubrirán los secretos ancestrales de la Vida Yóguica que puedes usar en tu vida diaria para equilibrar la vida personal, la vida social (familia) y la vida espiritual. La base de este curso se basa en la investigación de la alineación humana en la Asana funcional y las variaciones que ocurren dentro de los ajustes.</p><p>Y como estudiante, descubrirás cómo individualizar y comprender la práctica de Asana con respecto a tus necesidades espirituales y cuerpo físico.</p><p>Como mentor, tendrás la oportunidad de compartir este viaje yóguico de una manera auténtica, direccional, clara y que hará que tu voz sea más clara.</p><p>No solo obtendrás conocimientos sobre el yoga, sino que también experimentarás la unión sinérgica de almas únicas.</p>'
       );
-    } else if (this.slug == '300-hours-yoga-teacher-training-in-rishikesh') {
+    } else if (this.slug == routeEnum.rishikesh300) {
       this.aboutContent = new aboutContentModel(
-        'https://my-s3-images-bucket.s3.amazonaws.com/img/image_1675321902578.jpg',
-        '300 Hours',
-        'Yoga Teacher Training in Rishikesh',
-        `<p>This 300 Hour Yoga Teacher Training in Rishikesh India is for&nbsp;<a href="https://www.yogavidyaschool.com/200-hours-yoga-teacher-training-in-rishikesh" style="color:#0563c1; text-decoration:underline">200 Hour Yoga TTC Rishikesh India</a>&nbsp;certified yoga practitioners and serious yoga practitioners coming to deepen their skill by joining Advanced Yoga Classes in Rishikesh, India. This Yoga course is for people who are fit, want to dedicate themselves to this inner spiritual practice, want to learn Yoga and believe in spreading knowledge, want to inspire, want to bring more happiness and peace into their community and others lives. Through this 300 hour YTTC, you are welcome to illuminate the yoga path and enlighten the deeper journey of self realization.</p>
-       <p>Get trained at a beautiful venue in the lush green Himalayan forest, walking distance away from holy river Ganges. Surrounded by energy of rich nature, you will get guidance and support from best yoga masters&rsquo; team, led by Prashant J Yoga (most trusted yoga teacher on Youtube). Our advanced yoga program of 300 hours in Rishikesh will open the world of possibilities for your refined practice and confident leadership as a internationally certified yoga teacher. Thousands of our 300-hour certified students are teaching successfully in popular yoga schools, yoga retreats, yoga teacher training, yoga festivals and events around the world.</p>`
+        '../../../../assets/IMG_20190324_112943_Bokeh_Original.jpg',
+        '',
+        '',
+        this.sanitizer.bypassSecurityTrustHtml(
+          `<p>Our <b>300-Hour Yoga Teacher Training</b> is designed for certified <b>200-Hour TTC graduates</b> and dedicated practitioners ready to take their practice to the next level.
+          This is not just a training—it’s an invitation to go deeper into the heart of yoga.
+          It’s for those who are committed to their inner journey, eager to refine their skills, and inspired to share the wisdom of yoga to bring more peace, clarity, and joy into the world.</p>
+          <p>Training takes place in our peaceful venue, surrounded by lush green Himalayan forest and only a short walk from the sacred Ganges River. Here, in the heart of Rishikesh, you’ll be supported by a team of experienced teachers led by <b>Prashant J Yoga</b>—one of the most trusted yoga educators on YouTube.</p>
+          <p>By the end of the training, you will be internationally certified, ready to teach with greater depth, authenticity, and presence.<br />Many of our graduates go on to lead classes, retreats, festivals, and trainings around the world.</p>`
+        )
       );
     } else if (
       this.slug == '200-hour-yoga-teacher-training-scholarship-in-rishikesh'

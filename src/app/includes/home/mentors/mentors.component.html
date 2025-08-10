@@ -32,7 +32,12 @@
         <div class="card-body">
           <div class="heading fw-600">{{ item.name }} -></div>
           <p class="card-text">{{ item.intro }}</p>
-          <div class="button" *ngIf="slug != routeList.rishkesh200">
+          <div
+            class="button"
+            *ngIf="
+              slug != routeList.rishkesh200 && slug != routeList.rishikesh300
+            "
+          >
             FOLLOW ON :
             <a *ngIf="item.instaLink" [href]="item.instaLink" target="_blank"
               ><i class="fa-brands fa-instagram"></i></a

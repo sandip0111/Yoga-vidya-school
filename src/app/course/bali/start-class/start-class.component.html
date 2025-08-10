@@ -5,13 +5,24 @@
       {{ fees.currency }}</a
     >
   </div>
-  <div class="col-md-12" *ngIf="!isOnline200ttc && slug != '200-hours-yoga-teacher-training-in-rishikesh'">
-    <a href="javascript:void(0)" (click)="scrollToTop()" class="button text-center"
+  <!-- <div
+    class="col-md-12"
+    *ngIf="!isOnline200ttc && slug != routEnum.rishkesh200"
+  >
+    <a
+      href="javascript:void(0)"
+      (click)="scrollToTop()"
+      class="button text-center"
       >ENROLL YOUR YOGA CLASS TODAY
     </a>
-  </div>
-  <div class="col-md-12" *ngIf="slug == '200-hours-yoga-teacher-training-in-rishikesh'">
-    <a href="javascript:void(0)" (click)="goToLink('/checkout/200-hours-yoga-teacher-training-in-rishikesh')" class="button text-center"
+  </div> -->
+  <div class="col-md-12" *ngIf="slug == routEnum.rishkesh200">
+    <a
+      href="javascript:void(0)"
+      (click)="
+        goToLink('/checkout/200-hours-yoga-teacher-training-in-rishikesh')
+      "
+      class="button text-center"
       >JOIN NOW
     </a>
   </div>

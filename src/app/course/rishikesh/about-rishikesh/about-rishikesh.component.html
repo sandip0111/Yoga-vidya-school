@@ -55,7 +55,11 @@
     </div>
     <div class="col-md-6 d-flex align-items-center">
       <div>
-        <small class="text-left p-0" *ngIf="slug != routeEnum.rishkesh200"
+        <small
+          class="text-left p-0"
+          *ngIf="
+            slug != routeEnum.rishkesh200 && slug != routeEnum.rishikesh300
+          "
           >Yoga Vidya Present's</small
         >
         <h1>
@@ -73,11 +77,7 @@
     </div>
   </div>
   }
-
-  <div
-    class="row mb-5"
-    *ngIf="slug == '300-hours-yoga-teacher-training-in-rishikesh'"
-  >
+  <div class="row mb-5" *ngIf="slug == routeEnum.rishikesh300">
     <div class="col-md-6 align-items-center">
       <div>
         <h2>
@@ -85,21 +85,28 @@
         </h2>
         <div>
           <p>
-            Whether you have attended our Online Yoga Classes, Yoga Workshops,
-            100 hour or 200 hour Yoga Teacher Training or have practiced with
-            any other yoga school, our 300 hour yoga teacher training in
-            Rishikesh will uplift your current yoga practice to a higher level
-            with refined alignment and understanding. We meet you where you are,
-            and transform your yoga practice to an inspiring teaching skills
-            with confident voice and structured content and sequences, suitable
-            to individual body types.
+            If you’ve already completed your 200-Hour Yoga Teacher Training,
+            attended workshops, or studied with other schools, our
+            <b>300-Hour Advanced Yoga Teacher Training</b> in Rishikesh is your
+            next step.
           </p>
           <p>
-            We believe how you teach or lead your classes, becomes a
-            representation of who you are, your dedication and devotion towards
-            your practice and how you live it on and off your mat. And this 300
-            hours will empower you with the qualities of a good yoga
-            practitioner and a great yoga teacher.
+            This immersive program will refine your alignment, deepen your
+            understanding of yoga philosophy, and elevate your teaching skills
+            so you can guide students with confidence, clarity, and
+            authenticity.
+          </p>
+          <p>
+            We meet you exactly where you are and help you grow beyond your
+            current limits—whether that means developing a stronger personal
+            practice, mastering advanced asanas, or refining the way you
+            structure and deliver your classes.
+          </p>
+          <p>
+            At Yoga Vidya School, we believe your teaching is a reflection of
+            your inner practice and the way you live yoga on and off the mat.
+            Our 300-hour training will empower you to embody the qualities of a
+            dedicated practitioner and a truly inspiring teacher.
           </p>
         </div>
       </div>
@@ -117,11 +124,7 @@
       </div>
     </div>
   </div>
-
-  <div
-    class="row"
-    *ngIf="slug == '300-hours-yoga-teacher-training-in-rishikesh'"
-  >
+  <div class="row" *ngIf="slug == routeEnum.rishikesh300">
     <div class="col-md-6">
       <div class="imageback">
         <img
@@ -137,61 +140,45 @@
     <div class="col-md-6 align-items-center">
       <div>
         <h2>
-          <span
-            >300 Hours Yoga Teacher Training in Rishikesh is suitable for those
-            who..</span
-          >
+          <span>Who This Training is For</span>
         </h2>
         <div>
+          <b
+            >Our 300-Hour YTT is designed for yoga practitioners and teachers
+            who:</b
+          >
           <ul style="list-style: none">
             <li>
-              1. Have successfully completed their 200 hours Yoga TTC and want
-              to gain advanced knowledge in yogic science.
+              1. Have completed a 200-Hour YTT and wish to gain deeper knowledge
+              of yoga science.
             </li>
             <li>
-              2. Are looking forward to gain in depth knowledge of Yoga
-              Philosophy , Yoga Anatomy with respect to biomechanics
+              2. Want to expand their understanding of
+              <b>Yoga Philosophy, Anatomy, and Biomechanics</b>.
             </li>
             <li>
-              3. Are seeking to further deepen their study of asanas and
-              immersive yoga practices of Pranayama, Yoga Nidra and Meditation.
+              3. Are ready to explore advanced asanas, pranayama, meditation,
+              and yoga nidra in depth.
             </li>
             <li>
-              4. Are looking to gain confidence, expertise and experience in
-              taking yoga classes
+              4. Seek to build more confidence, presence, and skill in teaching
+              yoga.
             </li>
             <li>
-              5. Are planning to take advanced or intermediate level yoga
-              sessions
+              5. Aim to lead intermediate and advanced-level classes with ease.
             </li>
             <li>
-              6. Are truly inspired and focussed to become a 500 RYT yoga
-              teacher and aspire to teach advanced level yoga across the world.
+              6. Are on the path to becoming <b>RYT-500 certified</b> and
+              committed to sharing yoga with authenticity and heart.
             </li>
           </ul>
         </div>
       </div>
     </div>
-    <div class="text-center">
+    @if(slug !== routeEnum.rishikesh300){
+    <div class="text-center mt-5">
       <a href="/book-now" class="button">Enroll In The Course </a>
     </div>
-  </div>
-  <div class="col-md-6 d-flex align-items-center">
-    <!-- <a
-      *ngIf="slug == 'online-hip-opening-workshop' ||
-             slug == '200-hours-yoga-teacher-training-online'"
-         href="#"
-        (click)="addToCart($event)"
-         class="button"
-        >Add To Cart</a
-      > -->
-    <!-- <a
-      *ngIf="
-        slug == 'online-hip-opening-workshop' ||
-        slug == '200-hours-yoga-teacher-training-online'
-      "
-      href="/"
-      class="button"
-      >Buy Now</a>-->
+    }
   </div>
 </section>

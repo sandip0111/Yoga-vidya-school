@@ -55,22 +55,22 @@
     <span class="visually-hidden">Next</span>
   </button>
 </div>
-}@else if(slug === routeEnum.rishkesh200){
+}@else if(slug === routeEnum.rishkesh200 || slug === routeEnum.rishikesh300){
 <section style="padding: 0">
   <div class="row">
     <div class="col-md-12">
       <div style="position: relative">
         <div class="inner image">
           <img
-            [src]="s3Bucket.rishikesh200Banner"
+            [src]="rishikesHeroImage"
             class="img-fluid banner_image"
             alt="Banner Image"
           />
           <div class="banner-text-overlay">
-            Transform Your Life with 200-Hour Yoga TTC in Rishikesh
+            {{ rishikeshMainHeading }}
           </div>
           <div class="banner-subtitle-overlay">
-            Enroll for next Batch: October 3rd 2025 – Yoga Alliance Certified
+            {{ rishikeshSubHeading }}
           </div>
         </div>
       </div>
