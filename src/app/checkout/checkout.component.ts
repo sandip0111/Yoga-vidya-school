@@ -249,7 +249,16 @@ export class CheckoutComponent {
       this.currencyOptions = [];
       this.checkData.currency = '';
     }
-    this.rishikesh200Price();
+    switch (this.slug) {
+      case routeEnum.rishkesh200:
+        this.rishikesh200Price();
+        break;
+      case routeEnum.rishikesh300:
+        this.rishikesh300Price();
+        break;
+      default:
+        break;
+    }
   }
   rishikesh200Price() {
     if (this.checkData.currency == 'INR' && this.checkData.package == 1) {
@@ -271,10 +280,31 @@ export class CheckoutComponent {
       this.amount = 1600;
     }
   }
+  rishikesh300Price() {
+    if (this.checkData.currency == 'INR' && this.checkData.package == 1) {
+      this.amount = 1100;
+    } else if (
+      this.checkData.currency == 'INR' &&
+      this.checkData.package == 2
+    ) {
+      this.amount = 130000;
+    } else if (
+      this.checkData.currency == 'USD' &&
+      this.checkData.package == 1
+    ) {
+      this.amount = 1600;
+    } else if (
+      this.checkData.currency == 'USD' &&
+      this.checkData.package == 2
+    ) {
+      this.amount = 1800;
+    }
+  }
   priceConvert(e: any) {
     if (
       this.slug !== routeEnum.pranicPurification &&
-      this.slug !== routeEnum.rishkesh200
+      this.slug !== routeEnum.rishkesh200 &&
+      this.slug !== routeEnum.rishikesh300
     ) {
       if (this.checkData.package == 'Basic') {
         if (this.slug == routeEnum['200TTC']) {
@@ -308,6 +338,8 @@ export class CheckoutComponent {
       }
     } else if (this.slug == routeEnum.rishkesh200) {
       this.rishikesh200Price();
+    } else if (this.slug == routeEnum.rishikesh300) {
+      this.rishikesh300Price();
     } else {
       this.setPranicNormalPrice(e.target.value);
     }
@@ -398,14 +430,20 @@ export class CheckoutComponent {
   onPhoneInputChange(isValid: boolean | null | undefined): void {
     if (!isValid) {
       this.phoneError = 'Invalid phone number';
-      if (this.slug !== routeEnum.rishkesh200) {
+      if (
+        this.slug !== routeEnum.rishkesh200 &&
+        this.slug !== routeEnum.rishikesh300
+      ) {
         this.currencyOptions = [];
         this.checkData.currency = '';
         this.setPriceOnInputChange();
       }
     } else {
       this.phoneError = '';
-      if (this.slug !== routeEnum.rishkesh200) {
+      if (
+        this.slug !== routeEnum.rishkesh200 &&
+        this.slug !== routeEnum.rishikesh300
+      ) {
         const phoneValue = this.checkData.phoneNumber;
         const countryCode = phoneValue?.countryCode?.toLowerCase();
         if (countryCode === 'in') {
@@ -508,7 +546,10 @@ export class CheckoutComponent {
       if (!isErrMsg) {
         if (this.slug == routeEnum['200TTC']) {
           this.twoHundredTTCCheckout(data, isRazorPay);
-        } else if (this.slug == routeEnum.rishkesh200) {
+        } else if (
+          this.slug == routeEnum.rishkesh200 ||
+          this.slug == routeEnum.rishikesh300
+        ) {
           this.rishikesh200Checkout(data, isRazorPay);
         } else {
           this.nonPranicPurificationCheckout(data, isRazorPay);
@@ -627,6 +668,11 @@ export class CheckoutComponent {
       price: this.isInstallment ? this.firstInstAmnt : this.amount,
       currency: data.currency,
     };
+    if (this.slug == routeEnum.rishkesh200) {
+      signupData.hour = 200;
+    } else if (this.slug == routeEnum.rishikesh300) {
+      signupData.hour = 300;
+    }
     if (isRazorPay) {
       this.initializeRazorPayRish200(signupData);
     } else {
@@ -962,7 +1008,6 @@ export class CheckoutComponent {
       });
   }
   initializeRazorPayRish200(data: SignupDataModel) {
-    data.hour = 200;
     this.webapiService
       .checkoutRazorpayRishikesh(data)
       .subscribe((res: razorPayModel) => {
@@ -1015,7 +1060,6 @@ export class CheckoutComponent {
       });
   }
   initializePayRish200(data: SignupDataModel) {
-    data.hour = 200;
     this.webapiService
       .checkoutStripeForRishikesh(data)
       .subscribe((res: stripePayModel) => {
