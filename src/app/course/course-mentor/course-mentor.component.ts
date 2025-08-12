@@ -39,7 +39,7 @@ export class CourseMentorComponent {
           name: 'Acharya Prashant Jakhmola',
           image: 'image_1673271873934.jfif',
           intro: 'Yoga Sadhana',
-          time: '7:00 AM - 8:00 AM (IST)',
+          time: '6:00 AM - 7:00 AM (IST)',
           price: 'Rs. 2999/USD 70',
           priceInIndian: 2999,
           priceInUSD: 70,
