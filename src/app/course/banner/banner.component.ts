@@ -61,6 +61,11 @@ export class BannerComponent implements OnInit {
   }
   rishikeshBannerSet() {
     switch (this.slug) {
+      case routeEnum.rishikesh100:
+        this.rishikesHeroImage = '../../../assets/IMG_9926.JPG';
+        this.rishikeshMainHeading = 'Transform your inner and teaching journey';
+        this.rishikeshSubHeading = 'deepen presence, wisdom & embodiment';
+        break;
       case routeEnum.rishkesh200:
         this.rishikesHeroImage = s3Bucket.rishikesh200Banner;
         this.rishikeshMainHeading =

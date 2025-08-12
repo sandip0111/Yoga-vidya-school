@@ -41,13 +41,26 @@ export class AboutRishikeshComponent implements OnInit {
     this.generateHtmlContent();
   }
   generateHtmlContent() {
-    if (this.slug == '100-hours-yoga-teacher-training-in-rishikesh') {
+    if (this.slug == routeEnum.rishikesh100) {
       this.aboutContent = new aboutContentModel(
-        'https://my-s3-images-bucket.s3.amazonaws.com/img/image_1674308332559.jpg',
-        '00 Hour',
-        'Yoga Teacher Training in Rishikesh',
-        `<p>Join 100 Hour Yoga Teacher Training Course&nbsp;at Yoga Vidya School in Rishikesh, which is globally known for yoga courses along with&nbsp;yoga alliance approved. Yoga Vidya school has pledged itself to share and spread the knowledge of yoga by becoming a beacon of light. Our yoga gurus or experts are certified teachers and they have designed specialized unique yoga courses to transform students into a certified yoga teacher and passionate practitioners.</p>
-   <p>This best 100 Hour Yoga Teacher Training in Rishikesh, India is for all level of students coming for yoga in Rishikesh, as we can say that yoga in India. This course is for people who are fit, want to dedicate themselves to this inner spiritual practice, want to learn Yoga and believe in spreading knowledge, want to inspire, want to bring more happiness and peace into their lives. Let&#39;s illuminate the yoga path and enlighten the journey of self-soul realizing.</p>`
+        '../.././../../assets/_DSC3854.jpg',
+        '🌟 Who This 100-Hour Yoga Teacher Training in Rishikesh Is For',
+        '',
+        this.sanitizer.bypassSecurityTrustHtml(`
+          <p>6️⃣  7️⃣<br/>
+           8️⃣  9️⃣ </p>
+          <ui style="list-style-type: none;">
+            <li>🆕 <b>New to Yoga</b> – You want a structured, well-rounded introduction to yoga that sets you on the right path.</li>
+            <li>💖 <b>Yoga Enthusiasts</b> – You’ve practiced casually and now want to deepen your knowledge.</li>
+            <li>🧘‍♀️ <b>Holistic Seekers</b> – You’re ready to understand yoga as more than just exercise—gaining a strong foundation in mind, body, and spirit.</li>
+            <li>🎯 <b>Technique Lovers</b> – You want to practice asanas with precision, correct alignment, and a deeper awareness.</li>
+            <li>🌿 <b>Healing Explorers</b> – You’re interested in using yoga as a natural therapy for various health concerns.</li>
+            <li>😌 <b>Stress-Release Seekers</b> – You want to learn powerful relaxation methods for emotional balance and full-body calm.</li>
+            <li>🌸<b>Inner Balance Finders</b> – You’re looking to harmonize mind and body, and connect with your inner self.</li>
+            <li>📚 <b>Wisdom Hunters</b> – You want to explore Yogic Philosophy, Pranayama, and Meditation in an authentic way.</li>
+            <li>📈 <b>Registered Yoga Teachers</b> – You’re seeking Continuing Education (CE) hours to enhance your RYT credentials.</li>
+          </ui>
+        `)
       );
     } else if (this.slug == routeEnum.rishkesh200) {
       this.aboutContent = new aboutContentModel(

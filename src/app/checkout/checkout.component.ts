@@ -282,7 +282,7 @@ export class CheckoutComponent {
   }
   rishikesh300Price() {
     if (this.checkData.currency == 'INR' && this.checkData.package == 1) {
-      this.amount = 1100;
+      this.amount = 110000;
     } else if (
       this.checkData.currency == 'INR' &&
       this.checkData.package == 2

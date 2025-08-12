@@ -30,7 +30,6 @@ export class MentorsComponent implements OnInit {
     this.slug = this.activatedRoute.snapshot.routeConfig?.path;
 
     if (
-      this.slug == '100-hours-yoga-teacher-training-in-rishikesh' ||
       this.slug ==
         '200-horas-de-formacioacuten-de-profesores-de-yoga-en-rishikesh' ||
       this.slug == '200-hour-yoga-teacher-training-scholarship-in-rishikesh' ||
@@ -230,6 +229,7 @@ export class MentorsComponent implements OnInit {
         },
       ];
     } else if (
+      this.slug == this.routeList.rishikesh100 ||
       this.slug == this.routeList.rishkesh200 ||
       this.slug == this.routeList.rishikesh300
     ) {

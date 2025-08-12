@@ -19,6 +19,25 @@ export class PricingComponent implements OnInit {
   constructor(private router: Router) {}
   ngOnInit(): void {
     switch (this.slug) {
+      case routeEnum.rishikesh100:
+        this.mainHeading = 'Pricing of 100 Hours TTC Rishikesh';
+        this.pricing = [
+          // {
+          //   title: 'Private Room',
+          //   usd: 1800,
+          //   inr: 130000,
+          //   image: s3Bucket.room2,
+          //   bgColor: '#f5f0e6',
+          // },
+          {
+            title: 'Shared Room',
+            usd: 700,
+            inr: 45000,
+            image: s3Bucket.room4,
+            bgColor: '#eef6f8',
+          },
+        ];
+        break;
       case routeEnum.rishkesh200:
         this.mainHeading = 'Pricing of 200 Hours TTC Rishikesh';
         this.pricing = [

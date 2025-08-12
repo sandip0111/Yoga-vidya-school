@@ -70,3 +70,8 @@
     margin: 0;
   }
 }
+.icon {
+  background: #f9751e;
+  border-radius: 50%;
+  padding: 10px;
+}
