@@ -62,10 +62,7 @@ export class CheckoutComponent {
   routeEnum = routeEnum;
   isInstallment: boolean = false;
   paymentId: string | null = '';
-  roomList: dropdownModel[] = [
-    { name: 'Shared Room', value: 1 },
-    { name: 'Private Room', value: 2 },
-  ];
+  roomList: dropdownModel[] = [];
   constructor(
     private webapiService: WebapiService,
     private _activatedRoute: ActivatedRoute,
@@ -83,6 +80,19 @@ export class CheckoutComponent {
   }
 
   ngOnInit(): void {
+    if (this.slug == routeEnum.rishikesh100) {
+      this.roomList = [{ name: 'Shared Room', value: 1 }];
+    } else if (this.slug == routeEnum.rishkesh200) {
+      this.roomList = [
+        { name: 'Shared Room', value: 1 },
+        { name: 'Private Room', value: 2 },
+      ];
+    } else if (this.slug == routeEnum.rishikesh300) {
+       this.roomList = [
+        // { name: 'Shared Room', value: 1 },
+        { name: 'Private Room', value: 2 },
+      ];
+    }
     this.scrollToTop();
     setTimeout(() => {
       this.invokeStripe();
@@ -250,6 +260,9 @@ export class CheckoutComponent {
       this.checkData.currency = '';
     }
     switch (this.slug) {
+      case routeEnum.rishikesh100:
+        this.rishikesh100Price();
+        break;
       case routeEnum.rishkesh200:
         this.rishikesh200Price();
         break;
@@ -258,6 +271,13 @@ export class CheckoutComponent {
         break;
       default:
         break;
+    }
+  }
+  rishikesh100Price() {
+    if (this.checkData.currency == 'INR') {
+      this.amount = 45000;
+    } else if (this.checkData.currency == 'USD') {
+      this.amount = 700;
     }
   }
   rishikesh200Price() {
@@ -303,6 +323,7 @@ export class CheckoutComponent {
   priceConvert(e: any) {
     if (
       this.slug !== routeEnum.pranicPurification &&
+      this.slug !== routeEnum.rishikesh100 &&
       this.slug !== routeEnum.rishkesh200 &&
       this.slug !== routeEnum.rishikesh300
     ) {
@@ -336,6 +357,8 @@ export class CheckoutComponent {
         this.price = '';
         this.amount = 0;
       }
+    } else if (this.slug == routeEnum.rishikesh100) {
+      this.rishikesh100Price();
     } else if (this.slug == routeEnum.rishkesh200) {
       this.rishikesh200Price();
     } else if (this.slug == routeEnum.rishikesh300) {
@@ -431,6 +454,7 @@ export class CheckoutComponent {
     if (!isValid) {
       this.phoneError = 'Invalid phone number';
       if (
+        this.slug !== routeEnum.rishikesh100 &&
         this.slug !== routeEnum.rishkesh200 &&
         this.slug !== routeEnum.rishikesh300
       ) {
@@ -441,6 +465,7 @@ export class CheckoutComponent {
     } else {
       this.phoneError = '';
       if (
+        this.slug !== routeEnum.rishikesh100 &&
         this.slug !== routeEnum.rishkesh200 &&
         this.slug !== routeEnum.rishikesh300
       ) {
@@ -547,6 +572,7 @@ export class CheckoutComponent {
         if (this.slug == routeEnum['200TTC']) {
           this.twoHundredTTCCheckout(data, isRazorPay);
         } else if (
+          this.slug == routeEnum.rishikesh100 ||
           this.slug == routeEnum.rishkesh200 ||
           this.slug == routeEnum.rishikesh300
         ) {
@@ -668,7 +694,9 @@ export class CheckoutComponent {
       price: this.isInstallment ? this.firstInstAmnt : this.amount,
       currency: data.currency,
     };
-    if (this.slug == routeEnum.rishkesh200) {
+    if (this.slug == routeEnum.rishikesh100) {
+      signupData.hour = 100;
+    } else if (this.slug == routeEnum.rishkesh200) {
       signupData.hour = 200;
     } else if (this.slug == routeEnum.rishikesh300) {
       signupData.hour = 300;

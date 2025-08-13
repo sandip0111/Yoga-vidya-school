@@ -148,6 +148,7 @@
           class="mb-3"
           *ngIf="
             slug !== routeEnum.pranicPurification &&
+            slug !== routeEnum.rishikesh100 &&
             slug !== routeEnum.rishkesh200 &&
             slug !== routeEnum.rishikesh300
           "
@@ -170,7 +171,9 @@
         <div
           class="mb-3"
           *ngIf="
-            slug == routeEnum.rishkesh200 || slug == routeEnum.rishikesh300
+            slug == routeEnum.rishikesh100 ||
+            slug == routeEnum.rishkesh200 ||
+            slug == routeEnum.rishikesh300
           "
         >
           <label for="room">Room<span style="color: red">*</span></label>

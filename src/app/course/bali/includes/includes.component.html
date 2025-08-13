@@ -9,7 +9,15 @@
     <div class="includes-grid text-center">
       <div class="include-item">
         <i class="fas fa-bed"></i>
-        <p>28 nights shared room accommodation with attached bathroom</p>
+        <p *ngIf="slug == routEnum.rishikesh100">
+          28 nights shared room accommodation with attached bathroom
+        </p>
+        <p *ngIf="slug == routEnum.rishkesh200">
+          28 nights shared room accommodation with attached bathroom
+        </p>
+        <p *ngIf="slug == routEnum.rishikesh300">
+          30 nights shared room accommodation with attached bathroom
+        </p>
       </div>
       <div class="include-item">
         <i class="fa fa-tint"></i>
