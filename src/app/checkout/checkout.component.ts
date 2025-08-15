@@ -89,7 +89,7 @@ export class CheckoutComponent {
       ];
     } else if (this.slug == routeEnum.rishikesh300) {
        this.roomList = [
-        // { name: 'Shared Room', value: 1 },
+        { name: 'Shared Room', value: 1 },
         { name: 'Private Room', value: 2 },
       ];
     }

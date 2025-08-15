@@ -67,13 +67,13 @@ export class PricingComponent implements OnInit {
             image: s3Bucket.room2,
             bgColor: '#f5f0e6',
           },
-          // {
-          //   title: 'Shared Room',
-          //   usd: 1600,
-          //   inr: 110000,
-          //   image: s3Bucket.room4,
-          //   bgColor: '#eef6f8',
-          // },
+          {
+            title: 'Shared Room',
+            usd: 1600,
+            inr: 110000,
+            image: s3Bucket.room4,
+            bgColor: '#eef6f8',
+          },
         ];
         break;
       default:
