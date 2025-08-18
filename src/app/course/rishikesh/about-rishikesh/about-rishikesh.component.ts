@@ -47,8 +47,7 @@ export class AboutRishikeshComponent implements OnInit {
         '🌟 Who This 100-Hour Yoga Teacher Training in Rishikesh Is For',
         '',
         this.sanitizer.bypassSecurityTrustHtml(`
-          <p>6️⃣  7️⃣<br/>
-           8️⃣  9️⃣ </p>
+       
           <ui style="list-style-type: none;">
             <li>🆕 <b>New to Yoga</b> – You want a structured, well-rounded introduction to yoga that sets you on the right path.</li>
             <li>💖 <b>Yoga Enthusiasts</b> – You’ve practiced casually and now want to deepen your knowledge.</li>
