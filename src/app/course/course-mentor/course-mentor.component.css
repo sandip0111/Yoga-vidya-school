@@ -18,8 +18,8 @@
     rgba(249, 117, 30, 0.21) 130%
   );
 
- /* Card styling */
-.card {
+  /* Card styling */
+  .card {
     border: 0.94px solid #f9751e;
     border-radius: 8px;
     padding: 10px;
@@ -31,90 +31,76 @@
     justify-content: space-between;
     height: 100%;
   }
-  
-  /* Flexbox layout for the card container */
+
   .card-container {
     display: flex;
     flex-direction: row;
     gap: 20px;
-    align-items: stretch; /* Stretch items to ensure equal height */
-    height: 100%; /* Make sure the card takes full height */
+    align-items: stretch;
+    height: 100%;
   }
-  
-  .card-text{
+
+  .card-text {
     font-size: 1.5rem;
   }
-  /* Image container styling */
-  .card-image {    
-    max-width: 30%; /* Restrict image to 40% of the width */
-    height: 100%; /* Ensure it takes full height of the container */
+  .card-image {
+    max-width: 30%;
+    height: 100%;
     overflow: hidden;
     border-radius: 8px;
     display: flex;
     justify-content: center;
     align-items: center;
   }
-  
-  /* Image styling */
+
   .card-image img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Adjust how the image fills the container */
+    object-fit: cover;
     object-position: top;
   }
 
- 
-  
-  /* Content section for the description (beside the image) */
   .content-section {
     flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     gap: 10px;
-    height: 100%; /* Make sure content takes full height */
+    height: 100%;
   }
 
-  /* a {
-    align-self: center;
-  } */
-  
-  /* Heading styling */
   .fw-600 {
     font-weight: 600;
     font-size: 1.8rem;
   }
-  
-  /* Description styling (handles the number of words/content) */
+
   .description {
     font-size: 1.2rem;
     margin-top: 10px;
     text-align: left;
-    overflow: hidden; /* Ensure content doesn't overflow */
-    flex-grow: 1; /* Allow the description to grow and occupy available space */
+    overflow: hidden;
+    flex-grow: 1;
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    text-overflow: ellipsis; /* Adds "..." if the content overflows */
+    text-overflow: ellipsis;
   }
 
   p ul {
-    list-style-position: outside; /* Ensures bullets align outside the content */
-    padding-left: 20px; /* Adds indentation to the list */
-    margin: 10px 0; /* Adds spacing around the list */
+    list-style-position: outside;
+    padding-left: 20px;
+    margin: 10px 0;
   }
-  
+
   p ul li {
-    line-height: 1.6; /* Adjust line height for better readability */
-    font-size: 16px; /* Optional: Adjust font size */
+    line-height: 1.6;
+    font-size: 16px;
   }
-  
-  /* Card body below the image and content section */
+
   .card-body {
     margin-top: 20px;
     padding: 0;
   }
-  
-  /* Button styling */
+
   .button {
     background: rgba(249, 117, 30, 1);
     color: #fff;
@@ -128,43 +114,38 @@
     margin-top: 5px;
     width: 250px;
     display: inline-block;
-    
+
     i {
-        padding: 6px;
-        background: #fff;
-        color: rgba(249, 117, 30, 1);
-        border-radius: 50%;
-        margin-right: 5px;
-    }        
-}
-  /* Responsive adjustments */
+      padding: 6px;
+      background: #fff;
+      color: rgba(249, 117, 30, 1);
+      border-radius: 50%;
+      margin-right: 5px;
+    }
+  }
   @media (max-width: 768px) {
     .card-container {
-      flex-direction: column; /* Stack the image and content vertically */
-      gap: 10px; /* Reduce the gap between sections */
-    }
-  
-    .card-image {
-      max-width: 100%; /* Allow the image to take full width */
-      flex: auto;
-    }
-  
-    .button{
-      font-size: 10px!important;
-    }
-    .content-section {
-      text-align: center; /* Center content in mobile view */
-    }
-  
-    /* Adjust the description section */
-    .description {
-      -webkit-line-clamp: 3; /* Limit the description to 3 lines for smaller screens */
+      flex-direction: column;
+      gap: 10px;
     }
 
-    
+    .card-image {
+      max-width: 100%;
+      flex: auto;
+    }
+
+    .button {
+      font-size: 10px !important;
+    }
+    .content-section {
+      text-align: center;
+    }
+
+    .description {
+      -webkit-line-clamp: 3;
+      line-clamp: 3;
+    }
   }
-  
-  
 
   .time2 {
     width: 95% !important;
@@ -179,5 +160,11 @@
 @keyframes blinker {
   50% {
     opacity: 0;
+  }
+}
+.online-about{
+  p{
+    font-size: 20px;
+    font-weight: 500;
   }
 }
