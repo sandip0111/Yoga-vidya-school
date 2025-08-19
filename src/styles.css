@@ -523,3 +523,11 @@ iframe {
   }
 
 }
+.middle-text {
+  text-align: center;
+}
+h4 {
+  span {
+    color: #f47019;
+  }
+}

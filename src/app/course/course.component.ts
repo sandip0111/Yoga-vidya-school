@@ -2,8 +2,6 @@ import {
   Component,
   Inject,
   Renderer2,
-  ElementRef,
-  ViewEncapsulation,
 } from '@angular/core';
 import { CommonModule, DOCUMENT } from '@angular/common';
 import { WebapiService } from '../webapi.service';
@@ -12,7 +10,6 @@ import {
   DomSanitizer,
   Title,
   Meta,
-  SafeResourceUrl,
 } from '@angular/platform-browser';
 import { BottomNavComponent } from '../includes/home/bottom-nav/bottom-nav.component';
 import { AboutComponent } from '../includes/home/about/about.component';
@@ -30,6 +27,7 @@ import { CourseMentorComponent } from './course-mentor/course-mentor.component';
 import { SafePipe } from '../safe.pipe';
 import { VideoReviewsComponent } from './video-reviews/video-reviews.component';
 import { ReviewListComponentComponent } from '../text-review-list/review-list-component/review-list-component.component';
+import { routeEnum } from '../enum/routes';
 
 @Component({
   selector: 'app-course',
@@ -96,7 +94,7 @@ export class CourseComponent {
   imageUrl: string = '';
   courseList: any;
   introLink: string = '';
-
+  routEnum = routeEnum;
   constructor(
     private webapiService: WebapiService,
     private _activatedRoute: ActivatedRoute,

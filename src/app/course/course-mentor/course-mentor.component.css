@@ -1,6 +1,6 @@
 .mentors,
 .benefits {
-  text-align: center;
+  /* text-align: center; */
   padding: 40px 40px;
   background: radial-gradient(
     circle,
@@ -53,11 +53,10 @@
     align-items: center;
   }
 
-  .card-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: top;
+  .card-image-mentor {
+    height: 21rem;
+    width: 16rem;
+    border-radius: 30px;
   }
 
   .content-section {
@@ -162,9 +161,19 @@
     opacity: 0;
   }
 }
-.online-about{
-  p{
+.online-about {
+  p {
     font-size: 20px;
     font-weight: 500;
+    padding-inline: 7rem;
   }
+  .record-data {
+    padding-inline: 7rem;
+    p {
+      padding-inline: 0;
+    }
+  }
+}
+.bor {
+  border: 1px solid black;
 }

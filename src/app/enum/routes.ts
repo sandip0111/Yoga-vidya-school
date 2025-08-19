@@ -12,5 +12,6 @@ export enum routeEnum {
   'bali' = 'get-certified-in-bali',
   'bali200' = '200-hour-yoga-teacher-training-in-bali',
   'bali300' = '300-hour-yoga-teacher-training-in-bali',
-  'bDtox' = 'breath-detox-yoga'
+  'bDtox' = 'breath-detox-yoga',
+  'online' = 'online-yoga-classes'
 }
