@@ -29,6 +29,7 @@ import { PaymentProceedComponent } from './payment-proceed/payment-proceed.compo
 import { RegistrationFormComponent } from './student/registration-form/registration-form.component';
 import { WebinarVideosComponent } from './webinar-videos/webinar-videos.component';
 import { CertifiedComponent } from './certified/certified.component';
+import { PrashantPageComponent } from './course/online-course-mentor/prashant-page/prashant-page.component';
 
 export const routes: Routes = [
   { path: '', component: IndexComponent },
@@ -140,6 +141,10 @@ export const routes: Routes = [
   {
     path: 'get-certified-in-bali',
     component: CertifiedComponent,
+  },
+  {
+    path: 'prashant-jhakmola-online-class',
+    component: PrashantPageComponent,
   },
   { path: 'webinar-video/:name', component: WebinarVideosComponent },
   { path: '**', pathMatch: 'full', component: PagenotfoundComponent },

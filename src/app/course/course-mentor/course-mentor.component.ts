@@ -3,8 +3,6 @@ import { StartClassComponent } from '../bali/start-class/start-class.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { WebapiService } from '../../webapi.service';
 import { CommonModule } from '@angular/common';
-import { CartItem, CartService } from '../../cart.service';
-import { DomSanitizer } from '@angular/platform-browser';
 import { s3Bucket } from '../../enum/s3Bucket';
 
 @Component({
@@ -17,13 +15,10 @@ import { s3Bucket } from '../../enum/s3Bucket';
 export class CourseMentorComponent {
   slug: string | undefined = '';
   imageUrl: string = '';
-  course?: CartItem;
   courseMentor: mentorTimings[] = [];
   isShowAddToCart: boolean = false;
   s3Bucket = s3Bucket;
   constructor(
-    private cartService: CartService,
-    private sanitizer: DomSanitizer,
     private webapiService: WebapiService,
     private _activatedRoute: ActivatedRoute,
     private router: Router
@@ -40,12 +35,16 @@ export class CourseMentorComponent {
           image: 'image_1673271873934.jfif',
           title: 'Yoga Sadhana',
           weeklyTime: 'From Monday to Friday',
-          time: '6:00 am to 7:00 am IST',
+          time: {
+            time1: '6:00 am',
+            time2: '7:00 am',
+            stamp: 'IST',
+          },
           nextBatch: 'September the 8th',
           price: { priceInIndian: 2999, priceInUSD: 70 },
           description:
             'interactive class combining Hatha asanas and pranayama each morning for holistic physical, mental, and spiritual growth. Suitable for all levels, with focus on correct alignment and routine building.',
-          url: '',
+          url: 'prashant-jhakmola-online-class',
         },
         {
           id: 2,
@@ -53,7 +52,11 @@ export class CourseMentorComponent {
           image: 'image_1695634116777.jpeg',
           title: 'Therapeutic Hatha Yoga',
           weeklyTime: 'From Monday to Thursday',
-          time: '5:30 am to 6:30 am IST',
+          time: {
+            time1: '5:30 am',
+            time2: '6:30 am',
+            stamp: 'IST',
+          },
           nextBatch: 'September the 1st',
           price: { priceInIndian: 1999, priceInUSD: 50 },
           description:
@@ -66,7 +69,11 @@ export class CourseMentorComponent {
           image: 'IMG_20250331_171325_021.jpg',
           title: 'Woman Wellness Yoga',
           weeklyTime: 'From Monday to Thursday',
-          time: '5:00 PM - 6:00 PM IST',
+          time: {
+            time1: '5:00 PM',
+            time2: '6:00 PM',
+            stamp: 'IST',
+          },
           nextBatch: 'October the 6th. (Not available during September)',
           price: { priceInIndian: 1999, priceInUSD: 40 },
           description:
@@ -79,7 +86,11 @@ export class CourseMentorComponent {
           image: 'image_1695634116777.jpeg',
           title: 'Intermediate Alignment Based Class',
           weeklyTime: 'Monday / Wednesday / Friday',
-          time: '6:15 pm to 7:15 pm IST',
+          time: {
+            time1: '6:15 pm',
+            time2: '7:15 pm',
+            stamp: 'IST',
+          },
           nextBatch: 'September the 1st',
           price: { priceInIndian: 3500, priceInUSD: 70 },
           description:
@@ -192,36 +203,26 @@ export class CourseMentorComponent {
     //   ];
     // }
   }
-
-  addToCart(event: Event, id?: number): void {
-    event.preventDefault();
-    if (id != undefined) {
-      const mentor = this.courseMentor.find((i) => i.id == id);
-      this.course = {
-        id: id,
-        title: mentor?.title ?? '',
-        shortDescription: mentor?.description ?? '',
-        priceINR: mentor?.price.priceInIndian ?? 0,
-        priceUSD: mentor?.price.priceInUSD ?? 0,
-        quantity: 1,
-      };
+  goToMentorPage(url: string): void {
+    if (url) {
+      this.router.navigate([url]).then(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
     }
-    if (this.course != undefined) {
-      this.cartService.addItem(this.course);
-    }
-    this.router.navigate(['/proceed-payment']).then(() => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
   }
 }
 
-interface mentorTimings {
+export interface mentorTimings {
   id: number;
   name: string;
   image: string;
   title: string;
   weeklyTime: string;
-  time: string;
+  time: {
+    time1: string;
+    time2: string;
+    stamp: String;
+  };
   nextBatch: string;
   price: {
     priceInIndian: number;

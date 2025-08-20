@@ -47,7 +47,7 @@ export class AboutRishikeshComponent implements OnInit {
         '🌟 Who This 100-Hour Yoga Teacher Training in Rishikesh Is For',
         '',
         this.sanitizer.bypassSecurityTrustHtml(`
-       
+
           <ui style="list-style-type: none;">
             <li>🆕 <b>New to Yoga</b> – You want a structured, well-rounded introduction to yoga that sets you on the right path.</li>
             <li>💖 <b>Yoga Enthusiasts</b> – You’ve practiced casually and now want to deepen your knowledge.</li>
@@ -135,7 +135,7 @@ export class AboutRishikeshComponent implements OnInit {
       //       };
     } else if (this.slug == 'yoga-retreat-in-rishikesh-india') {
       this.aboutContent = new aboutContentModel(
-        'https://my-s3-images-bucket.s3.amazonaws.com/img/image_1674209054855.jpg',
+        s3Bucket.prashantjiHero,
         'Yoga Retreat',
         'in Rishikesh India',
         `<p>Yoga Vidya School in Rishikesh welcomes you to immerse in life transformative authentic yogic practices. This yoga retreat is a unique and energetic program to experience authentic yoga, meditation and pranayama for deep relaxation and transformation. Break away from the mundane to reunite with your mind, body, and spirit through soulful yogic experiences. Also, during the retreat, get an opportunity to explore the yogic culture, Himalayan shrines, organic food, trips to temples and ashrams. Daily Yoga Asana classes in this best yoga retreat in Rishikesh covers both classical Hatha Yoga and Ashtanga Yoga. The yoga teachers who will conduct these classes, have learnt from popular Indian Ashrams and also trained in yoga therapy and modern yoga teaching methodologies.</p>`

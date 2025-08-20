@@ -1,0 +1,106 @@
+<div class="row p-0">
+  <div class="col-md-12">
+    <div style="position: relative">
+      <div class="inner image">
+        <img
+          [src]="s3Bucket.prashantjiHero"
+          class="img-fluid banner_image"
+          alt="Prashant J"
+        />
+        <div class="banner-text-overlay">
+          Online Sadhana - By Prashant Jakhmola
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row about-rishikesh-section">
+  <div class="col-md-6 aboutImage">
+    <div class="imageback">
+      <img
+        src="../../../../assets/FERN8284.jpg"
+        class="img-fluid"
+        loading="lazy"
+        alt="about"
+      />
+    </div>
+  </div>
+  <div class="col-md-6 d-flex align-items-center">
+    <div>
+      <h2><span>Holistic Health</span></h2>
+      <p>
+        Prashant´s online yoga classes are not only designed to offer physical
+        benefits such as flexibility, strong and active body or appearance.
+        These classes work on deeper level for holistic health, with combination
+        of three major areas of human life:
+      </p>
+      <ul>
+        <li>Physical</li>
+        <li>Mental</li>
+        <li>Spiritual</li>
+      </ul>
+      <p>
+        Yoga is a practice that deeply impacts all those levels of life which
+        are very essential to a living person. It is not the practice of the
+        body only. It is a process of spiritual development. And keeping in mind
+        all these important things, we have conducted yoga classes. These
+        classes are conducted online to all yoga aspirants who want to bring
+        spiritual transformation in their life through yoga.
+      </p>
+      <p>
+        Practicing live with me is highly beneficial especially if anyone wants
+        to develop a regular routine and practice.
+      </p>
+    </div>
+  </div>
+  <div class="col-md-6 d-flex align-items-center">
+    <div>
+      <h2><span>What will you learn with Prashant?</span></h2>
+      <ul>
+        <li>Proper way of practising Asana and Pranayama</li>
+        <li>Alignment of each asana practice</li>
+        <li>
+          Modification of practice according to individual limitations and
+          strengths
+        </li>
+        <li>Maximum Individual Attention to each student</li>
+        <li>Shatkarma (yogic purification) such as neti practice</li>
+        <li>Reach a new level in your personal yoga and meditation practice</li>
+      </ul>
+    </div>
+  </div>
+  <div class="col-md-6 aboutImage mt-3">
+    <div class="imageback">
+      <img
+        src="../../../../assets/FERN8341.jpg"
+        class="img-fluid"
+        loading="lazy"
+        alt="about"
+      />
+    </div>
+  </div>
+</div>
+<div class="card">
+  <div class="row mb-3">
+    <div class="col-md-12">
+      <div class="row justify-content-center">
+        <img
+          loading="lazy"
+          alt="Not Loaded"
+          [src]="s3Bucket.flower"
+          style="width: 6rem"
+        />
+        <h2 style="text-align: center">
+          <span>NEXT BATCH STARTS:</span> September the 8th
+        </h2>
+        <button
+          class="button"
+          style="margin-top: 0"
+          (click)="addToCart($event, mentor.id)"
+        >
+          JOIN NOW
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
