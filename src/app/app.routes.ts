@@ -30,6 +30,7 @@ import { RegistrationFormComponent } from './student/registration-form/registrat
 import { WebinarVideosComponent } from './webinar-videos/webinar-videos.component';
 import { CertifiedComponent } from './certified/certified.component';
 import { PrashantPageComponent } from './course/online-course-mentor/prashant-page/prashant-page.component';
+import { TaniyaPageComponent } from './course/online-course-mentor/taniya-page/taniya-page.component';
 
 export const routes: Routes = [
   { path: '', component: IndexComponent },
@@ -145,6 +146,10 @@ export const routes: Routes = [
   {
     path: 'prashant-jhakmola-online-class',
     component: PrashantPageComponent,
+  },
+  {
+    path: 'taniya-verma-online-class',
+    component: TaniyaPageComponent,
   },
   { path: 'webinar-video/:name', component: WebinarVideosComponent },
   { path: '**', pathMatch: 'full', component: PagenotfoundComponent },

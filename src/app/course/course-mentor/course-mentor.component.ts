@@ -78,7 +78,7 @@ export class CourseMentorComponent {
           price: { priceInIndian: 1999, priceInUSD: 40 },
           description:
             'A gentle and supportive practice designed specially for women from menstruation to menopause combining asana, pranayama, nutrition tips and hormone-balancing restorative techniques.',
-          url: '',
+          url: 'taniya-verma-online-class',
         },
         {
           id: 4,

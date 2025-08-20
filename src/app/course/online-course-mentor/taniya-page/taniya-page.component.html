@@ -1,1 +1,84 @@
-<p>taniya-page works!</p>
+<div class="row p-0">
+  <div class="col-md-12">
+    <div style="position: relative">
+      <div class="inner image">
+        <img
+          src="../../../../assets/IMG-20250704-WA0007.jpg"
+          class="img-fluid banner_image"
+          alt="Taniya verma"
+        />
+        <div class="banner-text-overlay">
+          Woman Wellness Yoga - By Taniya Verma
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row about-rishikesh-section">
+  <div class="col-md-6 aboutImage">
+    <div class="imageback">
+      <img
+        src="../../../../assets/IMG-20250704-WA0010.jpg"
+        class="img-fluid"
+        loading="lazy"
+        alt="about"
+      />
+    </div>
+  </div>
+  <div class="col-md-6 d-flex align-items-center">
+    <div>
+      <p>
+        These classes are designed for all the females from menarche to
+        menopause, with a holistic approach combining ancient yoga wisdom
+        combined with modern lifestyle tips to empower women to take control of
+        their health and wellbeing.
+      </p>
+      <b>In this transformative journey, you will explore:</b>
+      <ul>
+        <li>
+          Transformative asanas to awaken vitality and strength in the physical
+          body.
+        </li>
+        <li>Healthy eating habits to nourish and balance your body.</li>
+        <li>Pranayama techniques to calm and soothe the nervous system.</li>
+        <li>
+          Restorative asanas to release tension and promote relaxation during
+          the menstrual cycle.
+        </li>
+      </ul>
+      <p>
+        Join me to rediscover your inner strength, balance your hormones, and
+        cultivate overall wellbeing.
+      </p>
+      <p>
+        Together, let's address the unique challenges women face due to hormonal
+        issues and embark on a path towards radiant health, happiness, and
+        fulfillment.
+      </p>
+    </div>
+  </div>
+</div>
+<div class="card">
+  <div class="row mb-3">
+    <div class="col-md-12">
+      <div class="row justify-content-center">
+        <img
+          loading="lazy"
+          alt="Not Loaded"
+          [src]="s3Bucket.flower"
+          style="width: 6rem"
+        />
+        <h2 style="text-align: center">
+          <span>NEXT BATCH STARTS:</span> {{ mentor.nextBatch }}
+        </h2>
+        <button
+          class="button"
+          style="margin-top: 0"
+          (click)="addToCart($event, mentor.id)"
+        >
+          JOIN NOW
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
