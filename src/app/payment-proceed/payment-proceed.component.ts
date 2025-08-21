@@ -15,6 +15,7 @@ import { SearchCountryField } from 'ngx-intl-tel-input';
 import { CountryISO } from 'ngx-intl-tel-input';
 import { Router } from '@angular/router';
 import { paymentkey } from '../enum/payment';
+import { jsonData } from '../course/course-mentor/course-mentor.component';
 
 declare var Razorpay: any;
 @Component({
@@ -35,60 +36,7 @@ export class PaymentProceedComponent implements OnInit {
   currency: any;
   courses: CartItem[] = [];
   availableCourses: CartItem[] = [];
-  courseMentor = [
-    {
-      id: 1,
-      name: 'Acharya Prashant Jakhmola',
-      image: 'image_1673271873934.jfif',
-      intro: 'Yoga Sadhana',
-      time: '6:00 AM - 7:00 AM (IST)',
-      price: 'Rs. 2999/USD 70',
-      priceInIndian: 2999,
-      priceInUSD: 70,
-    },
-    {
-      id: 2,
-      name: 'Anuj Pareek',
-      image: 'image_1695634116777.jpeg',
-      intro: 'Hatha Yoga',
-      time: '5:30 AM - 6:30 AM (IST)',
-      price: 'Rs. 1999/USD 50',
-      priceInIndian: 1999,
-      priceInUSD: 50,
-    },
-
-    {
-      id: 3,
-      name: 'Taniya Verma',
-      image: 'image_1675243508012.jpg',
-      intro: 'Women Wellness Yoga',
-      time: '5:00 PM – 6:00 PM (IST)',
-      time1: '',
-      price: 'Rs. 1999/USD 40',
-      priceInIndian: 1999,
-      priceInUSD: 40,
-    },
-    {
-      id: 4,
-      name: 'Shivam Joshi',
-      image: 'image_1673271925503.jpeg',
-      intro: 'Iyengar/ Yoga Therapy ',
-      time: '6:30 PM – 8:30 PM (IST)',
-      price: 'Rs. 6000/ USD 75',
-      priceInIndian: 6000,
-      priceInUSD: 75,
-    },
-    {
-      id: 5,
-      name: 'Anuj Pareek',
-      image: 'image_1695634116777.jpeg',
-      intro: 'Intermediate Alignment Based Class',
-      time: '6:15 PM - 7:15 PM (IST)',
-      price: 'Rs. 3500/USD 70',
-      priceInIndian: 3500,
-      priceInUSD: 70,
-    },
-  ];
+  courseMentor = jsonData;
   submitted: boolean = false;
   price: any;
   paymentHandler: any = null;
@@ -110,18 +58,12 @@ export class PaymentProceedComponent implements OnInit {
     this.courses = this.cartService.getItems();
     this.availableCourses = this.courseMentor.map((mentor) => {
       const course: CartItem = {
-        id: mentor?.id, // Ensure you extract the ID correctly from `mentor`
-        title:
-          mentor?.intro == 'Intermediate Alignment Based Class'
-            ? mentor?.name + ' Intermediate Alignment Based Class'
-            : mentor?.name + ' online yoga class',
-        shortDescription:
-          mentor?.time +
-          (mentor?.time1 != undefined ? ', ' + mentor?.time1 : ''),
-        priceINR: mentor?.priceInIndian ?? 0,
-        priceUSD: mentor?.priceInUSD ?? 0,
+        id: mentor?.id,
+        title: mentor?.title,
+        shortDescription: mentor?.description,
+        priceINR: mentor?.price.priceInIndian,
+        priceUSD: mentor?.price.priceInUSD,
         quantity: 1,
-        priceInfo: mentor?.price,
       };
       return course;
     });

@@ -91,12 +91,12 @@
           style="width: 6rem"
         />
         <h2 style="text-align: center">
-          <span>NEXT BATCH STARTS:</span> {{ mentor.nextBatch }}
+          <span>NEXT BATCH STARTS:</span> {{ mentor?.nextBatch }}
         </h2>
         <button
           class="button"
           style="margin-top: 0"
-          (click)="addToCart($event, mentor.id)"
+          (click)="addToCart(mentor)"
         >
           JOIN NOW
         </button>

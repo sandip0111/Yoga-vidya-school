@@ -1,0 +1,43 @@
+<div class="row p-0">
+  <div class="col-md-12">
+    <div style="position: relative">
+      <div class="inner image">
+        <img [src]="heroImage" class="img-fluid banner_image" alt="anuup ji" />
+        <div class="banner-text-overlay">
+          {{ title }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row about-rishikesh-section">
+  <div class="col-md-12 d-flex align-items-center">
+    <p>
+      {{ about }}
+    </p>
+  </div>
+</div>
+<div class="card">
+  <div class="row mb-3">
+    <div class="col-md-12">
+      <div class="row justify-content-center">
+        <img
+          loading="lazy"
+          alt="Not Loaded"
+          [src]="s3Bucket.flower"
+          style="width: 6rem"
+        />
+        <h2 style="text-align: center">
+          <span>NEXT BATCH STARTS:</span> {{ mentor?.nextBatch }}
+        </h2>
+        <button
+          class="button"
+          style="margin-top: 0"
+          (click)="addToCart(mentor)"
+        >
+          JOIN NOW
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

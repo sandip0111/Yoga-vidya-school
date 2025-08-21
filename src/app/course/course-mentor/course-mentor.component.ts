@@ -28,76 +28,7 @@ export class CourseMentorComponent {
 
     if (this.slug == 'online-yoga-classes') {
       this.isShowAddToCart = true;
-      this.courseMentor = [
-        {
-          id: 1,
-          name: 'Acharya Prashant Jakhmola',
-          image: 'image_1673271873934.jfif',
-          title: 'Yoga Sadhana',
-          weeklyTime: 'From Monday to Friday',
-          time: {
-            time1: '6:00 am',
-            time2: '7:00 am',
-            stamp: 'IST',
-          },
-          nextBatch: 'September the 8th',
-          price: { priceInIndian: 2999, priceInUSD: 70 },
-          description:
-            'interactive class combining Hatha asanas and pranayama each morning for holistic physical, mental, and spiritual growth. Suitable for all levels, with focus on correct alignment and routine building.',
-          url: 'prashant-jhakmola-online-class',
-        },
-        {
-          id: 2,
-          name: 'Anuj Pareek',
-          image: 'image_1695634116777.jpeg',
-          title: 'Therapeutic Hatha Yoga',
-          weeklyTime: 'From Monday to Thursday',
-          time: {
-            time1: '5:30 am',
-            time2: '6:30 am',
-            stamp: 'IST',
-          },
-          nextBatch: 'September the 1st',
-          price: { priceInIndian: 1999, priceInUSD: 50 },
-          description:
-            'Progressive, dynamic and therapeutic Hatha sequence tailored for mobility and release of long-held tension from sedentaries lifestyles.',
-          url: '',
-        },
-        {
-          id: 3,
-          name: 'Taniya Verma',
-          image: 'IMG_20250331_171325_021.jpg',
-          title: 'Woman Wellness Yoga',
-          weeklyTime: 'From Monday to Thursday',
-          time: {
-            time1: '5:00 PM',
-            time2: '6:00 PM',
-            stamp: 'IST',
-          },
-          nextBatch: 'October the 6th. (Not available during September)',
-          price: { priceInIndian: 1999, priceInUSD: 40 },
-          description:
-            'A gentle and supportive practice designed specially for women from menstruation to menopause combining asana, pranayama, nutrition tips and hormone-balancing restorative techniques.',
-          url: 'taniya-verma-online-class',
-        },
-        {
-          id: 4,
-          name: 'Anuj Pareek',
-          image: 'image_1695634116777.jpeg',
-          title: 'Intermediate Alignment Based Class',
-          weeklyTime: 'Monday / Wednesday / Friday',
-          time: {
-            time1: '6:15 pm',
-            time2: '7:15 pm',
-            stamp: 'IST',
-          },
-          nextBatch: 'September the 1st',
-          price: { priceInIndian: 3500, priceInUSD: 70 },
-          description:
-            'Advanced, mobility-rich sessions emphasizing arm balance and inversions with therapeutic methods. Ideal for progressing students beyond basic.',
-          url: '',
-        },
-      ];
+      this.courseMentor = jsonData;
     }
     // else if (
     //   this.slug == 'breath-detox-yoga' ||
@@ -203,9 +134,9 @@ export class CourseMentorComponent {
     //   ];
     // }
   }
-  goToMentorPage(url: string): void {
+  goToMentorPage(url: string, id: number): void {
     if (url) {
-      this.router.navigate([url]).then(() => {
+      this.router.navigate([url, id]).then(() => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
       });
     }
@@ -231,3 +162,73 @@ export interface mentorTimings {
   description: string;
   url: string;
 }
+export let jsonData = [
+  {
+    id: 1,
+    name: 'Acharya Prashant Jakhmola',
+    image: 'image_1673271873934.jfif',
+    title: 'Yoga Sadhana',
+    weeklyTime: 'From Monday to Friday',
+    time: {
+      time1: '6:00 am',
+      time2: '7:00 am',
+      stamp: 'IST',
+    },
+    nextBatch: 'September the 8th',
+    price: { priceInIndian: 2999, priceInUSD: 70 },
+    description:
+      'interactive class combining Hatha asanas and pranayama each morning for holistic physical, mental, and spiritual growth. Suitable for all levels, with focus on correct alignment and routine building.',
+    url: 'prashant-jhakmola-online-class',
+  },
+  {
+    id: 2,
+    name: 'Anuj Pareek',
+    image: 'image_1695634116777.jpeg',
+    title: 'Therapeutic Hatha Yoga',
+    weeklyTime: 'From Monday to Thursday',
+    time: {
+      time1: '5:30 am',
+      time2: '6:30 am',
+      stamp: 'IST',
+    },
+    nextBatch: 'September the 1st',
+    price: { priceInIndian: 1999, priceInUSD: 50 },
+    description:
+      'Progressive, dynamic and therapeutic Hatha sequence tailored for mobility and release of long-held tension from sedentaries lifestyles.',
+    url: 'anuj-online-class',
+  },
+  {
+    id: 3,
+    name: 'Taniya Verma',
+    image: 'IMG_20250331_171325_021.jpg',
+    title: 'Woman Wellness Yoga',
+    weeklyTime: 'From Monday to Thursday',
+    time: {
+      time1: '5:00 PM',
+      time2: '6:00 PM',
+      stamp: 'IST',
+    },
+    nextBatch: 'October the 6th. (Not available during September)',
+    price: { priceInIndian: 1999, priceInUSD: 40 },
+    description:
+      'A gentle and supportive practice designed specially for women from menstruation to menopause combining asana, pranayama, nutrition tips and hormone-balancing restorative techniques.',
+    url: 'taniya-verma-online-class',
+  },
+  {
+    id: 4,
+    name: 'Anuj Pareek',
+    image: 'image_1695634116777.jpeg',
+    title: 'Intermediate Alignment Based Class',
+    weeklyTime: 'Monday / Wednesday / Friday',
+    time: {
+      time1: '6:15 pm',
+      time2: '7:15 pm',
+      stamp: 'IST',
+    },
+    nextBatch: 'September the 1st',
+    price: { priceInIndian: 3500, priceInUSD: 70 },
+    description:
+      'Advanced, mobility-rich sessions emphasizing arm balance and inversions with therapeutic methods. Ideal for progressing students beyond basic.',
+    url: 'anuj-online-class',
+  },
+];

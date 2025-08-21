@@ -31,6 +31,7 @@ import { WebinarVideosComponent } from './webinar-videos/webinar-videos.componen
 import { CertifiedComponent } from './certified/certified.component';
 import { PrashantPageComponent } from './course/online-course-mentor/prashant-page/prashant-page.component';
 import { TaniyaPageComponent } from './course/online-course-mentor/taniya-page/taniya-page.component';
+import { AnujPageComponent } from './course/online-course-mentor/anuj-page/anuj-page.component';
 
 export const routes: Routes = [
   { path: '', component: IndexComponent },
@@ -150,6 +151,10 @@ export const routes: Routes = [
   {
     path: 'taniya-verma-online-class',
     component: TaniyaPageComponent,
+  },
+  {
+    path: 'anuj-online-class/:id',
+    component: AnujPageComponent,
   },
   { path: 'webinar-video/:name', component: WebinarVideosComponent },
   { path: '**', pathMatch: 'full', component: PagenotfoundComponent },

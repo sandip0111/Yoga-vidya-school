@@ -41,7 +41,8 @@
               <div class="card_amount_area">
                 <!-- <button class="button"> Add </button> -->
                 <h6 class="card-subtitle">
-                  {{ course.priceInfo }}
+                  {{ course.priceINR | currency : "INR" }} /
+                  {{ course.priceUSD | currency : "USD" }}
                 </h6>
                 <h6 class="card-subtitle">Quanity: {{ course.quantity }}</h6>
                 <button
