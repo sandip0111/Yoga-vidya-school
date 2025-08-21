@@ -43,6 +43,7 @@ export class AnujPageComponent implements OnInit {
     } else {
       this.title = 'Intermediate Alignment Based Class - Anuj Pareek';
       this.heroImage = '../../../../assets/IMG_3894.JPG';
+      this.about = `These classes are designed for practitioners who want to move beyond the basics and take their practice to the next level. You'll be guided through advanced preparations for asanas, including arm balances, inversions, and other complex postures. The sessions also include mobility drills and therapeutic techniques to help release physical tension and improve range of motion—supporting your journey into deeper and safer practice.`;
     }
   }
   addToCart(mentor?: mentorTimings): void {

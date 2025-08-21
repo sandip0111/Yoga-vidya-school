@@ -145,11 +145,11 @@ export const routes: Routes = [
     component: CertifiedComponent,
   },
   {
-    path: 'prashant-jhakmola-online-class',
+    path: 'prashant-jhakmola-online-class/:id',
     component: PrashantPageComponent,
   },
   {
-    path: 'taniya-verma-online-class',
+    path: 'taniya-verma-online-class/:id',
     component: TaniyaPageComponent,
   },
   {
