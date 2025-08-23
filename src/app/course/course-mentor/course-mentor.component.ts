@@ -158,6 +158,8 @@ export interface mentorTimings {
   price: {
     priceInIndian: number;
     priceInUSD: number;
+    discountIndian?: number;
+    discountUSD?: number;
   };
   description: string;
   url: string;
@@ -175,7 +177,12 @@ export let jsonData = [
       stamp: 'IST',
     },
     nextBatch: 'September the 8th',
-    price: { priceInIndian: 2999, priceInUSD: 70 },
+    price: {
+      priceInIndian: 2999,
+      priceInUSD: 70,
+      discountIndian: 2249,
+      discountUSD: 52,
+    },
     description:
       'interactive class combining Hatha asanas and pranayama each morning for holistic physical, mental, and spiritual growth. Suitable for all levels, with focus on correct alignment and routine building.',
     url: 'prashant-jhakmola-online-class',

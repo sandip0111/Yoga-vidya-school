@@ -13,7 +13,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 import { SearchCountryField } from 'ngx-intl-tel-input';
 import { CountryISO } from 'ngx-intl-tel-input';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { paymentkey } from '../enum/payment';
 import { jsonData } from '../course/course-mentor/course-mentor.component';
 
@@ -41,54 +41,53 @@ export class PaymentProceedComponent implements OnInit {
   price: any;
   paymentHandler: any = null;
   CountryISO = CountryISO;
-
   searchFields = [
     SearchCountryField.Name,
     SearchCountryField.DialCode,
     SearchCountryField.Iso2,
   ];
-
+  phoneError: string = '';
+  currencyOptions: string[] = [];
+  isPhoneValid: boolean = false;
+  isSpecial: boolean = false;
   constructor(
     private fb: FormBuilder,
     private router: Router,
     private cartService: CartService,
     private webapiService: WebapiService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private actRoute: ActivatedRoute
   ) {
-    this.courses = this.cartService.getItems();
-    this.availableCourses = this.courseMentor.map((mentor) => {
-      const course: CartItem = {
-        id: mentor?.id,
-        title: mentor?.title,
-        shortDescription: mentor?.description,
-        priceINR: mentor?.price.priceInIndian,
-        priceUSD: mentor?.price.priceInUSD,
-        quantity: 1,
-      };
-      return course;
+    this.actRoute.queryParams.subscribe((params) => {
+      if (params['hash'] === 'abcdef1234567890') {
+        this.isSpecial = true;
+        const mentor = jsonData.find((x) => x.id == 1);
+        if (mentor) {
+          this.courses.push({
+            id: mentor.id,
+            title: mentor ? `${mentor?.name} - ${mentor?.title}` : '',
+            shortDescription: mentor?.description ?? '',
+            priceINR: mentor?.price.discountIndian ?? 0,
+            priceUSD: mentor?.price.discountUSD ?? 0,
+            quantity: 1,
+          });
+        }
+      } else {
+        this.courseAddedFn();
+      }
     });
-
     this.paymentForm = this.fb.group({
       holderName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       mobile: ['', Validators.required],
       currency: ['', Validators.required],
-      price: [{ value: '', disabled: true }], // Read-only field
+      price: [{ value: '', disabled: true }],
     });
   }
-  phoneError: string = '';
-  currencyOptions: string[] = [];
-  isPhoneValid: boolean = false;
-
   ngOnInit(): void {
-    // this.paymentForm.value.currency = this.cartService.getCurrency();
-    // this.paymentForm.value.price = this.cartService.getTotalAmount(this.paymentForm.value.currency);
-    // this.currency = this.paymentForm.value.currency;
-    // this.price = this.paymentForm.value.price;
     this.invokeStripe();
     this.loadRazorpayScript();
   }
-
   checkEmail(): void {
     const emailControl = this.paymentForm.get('email');
     if (!emailControl) return;
@@ -125,7 +124,6 @@ export class PaymentProceedComponent implements OnInit {
       this.emailSuggestion = `Wrong email format ".${tld}" — did you mean ".com"?`;
     }
   }
-
   onPhoneInputChange(): void {
     const control = this.paymentForm.controls['mobile'];
     this.isPhoneValid = control.valid;
@@ -136,49 +134,47 @@ export class PaymentProceedComponent implements OnInit {
       this.paymentForm.patchValue({ currency: '', price: '' });
       return;
     }
-
     this.phoneError = '';
-
     const phoneValue = control.value;
     const countryCode = phoneValue?.countryCode;
-
     if (countryCode === 'IN') {
       this.currencyOptions = ['INR', 'USD'];
     } else {
       this.currencyOptions = ['USD'];
     }
-
-    // Auto-select the first option
     this.paymentForm.patchValue({ currency: this.currencyOptions[0] });
     this.updatePrice();
   }
-
   onCountryChange(country: any): void {
     this.phoneError = '';
     this.currencyOptions = [];
     this.paymentForm.patchValue({ currency: '', price: '' });
     this.paymentForm.controls['mobile'].setValue(null);
   }
-
   onCurrencyChange(event: Event): void {
     const selectedCurrency = (event.target as HTMLSelectElement).value;
     this.updatePrice(selectedCurrency);
   }
-
   updatePrice(currency?: string): void {
     const selected = currency || this.paymentForm.get('currency')?.value;
     if (selected === null || selected === undefined || selected === '') {
       this.paymentForm.patchValue({ currency: '', price: '' });
       return;
     }
-    this.price = this.cartService.getTotalAmount(selected);
+    if (this.isSpecial) {
+      if (currency == 'USD') {
+        this.price = this.courses[0].priceUSD;
+      } else if (currency == 'INR') {
+        this.price = this.courses[0].priceINR;
+      }
+    } else {
+      this.price = this.cartService.getTotalAmount(selected);
+    }
     this.paymentForm.patchValue({ price: this.price });
   }
-
   isCourseSelected(course: any): boolean {
     return this.courses.some((c: any) => c.id === course.id);
   }
-
   onCourseToggle(course: any, event: Event): void {
     const target = event.target as HTMLInputElement;
     const isChecked = target?.checked ?? false;
@@ -191,7 +187,6 @@ export class PaymentProceedComponent implements OnInit {
     }
     this.updatePrice(); // Recalculate price
   }
-
   onStripePayment(): void {
     this.submitted = true;
     const isInvalid = this.paymentForm.controls['mobile'].invalid;
@@ -231,13 +226,11 @@ export class PaymentProceedComponent implements OnInit {
         });
     }
   }
-
   removeItem(id: number): void {
     this.cartService.removeItem(id);
     this.courses = this.cartService.getItems();
     this.updatePrice();
   }
-
   invokeStripe() {
     if (!window.document.getElementById('stripe-script')) {
       const script = window.document.createElement('script');
@@ -252,12 +245,6 @@ export class PaymentProceedComponent implements OnInit {
       window.document.body.appendChild(script);
     }
   }
-
-  initializePayment(id: any, email: any) {
-    // this.spinner.show();
-    // if (this.paymentHandler && this.paymentHandler.redirectToCheckout) {
-  }
-
   loadRazorpayScript() {
     if (!document.getElementById('razorpay-script')) {
       const script = document.createElement('script');
@@ -269,7 +256,6 @@ export class PaymentProceedComponent implements OnInit {
       document.body.appendChild(script);
     }
   }
-
   onRazorpayPayment(): void {
     this.submitted = true;
     const isInvalid = this.paymentForm.controls['mobile'].invalid;
@@ -351,5 +337,19 @@ export class PaymentProceedComponent implements OnInit {
   }
   onPaypalPayment() {
     window.open('https://www.paypal.me/yogavidyafoundation', '_blank');
+  }
+  courseAddedFn() {
+    this.courses = this.cartService.getItems();
+    this.availableCourses = this.courseMentor.map((mentor) => {
+      const course: CartItem = {
+        id: mentor?.id,
+        title: mentor?.title,
+        shortDescription: mentor?.description,
+        priceINR: mentor?.price.priceInIndian,
+        priceUSD: mentor?.price.priceInUSD,
+        quantity: 1,
+      };
+      return course;
+    });
   }
 }

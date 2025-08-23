@@ -50,14 +50,11 @@ export class CartService {
 
   addItem(item: CartItem): void {
     const existingItem = this.items.find((i) => i.id === item.id);
-
     if (existingItem) {
-      // existingItem.quantity += item.quantity;
       existingItem.quantity = item.quantity;
     } else {
       this.items.push(item);
     }
-
     this.saveCart();
     this.sendEventBus();
   }
