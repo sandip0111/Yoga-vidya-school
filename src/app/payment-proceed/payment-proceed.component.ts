@@ -162,9 +162,9 @@ export class PaymentProceedComponent implements OnInit {
       return;
     }
     if (this.isSpecial) {
-      if (currency == 'USD') {
+      if (selected == 'USD') {
         this.price = this.courses[0].priceUSD;
-      } else if (currency == 'INR') {
+      } else if (selected == 'INR') {
         this.price = this.courses[0].priceINR;
       }
     } else {
