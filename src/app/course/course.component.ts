@@ -28,6 +28,7 @@ import { SafePipe } from '../safe.pipe';
 import { VideoReviewsComponent } from './video-reviews/video-reviews.component';
 import { ReviewListComponentComponent } from '../text-review-list/review-list-component/review-list-component.component';
 import { routeEnum } from '../enum/routes';
+import { s3Bucket } from '../enum/s3Bucket';
 
 @Component({
   selector: 'app-course',
@@ -91,10 +92,10 @@ export class CourseComponent {
     },
   ];
   slug: string | undefined = '';
-  imageUrl: string = '';
   courseList: any;
   introLink: string = '';
   routEnum = routeEnum;
+  s3Bucket = s3Bucket;
   constructor(
     private webapiService: WebapiService,
     private _activatedRoute: ActivatedRoute,
@@ -106,7 +107,6 @@ export class CourseComponent {
     @Inject(DOCUMENT) private _document: Document
   ) {
     this.slug = this._activatedRoute.snapshot.routeConfig?.path;
-    this.imageUrl = this.webapiService.imageUrl;
     if (this.slug) {
       this.getCourseBySlug(this.slug);
     }

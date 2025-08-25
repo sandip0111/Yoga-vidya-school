@@ -33,7 +33,18 @@ export enum s3Bucket {
   rishi200Certify2 = '../../../../assets/20221017123612_IMG_8678.jpeg',
   lotusBullet = 'https://my-s3-images-bucket.s3.amazonaws.com/img/bullet.png',
   rishikesh300Banner = '../../../assets/IMG_9926.jpg',
+  onlineCourseHero = '../../assets/IMG_6884_1.JPG',
+  onlineCourseAbout1 = 'https://my-s3-images-bucket.s3.amazonaws.com/img/image_1677479957069.JPG',
+  courseMentro1 = '../../../assets/IMG_6294.JPG',
+  courseMentor2 = 'https://my-s3-images-bucket.s3.amazonaws.com/img/image_1695634116777.jpeg',
+  courseMentor3 = 'https://my-s3-images-bucket.s3.amazonaws.com/img/IMG_20250331_171325_021.jpg',
   prashantjiHero = 'https://my-s3-images-bucket.s3.amazonaws.com/img/image_1674209054855.jpg',
+  prasantAbout1 = '../../../../assets/FERN8284.jpg',
+  prasantAbout2 = '../../../../assets/FERN8341.jpg',
+  anujHero1 = '../../../../assets/DSC00532_1.jpg',
+  anujHero2 = '../../../../assets/IMG_3894.JPG',
+  taniyaHero = '../../../../assets/IMG-20250704-WA0007.jpg',
+  taniyaAbout = '../../../../assets/IMG-20250704-WA0010.jpg',
 }
 export enum youtubeLink {
   trainingImportance = 'https://www.youtube.com/embed/t7l1cqDj1tA?si=ZJCQXJYDLzDwLLvm',

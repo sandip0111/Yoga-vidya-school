@@ -4,7 +4,7 @@
       <div style="position: relative">
         <div class="inner image">
           <img
-            src="../../assets/IMG_6884_1.JPG"
+            [src]="s3Bucket.onlineCourseHero"
             class="img-fluid banner_image"
             alt="Banner Image"
           />
@@ -25,7 +25,7 @@
     <img
       alt="flower-img"
       loading="lazy"
-      src="https://my-s3-images-bucket.s3.amazonaws.com/img/flower-color.png"
+      [src]="s3Bucket.flower"
       class="flower-img"
     />
   </div>
@@ -62,7 +62,7 @@
             <img
               alt="Prashant ji"
               class="img-fluid sectionImg shadow"
-              src="https://my-s3-images-bucket.s3.amazonaws.com/img/image_1677479957069.JPG"
+              [src]='s3Bucket.onlineCourseAbout1'
               style="border-radius: 15px; border: 3px solid #ffffff"
             />
           </p>
@@ -584,21 +584,21 @@
     <div class="carousel-inner">
       <div class="carousel-item active">
         <img
-          src="https://my-s3-images-bucket.s3.amazonaws.com/img/image_1677479957069.JPG"
+          [src]='s3Bucket.onlineCourseAbout1'
           class="d-block w-100"
           alt="..."
         />
       </div>
       <div class="carousel-item">
         <img
-          src="https://my-s3-images-bucket.s3.amazonaws.com/img/image_1677479957069.JPG"
+          [src]='s3Bucket.onlineCourseAbout1'
           class="d-block w-100"
           alt="..."
         />
       </div>
       <div class="carousel-item">
         <img
-          src="https://my-s3-images-bucket.s3.amazonaws.com/img/image_1677479957069.JPG"
+          [src]='s3Bucket.onlineCourseAbout1'
           class="d-block w-100"
           alt="..."
         />

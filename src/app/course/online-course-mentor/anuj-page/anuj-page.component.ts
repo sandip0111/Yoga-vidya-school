@@ -31,7 +31,7 @@ export class AnujPageComponent implements OnInit {
     this.mentor = jsonData.find((m) => m.id == this.slugId);
     if (this.slugId == 2) {
       this.title = 'Therapeutic Hatha Yoga - Anuj Pareek';
-      this.heroImage = '../../../../assets/DSC00532_1.jpg';
+      this.heroImage = s3Bucket.anujHero1;
       this.about = `Anuj class is based on Mobility to recover from long years of spinal & Hip
       compression from long hours of sitting at a desk job or from your
       sedentary lifestyle. Classes are designed with Hatha yoga 3 series of
@@ -42,7 +42,7 @@ export class AnujPageComponent implements OnInit {
       and how to approach practice on your own on the days off.`;
     } else {
       this.title = 'Intermediate Alignment Based Class - Anuj Pareek';
-      this.heroImage = '../../../../assets/IMG_3894.JPG';
+      this.heroImage = s3Bucket.anujHero2;
       this.about = `These classes are designed for practitioners who want to move beyond the basics and take their practice to the next level. You'll be guided through advanced preparations for asanas, including arm balances, inversions, and other complex postures. The sessions also include mobility drills and therapeutic techniques to help release physical tension and improve range of motion—supporting your journey into deeper and safer practice.`;
     }
   }

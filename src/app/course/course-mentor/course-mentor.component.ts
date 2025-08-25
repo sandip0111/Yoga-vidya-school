@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { StartClassComponent } from '../bali/start-class/start-class.component';
 import { ActivatedRoute, Router } from '@angular/router';
-import { WebapiService } from '../../webapi.service';
 import { CommonModule } from '@angular/common';
 import { s3Bucket } from '../../enum/s3Bucket';
 
@@ -14,18 +13,11 @@ import { s3Bucket } from '../../enum/s3Bucket';
 })
 export class CourseMentorComponent {
   slug: string | undefined = '';
-  imageUrl: string = '';
   courseMentor: mentorTimings[] = [];
   isShowAddToCart: boolean = false;
   s3Bucket = s3Bucket;
-  constructor(
-    private webapiService: WebapiService,
-    private _activatedRoute: ActivatedRoute,
-    private router: Router
-  ) {
+  constructor(private _activatedRoute: ActivatedRoute, private router: Router) {
     this.slug = this._activatedRoute.snapshot.routeConfig?.path;
-    this.imageUrl = this.webapiService.imageUrl;
-
     if (this.slug == 'online-yoga-classes') {
       this.isShowAddToCart = true;
       this.courseMentor = jsonData;
@@ -168,7 +160,7 @@ export let jsonData = [
   {
     id: 1,
     name: 'Acharya Prashant Jakhmola',
-    image: 'image_1673271873934.jfif',
+    image: s3Bucket.courseMentro1,
     title: 'Yoga Sadhana',
     weeklyTime: 'From Monday to Friday',
     time: {
@@ -190,7 +182,7 @@ export let jsonData = [
   {
     id: 2,
     name: 'Anuj Pareek',
-    image: 'image_1695634116777.jpeg',
+    image: s3Bucket.courseMentor2,
     title: 'Therapeutic Hatha Yoga',
     weeklyTime: 'From Monday to Thursday',
     time: {
@@ -207,7 +199,7 @@ export let jsonData = [
   {
     id: 3,
     name: 'Taniya Verma',
-    image: 'IMG_20250331_171325_021.jpg',
+    image: s3Bucket.courseMentor3,
     title: 'Woman Wellness Yoga',
     weeklyTime: 'From Monday to Thursday',
     time: {
@@ -224,7 +216,7 @@ export let jsonData = [
   {
     id: 4,
     name: 'Anuj Pareek',
-    image: 'image_1695634116777.jpeg',
+    image: s3Bucket.courseMentor2,
     title: 'Intermediate Alignment Based Class',
     weeklyTime: 'Monday / Wednesday / Friday',
     time: {
