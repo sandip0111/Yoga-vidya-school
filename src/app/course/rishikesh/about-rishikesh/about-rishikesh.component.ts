@@ -43,7 +43,7 @@ export class AboutRishikeshComponent implements OnInit {
   generateHtmlContent() {
     if (this.slug == routeEnum.rishikesh100) {
       this.aboutContent = new aboutContentModel(
-        '../.././../../assets/_DSC3854.jpg',
+        s3Bucket.rishikesh100About1,
         '🌟 Who This 100-Hour Yoga Teacher Training in Rishikesh Is For',
         '',
         this.sanitizer.bypassSecurityTrustHtml(`
@@ -84,7 +84,7 @@ export class AboutRishikeshComponent implements OnInit {
       );
     } else if (this.slug == routeEnum.rishikesh300) {
       this.aboutContent = new aboutContentModel(
-        '../../../../assets/IMG_20190324_112943_Bokeh_Original.jpg',
+        s3Bucket.rishikesh300About1,
         '',
         '',
         this.sanitizer.bypassSecurityTrustHtml(

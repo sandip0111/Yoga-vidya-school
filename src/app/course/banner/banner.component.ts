@@ -62,7 +62,7 @@ export class BannerComponent implements OnInit {
   rishikeshBannerSet() {
     switch (this.slug) {
       case routeEnum.rishikesh100:
-        this.rishikesHeroImage = '../../../assets/IMG_9926.JPG';
+        this.rishikesHeroImage = s3Bucket.rishikesh300Banner;
         this.rishikeshMainHeading = '100-Hour Yoga Teacher Training in Rishikesh ';
         this.rishikeshSubHeading = '– A Transformative Foundation for Your Yogic Journey';
         break;
@@ -74,7 +74,7 @@ export class BannerComponent implements OnInit {
           'Enroll for next Batch: October 3rd 2025 – Yoga Alliance Certified';
         break;
       case routeEnum.rishikesh300:
-        this.rishikesHeroImage = '../../../assets/IMG_9926.JPG';
+        this.rishikesHeroImage = s3Bucket.rishikesh300Banner;
         this.rishikeshMainHeading = 'Transform your inner and teaching journey';
         this.rishikeshSubHeading = 'deepen presence, wisdom & embodiment';
         break;
