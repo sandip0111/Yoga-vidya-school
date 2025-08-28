@@ -121,6 +121,10 @@ export class NavbarComponent implements OnInit {
             //   },
             // ],
           },
+          {
+            title: 'Get certified online',
+            link: '/200-hours-yoga-teacher-training-online',
+          },
           // {
           //   title: 'Get Certified in Kerala',
           //   link: '#',
@@ -147,12 +151,8 @@ export class NavbarComponent implements OnInit {
             link: '/pranayama-course-online-pranarambha',
           },
           {
-            title: 'Pranayama Sadhana (21 days)',
+            title: 'Pranic Purification',
             link: '/pranic-purification',
-          },
-          {
-            title: '200 Hours Yoga TTC',
-            link: '/200-hours-yoga-teacher-training-online',
           },
           { title: 'Yoga Webinar Registration', link: '/webinar-registration' },
           {
@@ -167,6 +167,10 @@ export class NavbarComponent implements OnInit {
           {
             title: 'योग शास्त्र / योग ग्रंथ अध्यन',
             link: '/yoga-philosophy-course-free',
+          },
+          {
+            title: 'Pre-recorded Pranayama Courses',
+            link: '/pre-recorded-pranayama-courses',
           },
           // {
           //   title: 'Yoga Inversion Workshop',

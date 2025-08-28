@@ -156,6 +156,13 @@ export const routes: Routes = [
     path: 'anuj-online-class/:id',
     component: AnujPageComponent,
   },
+  {
+    path: 'pre-recorded-pranayama-courses',
+    loadComponent: () =>
+      import(
+        './course/pre-recorded-pranayama-courses/pre-recorded-pranayama-courses.component'
+      ).then((m) => m.PreRecordedPranayamaCoursesComponent),
+  },
   { path: 'webinar-video/:name', component: WebinarVideosComponent },
   { path: '**', pathMatch: 'full', component: PagenotfoundComponent },
 ];
