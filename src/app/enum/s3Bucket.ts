@@ -48,6 +48,8 @@ export enum s3Bucket {
   anujHero2 = 'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/IMG_3894.JPG',
   taniyaHero = 'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/IMG-20250704-WA0007.jpg',
   taniyaAbout = 'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/IMG-20250704-WA0010.jpg',
+
+  prashantIndexAbout = '../../../../assets/new-home/IMG_2820.JPG',
 }
 export enum youtubeLink {
   trainingImportance = 'https://www.youtube.com/embed/t7l1cqDj1tA?si=ZJCQXJYDLzDwLLvm',

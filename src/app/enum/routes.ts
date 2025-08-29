@@ -13,5 +13,7 @@ export enum routeEnum {
   'bali200' = '200-hour-yoga-teacher-training-in-bali',
   'bali300' = '300-hour-yoga-teacher-training-in-bali',
   'bDtox' = 'breath-detox-yoga',
-  'online' = 'online-yoga-classes'
+  'online' = 'online-yoga-classes',
+  'prashantjPage' = 'yoga-teacher/acharya-prashant-jakhmola/prashantjyoga',
+  'preRecordPranayamaCourse' = 'pre-recorded-pranayama-courses',
 }

@@ -11,19 +11,24 @@
           class="flower-img"
         />
       </div>
-      <h2 class="text-white">What We Offer At Yoga Vidya School</h2>
+      <h2 class="text-white">Online Courses and Classes</h2>
+      <p class="text-white">
+        At Yoga Vidya we also offer focused online pre-courses and live classes
+        designed to guide you step by step in improving your life through
+        different aspects of yoga practice.
+      </p>
       <!-- <small class="text-white"
         >Lacus suspendisse faucibus interdum posuere lorem ipsum dolor sit amet.
       </small>
       <small class="text-white">Ipsum dolor sit amet consectetur adipiscing.</small> -->
     </div>
   </div>
-  <div class="row">
+  <div class="row justify-content-center">
     <div class="col-md-6 workshop" *ngFor="let item of offers">
       <div class="row">
-        <div class="col-md-12">
+        <!-- <div class="col-md-12">
           <div class="heading text-center">{{ item.boxHeading }}</div>
-        </div>
+        </div> -->
         @for(itemBody of item.boxBody; track itemBody.titleBox) {
         <div class="details">
           <div class="inner-details">
@@ -39,7 +44,7 @@
                   />
                   <div>{{ itemBody.dateTimeBox }}</div>
                 </div>
-                <div class="list">
+                <div class="list" *ngIf="itemBody.durationBox">
                   <img
                     loading="lazy"
                     alt="Not Loaded"
@@ -78,6 +83,19 @@
                   </a>
                 </div>
                 }
+                <div class="but" *ngIf="itemBody.seeMore">
+                  <a
+                    [href]="itemBody.url"
+                    class="text-white text-decoration-none"
+                  >
+                    See more details
+                    <img
+                      loading="lazy"
+                      alt="Not Loaded"
+                      [src]="s3Bucket.whiteArrow"
+                    />
+                  </a>
+                </div>
               </div>
               <div class="col-md-4">
                 <img [src]="itemBody.imgBox" alt="img" class="trainer-img" />

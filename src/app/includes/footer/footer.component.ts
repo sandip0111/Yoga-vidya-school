@@ -14,6 +14,7 @@ import { contact } from '../../enum/details';
   styleUrl: './footer.component.css',
 })
 export class FooterComponent implements OnInit {
+  routeEnum = routeEnum;
   subscribeData: any = {};
   footerAddress: string = '';
   slug: string = '';

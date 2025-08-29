@@ -65,4 +65,9 @@
     line-height: 28px !important;
     margin-top: 10px;
   }
+  .banner-desc {
+    color: #000;
+    font-size: 15px;
+    margin: 15px 10px !important;
+  }
 }

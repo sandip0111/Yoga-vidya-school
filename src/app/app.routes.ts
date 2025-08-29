@@ -32,6 +32,7 @@ import { CertifiedComponent } from './certified/certified.component';
 import { PrashantPageComponent } from './course/online-course-mentor/prashant-page/prashant-page.component';
 import { TaniyaPageComponent } from './course/online-course-mentor/taniya-page/taniya-page.component';
 import { AnujPageComponent } from './course/online-course-mentor/anuj-page/anuj-page.component';
+import { routeEnum } from './enum/routes';
 
 export const routes: Routes = [
   { path: '', component: IndexComponent },
@@ -157,7 +158,7 @@ export const routes: Routes = [
     component: AnujPageComponent,
   },
   {
-    path: 'pre-recorded-pranayama-courses',
+    path: routeEnum.preRecordPranayamaCourse,
     loadComponent: () =>
       import(
         './course/pre-recorded-pranayama-courses/pre-recorded-pranayama-courses.component'

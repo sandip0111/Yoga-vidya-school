@@ -13,30 +13,30 @@ import { routeEnum } from '../../../enum/routes';
 export class WeOfferComponent implements OnInit {
   s3Bucket = s3Bucket;
   offers: offer[] = [
-    {
-      boxHeading: 'In-Person',
-      boxBody: [
-        {
-          titleBox: 'Yoga Teacher Training - in Rishikhes',
-          paraBox: `Yoga Alliance Certified 100, 200 and 300 HRS`,
-          dateTimeBox: 'Next Batch Starts: 3rd October 2025',
-          imgBox: s3Bucket.offer1,
-          durationBox: '28 days',
-          url: `/${routeEnum.rishkesh200}`,
-        },
-        {
-          titleBox: 'Yoga Teacher Training - in Bali',
-          paraBox: 'Yoga Alliance Certified 100, 200, 500 HRS',
-          paraBox2: 'Yoga Alliance Certified 300 HRS',
-          dateTimeBox: 'Next Batch Starts: November 2025',
-          dateTimeBox2: 'Next Batch Starts: December 2025',
-          imgBox: s3Bucket.offer2,
-          durationBox: '28 days',
-          durationBox2: '28 days',
-          url: `/${routeEnum.yogaRetreat}`,
-        },
-      ],
-    },
+    // {
+    //   boxHeading: 'In-Person',
+    //   boxBody: [
+    //     {
+    //       titleBox: 'Yoga Teacher Training - in Rishikhes',
+    //       paraBox: `Yoga Alliance Certified 100, 200 and 300 HRS`,
+    //       dateTimeBox: 'Next Batch Starts: 3rd October 2025',
+    //       imgBox: s3Bucket.offer1,
+    //       durationBox: '28 days',
+    //       url: `/${routeEnum.rishkesh200}`,
+    //     },
+    //     {
+    //       titleBox: 'Yoga Teacher Training - in Bali',
+    //       paraBox: 'Yoga Alliance Certified 100, 200, 500 HRS',
+    //       paraBox2: 'Yoga Alliance Certified 300 HRS',
+    //       dateTimeBox: 'Next Batch Starts: November 2025',
+    //       dateTimeBox2: 'Next Batch Starts: December 2025',
+    //       imgBox: s3Bucket.offer2,
+    //       durationBox: '28 days',
+    //       durationBox2: '28 days',
+    //       url: `/${routeEnum.yogaRetreat}`,
+    //     },
+    //   ],
+    // },
     {
       boxHeading: 'Online Offerings',
       boxBody: [
@@ -46,16 +46,18 @@ export class WeOfferComponent implements OnInit {
           dateTimeBox: 'First Monday of Every Months',
           imgBox: s3Bucket.offer3,
           durationBox: 'One Month for Classes',
-          url: `/${routeEnum['200TTC']}`,
+          url: `/${routeEnum['online']}`,
+          seeMore: true,
         },
         {
-          titleBox: 'Prerecorded courses',
+          titleBox: 'Pre-recorded Pranayama Courses',
           paraBox:
-            'Exclusively designed by Prashant J Yoga, Breath Detox, Prana Arambha Courses on Alignments and Yoga Philosophy',
+            'Exclusively designed by Prashant J Yoga, Breath Detox, Prana Arambha, Swara Sadhana',
           dateTimeBox: 'Starts Anytime',
           imgBox: s3Bucket.offer4,
-          durationBox: '1 Week to 30 Days',
-          url: `/${routeEnum.pranOnlinePranaArambh}`,
+          durationBox: '',
+          url: `/${routeEnum.preRecordPranayamaCourse}`,
+          seeMore: true,
         },
       ],
     },
@@ -79,4 +81,5 @@ interface subOffer {
   durationBox: string;
   durationBox2?: string;
   url: string;
+  seeMore?: boolean;
 }
