@@ -157,28 +157,7 @@ export interface mentorTimings {
   url: string;
 }
 export let jsonData = [
-  {
-    id: 1,
-    name: 'Acharya Prashant Jakhmola',
-    image: s3Bucket.courseMentro1,
-    title: 'Yoga Sadhana',
-    weeklyTime: 'From Monday to Friday',
-    time: {
-      time1: '6:00 am',
-      time2: '7:00 am',
-      stamp: 'IST',
-    },
-    nextBatch: 'September the 8th',
-    price: {
-      priceInIndian: 2999,
-      priceInUSD: 70,
-      discountIndian: 2249,
-      discountUSD: 52,
-    },
-    description:
-      'interactive class combining Hatha asanas and pranayama each morning for holistic physical, mental, and spiritual growth. Suitable for all levels, with focus on correct alignment and routine building.',
-    url: 'prashant-jhakmola-online-class',
-  },
+
   {
     id: 2,
     name: 'Anuj Pareek',
@@ -229,5 +208,27 @@ export let jsonData = [
     description:
       'Advanced, mobility-rich sessions emphasizing arm balance and inversions with therapeutic methods. Ideal for progressing students beyond basic.',
     url: 'anuj-online-class',
+  },
+  {
+    id: 1,
+    name: 'Acharya Prashant Jakhmola',
+    image: s3Bucket.courseMentro1,
+    title: 'Yoga Sadhana',
+    weeklyTime: 'From Monday to Friday',
+    time: {
+      time1: '6:00 am',
+      time2: '7:00 am',
+      stamp: 'IST',
+    },
+    nextBatch: 'September the 8th',
+    price: {
+      priceInIndian: 2999,
+      priceInUSD: 70,
+      discountIndian: 2249,
+      discountUSD: 52,
+    },
+    description:
+      'Interactive class combining Hatha asanas and pranayama each morning for holistic physical, mental, and spiritual growth. Suitable for all levels, with focus on correct alignment and routine building.',
+    url: 'prashant-jhakmola-online-class',
   },
 ];
