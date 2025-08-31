@@ -531,3 +531,28 @@ h4 {
     color: #f47019;
   }
 }
+.section-traning-path {
+  background: #f5f5f5;
+}
+.mainContent {
+  padding: 0 50px;
+}
+.contentrishi {
+  padding-left: 5rem;
+}
+.imgRishi100 {
+  padding: 50px;
+  border-radius: 80px;
+}
+@media only screen and (max-width: 767px) {
+  .cl-reverse {
+    flex-direction: column-reverse;
+  }
+  .contentrishi {
+    padding: 20px 0 !important;
+  }
+  .imgRishi100 {
+    padding: 10px 0 !important;
+    border-radius: 10px !important;
+  }
+}

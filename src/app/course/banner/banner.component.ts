@@ -63,8 +63,10 @@ export class BannerComponent implements OnInit {
     switch (this.slug) {
       case routeEnum.rishikesh100:
         this.rishikesHeroImage = s3Bucket.rishikesh300Banner;
-        this.rishikeshMainHeading = '100-Hour Yoga Teacher Training in Rishikesh ';
-        this.rishikeshSubHeading = '– A Transformative Foundation for Your Yogic Journey';
+        this.rishikeshMainHeading =
+          '100-Hour Yoga Teacher Training in Rishikesh ';
+        this.rishikeshSubHeading =
+          '– A Transformative Foundation for Your Yogic Journey';
         break;
       case routeEnum.rishkesh200:
         this.rishikesHeroImage = s3Bucket.rishikesh200Banner;
@@ -76,7 +78,12 @@ export class BannerComponent implements OnInit {
       case routeEnum.rishikesh300:
         this.rishikesHeroImage = s3Bucket.rishikesh300Banner;
         this.rishikeshMainHeading = 'Transform your inner and teaching journey';
-        this.rishikeshSubHeading = 'deepen presence, wisdom & embodiment';
+        this.rishikeshSubHeading = 'Deepen presence, wisdom & embodiment';
+        break;
+      case routeEnum.preRecordPranayamaCourse:
+        this.rishikesHeroImage = s3Bucket.preRecordedHero;
+        this.rishikeshMainHeading = 'Transform Consciousness Through the Power of Breath';
+        this.rishikeshSubHeading = 'Three transformative journeys by Prashant J., rooted in yogic tradition and designed for modern practitioners';
         break;
       default:
         break;

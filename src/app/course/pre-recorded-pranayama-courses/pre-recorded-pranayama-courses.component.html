@@ -1,7 +1,152 @@
-<!-- coming-soon.component.html -->
-<div class="coming-soon-container">
-  <div class="coming-soon-content">
-    <h1>Coming Soon!</h1>
-    <p>We are working hard to bring something amazing. Stay tuned!</p>
+<app-banner></app-banner>
+<div class="row section-traning-path py-5">
+  <div class="col-md-12 middle-text">
+    <img
+      loading="lazy"
+      alt="Not Loaded"
+      [src]="s3Bucket.flower"
+      class="flower-img"
+    />
+  </div>
+  <div class="col-md-12" style="padding-inline: 7rem">
+    <p>
+      Your breath is more than a physical process, it is the bridge between
+      body, mind, and spirit that leads you to transformation.
+    </p>
+    <p>
+      Our pre-recorded pranayama courses are designed to guide you through
+      ancient techniques that purify energy, balance the subtle body, and awaken
+      inner awareness.
+    </p>
+    <p>
+      With these practices, you can cultivate clarity, vitality, and a deeper
+      connection to your Self — anytime, anywhere. Whether you are taking your
+      first steps into breathwork or seeking to deepen an existing practice,
+      these courses offer a structured path into the timeless wisdom of
+      Pranayama.
+    </p>
+    <p>
+      Our <b>Pre-recorded Pranayama Courses</b> are designed to guide you into
+      the subtle art of conscious breathing, awakening balance, clarity, and
+      vitality within.
+    </p>
+    <p>
+      These programs are <b>100% online and pre-recorded</b>, allowing you to
+      learn at <b>your own pace</b>, wherever you are. Each course is crafted to
+      <b>deepen your understanding of Pranayama</b> and to support the
+      purification of your vital energy (prana).
+    </p>
+    <p>
+      Suitable for practitioners of <b>all levels</b>, these courses invite you
+      to experience timeless wisdom in a way that is practical, accessible, and
+      profoundly transformative.
+    </p>
+    <p><b>Explore courses to learn anytime, anywhere.</b></p>
+  </div>
+</div>
+<div class="cooperate-section py-5 section-fower">
+  <div>
+    <div class="middle-text">
+      <img
+        loading="lazy"
+        alt="Not Loaded"
+        [src]="s3Bucket.flower"
+        class="flower-img"
+      />
+    </div>
+    <div class="row align-items-center mainContent">
+      <div class="col-md-6 contentrishi">
+        <h4 style="color: #f47019">Breath Detox Yoga</h4>
+        <p><i>Breath Detox Yoga</i> – 7 Days to Purify Your Energy and Mind</p>
+        <p>
+          This course is a guidance to purify the five vāyus (vital energy
+          currents) and transform the way you breathe. Created by
+          <b>Prashant J.</b>, it is a direct and practical experience, designed
+          for those ready to commit to a short and mindful daily routine. With
+          dedication, you will achieve profound changes in your mind, energy
+        </p>
+        <button
+          class="button"
+          style="margin-top: 0"
+          (click)="goToLink(routEnum.bDtox)"
+        >
+          View Course
+        </button>
+      </div>
+      <div class="col-md-6">
+        <img
+          loading="lazy"
+          class="img-fluid imgRishi100"
+          alt="rishikesh100"
+          [src]="s3Bucket.rishikesh100"
+        />
+      </div>
+    </div>
+    <div class="row align-items-center mainContent cl-reverse">
+      <div class="col-md-6">
+        <img
+          loading="lazy"
+          class="img-fluid imgRishi100"
+          alt="rishikesh200"
+          [src]="s3Bucket.rishikesh200"
+        />
+      </div>
+      <div class="col-md-6 contentrishi">
+        <h4 style="color: #f47019">Prana Arambha</h4>
+        <p>
+          <i>Prana Arambha</i> - Gain quality of life by improving your breath
+        </p>
+        <p>
+          This workshop explores the ancient science of pranic body rhythms,
+          offering insight into how breath flow can be harnessed to align your
+          energies with your everyday actions — physical and mental. It provides
+          access to rare and sacred teachings once transmitted through
+          guru-disciple traditions, now available in recorded format. Through
+          this practice, you'll develop awareness of the subtle breath patterns
+          (swara) and learn how they influence your vitality, clarity, and
+          harmony.
+        </p>
+        >
+        <p style="font-weight: 800">✅ International Certification</p>
+        <button
+          class="button"
+          style="margin-top: 0"
+          (click)="goToLink(routEnum.rishkesh200)"
+        >
+          See more details
+        </button>
+      </div>
+    </div>
+    <div class="row align-items-center mainContent">
+      <div class="col-md-6 contentrishi">
+        <h4 style="color: #f47019">📙 300-Hour Yoga Teacher Training</h4>
+        <p>
+          <b>Perfect for:</b> Certified teachers (200 hour Yoga Alliance) who
+          want to go deeper
+        </p>
+        <ul class="responsiveList">
+          <li>Advanced Hatha & Ashtanga Techniques</li>
+          <li>Pranayama & Kriya Practices</li>
+          <li>Yoga Philosophy, Therapeutic Adjustments & Teaching Practicum</li>
+          <li>Duration: 30 days</li>
+        </ul>
+        <p style="font-weight: 800">✅ Advanced Level</p>
+        <button
+          class="button"
+          style="margin-top: 0"
+          (click)="goToLink(routEnum.rishikesh300)"
+        >
+          See more details
+        </button>
+      </div>
+      <div class="col-md-6">
+        <img
+          loading="lazy"
+          class="img-fluid imgRishi100"
+          alt="rishikesh300"
+          [src]="s3Bucket.rishikesh300"
+        />
+      </div>
+    </div>
   </div>
 </div>

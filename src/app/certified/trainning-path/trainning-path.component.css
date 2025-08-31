@@ -1,32 +1,9 @@
-.section-traning-path {
-  background: #f5f5f5;
-}
 .headingBlock {
   display: flex;
   justify-content: center;
   text-align: center;
 }
-.imgRishi100 {
-  padding: 50px;
-  border-radius: 80px;
-}
-.contentrishi {
-  padding-left: 5rem;
-}
-.mainContent {
-  padding: 0 50px;
-}
 @media only screen and (max-width: 767px) {
-  .imgRishi100 {
-    padding: 10px 0 !important;
-    border-radius: 10px !important;
-  }
-  .contentrishi {
-    padding: 20px 0 !important;
-  }
-  .rishikesh2 {
-    flex-direction: column-reverse;
-  }
   .responsiveList{
     padding-left: 45px;
   }
