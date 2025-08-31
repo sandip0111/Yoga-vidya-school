@@ -146,20 +146,11 @@ export class NavbarComponent implements OnInit {
         link: '#',
         submenu: [
           { title: 'Online Yoga Classes', link: '/online-yoga-classes' },
-          // {
-          //   title: 'Prana Arambha',
-          //   link: '/pranayama-course-online-pranarambha',
-          // },
           {
             title: 'Pranic Purification',
             link: '/pranic-purification',
           },
           { title: 'Yoga Webinar Registration', link: '/webinar-registration' },
-          // {
-          //   title: 'Swara Sadhana',
-          //   link: 'https://swaryoga.yogavidyaschool.com',
-          // },
-          // { title: 'Breath Detox Yoga', link: '/breath-detox-yoga' },
           {
             title: 'Foundations of Spirituality',
             link: '/foundation-of-spirituality-an-online-spiritual-awakening-course',
