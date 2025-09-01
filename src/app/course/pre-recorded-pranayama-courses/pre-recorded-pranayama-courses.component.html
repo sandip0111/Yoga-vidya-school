@@ -77,8 +77,8 @@
         <img
           loading="lazy"
           class="img-fluid imgRishi100"
-          alt="rishikesh100"
-          [src]="s3Bucket.rishikesh100"
+          alt="Breath Dtox"
+          [src]="s3Bucket.breathDtoxPreRec"
         />
       </div>
     </div>
@@ -87,8 +87,9 @@
         <img
           loading="lazy"
           class="img-fluid imgRishi100"
-          alt="rishikesh200"
-          [src]="s3Bucket.rishikesh200"
+          style="height: 40rem"
+          alt="Prana Arambh"
+          [src]="s3Bucket.pranaArambhPreRec"
         />
       </div>
       <div class="col-md-6 contentrishi">
@@ -129,11 +130,7 @@
           (swara) and learn how they influence your vitality, clarity, and
           harmony.
         </p>
-        <button
-          class="button"
-          style="margin-top: 0"
-          (click)="goToLink(routEnum.swaraSadhana)"
-        >
+        <button class="button swara-button" (click)="goToWindowLink()">
           View Course
         </button>
       </div>
@@ -141,10 +138,19 @@
         <img
           loading="lazy"
           class="img-fluid imgRishi100"
-          alt="rishikesh300"
-          [src]="s3Bucket.rishikesh300"
+          alt="Swara Sadhana"
+          style="height: 40rem"
+          [src]="s3Bucket.swarSadhanaPreRec"
         />
       </div>
     </div>
   </div>
+</div>
+<div class="bottom-block">
+  <p>
+    “Choose your path, commit to your practice, and experience
+    <br />
+    the transformative power of conscious breathing.”
+  </p>
+  <h2><span>Start Your Journey</span></h2>
 </div>

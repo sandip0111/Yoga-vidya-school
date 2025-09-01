@@ -18,4 +18,7 @@ export class PreRecordedPranayamaCoursesComponent {
   goToLink(pageLink: string) {
     this.router.navigate([pageLink]);
   }
+  goToWindowLink(){
+    window.location.href = this.routEnum.swaraSadhana;
+  }
 }

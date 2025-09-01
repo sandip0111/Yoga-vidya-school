@@ -50,7 +50,10 @@ export enum s3Bucket {
   taniyaAbout = 'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/IMG-20250704-WA0010.jpg',
 
   prashantIndexAbout = '../../../../assets/new-home/IMG_2820.JPG',
-  preRecordedHero = '../../assets/new-home/954A8921.JPG',
+  preRecordedHero = '../../assets/new-home/954A0800.JPG',
+  breathDtoxPreRec = '../../assets/new-home/954A0710.JPG',
+  pranaArambhPreRec = '../../assets/new-home/IMG_2063.JPG',
+  swarSadhanaPreRec = '../../assets/new-home/FERN8249.jpg',
 }
 export enum youtubeLink {
   trainingImportance = 'https://www.youtube.com/embed/t7l1cqDj1tA?si=ZJCQXJYDLzDwLLvm',
