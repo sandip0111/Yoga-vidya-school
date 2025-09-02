@@ -54,6 +54,11 @@ export enum s3Bucket {
   breathDtoxPreRec = '../../assets/new-home/954A0710.JPG',
   pranaArambhPreRec = '../../assets/new-home/IMG_2063.JPG',
   swarSadhanaPreRec = '../../assets/new-home/FERN8249.jpg',
+  bDtox1 = 'https://my-s3-images-bucket.s3.amazonaws.com/img/image_1679305129429.jpg',
+  bDtox2 = 'https://my-s3-images-bucket.s3.amazonaws.com/img/image_1679305150535.jpg',
+  bDtox3 = 'https://my-s3-images-bucket.s3.amazonaws.com/img/image_1679305168857.jpg',
+  bDtox4 = 'https://my-s3-images-bucket.s3.amazonaws.com/img/image_1679305186650.jpg',
+  bDtox5 = 'https://my-s3-images-bucket.s3.amazonaws.com/img/image_1679305364702.jpg',
 }
 export enum youtubeLink {
   trainingImportance = 'https://www.youtube.com/embed/t7l1cqDj1tA?si=ZJCQXJYDLzDwLLvm',

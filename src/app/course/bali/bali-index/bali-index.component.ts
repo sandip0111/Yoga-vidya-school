@@ -37,6 +37,7 @@ import { BottomNavCourseComponent } from '../../../includes/home/bottom-nav-cour
 import { ReviewListComponentComponent } from '../../../text-review-list/review-list-component/review-list-component.component';
 import { VideoReviewsComponent } from '../../video-reviews/video-reviews.component';
 import { feesStructureModel } from '../../../models/rishikesh';
+import { routeEnum } from '../../../enum/routes';
 @Component({
   selector: 'app-bali-index',
   standalone: true,
@@ -85,6 +86,7 @@ export class BaliIndexComponent implements OnInit {
   @ViewChild(BannerComponent) appBannerComponent!: BannerComponent;
   isBannerVisible = true;
   isYoutubeDataReady: boolean = false;
+  routeEnum = routeEnum;
   constructor(
     private webapiService: WebapiService,
     private activatedRoute: ActivatedRoute,
@@ -97,7 +99,7 @@ export class BaliIndexComponent implements OnInit {
     @Inject(PLATFORM_ID) private platformId: Object
   ) {
     this.slug = this.activatedRoute.snapshot.routeConfig?.path;
-    if (this.slug == 'pranayama-course-online-pranarambha') {
+    if (this.slug == routeEnum.pranOnlinePranaArambh) {
       this.ispranayamaCourseOnlinePranarambha = true;
     }
     if (this.slug) {

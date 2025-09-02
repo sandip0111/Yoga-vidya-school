@@ -1,53 +1,34 @@
 <!-- about.component.html -->
 
 <section class="about-section py-5">
-  <div><img alt="flower-img" loading="lazy" src="https://my-s3-images-bucket.s3.amazonaws.com/img/flower-color.png" class="flower-img" /></div>
-  <small>Welcome To</small>
+  <div>
+    <img
+      alt="flower-img"
+      loading="lazy"
+      [src]="s3Bucket.flower"
+      class="flower-img"
+    />
+  </div>
+  <small *ngIf="slug !== routEnum.bDtox">Welcome To</small>
   <h1>
     {{ aboutItems.title }} <span>{{ aboutItems.span }}</span>
   </h1>
   <div class="row mb-3">
-    <div class="col-md-12 d-flex align-items-center">
+    <div class="col-md-12 d-flex justify-content-center">
       <div [innerHTML]="aboutItems.desc"></div>
     </div>
     <div class="col-md-12" *ngIf="aboutItems.image">
       <div class="about-section_big_image">
-        <img loading="lazy" src="{{ aboutItems.image }}" alt="About Image" />
+        <img loading="lazy" [src]="aboutItems.image" alt="About Image" />
       </div>
     </div>
     <div class="col-md-12 image d-flex justify-content-center">
-    <!-- <a
-      *ngIf="slug == 'pranayama-course-online-pranarambha' ||
-             slug == 'breath-detox-yoga' ||
-             slug == 'foundation-of-spirituality-an-online-spiritual-awakening-course' ||
-             slug == 'yoga-inversion-workshop-headstand' ||
-             slug == 'yoga-philosophy-course-free' ||
-             slug == 'yoga-history-and-philosophy'"
-        href="#"
-        (click)="addToCart($event)"
-        class="button"
-        >Add To Cart</a
-      >  -->
-      <!-- <a
-      *ngIf="slug == 'pranayama-course-online-pranarambha' ||
-             slug == 'breath-detox-yoga' ||
-             slug == 'foundation-of-spirituality-an-online-spiritual-awakening-course' ||
-             slug == 'yoga-inversion-workshop-headstand' ||
-             slug == 'yoga-philosophy-course-free' ||
-             slug == 'yoga-history-and-philosophy' "  
-      href="/"
-      class="button"
-      >Buy Now</a
-    > -->
       <a
-        *ngIf="slug != 'pranayama-course-online-pranarambha' && slug != 'breath-detox-yoga'"
+        *ngIf="
+          slug != 'pranayama-course-online-pranarambha' &&
+          slug != routEnum.bDtox
+        "
         href="/book-now"
-        class="button"
-        >Enroll in the course</a
-      >
-      <a
-        *ngIf="slug == 'breath-detox-yoga'"
-        href="/breath-detox-yoga/student-register"
         class="button"
         >Enroll in the course</a
       >
@@ -61,12 +42,24 @@
   </div>
 </section>
 <section class="subjectSection py-5" *ngIf="aboutItems.subjectInfo">
-  <!-- <h2>{{aboutItems.title}} <span>{{aboutItems.span}}</span></h2> -->
-  <!-- <div class="container"> -->
+  @if(slug == routEnum.bDtox){
+  <div class="row">
+    @for(item of aboutItems.subjectInfo;track item.id){
+    <div
+      class="col-md-6 mb-5"
+      [innerHtml]="sanitizer.bypassSecurityTrustHtml(item?.title1)"
+    ></div>
+    <div
+      class="col-md-6 mb-5"
+      [innerHtml]="sanitizer.bypassSecurityTrustHtml(item?.title2)"
+    ></div>
+    }
+  </div>
+  }@else{
   <div class="col-md-12 align-items-center container">
     <div
       [innerHtml]="sanitizer.bypassSecurityTrustHtml(aboutItems?.subjectInfo)"
     ></div>
   </div>
-  <!-- </div> -->
+  }
 </section>

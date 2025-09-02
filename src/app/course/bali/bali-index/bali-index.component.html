@@ -1,3 +1,24 @@
+@if(slug==routeEnum.bDtox){
+<app-banner></app-banner>
+<app-about-bali></app-about-bali>
+<app-curriculum [data]="currData"></app-curriculum>
+<app-learning></app-learning>
+<app-benifits></app-benifits>
+<app-includes [data]="feesData"></app-includes>
+<app-fee-structure [data]="feesData"></app-fee-structure>
+<app-choose-us [data]="codecond"></app-choose-us>
+<app-services></app-services>
+<app-code-conduct [data]="codecond"></app-code-conduct>
+<app-yoga-alliance [data]="codecond"></app-yoga-alliance>
+<app-schedule [data]="schEventData"></app-schedule>
+<!-- <app-testimonials
+  *ngIf="slug != 'pranayama-course-online-pranarambha'"
+></app-testimonials>
+<app-gallery
+  *ngIf="slug != 'pranayama-course-online-pranarambha'"
+></app-gallery> -->
+<app-faq [data]="faqData"></app-faq>
+}@else{
 <app-banner #banner [data]="bannerData"></app-banner>
 <a
   id="pranayamaBuyNow"
@@ -57,3 +78,4 @@
   "
 ></app-achievements>
 <app-faq [data]="faqData"></app-faq>
+}

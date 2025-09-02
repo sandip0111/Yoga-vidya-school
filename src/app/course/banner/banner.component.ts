@@ -82,8 +82,17 @@ export class BannerComponent implements OnInit {
         break;
       case routeEnum.preRecordPranayamaCourse:
         this.rishikesHeroImage = s3Bucket.preRecordedHero;
-        this.rishikeshMainHeading = 'Transform Consciousness Through the Power of Breath';
-        this.rishikeshSubHeading = 'Three transformative journeys by Prashant J., rooted in yogic tradition and designed for modern practitioners';
+        this.rishikeshMainHeading =
+          'Transform Consciousness Through the Power of Breath';
+        this.rishikeshSubHeading =
+          'Three transformative journeys by Prashant J., rooted in yogic tradition and designed for modern practitioners';
+        break;
+      case routeEnum.bDtox:
+        this.rishikesHeroImage = s3Bucket.breathDtoxPreRec;
+        this.rishikeshMainHeading =
+          'Breath Detox Yoga - Online FREE pre-recorded course';
+        this.rishikeshSubHeading =
+          'Breathe Deep, Live Light — 7 Days to Purify Your Energy and Mind';
         break;
       default:
         break;
