@@ -1086,4 +1086,7 @@ A watering hole for adventure freaks and solo travellers, Peru with its gorgeous
       };
     });
   }
+  goToPaymentPage() {
+    this.router.navigate([routeEnum.bDtox, routeEnum.stRegister]);
+  }
 }

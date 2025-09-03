@@ -157,28 +157,30 @@ export class BannerComponent implements OnInit {
     }
   }
   ngAfterViewInit() {
-    if (
-      this.slug !== 'pranic-purification' &&
-      this.slug != 'breath-detox-yoga'
-    ) {
-      if (this.bannerSection) {
+    if (this.bannerSection) {
+      if (
+        this.slug !== 'pranic-purification' &&
+        this.slug != 'breath-detox-yoga'
+      ) {
+        if (this.bannerSection) {
+          this.renderer.setStyle(
+            this.bannerSection.nativeElement,
+            '--bg-image',
+            `url(${this.sliderImage})`
+          );
+        }
+      } else {
         this.renderer.setStyle(
           this.bannerSection.nativeElement,
-          '--bg-image',
+          'background-image',
           `url(${this.sliderImage})`
         );
+        this.renderer.setStyle(
+          this.bannerSection.nativeElement,
+          'height',
+          '650px'
+        );
       }
-    } else {
-      this.renderer.setStyle(
-        this.bannerSection.nativeElement,
-        'background-image',
-        `url(${this.sliderImage})`
-      );
-      this.renderer.setStyle(
-        this.bannerSection.nativeElement,
-        'height',
-        '650px'
-      );
     }
     if (this.slug == 'pranayama-course-online-pranarambha') {
       if (isPlatformBrowser(this.platformId)) {

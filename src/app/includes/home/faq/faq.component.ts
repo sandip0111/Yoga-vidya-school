@@ -14,7 +14,7 @@ export class FaqComponent implements OnInit {
   @Input() data: any;
   openIndex: number | null = null;
   faqs: faq[] = [];
-  slug: any = '';
+  slug: string | undefined = '';
   isPranicPage: boolean = false;
   is300BaliPage: boolean = false;
   constructor(private activatedRoute: ActivatedRoute, private router: Router) {
@@ -50,9 +50,12 @@ export class FaqComponent implements OnInit {
       }
     }
   }
+  goToPaymentPage() {
+    this.router.navigate([routeEnum.bDtox, routeEnum.stRegister]);
+  }
 }
 
-interface faq {
+export interface faq {
   title: string;
   para: string;
 }

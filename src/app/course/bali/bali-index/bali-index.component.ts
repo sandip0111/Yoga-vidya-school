@@ -23,7 +23,7 @@ import { TestimonialsComponent } from '../../../includes/home/testimonials/testi
 import { GalleryComponent } from '../../../includes/home/gallery/gallery.component';
 import { VideoTestimonialsComponent } from '../video-testimonials/video-testimonials.component';
 import { AchievementsComponent } from '../../../includes/home/achievements/achievements.component';
-import { FaqComponent } from '../../../includes/home/faq/faq.component';
+import { faq, FaqComponent } from '../../../includes/home/faq/faq.component';
 import { BenifitsComponent } from '../../../includes/home/benifits/benifits.component';
 import { BannerComponent } from '../../banner/banner.component';
 import { WebapiService } from '../../../webapi.service';
@@ -72,7 +72,7 @@ import { routeEnum } from '../../../enum/routes';
 })
 export class BaliIndexComponent implements OnInit {
   slug: any = '';
-  faqData: any;
+  faqData: faq[] = [];
   ispranayamaCourseOnlinePranarambha = false;
   upEventData: any;
   youtubeVideoData: feesStructureModel = new feesStructureModel();

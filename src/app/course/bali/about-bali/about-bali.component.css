@@ -20,31 +20,30 @@ h1 span {
 }
 
 .button {
-  margin: 0 10px;   
+  margin: 0 10px;
 }
 
 .get_access_btn {
-    background: rgba(249, 117, 30, 1);
-    color: #fff;
-    border-radius: 5px;
-    padding: 5px 10px;
-    font-weight: 600;
-    font-size: 17px !important;
-    display: inline-block;
-    text-decoration: none;
-    margin-top: 40px;
-    display: inline-block;
-    align-items: center;
-    justify-content: center;
-
-    margin: 0 10px;
-    transition: background-color 0.3s ease;
-    /* apply the pulse animation */
-    animation: pulse 2s ease-in-out infinite;
+  background: rgba(249, 117, 30, 1);
+  color: #fff;
+  border-radius: 5px;
+  padding: 5px 10px;
+  font-weight: 600;
+  font-size: 17px !important;
+  display: inline-block;
+  text-decoration: none;
+  margin-top: 40px;
+  display: inline-block;
+  align-items: center;
+  justify-content: center;
+  margin: 0 10px;
+  transition: background-color 0.3s ease;
+  animation: pulse 2s ease-in-out infinite;
 }
 /* Pulse keyframes */
 @keyframes pulse {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1);
   }
   50% {
@@ -66,4 +65,41 @@ h1 span {
     border: 10.63px solid #ffffff;
     border-radius: 24px;
   }
+}
+.krishnendu {
+  border: 1px solid black;
+}
+.lesson-part {
+  padding: 40px 40px;
+  background: radial-gradient(
+    circle,
+    hsla(0, 0%, 100%, 1) 60%,
+    rgba(249, 117, 30, 0.21) 130%
+  );
+  background: -moz-radial-gradient(
+    circle,
+    hsla(0, 0%, 100%, 1) 60%,
+    rgba(249, 117, 30, 0.21) 130%
+  );
+  background: -webkit-radial-gradient(
+    circle,
+    hsla(0, 0%, 100%, 1) 60%,
+    rgba(249, 117, 30, 0.21) 130%
+  );
+}
+.card {
+  border: 0.94px solid #f9751e;
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+.join-now-button {
+  text-decoration: underline;
+  cursor: pointer;
+  color: #f5711a;
 }

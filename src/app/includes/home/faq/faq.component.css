@@ -1,50 +1,54 @@
 .faq-section {
-    text-align: center;
-    small {
-        padding: 0px 130px;
-        display: inline-block;
-        font-size: 17px;
+  text-align: center;
+  small {
+    padding: 0px 130px;
+    display: inline-block;
+    font-size: 17px;
+  }
+  .faq {
+    .card {
+      border: none;
     }
-    .faq {
-        .card {
-            border: none;
-        }
-       
-        .card-header {
-            background: rgba(245, 113, 26, 0.25);
-            font-size: 17px;
-            font-weight: 500;
-            display: flex;
-            justify-content: space-between;
-            padding: 2px 15px;
-            align-items: center;
-            border: none;
 
-            .plus-icon {
-                color: #fff;
-                font-size: 14px;
-                background: rgba(249, 117, 30, 1);
-                border-radius: 50%;
-                padding: 7px 12px;
-                margin: 4px 0px;
-            }
-        }
-        .card-header {
-            cursor: pointer;
-          }
-          
-          .plus-icon i {
-            transition: transform 0.3s ease;
-          }
-          
-          .card-header.open .plus-icon i {
-            transform: rotate(45deg); /* Change to a minus icon */
-          }
-        .card-body {
-            font-size: 18px;
-            font-weight: 400;
-            background: rgba(217, 217, 217, 0.1);
+    .card-header {
+      background: rgba(245, 113, 26, 0.25);
+      font-size: 17px;
+      font-weight: 500;
+      display: flex;
+      justify-content: space-between;
+      padding: 2px 15px;
+      align-items: center;
+      border: none;
 
-        }
+      .plus-icon {
+        color: #fff;
+        font-size: 14px;
+        background: rgba(249, 117, 30, 1);
+        border-radius: 50%;
+        padding: 7px 12px;
+        margin: 4px 0px;
+      }
     }
+    .card-header {
+      cursor: pointer;
+    }
+
+    .plus-icon i {
+      transition: transform 0.3s ease;
+    }
+
+    .card-header.open .plus-icon i {
+      transform: rotate(45deg); /* Change to a minus icon */
+    }
+    .card-body {
+      font-size: 18px;
+      font-weight: 400;
+      background: rgba(217, 217, 217, 0.1);
+    }
+  }
+}
+.join-now-button {
+  text-decoration: underline;
+  cursor: pointer;
+  color: #f5711a;
 }
