@@ -59,7 +59,11 @@ export enum s3Bucket {
   bDtox3 = 'https://my-s3-images-bucket.s3.amazonaws.com/img/image_1679305168857.jpg',
   bDtox4 = 'https://my-s3-images-bucket.s3.amazonaws.com/img/image_1679305186650.jpg',
   bDtox5 = 'https://my-s3-images-bucket.s3.amazonaws.com/img/image_1679305364702.jpg',
+  pArambh1 = 'https://my-s3-images-bucket.s3.amazonaws.com/img/image_1683205846041.JPG',
+  pArambh2 = 'https://my-s3-images-bucket.s3.amazonaws.com/img/image_1683206274526.jpg',
+  pArambh3 = 'https://my-s3-images-bucket.s3.amazonaws.com/img/image_1683205867459.jpg',
 }
 export enum youtubeLink {
   trainingImportance = 'https://www.youtube.com/embed/t7l1cqDj1tA?si=ZJCQXJYDLzDwLLvm',
+  pranaArambh = 'https://d3mzqk1fxuwngx.cloudfront.net/reviews/pranarambha_intro.mp4?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAWGOLULIWBNKET5SM%2F20250106%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250106T163245Z&X-Amz-Expires=3600&X-Amz-Signature=bd6d68f4499c266e99fa1d35bf90b00551ac35dbc778f4838cc74787908c8375&X-Amz-SignedHeaders=host&x-id=GetObject',
 }

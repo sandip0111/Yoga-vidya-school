@@ -9,7 +9,10 @@
       class="flower-img"
     />
   </div>
-  <small *ngIf="slug !== routEnum.bDtox">Welcome To</small>
+  <small
+    *ngIf="slug !== routEnum.bDtox && slug !== routEnum.pranOnlinePranaArambh"
+    >Welcome To</small
+  >
   <h1>
     {{ aboutItems.title }} <span>{{ aboutItems.span }}</span>
   </h1>
@@ -42,7 +45,7 @@
   </div>
 </section>
 <section class="subjectSection py-5" *ngIf="aboutItems.subjectInfo">
-  @if(slug == routEnum.bDtox){
+  @if(slug == routEnum.bDtox || slug == routEnum.pranOnlinePranaArambh){
   <div class="row">
     @for(item of aboutItems.subjectInfo;track item.id){
     <div
@@ -180,4 +183,38 @@
     </p>
   </div>
 </div>
+} @else if(slug == routEnum.pranOnlinePranaArambh){
+<section class="banner">
+  <div class="video-container">
+    <video
+      muted
+      autoplay
+      loop
+      playsinline
+      controls
+      id="backgroundVideo"
+      class="background-video"
+    >
+      <source [src]="youtubeLink.pranaArambh" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+  </div>
+  <div class="form">
+    <h3>Want To Practice Pranayama Sadhana!</h3>
+    <h3>Well-Researched Course to:</h3>
+    <ol>
+      <li>Improve Health & Spiritual Wellbeing</li>
+      <li>Enhance the Quality of Life</li>
+      <li>Break the Cycle of Addictions</li>
+    </ol>
+    <div class="d-flex mt-4">
+      <button
+        class="modern-btn"
+        (click)="registerClick(routEnum.pranOnlinePranaArambh)"
+      >
+        Register Now
+      </button>
+    </div>
+  </div>
+</section>
 }

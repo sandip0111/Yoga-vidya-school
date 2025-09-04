@@ -94,6 +94,13 @@ export class BannerComponent implements OnInit {
         this.rishikeshSubHeading =
           'Breathe Deep, Live Light — 7 Days to Purify Your Energy and Mind';
         break;
+      case routeEnum.pranOnlinePranaArambh:
+        this.rishikesHeroImage = s3Bucket.pranaArambhPreRec;
+        this.rishikeshMainHeading =
+          'Enhance your quality of life by improving your breath';
+        this.rishikeshSubHeading =
+          'An Exclusive Pre-recorded Pranayama Course by Prashant Jakhmola';
+        break;
       default:
         break;
     }

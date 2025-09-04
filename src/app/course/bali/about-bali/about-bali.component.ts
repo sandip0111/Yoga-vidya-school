@@ -6,7 +6,7 @@ import { WebapiService } from '../../../webapi.service';
 import { CartItem, CartService } from '../../../cart.service';
 import { WatchVideoComponent } from '../watch-video/watch-video.component';
 import { routeEnum } from '../../../enum/routes';
-import { s3Bucket } from '../../../enum/s3Bucket';
+import { s3Bucket, youtubeLink } from '../../../enum/s3Bucket';
 
 @Component({
   selector: 'app-about-bali',
@@ -23,6 +23,7 @@ export class AboutBaliComponent implements OnInit {
   ispranayamaCourseOnlinePranarambha = false;
   routEnum = routeEnum;
   s3Bucket = s3Bucket;
+  youtubeLink = youtubeLink;
   constructor(
     private cartService: CartService,
     private activatedRoute: ActivatedRoute,
@@ -30,7 +31,6 @@ export class AboutBaliComponent implements OnInit {
     protected sanitizer: DomSanitizer,
     private webapiService: WebapiService
   ) {
-    //  console.log(this.activatedRoute.snapshot.routeConfig?.path,'--');
     this.slug = this.activatedRoute.snapshot.routeConfig?.path;
     if (this.slug == '200-hour-yoga-teacher-training-in-bali') {
       this.aboutItems = {
@@ -389,171 +389,127 @@ export class AboutBaliComponent implements OnInit {
 
         `,
       };
-    } else if (this.slug == 'pranayama-course-online-pranarambha') {
+    } else if (this.slug == routeEnum.pranOnlinePranaArambh) {
       this.ispranayamaCourseOnlinePranarambha = true;
       this.aboutItems = {
-        title: 'PRANA ARAMBHA -',
-        span: 'An Exclusive Online Pranayama Course by Prashant J Yoga',
-        desc: `
-        <p>I&#39;m glad you showed interest in coming to this page. And now if you have come, it means you are curious after knowing whether this course is for you or not, and how you can get benefit by attending it.</p>
+        title: 'Prāṇa Ārambha',
+        span: '(meaning "Beginning of Prana") is a focused online Pranayama course offered that serves as a foundational practice for revitalizing your inner energy and daily productivity',
+        desc: `<p>Designed to be absorbed within 21 days, the course unlocks one video at a time, encouraging a disciplined and sequential learning experience. It provides practical Pranic techniques that help stabilize the mind and foster an effortless habit of conscious breathing in just 30-minute daily sessions.</p>`,
+        //         desc: `
+        //         <p>I&#39;m glad you showed interest in coming to this page. And now if you have come, it means you are curious after knowing whether this course is for you or not, and how you can get benefit by attending it.</p>
 
-<p>Attending the course is a later subject, the first is, whether the course is actually meant for you or not. You need to first figure out what direction you&#39;re moving on. So first lets talk about the main objective of the practice PRANA ARAMBHA(begin to live). What you can get through this course? And who can be benefited from this? Only after understanding this, you will you have the determination and choice of decision, that you really need to participate in this course.</p>
+        // <p>Attending the course is a later subject, the first is, whether the course is actually meant for you or not. You need to first figure out what direction you&#39;re moving on. So first lets talk about the main objective of the practice PRANA ARAMBHA(begin to live). What you can get through this course? And who can be benefited from this? Only after understanding this, you will you have the determination and choice of decision, that you really need to participate in this course.</p>
 
-<p><iframe frameborder="0" height="300px" scrolling="no" src="https://www.youtube.com/embed/p5DLWw6hfss" title="Prana Arambha" width="100%"></iframe></p>
+        // <p><iframe frameborder="0" height="300px" scrolling="no" src="https://www.youtube.com/embed/p5DLWw6hfss" title="Prana Arambha" width="100%"></iframe></p>
 
-<p>Before you step forward, get to know your state of mind and see if you really need this course, or if you&#39;ve just come to see what kind of course this person is selling.</p>
+        // <p>Before you step forward, get to know your state of mind and see if you really need this course, or if you&#39;ve just come to see what kind of course this person is selling.</p>
 
-<p>If you landed here only to check what new yoga course is available in the market or what I am selling and you don&rsquo;t have a single thought to attend this pranayama program. I would suggest you not to waste your time in scrolling more, better to leave this page because I don&rsquo;t want you to waste your valuable time behind this content as you will not get anything.</p>
+        // <p>If you landed here only to check what new yoga course is available in the market or what I am selling and you don&rsquo;t have a single thought to attend this pranayama program. I would suggest you not to waste your time in scrolling more, better to leave this page because I don&rsquo;t want you to waste your valuable time behind this content as you will not get anything.</p>
 
-<p>And in case you have made your mind to continue reading, it means, you really want to change something within you and wants to guide your life with proper manner.</p>
+        // <p>And in case you have made your mind to continue reading, it means, you really want to change something within you and wants to guide your life with proper manner.</p>
 
-<p>I am thankful and appreciate your strong decision to stay here with me, because now what I am going to explain you will really help you to decide of joining this practice with me.</p>
+        // <p>I am thankful and appreciate your strong decision to stay here with me, because now what I am going to explain you will really help you to decide of joining this practice with me.</p>
 
-<p>Let me share with you the main purpose and objective of the Prana armbha &ndash; An Online Pranayama Course. After discovering this, you will be sure that you are looking forward to continue practising with me.</p>
+        // <p>Let me share with you the main purpose and objective of the Prana armbha &ndash; An Online Pranayama Course. After discovering this, you will be sure that you are looking forward to continue practising with me.</p>
 
-<p>And if you still think you don&rsquo;t want any of these benefits you&#39;ll be completely content to walk with your decision. I also don&rsquo;t think it is right to stay engaged on this page just because I am saying something great about this practice. You yourself should feel that positive vibe and connect to the &nbsp;right path you were searching about. Because we sometimes participate in online yoga classes, courses or programs that do not match to our search or are not even productive for us. I really want you to realize before you practice with me, that you are moving on in the exact direction you want and you are not making any mistake.</p>
+        // <p>And if you still think you don&rsquo;t want any of these benefits you&#39;ll be completely content to walk with your decision. I also don&rsquo;t think it is right to stay engaged on this page just because I am saying something great about this practice. You yourself should feel that positive vibe and connect to the &nbsp;right path you were searching about. Because we sometimes participate in online yoga classes, courses or programs that do not match to our search or are not even productive for us. I really want you to realize before you practice with me, that you are moving on in the exact direction you want and you are not making any mistake.</p>
 
-<p>Now let&rsquo;s understand about the benefits, objective and main purpose of this beautiful PranicPractice PRANA ARAMBHA</p>
+        // <p>Now let&rsquo;s understand about the benefits, objective and main purpose of this beautiful PranicPractice PRANA ARAMBHA</p>
 
-        `,
+        //         `,
         image: '',
         alt: 'PRANA ARAMBHA',
-        subjectInfo: `
-        <h2><img alt="pranayama course online pranarambha" class="img-fluid" src="https://my-s3-images-bucket.s3.amazonaws.com/img/image_1683205846041.JPG" style="box-shadow: 0px 23.77px 23.77px 0px rgba(0, 0, 0, 0.55); border-radius: 10px;" /></h2>
-
-<h2>&nbsp;</h2>
-
-<h2><span>Benefits of Online Pranayama Course Prana Arambha</span></h2>
-
-<p>1- <strong>Develop a Habit of Being Constant</strong>. - The biggest disruption in today&rsquo;s time in the mind of a person is, unable to maintain continuity. Due to which you fail to achieve your goal and even after trying again and again the goal remains far from your grip. So, the first change you will feel when learning this exercise is to be able to maintain the continuity in your life. And this continuity is not just in common practice. It is a continuation in a particular practice. That will give strength to your energy body due to which you can achieve new heights of your life.</p>
-
-<p>2- <strong>Purification Of Mind</strong>- Since this Yogic Breathing Course is a special PranicPractice, you are also working on purification of your mind. This pranic exercise will clear various disorders of your mind, causing the mind to attain a particular Satvik (Purest) state.</p>
-
-<p>3- <strong>Time For Your Inner self</strong> - Much of our time and energy is utilised by satisfying the passions of others; we are constantly striving to please others, which makes us forget the life of restraint and we stop working on our inner self which fill our body with a variety of ailments. This practice gives you inner purification from the moment you begin the course.</p>
-
-<p>4- <strong>Inner Communication</strong>- We are always extroverted. Our mind is more influenced and attracted by external topics. Because of which we walk away from our inner self. And we are not at all aware of the developments and changes that are taking place inside us. We get this understanding only when a very difficult or unfavourable situation comes to us which is very difficult to deal with. And then we swagger into emotion and seek out the wrong judgements that make our life disturbed. But through this online pranayama course, you will be able to connect with moderation easily and be able to understand what is happening in you.</p>
-
-<p>5- <strong>Mystery of Emotions</strong>- Everyone wants to restraint on their emotions, and make these emotions favourable to them. Many try it, but fail again and again because it is not such an easy task. It requires constant practice and right transmission of energy so through this practice you become able to give right direction to your emotions.</p>
-
-<p><em>&ldquo;Giving right direction to emotion gives you victory over your actions.&rdquo;</em></p>
-
-<p>6- <strong>Right Transmission of Energy</strong> - Sometimes we are constantly striving, but we are unable to achieve our goal. Which causes the mind to become impatient and the excitement to try gets over. We stop trying and thus the goal goes away from us. This happens to many of us all the time. There are numerous reasons that keep us away from the success we dream of. Some of the reasons can be laziness, negligence, lack of interest, lack of enthusiasm in life.&nbsp; This happens to many of us all the time.</p>
-
-<p>But when you practice pranayama constantly in your life, all these obstacles begin to vanish from your life and the mind reaches the goal through concentration. Because the entire energy get in one direction, the energy paved right path leading to life.</p>
-
-<p>7- <strong>Improve Productivity</strong>: If I tell you one exercise or activity that can increase your productivity by 10 times. Will not you do it? I am sure everyone will be motivated to learn that technique. This is the practice of Pranayama.<br />
-I am saying this because I have experienced the miracles of Pranayama in my life. When you wake up early in the morning, do right thing with your own energy system and give the right direction to your Prana, energy starts flowing correctly which removes the impurities or disorders from the mind and mental productivity improves. It is like a miracle and your mind won&#39;t distract you from your focus.</p>
-
-<p>8- <strong>Memory Improvement and Creativity</strong>: In today &#39;s busy life there are lot of activities going on around us, and whether we want or not we have to engage in these unwanted activities due to peer pressure or social responsibilities. This makes the mind unstable all the time and as a result our memory slowly decreases because we have never driven the mind to be fixed, we always made it busy. Our mind, because of being occupied with unwanted activities, is never empty and free. This wastes the entire energy of mind and restricts the flow of new ideas. But when we adopt the practice of Yogic Breathing or Pranayama in our life, it attracts the positive thoughts and new ideas in our life that leads to an origin point of the spiritual direction.</p>
-
-<p>9- <strong>Free from Sickness</strong>: It is believed that the seed of any disease first starts in the Pranic body. If we address this disease at this point, it perishes before it appear to gross body, and does not dominant over a physical body. So a pranayama sadhaka or practitioner who constantly keeps on strengthening and purification of his body by various Pranic techniques can safeguard his body at very initial stage. Because the energy transmitted in his/her body destroys the seeds all kinds of serious diseases. The&nbsp;major cause for these diseases is non - removal of disorders from the Pranic body. This disorders firstly occur on energy level and then on physical.</p>
-
-<p>10- <strong>Makes you a Giver</strong> - Don &#39;t you want to be able to help others, and give the society a new direction? Don&#39;t you want the individuals at higher positions in society consult from you. This will happen automatically once you become a Pranayama practitioner because the expansion of your energy will not limited to you alone if you make this practice as a routine. The energy of the pranayama sadhaka begins to travel outside his physical body. And can impress every single person and this is a reason a Pranayama sadhka shines in the crowd.</p>
-
-<p>What benefits I have mentioned above are not confined to only writing. It can practically happen in your life once you practice pranayama through this only pranayama course. I am sure you are the one who wants to bring all these changes into your life. And want to give your life a balanced direction.</p>
-<div class="d-flex justify-content-center" style="width: 100%"><a href="checkout/pranayama-course-online-pranarambha" class="get_access_btn" style="">Get Access</a></div>
-<br/>
-<p><img alt="pranayama course online pranarambha" class="img-fluid" src="https://my-s3-images-bucket.s3.amazonaws.com/img/image_1683206274526.jpg" style="box-shadow: 0px 23.77px 23.77px 0px rgba(0, 0, 0, 0.55); border-radius: 10px;" /></p>
-
-<p>&nbsp;</p>
-
-<p><strong>PRANA&nbsp; ARAMBHA- this is a Sanskrit term which means &ndash; &lsquo;Begin to Live&rsquo;</strong></p>
-
-<p>Does it really means &lsquo;begin to live.&rsquo;</p>
-
-<p>Are we not living now even without doing practicing pranayama?</p>
-
-<p>Most of us live only in the physical form, physical dimension, (which is also not completely)</p>
-
-<p>It is incomplete. Actually, we are kind of dead.</p>
-
-<p>Yoga teaches the art of living at five levels. Yoga believes that the spirit of man has a profound influence on five levels</p>
-
-<p>These or five existence or dimension of our life.</p>
-
-<p>1- <strong>Physical (5 elements)</strong></p>
-
-<p>2- <strong>Energy (Pranic)</strong></p>
-
-<p>3-<strong> Mental (Chitta)</strong></p>
-
-<p>4- <strong>Intellect (Buddhi)</strong></p>
-
-<p>5- <strong>Bliss (Anand)</strong></p>
-
-<p>Our consciousness travels through all the 5 dimensions all the time but due to impurities, we are not aware of it. These impurities are present at all levels. Physical, Mental, Energetic, so on. So, we cannot say perfectly that we are living, if we want to be familiar with real life, we have to understand the influence of the soul on these five levels. For this we must clear the filth in our body which becomes a barrier in our path and keep our mind as macro and impure.</p>
-
-<p>This practice of PRANA&nbsp; ARAMBH is a process which connects your consciousness to all the existence mentioned above. You start noticing the expansion of life force within, by having various expressions of prana.</p>
-
-<p>This is the perfect routine for you to start your day with.</p>
-
-<p>&nbsp;</p>
-
-<div class="d-flex justify-content-center" style="width: 100%"><a href="checkout/pranayama-course-online-pranarambha" class="get_access_btn" style="">Get Access</a></div>
-<br/>
-<h2><span>How many hours should I practice Pranayama?</span></h2>
-
-<p>This question is common as we all are super busy in our life. I understand that very well and keeping this in mind, I have made this course for limited time only.</p>
-
-<p>Just 30 minutes regular.</p>
-
-<!-- <p>Once again I want to stop you here, And want you to think again. if you are dedicated, disciplined, and really want positive changes in your life, then only continue reading. If for now you don&rsquo;t find this information valuable for you, then I would say sorry this course is not for you.</p>-->
-
-<p>And if you are going ahead, please commit to me that you will practice this for given time. And maintain the consistency of the practice. As you all know the key to any success is continuity. There are three things which makes any practice fruitful.</p>
-
-<p><strong>सतुदीर्घकालनैरन्तर्यसत्कारसेवितोदृढभूमिः</strong></p>
-
-<p><strong>Sa tudeerghakalnairantaryasatkarsevitodridhbhoomi</strong></p>
-
-<p>Explaining above sutra-</p>
-
-<p>Any practice becomes well-grounded only when it is nurtured by three things</p>
-
-<p>1- Deerghkal (longer time )</p>
-
-<p>2- Nairantarya- (regular without any interruption)</p>
-
-<p>3- Satkar (with trust and belief with positive intention)</p>
-
-<p>Firmly grounded practice is an anticipated time of connection to deeper levels of self, it is not simply an ingrained routine.</p>
-
-<p>So whenever you see that there are no development or any results of your practice you must check these three foundations- (mentioned above) and identify if you are missing one of them.</p>
-
-<p><img alt="pranayama course online pranarambha" class="img-fluid" src="https://my-s3-images-bucket.s3.amazonaws.com/img/image_1683205867459.jpg" style="box-shadow: 0px 23.77px 23.77px 0px rgba(0, 0, 0, 0.55); border-radius: 10px;" /></p>
-
-<h2>&nbsp;</h2>
-
-<h2><span>Let&rsquo;s understand the practice Prana Arambha</span></h2>
-
-<!-- <p>PRANA&nbsp; ARAMBHA&nbsp; is 10 days Pranic Course (Online Yoga Course).</p>
-
-<p>It has 10 recorded videos sessions (each will be max. 30 minutes)</p>
-
-<p>You have to master over this course in 21 days including regular practice. You can unlock one video at a time. Next video practice will be available after 24 hours of the previous video.</p>-->
-<p>PRANA&nbsp; ARAMBHA&nbsp; consists of 13 videos which help you master the art of ancient pranayama practices as described in traditional yogic texts. This course is a 5 hours pranic sadhana in which the next video will get unlocked only after completing the previous video. This ensures structured and progressive learning experience.</p>
-<p>In this exclusive course i have explained some very important and necessary Pranic practices of today&rsquo;s time which can bring you the steadiness of the mind.</p>
-
-<p>This is a short course which doesn&rsquo;t need much time so I believe you can devote your 30 minutes to this inner spiritual development.</p>
-
-<p>&nbsp;</p>
-
-<h2><span>How Long You will Have Access?</span></h2>
-
-<!--<p>I believe that when we do not have punctuality, we do not utilize the time properly. So in this course I have set the time period. You can access the videos of this pranayama course only for 2 months. It is therefore necessary for you to watch the videos and practice the teachings regularly. You must make resolutions to yourself and commit to it.</p>
-
-<p>Though this course designed is for 12 days but understanding the busyness of life, I want to give you more time, to master these practices, therefore is offered with an access of 60 days.</p>-->
-<p>I believe that when we do not have punctuality, we do not utilize the time properly. So in this course I have set the time period. You can access the videos of this pranayama course only for 3 months. It is therefore necessary for you to watch the videos and practice the teachings regularly. You must make resolutions to yourself and commit to it.</p>
-
-<p>&nbsp;</p>
-
-<h2><span>What is the Level of This Course?</span></h2>
-
-<p>There is no level of any practice. Even a simple Practice can be an advance for some people. It depends on subtle state of your mind. Many Yogis when they achieve something higher, they come back to basic because through basics (when there is no struggle or not much physical effort is needed) you can lead your mind effortlessly.</p>
-
-<p>This is for all levels &ndash; beginner, intermediate of advance. Those who call themselves beginner, they will master these techniques and continue regularly but those who are experienced practitioners they go more deeper into these practises, spending more time with inner communication, they will work more on stability and equality of mind. And develop the feeling of Samatvam (complete equilibrium)</p>
-<div class="d-flex justify-content-center" style="width: 100%"><a href="checkout/pranayama-course-online-pranarambha" class="get_access_btn" style="">Get Access</a></div>
-<br/>
-        `,
+        subjectInfo: [
+          {
+            id: 1,
+            title1: `<div class="imageback">
+              <img
+                src=${s3Bucket.pArambh1}
+                class="img-fluid"
+                loading="lazy"
+                alt="pranayama course online pranarambha"
+              />
+            </div>`,
+            title2: `<h2><span>Benefits of Online Pranayama Course Prana Arambha</span></h2>
+            <p>1- <strong>Develop a Habit of Being Constant</strong>. - The biggest disruption in today&rsquo;s time in the mind of a person is, unable to maintain continuity. Due to which you fail to achieve your goal and even after trying again and again the goal remains far from your grip. So, the first change you will feel when learning this exercise is to be able to maintain the continuity in your life. And this continuity is not just in common practice. It is a continuation in a particular practice. That will give strength to your energy body due to which you can achieve new heights of your life.</p>
+            <p>2- <strong>Purification Of Mind</strong>- Since this Yogic Breathing Course is a special PranicPractice, you are also working on purification of your mind. This pranic exercise will clear various disorders of your mind, causing the mind to attain a particular Satvik (Purest) state.</p>
+            <p>3- <strong>Time For Your Inner self</strong> - Much of our time and energy is utilised by satisfying the passions of others; we are constantly striving to please others, which makes us forget the life of restraint and we stop working on our inner self which fill our body with a variety of ailments. This practice gives you inner purification from the moment you begin the course.</p>
+            <p>4- <strong>Inner Communication</strong>- We are always extroverted. Our mind is more influenced and attracted by external topics. Because of which we walk away from our inner self. And we are not at all aware of the developments and changes that are taking place inside us. We get this understanding only when a very difficult or unfavourable situation comes to us which is very difficult to deal with. And then we swagger into emotion and seek out the wrong judgements that make our life disturbed. But through this online pranayama course, you will be able to connect with moderation easily and be able to understand what is happening in you.</p>
+            <p>5- <strong>Mystery of Emotions</strong>- Everyone wants to restraint on their emotions, and make these emotions favourable to them. Many try it, but fail again and again because it is not such an easy task. It requires constant practice and right transmission of energy so through this practice you become able to give right direction to your emotions.</p>
+            <p><em>&ldquo;Giving right direction to emotion gives you victory over your actions.&rdquo;</em></p>
+            <p>6- <strong>Right Transmission of Energy</strong> - Sometimes we are constantly striving, but we are unable to achieve our goal. Which causes the mind to become impatient and the excitement to try gets over. We stop trying and thus the goal goes away from us. This happens to many of us all the time. There are numerous reasons that keep us away from the success we dream of. Some of the reasons can be laziness, negligence, lack of interest, lack of enthusiasm in life.&nbsp; This happens to many of us all the time.</p>
+            <p>But when you practice pranayama constantly in your life, all these obstacles begin to vanish from your life and the mind reaches the goal through concentration. Because the entire energy get in one direction, the energy paved right path leading to life.</p>
+            <p>7- <strong>Improve Productivity</strong>: If I tell you one exercise or activity that can increase your productivity by 10 times. Will not you do it? I am sure everyone will be motivated to learn that technique. This is the practice of Pranayama.<br />
+            I am saying this because I have experienced the miracles of Pranayama in my life. When you wake up early in the morning, do right thing with your own energy system and give the right direction to your Prana, energy starts flowing correctly which removes the impurities or disorders from the mind and mental productivity improves. It is like a miracle and your mind won&#39;t distract you from your focus.</p>
+            <p>8- <strong>Memory Improvement and Creativity</strong>: In today &#39;s busy life there are lot of activities going on around us, and whether we want or not we have to engage in these unwanted activities due to peer pressure or social responsibilities. This makes the mind unstable all the time and as a result our memory slowly decreases because we have never driven the mind to be fixed, we always made it busy. Our mind, because of being occupied with unwanted activities, is never empty and free. This wastes the entire energy of mind and restricts the flow of new ideas. But when we adopt the practice of Yogic Breathing or Pranayama in our life, it attracts the positive thoughts and new ideas in our life that leads to an origin point of the spiritual direction.</p>
+            <p>9- <strong>Free from Sickness</strong>: It is believed that the seed of any disease first starts in the Pranic body. If we address this disease at this point, it perishes before it appear to gross body, and does not dominant over a physical body. So a pranayama sadhaka or practitioner who constantly keeps on strengthening and purification of his body by various Pranic techniques can safeguard his body at very initial stage. Because the energy transmitted in his/her body destroys the seeds all kinds of serious diseases. The&nbsp;major cause for these diseases is non - removal of disorders from the Pranic body. This disorders firstly occur on energy level and then on physical.</p>
+            <p>10- <strong>Makes you a Giver</strong> - Don &#39;t you want to be able to help others, and give the society a new direction? Don&#39;t you want the individuals at higher positions in society consult from you. This will happen automatically once you become a Pranayama practitioner because the expansion of your energy will not limited to you alone if you make this practice as a routine. The energy of the pranayama sadhaka begins to travel outside his physical body. And can impress every single person and this is a reason a Pranayama sadhka shines in the crowd.</p>
+            <p>What benefits I have mentioned above are not confined to only writing. It can practically happen in your life once you practice pranayama through this only pranayama course. I am sure you are the one who wants to bring all these changes into your life. And want to give your life a balanced direction.</p>
+            <div class="d-flex justify-content-center" style="width: 100%"><a href="checkout/pranayama-course-online-pranarambha" class="get_access_btn" style="">Get Access</a></div>`,
+          },
+          {
+            id: 2,
+            title1: `<p><strong>PRANA&nbsp; ARAMBHA- this is a Sanskrit term which means &ndash; &lsquo;Begin to Live&rsquo;</strong></p>
+            <p>Does it really means &lsquo;begin to live.&rsquo;</p>
+            <p>Are we not living now even without doing practicing pranayama?</p>
+            <p>Most of us live only in the physical form, physical dimension, (which is also not completely)</p>
+            <p>It is incomplete. Actually, we are kind of dead.</p>
+            <p>Yoga teaches the art of living at five levels. Yoga believes that the spirit of man has a profound influence on five levels</p>
+            <p>These or five existence or dimension of our life.</p>
+            <p>1- <strong>Physical (5 elements)</strong></p>
+            <p>2- <strong>Energy (Pranic)</strong></p>
+            <p>3-<strong> Mental (Chitta)</strong></p>
+            <p>4- <strong>Intellect (Buddhi)</strong></p>
+            <p>5- <strong>Bliss (Anand)</strong></p>
+            <p>Our consciousness travels through all the 5 dimensions all the time but due to impurities, we are not aware of it. These impurities are present at all levels. Physical, Mental, Energetic, so on. So, we cannot say perfectly that we are living, if we want to be familiar with real life, we have to understand the influence of the soul on these five levels. For this we must clear the filth in our body which becomes a barrier in our path and keep our mind as macro and impure.</p>
+            <p>This practice of PRANA&nbsp; ARAMBH is a process which connects your consciousness to all the existence mentioned above. You start noticing the expansion of life force within, by having various expressions of prana.</p>
+            <p>This is the perfect routine for you to start your day with.</p>
+            <div class="d-flex justify-content-center" style="width: 100%"><a href="checkout/pranayama-course-online-pranarambha" class="get_access_btn" style="">Get Access</a></div>
+            <br/>
+            <h2><span>How many hours should I practice Pranayama?</span></h2>
+            <p>This question is common as we all are super busy in our life. I understand that very well and keeping this in mind, I have made this course for limited time only.</p>
+            <p>Just 30 minutes regular.</p>
+            <p>And if you are going ahead, please commit to me that you will practice this for given time. And maintain the consistency of the practice. As you all know the key to any success is continuity. There are three things which makes any practice fruitful.</p>
+            <p><strong>सतुदीर्घकालनैरन्तर्यसत्कारसेवितोदृढभूमिः</strong></p>
+            <p><strong>Sa tudeerghakalnairantaryasatkarsevitodridhbhoomi</strong></p>
+            <p>Explaining above sutra-</p>
+            <p>Any practice becomes well-grounded only when it is nurtured by three things</p>
+            <p>1- Deerghkal (longer time )</p>
+            <p>2- Nairantarya- (regular without any interruption)</p>
+            <p>3- Satkar (with trust and belief with positive intention)</p>
+            <p>Firmly grounded practice is an anticipated time of connection to deeper levels of self, it is not simply an ingrained routine.</p>
+            <p>So whenever you see that there are no development or any results of your practice you must check these three foundations- (mentioned above) and identify if you are missing one of them.</p>`,
+            title2: `<div class="imageback">
+              <img
+                src=${s3Bucket.pArambh2}
+                class="img-fluid"
+                loading="lazy"
+                alt="pranayama course online pranarambha"
+              />
+            </div>`,
+          },
+          {
+            id: 3,
+            title2: `<h2><span>Let&rsquo;s understand the practice Prana Arambha</span></h2>
+                    <p>PRANA&nbsp; ARAMBHA&nbsp; consists of 13 videos which help you master the art of ancient pranayama practices as described in traditional yogic texts. This course is a 5 hours pranic sadhana in which the next video will get unlocked only after completing the previous video. This ensures structured and progressive learning experience.</p>
+                    <p>In this exclusive course i have explained some very important and necessary Pranic practices of today&rsquo;s time which can bring you the steadiness of the mind.</p>
+                    <p>This is a short course which doesn&rsquo;t need much time so I believe you can devote your 30 minutes to this inner spiritual development.</p>
+                    <h2><span>How Long You will Have Access?</span></h2>
+                    <p>I believe that when we do not have punctuality, we do not utilize the time properly. So in this course I have set the time period. You can access the videos of this pranayama course only for 3 months. It is therefore necessary for you to watch the videos and practice the teachings regularly. You must make resolutions to yourself and commit to it.</p>
+                    <h2><span>What is the Level of This Course?</span></h2>
+                    <p>There is no level of any practice. Even a simple Practice can be an advance for some people. It depends on subtle state of your mind. Many Yogis when they achieve something higher, they come back to basic because through basics (when there is no struggle or not much physical effort is needed) you can lead your mind effortlessly.</p>
+                    <p>This is for all levels &ndash; beginner, intermediate of advance. Those who call themselves beginner, they will master these techniques and continue regularly but those who are experienced practitioners they go more deeper into these practises, spending more time with inner communication, they will work more on stability and equality of mind. And develop the feeling of Samatvam (complete equilibrium)</p>
+                    <div class="d-flex justify-content-center" style="width: 100%"><a href="checkout/pranayama-course-online-pranarambha" class="get_access_btn" style="">Get Access</a></div>`,
+            title1: `<div class="imageback">
+              <img
+                src=${s3Bucket.pArambh3}
+                class="img-fluid"
+                loading="lazy"
+                alt="breath dtox"
+              />
+            </div>`,
+          },
+        ],
       };
     } else if (this.slug == routeEnum.bDtox) {
       this.aboutItems = {
@@ -1088,5 +1044,8 @@ A watering hole for adventure freaks and solo travellers, Peru with its gorgeous
   }
   goToPaymentPage() {
     this.router.navigate([routeEnum.bDtox, routeEnum.stRegister]);
+  }
+  registerClick(slug: string) {
+    this.router.navigate(['checkout', slug]);
   }
 }

@@ -57,7 +57,7 @@
 </div>
 }@else if(slug == routeEnum.rishikesh100 || slug === routeEnum.rishkesh200 ||
 slug === routeEnum.rishikesh300 || slug == routeEnum.preRecordPranayamaCourse ||
-routeEnum.bDtox){
+routeEnum.bDtox || routeEnum.pranOnlinePranaArambh){
 <section style="padding: 0">
   <div class="row">
     <div class="col-md-12">
@@ -80,12 +80,7 @@ routeEnum.bDtox){
   </div>
 </section>
 } @else{
-<section
-  #bannerSection
-  class="banner-section"
-  id="bnner_section"
-  *ngIf="slug != 'pranayama-course-online-pranarambha'"
->
+<section #bannerSection class="banner-section" id="bnner_section">
   <div *ngIf="slug === 'pranic-purification'" class="blur-overlay"></div>
   @if(slug === 'pranic-purification' || slug === 'breath-detox-yoga'){
   <div class="floating-register-btn">
@@ -213,49 +208,5 @@ routeEnum.bDtox){
     </div>
   </div>
   }
-</section>
-<section class="banner" *ngIf="slug == 'pranayama-course-online-pranarambha'">
-  <!-- Video Section -->
-  <div class="video-container">
-    <video
-      muted
-      autoplay
-      loop
-      playsinline
-      controls
-      id="backgroundVideo"
-      class="background-video"
-    >
-      <source
-        src="https://d3mzqk1fxuwngx.cloudfront.net/reviews/pranarambha_intro.mp4?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAWGOLULIWBNKET5SM%2F20250106%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250106T163245Z&X-Amz-Expires=3600&X-Amz-Signature=bd6d68f4499c266e99fa1d35bf90b00551ac35dbc778f4838cc74787908c8375&X-Amz-SignedHeaders=host&x-id=GetObject"
-        type="video/mp4"
-      />
-      Your browser does not support the video tag.
-    </video>
-  </div>
-  <!-- Form Section -->
-  <div class="form">
-    <h3
-      *ngIf="
-        slug != 'yoga-retreat-in-mysore-india' &&
-        slug != 'yoga-retreat-in-peru' &&
-        !isRegistrationPageLabelToggle &&
-        !isRegistrationPageLabelToggleForAdjusment
-      "
-    >
-      Want To Practice Pranayama Sadhana!
-    </h3>
-    <h3>Well-Researched Course to:</h3>
-    <ol>
-      <li>Improve Health & Spiritual Wellbeing</li>
-      <li>Enhance the Quality of Life</li>
-      <li>Break the Cycle of Addictions</li>
-    </ol>
-    <div class="d-flex mt-4">
-      <button class="modern-btn" (click)="registerClick('')">
-        Register Now
-      </button>
-    </div>
-  </div>
 </section>
 }
