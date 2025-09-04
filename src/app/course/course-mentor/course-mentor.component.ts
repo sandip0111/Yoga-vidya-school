@@ -190,7 +190,7 @@ export let jsonData = [
       time2: '6:30 am',
       stamp: 'IST',
     },
-    nextBatch: 'September the 1st',
+    nextBatch: 'October the 6th',
     price: { priceInIndian: 1999, priceInUSD: 50 },
     description:
       'Progressive, dynamic and therapeutic Hatha sequence tailored for mobility and release of long-held tension from sedentaries lifestyles.',
@@ -224,7 +224,7 @@ export let jsonData = [
       time2: '7:15 pm',
       stamp: 'IST',
     },
-    nextBatch: 'September the 1st',
+    nextBatch: 'October the 6th',
     price: { priceInIndian: 3500, priceInUSD: 70 },
     description:
       'Advanced, mobility-rich sessions emphasizing arm balance and inversions with therapeutic methods. Ideal for progressing students beyond basic.',
