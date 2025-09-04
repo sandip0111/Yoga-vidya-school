@@ -73,7 +73,6 @@ import { routeEnum } from '../../../enum/routes';
 export class BaliIndexComponent implements OnInit {
   slug: any = '';
   faqData: faq[] = [];
-  ispranayamaCourseOnlinePranarambha = false;
   upEventData: any;
   youtubeVideoData: feesStructureModel = new feesStructureModel();
   accomData: any;
@@ -99,9 +98,6 @@ export class BaliIndexComponent implements OnInit {
     @Inject(PLATFORM_ID) private platformId: Object
   ) {
     this.slug = this.activatedRoute.snapshot.routeConfig?.path;
-    if (this.slug == routeEnum.pranOnlinePranaArambh) {
-      this.ispranayamaCourseOnlinePranarambha = true;
-    }
     if (this.slug) {
       this.getCourseBySlug(this.slug);
     }

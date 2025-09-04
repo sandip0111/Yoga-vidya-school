@@ -23,14 +23,6 @@
 <app-code-conduct [data]="codecond"></app-code-conduct>
 <app-yoga-alliance [data]="codecond"></app-yoga-alliance>
 <app-schedule [data]="schEventData"></app-schedule>
-<app-watch-video
-  [data]="youtubeVideoData"
-  [slug]="slug"
-  *ngIf="!ispranayamaCourseOnlinePranarambha && isYoutubeDataReady"
-></app-watch-video>
-<app-testimonials
-  *ngIf="slug != 'pranayama-course-online-pranarambha'"
-></app-testimonials>
 <app-video-reviews
   *ngIf="slug == 'pranayama-course-online-pranarambha'"
   [specialvideo]="true"
@@ -38,27 +30,6 @@
 <app-review-list-component
   *ngIf="slug == 'pranayama-course-online-pranarambha'"
 ></app-review-list-component>
-<app-gallery
-  *ngIf="slug != 'pranayama-course-online-pranarambha'"
-></app-gallery>
-<app-video-testimonials
-  *ngIf="
-    slug != 'yoga-retreat-in-mysore-india' &&
-    slug != 'pranayama-course-online-pranarambha' &&
-    slug != 'foundation-of-spirituality-an-online-spiritual-awakening-course' &&
-    slug != 'yoga-history-and-philosophy' &&
-    slug != 'yoga-retreat-in-peru'
-  "
-></app-video-testimonials>
-<app-achievements
-  *ngIf="
-    slug != 'yoga-retreat-in-mysore-india' &&
-    slug != 'pranayama-course-online-pranarambha' &&
-    slug != 'foundation-of-spirituality-an-online-spiritual-awakening-course' &&
-    slug != 'yoga-history-and-philosophy' &&
-    slug != 'yoga-retreat-in-peru'
-  "
-></app-achievements>
 <app-faq [data]="faqData"></app-faq>
 }@else{
 <app-banner #banner [data]="bannerData"></app-banner>
@@ -86,25 +57,13 @@
 <app-watch-video
   [data]="youtubeVideoData"
   [slug]="slug"
-  *ngIf="!ispranayamaCourseOnlinePranarambha && isYoutubeDataReady"
+  *ngIf="isYoutubeDataReady"
 ></app-watch-video>
-<app-testimonials
-  *ngIf="slug != 'pranayama-course-online-pranarambha'"
-></app-testimonials>
-<app-video-reviews
-  *ngIf="slug == 'pranayama-course-online-pranarambha'"
-  [specialvideo]="true"
-></app-video-reviews>
-<app-review-list-component
-  *ngIf="slug == 'pranayama-course-online-pranarambha'"
-></app-review-list-component>
-<app-gallery
-  *ngIf="slug != 'pranayama-course-online-pranarambha'"
-></app-gallery>
+<app-testimonials></app-testimonials>
+<app-gallery></app-gallery>
 <app-video-testimonials
   *ngIf="
     slug != 'yoga-retreat-in-mysore-india' &&
-    slug != 'pranayama-course-online-pranarambha' &&
     slug != 'foundation-of-spirituality-an-online-spiritual-awakening-course' &&
     slug != 'yoga-history-and-philosophy' &&
     slug != 'yoga-retreat-in-peru'
@@ -113,7 +72,6 @@
 <app-achievements
   *ngIf="
     slug != 'yoga-retreat-in-mysore-india' &&
-    slug != 'pranayama-course-online-pranarambha' &&
     slug != 'foundation-of-spirituality-an-online-spiritual-awakening-course' &&
     slug != 'yoga-history-and-philosophy' &&
     slug != 'yoga-retreat-in-peru'
