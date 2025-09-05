@@ -63,8 +63,10 @@ export class BannerComponent implements OnInit {
     switch (this.slug) {
       case routeEnum.rishikesh100:
         this.rishikesHeroImage = s3Bucket.rishikesh300Banner;
-        this.rishikeshMainHeading = '100-Hour Yoga Teacher Training in Rishikesh ';
-        this.rishikeshSubHeading = '– A Transformative Foundation for Your Yogic Journey';
+        this.rishikeshMainHeading =
+          '100-Hour Yoga Teacher Training in Rishikesh ';
+        this.rishikeshSubHeading =
+          '– A Transformative Foundation for Your Yogic Journey';
         break;
       case routeEnum.rishkesh200:
         this.rishikesHeroImage = s3Bucket.rishikesh200Banner;
@@ -76,7 +78,28 @@ export class BannerComponent implements OnInit {
       case routeEnum.rishikesh300:
         this.rishikesHeroImage = s3Bucket.rishikesh300Banner;
         this.rishikeshMainHeading = 'Transform your inner and teaching journey';
-        this.rishikeshSubHeading = 'deepen presence, wisdom & embodiment';
+        this.rishikeshSubHeading = 'Deepen presence, wisdom & embodiment';
+        break;
+      case routeEnum.preRecordPranayamaCourse:
+        this.rishikesHeroImage = s3Bucket.preRecordedHero;
+        this.rishikeshMainHeading =
+          'Transform Consciousness Through the Power of Breath';
+        this.rishikeshSubHeading =
+          'Three transformative journeys by Prashant J., rooted in yogic tradition and designed for modern practitioners';
+        break;
+      case routeEnum.bDtox:
+        this.rishikesHeroImage = s3Bucket.breathDtoxPreRec;
+        this.rishikeshMainHeading =
+          'Breath Detox Yoga - Online FREE pre-recorded course';
+        this.rishikeshSubHeading =
+          'Breathe Deep, Live Light — 7 Days to Purify Your Energy and Mind';
+        break;
+      case routeEnum.pranOnlinePranaArambh:
+        this.rishikesHeroImage = s3Bucket.pranaArambhPreRec;
+        this.rishikeshMainHeading =
+          'Enhance your quality of life by improving your breath';
+        this.rishikeshSubHeading =
+          'An Exclusive Pre-recorded Pranayama Course by Prashant Jakhmola';
         break;
       default:
         break;
@@ -141,28 +164,30 @@ export class BannerComponent implements OnInit {
     }
   }
   ngAfterViewInit() {
-    if (
-      this.slug !== 'pranic-purification' &&
-      this.slug != 'breath-detox-yoga'
-    ) {
-      if (this.bannerSection) {
+    if (this.bannerSection) {
+      if (
+        this.slug !== 'pranic-purification' &&
+        this.slug != 'breath-detox-yoga'
+      ) {
+        if (this.bannerSection) {
+          this.renderer.setStyle(
+            this.bannerSection.nativeElement,
+            '--bg-image',
+            `url(${this.sliderImage})`
+          );
+        }
+      } else {
         this.renderer.setStyle(
           this.bannerSection.nativeElement,
-          '--bg-image',
+          'background-image',
           `url(${this.sliderImage})`
         );
+        this.renderer.setStyle(
+          this.bannerSection.nativeElement,
+          'height',
+          '650px'
+        );
       }
-    } else {
-      this.renderer.setStyle(
-        this.bannerSection.nativeElement,
-        'background-image',
-        `url(${this.sliderImage})`
-      );
-      this.renderer.setStyle(
-        this.bannerSection.nativeElement,
-        'height',
-        '650px'
-      );
     }
     if (this.slug == 'pranayama-course-online-pranarambha') {
       if (isPlatformBrowser(this.platformId)) {

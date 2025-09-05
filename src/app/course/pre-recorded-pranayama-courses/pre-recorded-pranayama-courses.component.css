@@ -1,51 +1,39 @@
-/* coming-soon.component.css */
-.coming-soon-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 40vh;
-  background-color: #f4f4f4;
+.krishnendu {
+  border: 1px solid black;
 }
-
-.coming-soon-content {
+.cooperate-section {
+  background: radial-gradient(
+    circle,
+    rgba(255, 245, 219, 0.94) 60%,
+    rgba(249, 117, 30, 0.21) 110%
+  );
+  background: -moz-radial-gradient(
+    circle,
+    rgba(255, 245, 219, 0.94) 60%,
+    rgba(249, 117, 30, 0.21) 110%
+  );
+  background: -webkit-radial-gradient(
+    circle,
+    rgba(255, 245, 219, 0.94) 60%,
+    rgba(249, 117, 30, 0.21) 110%
+  );
+}
+.swara-button {
+  margin-top: 0;
+  position: relative;
+  z-index: 1000;
+}
+.bottom-block {
+  background: -webkit-radial-gradient(
+    circle,
+    hsla(0, 0%, 100%, 1) 26%,
+    rgba(249, 117, 30, 0.568) 130%
+  );
+  padding-top: 92px;
+  padding-bottom: 92px;
   text-align: center;
-  padding: 20px;
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-h1 {
-  font-size: 3rem;
-  color: #ff6347;
-  margin-bottom: 20px;
-}
-
-p {
-  font-size: 1.2rem;
-  color: #333;
-  margin-bottom: 20px;
-}
-
-.email-input {
-  padding: 10px;
-  width: 250px;
-  font-size: 1rem;
-  margin-right: 10px;
-  border: 2px solid #ccc;
-  border-radius: 5px;
-}
-
-.subscribe-btn {
-  padding: 10px 20px;
-  font-size: 1rem;
-  background-color: #ff6347;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.subscribe-btn:hover {
-  background-color: #e5533b;
+  p {
+    font-style: italic;
+    font-weight: 700;
+  }
 }

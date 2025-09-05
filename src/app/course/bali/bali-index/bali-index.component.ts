@@ -23,7 +23,7 @@ import { TestimonialsComponent } from '../../../includes/home/testimonials/testi
 import { GalleryComponent } from '../../../includes/home/gallery/gallery.component';
 import { VideoTestimonialsComponent } from '../video-testimonials/video-testimonials.component';
 import { AchievementsComponent } from '../../../includes/home/achievements/achievements.component';
-import { FaqComponent } from '../../../includes/home/faq/faq.component';
+import { faq, FaqComponent } from '../../../includes/home/faq/faq.component';
 import { BenifitsComponent } from '../../../includes/home/benifits/benifits.component';
 import { BannerComponent } from '../../banner/banner.component';
 import { WebapiService } from '../../../webapi.service';
@@ -37,6 +37,7 @@ import { BottomNavCourseComponent } from '../../../includes/home/bottom-nav-cour
 import { ReviewListComponentComponent } from '../../../text-review-list/review-list-component/review-list-component.component';
 import { VideoReviewsComponent } from '../../video-reviews/video-reviews.component';
 import { feesStructureModel } from '../../../models/rishikesh';
+import { routeEnum } from '../../../enum/routes';
 @Component({
   selector: 'app-bali-index',
   standalone: true,
@@ -71,8 +72,7 @@ import { feesStructureModel } from '../../../models/rishikesh';
 })
 export class BaliIndexComponent implements OnInit {
   slug: any = '';
-  faqData: any;
-  ispranayamaCourseOnlinePranarambha = false;
+  faqData: faq[] = [];
   upEventData: any;
   youtubeVideoData: feesStructureModel = new feesStructureModel();
   accomData: any;
@@ -85,6 +85,7 @@ export class BaliIndexComponent implements OnInit {
   @ViewChild(BannerComponent) appBannerComponent!: BannerComponent;
   isBannerVisible = true;
   isYoutubeDataReady: boolean = false;
+  routeEnum = routeEnum;
   constructor(
     private webapiService: WebapiService,
     private activatedRoute: ActivatedRoute,
@@ -97,9 +98,6 @@ export class BaliIndexComponent implements OnInit {
     @Inject(PLATFORM_ID) private platformId: Object
   ) {
     this.slug = this.activatedRoute.snapshot.routeConfig?.path;
-    if (this.slug == 'pranayama-course-online-pranarambha') {
-      this.ispranayamaCourseOnlinePranarambha = true;
-    }
     if (this.slug) {
       this.getCourseBySlug(this.slug);
     }

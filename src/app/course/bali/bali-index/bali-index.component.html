@@ -1,3 +1,37 @@
+@if(slug==routeEnum.bDtox){
+<app-banner></app-banner>
+<app-about-bali></app-about-bali>
+<app-benifits></app-benifits>
+<app-faq [data]="faqData"></app-faq>
+}@else if(slug==routeEnum.pranOnlinePranaArambh){
+<app-banner></app-banner>
+<a
+  id="pranayamaBuyNow"
+  *ngIf="slug == 'pranayama-course-online-pranarambha' && !isBannerVisible"
+  href="javascript:void(0);"
+  (click)="scrollToBanner()"
+  class="floating-btn"
+  ><br />&nbsp;ENQUIRY <br />&nbsp;&nbsp; NOW</a
+>
+<app-about-bali></app-about-bali>
+<app-curriculum [data]="currData"></app-curriculum>
+<app-learning></app-learning>
+<app-includes [data]="feesData"></app-includes>
+<app-fee-structure [data]="feesData"></app-fee-structure>
+<app-choose-us [data]="codecond"></app-choose-us>
+<app-services></app-services>
+<app-code-conduct [data]="codecond"></app-code-conduct>
+<app-yoga-alliance [data]="codecond"></app-yoga-alliance>
+<app-schedule [data]="schEventData"></app-schedule>
+<app-video-reviews
+  *ngIf="slug == 'pranayama-course-online-pranarambha'"
+  [specialvideo]="true"
+></app-video-reviews>
+<app-review-list-component
+  *ngIf="slug == 'pranayama-course-online-pranarambha'"
+></app-review-list-component>
+<app-faq [data]="faqData"></app-faq>
+}@else{
 <app-banner #banner [data]="bannerData"></app-banner>
 <a
   id="pranayamaBuyNow"
@@ -23,25 +57,13 @@
 <app-watch-video
   [data]="youtubeVideoData"
   [slug]="slug"
-  *ngIf="!ispranayamaCourseOnlinePranarambha && isYoutubeDataReady"
+  *ngIf="isYoutubeDataReady"
 ></app-watch-video>
-<app-testimonials
-  *ngIf="slug != 'pranayama-course-online-pranarambha'"
-></app-testimonials>
-<app-video-reviews
-  *ngIf="slug == 'pranayama-course-online-pranarambha'"
-  [specialvideo]="true"
-></app-video-reviews>
-<app-review-list-component
-  *ngIf="slug == 'pranayama-course-online-pranarambha'"
-></app-review-list-component>
-<app-gallery
-  *ngIf="slug != 'pranayama-course-online-pranarambha'"
-></app-gallery>
+<app-testimonials></app-testimonials>
+<app-gallery></app-gallery>
 <app-video-testimonials
   *ngIf="
     slug != 'yoga-retreat-in-mysore-india' &&
-    slug != 'pranayama-course-online-pranarambha' &&
     slug != 'foundation-of-spirituality-an-online-spiritual-awakening-course' &&
     slug != 'yoga-history-and-philosophy' &&
     slug != 'yoga-retreat-in-peru'
@@ -50,10 +72,10 @@
 <app-achievements
   *ngIf="
     slug != 'yoga-retreat-in-mysore-india' &&
-    slug != 'pranayama-course-online-pranarambha' &&
     slug != 'foundation-of-spirituality-an-online-spiritual-awakening-course' &&
     slug != 'yoga-history-and-philosophy' &&
     slug != 'yoga-retreat-in-peru'
   "
 ></app-achievements>
 <app-faq [data]="faqData"></app-faq>
+}

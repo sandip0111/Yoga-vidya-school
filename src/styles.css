@@ -105,7 +105,7 @@ body {
   margin-top: 25px;
   /* min-height: 50px; */
 }
-.button.my_btn{
+.button.my_btn {
   min-height: 50px;
 }
 .button:hover {
@@ -499,17 +499,17 @@ iframe {
 }
 /* Set height for the modal content */
 .course-modal-class .modal-body {
-    height: 560px;
-    background-color: #186572;
-  }
+  height: 560px;
+  background-color: #186572;
+}
 
-  .webinar-registration-modal-class .modal-body {
-    height: 520px;
-    background-color: white;
-  }
-  .webinar-registration-modal-class .modal-content{
-    border: 5px solid rgba(249, 117, 30, 1);
-  }
+.webinar-registration-modal-class .modal-body {
+  height: 520px;
+  background-color: white;
+}
+.webinar-registration-modal-class .modal-content {
+  border: 5px solid rgba(249, 117, 30, 1);
+}
 
 /* Fullscreen modal for mobile screens */
 @media only screen and (max-width: 768px) {
@@ -521,7 +521,6 @@ iframe {
   .webinar-registration-modal-class .modal-body {
     height: 350px;
   }
-
 }
 .middle-text {
   text-align: center;
@@ -530,4 +529,32 @@ h4 {
   span {
     color: #f47019;
   }
+}
+.section-traning-path {
+  background: #f5f5f5;
+}
+.mainContent {
+  padding: 0 50px;
+}
+.contentrishi {
+  padding-left: 5rem;
+}
+.imgRishi100 {
+  padding: 50px;
+  border-radius: 80px;
+}
+@media only screen and (max-width: 767px) {
+  .cl-reverse {
+    flex-direction: column-reverse;
+  }
+  .contentrishi {
+    padding: 20px 0 !important;
+  }
+  .imgRishi100 {
+    padding: 10px 0 !important;
+    border-radius: 10px !important;
+  }
+}
+.project-color {
+  color: #f5711a;
 }
