@@ -6,6 +6,7 @@ import { Title } from '@angular/platform-browser';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { PixelTrackingService } from '../services/pixel-tracking.service';
 import {
   NgxIntlTelInputComponent,
   NgxIntlTelInputModule,
@@ -71,7 +72,8 @@ export class CheckoutComponent {
     private spinner: NgxSpinnerService,
     @Inject(DOCUMENT) private _document: Document,
     private _renderer2: Renderer2,
-    private actRoute: ActivatedRoute
+    private actRoute: ActivatedRoute,
+    private pixelTracking: PixelTrackingService
   ) {
     this._activatedRoute.params.subscribe((params) => {
       this.slug = params['id'];
@@ -94,6 +96,9 @@ export class CheckoutComponent {
       ];
     }
     this.scrollToTop();
+    
+    // Track checkout page view
+    this.trackCheckoutPageView();
     setTimeout(() => {
       this.invokeStripe();
       this.loadRazorpayScript();
@@ -775,6 +780,13 @@ export class CheckoutComponent {
   }
   initializePayment(id: string, email: string) {
     this.spinner.show();
+    
+    // Track payment initiation
+    const courseName = this.getCourseName(this.slug);
+    const courseValue = this.getCourseValue(this.slug);
+    this.pixelTracking.trackInitiateCheckout(this.slug, courseName, courseValue, 'USD');
+    this.pixelTracking.trackAddPaymentInfo(this.slug, courseName, courseValue, 'USD');
+    
     let val = {
       paymentBy: 'Stripe',
       priceId: id,
@@ -1222,5 +1234,34 @@ export class CheckoutComponent {
       default:
         break;
     }
+  }
+
+  // Pixel tracking methods
+  private trackCheckoutPageView() {
+    const courseName = this.getCourseName(this.slug);
+    this.pixelTracking.trackPageView(`checkout-${this.slug}`, `Checkout - ${courseName}`);
+    this.pixelTracking.trackViewContent('checkout_page', this.slug);
+  }
+
+  private getCourseName(slug: string): string {
+    const courseNames: { [key: string]: string } = {
+      [routeEnum.rishikesh100]: '100-Hour Yoga Teacher Training',
+      [routeEnum.rishkesh200]: '200-Hour Yoga Teacher Training',
+      [routeEnum.rishikesh300]: '300-Hour Yoga Teacher Training',
+      [routeEnum.bali200]: '200-Hour Yoga Teacher Training Bali',
+      [routeEnum.bali300]: '300-Hour Yoga Teacher Training Bali'
+    };
+    return courseNames[slug] || 'Yoga Teacher Training';
+  }
+
+  private getCourseValue(slug: string): number {
+    const courseValues: { [key: string]: number } = {
+      [routeEnum.rishikesh100]: 800,
+      [routeEnum.rishkesh200]: 1200,
+      [routeEnum.rishikesh300]: 1500,
+      [routeEnum.bali200]: 1400,
+      [routeEnum.bali300]: 1800
+    };
+    return courseValues[slug] || 1000;
   }
 }

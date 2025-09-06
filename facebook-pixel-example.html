@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facebook Pixel Setup Example</title>
+    
+    <!-- Facebook Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    
+    // Replace YOUR_PIXEL_ID with your actual Facebook Pixel ID
+    fbq('init', 'YOUR_PIXEL_ID');
+    fbq('track', 'PageView');
+    </script>
+    
+    <!-- Fallback for users with JavaScript disabled -->
+    <noscript>
+        <img height="1" width="1" style="display:none"
+        src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1"
+        />
+    </noscript>
+    <!-- End Facebook Pixel Code -->
+</head>
+<body>
+    <h1>Your Yoga Vidya School Website</h1>
+    <p>Facebook Pixel is now installed and tracking events!</p>
+    
+    <!-- Example of manual event tracking -->
+    <button onclick="fbq('track', 'ViewContent', {content_type: 'yoga_course', content_name: '200-Hour TTC'});">
+        Track Course View
+    </button>
+</body>
+</html>

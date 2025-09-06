@@ -5,6 +5,7 @@ import { WebapiService } from '../webapi.service';
 import { Router, ActivatedRoute, RouteReuseStrategy } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { FormsModule } from '@angular/forms';
+import { PixelTrackingService } from '../services/pixel-tracking.service';
 import { paymentkey } from '../enum/payment';
 
 @Component({
@@ -28,7 +29,8 @@ export class BookNowComponent {
     private spinner: NgxSpinnerService,
     private routeReuseStrategy: RouteReuseStrategy,
     @Inject(DOCUMENT) private _document: Document,
-    private _renderer2: Renderer2
+    private _renderer2: Renderer2,
+    private pixelTracking: PixelTrackingService
   ) {}
 
   ngOnInit(): void {
@@ -39,6 +41,10 @@ export class BookNowComponent {
       const link = this._document.querySelector('link[rel="canonical"]');
       this._renderer2.setAttribute(link, 'href', canonicalUrl);
     }, 1000);
+    
+    // Track page view
+    this.pixelTracking.trackPageView('book-now', 'Book Now - Yoga Teacher Training');
+    this.pixelTracking.trackViewContent('booking_page', 'book-now');
   }
 
   invokeStripe() {
@@ -60,6 +66,10 @@ export class BookNowComponent {
 
   checkoutData(data: any) {
     if (data.name && data.email && data.price && data.currency) {
+      // Track payment initiation
+      this.pixelTracking.trackInitiateCheckout('general_course', 'Yoga Teacher Training', data.price, data.currency);
+      this.pixelTracking.trackAddPaymentInfo('general_course', 'Yoga Teacher Training', data.price, data.currency);
+      
       // if (this.paymentHandler && this.paymentHandler.redirectToCheckout) {
       this.spinner.show();
       this.webapiService.stripeWithoutProduct(data).subscribe((res: any) => {

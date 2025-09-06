@@ -9,6 +9,7 @@ import {
   razorPaymentResultModel,
   razorPayReturnModel,
 } from '../models/checkout';
+import { PixelTrackingService } from '../services/pixel-tracking.service';
 
 @Component({
   selector: 'app-success-payment',
@@ -40,13 +41,15 @@ export class SuccessPaymentComponent {
     private webapiService: WebapiService,
     private router: Router,
     private spinner: NgxSpinnerService,
-    private title: Title
+    private title: Title,
+    private pixelTracking: PixelTrackingService
   ) {}
 
   ngOnInit(): void {
     setTimeout(() => {
       this.title.setTitle('Confirmation');
     }, 1000);
+    
     this.spinner.show();
     this.sessionId = sessionStorage.getItem('session');
     this.onlinesessionId = sessionStorage.getItem('onlinesession');
@@ -73,6 +76,12 @@ export class SuccessPaymentComponent {
     this.rishikesh200StripeSessionId =
       localStorage.getItem(localstorageKey.rishikesh20StripeSessionId) ?? '';
     this.couponCodeId = localStorage.getItem(localstorageKey.couponCode);
+    
+    // Track purchase completion after a short delay to ensure data is loaded
+    setTimeout(() => {
+      this.trackPurchaseCompletion();
+    }, 2000);
+    
     if (this.sessionId) {
       setTimeout(() => {
         this.getpaymentResult(this.sessionId, this.couponCodeId ?? '');
@@ -504,5 +513,37 @@ export class SuccessPaymentComponent {
       password += charset.charAt(randomIndex);
     }
     return password;
+  }
+
+  // Pixel tracking methods
+  private trackPurchaseCompletion() {
+    // Track page view
+    this.pixelTracking.trackPageView('payment-success', 'Payment Confirmation');
+    
+    // Try to get course information from session storage
+    const courseId = sessionStorage.getItem('tempCourse') || 'general_course';
+    const courseName = this.getCourseNameFromId(courseId);
+    const amount = this.amount || 1000; // Default amount if not available
+    const currency = this.cur || 'USD';
+    
+    // Generate a transaction ID
+    const transactionId = this.sessionId || this.onlinesessionId || `txn_${Date.now()}`;
+    
+    // Track purchase event
+    this.pixelTracking.trackPurchase(transactionId, courseId, courseName, amount, currency);
+  }
+
+  private getCourseNameFromId(courseId: string): string {
+    const courseNames: { [key: string]: string } = {
+      '100-hours-yoga-teacher-training-in-rishikesh': '100-Hour Yoga Teacher Training',
+      '200-hours-yoga-teacher-training-in-rishikesh': '200-Hour Yoga Teacher Training',
+      '300-hours-yoga-teacher-training-in-rishikesh': '300-Hour Yoga Teacher Training',
+      '200-hour-yoga-teacher-training-in-bali': '200-Hour Yoga Teacher Training Bali',
+      '300-hour-yoga-teacher-training-in-bali': '300-Hour Yoga Teacher Training Bali',
+      'pranic-purification': 'Pranic Purification Course',
+      'breath-detox-yoga': 'Breath Detox Yoga',
+      'pranayama-course-online-pranarambha': 'Pranayama Course Online'
+    };
+    return courseNames[courseId] || 'Yoga Teacher Training';
   }
 }

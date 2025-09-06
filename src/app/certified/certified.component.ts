@@ -15,6 +15,7 @@ import { WhyBaliComponent } from './why-bali/why-bali.component';
 import { IncludesBaliComponent } from './includes-bali/includes-bali.component';
 import { routeEnum } from '../enum/routes';
 import { BonusComponent } from './bonus/bonus.component';
+import { PixelTrackingService } from '../services/pixel-tracking.service';
 
 @Component({
   selector: 'app-certified',
@@ -45,7 +46,8 @@ export class CertifiedComponent {
   slug: string = '';
   constructor(
     private spinner: NgxSpinnerService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private pixelTracking: PixelTrackingService
   ) {
     this.spinner.show();
     this.slug = this.activatedRoute.snapshot.routeConfig?.path ?? '';
@@ -56,6 +58,15 @@ export class CertifiedComponent {
     this.setBannerTitle();
     this.setAboutContent();
     this.spinner.hide();
+    
+    // Track page view
+    this.trackPageView();
+    
+    // Track scroll depth
+    this.trackScrollDepth();
+    
+    // Track time on page
+    this.trackTimeOnPage();
   }
 
   private setImageSlug() {
@@ -86,5 +97,50 @@ export class CertifiedComponent {
         'Join us at Yoga Vidya School for a transformational journey rooted in traditional practice, deep wisdom, and immersive experience.'
       );
     }
+  }
+
+  // Pixel tracking methods
+  private trackPageView() { 
+    const pageName = this.slug === 'get-certified-in-rishikesh' ? 'certified-rishikesh' : 'certified-bali';
+    this.pixelTracking.trackPageView(pageName, this.bannerTitle);
+    this.pixelTracking.trackViewContent('certified_page', this.slug);
+  }
+
+  private trackScrollDepth() {
+    let maxScroll = 0;
+    const scrollThresholds = [25, 50, 75, 100];
+    const trackedThresholds = new Set<number>();
+
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = Math.round((scrollTop / scrollHeight) * 100);
+
+      if (scrollPercent > maxScroll) {
+        maxScroll = scrollPercent;
+        
+        scrollThresholds.forEach(threshold => {
+          if (scrollPercent >= threshold && !trackedThresholds.has(threshold)) {
+            trackedThresholds.add(threshold);
+            this.pixelTracking.trackScroll(threshold);
+          }
+        });
+      }
+    });
+  }
+
+  private trackTimeOnPage() {
+    const startTime = Date.now();
+    const timeThresholds = [30, 60, 120, 300]; // 30s, 1min, 2min, 5min
+    const trackedTimes = new Set<number>();
+
+    timeThresholds.forEach(threshold => {
+      setTimeout(() => {
+        if (!trackedTimes.has(threshold)) {
+          trackedTimes.add(threshold);
+          this.pixelTracking.trackTimeOnPage(threshold);
+        }
+      }, threshold * 1000);
+    });
   }
 }
