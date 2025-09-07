@@ -49,7 +49,7 @@ export class SuccessPaymentComponent {
     setTimeout(() => {
       this.title.setTitle('Confirmation');
     }, 1000);
-    
+
     this.spinner.show();
     this.sessionId = sessionStorage.getItem('session');
     this.onlinesessionId = sessionStorage.getItem('onlinesession');
@@ -76,12 +76,12 @@ export class SuccessPaymentComponent {
     this.rishikesh200StripeSessionId =
       localStorage.getItem(localstorageKey.rishikesh20StripeSessionId) ?? '';
     this.couponCodeId = localStorage.getItem(localstorageKey.couponCode);
-    
+
     // Track purchase completion after a short delay to ensure data is loaded
     setTimeout(() => {
       this.trackPurchaseCompletion();
     }, 2000);
-    
+
     if (this.sessionId) {
       setTimeout(() => {
         this.getpaymentResult(this.sessionId, this.couponCodeId ?? '');
@@ -514,21 +514,16 @@ export class SuccessPaymentComponent {
     }
     return password;
   }
-
-  // Pixel tracking methods
   private trackPurchaseCompletion() {
-    // Track page view
     this.pixelTracking.trackPageView('payment-success', 'Payment Confirmation');
-    
-    // Try to get course information from session storage
     const courseId = sessionStorage.getItem('tempCourse') || 'general_course';
     const courseName = this.getCourseNameFromId(courseId);
     const amount = this.amount || 1000; // Default amount if not available
     const currency = this.cur || 'USD';
-    
+
     // Generate a transaction ID
     const transactionId = this.sessionId || this.onlinesessionId || `txn_${Date.now()}`;
-    
+
     // Track purchase event
     this.pixelTracking.trackPurchase(transactionId, courseId, courseName, amount, currency);
   }

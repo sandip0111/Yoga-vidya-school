@@ -58,14 +58,8 @@ export class CertifiedComponent {
     this.setBannerTitle();
     this.setAboutContent();
     this.spinner.hide();
-    
-    // Track page view
     this.trackPageView();
-    
-    // Track scroll depth
     this.trackScrollDepth();
-    
-    // Track time on page
     this.trackTimeOnPage();
   }
 
@@ -100,7 +94,7 @@ export class CertifiedComponent {
   }
 
   // Pixel tracking methods
-  private trackPageView() { 
+  private trackPageView() {
     const pageName = this.slug === 'get-certified-in-rishikesh' ? 'certified-rishikesh' : 'certified-bali';
     this.pixelTracking.trackPageView(pageName, this.bannerTitle);
     this.pixelTracking.trackViewContent('certified_page', this.slug);
@@ -118,7 +112,7 @@ export class CertifiedComponent {
 
       if (scrollPercent > maxScroll) {
         maxScroll = scrollPercent;
-        
+
         scrollThresholds.forEach(threshold => {
           if (scrollPercent >= threshold && !trackedThresholds.has(threshold)) {
             trackedThresholds.add(threshold);

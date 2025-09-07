@@ -195,7 +195,6 @@ export class BannerComponent implements OnInit {
           'backgroundVideo'
         ) as HTMLVideoElement;
         this.videoElement.muted = true;
-        // Ensure video plays automatically on reload (with muted state)
         if (this.videoElement) {
           this.videoElement
             .play()
@@ -225,8 +224,6 @@ export class BannerComponent implements OnInit {
     if (this.videoElement) {
       this.isMuted = !this.isMuted;
       this.videoElement.muted = this.isMuted;
-
-      // If unmuted, ensure the video starts playing with sound
       if (!this.isMuted) {
         this.videoElement.play().catch((err) => {
           console.error('Error playing video after unmute', err);
@@ -238,20 +235,12 @@ export class BannerComponent implements OnInit {
   saveInquiry(data: any) {
     if (data.name && data.to) {
       this.spinner.show();
-      // if (this.slug == "online-yoga-classes") {
-      //   if (data.courseDate) {
-      //     data.startDate = data.courseDate
-      //     // data.startDate = "10.30 AM – 11.30 AM"
-      //   }
-      // }
-      // else {
       if (data.courseDate) {
         let arr = data.courseDate.split('~');
         data.startDate = arr[0];
       } else {
         data.startDate = '-';
       }
-      // }
       data.courseName = this.courseName;
       data.type = 1;
       this.webapiService.saveInquiry(data).subscribe((res: any) => {

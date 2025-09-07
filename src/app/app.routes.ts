@@ -95,9 +95,9 @@ export const routes: Routes = [
   // {path:'21-days-ashtanga-yoga-immersion', component: RishikeshIndexComponent},
   // {path:'yoga-for-weight-loss', component: RishikeshIndexComponent},
   { path: 'online-yoga-classes', component: CourseComponent },
-  { path: 'breath-detox-yoga', component: BaliIndexComponent },
+  { path: routeEnum.bDtox, component: BaliIndexComponent },
   {
-    path: 'pranayama-course-online-pranarambha',
+    path: routeEnum.pranOnlinePranaArambh,
     component: BaliIndexComponent,
   },
   {

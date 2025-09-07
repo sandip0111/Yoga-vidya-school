@@ -96,7 +96,7 @@ export class CheckoutComponent {
       ];
     }
     this.scrollToTop();
-    
+
     // Track checkout page view
     this.trackCheckoutPageView();
     setTimeout(() => {
@@ -780,13 +780,13 @@ export class CheckoutComponent {
   }
   initializePayment(id: string, email: string) {
     this.spinner.show();
-    
+
     // Track payment initiation
     const courseName = this.getCourseName(this.slug);
     const courseValue = this.getCourseValue(this.slug);
     this.pixelTracking.trackInitiateCheckout(this.slug, courseName, courseValue, 'USD');
     this.pixelTracking.trackAddPaymentInfo(this.slug, courseName, courseValue, 'USD');
-    
+
     let val = {
       paymentBy: 'Stripe',
       priceId: id,

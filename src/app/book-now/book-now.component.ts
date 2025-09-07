@@ -41,8 +41,6 @@ export class BookNowComponent {
       const link = this._document.querySelector('link[rel="canonical"]');
       this._renderer2.setAttribute(link, 'href', canonicalUrl);
     }, 1000);
-    
-    // Track page view
     this.pixelTracking.trackPageView('book-now', 'Book Now - Yoga Teacher Training');
     this.pixelTracking.trackViewContent('booking_page', 'book-now');
   }
@@ -69,7 +67,7 @@ export class BookNowComponent {
       // Track payment initiation
       this.pixelTracking.trackInitiateCheckout('general_course', 'Yoga Teacher Training', data.price, data.currency);
       this.pixelTracking.trackAddPaymentInfo('general_course', 'Yoga Teacher Training', data.price, data.currency);
-      
+
       // if (this.paymentHandler && this.paymentHandler.redirectToCheckout) {
       this.spinner.show();
       this.webapiService.stripeWithoutProduct(data).subscribe((res: any) => {

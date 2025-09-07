@@ -38,6 +38,7 @@ import { ReviewListComponentComponent } from '../../../text-review-list/review-l
 import { VideoReviewsComponent } from '../../video-reviews/video-reviews.component';
 import { feesStructureModel } from '../../../models/rishikesh';
 import { routeEnum } from '../../../enum/routes';
+import { PixelTrackingService } from '../../../services/pixel-tracking.service';
 @Component({
   selector: 'app-bali-index',
   standalone: true,
@@ -71,7 +72,7 @@ import { routeEnum } from '../../../enum/routes';
   styleUrls: ['./bali-index.component.css'],
 })
 export class BaliIndexComponent implements OnInit {
-  slug: any = '';
+  slug: string = '';
   faqData: faq[] = [];
   upEventData: any;
   youtubeVideoData: feesStructureModel = new feesStructureModel();
@@ -95,16 +96,17 @@ export class BaliIndexComponent implements OnInit {
     @Inject(DOCUMENT) private _document: Document,
     private title: Title,
     private meta: Meta,
+    private pixelTracking: PixelTrackingService,
     @Inject(PLATFORM_ID) private platformId: Object
   ) {
-    this.slug = this.activatedRoute.snapshot.routeConfig?.path;
+    this.slug = this.activatedRoute.snapshot.routeConfig?.path ?? '';
     if (this.slug) {
       this.getCourseBySlug(this.slug);
     }
   }
-
   ngOnInit() {
     this.spinner.show();
+    this.ogMetaTag(this.slug);
     if (this.slug == '200-hour-yoga-teacher-training-in-bali') {
       let script = this._renderer2.createElement('script');
       script.type = `application/ld+json`;
@@ -146,47 +148,37 @@ export class BaliIndexComponent implements OnInit {
       }`;
       this._renderer2.appendChild(this._document.head, script);
     }
-
     const canonicalUrl = 'https://www.yogavidyaschool.com' + this.router.url;
     const link = this._document.querySelector('link[rel="canonical"]');
     if (link) {
       this._renderer2.setAttribute(link, 'href', canonicalUrl);
     }
   }
-
   ngAfterViewInit() {
-    // Dynamically button hide and show when banneris not visible in viewport
     this.observeBannerVisibility();
   }
-
   scrollToBanner() {
     if (this.banner?.nativeElement) {
-      // Scroll to the banner
       this.banner.nativeElement.scrollIntoView({
         behavior: 'smooth',
         block: 'start',
       });
-
-      // Wait for scrolling to complete, then call highlight function in the child component
       setTimeout(() => {
         this.appBannerComponent.highlightRegisterForm();
       }, 500);
     }
   }
-
   private observeBannerVisibility() {
     if (!isPlatformBrowser(this.platformId) || !this.banner) return;
-
     const observer = new IntersectionObserver(
       ([entry]) => {
         this.isBannerVisible = entry.isIntersecting;
       },
-      { threshold: 0.1 } // Adjust threshold as needed
+      { threshold: 0.1 }
     );
 
     observer.observe(this.banner.nativeElement);
   }
-
   getCourseBySlug(slug: any) {
     let data = {
       slug: slug,
@@ -237,16 +229,6 @@ export class BaliIndexComponent implements OnInit {
         this.codecond = {
           title: res.data[0].coursetitle,
         };
-
-        // this.courseList = res.data[0];
-        // this.courseName = res.data[0].coursetitle;
-        // const currentDate = new Date();
-        // this.upcomingDates = res.data[0]?.upcomingEventInfo.filter((item: any) => {
-        //   const itemDate = new Date(item.startDate);
-        //   return itemDate >= currentDate;
-        // });
-        // let url = `https://www.youtube.com/embed/${res.data[0].courseintrovideoId}`
-        // this.safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url);
         this.title.setTitle(res.data[0].metaTitle);
         this.meta.updateTag({
           name: 'keywords',
@@ -256,11 +238,30 @@ export class BaliIndexComponent implements OnInit {
           name: 'description',
           content: res.data[0].metaDescription,
         });
-        // this.checkForCourse(this.userId, res.data[0]._id);
       } else {
         this.router.navigate(['/']);
         this.spinner.hide();
       }
     });
+  }
+  ogMetaTag(slug: string) {
+    switch (slug) {
+      case routeEnum.bDtox:
+        this.pixelTracking.trackCourseSelection(
+          '',
+          'Breath Dtox',
+          'Breath Detox Yoga - Online FREE pre-recorded course'
+        );
+        break;
+      case routeEnum.pranOnlinePranaArambh:
+        this.pixelTracking.trackCourseSelection(
+          '',
+          'Prana rambha',
+          'Enhance your quality of life by improving your breath'
+        );
+        break;
+      default:
+        break;
+    }
   }
 }
