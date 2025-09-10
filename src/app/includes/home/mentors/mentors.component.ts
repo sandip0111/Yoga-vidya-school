@@ -3,14 +3,13 @@ import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { WebapiService } from '../../../webapi.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { StartClassComponent } from '../../../course/bali/start-class/start-class.component';
 import { routeEnum } from '../../../enum/routes';
 import { PixelTrackingService } from '../../../services/pixel-tracking.service';
 
 @Component({
   selector: 'app-mentors',
   standalone: true,
-  imports: [CommonModule, StartClassComponent],
+  imports: [CommonModule],
   templateUrl: './mentors.component.html',
   styleUrls: ['./mentors.component.css'],
 })
