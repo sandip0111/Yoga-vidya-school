@@ -59,10 +59,9 @@ export class PixelTrackingService {
   }
 
   // Initiate Checkout Events
-  trackInitiateCheckout(courseId: string, courseName: string, value: number, currency: string = 'USD') {
+  trackInitiateCheckout(courseName: string, value: number, currency: string = 'USD') {
     if (typeof fbq !== 'undefined') {
       fbq('track', 'InitiateCheckout', {
-        content_ids: [courseId],
         content_name: courseName,
         content_type: 'yoga_course',
         value: value,
@@ -139,10 +138,9 @@ export class PixelTrackingService {
     }
   }
 
-  trackEnrollmentIntent(courseId: string, courseName: string, intentType: string) {
+  trackEnrollmentIntent(courseName: string, intentType: string) {
     if (typeof fbq !== 'undefined') {
       fbq('trackCustom', 'EnrollmentIntent', {
-        course_id: courseId,
         course_name: courseName,
         intent_type: intentType,
         page_location: window.location.href
@@ -181,10 +179,9 @@ export class PixelTrackingService {
   }
 
   // Payment Events
-  trackAddPaymentInfo(courseId: string, courseName: string, value: number, currency: string = 'USD') {
+  trackAddPaymentInfo(courseName: string, value: number, currency: string = 'USD') {
     if (typeof fbq !== 'undefined') {
       fbq('track', 'AddPaymentInfo', {
-        content_ids: [courseId],
         content_name: courseName,
         content_type: 'yoga_course',
         value: value,

@@ -4,14 +4,14 @@ import { CommonModule } from '@angular/common';
 import { DomSanitizer } from '@angular/platform-browser';
 import { WebapiService } from '../../../webapi.service';
 import { CartItem, CartService } from '../../../cart.service';
-import { WatchVideoComponent } from '../watch-video/watch-video.component';
 import { routeEnum } from '../../../enum/routes';
 import { s3Bucket, youtubeLink } from '../../../enum/s3Bucket';
+import { PixelTrackingService } from '../../../services/pixel-tracking.service';
 
 @Component({
   selector: 'app-about-bali',
   standalone: true,
-  imports: [CommonModule, WatchVideoComponent],
+  imports: [CommonModule],
   templateUrl: './about-bali.component.html',
   styleUrls: ['./about-bali.component.css'],
   encapsulation: ViewEncapsulation.None,
@@ -29,7 +29,8 @@ export class AboutBaliComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private router: Router,
     protected sanitizer: DomSanitizer,
-    private webapiService: WebapiService
+    private webapiService: WebapiService,
+    private _pixelTrackingService: PixelTrackingService
   ) {
     this.slug = this.activatedRoute.snapshot.routeConfig?.path;
     if (this.slug == '200-hour-yoga-teacher-training-in-bali') {
@@ -1043,9 +1044,14 @@ A watering hole for adventure freaks and solo travellers, Peru with its gorgeous
     });
   }
   goToPaymentPage() {
+    this._pixelTrackingService.trackEnrollmentIntent(
+      'Breath Dtox',
+      routeEnum.bDtox
+    );
     this.router.navigate([routeEnum.bDtox, routeEnum.stRegister]);
   }
   registerClick(slug: string) {
+    this._pixelTrackingService.trackEnrollmentIntent('Prana Arambh', slug);
     this.router.navigate(['checkout', slug]);
   }
 }

@@ -15,12 +15,12 @@ export class TrainningPathComponent {
   route = routeEnum;
   s3Bucket = s3Bucket;
   @Input() slug: string = '';
-  
+
   constructor(
     private router: Router,
     private pixelTracking: PixelTrackingService
   ) {}
-  
+
   goToLink(link: string) {
     // Track course selection
     this.trackCourseSelection(link);
@@ -29,25 +29,25 @@ export class TrainningPathComponent {
 
   private trackCourseSelection(link: string) {
     const courseMapping: { [key: string]: { name: string, type: string, value: number } } = {
-      [routeEnum.rishikesh100]: { 
-        name: '100-Hour Yoga Teacher Training', 
-        type: '100_hour_ttc', 
-        value: 800 
+      [routeEnum.rishikesh100]: {
+        name: '100-Hour Yoga Teacher Training',
+        type: '100_hour_ttc',
+        value: 800
       },
-      [routeEnum.rishkesh200]: { 
-        name: '200-Hour Yoga Teacher Training', 
-        type: '200_hour_ttc', 
-        value: 1200 
+      [routeEnum.rishkesh200]: {
+        name: '200-Hour Yoga Teacher Training',
+        type: '200_hour_ttc',
+        value: 1200
       },
-      [routeEnum.rishikesh300]: { 
-        name: '300-Hour Yoga Teacher Training', 
-        type: '300_hour_ttc', 
-        value: 1500 
+      [routeEnum.rishikesh300]: {
+        name: '300-Hour Yoga Teacher Training',
+        type: '300_hour_ttc',
+        value: 1500
       },
-      [routeEnum.bali200]: { 
-        name: '200-Hour Yoga Teacher Training Bali', 
-        type: '200_hour_ttc_bali', 
-        value: 1400 
+      [routeEnum.bali200]: {
+        name: '200-Hour Yoga Teacher Training Bali',
+        type: '200_hour_ttc_bali',
+        value: 1400
       }
     };
 
@@ -55,7 +55,7 @@ export class TrainningPathComponent {
     if (courseInfo) {
       this.pixelTracking.trackCourseSelection(link, courseInfo.name, courseInfo.type);
       this.pixelTracking.trackAddToCart(link, courseInfo.name, courseInfo.value);
-      this.pixelTracking.trackEnrollmentIntent(link, courseInfo.name, 'course_details_click');
+      this.pixelTracking.trackEnrollmentIntent(courseInfo.name, 'course_details_click');
     }
   }
 }

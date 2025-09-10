@@ -90,7 +90,7 @@ export class CheckoutComponent {
         { name: 'Private Room', value: 2 },
       ];
     } else if (this.slug == routeEnum.rishikesh300) {
-       this.roomList = [
+      this.roomList = [
         { name: 'Shared Room', value: 1 },
         { name: 'Private Room', value: 2 },
       ];
@@ -549,6 +549,16 @@ export class CheckoutComponent {
   currencyRequired: string = '';
   checkoutData(data: checkoutModel, isRazorPay: boolean) {
     this.spinner.show();
+    this.pixelTracking.trackInitiateCheckout(
+      this.slug,
+      this.amount,
+      data.currency
+    );
+    this.pixelTracking.trackAddPaymentInfo(
+      this.slug,
+      this.amount,
+      data.currency
+    );
     if (this.slug !== routeEnum.pranicPurification) {
       let isErrMsg: boolean = false;
       if (!data.email) {
@@ -780,13 +790,6 @@ export class CheckoutComponent {
   }
   initializePayment(id: string, email: string) {
     this.spinner.show();
-
-    // Track payment initiation
-    const courseName = this.getCourseName(this.slug);
-    const courseValue = this.getCourseValue(this.slug);
-    this.pixelTracking.trackInitiateCheckout(this.slug, courseName, courseValue, 'USD');
-    this.pixelTracking.trackAddPaymentInfo(this.slug, courseName, courseValue, 'USD');
-
     let val = {
       paymentBy: 'Stripe',
       priceId: id,
@@ -1239,7 +1242,10 @@ export class CheckoutComponent {
   // Pixel tracking methods
   private trackCheckoutPageView() {
     const courseName = this.getCourseName(this.slug);
-    this.pixelTracking.trackPageView(`checkout-${this.slug}`, `Checkout - ${courseName}`);
+    this.pixelTracking.trackPageView(
+      `checkout-${this.slug}`,
+      `Checkout - ${courseName}`
+    );
     this.pixelTracking.trackViewContent('checkout_page', this.slug);
   }
 
@@ -1249,7 +1255,7 @@ export class CheckoutComponent {
       [routeEnum.rishkesh200]: '200-Hour Yoga Teacher Training',
       [routeEnum.rishikesh300]: '300-Hour Yoga Teacher Training',
       [routeEnum.bali200]: '200-Hour Yoga Teacher Training Bali',
-      [routeEnum.bali300]: '300-Hour Yoga Teacher Training Bali'
+      [routeEnum.bali300]: '300-Hour Yoga Teacher Training Bali',
     };
     return courseNames[slug] || 'Yoga Teacher Training';
   }
@@ -1260,7 +1266,7 @@ export class CheckoutComponent {
       [routeEnum.rishkesh200]: 1200,
       [routeEnum.rishikesh300]: 1500,
       [routeEnum.bali200]: 1400,
-      [routeEnum.bali300]: 1800
+      [routeEnum.bali300]: 1800,
     };
     return courseValues[slug] || 1000;
   }

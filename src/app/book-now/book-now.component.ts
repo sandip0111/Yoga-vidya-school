@@ -41,7 +41,10 @@ export class BookNowComponent {
       const link = this._document.querySelector('link[rel="canonical"]');
       this._renderer2.setAttribute(link, 'href', canonicalUrl);
     }, 1000);
-    this.pixelTracking.trackPageView('book-now', 'Book Now - Yoga Teacher Training');
+    this.pixelTracking.trackPageView(
+      'book-now',
+      'Book Now - Yoga Teacher Training'
+    );
     this.pixelTracking.trackViewContent('booking_page', 'book-now');
   }
 
@@ -64,32 +67,28 @@ export class BookNowComponent {
 
   checkoutData(data: any) {
     if (data.name && data.email && data.price && data.currency) {
-      // Track payment initiation
-      this.pixelTracking.trackInitiateCheckout('general_course', 'Yoga Teacher Training', data.price, data.currency);
-      this.pixelTracking.trackAddPaymentInfo('general_course', 'Yoga Teacher Training', data.price, data.currency);
-
-      // if (this.paymentHandler && this.paymentHandler.redirectToCheckout) {
+      this.pixelTracking.trackInitiateCheckout(
+        'Yoga Teacher Training',
+        data.price,
+        data.currency
+      );
+      this.pixelTracking.trackAddPaymentInfo(
+        'Yoga Teacher Training',
+        data.price,
+        data.currency
+      );
       this.spinner.show();
       this.webapiService.stripeWithoutProduct(data).subscribe((res: any) => {
-        // console.log(res, '--------------');
         this.spinner.hide();
         if (res.sessionId) {
           sessionStorage.setItem('onlinesession', res.sessionId);
           sessionStorage.setItem('onlinedbPay', res.payDbId);
           window.location.href = res.url;
-
-          // this.paymentHandler.redirectToCheckout({
-          //   sessionId: res.sessionId
-          // })
         } else {
           alert('Session Genration failed! please try again');
           this.spinner.hide();
         }
       });
-      // }
-      // else {
-      //   this.invokeStripe();
-      // }
     } else {
       alert('All feilds are mandatory!');
     }

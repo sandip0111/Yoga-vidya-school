@@ -8,7 +8,6 @@ import {
   PLATFORM_ID,
 } from '@angular/core';
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
-import { BottomNavComponent } from '../../../includes/home/bottom-nav/bottom-nav.component';
 import { AboutBaliComponent } from '../about-bali/about-bali.component';
 import { CurriculumComponent } from '../curriculum/curriculum.component';
 import { IncludesComponent } from '../includes/includes.component';
@@ -45,7 +44,6 @@ import { PixelTrackingService } from '../../../services/pixel-tracking.service';
   imports: [
     CommonModule,
     BannerComponent,
-    BottomNavComponent,
     AboutBaliComponent,
     CurriculumComponent,
     IncludesComponent,
@@ -252,6 +250,8 @@ export class BaliIndexComponent implements OnInit {
           'Breath Dtox',
           'Breath Detox Yoga - Online FREE pre-recorded course'
         );
+        this.trackScrollDepth();
+        this.trackTimeOnPage();
         break;
       case routeEnum.pranOnlinePranaArambh:
         this.pixelTracking.trackCourseSelection(
@@ -259,9 +259,40 @@ export class BaliIndexComponent implements OnInit {
           'Prana rambha',
           'Enhance your quality of life by improving your breath'
         );
+        this.trackScrollDepth();
+        this.trackTimeOnPage();
         break;
       default:
         break;
     }
+  }
+  trackTimeOnPage() {
+    const timeThresholds = [30, 60, 120, 300];
+    const trackedTimes = new Set<number>();
+    timeThresholds.forEach((threshold) => {
+      setTimeout(() => {
+        if (!trackedTimes.has(threshold)) {
+          trackedTimes.add(threshold);
+          this.pixelTracking.trackTimeOnPage(threshold);
+        }
+      }, threshold * 1000);
+    });
+  }
+  trackScrollDepth() {
+    const scrollThresholds = [25, 50, 75, 100];
+    const trackedThresholds = new Set<number>();
+    window.addEventListener('scroll', () => {
+      const scrollTop =
+        window.pageYOffset || document.documentElement.scrollTop;
+      const scrollHeight =
+        document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = Math.round((scrollTop / scrollHeight) * 100);
+      scrollThresholds.forEach((threshold) => {
+        if (scrollPercent == threshold) {
+          trackedThresholds.add(threshold);
+          this.pixelTracking.trackScroll(threshold);
+        }
+      });
+    });
   }
 }

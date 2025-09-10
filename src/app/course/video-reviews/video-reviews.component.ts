@@ -31,7 +31,7 @@ export class VideoReviewsComponent implements OnInit {
   private isPlaying = false;
   private isHover = false;
   private isAlreadyPlaying = false;
-  
+
   constructor(
     private el: ElementRef,
     private pixelTracking: PixelTrackingService
@@ -88,15 +88,11 @@ export class VideoReviewsComponent implements OnInit {
   }
 
   playVideo(videoPlayer: HTMLVideoElement, playButton: HTMLElement): void {
-    //initially set false
     this.isAlreadyPlaying = false;
-    
-    // Track video play event
     const videoIndex = this.videoPlayers.toArray().findIndex(ref => ref.nativeElement === videoPlayer);
     const videoTitle = `testimonial_video_${videoIndex + 1}`;
     this.pixelTracking.trackVideoPlay(videoTitle, videoPlayer.duration);
     this.pixelTracking.trackTestimonialEngagement(videoIndex, 'play');
-    
     this.videoPlayers.forEach((videoRef) => {
       const video = videoRef.nativeElement;
       if (video !== videoPlayer) {
@@ -119,13 +115,13 @@ export class VideoReviewsComponent implements OnInit {
     videoPlayer.muted = false;
     videoPlayer.controls = true;
     playButton.style.display = 'none';
-    
+
     videoPlayer.onended = () => {
       this.isPlaying = false;
       // Track video completion
       this.pixelTracking.trackVideoComplete(videoTitle, videoPlayer.duration);
       this.pixelTracking.trackTestimonialEngagement(videoIndex, 'complete');
-      
+
       if (!this.isHover) {
         this.menuWrapper.style.animationPlayState = 'running';
       }
@@ -142,7 +138,7 @@ export class VideoReviewsComponent implements OnInit {
       this.isPlaying = this.isAlreadyPlaying;
       // Track video pause
       this.pixelTracking.trackTestimonialEngagement(videoIndex, 'pause');
-      
+
       if (!this.isHover) {
         this.menuWrapper.style.animationPlayState = 'running';
       }

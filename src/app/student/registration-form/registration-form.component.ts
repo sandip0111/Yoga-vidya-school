@@ -55,7 +55,6 @@ export class RegistrationFormComponent {
   ngOnInit(): void {
     this.courseName = 'Breath Detox Yoga';
   }
-
   get f(): { [key in keyof RegistrationForm]: any } {
     return this.registrationForm.controls as {
       [key in keyof RegistrationForm]: any;

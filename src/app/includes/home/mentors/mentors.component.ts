@@ -5,6 +5,7 @@ import { WebapiService } from '../../../webapi.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { StartClassComponent } from '../../../course/bali/start-class/start-class.component';
 import { routeEnum } from '../../../enum/routes';
+import { PixelTrackingService } from '../../../services/pixel-tracking.service';
 
 @Component({
   selector: 'app-mentors',
@@ -24,7 +25,8 @@ export class MentorsComponent implements OnInit {
     private webapiService: WebapiService,
     protected sanitizer: DomSanitizer,
     private activatedRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private _pixelTracking: PixelTrackingService
   ) {
     this.imageurl = this.webapiService.imageUrl;
     this.slug = this.activatedRoute.snapshot.routeConfig?.path;
@@ -145,32 +147,7 @@ export class MentorsComponent implements OnInit {
         },
       ];
     } else if (this.slug == 'online-yoga-classes') {
-      this.mentors = [
-        // {
-        //   name: "Acharya Prashant Jakhmola",
-        //   picture: "image_1673271873934.jfif",
-        //   intro: "Pranayama, Asanas ",
-        //   slug: "acharya-prashant-jakhmola"
-        // },
-        // {
-        //   name: "Anuj",
-        //   picture: "image_1695634116777.jpeg",
-        //   intro: "",
-        //   slug: "anuj"
-        // },
-        // {
-        //   name: "Taniya",
-        //   picture: "image_1675243508012.jpg",
-        //   intro: "Hatha/ Yoga Therapy",
-        //   slug: "taniya"
-        // },
-        // {
-        //   name: "Shiva",
-        //   picture: "image_1718605139191.jpeg",
-        //   intro: "Ashtanga Yoga",
-        //   slug: "shiva"
-        // }
-      ];
+      this.mentors = [];
     } else if (this.slug == '200-hours-yoga-teacher-training-online') {
       this.mentors = [
         {
@@ -300,29 +277,10 @@ export class MentorsComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
-    // if (sessionStorage.getItem('hmloop')) {
-    //   if (sessionStorage.getItem('hlimit') == sessionStorage.getItem('hmloop')) {
-    //     this.mentorLoop = 1;
-    //   }
-    //   else {
-    //     this.mentorLoop = Number(sessionStorage.getItem('hmloop')) + 1;
-    //   }
-    // }
-    // this.getHomeMentors(this.mentorLoop);
+  ngOnInit() {}
+  trackElement() {
+    this._pixelTracking.trackEnrollmentIntent('Mentors Section', 'view all mentors');
   }
-
-  // getHomeMentors(limit: any) {
-  //   let val = {
-  //     "limit": limit
-  //   }
-  //   this.webapiService.getHomeMentors(val).subscribe((res: any) => {
-  //     console.log(res);
-  //     this.mentors = res.data;
-  //     sessionStorage.setItem('hmloop', res.data[res.data.length - 1]?.sortBy);
-  //     sessionStorage.setItem('hlimit', res.total);
-  //   });
-  // }
 }
 
 interface mentor {
