@@ -21,14 +21,12 @@ export class PixelTrackingService {
   }
 
   // Content View Events
-  trackViewContent(contentType: string, itemId: string, value?: number, currency?: string) {
+  trackViewContent(contentType: string, itemId: string) {
     if (typeof fbq !== 'undefined') {
       fbq('track', 'ViewContent', {
         content_type: contentType,
         content_ids: [itemId],
-        content_name: itemId,
-        value: value,
-        currency: currency || 'USD'
+        content_name: itemId        
       });
     }
   }
