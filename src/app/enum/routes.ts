@@ -18,4 +18,5 @@ export enum routeEnum {
   'preRecordPranayamaCourse' = 'pre-recorded-pranayama-courses',
   'swaraSadhana' = 'https://swaryoga.yogavidyaschool.com',
   'stRegister' = 'student-register',
+  'sa' = 'swara-sadhana',
 }

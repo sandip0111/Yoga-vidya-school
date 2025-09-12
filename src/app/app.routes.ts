@@ -164,6 +164,13 @@ export const routes: Routes = [
         './course/pre-recorded-pranayama-courses/pre-recorded-pranayama-courses.component'
       ).then((m) => m.PreRecordedPranayamaCoursesComponent),
   },
+  {
+    path: routeEnum.sa,
+    loadComponent: () =>
+      import('./course/swara-sadhana/swara-sadhana.component').then(
+        (m) => m.SwaraSadhanaComponent
+      ),
+  },
   { path: 'webinar-video/:name', component: WebinarVideosComponent },
   { path: '**', pathMatch: 'full', component: PagenotfoundComponent },
 ];
