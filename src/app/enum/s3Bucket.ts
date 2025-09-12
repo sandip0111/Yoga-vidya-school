@@ -62,6 +62,8 @@ export enum s3Bucket {
   pArambh1 = 'https://my-s3-images-bucket.s3.amazonaws.com/img/image_1683205846041.JPG',
   pArambh2 = 'https://my-s3-images-bucket.s3.amazonaws.com/img/image_1683206274526.jpg',
   pArambh3 = 'https://my-s3-images-bucket.s3.amazonaws.com/img/image_1683205867459.jpg',
+
+  twoGirl = 'https://my-s3-images-bucket.s3.amazonaws.com/images/Gallery5_zoxhnn.jpg',
 }
 export enum youtubeLink {
   trainingImportance = 'https://www.youtube.com/embed/t7l1cqDj1tA?si=ZJCQXJYDLzDwLLvm',

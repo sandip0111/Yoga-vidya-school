@@ -13,7 +13,7 @@ import { routeEnum } from '../../../enum/routes';
 })
 export class PricingComponent implements OnInit {
   s3Bucket = s3Bucket;
-  pricing: any = [];
+  pricing: pricingDto[] = [];
   @Input() slug: string = '';
   mainHeading: string = '';
   constructor(private router: Router) {}
@@ -22,13 +22,6 @@ export class PricingComponent implements OnInit {
       case routeEnum.rishikesh100:
         this.mainHeading = 'Pricing of 100 Hours TTC Rishikesh';
         this.pricing = [
-          // {
-          //   title: 'Private Room',
-          //   usd: 1800,
-          //   inr: 130000,
-          //   image: s3Bucket.room2,
-          //   bgColor: '#f5f0e6',
-          // },
           {
             title: 'Shared Room',
             usd: 700,
@@ -84,4 +77,11 @@ export class PricingComponent implements OnInit {
   goToPaymentPage() {
     this.router.navigate([`/checkout/${this.slug}`]);
   }
+}
+interface pricingDto {
+  title: string;
+  usd: number;
+  inr: number;
+  image: string;
+  bgColor: string;
 }

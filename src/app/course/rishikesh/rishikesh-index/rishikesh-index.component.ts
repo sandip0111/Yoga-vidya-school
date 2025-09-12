@@ -39,7 +39,6 @@ import { BonusComponent } from "../../../certified/bonus/bonus.component";
   standalone: true,
   imports: [
     BannerComponent,
-    BottomNavComponent,
     AboutRishikeshComponent,
     EducationCategoriesComponent,
     CertifiedYogaComponent,
@@ -55,7 +54,6 @@ import { BonusComponent } from "../../../certified/bonus/bonus.component";
     WatchVideoComponent,
     FaqComponent,
     ExcursionsComponent,
-    KnowMoreComponent,
     ScheduleComponent,
     RishikeshCurriculumComponent,
     DailyScheduleComponent,

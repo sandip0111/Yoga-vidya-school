@@ -1,15 +1,12 @@
-<!-- about.component.html -->
-
 <section class="certified-section py-5" *ngIf="!noContent">
   <div class="row align-items-center mb-5">
     <div class="col-md-6">
       <div class="imageback">
-        <img src="{{ cerData.img1 }}" class="" alt="About Image" />
+        <img [src]="cerData.img1" class="" alt="About Image" />
       </div>
     </div>
     <div class="col-md-6 d-flex align-items-center">
       <div>
-        <!-- <small class="text-left p-0">Yoga Vidya Present's</small> -->
         <h2>{{ cerData.title1 }}</h2>
         <div [innerHTML]="cerData.desc1"></div>
       </div>
@@ -18,14 +15,13 @@
   <div class="row mb-5 align-items-center">
     <div class="col-md-6 d-flex align-items-center">
       <div>
-        <!-- <small class="text-left p-0">Yoga Vidya Present's</small> -->
         <h2>{{ cerData.title2 }}</h2>
         <div [innerHTML]="cerData.desc2"></div>
       </div>
     </div>
     <div class="col-md-6">
       <div class="imageback">
-        <img src="{{ cerData.img2 }}" class="" alt="About Image" />
+        <img [src]="cerData.img2" class="" alt="About Image" />
       </div>
     </div>
   </div>

@@ -26,6 +26,7 @@ export class AboutRishikeshComponent implements OnInit {
   date: string = '';
   startTime: string = '';
   endTime: string = '';
+  s3Bucket = s3Bucket;
   constructor(
     private sanitizer: DomSanitizer,
     private activatedRoute: ActivatedRoute,
@@ -258,19 +259,40 @@ export class AboutRishikeshComponent implements OnInit {
       this.startTime = twoHundredTTCModel['200TTCStart'];
       this.endTime = twoHundredTTCModel['200TTCEnd'];
       this.aboutContent = new aboutContentModel(
-        'https://my-s3-images-bucket.s3.amazonaws.com/images/Gallery5_zoxhnn.jpg',
-        '200 Hour Yoga',
-        'Teacher Training Course Online',
+        s3Bucket.twoGirl,
+        'Deepen Your Practice And Share',
+        'The Sacred Wisdom Of Health And Happiness With The World By Becoming Certified Yoga Teacher',
         this.sanitizer
-          .bypassSecurityTrustHtml(`<p>Understanding how challenging it is to step into the path of Yoga, while managing family, work and social life, Our online 200 hour yoga teacher training course&nbsp;is designed for dedicated students of all levels that are seeking traditional and authentic knowledge of yogic practices. After the series of triumphs over trials, these Interactive LIVE and Recorded sessions are at par with the quality that we offer in our Physical Yoga Teacher Training in India, Russia, Bali and other Locations.</p>
-
-<p>Becoming a Registered Yoga Teacher and spreading the positivity in the society is a rewarding endeavour. Through virtual 200 hour and 300 Hour&nbsp;<a href="https://www.yogavidyaschool.com/" style="color:#467886; text-decoration:underline">yoga teacher training</a>, we are inspired to create an opportunity for everyone to experience this intellectual journey as a way of life and help others raise their health, mentally and physically through Yoga and related practices.&nbsp;</p>
-
-<p>The Online Yoga Teacher Training of Yoga Vidya School is exclusively designed by Prashant Jakhamola, popular as Prashant J Yoga on Internet and Youtube. This special program is designed to make you a dedicated yoga practitioner as Sadhaka or devotee of the Yogic Science and the tradition. It is 12 weeks long course covers the deeper details of Hatha Yoga and Ashtanga Yoga with special focus on Alignments and Adjustments, along with Meditation, Pranayama, Philosophy and Teaching Methodology.</p>
-
-`),
-        'Led by Prashant J Yoga',
-        'Deepen Your Practice And Share The Sacred Wisdom Of Health And Happiness With The World By Becoming Certified Yoga Teacher!'
+          .bypassSecurityTrustHtml(`<p><b class="project-color">Get Certified at Home in only six weeks</b></p>
+          <p>
+            Understanding the challenge of walking the path of Yoga while
+            balancing family, work, and daily life, our
+            <b>Online 200-Hour Yoga Teacher Training</b> is designed for sincere
+            students of all levels who are seeking traditional and authentic
+            knowledge of yogic practices. These live interactive and recorded
+            sessions are created with the same depth and quality as our
+            in-person Yoga Teacher Trainings in India, Russia, Bali, and other
+            locations.
+          </p>
+          <p>
+            Becoming a Registered Yoga Teacher and sharing the light of Yoga is
+            a truly rewarding journey. Through this training, we aim to create
+            the opportunity for everyone to experience Yoga not just as a
+            practice, but as a way of life—supporting physical health, mental
+            clarity, and spiritual growth.
+          </p>
+          <p>
+            This Online Yoga Teacher Training is designed by
+            <b>Prashant Jakhamola</b>, known worldwide as Prashant J Yoga. The
+            program is a unique opportunity to become a devoted practitioner
+            (Sadhaka) of Yogic science and tradition. Over the course of 12
+            weeks, you will explore the deeper dimensions of Hatha Yoga and
+            Ashtanga Yoga, with a special focus on alignments and adjustments,
+            as well as Meditation, Pranayama, Philosophy, and Teaching
+            Methodology.
+          </p>`),
+        '',
+        ''
       );
     }
   }

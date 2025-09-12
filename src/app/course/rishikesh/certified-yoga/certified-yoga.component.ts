@@ -14,14 +14,16 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class CertifiedYogaComponent implements OnInit {
   cerData: any;
-  slug: any = '';
+  slug: string | undefined = '';
   noContent: boolean = false;
   constructor(
     private activatedRoute: ActivatedRoute,
     private sanitizer: DomSanitizer
   ) {
     this.slug = this.activatedRoute.snapshot.routeConfig?.path;
+  }
 
+  ngOnInit() {
     if (this.slug == routeEnum.rishkesh200) {
       this.cerData = {
         title1: '🧘 Become a Yoga Teacher in Just 28 Days',
@@ -39,7 +41,36 @@ export class CertifiedYogaComponent implements OnInit {
           </ul>
           <p>By the end, you'll be ready to teach not just postures, but presence</p>`
         ),
-        desc2: sanitizer.bypassSecurityTrustHtml(
+        desc2: this.sanitizer.bypassSecurityTrustHtml(
+          `<p>Our curriculum blends the wisdom of ancient yogic science with modern methods. You'll study over 14 subjects designed to support your personal and spiritual development — and prepare you as a teacher with depth and range.</p>
+          <b>What you'll explore:</b>
+          <ul class="ul-style">
+            <li>Yogic anatomy and functional movement</li>
+            <li>Ancient yogic psychology and ethics</li>
+            <li>Diverse teaching methodologies</li>
+            <li>Breathwork, alignment, adjustments, mantra & more</li>
+          </ul>
+          <p>Every subject is curated through years of research to help you embody yoga in daily life — as a student, a teacher, and a human being.</p>`
+        ),
+      };
+    } else if (this.slug == routeEnum['200TTC']) {
+      this.cerData = {
+        title1: 'Became a Yoga Teacher from your home in just six weeks',
+        title2: '🎓 Explore 14+ Yogic Subjects in One Transformational Course',
+        img1: s3Bucket.rishi200Certify1,
+        img2: s3Bucket.rishi200Certify2,
+        desc1: this.sanitizer.bypassSecurityTrustHtml(
+          `<b >Train deeply. Transform fully. Teach authentically.</b>
+          <p>This 200-Hour Yoga Teacher Training in Online is more than a course — it's a journey. In six weeks, you'll build the foundation of a strong self-practice and the tools to guide others with clarity and confidence.</p>
+          <ul style="list-style-type: none;">
+            <li>✨ Learn from experienced teachers in the birthplace of yoga</li>
+            <li>✨ Master Asana, Pranayama & Meditation</li>
+            <li>✨ Gain a deep understanding of yogic philosophy and ethical teaching</li>
+            <li>✨ Practice real classroom teaching with guidance and feedback</li>
+          </ul>
+          <p>By the end, you'll be ready to teach not just postures, but presence</p>`
+        ),
+        desc2: this.sanitizer.bypassSecurityTrustHtml(
           `<p>Our curriculum blends the wisdom of ancient yogic science with modern methods. You'll study over 14 subjects designed to support your personal and spiritual development — and prepare you as a teacher with depth and range.</p>
           <b>What you'll explore:</b>
           <ul class="ul-style">
@@ -155,12 +186,9 @@ export class CertifiedYogaComponent implements OnInit {
       this.slug == 'pranic-purification' ||
       this.slug == '21-days-ashtanga-yoga-immersion' ||
       this.slug == 'yoga-for-weight-loss' ||
-      this.slug == 'online-hip-opening-workshop' ||
-      this.slug == '200-hours-yoga-teacher-training-online'
+      this.slug == 'online-hip-opening-workshop'
     ) {
       this.noContent = true;
     }
   }
-
-  ngOnInit() {}
 }

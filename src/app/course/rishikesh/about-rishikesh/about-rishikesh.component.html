@@ -1,7 +1,5 @@
-<!-- about.component.html -->
-
 <section class="about-rishikesh-section py-5">
-  @if(slug == routeEnum.pranicPurification || slug==routeEnum['200TTC']){
+  @if(slug == routeEnum.pranicPurification){
   <div class="mb-3">
     <div class="d-flex flex-column justify-content-center align-items-center">
       <small class="p-0">Yoga Vidya Present's</small>
@@ -15,13 +13,6 @@
       <p *ngIf="this.aboutContent.subTitle1">
         <strong>{{ this.aboutContent.subTitle1 }}</strong>
       </p>
-      @if(slug==routeEnum['200TTC']){
-      <app-world-clock
-        [date]="date"
-        [startTime]="startTime"
-        [endTime]="endTime"
-      ></app-world-clock>
-      }
     </div>
     <div class="image-container">
       <img
@@ -37,6 +28,35 @@
     <div class="position: relative; z-index: 1;">
       <div>
         <div [innerHTML]="this.aboutContent.desc"></div>
+      </div>
+    </div>
+  </div>
+  } @else if(slug==routeEnum['200TTC']){
+  <div class="mb-3">
+    <div class="d-flex flex-column justify-content-center align-items-center">
+      <h3 style="text-align: center">
+        {{ aboutContent.title }}
+        <span class="project-color">
+          {{ aboutContent.secondTitle }}
+        </span>
+      </h3>
+      <p>
+        <b>Next Batch Starts: </b>
+        <span class="project-color">November the 10th</span>
+      </p>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <img
+          [src]="aboutContent.image"
+          class="img-fluid pranic-purification-img"
+          alt="{{ this.aboutContent.title }} {{
+            this.aboutContent.secondTitle
+          }}"
+        />
+      </div>
+      <div class="col-md-6">
+        <div [innerHTML]="aboutContent.desc"></div>
       </div>
     </div>
   </div>

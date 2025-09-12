@@ -33,14 +33,25 @@
 ></app-video-reviews>
 <app-faq [data]="faqData"></app-faq>
 <app-gallery></app-gallery>
-}@else{
+} @else if(slug == routEnum['200TTC']){
 <app-banner [data]="bannerData"></app-banner>
-<!-- <app-bottom-nav-course
-  *ngIf="
-    slug != 'pranic-purification' &&
-    slug != '200-hours-yoga-teacher-training-online'
-  "
-></app-bottom-nav-course> -->
+<app-about-rishikesh></app-about-rishikesh>
+<app-pricing [slug]="slug"></app-pricing>
+<app-certified-yoga></app-certified-yoga>
+<app-daily-schedule [data]="schData"></app-daily-schedule>
+<app-mentors></app-mentors>
+<app-services [data]="accomData"></app-services>
+<app-fee-structure [data]="feesData"></app-fee-structure>
+<app-code-conduct [data]="codecond"></app-code-conduct>
+<app-yoga-alliance [data]="codecond"></app-yoga-alliance>
+<app-schedule [data]="schEventData"></app-schedule>
+<app-excursions></app-excursions>
+<app-testimonials></app-testimonials>
+<app-gallery></app-gallery>
+<app-faq [data]="faqData"></app-faq>
+<app-benifits></app-benifits>
+} @else{
+<app-banner [data]="bannerData"></app-banner>
 <app-about-rishikesh></app-about-rishikesh>
 <app-education-categories
   [data]="feesData"
