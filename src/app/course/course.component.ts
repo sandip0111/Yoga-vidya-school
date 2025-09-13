@@ -29,6 +29,7 @@ import { VideoReviewsComponent } from './video-reviews/video-reviews.component';
 import { ReviewListComponentComponent } from '../text-review-list/review-list-component/review-list-component.component';
 import { routeEnum } from '../enum/routes';
 import { s3Bucket } from '../enum/s3Bucket';
+import { PixelTrackingService } from '../services/pixel-tracking.service';
 
 @Component({
   selector: 'app-course',
@@ -104,6 +105,7 @@ export class CourseComponent {
     private meta: Meta,
     protected sanitizer: DomSanitizer,
     private _renderer2: Renderer2,
+    private pixelTracking: PixelTrackingService,
     @Inject(DOCUMENT) private _document: Document
   ) {
     this.slug = this._activatedRoute.snapshot.routeConfig?.path;
@@ -112,6 +114,7 @@ export class CourseComponent {
     }
   }
   ngOnInit(): void {
+    this.ogMetaTag(this.slug  ?? '');
     const canonicalUrl = 'https://www.yogavidyaschool.com' + this.router.url;
     const link = this._document.querySelector('link[rel="canonical"]');
     this._renderer2.setAttribute(link, 'href', canonicalUrl);
@@ -150,6 +153,45 @@ export class CourseComponent {
         // this.router.navigate(['/']);
         // this.spinner.hide();
       }
+    });
+  }
+
+   ogMetaTag(slug: string) {
+    console.log(slug,'slug--- ');
+    this.pixelTracking.trackViewContent(
+          'online-yoga-classes',
+          'online-yoga-classes'
+        );
+        this.trackScrollDepth();
+        this.trackTimeOnPage();
+  }
+  trackTimeOnPage() {
+    const timeThresholds = [30, 60, 120, 300];
+    const trackedTimes = new Set<number>();
+    timeThresholds.forEach((threshold) => {
+      setTimeout(() => {
+        if (!trackedTimes.has(threshold)) {
+          trackedTimes.add(threshold);
+          this.pixelTracking.trackTimeOnPage(threshold);
+        }
+      }, threshold * 1000);
+    });
+  }
+  trackScrollDepth() {
+    const scrollThresholds = [25, 50, 75, 100];
+    const trackedThresholds = new Set<number>();
+    window.addEventListener('scroll', () => {
+      const scrollTop =
+        window.pageYOffset || document.documentElement.scrollTop;
+      const scrollHeight =
+        document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = Math.round((scrollTop / scrollHeight) * 100);
+      scrollThresholds.forEach((threshold) => {
+        if (scrollPercent == threshold) {
+          trackedThresholds.add(threshold);
+          this.pixelTracking.trackScroll(threshold);
+        }
+      });
     });
   }
 }

@@ -16,6 +16,7 @@ import { CountryISO } from 'ngx-intl-tel-input';
 import { ActivatedRoute, Router } from '@angular/router';
 import { paymentkey } from '../enum/payment';
 import { jsonData } from '../course/course-mentor/course-mentor.component';
+import { PixelTrackingService } from '../services/pixel-tracking.service';
 
 declare var Razorpay: any;
 @Component({
@@ -56,6 +57,7 @@ export class PaymentProceedComponent implements OnInit {
     private cartService: CartService,
     private webapiService: WebapiService,
     private spinner: NgxSpinnerService,
+    private pixelTracking: PixelTrackingService,
     private actRoute: ActivatedRoute
   ) {
     this.actRoute.queryParams.subscribe((params) => {
@@ -87,6 +89,7 @@ export class PaymentProceedComponent implements OnInit {
   ngOnInit(): void {
     this.invokeStripe();
     this.loadRazorpayScript();
+    this.trackCheckoutPageView();
   }
   checkEmail(): void {
     const emailControl = this.paymentForm.get('email');
@@ -196,7 +199,7 @@ export class PaymentProceedComponent implements OnInit {
       return;
     }
 
-    if (this.paymentForm.valid) {
+    if (this.paymentForm.valid) {     
       console.log('Form Data:', this.paymentForm.getRawValue());
       this.spinner.show();
       var data = this.paymentForm.getRawValue();
@@ -211,6 +214,16 @@ export class PaymentProceedComponent implements OnInit {
         courses: courseList,
       };
 
+      this.pixelTracking.trackInitiateCheckout(
+        'stripe-proceed-payment',
+        val.price,
+        val.currency
+      );
+      this.pixelTracking.trackAddPaymentInfo(
+       'stripe-proceed-payment',
+        val.price,
+        val.currency
+      );
       this.webapiService
         .checkoutStripeForLiveClasses(val)
         .subscribe((res: any) => {
@@ -276,6 +289,17 @@ export class PaymentProceedComponent implements OnInit {
         courses: courseList,
         paymentStatus: 'due',
       };
+
+      this.pixelTracking.trackInitiateCheckout(
+        'razorpay-proceed-payment',
+        paymentData.price,
+        paymentData.currency
+      );
+      this.pixelTracking.trackAddPaymentInfo(
+       'razorpay-proceed-payment',
+        paymentData.price,
+        paymentData.currency
+      );
 
       this.spinner.show();
 
@@ -352,4 +376,13 @@ export class PaymentProceedComponent implements OnInit {
       return course;
     });
   }
+
+   private trackCheckoutPageView() {
+    this.pixelTracking.trackPageView(
+      `checkout- online-live-classes`,
+      `Checkout - ${this.courses.map(c => c.title).join(', ')}`
+    );
+    this.pixelTracking.trackViewContent('proceed-payment_page', 'proceed-payment');
+  }
+
 }
