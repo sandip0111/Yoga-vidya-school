@@ -20,6 +20,7 @@ export class FaqComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute, private router: Router) {
     this.slug = this.activatedRoute.snapshot.routeConfig?.path;
   }
+  routEnum = routeEnum;
 
   toggleDescription(index: number) {
     if (this.openIndex === index) {

@@ -15,7 +15,7 @@ export class DailyScheduleComponent implements OnInit {
   @Input() data: any;
   schedule: any;
   title: any;
-  slug: any;
+  slug: string | undefined = '';
   routeEnum = routeEnum;
   s3Bucket = s3Bucket;
   constructor(private activatedRoute: ActivatedRoute, private router: Router) {

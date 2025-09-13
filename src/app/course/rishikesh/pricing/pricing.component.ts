@@ -16,6 +16,9 @@ export class PricingComponent implements OnInit {
   pricing: pricingDto[] = [];
   @Input() slug: string = '';
   mainHeading: string = '';
+  normalInrPrice: number = 0;
+  normalUsdPrice: number = 0;
+  isPriceShow: boolean = false;
   constructor(private router: Router) {}
   ngOnInit(): void {
     switch (this.slug) {
@@ -68,6 +71,11 @@ export class PricingComponent implements OnInit {
             bgColor: '#eef6f8',
           },
         ];
+        break;
+      case routeEnum['200TTC']:
+        this.normalInrPrice = 65000;
+        this.normalUsdPrice = 999;
+        this.isPriceShow = true;
         break;
       default:
         break;

@@ -421,19 +421,19 @@ export class CheckoutComponent {
   set200TTCNormalPrice(currency: string) {
     switch (currency) {
       case 'INR':
-        this.price = '105000 INR';
-        this.amount = 105000;
+        this.price = '65000 INR';
+        this.amount = 65000;
         this.firstInstAmnt = 50000;
         this.secondInstAmnt = 55000;
         break;
       case 'USD':
-        this.price = '1500 USD';
-        this.amount = 1500;
+        this.price = '999 USD';
+        this.amount = 999;
         break;
-      case 'EUR':
-        this.price = '1280 EUR';
-        this.amount = 1280;
-        break;
+      // case 'EUR':
+      //   this.price = '1280 EUR';
+      //   this.amount = 1280;
+      //   break;
       default:
         this.price = '';
         this.amount = 0;
@@ -476,7 +476,9 @@ export class CheckoutComponent {
       ) {
         const phoneValue = this.checkData.phoneNumber;
         const countryCode = phoneValue?.countryCode?.toLowerCase();
-        if (countryCode === 'in') {
+        if (countryCode === 'in' && this.slug == routeEnum['200TTC']) {
+          this.currencyOptions = ['INR', 'USD'];
+        } else if (countryCode === 'in') {
           this.currencyOptions = ['INR', 'USD', 'EUR'];
         } else {
           this.currencyOptions = ['USD', 'EUR'];
