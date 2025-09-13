@@ -55,7 +55,7 @@ export class TrainningPathComponent {
     if (courseInfo) {
       this.pixelTracking.trackCourseSelection(link, courseInfo.name, courseInfo.type);
       this.pixelTracking.trackAddToCart(link, courseInfo.name, courseInfo.value);
-      this.pixelTracking.trackEnrollmentIntent(courseInfo.name, 'course_details_click');
+      this.pixelTracking.trackViewContent(courseInfo.name, 'course_details_click');
     }
   }
 }

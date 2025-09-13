@@ -122,7 +122,7 @@ export class NavbarComponent implements OnInit {
             // ],
           },
           {
-            title: 'Get certified online',
+            title: 'Get Certified Online',
             link: '/200-hours-yoga-teacher-training-online',
           },
           // {

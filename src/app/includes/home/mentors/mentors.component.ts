@@ -278,7 +278,7 @@ export class MentorsComponent implements OnInit {
 
   ngOnInit() {}
   trackElement() {
-    this._pixelTracking.trackEnrollmentIntent('Mentors Section', 'view all mentors');
+    this._pixelTracking.trackViewContent('Mentors Section', 'view all mentors');
   }
 }
 

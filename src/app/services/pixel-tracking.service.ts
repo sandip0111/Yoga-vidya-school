@@ -136,15 +136,15 @@ export class PixelTrackingService {
     }
   }
 
-  trackEnrollmentIntent(courseName: string, intentType: string) {
-    if (typeof fbq !== 'undefined') {
-      fbq('trackCustom', 'EnrollmentIntent', {
-        course_name: courseName,
-        intent_type: intentType,
-        page_location: window.location.href
-      });
-    }
-  }
+  // trackEnrollmentIntent(courseName: string, intentType: string) {
+  //   if (typeof fbq !== 'undefined') {
+  //     fbq('trackCustom', 'EnrollmentIntent', {
+  //       course_name: courseName,
+  //       intent_type: intentType,
+  //       page_location: window.location.href
+  //     });
+  //   }
+  // }
 
   trackBonusCourseClick(courseName: string, courseUrl: string) {
     if (typeof fbq !== 'undefined') {

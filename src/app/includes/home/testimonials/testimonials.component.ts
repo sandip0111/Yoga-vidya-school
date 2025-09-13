@@ -66,7 +66,7 @@ export class TestimonialsComponent implements OnInit {
   }
   ngOnInit() {}
   trackElement() {
-    this._pixelTracking.trackEnrollmentIntent('testimonial', 'view all testimonial');
+    this._pixelTracking.trackViewContent('testimonial', 'view all testimonial');
   }
 }
 

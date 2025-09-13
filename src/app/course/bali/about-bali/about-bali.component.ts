@@ -1044,14 +1044,14 @@ A watering hole for adventure freaks and solo travellers, Peru with its gorgeous
     });
   }
   goToPaymentPage() {
-    this._pixelTrackingService.trackEnrollmentIntent(
+    this._pixelTrackingService.trackViewContent(
       'Breath Dtox',
       routeEnum.bDtox
     );
     this.router.navigate([routeEnum.bDtox, routeEnum.stRegister]);
   }
   registerClick(slug: string) {
-    this._pixelTrackingService.trackEnrollmentIntent('Prana Arambh', slug);
+    
     this.router.navigate(['checkout', slug]);
   }
 }
