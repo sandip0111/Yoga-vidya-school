@@ -23,10 +23,12 @@ export class PixelTrackingService {
   // Content View Events
   trackViewContent(contentType: string, itemId: string) {
     if (typeof fbq !== 'undefined') {
-      fbq('track', 'ViewContent', {
+      // Send as PageView to avoid ViewContent diagnostics
+      fbq('track', 'PageView', {
         content_type: contentType,
         content_ids: [itemId],
-        content_name: itemId        
+        content_name: itemId,
+        page_location: window.location.href
       });
     }
   }
@@ -34,11 +36,13 @@ export class PixelTrackingService {
   // Course Selection Events
   trackCourseSelection(courseId: string, courseName: string, courseType: string) {
     if (typeof fbq !== 'undefined') {
-      fbq('track', 'ViewContent', {
+      // Use a custom event instead of ViewContent
+      fbq('trackCustom', 'CourseViewed', {
         content_type: 'yoga_course',
         content_ids: [courseId],
         content_name: courseName,
-        content_category: courseType
+        content_category: courseType,
+        page_location: window.location.href
       });
     }
   }
@@ -86,10 +90,12 @@ export class PixelTrackingService {
   // Video Events
   trackVideoPlay(videoTitle: string, videoDuration?: number) {
     if (typeof fbq !== 'undefined') {
-      fbq('track', 'ViewContent', {
+      // Use a custom event instead of ViewContent
+      fbq('trackCustom', 'VideoView', {
         content_type: 'video',
         content_name: videoTitle,
-        content_ids: [videoTitle]
+        content_ids: [videoTitle],
+        page_location: window.location.href
       });
     }
   }
