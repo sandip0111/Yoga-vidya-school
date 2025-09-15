@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 import { EventBusService } from './event-bus.service';
 import { Router } from '@angular/router';
-import { mentorTimings } from './course/course-mentor/course-mentor.component';
+import {
+  jsonData,
+  mentorTimings,
+} from './course/course-mentor/course-mentor.component';
 
 export interface CartItem {
   id: number;
@@ -41,6 +44,19 @@ export class CartService {
     if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
       const savedCart = localStorage.getItem(this.cartKey);
       this.items = savedCart ? JSON.parse(savedCart) : [];
+      this.items.forEach((item) => {
+        let data = jsonData.find((course) => {
+          return course.id === item.id;
+        });
+        if (data != null) {
+            item.id = data.id;
+            item.title = `${data.name} - ${data.title}` ;
+            item.shortDescription = data.description ?? '';
+            item.priceINR = data.price?.priceInIndian ?? 0;
+            item.priceUSD = data.price?.priceInUSD ?? 0;
+            item.quantity = 1;
+        }
+      });
     }
   }
 
@@ -49,9 +65,9 @@ export class CartService {
   }
 
   addItem(item: CartItem): void {
-    const existingItem = this.items.find((i) => i.id === item.id);
-    if (existingItem) {
-      existingItem.quantity = item.quantity;
+    let existingItemIndex = this.items.findIndex((i) => i.id === item.id);
+    if (existingItemIndex !== -1) {
+     this.items[existingItemIndex] = item;
     } else {
       this.items.push(item);
     }
