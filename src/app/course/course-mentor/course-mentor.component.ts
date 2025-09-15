@@ -162,7 +162,7 @@ export let jsonData = [
     name: 'Acharya Prashant Jakhmola',
     image: s3Bucket.courseMentro1,
     title: 'Yoga Sadhana',
-    weeklyTime: 'From Monday to Friday',
+    weeklyTime: 'From Monday to Thursday',
     time: {
       time1: '6:00 am',
       time2: '7:00 am',
