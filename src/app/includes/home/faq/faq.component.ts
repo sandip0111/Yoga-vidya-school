@@ -11,12 +11,13 @@ import { routeEnum } from '../../../enum/routes';
   styleUrls: ['./faq.component.css'],
 })
 export class FaqComponent implements OnInit {
-  @Input() data: any;
+  @Input() data: faq[] = [];
   openIndex: number | null = null;
   faqs: faq[] = [];
   slug: string | undefined = '';
   isPranicPage: boolean = false;
   is300BaliPage: boolean = false;
+  routeEnum = routeEnum;
   constructor(private activatedRoute: ActivatedRoute, private router: Router) {
     this.slug = this.activatedRoute.snapshot.routeConfig?.path;
   }

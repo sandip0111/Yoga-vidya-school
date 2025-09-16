@@ -62,6 +62,13 @@ export enum s3Bucket {
   pArambh1 = 'https://my-s3-images-bucket.s3.amazonaws.com/img/image_1683205846041.JPG',
   pArambh2 = 'https://my-s3-images-bucket.s3.amazonaws.com/img/image_1683206274526.jpg',
   pArambh3 = 'https://my-s3-images-bucket.s3.amazonaws.com/img/image_1683205867459.jpg',
+
+  swHero = 'https://my-s3-images-bucket.s3.amazonaws.com/images/IMG_1374.JPG',
+  sw1 = 'https://static.wixstatic.com/media/0e2510_c6dd70b9a9a741b8819e5b232fc1dd0f~mv2.png',
+  swAbout1 = 'https://my-s3-images-bucket.s3.amazonaws.com/images/IMG_1373.JPG',
+  swAbout2 = 'https://my-s3-images-bucket.s3.amazonaws.com/images/IMG_1375.JPG',
+  swAbout3 = 'https://my-s3-images-bucket.s3.amazonaws.com/images/IMG_1377.JPG',
+  swAbout4 = 'https://my-s3-images-bucket.s3.amazonaws.com/images/IMG_1376.JPG',
 }
 export enum youtubeLink {
   trainingImportance = 'https://www.youtube.com/embed/t7l1cqDj1tA?si=ZJCQXJYDLzDwLLvm',

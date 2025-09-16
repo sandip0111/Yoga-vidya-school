@@ -29,8 +29,8 @@ export class BannerComponent implements OnInit {
   datesItem: any;
   inquiryData: any = {};
   isMuted = false;
-  slug: any = '';
   courseName: any;
+  slug: string | undefined = '';
   videoElement?: HTMLVideoElement;
   isRegistrationPageLabelToggle = false;
   isRegistrationPageLabelToggleForAdjusment = false;
@@ -100,6 +100,13 @@ export class BannerComponent implements OnInit {
           'Enhance your quality of life by improving your breath';
         this.rishikeshSubHeading =
           'An Exclusive Pre-recorded Pranayama Course by Prashant Jakhmola';
+        break;
+      case routeEnum.sa:
+        this.rishikesHeroImage = s3Bucket.swHero;
+        this.rishikeshMainHeading =
+          'SWARA SADHANA:';
+        this.rishikeshSubHeading =
+          'an exclusive prerecorded workshopthat will help you to align your energies with your actions\nDiscover the Ancient Science,Which Gives You ControlOver Your Two Energies:Sun 🌞  and Moon 🌙';
         break;
       default:
         break;
