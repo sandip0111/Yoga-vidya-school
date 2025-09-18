@@ -37,9 +37,9 @@ declare var Razorpay: any;
 export class CheckoutComponent {
   checkData: checkoutModel = new checkoutModel();
   oldStudent: boolean = false;
-  slug: any;
+  slug: string = '';
   price: string = '';
-  courseList: any;
+  courseList: courseListDto = new courseListDto();
   paymentHandler: any = null;
   stripeCounter: boolean = false;
   ccCounter: boolean = false;
@@ -153,18 +153,22 @@ export class CheckoutComponent {
         this.amount = res.dueAmount;
       });
   }
-  getCourseBySlug(slug: any) {
+  getCourseBySlug(slug: string) {
     let data = {
       slug: slug,
     };
-    this.webapiService.getCourseById(data).subscribe((res: any) => {
-      if (res.data.length > 0) {
-        this.courseList = res.data[0];
-        this.title.setTitle('Checkout');
-      } else {
-        this.router.navigate(['/']);
-      }
-    });
+    if (slug == routeEnum.sa) {
+      this.courseList.coursetitle = 'SWARA SADHANA';
+    } else {
+      this.webapiService.getCourseById(data).subscribe((res: any) => {
+        if (res.data.length > 0) {
+          this.courseList = res.data[0];
+          this.title.setTitle('Checkout');
+        } else {
+          this.router.navigate(['/']);
+        }
+      });
+    }
   }
 
   checkEmail(e: any) {
@@ -1270,4 +1274,9 @@ export class CheckoutComponent {
     };
     return courseValues[slug] || 1000;
   }
+}
+class courseListDto {
+  _id: string = '';
+  coursetitle: string = '';
+  priceId: any;
 }

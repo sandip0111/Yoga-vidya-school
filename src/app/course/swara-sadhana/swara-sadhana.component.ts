@@ -4,6 +4,8 @@ import { BannerComponent } from '../banner/banner.component';
 import { s3Bucket } from '../../enum/s3Bucket';
 import { VideoReviewsComponent } from '../video-reviews/video-reviews.component';
 import { faq, FaqComponent } from '../../includes/home/faq/faq.component';
+import { Router } from '@angular/router';
+import { routeEnum } from '../../enum/routes';
 
 @Component({
   selector: 'app-swara-sadhana',
@@ -15,6 +17,7 @@ import { faq, FaqComponent } from '../../includes/home/faq/faq.component';
 export class SwaraSadhanaComponent {
   s3Bucket = s3Bucket;
   faqData: faq[] = [];
+  constructor(private router: Router) {}
   ngOnInit(): void {
     this.faqData = [
       {
@@ -46,8 +49,11 @@ export class SwaraSadhanaComponent {
         para: `<strong>Yes,</strong> absolutely. This is a reason. This workshop is design the techniques
         which wil be learning right from the first day. You can apply and see the results, but as this
         is not a complete course on. Swara yoga - so you must add your. Pranayama practice
-        (pranaarambha) with it.`
-      }
+        (pranaarambha) with it.`,
+      },
     ];
+  }
+  goToPayment() {
+    this.router.navigate([`/checkout/${routeEnum.sa}`]);
   }
 }
