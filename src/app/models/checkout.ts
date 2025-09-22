@@ -6,6 +6,7 @@ export class checkoutModel {
   currency: string;
   address: string;
   code: string;
+  time: string;
   constructor() {
     this.name = '';
     this.email = '';
@@ -14,6 +15,7 @@ export class checkoutModel {
     this.currency = '';
     this.address = '';
     this.code = '';
+    this.time = '';
   }
 }
 export class PhoneNumberData {

@@ -133,11 +133,11 @@
   color: black;
   position: sticky;
   top: 10px;
-   height: fit-content;
-   padding: 10px 30px 10px 20px;
+  height: fit-content;
+  padding-right: 30px;
 }
-.white-bg-design{
-box-shadow: 8px 8px 20px rgba(4, 0, 0, 0.4);
+.white-bg-design {
+  box-shadow: 8px 8px 20px rgba(4, 0, 0, 0.4);
   overflow-y: auto;
   height: fit-content;
   max-height: 600px;

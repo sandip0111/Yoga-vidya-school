@@ -17,6 +17,7 @@ import { routeEnum } from '../../enum/routes';
 export class SwaraSadhanaComponent {
   s3Bucket = s3Bucket;
   faqData: faq[] = [];
+  price: number = 999;
   constructor(private router: Router) {}
   ngOnInit(): void {
     this.faqData = [

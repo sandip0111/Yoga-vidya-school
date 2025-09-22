@@ -372,6 +372,8 @@ export class CheckoutComponent {
       this.rishikesh200Price();
     } else if (this.slug == routeEnum.rishikesh300) {
       this.rishikesh300Price();
+    } else if (this.slug === (routeEnum.sa as unknown as string)) {
+      this.setSwaraSadhanaPrice(e.target.value);
     } else {
       this.setPranicNormalPrice(e.target.value);
     }
@@ -382,7 +384,25 @@ export class CheckoutComponent {
       case 'INR':
         this.price = '3499 INR';
         this.amount = 3499;
-
+        break;
+      case 'USD':
+        this.price = '45 USD';
+        this.amount = 45;
+        break;
+      case 'EUR':
+        this.price = '40 EUR';
+        this.amount = 40;
+        break;
+      default:
+        this.price = '';
+        break;
+    }
+  }
+  setSwaraSadhanaPrice(currency: string) {
+    switch (currency) {
+      case 'INR':
+        this.price = '999 INR';
+        this.amount = 999;
         break;
       case 'USD':
         this.price = '45 USD';
@@ -453,6 +473,8 @@ export class CheckoutComponent {
       }
     } else if (this.slug === routeEnum.pranicPurification) {
       this.setPranicNormalPrice(this.checkData.currency);
+    } else if (this.slug === (routeEnum.sa as unknown as string)) {
+      this.setSwaraSadhanaPrice(this.checkData.currency);
     } else {
       this.price = '';
       this.amount = 0;

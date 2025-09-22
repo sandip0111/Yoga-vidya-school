@@ -8,7 +8,7 @@
             <li class="list-group-item">
               <div class="row align-items-center">
                 <div class="col">
-                  <span> {{ courseList?.coursetitle }}</span>
+                  <span> {{ courseList.coursetitle }}</span>
                 </div>
                 <div class="col-auto" *ngIf="amount > 0 && checkData.currency">
                   <div>
@@ -150,7 +150,8 @@
             slug !== routeEnum.pranicPurification &&
             slug !== routeEnum.rishikesh100 &&
             slug !== routeEnum.rishkesh200 &&
-            slug !== routeEnum.rishikesh300
+            slug !== routeEnum.rishikesh300 &&
+            slug !== routeEnum.sa
           "
         >
           <label for="package">Package<span style="color: red">*</span></label>
@@ -167,6 +168,23 @@
           <div *ngIf="packageRequired" class="text-danger">
             {{ packageRequired }}
           </div>
+        </div>
+        <div class="mb-3" *ngIf="slug == routeEnum.sa">
+          <label for="time"
+            >Time slot<span style="color: red">*</span></label
+          >
+          <select
+            class="form-control"
+            name="time"
+            [(ngModel)]="checkData.time"
+          >
+            <option value="">Select Time slot</option>
+            <option value="11AM">11 AM</option>
+            <option value="6PM">6 PM</option>
+          </select>
+          <!-- <div *ngIf="packageRequired" class="text-danger">
+            {{ packageRequired }}
+          </div> -->
         </div>
         <div
           class="mb-3"
@@ -227,7 +245,10 @@
             {{ codeError }}
           </div>
         </div>
-        <div class="mb-3" *ngIf="slug === 'pranic-purification'">
+        <div
+          class="mb-3"
+          *ngIf="slug === routeEnum.pranicPurification || slug == routeEnum.sa"
+        >
           <label for="name">Address</label>
           <input
             type="text"

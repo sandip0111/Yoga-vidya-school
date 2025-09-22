@@ -210,12 +210,14 @@
     </div>
   </div>
   <div class="col-md-3 rightbg">
-    <div class="white-bg-design ">
+    <div class="white-bg-design">
       <div class="purchase">
         <div class="text-center mb-2">
           <b>🔹 Master Your Energy – Pre-recorded Workshop with Prashant</b>
         </div>
-        <div class="current-price mb-3">💰 Only ₹999</div>
+        <div class="current-price mb-3">
+          💰 Only {{ price | currency : "INR" }}
+        </div>
         <div>
           <div>
             <div class="inner-box">
@@ -233,7 +235,7 @@
             available for you to experience at your own pace.
           </p>
         </div>
-        <div style="padding-inline: 16px;">
+        <div style="padding-inline: 16px">
           <div>
             <p style="font-weight: 500">
               🎥 This is a pre-recorded webinar with 48-hour access
