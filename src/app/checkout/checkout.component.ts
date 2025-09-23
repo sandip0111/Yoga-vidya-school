@@ -64,6 +64,8 @@ export class CheckoutComponent {
   isInstallment: boolean = false;
   paymentId: string | null = '';
   roomList: dropdownModel[] = [];
+  isRishikeshDiscount: boolean = false;
+  actualAmount: number = 0;
   constructor(
     private webapiService: WebapiService,
     private _activatedRoute: ActivatedRoute,
@@ -72,13 +74,20 @@ export class CheckoutComponent {
     private spinner: NgxSpinnerService,
     @Inject(DOCUMENT) private _document: Document,
     private _renderer2: Renderer2,
-    private actRoute: ActivatedRoute,
     private pixelTracking: PixelTrackingService
   ) {
     this._activatedRoute.params.subscribe((params) => {
       this.slug = params['id'];
     });
-    this.paymentId = this.actRoute.snapshot.queryParamMap.get('id');
+    console.log('onvb', this.slug);
+    if (this.slug == routeEnum.rishkesh200) {
+      this._activatedRoute.queryParams.subscribe((params) => {
+        if (params['hash'] === 'abcdef1234567890') {
+          this.isRishikeshDiscount = true;
+        }
+      });
+    }
+    this.paymentId = this._activatedRoute.snapshot.queryParamMap.get('id');
   }
 
   ngOnInit(): void {
@@ -288,21 +297,33 @@ export class CheckoutComponent {
   rishikesh200Price() {
     if (this.checkData.currency == 'INR' && this.checkData.package == 1) {
       this.amount = 70000;
+      this.actualAmount = 0;
     } else if (
       this.checkData.currency == 'INR' &&
       this.checkData.package == 2
     ) {
-      this.amount = 85000;
+      if (this.isRishikeshDiscount) {
+        this.amount = 75000;
+        this.actualAmount = 85000;
+      } else {
+        this.amount = 85000;
+      }
     } else if (
       this.checkData.currency == 'USD' &&
       this.checkData.package == 1
     ) {
       this.amount = 1300;
+      this.actualAmount = 0;
     } else if (
       this.checkData.currency == 'USD' &&
       this.checkData.package == 2
     ) {
-      this.amount = 1600;
+      if (this.isRishikeshDiscount) {
+        this.amount = 1500;
+        this.actualAmount = 1600;
+      } else {
+        this.amount = 1600;
+      }
     }
   }
   rishikesh300Price() {
