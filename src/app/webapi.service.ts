@@ -8,6 +8,9 @@ import {
   razorPayReturnModel,
   SignupDataModel,
   stripePayModel,
+  swaraDataModel,
+  swaraPaymentResultModel,
+  swaraRazorModel,
 } from './models/checkout';
 import { Observable } from 'rxjs';
 import { getSlugDataModel } from './models/rishikesh';
@@ -313,7 +316,9 @@ export class WebapiService {
       data
     );
   }
-  checkoutStripeForRishikesh(data: SignupDataModel): Observable<stripePayModel> {
+  checkoutStripeForRishikesh(
+    data: SignupDataModel
+  ): Observable<stripePayModel> {
     return this.http.post<stripePayModel>(
       this.url + 'api/v1/checkoutStripeForRishikesh',
       data
@@ -322,6 +327,24 @@ export class WebapiService {
   getStripePaymentResultRishikesh(data: any) {
     return this.http.post(
       this.url + 'api/v1/getStripePaymentResultRishikesh',
+      data
+    );
+  }
+  registerSwarSadhanaWebinarUser(data: swaraDataModel) {
+    return this.http.post(
+      this.url + 'api/v1/registerSwarSadhanaWebinarUser',
+      data
+    );
+  }
+  checkoutRazorpayNewSwarSadhana(data: swaraRazorModel) {
+    return this.http.post(
+      this.url + 'api/v1/checkoutRazorpayNewSwarSadhana',
+      data
+    );
+  }
+  getRazorPaymentResultSwarSadhana(data: swaraPaymentResultModel) {
+    return this.http.post(
+      this.url + 'api/v1/getRazorPaymentResultSwarSadhana',
       data
     );
   }

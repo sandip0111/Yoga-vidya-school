@@ -8,6 +8,7 @@ import { localstorageKey } from '../enum/localstorage';
 import {
   razorPaymentResultModel,
   razorPayReturnModel,
+  swaraPaymentResultModel,
 } from '../models/checkout';
 import { PixelTrackingService } from '../services/pixel-tracking.service';
 
@@ -37,6 +38,7 @@ export class SuccessPaymentComponent {
   amount: number = 0;
   cur: string = '';
   couponCodeId: string | null = '';
+  swaraSadhnaRazorPaySessionId: string = '';
   constructor(
     private webapiService: WebapiService,
     private router: Router,
@@ -76,6 +78,8 @@ export class SuccessPaymentComponent {
     this.rishikesh200StripeSessionId =
       localStorage.getItem(localstorageKey.rishikesh20StripeSessionId) ?? '';
     this.couponCodeId = localStorage.getItem(localstorageKey.couponCode);
+    this.swaraSadhnaRazorPaySessionId =
+      localStorage.getItem(localstorageKey.swaraSadhnaRzpId) ?? '';
 
     // Track purchase completion after a short delay to ensure data is loaded
     setTimeout(() => {
@@ -150,6 +154,13 @@ export class SuccessPaymentComponent {
       setTimeout(() => {
         this.getStripePaymentResultRishikesh200(
           this.rishikesh200StripeSessionId
+        );
+      }, 0);
+    }
+    if (this.swaraSadhnaRazorPaySessionId) {
+      setTimeout(() => {
+        this.getRazorPaymentResultSwaraSadhna(
+          this.swaraSadhnaRazorPaySessionId
         );
       }, 0);
     }
@@ -450,6 +461,39 @@ export class SuccessPaymentComponent {
         localStorage.removeItem(localstorageKey.rishikesh200StripeDBId);
       });
   }
+  getRazorPaymentResultSwaraSadhna(razorpayPaymentId: string) {
+    const paymentResult: swaraPaymentResultModel = {
+      razorpay_payment_id: razorpayPaymentId,
+      razorpay_order_id:
+        localStorage.getItem(localstorageKey.swaraSadhnaOrderId) ?? '',
+      razorpay_signature:
+        localStorage.getItem(localstorageKey.swaraSadhnaSig) ?? '',
+      payDbId: localStorage.getItem(localstorageKey.swaraSadhnaDBId) ?? '',
+      userId: localStorage.getItem(localstorageKey.swaraSadhnaUserID) ?? '',
+      amount: localStorage.getItem(localstorageKey.swaraSadhnaAmnt) ?? '0',
+    };
+    this.webapiService
+      .getRazorPaymentResultSwarSadhana(paymentResult)
+      .subscribe((res: any) => {
+        if (res) {
+          this.isRishikesh = true;
+          this.paidFlag = 'true';
+          this.ordId = paymentResult.razorpay_order_id;
+          this.amount = 0;
+          this.cur = this.currencySet(res.currency);
+          this.spinner.hide();
+        } else {
+          this.paidFlag = 'false';
+          this.spinner.hide();
+        }
+        localStorage.removeItem(localstorageKey.swaraSadhnaRzpId);
+        localStorage.removeItem(localstorageKey.swaraSadhnaOrderId);
+        localStorage.removeItem(localstorageKey.swaraSadhnaSig);
+        localStorage.removeItem(localstorageKey.swaraSadhnaDBId);
+        localStorage.removeItem(localstorageKey.swaraSadhnaUserID);
+        localStorage.removeItem(localstorageKey.swaraSadhnaAmnt);
+      });
+  }
   currencySet(currency: string) {
     let cur: string = '';
     if (currency == 'inr' || currency == 'INR') {
@@ -522,22 +566,34 @@ export class SuccessPaymentComponent {
     const currency = this.cur || 'USD';
 
     // Generate a transaction ID
-    const transactionId = this.sessionId || this.onlinesessionId || `txn_${Date.now()}`;
+    const transactionId =
+      this.sessionId || this.onlinesessionId || `txn_${Date.now()}`;
 
     // Track purchase event
-    this.pixelTracking.trackPurchase(transactionId, courseId, courseName, amount, currency);
+    this.pixelTracking.trackPurchase(
+      transactionId,
+      courseId,
+      courseName,
+      amount,
+      currency
+    );
   }
 
   private getCourseNameFromId(courseId: string): string {
     const courseNames: { [key: string]: string } = {
-      '100-hours-yoga-teacher-training-in-rishikesh': '100-Hour Yoga Teacher Training',
-      '200-hours-yoga-teacher-training-in-rishikesh': '200-Hour Yoga Teacher Training',
-      '300-hours-yoga-teacher-training-in-rishikesh': '300-Hour Yoga Teacher Training',
-      '200-hour-yoga-teacher-training-in-bali': '200-Hour Yoga Teacher Training Bali',
-      '300-hour-yoga-teacher-training-in-bali': '300-Hour Yoga Teacher Training Bali',
+      '100-hours-yoga-teacher-training-in-rishikesh':
+        '100-Hour Yoga Teacher Training',
+      '200-hours-yoga-teacher-training-in-rishikesh':
+        '200-Hour Yoga Teacher Training',
+      '300-hours-yoga-teacher-training-in-rishikesh':
+        '300-Hour Yoga Teacher Training',
+      '200-hour-yoga-teacher-training-in-bali':
+        '200-Hour Yoga Teacher Training Bali',
+      '300-hour-yoga-teacher-training-in-bali':
+        '300-Hour Yoga Teacher Training Bali',
       'pranic-purification': 'Pranic Purification Course',
       'breath-detox-yoga': 'Breath Detox Yoga',
-      'pranayama-course-online-pranarambha': 'Pranayama Course Online'
+      'pranayama-course-online-pranarambha': 'Pranayama Course Online',
     };
     return courseNames[courseId] || 'Yoga Teacher Training';
   }

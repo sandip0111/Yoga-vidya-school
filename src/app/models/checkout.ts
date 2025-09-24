@@ -51,6 +51,21 @@ export interface SignupDataModel {
   room?: string;
   hour?: number;
 }
+export interface swaraDataModel {
+  city: string;
+  email: string;
+  name: string;
+  password: string;
+  phone: string;
+  timeSlot: string;
+  webinar: string;
+}
+export interface swaraRazorModel {
+  currency: string;
+  custEmail: string;
+  price: number;
+  userId: string;
+}
 export interface razorPayModel {
   amount: number;
   orderId: string;
@@ -65,6 +80,14 @@ export interface razorPaymentResultModel {
   password?: string;
   installment?: string;
   dueAmnt?: number;
+}
+export interface swaraPaymentResultModel {
+  amount: string;
+  payDbId: string;
+  razorpay_order_id: string;
+  razorpay_payment_id: string;
+  razorpay_signature: string;
+  userId: string;
 }
 export interface stripePayModel {
   sessionId: string;
