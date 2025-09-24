@@ -476,8 +476,6 @@ export class CheckoutComponent {
       }
     } else if (this.slug === routeEnum.pranicPurification) {
       this.setPranicNormalPrice(this.checkData.currency);
-    } else if (this.slug === (routeEnum.sa as unknown as string)) {
-      this.setSwaraSadhanaPrice(this.checkData.currency);
     } else {
       this.price = '';
       this.amount = 0;
@@ -490,7 +488,8 @@ export class CheckoutComponent {
       if (
         this.slug !== routeEnum.rishikesh100 &&
         this.slug !== routeEnum.rishkesh200 &&
-        this.slug !== routeEnum.rishikesh300
+        this.slug !== routeEnum.rishikesh300 &&
+        this.slug !== (routeEnum.sa as unknown as string)
       ) {
         this.currencyOptions = [];
         this.checkData.currency = '';
@@ -501,7 +500,8 @@ export class CheckoutComponent {
       if (
         this.slug !== routeEnum.rishikesh100 &&
         this.slug !== routeEnum.rishkesh200 &&
-        this.slug !== routeEnum.rishikesh300
+        this.slug !== routeEnum.rishikesh300 &&
+        this.slug !== (routeEnum.sa as unknown as string)
       ) {
         const phoneValue = this.checkData.phoneNumber;
         const countryCode = phoneValue?.countryCode?.toLowerCase();
@@ -515,6 +515,10 @@ export class CheckoutComponent {
         this.setPriceOnInputChange();
         this.inputValidation('package');
         this.inputValidation('cur');
+      } else if (this.slug === (routeEnum.sa as unknown as string)) {
+        this.currencyOptions = ['INR', 'USD', 'EUR'];
+        this.checkData.currency = this.currencyOptions[0];
+        this.setSwaraSadhanaPrice(this.checkData.currency);
       }
     }
   }
