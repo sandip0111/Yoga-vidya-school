@@ -334,7 +334,8 @@ export class CheckoutComponent {
       this.slug !== routeEnum.pranicPurification &&
       this.slug !== routeEnum.rishikesh100 &&
       this.slug !== routeEnum.rishkesh200 &&
-      this.slug !== routeEnum.rishikesh300
+      this.slug !== routeEnum.rishikesh300 &&
+      this.slug !== String(routeEnum.sa)
     ) {
       if (this.checkData.package == 'Basic') {
         if (this.slug == routeEnum['200TTC']) {
@@ -372,7 +373,7 @@ export class CheckoutComponent {
       this.rishikesh200Price();
     } else if (this.slug == routeEnum.rishikesh300) {
       this.rishikesh300Price();
-    } else if (this.slug === (routeEnum.sa as unknown as string)) {
+    } else if (this.slug === String(routeEnum.sa)) {
       this.setSwaraSadhanaPrice(e.target.value);
     } else {
       this.setPranicNormalPrice(e.target.value);
@@ -405,12 +406,12 @@ export class CheckoutComponent {
         this.amount = 999;
         break;
       case 'USD':
-        this.price = '45 USD';
-        this.amount = 45;
+        this.price = '16 USD';
+        this.amount = 16;
         break;
       case 'EUR':
-        this.price = '40 EUR';
-        this.amount = 40;
+        this.price = '16 EUR';
+        this.amount = 16;
         break;
       default:
         this.price = '';
