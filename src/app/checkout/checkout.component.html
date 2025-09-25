@@ -176,15 +176,15 @@
           <select
             class="form-control"
             name="time"
-            [(ngModel)]="checkData.time"
+            [(ngModel)]="checkData.package"
           >
             <option value="">Select Time slot</option>
             <option value="11AM">11 AM</option>
             <option value="6PM">6 PM</option>
           </select>
-          <!-- <div *ngIf="packageRequired" class="text-danger">
+          <div *ngIf="packageRequired" class="text-danger">
             {{ packageRequired }}
-          </div> -->
+          </div>
         </div>
         <div
           class="mb-3"
@@ -260,7 +260,6 @@
         </div>
         <div class="d-flex w-100 justify-content-start gap-3 mt-3">
           <a
-            href="javascript:void(0)"
             style="border-color: #f9751e"
             class="payment-button"
             (click)="checkoutData(checkData, true)"

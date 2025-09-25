@@ -39,6 +39,7 @@ export class SuccessPaymentComponent {
   cur: string = '';
   couponCodeId: string | null = '';
   swaraSadhnaRazorPaySessionId: string = '';
+  swaraSadhnaStripeSessionId: string = '';
   constructor(
     private webapiService: WebapiService,
     private router: Router,
@@ -80,7 +81,8 @@ export class SuccessPaymentComponent {
     this.couponCodeId = localStorage.getItem(localstorageKey.couponCode);
     this.swaraSadhnaRazorPaySessionId =
       localStorage.getItem(localstorageKey.swaraSadhnaRzpId) ?? '';
-
+    this.swaraSadhnaStripeSessionId =
+      localStorage.getItem(localstorageKey.swaraSadhnaStripeSessionId) ?? '';
     // Track purchase completion after a short delay to ensure data is loaded
     setTimeout(() => {
       this.trackPurchaseCompletion();
@@ -163,6 +165,13 @@ export class SuccessPaymentComponent {
           this.swaraSadhnaRazorPaySessionId
         );
       }, 0);
+      if (this.swaraSadhnaStripeSessionId) {
+        setTimeout(() => {
+          this.getStripePaymentResultSwaraSadhna(
+            this.swaraSadhnaStripeSessionId
+          );
+        }, 0);
+      }
     }
   }
   getpaymentResult(sessionId: any, couponCode: string) {
@@ -493,6 +502,15 @@ export class SuccessPaymentComponent {
         localStorage.removeItem(localstorageKey.swaraSadhnaUserID);
         localStorage.removeItem(localstorageKey.swaraSadhnaAmnt);
       });
+  }
+  getStripePaymentResultSwaraSadhna(sessionId: string) {
+    this.isRishikesh = true;
+    this.paidFlag = 'true';
+    this.ordId = sessionId;
+    this.amount = 0;
+    localStorage.removeItem(localstorageKey.swaraSadhnaStripeSessionId);
+    localStorage.removeItem(localstorageKey.swaraSadhnaStripeDBId);
+     this.spinner.hide();
   }
   currencySet(currency: string) {
     let cur: string = '';

@@ -11,6 +11,7 @@ import {
   swaraDataModel,
   swaraPaymentResultModel,
   swaraRazorModel,
+  swaraStripeModel,
 } from './models/checkout';
 import { Observable } from 'rxjs';
 import { getSlugDataModel } from './models/rishikesh';
@@ -347,5 +348,8 @@ export class WebapiService {
       this.url + 'api/v1/getRazorPaymentResultSwarSadhana',
       data
     );
+  }
+  checkoutSwarSadhanaStripe(data: swaraStripeModel) {
+    return this.http.post(this.url + 'api/v1/checkoutSwarSadhanaStripe', data);
   }
 }

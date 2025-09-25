@@ -6,7 +6,6 @@ export class checkoutModel {
   currency: string;
   address: string;
   code: string;
-  time: string;
   constructor() {
     this.name = '';
     this.email = '';
@@ -15,7 +14,6 @@ export class checkoutModel {
     this.currency = '';
     this.address = '';
     this.code = '';
-    this.time = '';
   }
 }
 export class PhoneNumberData {
@@ -64,6 +62,11 @@ export interface swaraRazorModel {
   currency: string;
   custEmail: string;
   price: number;
+  userId: string;
+}
+export interface swaraStripeModel {
+  custEmail: string;
+  priceId: string;
   userId: string;
 }
 export interface razorPayModel {

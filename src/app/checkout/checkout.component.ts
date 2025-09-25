@@ -23,6 +23,7 @@ import {
   stripePayModel,
   swaraDataModel,
   swaraRazorModel,
+  swaraStripeModel,
 } from '../models/checkout';
 import { localstorageKey } from '../enum/localstorage';
 import { routeEnum } from '../enum/routes';
@@ -603,9 +604,12 @@ export class CheckoutComponent {
         isErrMsg = true;
       }
       if (!data.package) {
-        this.packageRequired = routeEnum.rishkesh200
-          ? 'Please select a room'
-          : 'Please select a package';
+        this.packageRequired =
+          this.slug == routeEnum.rishkesh200
+            ? 'Please select a room'
+            : this.slug == routeEnum.sa
+            ? 'Please select a time slot'
+            : 'Please select a package';
         isErrMsg = true;
       }
       if (!data.phoneNumber) {
@@ -670,10 +674,21 @@ export class CheckoutComponent {
     this.webapiService
       .registerSwarSadhanaWebinarUser(signupData)
       .subscribe((res: any) => {
-        console.log('mdamk', res);
         if (res.message == 'User registered successfully!') {
           if (isRazorPay) {
             this.initializeRazorPaySwaraSadhana(data, res.userId, this.amount);
+          } else {
+            let priceId: string =
+              data.currency === 'INR'
+                ? 'price_1RU5NZSEQq0H4GuEMf7nRCHv'// 'price_1R6SxVSEQq0H4GuEkPItyCGM'
+                : data.currency === 'USD'
+                ? 'price_1RU7RCSEQq0H4GuEJylju4cd'
+                : 'price_1RU7RYSEQq0H4GuE8nk5oH79';
+            this.initializeStripeSwaraSadhna(
+              priceId,
+              signupData.email,
+              res.userId
+            );
           }
           // this.spinner.hide();
         }
@@ -737,6 +752,32 @@ export class CheckoutComponent {
           this.spinner.hide();
           const rzp = new Razorpay(options);
           rzp.open();
+        } else {
+          alert('Session Genration failed! please try again');
+          this.spinner.hide();
+        }
+      });
+  }
+  initializeStripeSwaraSadhna(id: string, email: string, userId: string) {
+    let stripeVal: swaraStripeModel = {
+      custEmail: email.toLowerCase(),
+      priceId: id,
+      userId: userId,
+    };
+    this.webapiService
+      .checkoutSwarSadhanaStripe(stripeVal)
+      .subscribe((res: any) => {
+        if (res.sessionId) {
+          localStorage.setItem(
+            localstorageKey.swaraSadhnaStripeSessionId,
+            res.sessionId
+          );
+          localStorage.setItem(
+            localstorageKey.swaraSadhnaStripeDBId,
+            res.payDbId
+          );
+          window.location.href = res.url;
+          this.spinner.hide();
         } else {
           alert('Session Genration failed! please try again');
           this.spinner.hide();
