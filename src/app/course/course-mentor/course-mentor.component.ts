@@ -168,7 +168,7 @@ export let jsonData = [
       time2: '7:00 am',
       stamp: 'IST',
     },
-    nextBatch: 'October the 6th(Not available during September)',
+    nextBatch: 'October the 6th',
     price: {
       priceInIndian: 2999,
       priceInUSD: 70,
