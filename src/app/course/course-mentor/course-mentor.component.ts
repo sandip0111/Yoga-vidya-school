@@ -230,5 +230,5 @@ export let jsonData = [
   //     'Advanced, mobility-rich sessions emphasizing arm balance and inversions with therapeutic methods. Ideal for progressing students beyond basic.',
   //   url: 'anuj-online-class',
   // }
-  
+
 ];
