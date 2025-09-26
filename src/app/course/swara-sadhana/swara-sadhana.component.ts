@@ -18,6 +18,7 @@ export class SwaraSadhanaComponent {
   s3Bucket = s3Bucket;
   faqData: faq[] = [];
   price: number = 999;
+  priceUsd: number = 15;
   constructor(private router: Router) {}
   ngOnInit(): void {
     this.faqData = [
@@ -34,10 +35,6 @@ export class SwaraSadhanaComponent {
         para: `<strong>Yes,</strong> as this is an introduction to. Swara yoga there will be few basic
         techniques which will be explained by teacher which can give strong foundation for all the
         practitioners and their Pranayam Practice can be strengthen.`,
-      },
-      {
-        title: 'Will I access the recording?',
-        para: `<strong>Yes,</strong> recordings will be accessible for 48 hours after the webinar is finished so if you are unable to join live, you still will have chance to access the recording for 48 hours.`,
       },
       {
         title: 'Will any techniques be taught in this workshop?',

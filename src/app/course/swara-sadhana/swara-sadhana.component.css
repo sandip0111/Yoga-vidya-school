@@ -68,11 +68,7 @@
   justify-content: center;
 }
 .white-bg-design {
-  background: #fff;
   padding: 20px;
-  border-radius: 20px;
-  border: 1px solid #000;
-  min-height: 450px;
 
   h2 {
     text-align: center;
@@ -130,18 +126,7 @@
   }
 }
 .rightbg {
-  color: black;
-  position: sticky;
-  top: 10px;
-  height: fit-content;
-  padding-right: 30px;
-}
-.white-bg-design {
-  box-shadow: 8px 8px 20px rgba(4, 0, 0, 0.4);
-  overflow-y: auto;
-  height: fit-content;
-  max-height: 600px;
-  background: #fff;
+  background-color: #f8eed8;
 }
 .sidebar-about {
   margin-top: 15px;
