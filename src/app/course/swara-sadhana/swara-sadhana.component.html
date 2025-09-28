@@ -1,33 +1,28 @@
 <app-banner></app-banner>
 <div class="rightbg">
   <div class="white-bg-design">
-    <div class="purchase">
-      <div class="text-center mb-2">
-        <b>🔹 Master Your Energy – Pre-recorded Workshop with Prashant</b>
-      </div>
-      <div class="current-price">
-        💰 Only {{ price | currency : "INR" }} -
-        {{ priceUsd | currency : "USD" }}
-      </div>
-      <button (click)="goToPayment()" class="button">Join Now</button>
+    <div>
+      <h2>
+        🔹 Master Your Energy – <span>Pre-recorded Workshop with Prashant</span>
+      </h2>
     </div>
-    <div class="row">
+    <div class="row" style="font-size: 18px">
       <div>
         <p class="sidebar-about">
           🧘‍♂️ A beautifully guided session led by Yogacharya Prashant, now
           available for you to experience at your own pace.
         </p>
       </div>
-      <div style="padding-inline: 16px">
+      <div>
         <div>
           <p style="font-weight: 500">
             🎥 This is a pre-recorded webinar with 48-hour access
           </p>
           <ul>
             <li>
-              <span style="font-weight: 500"
-                >Understanding your energy flow</span
-              >
+              <span style="font-weight: 500">
+                Understanding your energy flow
+              </span>
               and linking it to the universal energy.
             </li>
             <li>
@@ -42,6 +37,10 @@
               of energy and one's actions.
             </li>
           </ul>
+        </div>
+        <div class="text-center project-color" style="font-weight: 700">
+          💰 Fee {{ price | currency : "INR" }} -
+          {{ priceUsd | currency : "USD" }}
         </div>
       </div>
     </div>

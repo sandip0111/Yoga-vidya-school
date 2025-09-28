@@ -75,56 +75,6 @@
     margin-bottom: 10px;
   }
 }
-.purchase {
-  display: flex;
-  flex-direction: column;
-  background: #ca965c;
-  color: #fff;
-  padding-bottom: 21px;
-  padding-top: 8px;
-  border-radius: 20px;
-  align-items: center;
-  .join {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-radius: 8px;
-    font-size: clamp(2.375rem, 2rem + 1.6667vw, 4rem) !important;
-    border-bottom: 1px solid #fff;
-  }
-  .join {
-    font-family: "Open Sans", sans-serif;
-  }
-  .join a {
-    display: flex;
-    align-items: center;
-  }
-  .join img {
-    width: 80px; /* Adjust size */
-    height: 80px;
-  }
-
-  .price {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    font-family: "Andika", sans-serif;
-    margin: 10px 0px;
-    .strick-through {
-      font-size: 32px;
-      font-weight: 400;
-      text-decoration: line-through;
-    }
-    .current-price {
-      font-size: 20px;
-      color: #000;
-    }
-
-    .btn-style-two {
-      padding: 10px 20px;
-    }
-  }
-}
 .rightbg {
   background-color: #f8eed8;
 }
