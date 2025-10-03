@@ -27,8 +27,8 @@ export class PricingComponent implements OnInit {
         this.pricing = [
           {
             title: 'Shared Room',
-            usd: 700,
-            inr: 45000,
+            usd: 850,
+            inr: 55000,
             image: s3Bucket.room4,
             bgColor: '#eef6f8',
           },
@@ -39,15 +39,15 @@ export class PricingComponent implements OnInit {
         this.pricing = [
           {
             title: 'Private Room',
-            usd: 1600,
-            inr: 85000,
+            usd: 1800,
+            inr: 90000,
             image: s3Bucket.room2,
             bgColor: '#f5f0e6',
           },
           {
             title: 'Shared Room',
-            usd: 1300,
-            inr: 70000,
+            usd: 1500,
+            inr: 85000,
             image: s3Bucket.room4,
             bgColor: '#eef6f8',
           },
@@ -58,15 +58,15 @@ export class PricingComponent implements OnInit {
         this.pricing = [
           {
             title: 'Private Room',
-            usd: 1800,
-            inr: 130000,
+            usd: 1999,
+            inr: 140000,
             image: s3Bucket.room2,
             bgColor: '#f5f0e6',
           },
           {
             title: 'Shared Room',
-            usd: 1600,
-            inr: 110000,
+            usd: 1850,
+            inr: 120000,
             image: s3Bucket.room4,
             bgColor: '#eef6f8',
           },
