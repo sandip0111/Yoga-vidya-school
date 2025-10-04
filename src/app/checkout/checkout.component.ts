@@ -296,14 +296,14 @@ export class CheckoutComponent {
   }
   rishikesh100Price() {
     if (this.checkData.currency == 'INR') {
-      this.amount = 45000;
+      this.amount = 55000;
     } else if (this.checkData.currency == 'USD') {
-      this.amount = 700;
+      this.amount = 850;
     }
   }
   rishikesh200Price() {
     if (this.checkData.currency == 'INR' && this.checkData.package == 1) {
-      this.amount = 70000;
+      this.amount = 85000;
       this.actualAmount = 0;
     } else if (
       this.checkData.currency == 'INR' &&
@@ -311,15 +311,15 @@ export class CheckoutComponent {
     ) {
       if (this.isRishikeshDiscount) {
         this.amount = 75000;
-        this.actualAmount = 85000;
+        this.actualAmount = 90000;
       } else {
-        this.amount = 85000;
+        this.amount = 90000;
       }
     } else if (
       this.checkData.currency == 'USD' &&
       this.checkData.package == 1
     ) {
-      this.amount = 1300;
+      this.amount = 1500;
       this.actualAmount = 0;
     } else if (
       this.checkData.currency == 'USD' &&
@@ -327,30 +327,30 @@ export class CheckoutComponent {
     ) {
       if (this.isRishikeshDiscount) {
         this.amount = 1500;
-        this.actualAmount = 1600;
+        this.actualAmount = 1800;
       } else {
-        this.amount = 1600;
+        this.amount = 1800;
       }
     }
   }
   rishikesh300Price() {
     if (this.checkData.currency == 'INR' && this.checkData.package == 1) {
-      this.amount = 110000;
+      this.amount = 120000;
     } else if (
       this.checkData.currency == 'INR' &&
       this.checkData.package == 2
     ) {
-      this.amount = 130000;
+      this.amount = 140000;
     } else if (
       this.checkData.currency == 'USD' &&
       this.checkData.package == 1
     ) {
-      this.amount = 1600;
+      this.amount = 1850;
     } else if (
       this.checkData.currency == 'USD' &&
       this.checkData.package == 2
     ) {
-      this.amount = 1800;
+      this.amount = 1999;
     }
   }
   priceConvert(e: any) {
@@ -703,7 +703,7 @@ export class CheckoutComponent {
           } else {
             let priceId: string =
               data.currency === 'INR'
-                ? 'price_1RU5NZSEQq0H4GuEMf7nRCHv'// 'price_1R6SxVSEQq0H4GuEkPItyCGM'
+                ? 'price_1RU5NZSEQq0H4GuEMf7nRCHv' // 'price_1R6SxVSEQq0H4GuEkPItyCGM'
                 : data.currency === 'USD'
                 ? 'price_1RU7RCSEQq0H4GuEJylju4cd'
                 : 'price_1RU7RYSEQq0H4GuE8nk5oH79';

@@ -285,8 +285,8 @@ export class AboutRishikeshComponent implements OnInit {
             This Online Yoga Teacher Training is designed by
             <b>Prashant Jakhamola</b>, known worldwide as Prashant J Yoga. The
             program is a unique opportunity to become a devoted practitioner
-            (Sadhaka) of Yogic science and tradition. Over the course of 12
-            weeks, you will explore the deeper dimensions of Hatha Yoga and
+            (Sadhaka) of Yogic science and tradition. During six weeks,
+            you will explore the deeper dimensions of Hatha Yoga and
             Ashtanga Yoga, with a special focus on alignments and adjustments,
             as well as Meditation, Pranayama, Philosophy, and Teaching
             Methodology.
