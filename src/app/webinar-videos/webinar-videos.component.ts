@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { WebapiService } from '../webapi.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -16,7 +16,7 @@ import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 })
 
 
-export class WebinarVideosComponent {
+export class WebinarVideosComponent implements OnInit {
   
   reverseArr : WebinarVideosInterface[] = [];
   name!: any;
@@ -65,9 +65,6 @@ export class WebinarVideosComponent {
         this.toastr.error(error.error.message, 'Error');
       },
     });
-    this.webapiService.getWebinarVideosByName(data).subscribe((res: any) => {
-      // console.log(res.data, 'course Data');
-      
-    })
+    
   }
 }
