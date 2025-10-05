@@ -627,13 +627,13 @@ export class CheckoutComponent {
         isErrMsg = true;
       }
       if (!data.package) {
-        this.packageRequired =
-          this.slug == routeEnum.rishkesh200
-            ? 'Please select a room'
-            : this.slug == routeEnum.sa
-            ? 'Please select a time slot'
-            : 'Please select a package';
-        isErrMsg = true;
+        if (this.slug !== routeEnum.sa) {
+          this.packageRequired =
+            this.slug == routeEnum.rishkesh200
+              ? 'Please select a room'
+              : 'Please select a package';
+          isErrMsg = true;
+        }
       }
       if (!data.phoneNumber) {
         this.phoneRequired = 'WhatsApp Number is required';

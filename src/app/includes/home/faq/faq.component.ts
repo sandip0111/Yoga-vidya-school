@@ -55,6 +55,9 @@ export class FaqComponent implements OnInit {
   goToPaymentPage() {
     this.router.navigate([routeEnum.bDtox, routeEnum.stRegister]);
   }
+  goToCheckoutPayment(slug: string) {
+    this.router.navigate([`/checkout/${slug}`]);
+  }
 }
 
 export interface faq {

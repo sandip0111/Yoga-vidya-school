@@ -64,4 +64,7 @@
       &nbsp;&nbsp;<b>It´s free</b>
     </p>
   </div>
+  <div *ngIf="slug == routEnum.sa">
+    <button (click)="goToCheckoutPayment(slug)" class="button">JOIN NOW</button>
+  </div>
 </div>

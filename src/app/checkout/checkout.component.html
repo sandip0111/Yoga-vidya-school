@@ -134,7 +134,7 @@
               (keyup)="inputValidation('phone')"
             >
             </ngx-intl-tel-input>
-            <span>(To see the course price enter your WhatsApp Number)</span>
+            <!-- <span>(To see the course price enter your WhatsApp Number)</span> -->
           </div>
           <div *ngIf="phoneError" class="text-danger mt-1">
             {{ phoneError }}
@@ -179,23 +179,6 @@
           >
             <option value="">Select Package</option>
             <option value="Basic">Basic</option>
-          </select>
-          <div *ngIf="packageRequired" class="text-danger">
-            {{ packageRequired }}
-          </div>
-        </div>
-        <div class="mb-3" *ngIf="slug == routeEnum.sa">
-          <label for="time"
-            >Time slot<span style="color: red">*</span></label
-          >
-          <select
-            class="form-control"
-            name="time"
-            [(ngModel)]="checkData.package"
-          >
-            <option value="">Select Time slot</option>
-            <option value="11AM">11 AM</option>
-            <option value="6PM">6 PM</option>
           </select>
           <div *ngIf="packageRequired" class="text-danger">
             {{ packageRequired }}
