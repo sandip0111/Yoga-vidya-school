@@ -162,13 +162,13 @@ export class SuccessPaymentComponent {
           this.swaraSadhnaRazorPaySessionId
         );
       }, 0);
-      if (this.swaraSadhnaStripeSessionId) {
-        setTimeout(() => {
-          this.getStripePaymentResultSwaraSadhna(
-            this.swaraSadhnaStripeSessionId
-          );
-        }, 0);
-      }
+    }
+    if (this.swaraSadhnaStripeSessionId) {
+      setTimeout(() => {
+        this.getStripePaymentResultSwaraSadhna(
+          this.swaraSadhnaStripeSessionId
+        );
+      }, 0);
     }
   }
   getpaymentResult(sessionId: any, couponCode: string) {
