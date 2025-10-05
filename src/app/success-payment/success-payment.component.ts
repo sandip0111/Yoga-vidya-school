@@ -513,13 +513,27 @@ export class SuccessPaymentComponent {
       });
   }
   getStripePaymentResultSwaraSadhna(sessionId: string) {
-    this.isRishikesh = true;
-    this.paidFlag = 'true';
-    this.ordId = sessionId;
-    this.amount = 0;
-    localStorage.removeItem(localstorageKey.swaraSadhnaStripeSessionId);
-    localStorage.removeItem(localstorageKey.swaraSadhnaStripeDBId);
-     this.spinner.hide();
+    const paymentResult = {
+      sessionId: sessionId,
+      userId: localStorage.getItem(localstorageKey.swaraSadhnaStripeDBId)
+    }
+    this.webapiService
+    .getPaymentResultSwarSadhana(paymentResult)
+    .subscribe((res: any) => {
+      if (res) {
+        this.isRishikesh = true;
+        this.paidFlag = 'true';
+        this.ordId = res.paymtId;
+        this.amount = 0;
+        this.spinner.hide();
+      } else {
+        this.paidFlag = 'false';
+        this.spinner.hide();
+      }
+      localStorage.removeItem(localstorageKey.swaraSadhnaStripeSessionId);
+      localStorage.removeItem(localstorageKey.swaraSadhnaStripeDBId);
+    });
+    
   }
   currencySet(currency: string) {
     let cur: string = '';

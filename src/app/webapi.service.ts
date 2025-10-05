@@ -352,4 +352,8 @@ export class WebapiService {
   checkoutSwarSadhanaStripe(data: swaraStripeModel) {
     return this.http.post(this.url + 'api/v1/checkoutSwarSadhanaStripe', data);
   }
+
+  getPaymentResultSwarSadhana(data: any) {
+    return this.http.post(this.url + 'api/v1/getPaymentResultSwarSadhana', data);
+  }
 }
