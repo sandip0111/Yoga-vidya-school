@@ -1,11 +1,4 @@
 @if(slug === routeEnum['200TTC']){
-<section class="ttc-banner-section" id="bnner_section">
-  <div class="floating-register-btn">
-    <button class="register-btn" (click)="registerClick(slug)">
-      Register Now
-    </button>
-  </div>
-</section>
 <div
   id="carouselExampleInterval"
   class="carousel slide image-slide"
@@ -35,12 +28,15 @@
         alt="Slide 3"
       />
     </div>
-     <div class="banner-text-overlay">
-            {{ rishikeshMainHeading }}
-          </div>
-          <div class="banner-subtitle-overlay">
-            {{ rishikeshSubHeading }}
-          </div>
+    <div class="banner-overlay">
+      <div class="banner-text-overlay">{{ rishikeshMainHeading }}</div>
+      <div class="banner-subtitle-overlay">{{ rishikeshSubHeading }}</div>
+    </div>
+    <div class="floating-register-btn">
+      <button class="register-btn" (click)="registerClick(slug)">
+        Register Now
+      </button>
+    </div>
   </div>
   <button
     class="carousel-control-prev"
@@ -64,27 +60,19 @@
 }@else if(slug == routeEnum.rishikesh100 || slug === routeEnum.rishkesh200 ||
 slug === routeEnum.rishikesh300 || slug == routeEnum.preRecordPranayamaCourse ||
 routeEnum.bDtox || routeEnum.pranOnlinePranaArambh){
-<section style="padding: 0">
-  <div class="row">
-    <div class="col-md-12">
-      <div style="position: relative">
-        <div class="inner image">
-          <img
-            [src]="rishikesHeroImage"
-            class="img-fluid banner_image"
-            alt="Banner Image"
-          />
-          <div class="banner-text-overlay">
-            {{ rishikeshMainHeading }}
-          </div>
-          <div class="banner-subtitle-overlay">
-            {{ rishikeshSubHeading }}
-          </div>
-        </div>
-      </div>
-    </div>
+<div class="carousel-inner">
+  <div class="inner">
+    <img
+      [src]="rishikesHeroImage"
+      class="img-fluid banner_image"
+      alt="Banner Image"
+    />
   </div>
-</section>
+  <div class="banner-overlay">
+    <div class="banner-text-overlay">{{ rishikeshMainHeading }}</div>
+    <div class="banner-subtitle-overlay">{{ rishikeshSubHeading }}</div>
+  </div>
+</div>
 } @else{
 <section #bannerSection class="banner-section" id="bnner_section">
   <div *ngIf="slug === 'pranic-purification'" class="blur-overlay"></div>

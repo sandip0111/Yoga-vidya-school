@@ -164,8 +164,8 @@ export let jsonData = [
     title: 'Yoga Sadhana',
     weeklyTime: 'From Monday to Thursday',
     time: {
-      time1: '6:00 am',
-      time2: '7:00 am',
+      time1: '6:00 AM',
+      time2: '7:00 AM',
       stamp: 'IST',
     },
     nextBatch: 'October the 6th',

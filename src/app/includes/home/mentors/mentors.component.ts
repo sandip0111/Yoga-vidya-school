@@ -161,12 +161,6 @@ export class MentorsComponent implements OnInit {
           intro: 'Yoga Philosophy',
           slug: 'swami-atmatattwananda-saraswati',
         },
-        {
-          name: 'Shivam Joshi',
-          picture: 'image_1673271925503.jpeg',
-          intro: 'Pranayama',
-          slug: 'shivam-joshi',
-        },
       ];
     } else if (this.slug == '') {
       this.mentors = [
