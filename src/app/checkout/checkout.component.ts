@@ -82,7 +82,6 @@ export class CheckoutComponent {
     this._activatedRoute.params.subscribe((params) => {
       this.slug = params['id'];
     });
-    console.log('onvb', this.slug);
     if (this.slug == routeEnum.rishkesh200) {
       this._activatedRoute.queryParams.subscribe((params) => {
         if (params['hash'] === 'abcdef1234567890') {
