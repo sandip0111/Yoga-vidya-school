@@ -110,7 +110,7 @@ export class BannerComponent implements OnInit {
         break;
       case routeEnum['200TTC']:
         this.rishikeshMainHeading =
-          '220 HRS Online TTC - Bring Wisdom to Your Home';
+          '200 HRS Online TTC - Bring Wisdom to Your Home';
         this.rishikeshSubHeading =
           'Dive into the roots of traditional yoga from wherever you are, and let this journey guide you toward clarity, balance, and a deeper connection with yourself';
         break;
