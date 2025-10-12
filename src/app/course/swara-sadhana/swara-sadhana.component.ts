@@ -6,6 +6,7 @@ import { VideoReviewsComponent } from '../video-reviews/video-reviews.component'
 import { faq, FaqComponent } from '../../includes/home/faq/faq.component';
 import { Router } from '@angular/router';
 import { routeEnum } from '../../enum/routes';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-swara-sadhana',
@@ -19,7 +20,9 @@ export class SwaraSadhanaComponent {
   faqData: faq[] = [];
   price: number = 999;
   priceUsd: number = 15;
-  constructor(private router: Router) {}
+  constructor(private router: Router, private titleService: Title) {
+    this.titleService.setTitle('Swara Sadhana');
+  }
   ngOnInit(): void {
     this.faqData = [
       {

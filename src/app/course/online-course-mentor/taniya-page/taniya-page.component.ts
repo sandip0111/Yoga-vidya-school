@@ -7,6 +7,7 @@ import {
 } from '../../course-mentor/course-mentor.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PixelTrackingService } from '../../../services/pixel-tracking.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-taniya-page',
@@ -19,8 +20,9 @@ export class TaniyaPageComponent implements OnInit {
   s3Bucket = s3Bucket;
   slugId: number = 0;
   mentor?: mentorTimings = jsonData.find((m) => m.id == 3);
-  constructor(private cartService: CartService, private route: ActivatedRoute, private pixelTracking: PixelTrackingService) {
+  constructor(private cartService: CartService, private route: ActivatedRoute, private pixelTracking: PixelTrackingService, private titleService: Title) {
     const id = this.route.snapshot.paramMap.get('id');
+    this.titleService.setTitle('Women wellness with Taniya Verma');
     if (id) {
       this.slugId = +id;
     }

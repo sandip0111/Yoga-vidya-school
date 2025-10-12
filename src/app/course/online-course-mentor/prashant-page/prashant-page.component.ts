@@ -8,6 +8,7 @@ import {
 import { CartItem, CartService } from '../../../cart.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PixelTrackingService } from '../../../services/pixel-tracking.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-prashant-page',
@@ -20,8 +21,9 @@ export class PrashantPageComponent implements OnInit {
   s3Bucket = s3Bucket;
   slugId: number = 0;
   mentor?: mentorTimings;
-  constructor(private cartService: CartService, private route: ActivatedRoute, private pixelTracking: PixelTrackingService) {
+  constructor(private cartService: CartService, private route: ActivatedRoute, private pixelTracking: PixelTrackingService, private ttitleService: Title) {
     const id = this.route.snapshot.paramMap.get('id');
+    this.ttitleService.setTitle('Online Sadhana with Prashant Jhakmola');
     if (id) {
       this.slugId = +id;
     }

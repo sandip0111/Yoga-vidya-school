@@ -16,6 +16,7 @@ import { IncludesBaliComponent } from './includes-bali/includes-bali.component';
 import { routeEnum } from '../enum/routes';
 import { BonusComponent } from './bonus/bonus.component';
 import { PixelTrackingService } from '../services/pixel-tracking.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-certified',
@@ -47,10 +48,13 @@ export class CertifiedComponent {
   constructor(
     private spinner: NgxSpinnerService,
     private activatedRoute: ActivatedRoute,
-    private pixelTracking: PixelTrackingService
+    private pixelTracking: PixelTrackingService,
+    private titleService: Title
   ) {
     this.spinner.show();
     this.slug = this.activatedRoute.snapshot.routeConfig?.path ?? '';
+    this.titleService.setTitle(this.slug === 'get-certified-in-rishikesh' ? 'Get Certified in Rishikesh' : 'Get Certified in Bali');
+
   }
 
   ngOnInit() {

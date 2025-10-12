@@ -16,7 +16,7 @@ export enum routeEnum {
   'online' = 'online-yoga-classes',
   'prashantjPage' = 'yoga-teacher/acharya-prashant-jakhmola/prashantjyoga',
   'preRecordPranayamaCourse' = 'pre-recorded-pranayama-courses',
-  'swaraSadhana' = 'https://swaryoga.yogavidyaschool.com',
+  'swaraSadhana' = 'swara-sadhana',
   'stRegister' = 'student-register',
   'sa' = 'swara-sadhana',
 }
