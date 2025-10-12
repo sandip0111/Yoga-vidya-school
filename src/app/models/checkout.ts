@@ -57,6 +57,8 @@ export interface swaraDataModel {
   phone: string;
   timeSlot: string;
   webinar: string;
+  isWebsite: boolean;
+  paymentType?: string;
 }
 export interface swaraRazorModel {
   currency: string;

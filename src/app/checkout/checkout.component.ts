@@ -692,6 +692,8 @@ export class CheckoutComponent {
       phone: data.phoneNumber.e164Number,
       timeSlot: '67e033dc5cd9be5b6d38a7fd',
       webinar: 'Swara Sadhana',
+      isWebsite: true,
+      paymentType: isRazorPay ? 'razorpay' : 'stripe',
     };
     this.webapiService
       .registerSwarSadhanaWebinarUser(signupData)
