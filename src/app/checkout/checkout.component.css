@@ -144,6 +144,97 @@ ngx-intl-tel-input input[disabled] {
     font-weight: 500;
   }
 }
+
+.payment-alert {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background: #fff3cd;          /* soft yellow */
+  border: 1px solid #ffeeba;    /* light yellow border */
+  color: #856404;               /* dark gold text */
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  margin-top: 15px;
+}
+
+.payment-alert-icon {
+  font-size: 20px;
+  line-height: 1;
+}
+
+.payment-alert-text {
+  flex: 1;
+}
+
+payment-alert {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background: #fff3cd;      
+  border: 1px solid #ffeeba; 
+  color: #856404;             
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 14px;           
+  margin-top: 15px;
+}
+
+.payment-alert-icon {
+  font-size: 20px;
+  line-height: 1;
+}
+
+.payment-alert-text {
+  flex: 1;
+}
+
+.paypal-alert {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background: #f0f7ff;           
+  border: 1px solid #b6e0fe;    
+  color: #084298;              
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  line-height: 1.5;
+  margin-top: 15px;
+}
+
+.paypal-alert-icon {
+  font-size: 20px;
+  line-height: 1;
+}
+
+.paypal-alert-text {
+  flex: 1;
+}
+
+.paypal-alert-link {
+  color: #0d6efd;              
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.paypal-alert-link:hover {
+  text-decoration: underline;
+}
+
+.payment-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, #f7f7f7, #fff);
+  padding: 10px 15px;
+  border-left: 4px solid #f5b041; 
+  border-radius: 6px;
+  color: #333;
+  display: inline-block;
+  letter-spacing: 0.5px;
+}
+
+
 @media screen and (max-width: 910px) and (min-width: 300px) {
   .whatsapp-div {
     flex-direction: column;
