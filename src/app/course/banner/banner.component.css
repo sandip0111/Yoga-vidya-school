@@ -447,3 +447,7 @@
     aspect-ratio: 7/3;
   }
 }
+
+.carousel-control-next, .carousel-control-prev {
+  width: 5%;
+}
