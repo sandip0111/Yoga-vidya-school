@@ -6,6 +6,7 @@ import {
   razorPaymentResultModel,
   razorPayModel,
   razorPayReturnModel,
+  savePaymentIdModel,
   SignupDataModel,
   stripePayModel,
   swaraDataModel,
@@ -354,6 +355,13 @@ export class WebapiService {
   }
 
   getPaymentResultSwarSadhana(data: any) {
-    return this.http.post(this.url + 'api/v1/getPaymentResultSwarSadhana', data);
+    return this.http.post(
+      this.url + 'api/v1/getPaymentResultSwarSadhana',
+      data
+    );
+  }
+
+  updatePaymentId200ttc(data: savePaymentIdModel) {
+    return this.http.post(this.url + 'api/v1/updatePaymentId200ttc', data);
   }
 }

@@ -107,3 +107,9 @@ export interface dropdownModel {
   name: string;
   value: number;
 }
+export interface savePaymentIdModel {
+  isRazorPay: boolean;
+  id: string;
+  orderId?: string;
+  paymentId: string;
+}
