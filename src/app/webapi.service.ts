@@ -360,8 +360,4 @@ export class WebapiService {
       data
     );
   }
-
-  updatePaymentId200ttc(data: savePaymentIdModel) {
-    return this.http.post(this.url + 'api/v1/updatePaymentId200ttc', data);
-  }
 }

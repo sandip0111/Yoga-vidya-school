@@ -1183,17 +1183,6 @@ export class CheckoutComponent {
                 localstorageKey['200TTCDue'],
                 this.isInstallment ? this.secondInstAmnt.toString() : '0'
               );
-              this.webapiService
-                .updatePaymentId200ttc({
-                  isRazorPay: true,
-                  id: res.payDbId,
-                  orderId:
-                    localStorage.getItem(localstorageKey['200TTCRzpOrderId']) ??
-                    '',
-                  paymentId:
-                    localStorage.getItem(localstorageKey['200TTCRzpId']) ?? '',
-                })
-                .subscribe();
               this.router.navigate(['/confirmation']);
             },
             prefill: {
@@ -1222,13 +1211,6 @@ export class CheckoutComponent {
       .checkoutStripeFor200TTC(data)
       .subscribe((res: stripePayModel) => {
         if (res.sessionId) {
-          this.webapiService
-            .updatePaymentId200ttc({
-              isRazorPay: false,
-              id: res.payDbId,
-              paymentId: res.sessionId,
-            })
-            .subscribe();
           localStorage.setItem(
             localstorageKey['200TTCStripeSessionId'],
             res.sessionId
