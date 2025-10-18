@@ -704,7 +704,7 @@ export class CheckoutComponent {
           } else {
             let priceId: string =
               data.currency === 'INR'
-                ? 'price_1RU5NZSEQq0H4GuEMf7nRCHv' // 'price_1R6SxVSEQq0H4GuEkPItyCGM'
+                ? stripePaymentKey.swaraInr
                 : data.currency === 'USD'
                 ? 'price_1RU7RCSEQq0H4GuEJylju4cd'
                 : 'price_1RU7RYSEQq0H4GuE8nk5oH79';
