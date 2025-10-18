@@ -52,9 +52,32 @@
                   } -->
                 </div>
               </div>
-              <div class="row align-items-center" *ngIf="slug === routeEnum.sa">
-                <span>Price: ₹999.00 / $15.00</span>
-              </div>
+                <div class="row align-items-center" *ngIf="slug === routeEnum.sa">
+                  <span>Price: <b>₹999.00 / $15.00</b></span>
+                </div>
+                <div class="row align-items-center" *ngIf="slug == routeEnum['200TTC']">
+                  <span>Price: <b>₹650000.00 / $999.00</b></span>
+                </div>
+                <div class="row align-items-center" *ngIf="slug == routeEnum.pranicPurification">
+                  <span>Price: <b>₹3499.00 / $45.00</b></span>
+                </div>
+                <div class="row align-items-center" *ngIf="slug == routeEnum.pranicPurification">
+                  <span>Price: <b>₹3499.00 / $45.00</b></span>
+                </div>
+                <div class="row align-items-center" *ngIf="slug == routeEnum.rishikesh100">
+                  <span>Price(Shared Room): <b>₹55000.00 / $850.00</b></span>
+                </div>
+              
+                  <div class="row align-items-center" *ngIf="slug == routeEnum.rishkesh200">
+                    <span>Price(Shared Room): <b>₹85000.00 / $1500.00</b></span>
+                    <span>Price(Private Room): <b>₹90000.00 / $1800.00</b></span>
+                  </div>
+                  <div class="row align-items-center" *ngIf="slug == routeEnum.rishikesh300">
+                    <span>Price(Shared Room): <b>₹120000.00 / $1850.00</b></span>
+                    <span>Price(Private Room): <b>₹1400000.00 / $1999.00</b></span>
+                  </div>
+
+                 
             </li>
           </ul>
           <h3 class="payment-title text-uppercase mt-3">💳 Payment Instructions</h3>
@@ -99,7 +122,7 @@
           </div>
           <div *ngIf="emailRequired" class="text-danger">
             {{ emailRequired }}
-          </div>
+          </div>           
         </div>
         <div
           class="mb-3"

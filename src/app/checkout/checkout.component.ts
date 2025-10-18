@@ -555,11 +555,26 @@ export class CheckoutComponent {
     this.price = '';
   }
   inputValidation(type: string) {
-    if (type == 'email') {
-      if (this.checkData.email) {
-        this.emailRequired = '';
+    if (type === 'email') {
+    const email = this.checkData.email?.trim();
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+    // Check required
+      if (!email) {
+        this.emailRequired = 'Email is required';
+        this.emailSuggestion = '';
       } else {
-        this.emailRequired = 'email is required';
+        this.emailRequired = '';
+
+        // Allow only valid characters as the user types
+        this.checkData.email = email.replace(/[^a-zA-Z0-9@._%+-]/g, '');
+
+        // Check email format
+        if (!emailPattern.test(this.checkData.email)) {
+          this.emailSuggestion = 'Please enter a valid email address';
+        } else {
+          this.emailSuggestion = '';
+        }
       }
     }
     if (type == 'name') {
