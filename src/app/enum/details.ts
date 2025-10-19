@@ -8,7 +8,7 @@ export enum contactLink {
   emailLink = 'mailto:info@yogavidyaschool.com',
 }
 export enum twoHundredTTCModel {
-  '200TTCDate' = '2025-09-07',
+  '200TTCDate' = '2025-11-10',
   '200TTCStart' = '10:30 AM',
   '200TTCEnd' = '01:00 PM',
 }
