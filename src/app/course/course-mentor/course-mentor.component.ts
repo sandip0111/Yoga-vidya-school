@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { StartClassComponent } from '../bali/start-class/start-class.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { s3Bucket } from '../../enum/s3Bucket';
@@ -7,7 +6,7 @@ import { s3Bucket } from '../../enum/s3Bucket';
 @Component({
   selector: 'app-course-mentor',
   standalone: true,
-  imports: [CommonModule, StartClassComponent],
+  imports: [CommonModule],
   templateUrl: './course-mentor.component.html',
   styleUrl: './course-mentor.component.css',
 })
@@ -168,7 +167,7 @@ export let jsonData = [
       time2: '7:00 AM',
       stamp: 'IST',
     },
-    nextBatch: 'October the 6th',
+    nextBatch: 'November, the 3rd',
     price: {
       priceInIndian: 2999,
       priceInUSD: 70,
