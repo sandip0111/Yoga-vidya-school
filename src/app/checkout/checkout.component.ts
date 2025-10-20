@@ -233,40 +233,6 @@ export class CheckoutComponent {
         this.couponCodeId = res.id;
       });
   }
-  setPrice(e: any) {
-    this.inputValidation('package');
-    if (e.target.value == 'Basic') {
-      if (this.slug == routeEnum['200TTC']) {
-        this.set200TTCNormalPrice(this.checkData.currency);
-      } else {
-        this.setPranaArambhNormalPrice(this.checkData.currency);
-      }
-    } else if (
-      e.target.value == 'Standard' &&
-      this.checkData.currency == 'INR'
-    ) {
-      this.price = 'Rs. 4,999';
-    } else if (
-      e.target.value == 'Standard' &&
-      this.checkData.currency == 'USD'
-    ) {
-      this.price = '90 USD';
-    } else if (
-      e.target.value == 'Premium' &&
-      this.checkData.currency == 'INR'
-    ) {
-      this.price = 'Rs. 5,999';
-    } else if (
-      e.target.value == 'Premium' &&
-      this.checkData.currency == 'USD'
-    ) {
-      this.price = '100 USD';
-    } else {
-      this.price = '';
-      this.amount = 0;
-    }
-    this.inputValidation('cur');
-  }
   setRoomPrice(event: any) {
     this.inputValidation('room');
     if (event.target.value == 1 || event.target.value == 2) {
@@ -360,35 +326,10 @@ export class CheckoutComponent {
       this.slug !== routeEnum.rishikesh300 &&
       this.slug !== String(routeEnum.sa)
     ) {
-      if (this.checkData.package == 'Basic') {
-        if (this.slug == routeEnum['200TTC']) {
-          this.set200TTCNormalPrice(e.target.value);
-        } else {
-          this.setPranaArambhNormalPrice(e.target.value);
-        }
-      } else if (
-        this.checkData.package == 'Standard' &&
-        e.target.value == 'INR'
-      ) {
-        this.price = 'Rs. 4,999';
-      } else if (
-        this.checkData.package == 'Standard' &&
-        e.target.value == 'USD'
-      ) {
-        this.price = '90 USD';
-      } else if (
-        this.checkData.package == 'Premium' &&
-        e.target.value == 'INR'
-      ) {
-        this.price = 'Rs. 5,999';
-      } else if (
-        this.checkData.package == 'Premium' &&
-        e.target.value == 'USD'
-      ) {
-        this.price = '100 USD';
+      if (this.slug == routeEnum['200TTC']) {
+        this.set200TTCNormalPrice(e.target.value);
       } else {
-        this.price = '';
-        this.amount = 0;
+        this.setPranaArambhNormalPrice(e.target.value);
       }
     } else if (this.slug == routeEnum.rishikesh100) {
       this.rishikesh100Price();
@@ -536,7 +477,6 @@ export class CheckoutComponent {
         this.checkData.package = 'Basic';
         this.checkData.currency = this.currencyOptions[0];
         this.setPriceOnInputChange();
-        this.inputValidation('package');
         this.inputValidation('cur');
       } else if (this.slug === (routeEnum.sa as unknown as string)) {
         this.currencyOptions = ['INR', 'USD', 'EUR'];
@@ -546,7 +486,7 @@ export class CheckoutComponent {
     }
   }
 
-  onCountryChange(country: any): void {
+  onCountryChange(): void {
     this.phoneError = 'Invalid phone number';
     this.currencyOptions = [];
     this.checkData.currency = '';
@@ -556,20 +496,14 @@ export class CheckoutComponent {
   }
   inputValidation(type: string) {
     if (type === 'email') {
-    const email = this.checkData.email?.trim();
-    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-
-    // Check required
+      const email = this.checkData.email?.trim();
+      const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
       if (!email) {
         this.emailRequired = 'Email is required';
         this.emailSuggestion = '';
       } else {
         this.emailRequired = '';
-
-        // Allow only valid characters as the user types
         this.checkData.email = email.replace(/[^a-zA-Z0-9@._%+-]/g, '');
-
-        // Check email format
         if (!emailPattern.test(this.checkData.email)) {
           this.emailSuggestion = 'Please enter a valid email address';
         } else {
@@ -584,13 +518,6 @@ export class CheckoutComponent {
         this.nameRequired = 'Name is Required';
       }
     }
-    if (type == 'package') {
-      if (this.checkData.package) {
-        this.packageRequired = '';
-      } else {
-        this.packageRequired = 'Please select a package';
-      }
-    }
     if (type == 'phone') {
       if (this.checkData.phoneNumber) {
         this.phoneRequired = '';
@@ -599,11 +526,7 @@ export class CheckoutComponent {
       }
     }
     if (type == 'room') {
-      if (this.checkData.package) {
-        this.packageRequired = '';
-      } else {
-        this.packageRequired = 'Please select a Room';
-      }
+      this.packageRequired = 'Please select a Room';
     }
     if (type == 'cur') {
       if (this.checkData.currency) {
@@ -642,10 +565,7 @@ export class CheckoutComponent {
       }
       if (!data.package) {
         if (this.slug !== routeEnum.sa) {
-          this.packageRequired =
-            this.slug == routeEnum.rishkesh200
-              ? 'Please select a room'
-              : 'Please select a package';
+          this.packageRequired = 'Please select a room';
           isErrMsg = true;
         }
       }
@@ -850,36 +770,6 @@ export class CheckoutComponent {
     if (this.oldStudent == false) {
       this.newStudentCheckOut(data, isRazorPay, pass);
     }
-    //  else {
-    //   if (this.slug == routeEnum.pranOnlinePranaArambh) {
-    //     if (data.package == 'Basic' && data.currency == 'INR') {
-    //       this.spinner.hide();
-    //       this.initializePayment('price_1QmsTUSEQq0H4GuEZfWd5UJu', data.email); //price_1NI7hnSEQq0H4GuETCleI6Uo  price_1NI6oxSEQq0H4GuEW24DMpTn
-    //     } else if (data.package == 'Standard' && data.currency == 'INR') {
-    //       this.spinner.hide();
-    //       this.initializePayment('price_1NI6oxSEQq0H4GuERpBbilF2', data.email);
-    //     } else if (data.package == 'Premium' && data.currency == 'INR') {
-    //       this.spinner.hide();
-    //       this.initializePayment('price_1NI6oxSEQq0H4GuEx9fdhEd0', data.email);
-    //     } else if (data.package == 'Basic' && data.currency == 'USD') {
-    //       this.spinner.hide();
-    //       this.initializePayment('price_1QmychSEQq0H4GuEAipCDoPU', data.email);
-    //     } else if (data.package == 'Standard' && data.currency == 'USD') {
-    //       this.spinner.hide();
-    //       this.initializePayment('price_1NIRatSEQq0H4GuE0DOlcCNa', data.email);
-    //     } else if (data.package == 'Premium' && data.currency == 'USD') {
-    //       this.spinner.hide();
-    //       this.initializePayment('price_1NIRbNSEQq0H4GuEeLvnyPu2', data.email);
-    //     } else {
-    //       this.spinner.hide();
-    //     }
-    //   } else {
-    //     if (this.courseList.priceId) {
-    //       this.initializePayment(this.courseList.priceId, data.email);
-    //     }
-    //     this.spinner.hide();
-    //   }
-    // }
   }
   twoHundredTTCCheckout(data: checkoutModel, isRazorPay: boolean) {
     let signupData: SignupDataModel = {
@@ -936,34 +826,34 @@ export class CheckoutComponent {
         sessionStorage.setItem('loginId-checkout', res.studentId);
         if (!isRazorPay) {
           if (this.slug == routeEnum.pranOnlinePranaArambh) {
-            if (data.package == 'Basic' && data.currency == 'INR') {
+            if (data.currency == 'INR') {
               this.initializePayment(
                 this.isDiscounted
                   ? stripePaymentKey.discountInr
                   : stripePaymentKey.basicInr,
                 data.email
               );
-            } else if (data.package == 'Standard' && data.currency == 'INR') {
+            } else if (data.currency == 'INR') {
               this.initializePayment(stripePaymentKey.standardInr, data.email);
-            } else if (data.package == 'Premium' && data.currency == 'INR') {
+            } else if (data.currency == 'INR') {
               this.initializePayment(stripePaymentKey.premiumInr, data.email);
-            } else if (data.package == 'Basic' && data.currency == 'USD') {
+            } else if (data.currency == 'USD') {
               this.initializePayment(
                 this.isDiscounted
                   ? stripePaymentKey.discountUsd
                   : stripePaymentKey.basicUsd,
                 data.email
               );
-            } else if (data.package == 'Basic' && data.currency == 'EUR') {
+            } else if (data.currency == 'EUR') {
               this.initializePayment(
                 this.isDiscounted
                   ? stripePaymentKey.discountEur
                   : stripePaymentKey.basicEur,
                 data.email
               );
-            } else if (data.package == 'Standard' && data.currency == 'USD') {
+            } else if (data.currency == 'USD') {
               this.initializePayment(stripePaymentKey.standardUsd, data.email);
-            } else if (data.package == 'Premium' && data.currency == 'USD') {
+            } else if (data.currency == 'USD') {
               this.initializePayment(stripePaymentKey.premiumUsd, data.email);
             }
           } else if (this.courseList.priceId) {
