@@ -73,7 +73,7 @@ export class PricingComponent implements OnInit {
         ];
         break;
       case routeEnum['200TTC']:
-          this.mainHeading = 'Pricing of 200 Hours TTC Rishikesh Online';
+          this.mainHeading = 'Pricing of 200 Hours Online TTC';
            this.pricing = [
           {
             title: 'Price',
