@@ -73,9 +73,15 @@ export class PricingComponent implements OnInit {
         ];
         break;
       case routeEnum['200TTC']:
-        this.normalInrPrice = 65000;
-        this.normalUsdPrice = 999;
-        this.isPriceShow = true;
+          this.mainHeading = 'Pricing of 200 Hours TTC Rishikesh Online';
+           this.pricing = [
+          {
+            title: 'Price',
+            usd: 999,
+            inr: 65000,
+            image: s3Bucket.room2,
+            bgColor: '#f5f0e6',
+          }];
         break;
       default:
         break;
