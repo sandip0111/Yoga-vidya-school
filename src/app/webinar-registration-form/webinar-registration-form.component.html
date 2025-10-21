@@ -1,5 +1,66 @@
+<app-banner [imgSlug]="imgSlug" [bannerTitle]="bannerTitle" [bannerSubtitle]="bannerSubtitle"></app-banner>
+<section class="webinar-details">
+  <div class="container1">
+    <h2 class="webinar-title">✨ A Soulful Session Awaits You</h2>
+    <p class="lead">
+      A special space for all who wish to transform their personal practice into a path of service and light.
+    </p>
+
+    <div class="details-grid">
+      <div class="detail-item">
+        <span class="icon">🕉</span>
+        <p>
+          <strong>Why this TTC matters:</strong><br>
+          It’s not just about certification, but deep transformation — a journey from <em>sadhana</em> (practice) to <em>seva</em> (service).
+        </p>
+      </div>
+
+      <div class="detail-item">
+        <span class="icon">📘</span>
+        <p>
+          <strong>What you will study:</strong><br>
+          The 13 foundational subjects of authentic yoga.
+        </p>
+      </div>
+
+      <div class="detail-item">
+        <span class="icon">🧘‍♂️</span>
+        <p>
+          <strong>Why I’m personally teaching this Online TTC:</strong><br>
+          To pass on the essence of yoga as a living tradition.
+        </p>
+      </div>
+
+      <div class="detail-item">
+        <span class="icon">🌿</span>
+        <p>
+          <strong>Why this TTC is different:</strong><br>
+          Rooted in authenticity, connection, and spiritual purpose.
+        </p>
+      </div>
+
+      <div class="detail-item">
+        <span class="icon">💫</span>
+        <p>
+          <strong>How it supports the world:</strong><br>
+          Empowering you to become a conscious teacher.
+        </p>
+      </div>
+    </div>
+
+    <div class="extra-info">
+      <h4>In this special session, we will also explore:</h4>
+      <ul class="info-list">
+        <li>🕯 The sacred purpose of becoming a yoga teacher — beyond profession.</li>
+        <li>🌸 How to continue your journey after TTC — to share your gift and serve the world through yoga.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+
 <div class="container justify-content-center mt-5">
-  <div class="p-4 register-content">
+  <!-- <div class="p-4 register-content">
     <h2 class="mb-2 text-center">
       Yoga Webinars
     </h2>
@@ -13,13 +74,13 @@
       growth. Whether you're looking to enhance your physical practice, deepen your meditation experience, or understand
       yoga on a more profound level, these webinars are your gateway to a balanced and fulfilled life.</p>
      
-    <!-- <h2 class="text-center">Upcoming Webinars</h2> -->
+   <h2 class="text-center">Upcoming Webinars</h2> 
     <div *ngIf="selectedOption != null" class="mb-3">
       <h3 class="mb-2 text-center">{{ selectedOption.title }} <a href="{{selectedOption.link}}" class="join-now" (click)="scrollToForm($event, selectedOption)"
         >JOIN NOW</a></h3>
       <p>{{ selectedOption.description }}</p>
     </div>
-    <!-- <h2 class="text-center">Watch Our Past Webinars</h2> -->
+  
     <div class="mb-3">
     <h3 class="mb-2 text-center">
       Beyond the Breath
@@ -27,9 +88,9 @@
     <p>Mark your calendar for a transformative webinar called “Beyond the Breath, which is going to be held on November 24th 2024 under Prashant ji's guidance, that dives deep into the art of pranic purification. This session will teach you how to purify your energy through breath control and Pranayama, releasing toxins and revitalizing your life force, or "prana." When your prana flows freely, you experience greater mental sharpness, emotional resilience, and overall well being. This webinar offers you an entry point into these benefits, providing essential techniques that can shift your health and perspective.</p>
   </div>
 
-  </div>
-  <!-- <div class="card registration-card flex-fill p-4" id="register-form">
-    <h2 class="text-center mb-4">Webinar Registration</h2>
+  </div> -->
+  <div class="card registration-card flex-fill p-4" id="register-form">
+    <h2 class="text-center mb-4">Free Webinar Registration</h2>
     <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
       <div class="mb-3">
         <label for="name" class="form-label">Name</label>
@@ -49,7 +110,7 @@
         </div>
       </div>
 
-      <div class="mb-3">
+      <!-- <div class="mb-3">
         <label for="phone" class="form-label">Phone Number</label>
         <input type="text" id="phone" formControlName="phone" class="form-control"
           [ngClass]="{'is-invalid': submitted && registrationForm.get('phone')?.invalid}" />
@@ -94,20 +155,18 @@
             formControlName="refferalCode"
             class="form-control"
             [ngClass]="{'is-invalid': submitted && registrationForm.get('refferalCode')?.invalid}"
-          /> -->
-          <!-- <div *ngIf="submitted && registrationForm.get('refferalCode')?.invalid" class="text-danger">
+          /> 
+         <div *ngIf="submitted && registrationForm.get('refferalCode')?.invalid" class="text-danger">
             Refferal Code is mandatory.
-          </div> -->
-          <!-- <div *ngIf="registrationForm.get('refferalCode')?.errors?.['invalidReferral']" class="text-danger">
+          </div>
+          <div *ngIf="registrationForm.get('refferalCode')?.errors?.['invalidReferral']" class="text-danger">
             {{ registrationForm.get('refferalCode')?.errors?.['invalidReferral'] }}
           </div>
-      </div>
-
-     
+      </div> -->
 
       <button type="submit" class="btn btn-primary">
         Register
       </button>
     </form>
-  </div> -->
+  </div>
 </div>

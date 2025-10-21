@@ -11,10 +11,12 @@ import { WebapiService } from '../webapi.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { routeEnum } from '../enum/routes';
+import { BannerComponent } from "../certified/banner/banner.component";
+import { s3Bucket } from '../enum/s3Bucket';
 @Component({
   selector: 'app-webinar-registration-form',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, CommonModule],
+  imports: [FormsModule, ReactiveFormsModule, CommonModule, BannerComponent],
   templateUrl: './webinar-registration-form.component.html',
   styleUrl: './webinar-registration-form.component.css',
 })
@@ -55,6 +57,10 @@ Swar Sadhana, which involves understanding the dominant energy in our body based
     //   fesUSD: ''
     //   }
   ];
+bannerTitle: string|undefined;
+imgSlug: string|undefined;
+bannerSubtitle: string|undefined;
+s3Bucket = s3Bucket;
   constructor(
     private fb: FormBuilder,
     private webapiService: WebapiService,
@@ -64,11 +70,12 @@ Swar Sadhana, which involves understanding the dominant energy in our body based
     this.registrationForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      phone: ['', Validators.required],
-      refferalCode: ['', Validators.required],
-      webinar: [''],
-      password: [''],
-      city: [''], // Optional
+      webinarDate: ['2025-10-25']
+      // phone: ['', Validators.required],
+      // refferalCode: ['', Validators.required],
+      // webinar: [''],
+      // password: [''],
+      // city: [''], // Optional
     });
   }
 
@@ -78,6 +85,9 @@ Swar Sadhana, which involves understanding the dominant energy in our body based
       webinar: this.selectedOption.value,
     });
     console.log(this.registrationForm.get('webinar'));
+    this.bannerSubtitle = "Sadhana to Seva: Becoming the Torchbearer of Yoga with Prashant J - Yoga Vidya School Founder";
+    this.bannerTitle = "Free Online Webinar";
+    this.imgSlug = this.s3Bucket.freeWebinnarHero;
     //this.registrationForm.get('webiner')?.setValue(this.selectedOption.label);
   }
 
@@ -100,57 +110,35 @@ Swar Sadhana, which involves understanding the dominant energy in our body based
   }
   onSubmit() {
     this.submitted = true;
-    const referralControl = this.registrationForm.get('refferalCode');
-    this.webapiService.getKundaliniParichayRefferalCode().subscribe({
-      next: (res: any) => {
-        let code = res.data;
-        if (referralControl?.value) {
-          referralControl.setValue(referralControl.value.toLowerCase(), {
-            emitEvent: false,
-          });
-        }
-        if (referralControl?.value == '') {
-          referralControl.setErrors({
-            invalidReferral: 'Refferal Code is mandatory.',
-          });
-        }
-        if (referralControl?.value && referralControl.value !== code) {
-          referralControl.setErrors({
-            invalidReferral: 'Invalid referral code.',
-          });
-        } else if (referralControl?.value && referralControl.value == code) {
-          if (this.registrationForm.valid) {
-            let emailControl = this.registrationForm.get('email');
-            if (emailControl?.value) {
-              emailControl.setValue(emailControl.value.toLowerCase(), {
-                emitEvent: false,
-              });
-            }
+    if (this.registrationForm.valid) {
+      let emailControl = this.registrationForm.get('email');
+      if (emailControl?.value) {
+        emailControl.setValue(emailControl.value.toLowerCase(), {
+          emitEvent: false,
+        });
+        this.spinner.show();
+        this.webapiService
+          .registerWebinarUser(this.registrationForm.value)
+          .subscribe({
+            next: (res: any) => {
+              this.toastr.success(res.message, 'Success');
+              this.spinner.hide();
+              this.submitted = false;
+              this.registrationForm.reset({
+                  webinarDate: '2025-10-25' // keep hidden date if needed
+                });
 
-            var password = this.genratePass(10);
-            this.registrationForm.patchValue({
-              password: password,
-            });
-            this.spinner.show();
-            this.webapiService
-              .registerWebinarUser(this.registrationForm.value)
-              .subscribe({
-                next: (res: any) => {
-                  this.toastr.success(res.message, 'Success');
-                  this.spinner.hide();
-                },
-                error: (error) => {
-                  this.toastr.error(error.error.message, 'Invalid Credentials');
-                  this.spinner.hide();
-                },
-              });
-          }
-        }
-      },
-      error: (error) => {
-        this.toastr.error(error.error.message, 'Invalid Credentials');
-      },
-    });
+             
+
+            },
+            error: (error) => {
+              this.toastr.error(error.error.message, 'Invalid Credentials');
+              this.spinner.hide();
+            },
+          });
+      }
+     
+    };
   }
 
   genratePass(len: any) {

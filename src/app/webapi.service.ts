@@ -103,7 +103,7 @@ export class WebapiService {
   }
 
   registerWebinarUser(data: any) {
-    return this.http.post(this.url + 'api/v1/registerWebinarUser', data);
+    return this.http.post(this.url + 'api/v1/createFreeWebinarCustomer', data);
   }
 
   getAllOnlineEvents(id = '') {

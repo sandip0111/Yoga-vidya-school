@@ -150,7 +150,7 @@ export class NavbarComponent implements OnInit {
             title: 'Pranic Purification',
             link: '/pranic-purification',
           },
-          { title: 'Yoga Webinar Registration', link: '/webinar-registration' },
+          { title: 'Free Webinar Registration', link: '/webinar-registration' },
           {
             title: 'Foundations of Spirituality',
             link: '/foundation-of-spirituality-an-online-spiritual-awakening-course',
