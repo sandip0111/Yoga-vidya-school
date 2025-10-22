@@ -19,6 +19,7 @@ export class PricingComponent implements OnInit {
   normalInrPrice: number = 0;
   normalUsdPrice: number = 0;
   isPriceShow: boolean = false;
+  routeEnum = routeEnum;
   constructor(private router: Router) {}
   ngOnInit(): void {
     switch (this.slug) {
@@ -73,12 +74,23 @@ export class PricingComponent implements OnInit {
         ];
         break;
       case routeEnum['200TTC']:
-          this.mainHeading = 'Pricing of 200 Hours Online TTC';
+          this.mainHeading = '200 hours Yoga TTC online';
            this.pricing = [
           {
             title: 'Price',
             usd: 999,
             inr: 65000,
+            image: s3Bucket.room2,
+            bgColor: '#f5f0e6',
+          }];
+        break;
+        case routeEnum.pranOnlinePranaArambh:
+          this.mainHeading = '';
+           this.pricing = [
+          {
+            title: 'Price',
+            usd: 60,
+            inr: 2400,
             image: s3Bucket.room2,
             bgColor: '#f5f0e6',
           }];

@@ -24,8 +24,14 @@
         {{ normalUsdPrice | currency : "USD" }}
       </p>
     </div>
+    @if(slug!==routeEnum.pranOnlinePranaArambh) {
     <button class="button" (click)="goToPaymentPage()">
       Join this journey
     </button>
+  } @else {
+    <button class="button" (click)="goToPaymentPage()">
+      Get Access
+    </button>
+  }
   </div>
 </section>
