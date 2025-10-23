@@ -131,7 +131,13 @@ export const routes: Routes = [
   { path: 'book-now', component: BookNowComponent },
   { path: 'contact-us', component: ContactComponent },
   { path: 'checkout/:id', component: CheckoutComponent },
-  { path: 'webinar-registration', component: WebinarRegistrationFormComponent },
+  {
+    path: routeEnum.freeWebiner,
+    loadComponent: () =>
+      import(
+        './webinar-registration-form/webinar-registration-form.component'
+      ).then((m) => m.WebinarRegistrationFormComponent),
+  },
   { path: 'proceed-payment', component: PaymentProceedComponent },
   {
     path: 'breath-detox-yoga/student-register',

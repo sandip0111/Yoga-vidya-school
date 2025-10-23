@@ -19,4 +19,5 @@ export enum routeEnum {
   'swaraSadhana' = 'swara-sadhana',
   'stRegister' = 'student-register',
   'sa' = 'swara-sadhana',
+  'freeWebiner' = 'free-webinar'
 }
