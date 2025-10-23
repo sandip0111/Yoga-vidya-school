@@ -19,6 +19,9 @@
   margin-bottom: 10px;
 }
 
+.button {
+    margin: 10px 10px;
+}
 .card-container {
   display: flex;
   justify-content: center;
