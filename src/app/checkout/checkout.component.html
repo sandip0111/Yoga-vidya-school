@@ -11,7 +11,7 @@
                   <span> {{ courseList.coursetitle }}</span>
                 </div>
                 <div class="col-auto" *ngIf="amount > 0 && checkData.currency">
-                  @if(isRishikeshDiscount){
+                  @if(isSpecialDiscount){
                   <div>
                     <span class="h4" *ngIf="actualAmount">
                       <strong class="old-price">
@@ -52,54 +52,88 @@
                   } -->
                 </div>
               </div>
-                <div class="row align-items-center" *ngIf="slug === routeEnum.sa">
-                  <span>Price: <b>₹999.00 / $15.00</b></span>
-                </div>
-                <div class="row align-items-center" *ngIf="slug == routeEnum['200TTC']">
-                  <span>Price: <b>₹65000.00 / $999.00</b></span>
-                </div>
-                <div class="row align-items-center" *ngIf="slug == routeEnum.pranicPurification">
-                  <span>Price: <b>₹3499.00 / $45.00</b></span>
-                </div>
-                <div class="row align-items-center" *ngIf="slug == routeEnum.pranicPurification">
-                  <span>Price: <b>₹3499.00 / $45.00</b></span>
-                </div>
-                <div class="row align-items-center" *ngIf="slug == routeEnum.rishikesh100">
-                  <span>Price(Shared Room): <b>₹55000.00 / $850.00</b></span>
-                </div>
+              <div class="row align-items-center" *ngIf="slug === routeEnum.sa">
+                <span>Price: <b>₹999.00 / $15.00</b></span>
+              </div>
+              <div
+                class="row align-items-center"
+                *ngIf="slug == routeEnum['200TTC']"
+              >
+                <span
+                  >Price:
+                  <b>{{
+                    isSpecialDiscount
+                      ? "₹55000.00 / $899.00"
+                      : "₹65000.00 / $999.00"
+                  }}</b></span
+                >
+              </div>
+              <div
+                class="row align-items-center"
+                *ngIf="slug == routeEnum.pranicPurification"
+              >
+                <span>Price: <b>₹3499.00 / $45.00</b></span>
+              </div>
+              <div
+                class="row align-items-center"
+                *ngIf="slug == routeEnum.pranicPurification"
+              >
+                <span>Price: <b>₹3499.00 / $45.00</b></span>
+              </div>
+              <div
+                class="row align-items-center"
+                *ngIf="slug == routeEnum.rishikesh100"
+              >
+                <span>Price(Shared Room): <b>₹55000.00 / $850.00</b></span>
+              </div>
 
-                  <div class="row align-items-center" *ngIf="slug == routeEnum.rishkesh200">
-                    <span>Price(Shared Room): <b>₹85000.00 / $1500.00</b></span>
-                    <span>Price(Private Room): <b>₹90000.00 / $1800.00</b></span>
-                  </div>
-                  <div class="row align-items-center" *ngIf="slug == routeEnum.rishikesh300">
-                    <span>Price(Shared Room): <b>₹120000.00 / $1850.00</b></span>
-                    <span>Price(Private Room): <b>₹1400000.00 / $1999.00</b></span>
-                  </div>
-                 <div class="row align-items-center" *ngIf="slug == routeEnum.pranOnlinePranaArambh">
-                  <span>Price: <b>₹2499.00 / $60.00</b></span>
-                </div>
-
+              <div
+                class="row align-items-center"
+                *ngIf="slug == routeEnum.rishkesh200"
+              >
+                <span>Price(Shared Room): <b>₹85000.00 / $1500.00</b></span>
+                <span>Price(Private Room): <b>₹90000.00 / $1800.00</b></span>
+              </div>
+              <div
+                class="row align-items-center"
+                *ngIf="slug == routeEnum.rishikesh300"
+              >
+                <span>Price(Shared Room): <b>₹120000.00 / $1850.00</b></span>
+                <span>Price(Private Room): <b>₹1400000.00 / $1999.00</b></span>
+              </div>
+              <div
+                class="row align-items-center"
+                *ngIf="slug == routeEnum.pranOnlinePranaArambh"
+              >
+                <span>Price: <b>₹2499.00 / $60.00</b></span>
+              </div>
             </li>
           </ul>
-          <h3 class="payment-title text-uppercase mt-3">💳 Payment Instructions</h3>
-         <div class="payment-alert">
+          <h3 class="payment-title text-uppercase mt-3">
+            💳 Payment Instructions
+          </h3>
+          <div class="payment-alert">
             <span class="payment-alert-icon">⏳</span>
             <span class="payment-alert-text">
-              Please wait to be redirected back to our website after payment to receive your <strong>confirmation email</strong>.
+              Please wait to be redirected back to our website after payment to
+              receive your <strong>confirmation email</strong>.
             </span>
           </div>
 
-        <div class="paypal-alert">
-          <span class="paypal-alert-icon">📸</span>
-          <span class="paypal-alert-text">
-            If you are using <strong>PayPal</strong> for payment, please upload the screenshot of your payment to
-            <a href="mailto:info@yogavidyaschool.com" target="_blank" class="paypal-alert-link">
-              Yoga Vidya Mail
-            </a>.
-          </span>
-        </div>
-
+          <div class="paypal-alert">
+            <span class="paypal-alert-icon">📸</span>
+            <span class="paypal-alert-text">
+              If you are using <strong>PayPal</strong> for payment, please
+              upload the screenshot of your payment to
+              <a
+                href="mailto:info@yogavidyaschool.com"
+                target="_blank"
+                class="paypal-alert-link"
+              >
+                Yoga Vidya Mail </a
+              >.
+            </span>
+          </div>
         </div>
       </div>
     </div>
