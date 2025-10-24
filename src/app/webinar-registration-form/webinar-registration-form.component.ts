@@ -13,6 +13,7 @@ import { ToastrService } from 'ngx-toastr';
 import { routeEnum } from '../enum/routes';
 import { BannerComponent } from "../certified/banner/banner.component";
 import { s3Bucket } from '../enum/s3Bucket';
+import { Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-webinar-registration-form',
   standalone: true,
@@ -65,7 +66,8 @@ s3Bucket = s3Bucket;
     private fb: FormBuilder,
     private webapiService: WebapiService,
     private toastr: ToastrService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private title: Title
   ) {
     this.registrationForm = this.fb.group({
       name: ['', Validators.required],
@@ -84,6 +86,7 @@ s3Bucket = s3Bucket;
     this.registrationForm.patchValue({
       webinar: this.selectedOption.value,
     });
+    this.title.setTitle('Free Webinar - Yoga Vidya School');
     console.log(this.registrationForm.get('webinar'));
     this.bannerSubtitle = "Sadhana to Seva: Becoming the Torchbearer of Yoga with Prashant J - Yoga Vidya School Founder";
     this.bannerTitle = "Free Online Webinar";
