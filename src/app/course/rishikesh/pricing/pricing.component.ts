@@ -3,6 +3,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { s3Bucket } from '../../../enum/s3Bucket';
 import { routeEnum } from '../../../enum/routes';
+import { WebapiService } from '../../../webapi.service';
 
 @Component({
   selector: 'app-pricing',
@@ -15,14 +16,27 @@ export class PricingComponent implements OnInit {
   s3Bucket = s3Bucket;
   pricing: pricingDto[] = [];
   @Input() slug: string = '';
+  feesData: feesDto[] = [];
   mainHeading: string = '';
   normalInrPrice: number = 0;
   normalUsdPrice: number = 0;
   isPriceShow: boolean = false;
   routeEnum = routeEnum;
-  constructor(private router: Router) {}
+  constructor(private router: Router, private webapiService: WebapiService) {}
   ngOnInit(): void {
-    switch (this.slug) {
+    this.getPriceValue(this.slug);
+  }
+  getPriceValue(slug: string) {
+    let data = {
+      slug: slug,
+    };
+    this.webapiService.getCourseById(data).subscribe((res: any) => {
+      this.feesData = res.data[0].feeInfo;
+      this.setPriceValue(this.slug);
+    });
+  }
+  setPriceValue(slug: string) {
+    switch (slug) {
       case routeEnum.rishikesh100:
         this.mainHeading = 'Pricing of 100 Hours TTC Rishikesh';
         this.pricing = [
@@ -30,8 +44,6 @@ export class PricingComponent implements OnInit {
             title: 'Shared Room',
             usd: 850,
             inr: 55000,
-            image: s3Bucket.room4,
-            bgColor: '#eef6f8',
           },
         ];
         break;
@@ -42,15 +54,11 @@ export class PricingComponent implements OnInit {
             title: 'Private Room',
             usd: 1800,
             inr: 90000,
-            image: s3Bucket.room2,
-            bgColor: '#f5f0e6',
           },
           {
             title: 'Shared Room',
             usd: 1500,
             inr: 85000,
-            image: s3Bucket.room4,
-            bgColor: '#eef6f8',
           },
         ];
         break;
@@ -61,45 +69,38 @@ export class PricingComponent implements OnInit {
             title: 'Private Room',
             usd: 1999,
             inr: 140000,
-            image: s3Bucket.room2,
-            bgColor: '#f5f0e6',
           },
           {
             title: 'Shared Room',
             usd: 1850,
             inr: 120000,
-            image: s3Bucket.room4,
-            bgColor: '#eef6f8',
           },
         ];
         break;
       case routeEnum['200TTC']:
-          this.mainHeading = '200 hours Yoga TTC online';
-           this.pricing = [
+        this.mainHeading = '200 hours Yoga TTC online';
+        this.pricing = [
           {
             title: 'Price',
             usd: 999,
             inr: 65000,
-            image: s3Bucket.room2,
-            bgColor: '#f5f0e6',
-          }];
+          },
+        ];
         break;
-        case routeEnum.pranOnlinePranaArambh:
-          this.mainHeading = '';
-           this.pricing = [
+      case routeEnum.pranOnlinePranaArambh:
+        this.mainHeading = '';
+        this.pricing = [
           {
             title: 'Price',
-            usd: 60,
-            inr: 2400,
-            image: s3Bucket.room2,
-            bgColor: '#f5f0e6',
-          }];
+            usd: this.feesData.find((f) => f.currency == 'USD')?.amount ?? 0,
+            inr: this.feesData.find((f) => f.currency == 'INR')?.amount ?? 0,
+          },
+        ];
         break;
       default:
         break;
     }
   }
-
   goToPaymentPage() {
     this.router.navigate([`/checkout/${this.slug}`]);
   }
@@ -108,6 +109,10 @@ interface pricingDto {
   title: string;
   usd: number;
   inr: number;
-  image: string;
-  bgColor: string;
+  image?: string;
+  bgColor?: string;
+}
+export interface feesDto {
+  amount: number;
+  currency: string;
 }

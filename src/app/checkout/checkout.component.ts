@@ -28,6 +28,7 @@ import {
 import { localstorageKey } from '../enum/localstorage';
 import { routeEnum } from '../enum/routes';
 import { twoHundredTTCModel } from '../enum/details';
+import { feesDto } from '../course/rishikesh/pricing/pricing.component';
 
 declare var Razorpay: any;
 @Component({
@@ -69,6 +70,7 @@ export class CheckoutComponent {
   roomList: dropdownModel[] = [];
   isSpecialDiscount: boolean = false;
   actualAmount: number = 0;
+  feesData: feesDto[] = [];
   constructor(
     private webapiService: WebapiService,
     private _activatedRoute: ActivatedRoute,
@@ -177,6 +179,8 @@ export class CheckoutComponent {
       this.webapiService.getCourseById(data).subscribe((res: any) => {
         if (res.data.length > 0) {
           this.courseList = res.data[0];
+          this.feesData = this.courseList.feeInfo;
+          console.log('mdamk', this.feesData);
           this.title.setTitle('Checkout');
         } else {
           this.router.navigate(['/']);
@@ -1381,5 +1385,6 @@ export class CheckoutComponent {
 class courseListDto {
   _id: string = '';
   coursetitle: string = '';
-  priceId: any;
+  priceId: string = '';
+  feeInfo: feesDto[] = [];
 }

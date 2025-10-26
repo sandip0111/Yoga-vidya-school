@@ -38,7 +38,7 @@ import { VideoReviewsComponent } from '../../video-reviews/video-reviews.compone
 import { feesStructureModel } from '../../../models/rishikesh';
 import { routeEnum } from '../../../enum/routes';
 import { PixelTrackingService } from '../../../services/pixel-tracking.service';
-import { PricingComponent } from "../../rishikesh/pricing/pricing.component";
+import { PricingComponent } from '../../rishikesh/pricing/pricing.component';
 @Component({
   selector: 'app-bali-index',
   standalone: true,
@@ -66,8 +66,8 @@ import { PricingComponent } from "../../rishikesh/pricing/pricing.component";
     BottomNavCourseComponent,
     ReviewListComponentComponent,
     VideoReviewsComponent,
-    PricingComponent
-],
+    PricingComponent,
+  ],
   templateUrl: './bali-index.component.html',
   styleUrls: ['./bali-index.component.css'],
 })
@@ -176,7 +176,6 @@ export class BaliIndexComponent implements OnInit {
       },
       { threshold: 0.1 }
     );
-
     observer.observe(this.banner.nativeElement);
   }
   getCourseBySlug(slug: string) {
@@ -186,58 +185,55 @@ export class BaliIndexComponent implements OnInit {
     this.webapiService.getCourseById(data).subscribe((res: any) => {
       const currentDate = new Date();
       if (res.data.length > 0) {
-        console.log('mdamk', res);
         this.spinner.hide();
-        this.faqData = res.data[0].content;
-        this.upEventData = res.data[0]?.upcomingEventInfo.filter(
-          (item: any) => {
-            const itemDate = new Date(item.startDate);
-            return itemDate >= currentDate;
-          }
-        );
+        const courseData = res.data[0];
+        this.faqData = courseData.content;
+        this.upEventData = courseData?.upcomingEventInfo.filter((item: any) => {
+          const itemDate = new Date(item.startDate);
+          return itemDate >= currentDate;
+        });
         this.bannerData = {
           event: this.upEventData,
-          courseName: res.data[0].coursetitle,
+          courseName: courseData.coursetitle,
         };
         this.schEventData = {
-          title: res.data[0].coursetitle,
+          title: courseData.coursetitle,
           events: this.upEventData,
-          url: res.data[0].slug,
+          url: courseData.slug,
           loc: 'Bali',
         };
         this.currData = {
-          title: res.data[0].coursetitle,
-          curr: res.data[0].curriculumInfo,
+          title: courseData.coursetitle,
+          curr: courseData.curriculumInfo,
         };
         this.youtubeVideoData = {
-          title: res.data[0].coursetitle,
-          videoId: res.data[0].courseintrovideoId,
+          title: courseData.coursetitle,
+          videoId: courseData.courseintrovideoId,
           amount: '',
           currency: '',
         };
         this.isYoutubeDataReady = true;
         this.accomData = {
-          accom: res.data[0].accommodationInfo[0]?.para,
-          food: res.data[0].foodInfo[0]?.para,
+          accom: courseData.accommodationInfo[0]?.para,
+          food: courseData.foodInfo[0]?.para,
         };
 
         this.feesData = {
-          title: res.data[0].coursetitle,
-          amount: res.data[0].feeInfo[0]?.amount,
-          currency: res.data[0].feeInfo[0]?.currency,
+          amount: courseData.feeInfo[0]?.amount,
+          currency: courseData.feeInfo[0]?.currency,
         };
 
         this.codecond = {
-          title: res.data[0].coursetitle,
+          title: courseData.coursetitle,
         };
-        this.title.setTitle(res.data[0].metaTitle);
+        this.title.setTitle(courseData.metaTitle);
         this.meta.updateTag({
           name: 'keywords',
-          content: res.data[0].metaKeyword,
+          content: courseData.metaKeyword,
         });
         this.meta.updateTag({
           name: 'description',
-          content: res.data[0].metaDescription,
+          content: courseData.metaDescription,
         });
       } else {
         this.router.navigate(['/']);
