@@ -34,14 +34,14 @@
 <app-faq [data]="faqData"></app-faq>
 }@else{
 <app-banner #banner [data]="bannerData"></app-banner>
-<a
+<!-- <a
   id="pranayamaBuyNow"
   *ngIf="slug == 'pranayama-course-online-pranarambha' && !isBannerVisible"
   href="javascript:void(0);"
   (click)="scrollToBanner()"
   class="floating-btn"
   ><br />&nbsp;ENQUIRY <br />&nbsp;&nbsp; NOW</a
->
+> -->
 <app-bottom-nav-course></app-bottom-nav-course>
 <app-about-bali></app-about-bali>
 <app-curriculum [data]="currData"></app-curriculum>

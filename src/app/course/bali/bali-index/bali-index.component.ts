@@ -179,13 +179,14 @@ export class BaliIndexComponent implements OnInit {
 
     observer.observe(this.banner.nativeElement);
   }
-  getCourseBySlug(slug: any) {
+  getCourseBySlug(slug: string) {
     let data = {
       slug: slug,
     };
     this.webapiService.getCourseById(data).subscribe((res: any) => {
       const currentDate = new Date();
       if (res.data.length > 0) {
+        console.log('mdamk', res);
         this.spinner.hide();
         this.faqData = res.data[0].content;
         this.upEventData = res.data[0]?.upcomingEventInfo.filter(
