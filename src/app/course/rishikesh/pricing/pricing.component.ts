@@ -92,8 +92,8 @@ export class PricingComponent implements OnInit {
         this.pricing = [
           {
             title: 'Price',
-            usd: this.feesData.find((f) => f.currency == 'USD')?.amount ?? 0,
-            inr: this.feesData.find((f) => f.currency == 'INR')?.amount ?? 0,
+            usd: 60,
+            inr: 2400,
           },
         ];
         break;

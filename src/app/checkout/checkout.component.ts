@@ -179,8 +179,7 @@ export class CheckoutComponent {
       this.webapiService.getCourseById(data).subscribe((res: any) => {
         if (res.data.length > 0) {
           this.courseList = res.data[0];
-          this.feesData = this.courseList.feeInfo;
-          console.log('mdamk', this.feesData);
+          // this.feesData = this.courseList.feeInfo;
           this.title.setTitle('Checkout');
         } else {
           this.router.navigate(['/']);
