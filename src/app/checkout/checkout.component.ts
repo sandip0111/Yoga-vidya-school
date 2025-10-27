@@ -28,7 +28,10 @@ import {
 import { localstorageKey } from '../enum/localstorage';
 import { routeEnum } from '../enum/routes';
 import { twoHundredTTCModel } from '../enum/details';
-import { feesDto } from '../course/rishikesh/pricing/pricing.component';
+import {
+  feesDto,
+  feesInfoDto,
+} from '../course/rishikesh/pricing/pricing.component';
 
 declare var Razorpay: any;
 @Component({
@@ -70,7 +73,7 @@ export class CheckoutComponent {
   roomList: dropdownModel[] = [];
   isSpecialDiscount: boolean = false;
   actualAmount: number = 0;
-  feesData: feesDto[] = [];
+  feesData: feeInfoDto[] = [];
   constructor(
     private webapiService: WebapiService,
     private _activatedRoute: ActivatedRoute,
@@ -180,7 +183,10 @@ export class CheckoutComponent {
         if (res.data.length > 0) {
           this.courseList = res.data[0];
           this.feesData = this.courseList.feeInfo;
-          console.log('mdamk', this.feesData);
+          this.feesData.map(
+            (a) =>
+              (a.title = a.title == 'Price' ? a.title : `Price(${a.title})`)
+          );
           this.title.setTitle('Checkout');
         } else {
           this.router.navigate(['/']);
@@ -237,7 +243,7 @@ export class CheckoutComponent {
       })
       .subscribe((res) => {
         this.couponCode = res.code;
-        this.couponCodeId = res.id;
+        this.couponCodeId = res.id; //SRIK20250719186383
       });
   }
   setRoomPrice(event: any) {
@@ -252,18 +258,26 @@ export class CheckoutComponent {
       this.currencyOptions = [];
       this.checkData.currency = '';
     }
-    switch (this.slug) {
-      case routeEnum.rishikesh100:
-        this.rishikesh100Price();
-        break;
-      case routeEnum.rishkesh200:
-        this.rishikesh200Price();
-        break;
-      case routeEnum.rishikesh300:
-        this.rishikesh300Price();
-        break;
-      default:
-        break;
+    if (this.feesData.length > 0) {
+      this.setPriceData(
+        this.feesData,
+        this.checkData.currency,
+        event.target.value
+      );
+    } else {
+      switch (this.slug) {
+        case routeEnum.rishikesh100:
+          this.rishikesh100Price();
+          break;
+        case routeEnum.rishkesh200:
+          this.rishikesh200Price();
+          break;
+        case routeEnum.rishikesh300:
+          this.rishikesh300Price();
+          break;
+        default:
+          break;
+      }
     }
   }
   rishikesh100Price() {
@@ -326,28 +340,32 @@ export class CheckoutComponent {
     }
   }
   priceConvert(e: any) {
-    if (
-      this.slug !== routeEnum.pranicPurification &&
-      this.slug !== routeEnum.rishikesh100 &&
-      this.slug !== routeEnum.rishkesh200 &&
-      this.slug !== routeEnum.rishikesh300 &&
-      this.slug !== String(routeEnum.sa)
-    ) {
-      if (this.slug == routeEnum['200TTC']) {
-        this.set200TTCNormalPrice(e.target.value);
-      } else {
-        this.setPranaArambhNormalPrice(e.target.value);
-      }
-    } else if (this.slug == routeEnum.rishikesh100) {
-      this.rishikesh100Price();
-    } else if (this.slug == routeEnum.rishkesh200) {
-      this.rishikesh200Price();
-    } else if (this.slug == routeEnum.rishikesh300) {
-      this.rishikesh300Price();
-    } else if (this.slug === String(routeEnum.sa)) {
-      this.setSwaraSadhanaPrice(e.target.value);
+    if (this.feesData.length > 0) {
+      this.setPriceData(this.feesData, e.target.value, this.checkData.package);
     } else {
-      this.setPranicNormalPrice(e.target.value);
+      if (
+        this.slug !== routeEnum.pranicPurification &&
+        this.slug !== routeEnum.rishikesh100 &&
+        this.slug !== routeEnum.rishkesh200 &&
+        this.slug !== routeEnum.rishikesh300 &&
+        this.slug !== String(routeEnum.sa)
+      ) {
+        if (this.slug == routeEnum['200TTC']) {
+          this.set200TTCNormalPrice(e.target.value);
+        } else {
+          this.setPranaArambhNormalPrice(e.target.value);
+        }
+      } else if (this.slug == routeEnum.rishikesh100) {
+        this.rishikesh100Price();
+      } else if (this.slug == routeEnum.rishkesh200) {
+        this.rishikesh200Price();
+      } else if (this.slug == routeEnum.rishikesh300) {
+        this.rishikesh300Price();
+      } else if (this.slug === String(routeEnum.sa)) {
+        this.setSwaraSadhanaPrice(e.target.value);
+      } else {
+        this.setPranicNormalPrice(e.target.value);
+      }
     }
     this.inputValidation('cur');
   }
@@ -387,6 +405,29 @@ export class CheckoutComponent {
       default:
         this.price = '';
         break;
+    }
+  }
+  setPriceData(feesData: feesInfoDto[], currency: string, roomId: number) {
+    for (let item of feesData) {
+      if (item.title == 'Price') {
+        this.amount =
+          item.data.find((f) => f.currency == currency)?.amount ?? 0;
+        this.offerAmount =
+          item.data.find((f) => f.currency == currency)?.discount ?? 0;
+      } else {
+        let room = `Price(${
+          this.roomList.find((item) => item.value == roomId)?.name
+        })`;
+        this.amount =
+          item.data.find((f) => f.currency == currency && item.title == room)
+            ?.amount ?? 0;
+        this.offerAmount =
+          item.data.find((f) => f.currency == currency && item.title == room)
+            ?.discount ?? 0;
+      }
+      if (this.amount) {
+        break;
+      }
     }
   }
   setPranaArambhNormalPrice(currency: string) {
@@ -484,7 +525,7 @@ export class CheckoutComponent {
         this.slug !== routeEnum.rishikesh100 &&
         this.slug !== routeEnum.rishkesh200 &&
         this.slug !== routeEnum.rishikesh300 &&
-        this.slug !== (routeEnum.sa as unknown as string)
+        this.slug !== routeEnum.sa
       ) {
         const phoneValue = this.checkData.phoneNumber;
         const countryCode = phoneValue?.countryCode?.toLowerCase();
@@ -497,9 +538,17 @@ export class CheckoutComponent {
         }
         this.checkData.package = 'Basic';
         this.checkData.currency = this.currencyOptions[0];
-        this.setPriceOnInputChange();
+        if (this.feesData.length > 0) {
+          this.setPriceData(
+            this.feesData,
+            this.checkData.currency,
+            this.checkData.package
+          );
+        } else {
+          this.setPriceOnInputChange();
+        }
         this.inputValidation('cur');
-      } else if (this.slug === (routeEnum.sa as unknown as string)) {
+      } else if (this.slug === routeEnum.sa) {
         this.currencyOptions = ['INR', 'USD', 'EUR'];
         this.checkData.currency = this.currencyOptions[0];
         this.setSwaraSadhanaPrice(this.checkData.currency);
@@ -547,7 +596,9 @@ export class CheckoutComponent {
       }
     }
     if (type == 'room') {
-      this.packageRequired = 'Please select a Room';
+      this.packageRequired = this.checkData.package
+        ? ''
+        : 'Please select a Room';
     }
     if (type == 'cur') {
       if (this.checkData.currency) {
@@ -1386,5 +1437,9 @@ class courseListDto {
   _id: string = '';
   coursetitle: string = '';
   priceId: string = '';
-  feeInfo: feesDto[] = [];
+  feeInfo: feeInfoDto[] = [];
+}
+interface feeInfoDto {
+  title: string;
+  data: feesDto[];
 }

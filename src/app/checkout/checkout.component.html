@@ -53,14 +53,12 @@
                 </div>
               </div>
               @if(feesData.length>0){
-              <div class="row align-items-center">
+              <div class="row align-items-center" *ngFor="let item of feesData">
                 <span
-                  >Price:
-                  <b *ngFor="let item of feesData"
-                    >{{ item.amount | currency : item.currency
-                    }}{{
-                      feesData.length - 1 == feesData.indexOf(item) ? "" : " / "
-                    }}</b
+                  >{{ item.title }} :
+                  <b *ngFor="let obj of item.data; let i = index"
+                    >{{ obj.amount | currency : obj.currency
+                    }}{{ item.data.length - 1 > i ? " / " : "" }}</b
                   ></span
                 >
               </div>

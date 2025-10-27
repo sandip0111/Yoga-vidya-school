@@ -16,7 +16,7 @@ export class PricingComponent implements OnInit {
   s3Bucket = s3Bucket;
   pricing: pricingDto[] = [];
   @Input() slug: string = '';
-  feesData: feesDto[] = [];
+  feesData: feesInfoDto[] = [];
   mainHeading: string = '';
   normalInrPrice: number = 0;
   normalUsdPrice: number = 0;
@@ -32,7 +32,9 @@ export class PricingComponent implements OnInit {
     };
     this.webapiService.getCourseById(data).subscribe((res: any) => {
       this.feesData = res.data[0].feeInfo;
-      this.setPriceValue(this.slug);
+      if (this.feesData.length == 0) {
+        this.setPriceValue(this.slug);
+      }
     });
   }
   setPriceValue(slug: string) {
@@ -92,8 +94,8 @@ export class PricingComponent implements OnInit {
         this.pricing = [
           {
             title: 'Price',
-            usd: this.feesData.find((f) => f.currency == 'USD')?.amount ?? 0,
-            inr: this.feesData.find((f) => f.currency == 'INR')?.amount ?? 0,
+            usd: 60,
+            inr: 2499,
           },
         ];
         break;
@@ -114,5 +116,11 @@ interface pricingDto {
 }
 export interface feesDto {
   amount: number;
+  discount: number;
   currency: string;
+  title?: string;
+}
+export interface feesInfoDto {
+  title: string;
+  data: feesDto[];
 }

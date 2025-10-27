@@ -5,6 +5,22 @@
   </div>
 
   <div class="card-container">
+    @if(feesData.length>0){
+    <div class="price-card" *ngFor="let item of feesData">
+      <div class="card-header">{{ item.title }}</div>
+      <div class="card-body">
+        <p class="fee-label">
+          <strong><i class="fas fa-tags"></i> Course Fee</strong>
+        </p>
+        <div *ngFor="let obj of item.data; let i = index">
+          <p class="price-usd">
+            {{ obj.amount | currency : obj.currency }}
+          </p>
+          <hr class="price-divider" *ngIf="i < item.data.length - 1" />
+        </div>
+      </div>
+    </div>
+    }@else {
     <div class="price-card" *ngFor="let item of pricing">
       <div class="card-header">{{ item.title }}</div>
       <div class="card-body">
@@ -16,22 +32,15 @@
         <p class="price-inr">{{ item.inr | currency : "INR" }}</p>
       </div>
     </div>
+    }
   </div>
   <div class="row justify-content-center">
-    <div *ngIf="isPriceShow">
-      <p>
-        <b>Price:</b> {{ normalInrPrice | currency : "INR" }} /
-        {{ normalUsdPrice | currency : "USD" }}
-      </p>
-    </div>
     @if(slug!==routeEnum.pranOnlinePranaArambh) {
     <button class="button" (click)="goToPaymentPage()">
       Join this journey
     </button>
-  } @else {
-    <button class="button" (click)="goToPaymentPage()">
-      Get Access
-    </button>
-  }
+    } @else {
+    <button class="button" (click)="goToPaymentPage()">Get Access</button>
+    }
   </div>
 </section>
