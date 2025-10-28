@@ -57,7 +57,10 @@
                 <span
                   >{{ item.title }} :
                   <b *ngFor="let obj of item.data; let i = index"
-                    >{{ obj.amount | currency : obj.currency
+                    >{{
+                      isSpecialDiscount && obj.discount
+                        ? (obj.discount | currency : obj.currency)
+                        : (obj.amount | currency : obj.currency)
                     }}{{ item.data.length - 1 > i ? " / " : "" }}</b
                   ></span
                 >
@@ -68,55 +71,10 @@
               </div>
               <div
                 class="row align-items-center"
-                *ngIf="slug == routeEnum['200TTC']"
-              >
-                <span
-                  >Price:
-                  <b>{{
-                    isSpecialDiscount
-                      ? "₹55000.00 / $899.00"
-                      : "₹65000.00 / $999.00"
-                  }}</b></span
-                >
-              </div>
-              <div
-                class="row align-items-center"
                 *ngIf="slug == routeEnum.pranicPurification"
               >
                 <span>Price: <b>₹3499.00 / $45.00</b></span>
               </div>
-              <div
-                class="row align-items-center"
-                *ngIf="slug == routeEnum.pranicPurification"
-              >
-                <span>Price: <b>₹3499.00 / $45.00</b></span>
-              </div>
-              <div
-                class="row align-items-center"
-                *ngIf="slug == routeEnum.rishikesh100"
-              >
-                <span>Price(Shared Room): <b>₹55000.00 / $850.00</b></span>
-              </div>
-              <div
-                class="row align-items-center"
-                *ngIf="slug == routeEnum.rishkesh200"
-              >
-                <span>Price(Shared Room): <b>₹85000.00 / $1500.00</b></span>
-                <span>Price(Private Room): <b>₹90000.00 / $1800.00</b></span>
-              </div>
-              <div
-                class="row align-items-center"
-                *ngIf="slug == routeEnum.rishikesh300"
-              >
-                <span>Price(Shared Room): <b>₹120000.00 / $1850.00</b></span>
-                <span>Price(Private Room): <b>₹1400000.00 / $1999.00</b></span>
-              </div>
-              <!-- <div
-                  class="row align-items-center"
-                  *ngIf="slug == routeEnum.pranOnlinePranaArambh"
-                >
-                  <span>Price: <b>₹2499.00 / $60.00</b></span>
-                </div> -->
               }
             </li>
           </ul>

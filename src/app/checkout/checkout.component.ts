@@ -264,104 +264,13 @@ export class CheckoutComponent {
         this.checkData.currency,
         event.target.value
       );
-    } else {
-      switch (this.slug) {
-        case routeEnum.rishikesh100:
-          this.rishikesh100Price();
-          break;
-        case routeEnum.rishkesh200:
-          this.rishikesh200Price();
-          break;
-        case routeEnum.rishikesh300:
-          this.rishikesh300Price();
-          break;
-        default:
-          break;
-      }
-    }
-  }
-  rishikesh100Price() {
-    if (this.checkData.currency == 'INR') {
-      this.amount = 55000;
-    } else if (this.checkData.currency == 'USD') {
-      this.amount = 850;
-    }
-  }
-  rishikesh200Price() {
-    if (this.checkData.currency == 'INR' && this.checkData.package == 1) {
-      this.amount = 85000;
-      this.actualAmount = 0;
-    } else if (
-      this.checkData.currency == 'INR' &&
-      this.checkData.package == 2
-    ) {
-      if (this.isSpecialDiscount) {
-        this.amount = 75000;
-        this.actualAmount = 90000;
-      } else {
-        this.amount = 90000;
-      }
-    } else if (
-      this.checkData.currency == 'USD' &&
-      this.checkData.package == 1
-    ) {
-      this.amount = 1500;
-      this.actualAmount = 0;
-    } else if (
-      this.checkData.currency == 'USD' &&
-      this.checkData.package == 2
-    ) {
-      if (this.isSpecialDiscount) {
-        this.amount = 1500;
-        this.actualAmount = 1800;
-      } else {
-        this.amount = 1800;
-      }
-    }
-  }
-  rishikesh300Price() {
-    if (this.checkData.currency == 'INR' && this.checkData.package == 1) {
-      this.amount = 120000;
-    } else if (
-      this.checkData.currency == 'INR' &&
-      this.checkData.package == 2
-    ) {
-      this.amount = 140000;
-    } else if (
-      this.checkData.currency == 'USD' &&
-      this.checkData.package == 1
-    ) {
-      this.amount = 1850;
-    } else if (
-      this.checkData.currency == 'USD' &&
-      this.checkData.package == 2
-    ) {
-      this.amount = 1999;
     }
   }
   priceConvert(e: any) {
     if (this.feesData.length > 0) {
       this.setPriceData(this.feesData, e.target.value, this.checkData.package);
     } else {
-      if (
-        this.slug !== routeEnum.pranicPurification &&
-        this.slug !== routeEnum.rishikesh100 &&
-        this.slug !== routeEnum.rishkesh200 &&
-        this.slug !== routeEnum.rishikesh300 &&
-        this.slug !== String(routeEnum.sa)
-      ) {
-        if (this.slug == routeEnum['200TTC']) {
-          this.set200TTCNormalPrice(e.target.value);
-        } else {
-          this.setPranaArambhNormalPrice(e.target.value);
-        }
-      } else if (this.slug == routeEnum.rishikesh100) {
-        this.rishikesh100Price();
-      } else if (this.slug == routeEnum.rishkesh200) {
-        this.rishikesh200Price();
-      } else if (this.slug == routeEnum.rishikesh300) {
-        this.rishikesh300Price();
-      } else if (this.slug === String(routeEnum.sa)) {
+      if (this.slug === String(routeEnum.sa)) {
         this.setSwaraSadhanaPrice(e.target.value);
       } else {
         this.setPranicNormalPrice(e.target.value);
@@ -410,95 +319,66 @@ export class CheckoutComponent {
   setPriceData(feesData: feesInfoDto[], currency: string, roomId: number) {
     for (let item of feesData) {
       if (item.title == 'Price') {
-        this.amount =
-          item.data.find((f) => f.currency == currency)?.amount ?? 0;
-        this.offerAmount =
-          item.data.find((f) => f.currency == currency)?.discount ?? 0;
+        if (this.isSpecialDiscount) {
+          const discountPrice = item.data.find(
+            (f) => f.currency == currency
+          )?.discount;
+          if (discountPrice) {
+            this.amount =
+              item.data.find((f) => f.currency == currency)?.discount ?? 0;
+            this.actualAmount =
+              item.data.find((f) => f.currency == currency)?.amount ?? 0;
+          } else {
+            this.amount =
+              item.data.find((f) => f.currency == currency)?.amount ?? 0;
+            this.actualAmount = 0;
+          }
+        } else {
+          this.amount =
+            item.data.find((f) => f.currency == currency)?.amount ?? 0;
+          this.offerAmount =
+            item.data.find((f) => f.currency == currency)?.discount ?? 0;
+        }
       } else {
         let room = `Price(${
           this.roomList.find((item) => item.value == roomId)?.name
         })`;
-        this.amount =
-          item.data.find((f) => f.currency == currency && item.title == room)
-            ?.amount ?? 0;
-        this.offerAmount =
-          item.data.find((f) => f.currency == currency && item.title == room)
-            ?.discount ?? 0;
+        if (this.isSpecialDiscount) {
+          const discountPrice = item.data.find(
+            (f) => f.currency == currency && item.title == room
+          )?.discount;
+          if (discountPrice) {
+            this.amount =
+              item.data.find(
+                (f) => f.currency == currency && item.title == room
+              )?.discount ?? 0;
+            this.actualAmount =
+              item.data.find(
+                (f) => f.currency == currency && item.title == room
+              )?.amount ?? 0;
+          } else {
+            this.amount =
+              item.data.find(
+                (f) => f.currency == currency && item.title == room
+              )?.amount ?? 0;
+            this.actualAmount = 0;
+          }
+        } else {
+          this.amount =
+            item.data.find((f) => f.currency == currency && item.title == room)
+              ?.amount ?? 0;
+          this.offerAmount =
+            item.data.find((f) => f.currency == currency && item.title == room)
+              ?.discount ?? 0;
+        }
       }
       if (this.amount) {
         break;
       }
     }
   }
-  setPranaArambhNormalPrice(currency: string) {
-    switch (currency) {
-      case 'INR':
-        this.price = '2499 INR';
-        this.amount = 2499;
-        this.offerAmount = 2100;
-        break;
-      case 'USD':
-        this.price = '60 USD';
-        this.amount = 60;
-        this.offerAmount = 55;
-        break;
-      case 'EUR':
-        this.price = '60 EUR';
-        this.amount = 60;
-        this.offerAmount = 56;
-        break;
-      default:
-        this.price = '';
-        this.amount = 0;
-        this.offerAmount = 0;
-        break;
-    }
-  }
-  set200TTCNormalPrice(currency: string) {
-    if (this.isSpecialDiscount) {
-      switch (currency) {
-        case 'INR':
-          this.price = '55000 INR';
-          this.amount = 55000;
-          this.actualAmount = 65000;
-          break;
-        case 'USD':
-          this.price = '899 USD';
-          this.amount = 899;
-          this.actualAmount = 999;
-          break;
-        default:
-          this.price = '';
-          this.amount = 0;
-          break;
-      }
-    } else {
-      switch (currency) {
-        case 'INR':
-          this.price = '65000 INR';
-          this.amount = 65000;
-          this.firstInstAmnt = 50000;
-          this.secondInstAmnt = 55000;
-          break;
-        case 'USD':
-          this.price = '999 USD';
-          this.amount = 999;
-          break;
-        default:
-          this.price = '';
-          this.amount = 0;
-          break;
-      }
-    }
-  }
   setPriceOnInputChange() {
-    if (this.checkData.package && this.slug !== routeEnum.pranicPurification) {
-      if (this.slug == routeEnum['200TTC']) {
-        this.set200TTCNormalPrice(this.checkData.currency);
-      } else {
-        this.setPranaArambhNormalPrice(this.checkData.currency);
-      }
-    } else if (this.slug === routeEnum.pranicPurification) {
+    if (this.slug === routeEnum.pranicPurification) {
       this.setPranicNormalPrice(this.checkData.currency);
     } else {
       this.price = '';
