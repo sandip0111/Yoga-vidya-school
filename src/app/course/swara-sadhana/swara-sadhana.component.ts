@@ -4,9 +4,12 @@ import { BannerComponent } from '../banner/banner.component';
 import { s3Bucket } from '../../enum/s3Bucket';
 import { VideoReviewsComponent } from '../video-reviews/video-reviews.component';
 import { faq, FaqComponent } from '../../includes/home/faq/faq.component';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { routeEnum } from '../../enum/routes';
 import { Title } from '@angular/platform-browser';
+import { WebapiService } from '../../webapi.service';
+import { feesDto } from '../rishikesh/pricing/pricing.component';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-swara-sadhana',
@@ -18,12 +21,36 @@ import { Title } from '@angular/platform-browser';
 export class SwaraSadhanaComponent {
   s3Bucket = s3Bucket;
   faqData: faq[] = [];
-  price: number = 999;
-  priceUsd: number = 15;
-  constructor(private router: Router, private titleService: Title) {
+  price: number = 0;
+  priceUsd: number = 0;
+  slug: string = '';
+  constructor(
+    private router: Router,
+    private titleService: Title,
+    private webapiService: WebapiService,
+    private activatedRoute: ActivatedRoute,
+    private spinner: NgxSpinnerService
+  ) {
+    this.slug = this.activatedRoute.snapshot.routeConfig?.path ?? '';
     this.titleService.setTitle('Swara Sadhana');
   }
   ngOnInit(): void {
+    this.spinner.show();
+    let data = {
+      slug: this.slug,
+    };
+    this.webapiService.getCourseById(data).subscribe((res: any) => {
+      console.log('mdamk', res);
+      const courseData = res.data[0];
+      this.price = courseData.feeInfo[0].data.find(
+        (a: feesDto) => a.currency == 'INR'
+      ).amount;
+
+      this.priceUsd = courseData.feeInfo[0].data.find(
+        (a: feesDto) => a.currency == 'USD'
+      ).amount;
+      this.spinner.hide();
+    });
     this.faqData = [
       {
         title: 'What is SWARA YOGA?',

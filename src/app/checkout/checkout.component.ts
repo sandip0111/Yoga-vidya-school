@@ -101,6 +101,7 @@ export class CheckoutComponent {
   }
 
   ngOnInit(): void {
+    this.spinner.show();
     if (this.slug == routeEnum.rishikesh100) {
       this.roomList = [{ name: 'Shared Room', value: 1 }];
     } else if (this.slug == routeEnum.rishkesh200) {
@@ -115,7 +116,6 @@ export class CheckoutComponent {
       ];
     }
     this.scrollToTop();
-
     // Track checkout page view
     this.trackCheckoutPageView();
     setTimeout(() => {
@@ -176,25 +176,20 @@ export class CheckoutComponent {
     let data = {
       slug: slug,
     };
-    if (slug == routeEnum.sa) {
-      this.courseList.coursetitle = 'SWARA SADHANA';
-    } else {
-      this.webapiService.getCourseById(data).subscribe((res: any) => {
-        if (res.data.length > 0) {
-          this.courseList = res.data[0];
-          this.feesData = this.courseList.feeInfo;
-          this.feesData.map(
-            (a) =>
-              (a.title = a.title == 'Price' ? a.title : `Price(${a.title})`)
-          );
-          this.title.setTitle('Checkout');
-        } else {
-          this.router.navigate(['/']);
-        }
-      });
-    }
+    this.webapiService.getCourseById(data).subscribe((res: any) => {
+      if (res.data.length > 0) {
+        this.courseList = res.data[0];
+        this.feesData = this.courseList.feeInfo;
+        this.feesData.map(
+          (a) => (a.title = a.title == 'Price' ? a.title : `Price(${a.title})`)
+        );
+        this.title.setTitle('Checkout');
+        this.spinner.hide();
+      } else {
+        this.router.navigate(['/']);
+      }
+    });
   }
-
   checkEmail(e: any) {
     const input = (e.target as HTMLInputElement).value.trim();
     this.emailSuggestion = null;
@@ -269,52 +264,8 @@ export class CheckoutComponent {
   priceConvert(e: any) {
     if (this.feesData.length > 0) {
       this.setPriceData(this.feesData, e.target.value, this.checkData.package);
-    } else {
-      if (this.slug === String(routeEnum.sa)) {
-        this.setSwaraSadhanaPrice(e.target.value);
-      } else {
-        this.setPranicNormalPrice(e.target.value);
-      }
     }
     this.inputValidation('cur');
-  }
-  setPranicNormalPrice(currency: string) {
-    switch (currency) {
-      case 'INR':
-        this.price = '3499 INR';
-        this.amount = 3499;
-        break;
-      case 'USD':
-        this.price = '45 USD';
-        this.amount = 45;
-        break;
-      case 'EUR':
-        this.price = '40 EUR';
-        this.amount = 40;
-        break;
-      default:
-        this.price = '';
-        break;
-    }
-  }
-  setSwaraSadhanaPrice(currency: string) {
-    switch (currency) {
-      case 'INR':
-        this.price = '999 INR';
-        this.amount = 999;
-        break;
-      case 'USD':
-        this.price = '16 USD';
-        this.amount = 16;
-        break;
-      case 'EUR':
-        this.price = '16 EUR';
-        this.amount = 16;
-        break;
-      default:
-        this.price = '';
-        break;
-    }
   }
   setPriceData(feesData: feesInfoDto[], currency: string, roomId: number) {
     for (let item of feesData) {
@@ -377,65 +328,46 @@ export class CheckoutComponent {
       }
     }
   }
-  setPriceOnInputChange() {
-    if (this.slug === routeEnum.pranicPurification) {
-      this.setPranicNormalPrice(this.checkData.currency);
-    } else {
-      this.price = '';
-      this.amount = 0;
-    }
-  }
-
   onPhoneInputChange(isValid: boolean | null | undefined): void {
     if (!isValid) {
       this.phoneError = 'Invalid phone number';
-      if (
-        this.slug !== routeEnum.rishikesh100 &&
-        this.slug !== routeEnum.rishkesh200 &&
-        this.slug !== routeEnum.rishikesh300 &&
-        this.slug !== (routeEnum.sa as unknown as string)
-      ) {
-        this.currencyOptions = [];
-        this.checkData.currency = '';
-        this.setPriceOnInputChange();
-      }
+      this.currencyOptions = [];
+      this.checkData.currency = '';
     } else {
       this.phoneError = '';
       if (
         this.slug !== routeEnum.rishikesh100 &&
         this.slug !== routeEnum.rishkesh200 &&
-        this.slug !== routeEnum.rishikesh300 &&
-        this.slug !== routeEnum.sa
+        this.slug !== routeEnum.rishikesh300
       ) {
-        const phoneValue = this.checkData.phoneNumber;
-        const countryCode = phoneValue?.countryCode?.toLowerCase();
-        if (countryCode === 'in' && this.slug == routeEnum['200TTC']) {
-          this.currencyOptions = ['INR', 'USD'];
-        } else if (countryCode === 'in') {
-          this.currencyOptions = ['INR', 'USD', 'EUR'];
-        } else {
-          this.currencyOptions = ['USD', 'EUR'];
-        }
-        this.checkData.package = 'Basic';
-        this.checkData.currency = this.currencyOptions[0];
         if (this.feesData.length > 0) {
+          this.setCurrencyData(this.checkData);
           this.setPriceData(
             this.feesData,
             this.checkData.currency,
             this.checkData.package
           );
-        } else {
-          this.setPriceOnInputChange();
         }
         this.inputValidation('cur');
-      } else if (this.slug === routeEnum.sa) {
-        this.currencyOptions = ['INR', 'USD', 'EUR'];
-        this.checkData.currency = this.currencyOptions[0];
-        this.setSwaraSadhanaPrice(this.checkData.currency);
       }
     }
   }
-
+  setCurrencyData(checkData: checkoutModel) {
+    const phoneValue = checkData.phoneNumber;
+    const countryCode = phoneValue?.countryCode?.toLowerCase();
+    if (countryCode === 'in' && this.slug == routeEnum['200TTC']) {
+      this.currencyOptions = ['INR', 'USD'];
+    } else if (countryCode === 'in') {
+      this.currencyOptions =
+        this.slug == routeEnum.pranicPurification
+          ? ['INR', 'USD']
+          : ['INR', 'USD', 'EUR'];
+    } else {
+      this.currencyOptions = ['USD', 'EUR'];
+    }
+    checkData.package = 'Basic';
+    checkData.currency = this.currencyOptions[0];
+  }
   onCountryChange(): void {
     this.phoneError = 'Invalid phone number';
     this.currencyOptions = [];
@@ -560,7 +492,7 @@ export class CheckoutComponent {
         this.phoneRequired = 'WhatsApp Number is required';
         isErrMsg = true;
       }
-      if (this.price == '' || !this.price) {
+      if (!data.currency) {
         this.currencyRequired = 'Currency is required';
         isErrMsg = true;
       }
@@ -696,7 +628,9 @@ export class CheckoutComponent {
       });
   }
   pranicPurificationCheckOut(data: checkoutModel, isRazorPay: boolean) {
-    var { price, currency } = this.extractPriceAndCurrency(this.price) || {
+    var { price, currency } = this.extractPriceAndCurrency(
+      `${this.amount} ${data.currency}`
+    ) || {
       price: 0,
       currency: '',
     };
