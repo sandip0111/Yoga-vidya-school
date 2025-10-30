@@ -473,7 +473,7 @@ export class CheckoutComponent {
         } else if (this.slug == routeEnum.sa) {
           this.swaraSadhanaCheckout(data, isRazorPay);
         } else {
-          this.nonPranicPurificationCheckout(data, isRazorPay);
+          this.pranaArambhCheckout(data, isRazorPay);
         }
       } else {
         this.spinner.hide();
@@ -533,7 +533,6 @@ export class CheckoutComponent {
               res.userId
             );
           }
-          // this.spinner.hide();
         }
       });
   }
@@ -650,7 +649,7 @@ export class CheckoutComponent {
       this.initializeRazorPaymentForPranicPurification(signup);
     }
   }
-  nonPranicPurificationCheckout(data: checkoutModel, isRazorPay: boolean) {
+  pranaArambhCheckout(data: checkoutModel, isRazorPay: boolean) {
     sessionStorage.setItem('tempCourse', this.courseList._id);
     let pass = this.genratePass(6);
     if (this.oldStudent == false) {
@@ -706,6 +705,7 @@ export class CheckoutComponent {
       isActive: true,
       source: 'web',
       phoneNumber: data.phoneNumber.e164Number,
+      breathDtoxData: this.courseList._id,
     };
     this.webapiService.createStudent(signup).subscribe((res: any) => {
       if (res.status == 'ok') {

@@ -37,7 +37,6 @@ export class RegistrationFormComponent {
   courseName: string = '';
   constructor(
     private formBuilder: FormBuilder,
-    private router: Router,
     private webapiService: WebapiService,
     private toastr: ToastrService,
     private spinner: NgxSpinnerService
@@ -73,7 +72,11 @@ export class RegistrationFormComponent {
     );
     this.registrationForm.value.source = 'web';
     this.registrationForm.value.course = arr;
-    this.webapiService.createStudent(this.registrationForm.value).subscribe({
+    let requestData = this.registrationForm.value;
+    requestData.paymentCourseId = this.registrationForm.value.isBreatDox
+      ? '63c3f26c461e531f3c3452e1'
+      : '';
+    this.webapiService.createStudent(requestData).subscribe({
       next: (res: any) => {
         if (res.status == 'error') {
           this.toastr.error(res.msg, 'error');

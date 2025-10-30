@@ -32,72 +32,25 @@ export class PricingComponent implements OnInit {
     };
     this.webapiService.getCourseById(data).subscribe((res: any) => {
       this.feesData = res.data[0].feeInfo;
-      if (this.feesData.length == 0) {
-        this.setPriceValue(this.slug);
-      }
+      this.setPriceValue(this.slug);
     });
   }
   setPriceValue(slug: string) {
     switch (slug) {
       case routeEnum.rishikesh100:
         this.mainHeading = 'Pricing of 100 Hours TTC Rishikesh';
-        this.pricing = [
-          {
-            title: 'Shared Room',
-            usd: 850,
-            inr: 55000,
-          },
-        ];
         break;
       case routeEnum.rishkesh200:
         this.mainHeading = 'Pricing of 200 Hours TTC Rishikesh';
-        this.pricing = [
-          {
-            title: 'Private Room',
-            usd: 1800,
-            inr: 90000,
-          },
-          {
-            title: 'Shared Room',
-            usd: 1500,
-            inr: 85000,
-          },
-        ];
         break;
       case routeEnum.rishikesh300:
         this.mainHeading = 'Pricing of 300 Hours TTC Rishikesh';
-        this.pricing = [
-          {
-            title: 'Private Room',
-            usd: 1999,
-            inr: 140000,
-          },
-          {
-            title: 'Shared Room',
-            usd: 1850,
-            inr: 120000,
-          },
-        ];
         break;
       case routeEnum['200TTC']:
         this.mainHeading = '200 hours Yoga TTC online';
-        this.pricing = [
-          {
-            title: 'Price',
-            usd: 999,
-            inr: 65000,
-          },
-        ];
         break;
       case routeEnum.pranOnlinePranaArambh:
-        this.mainHeading = '';
-        this.pricing = [
-          {
-            title: 'Price',
-            usd: 60,
-            inr: 2499,
-          },
-        ];
+        this.mainHeading = 'Pricing of Prana Arambh';
         break;
       default:
         break;
