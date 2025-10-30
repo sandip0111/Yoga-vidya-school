@@ -1,6 +1,6 @@
 <div class="container mt-5">
   <div class="d-flex justify-content-between align-items-center mb-4">
-    <h4 class="small_text">Online Classes</h4>    
+    <h4 class="small_text">Online Classes</h4>
     <div class="dropdown mb-3">
       <button
         class="btn custom-btn-orange dropdown-toggle"
@@ -31,15 +31,12 @@
   <div class="addToCard_wrapper">
     <div class="">
       <div class="row">
-        <!-- Loop through the courses in your Angular component -->
         <div class="col-md-12" *ngFor="let course of courses">
           <div class="card_box mb-4">
             <div class="card-body d-flex flex-column">
               <h5 class="card-title">{{ course.title }}</h5>
               <p class="card-text">{{ course.shortDescription }}</p>
-
               <div class="card_amount_area">
-                <!-- <button class="button"> Add </button> -->
                 <h6 class="card-subtitle">
                   {{ course.priceINR | currency : "INR" }} /
                   {{ course.priceUSD | currency : "USD" }}
@@ -69,7 +66,7 @@
         <div class="paypal-alert">
           <span class="paypal-alert-icon">📸</span>
           <span class="paypal-alert-text">
-            If you are using <strong>PayPal</strong> for payment, please upload the screenshot of your payment to 
+            If you are using <strong>PayPal</strong> for payment, please upload the screenshot of your payment to
             <a href="mailto:info@yogavidyaschool.com" target="_blank" class="paypal-alert-link">
               Yoga Vidya Mail
             </a>.

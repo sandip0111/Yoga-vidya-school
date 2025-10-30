@@ -17,6 +17,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { paymentkey } from '../enum/payment';
 import { jsonData } from '../course/course-mentor/course-mentor.component';
 import { PixelTrackingService } from '../services/pixel-tracking.service';
+import { Title } from '@angular/platform-browser';
 
 declare var Razorpay: any;
 @Component({
@@ -58,7 +59,8 @@ export class PaymentProceedComponent implements OnInit {
     private webapiService: WebapiService,
     private spinner: NgxSpinnerService,
     private pixelTracking: PixelTrackingService,
-    private actRoute: ActivatedRoute
+    private actRoute: ActivatedRoute,
+    private titleService: Title
   ) {
     this.actRoute.queryParams.subscribe((params) => {
       if (params['hash'] === 'abcdef1234567890') {
@@ -87,22 +89,37 @@ export class PaymentProceedComponent implements OnInit {
     });
   }
   ngOnInit(): void {
+    this.setPageTitle(this.courses);
     this.invokeStripe();
     this.loadRazorpayScript();
     this.trackCheckoutPageView();
   }
+  setPageTitle(courses: CartItem[]) {
+    if (courses.length > 0) {
+      const firstVal = courses[0];
+      if (firstVal.id == 1) {
+        this.titleService.setTitle(
+          'Online sadhna with Prashant - Yoga Vidya School'
+        );
+      } else if (firstVal.id == 3) {
+        this.titleService.setTitle(
+          'Women wellness yoga with Taniya - Yoga Vidya School'
+        );
+      }
+    } else {
+      this.titleService.setTitle(
+        'Online sadhna with Prashant - Yoga Vidya School'
+      );
+    }
+  }
   checkEmail(): void {
     const emailControl = this.paymentForm.get('email');
     if (!emailControl) return;
-
     const email = emailControl.value?.trim();
     this.emailSuggestion = '';
-
     if (!email || !email.includes('@')) return;
-
     const [local, domain] = email.split('@');
     const tld = domain?.split('.').pop();
-
     const typoDomains: any = {
       'gamil.com': 'gmail.com',
       'gmial.com': 'gmail.com',
@@ -115,13 +132,11 @@ export class PaymentProceedComponent implements OnInit {
       'gmail.cmo': 'gmail.com',
       'gmail.co': 'gmail.com',
     };
-
     const correctedDomain = typoDomains[domain?.toLowerCase()];
     if (correctedDomain) {
       this.emailSuggestion = `Wrong email format, Did you mean: ${local}@${correctedDomain}?`;
       return;
     }
-
     const allowedTLDs = ['com', 'net', 'org', 'in', 'edu', 'gov'];
     if (tld && !allowedTLDs.includes(tld.toLowerCase())) {
       this.emailSuggestion = `Wrong email format ".${tld}" — did you mean ".com"?`;
@@ -130,7 +145,6 @@ export class PaymentProceedComponent implements OnInit {
   onPhoneInputChange(): void {
     const control = this.paymentForm.controls['mobile'];
     this.isPhoneValid = control.valid;
-
     if (!this.isPhoneValid) {
       this.phoneError = 'Invalid phone number';
       this.currencyOptions = [];
@@ -193,14 +207,11 @@ export class PaymentProceedComponent implements OnInit {
   onStripePayment(): void {
     this.submitted = true;
     const isInvalid = this.paymentForm.controls['mobile'].invalid;
-
     if (isInvalid) {
       this.phoneError = 'Invalid phone number';
       return;
     }
-
-    if (this.paymentForm.valid) {     
-      console.log('Form Data:', this.paymentForm.getRawValue());
+    if (this.paymentForm.valid) {
       this.spinner.show();
       var data = this.paymentForm.getRawValue();
       var courseList = this.cartService.getItems();
@@ -220,7 +231,7 @@ export class PaymentProceedComponent implements OnInit {
         val.currency
       );
       this.pixelTracking.trackAddPaymentInfo(
-       'stripe-proceed-payment',
+        'stripe-proceed-payment',
         val.price,
         val.currency
       );
@@ -296,14 +307,11 @@ export class PaymentProceedComponent implements OnInit {
         paymentData.currency
       );
       this.pixelTracking.trackAddPaymentInfo(
-       'razorpay-proceed-payment',
+        'razorpay-proceed-payment',
         paymentData.price,
         paymentData.currency
       );
-
       this.spinner.show();
-
-      // Call your API to create an order ID for Razorpay
       this.webapiService.createRazorpayOrder(paymentData).subscribe(
         (res: any) => {
           this.spinner.hide();
@@ -317,7 +325,6 @@ export class PaymentProceedComponent implements OnInit {
               description: 'Live Class Payment',
               order_id: res.orderId,
               handler: (response: any) => {
-                // After payment success
                 sessionStorage.setItem(
                   'online_class_razorpay_payment_id',
                   response.razorpay_payment_id
@@ -377,12 +384,14 @@ export class PaymentProceedComponent implements OnInit {
     });
   }
 
-   private trackCheckoutPageView() {
+  private trackCheckoutPageView() {
     this.pixelTracking.trackPageView(
       `checkout- online-live-classes`,
-      `Checkout - ${this.courses.map(c => c.title).join(', ')}`
+      `Checkout - ${this.courses.map((c) => c.title).join(', ')}`
     );
-    this.pixelTracking.trackViewContent('proceed-payment_page', 'proceed-payment');
+    this.pixelTracking.trackViewContent(
+      'proceed-payment_page',
+      'proceed-payment'
+    );
   }
-
 }
