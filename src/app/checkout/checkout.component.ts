@@ -705,7 +705,7 @@ export class CheckoutComponent {
       isActive: true,
       source: 'web',
       phoneNumber: data.phoneNumber.e164Number,
-      breathDtoxData: this.courseList._id,
+      paymentCourseId: this.courseList._id,
     };
     this.webapiService.createStudent(signup).subscribe((res: any) => {
       if (res.status == 'ok') {
