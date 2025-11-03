@@ -75,18 +75,51 @@ export class PixelTrackingService {
 
   // Purchase Events
   trackPurchase(transactionId: string, courseId: string, courseName: string, value: number, currency: string = 'USD') {
-    if (typeof fbq !== 'undefined') {
-      fbq('track', 'Purchase', {
-        content_ids: [courseId],
-        content_name: courseName,
-        content_type: 'yoga_course',
-        value: value,
-        currency: currency,
-        num_items: 1
-      });
-    }
+    // if (typeof fbq !== 'undefined') {
+    //   fbq('track', 'Purchase', {
+    //     content_ids: [courseId],
+    //     content_name: courseName,
+    //     content_type: 'yoga_course',
+    //     value: value,
+    //     currency: currency,
+    //     num_items: 1
+    //   });
+    // }
   }
 
+  trackPurchase200ttc(transactionId: string, courseId: string, courseName: string, value: number, currency: string = 'USD') {
+  if (typeof fbq !== 'undefined') {   
+    const eventId = "200_ttc";
+    
+    fbq('track', 'Purchase', {
+      content_ids: ["200_ttc"],
+      content_name: "200 Hours Online Yoga Teacher Training Course",
+      content_type: 'yoga_course',
+      value: value,
+      currency: currency,
+      num_items: 1
+    }, {
+      eventID: eventId 
+    });
+  }
+}
+
+trackPurchaseLiveClasses(transactionId: string, courseId: string, courseName: string, value: number, currency: string = 'USD') {
+  if (typeof fbq !== 'undefined') {   
+    const eventId = "live_classes";
+    
+    fbq('track', 'Purchase', {
+      content_ids: ["live_classes"],
+      content_name: "Live Yoga Classes",
+      content_type: 'yoga_course',
+      value: value,
+      currency: currency,
+      num_items: 1
+    }, {
+      eventID: eventId 
+    });
+  }
+}
   // Video Events
   trackVideoPlay(videoTitle: string, videoDuration?: number) {
     if (typeof fbq !== 'undefined') {

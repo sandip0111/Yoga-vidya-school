@@ -85,6 +85,8 @@ export interface razorPaymentResultModel {
   password?: string;
   installment?: string;
   dueAmnt?: number;
+  fbc?: string;
+  fbp?: string;
 }
 export interface swaraPaymentResultModel {
   amount: string;
