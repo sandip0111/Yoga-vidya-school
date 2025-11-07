@@ -3,7 +3,15 @@
   *ngIf="userId && onlineCheck && studentValidated"
 >
   <h2 class="text-center">COURSE VIDEOS</h2>
-  <p class="text-center">Start Your {{ courseList?.coursetitle }} Now!</p>
+  <ng-container *ngIf="slug === routeEnum['200TTC']; else otherTitle">
+    <p class="text-center">
+      Yoga TTC is not merely a training; it is a divine responsibility — to walk
+      the path of awareness and become a channel of consciousness for others.
+    </p>
+  </ng-container>
+  <ng-template #otherTitle>
+    <p class="text-center">Start Your {{ courseList?.coursetitle }} Now!</p>
+  </ng-template>
   @if(reverseArr && reverseArr.length > 0){
   <div class="container-fluid">
     <ul class="nav nav-tabs">

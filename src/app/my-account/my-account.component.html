@@ -17,7 +17,7 @@
           >
         </span>
       </div>
-      <div *ngIf="courseArrData.length">
+      <div *ngIf="courseArrData.length > 0">
         <h3>My Courses</h3>
         <div
           class="container-fluid"
@@ -25,6 +25,7 @@
         >
           <div class="row">
             <div class="col-lg-6">
+              @if(course.isYoutube){
               <iframe
                 loading="lazy"
                 style="width: 100%"
@@ -37,6 +38,18 @@
                 async
                 defer
               ></iframe>
+              }@else if(course.isImage) {
+              <img
+                loading="lazy"
+                class="intro-image"
+                [src]="course.introUrl"
+                title="Course intro video"
+                controls
+                playsinline
+                preload="metadata"
+                controlsList="nodownload"
+              />
+              }
             </div>
             <div class="col-lg-6">
               <h2>{{ course?.coursetitle }}</h2>

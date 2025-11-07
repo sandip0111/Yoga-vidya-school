@@ -16,6 +16,7 @@ import { FormsModule } from '@angular/forms';
 import Hls from 'hls.js';
 import { onLineVideoModel } from '../models/video';
 import { localstorageKey } from '../enum/localstorage';
+import { routeEnum } from '../enum/routes';
 @Component({
   selector: 'app-course-video',
   standalone: true,
@@ -28,7 +29,7 @@ export class CourseVideoComponent {
   feedbackCounter: boolean = false;
   studentValidated: boolean = false;
   courseList: any;
-  slug: any;
+  slug: string = '';
   feedbackData: any = {};
   userId: any;
   videoName: any;
@@ -36,10 +37,10 @@ export class CourseVideoComponent {
   spinner1 = 'sp1';
   bdQues: any = [];
   onlineCheck: boolean = false;
-  // @ViewChild('videoPlayer') videoElement!: ElementRef<HTMLDivElement>;
   isCallbackTriggered = false;
   accessLog: any;
   videoClass: string = 'col-lg-8';
+  routeEnum = routeEnum;
   constructor(
     private webapiService: WebapiService,
     private _activatedRoute: ActivatedRoute,
@@ -67,10 +68,6 @@ export class CourseVideoComponent {
   }
 
   ngOnInit(): void {
-    // this.videoClass =
-    //   this.slug == 'pranayama-course-online-pranarambha'
-    //     ? 'col-lg-12'
-    //     : 'col-lg-8';
     this.getCourseBySlug(this.slug);
     this.userId = sessionStorage.getItem('loginId');
     if (!this.userId) {
@@ -91,7 +88,6 @@ export class CourseVideoComponent {
     const video = document.getElementById(id) as HTMLVideoElement;
     if (!video || !isShow) return;
     if (video.src.trim() !== '' && video.src !== null) {
-      console.log('already');
       return;
     }
     if (isM3U8) {

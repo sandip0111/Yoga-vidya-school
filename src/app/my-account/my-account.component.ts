@@ -19,6 +19,7 @@ export class MyAccountComponent {
   courseArrData: any = [];
   reverseArr: any = [];
   counter: boolean = true;
+  // https://my-s3-images-bucket.s3.amazonaws.com//upCourses/Online+200+TTC/welcome.mp4
   constructor(
     private router: Router,
     private webapiService: WebapiService,
@@ -67,13 +68,18 @@ export class MyAccountComponent {
 
   getCourseByIdV2(id: any) {
     this.webapiService.getCourseByIdV2(id).subscribe((res: any) => {
-      // console.log(res?.course.length);
       if (res?.course) {
-        let url = `https://www.youtube.com/embed/${res?.course.courseintrovideoId}`;
-        let safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url);
-        res.course.introUrl = safeUrl;
+        console.log('mdntsskas', res?.course);
+        if (res.course._id == '63c4e7e72bce43a907211c78') {
+          res.course.introUrl = res?.course.courseintrovideoId;
+          res.course.isImage = true;
+        } else {
+          let url = `https://www.youtube.com/embed/${res?.course.courseintrovideoId}`;
+          let safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url);
+          res.course.introUrl = safeUrl;
+          res.course.isYoutube = true;
+        }
         this.courseArrData.push(res.course);
-        // this.getOnlineCourseVideosV2(res.course.wistiaProjectId);
       }
     });
   }
@@ -105,7 +111,7 @@ export class MyAccountComponent {
 
     return next24hDateTime.toISOString();
   }
-  getOnlineCourseVideosV2(course: any, slug: any) {
+  getOnlineCourseVideosV2(course: any, slug: string) {
     this.spinner.show();
     let val = {
       courseId: course,
@@ -227,26 +233,7 @@ export class MyAccountComponent {
       console.log(res);
     });
   }
-
-  // getOnlineCourseVideosV2(id: any) {
-  //   let val = {
-  //     projectId: id
-  //   }
-  //   this.webapiService.getCourseVideo(val).subscribe((res: any) => {
-  //     // console.log(res);
-  //     let val = {
-  //       name: res.name,
-  //       days: res.mediaCount,
-  //       videos: res.mediaCount,
-  //       videoId: res.medias[res.length - 1].hashed_id
-  //     }
-  //     this.reverseArr.push(val);
-
-  //   });
-  // }
-
   bookSeatV2(slug: any) {
-    // this.router.navigate(['/checkout/', this.courseList.slug])
     let url = `checkout/${slug}`;
     window.location.href = url;
   }

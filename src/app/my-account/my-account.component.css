@@ -4,3 +4,8 @@
   height: 75px;
   object-fit: cover;
 }
+.intro-image {
+  width: 99%;
+  border-radius: 14px;
+  height: 96%;
+}
