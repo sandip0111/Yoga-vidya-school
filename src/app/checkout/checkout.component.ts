@@ -754,7 +754,7 @@ export class CheckoutComponent {
       }
     });
   }
-  genratePass(len: any) {
+  genratePass(len: number) {
     var charset =
       'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_-+=<>?';
     var password = '';
