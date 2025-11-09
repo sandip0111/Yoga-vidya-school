@@ -703,7 +703,8 @@ export class CourseVideoComponent {
       if (i == 0) {
         continue;
       }
-      this.reverseArr[i].isShow = false;
+      this.reverseArr[i].isShow =
+        this.slug == routeEnum['200TTC'] ? true : false;
       this.reverseArr[i].isVideoShown = false;
       this.reverseArr[i].dayNumber = i + 1;
       if (this.slug == 'breath-detox-yoga') {
