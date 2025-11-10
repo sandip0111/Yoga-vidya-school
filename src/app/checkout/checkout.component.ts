@@ -771,7 +771,7 @@ export class CheckoutComponent {
       priceId: id,
       custEmail: email.toLowerCase(),
       courseId: sessionStorage.getItem('tempCourse'),
-      paymentStatus: 'due',
+      paymentStatus: 'pending',
       studentId: sessionStorage.getItem('loginId-checkout'),
     };
     this.webapiService.stripe(val).subscribe((res: any) => {
@@ -797,7 +797,7 @@ export class CheckoutComponent {
       price: this.isDiscounted ? this.offerAmount : this.amount,
       email: data.email.toLowerCase(),
       courseId: sessionStorage.getItem('tempCourse'),
-      paymentStatus: 'due',
+      paymentStatus: 'pending',
       studentId: sessionStorage.getItem('loginId-checkout'),
     };
     this.webapiService
