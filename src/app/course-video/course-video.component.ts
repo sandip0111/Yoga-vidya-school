@@ -729,7 +729,9 @@ export class CourseVideoComponent {
           });
       }
     }, 4000);
-    this.getAccessLog(this.userId, id);
+    if(this.slug != routeEnum['200TTC']){
+     this.getAccessLog(this.userId, id);
+    }
   }
   onlineVideoLoad(obj: onLineVideoModel) {
     const localKey =

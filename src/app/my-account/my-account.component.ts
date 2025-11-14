@@ -5,6 +5,7 @@ import { Router, RouterLink } from '@angular/router';
 import { WebapiService } from '../webapi.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { DomSanitizer } from '@angular/platform-browser';
+import { routeEnum } from '../enum/routes';
 
 @Component({
   selector: 'app-my-account',
@@ -26,7 +27,7 @@ export class MyAccountComponent {
     private spinner: NgxSpinnerService,
     protected sanitizer: DomSanitizer,
     private title: Title,
-    private meta: Meta,
+    private meta: Meta,    
     @Inject(DOCUMENT) private _document: Document,
     private _renderer2: Renderer2
   ) {}
@@ -156,7 +157,7 @@ export class MyAccountComponent {
         this.webapiService
           .getAccessLog({ studentId: this.loginId, courseId: course })
           .subscribe((res: any) => {
-            if (res.count == 0) {
+            if (res.count == 0 && slug != routeEnum['200TTC']) {
               this.createAccessLog(val);
             }
             this.router.navigate(['/course-video/', slug]);
