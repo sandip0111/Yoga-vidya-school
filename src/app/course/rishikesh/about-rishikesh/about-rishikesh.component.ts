@@ -21,7 +21,7 @@ export class AboutRishikeshComponent implements OnInit {
   slug: string = '';
   aboutContent: aboutContentModel = new aboutContentModel('', '', '', '');
   ispranicPurificationImg = false;
-  course?: CartItem;
+  course?: any;
   routeEnum = routeEnum;
   date: string = '';
   startTime: string = '';

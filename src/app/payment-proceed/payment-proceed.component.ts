@@ -18,6 +18,7 @@ import { paymentkey } from '../enum/payment';
 import { jsonData } from '../course/course-mentor/course-mentor.component';
 import { PixelTrackingService } from '../services/pixel-tracking.service';
 import { Title } from '@angular/platform-browser';
+import { routeEnum } from '../enum/routes';
 
 declare var Razorpay: any;
 @Component({
@@ -38,7 +39,7 @@ export class PaymentProceedComponent implements OnInit {
   currency: any;
   courses: CartItem[] = [];
   availableCourses: CartItem[] = [];
-  courseMentor = jsonData;
+  courseMentor: CartItem[] = [];
   submitted: boolean = false;
   price: any;
   paymentHandler: any = null;
@@ -65,17 +66,6 @@ export class PaymentProceedComponent implements OnInit {
     this.actRoute.queryParams.subscribe((params) => {
       if (params['hash'] === 'abcdef1234567890') {
         this.isSpecial = true;
-        const mentor = jsonData.find((x) => x.id == 1);
-        if (mentor) {
-          this.courses.push({
-            id: mentor.id,
-            title: mentor ? `${mentor?.name} - ${mentor?.title}` : '',
-            shortDescription: mentor?.description ?? '',
-            priceINR: mentor?.price.discountIndian ?? 0,
-            priceUSD: mentor?.price.discountUSD ?? 0,
-            quantity: 1,
-          });
-        }
       } else {
         this.courseAddedFn();
       }
@@ -93,6 +83,23 @@ export class PaymentProceedComponent implements OnInit {
     this.invokeStripe();
     this.loadRazorpayScript();
     this.trackCheckoutPageView();
+    // this.getTeachersData(routeEnum.online);
+  }
+  getTeachersData(slug: string) {
+    this.cartService.getTeachersData(slug).subscribe({
+      next: (data) => {
+        this.courseMentor = data;
+        const mentor: CartItem | undefined = this.courseMentor.find(
+          (x) => x.id == 1
+        );
+        if (mentor) {
+          this.courses.push(mentor);
+        }
+      },
+      error: (error) => {
+        console.error('Failed to load teachers:', error);
+      },
+    });
   }
   setPageTitle(courses: CartItem[]) {
     if (courses.length > 0) {
@@ -180,9 +187,9 @@ export class PaymentProceedComponent implements OnInit {
     }
     if (this.isSpecial) {
       if (selected == 'USD') {
-        this.price = this.courses[0].priceUSD;
+        this.price = this.courses[0].price[1].amount;
       } else if (selected == 'INR') {
-        this.price = this.courses[0].priceINR;
+        this.price = this.courses[0].price[0].amount;
       }
     } else {
       this.price = this.cartService.getTotalAmount(selected);
@@ -289,7 +296,8 @@ export class PaymentProceedComponent implements OnInit {
     }
     if (this.paymentForm.valid) {
       const data = this.paymentForm.getRawValue();
-      const courseList = this.cartService.getItems();
+      let courseList: any = [];
+      this.courses.map((c) => courseList.push({ id: c.id }));
 
       const paymentData = {
         name: data.holderName,
@@ -371,17 +379,16 @@ export class PaymentProceedComponent implements OnInit {
   }
   courseAddedFn() {
     this.courses = this.cartService.getItems();
-    this.availableCourses = this.courseMentor.map((mentor) => {
-      const course: CartItem = {
-        id: mentor?.id,
-        title: mentor?.title,
-        shortDescription: mentor?.description,
-        priceINR: mentor?.price.priceInIndian,
-        priceUSD: mentor?.price.priceInUSD,
-        quantity: 1,
-      };
-      return course;
-    });
+    // this.availableCourses = this.courseMentor.map((mentor) => {
+    //   const course: CartItem = {
+    //     id: mentor?.id,
+    //     name: mentor?.name,
+    //     shortDescription: mentor?.description,
+    //     price: mentor?.price,
+    //     quantity: 1,
+    //   };
+    //   return course;
+    // });
   }
 
   private trackCheckoutPageView() {

@@ -89,11 +89,10 @@
       <div class="col-md-12">
         <div class="col-md-12">
           <div class="middle-text">
-            <h2><span>Next batches starts</span> October the 6th</h2>
+            <h2><span>Next batches starts</span> December the 1st</h2>
           </div>
           <div class="row">
             <div class="col-md-6 mt-3" *ngFor="let mentor of courseMentor">
-              <!-- @if(mentor.id!=1){ -->
               <div class="card">
                 <div class="row justify-content-center">
                   <div class="col-md-12">
@@ -107,16 +106,15 @@
                     </div>
                   </div>
                   <div class="col-md-12 middle-text mt-2">
-                    <h4>
-                      {{ mentor.title }} - {{ mentor.time.time1 }} to
-                      {{ mentor.time.time2 }} {{ mentor.time.stamp }} Workshop
-                    </h4>
+                    <h4>{{ mentor.name }} - {{ mentor.time }} Workshop</h4>
                     <p>
                       Price:
-                      {{ mentor.price.priceInIndian | currency : "INR" }} or
-                      {{ mentor.price.priceInUSD | currency : "USD" }}
+                      <span *ngFor="let item of mentor.price; let i = index">
+                        {{ item.amount | currency : item.currency }}
+                        {{ mentor.price.length - 1 > i ? " / " : "" }}
+                      </span>
                       <br />
-                      <b>{{ mentor.weeklyTime }}</b>
+                      <b>{{ mentor.date }}</b>
                     </p>
                     <p>{{ mentor.description }}</p>
                     <button

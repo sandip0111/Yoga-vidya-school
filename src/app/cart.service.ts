@@ -5,15 +5,21 @@ import {
   jsonData,
   mentorTimings,
 } from './course/course-mentor/course-mentor.component';
+import { razorPayReturnModel } from './models/checkout';
+import { WebapiService } from './webapi.service';
+import { routeEnum } from './enum/routes';
+import { catchError, map, Observable, of } from 'rxjs';
 
 export interface CartItem {
   id: number;
-  title: string;
-  shortDescription: string;
-  priceINR: number;
-  priceUSD: number;
+  title?: string;
+  shortDescription?: string;
+  price: razorPayReturnModel[];
   quantity: number;
   priceInfo?: string;
+  description?: string;
+  name: string;
+  teacher?: string;
 }
 
 @Injectable({
@@ -23,9 +29,30 @@ export class CartService {
   private cartKey = 'cartItems';
   private currency = 'currency';
   private items: CartItem[] = [];
+  jsonData: any;
 
-  constructor(private eventBus: EventBusService, private router: Router) {
+  constructor(
+    private eventBus: EventBusService,
+    private router: Router,
+    private webapiService: WebapiService
+  ) {
     this.loadCart();
+  }
+
+  getTeachersData(slug: string): Observable<any[]> {
+    let data = { slug: slug };
+    return this.webapiService.getCourseById(data).pipe(
+      map((response: any) => {
+        this.jsonData = response.data[0].teachersData.filter(
+          (t: any) => t.isActive
+        );
+        return this.jsonData;
+      }),
+      catchError((error) => {
+        console.error('Error:', error);
+        return of([]);
+      })
+    );
   }
 
   private saveCart(): void {
@@ -45,17 +72,23 @@ export class CartService {
       const savedCart = localStorage.getItem(this.cartKey);
       this.items = savedCart ? JSON.parse(savedCart) : [];
       this.items.forEach((item) => {
-        let data = jsonData.find((course) => {
-          return course.id === item.id;
-        });
-        if (data != null) {
-            item.id = data.id;
-            item.title = `${data.name} - ${data.title}` ;
-            item.shortDescription = data.description ?? '';
-            item.priceINR = data.price?.priceInIndian ?? 0;
-            item.priceUSD = data.price?.priceInUSD ?? 0;
-            item.quantity = 1;
-        }
+        this.getTeachersData(routeEnum.online).subscribe(
+          (dataArray) => {
+            let data = dataArray.find((course) => {
+              return course.id === item.id;
+            });
+            if (data != null) {
+              item.id = data.id;
+              item.title = `${data.name} - ${data.teacher}`;
+              item.shortDescription = data.description ?? '';
+              item.price = data.price;
+              item.quantity = 1;
+            }
+          },
+          (err) => {
+            console.error('Failed to load teacher data for cart item', err);
+          }
+        );
       });
     }
   }
@@ -64,10 +97,10 @@ export class CartService {
     return this.items;
   }
 
-  addItem(item: CartItem): void {
+  addItem(item: any): void {
     let existingItemIndex = this.items.findIndex((i) => i.id === item.id);
     if (existingItemIndex !== -1) {
-     this.items[existingItemIndex] = item;
+      this.items[existingItemIndex] = item;
     } else {
       this.items.push(item);
     }
@@ -78,14 +111,15 @@ export class CartService {
   removeItem(itemId: number, currency?: string): void {
     var onlineCourse = this.items.find((i) => i.id == itemId);
     if (onlineCourse != null) {
-      if (onlineCourse.quantity == 1) {
-        this.items = this.items.filter((item) => item.id !== itemId);
-      } else {
-        var index = this.items.indexOf(onlineCourse);
-        if (index > -1) {
-          this.items[index].quantity -= 1;
-        }
-      }
+      // if (onlineCourse.quantity == 1) {
+      //   this.items = this.items.filter((item) => item.id !== itemId);
+      // } else {
+      //   var index = this.items.indexOf(onlineCourse);
+      //   if (index > -1) {
+      //     this.items[index].quantity -= 1;
+      //   }
+      // }
+      this.items = this.items.filter((item) => item.id !== itemId);
     }
     this.saveCart();
     if (currency != null && currency != undefined) {
@@ -112,12 +146,12 @@ export class CartService {
     var total = 0;
     if (currency == 'USD') {
       total = this.items.reduce(
-        (total, item) => total + item.priceUSD * item.quantity,
+        (total, item) => total + item.price[1].amount * 1,
         0
       );
     } else if (currency == 'INR') {
       total = this.items.reduce(
-        (total, item) => total + item.priceINR * item.quantity,
+        (total, item) => total + item.price[0].amount * 1,
         0
       );
     }
@@ -126,17 +160,17 @@ export class CartService {
   addToCartMentor(mentor: mentorTimings): void {
     let course: CartItem;
     if (mentor) {
-      course = {
-        id: mentor.id,
-        title: mentor ? `${mentor?.name} - ${mentor?.title}` : '',
-        shortDescription: mentor?.description ?? '',
-        priceINR: mentor?.price.priceInIndian ?? 0,
-        priceUSD: mentor?.price.priceInUSD ?? 0,
-        quantity: 1,
-      };
-      if (course) {
-        this.addItem(course);
-      }
+      // course = {
+      //   id: mentor.id,
+      //   name: mentor ? `${mentor?.name} - ${mentor?.teacher}` : '',
+      //   shortDescription: mentor?.description ?? '',
+      //   price: mentor?.price,
+      //   quantity: 1,
+      // };
+      // if (course) {
+      //   this.addItem(mentor);
+      // }
+      this.addItem(mentor);
       this.router.navigate(['/proceed-payment']).then(() => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
       });

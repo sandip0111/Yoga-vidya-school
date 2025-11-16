@@ -9,6 +9,8 @@ import { CartItem, CartService } from '../../../cart.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PixelTrackingService } from '../../../services/pixel-tracking.service';
 import { Title } from '@angular/platform-browser';
+import { WebapiService } from '../../../webapi.service';
+import { routeEnum } from '../../../enum/routes';
 
 @Component({
   selector: 'app-prashant-page',
@@ -20,31 +22,49 @@ import { Title } from '@angular/platform-browser';
 export class PrashantPageComponent implements OnInit {
   s3Bucket = s3Bucket;
   slugId: number = 0;
-  mentor?: mentorTimings;
-  constructor(private cartService: CartService, private route: ActivatedRoute, private pixelTracking: PixelTrackingService, private ttitleService: Title) {
-    const id = this.route.snapshot.paramMap.get('id');
+  mentor?: any;
+  constructor(
+    private cartService: CartService,
+    private route: ActivatedRoute,
+    private pixelTracking: PixelTrackingService,
+    private ttitleService: Title,
+    private webapiService: WebapiService
+  ) {
     this.ttitleService.setTitle('Online Sadhana with Prashant Jhakmola');
+    const id = this.route.snapshot.paramMap.get('id');
     if (id) {
       this.slugId = +id;
     }
   }
   ngOnInit(): void {
-    this.mentor = jsonData.find((m) => m.id == this.slugId);
+    this.getTeachersData(routeEnum.online);
     this.ogMetaTag();
   }
+
+  getTeachersData(slug: string) {
+    this.cartService.getTeachersData(slug).subscribe({
+      next: (res: any) => {
+        this.mentor = res.find((t: any) => t.id == this.slugId);
+      },
+      error: (error) => {
+        console.error('Failed to load teachers:', error);
+      },
+    });
+  }
+
   addToCart(mentor?: mentorTimings): void {
     if (mentor) {
       this.cartService.addToCartMentor(mentor);
     }
   }
 
-   ogMetaTag() {
-   this.pixelTracking.trackViewContent(
-          'prashant-jhakmola-online-class',
-          'prashant-jhakmola-online-class'
-        );
-        this.trackScrollDepth();
-        this.trackTimeOnPage();
+  ogMetaTag() {
+    this.pixelTracking.trackViewContent(
+      'prashant-jhakmola-online-class',
+      'prashant-jhakmola-online-class'
+    );
+    this.trackScrollDepth();
+    this.trackTimeOnPage();
   }
   trackTimeOnPage() {
     const timeThresholds = [30, 60, 120, 300];

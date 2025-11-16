@@ -19,7 +19,7 @@ import { PixelTrackingService } from '../../../services/pixel-tracking.service';
 export class AboutBaliComponent implements OnInit {
   slug: string | undefined = '';
   aboutItems: any;
-  course?: CartItem;
+  course?: any;
   ispranayamaCourseOnlinePranarambha = false;
   routEnum = routeEnum;
   s3Bucket = s3Bucket;
@@ -1051,7 +1051,7 @@ A watering hole for adventure freaks and solo travellers, Peru with its gorgeous
     this.router.navigate([routeEnum.bDtox, routeEnum.stRegister]);
   }
   registerClick(slug: string) {
-    
+
     this.router.navigate(['checkout', slug]);
   }
 }

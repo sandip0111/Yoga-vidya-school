@@ -6,6 +6,7 @@ import {
 } from '../../course-mentor/course-mentor.component';
 import { CartService } from '../../../cart.service';
 import { s3Bucket } from '../../../enum/s3Bucket';
+import { routeEnum } from '../../../enum/routes';
 
 @Component({
   selector: 'app-anuj-page',
@@ -15,7 +16,7 @@ import { s3Bucket } from '../../../enum/s3Bucket';
   styleUrl: './anuj-page.component.css',
 })
 export class AnujPageComponent implements OnInit {
-  mentor?: mentorTimings;
+  mentor: any;
   slugId: number = 0;
   title: string = '';
   heroImage: string = '';
@@ -28,7 +29,7 @@ export class AnujPageComponent implements OnInit {
     }
   }
   ngOnInit(): void {
-    this.mentor = jsonData.find((m) => m.id == this.slugId);
+    this.getTeachersData(routeEnum.online);
     if (this.slugId == 2) {
       this.title = 'Therapeutic Hatha Yoga - Anuj Pareek';
       this.heroImage = s3Bucket.anujHero1;
@@ -45,6 +46,18 @@ export class AnujPageComponent implements OnInit {
       this.heroImage = s3Bucket.anujHero2;
       this.about = `These classes are designed for practitioners who want to move beyond the basics and take their practice to the next level. You'll be guided through advanced preparations for asanas, including arm balances, inversions, and other complex postures. The sessions also include mobility drills and therapeutic techniques to help release physical tension and improve range of motion—supporting your journey into deeper and safer practice.`;
     }
+  }
+  getTeachersData(slug: string) {
+    this.cartService.getTeachersData(slug).subscribe({
+      next: (res: any) => {
+        this.mentor = res.find(
+          (t: any) => t.id == this.slugId
+        );
+      },
+      error: (error) => {
+        console.error('Failed to load teachers:', error);
+      },
+    });
   }
   addToCart(mentor?: mentorTimings): void {
     if (mentor) {

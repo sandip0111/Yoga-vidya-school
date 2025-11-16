@@ -8,6 +8,7 @@ import {
 import { ActivatedRoute, Router } from '@angular/router';
 import { PixelTrackingService } from '../../../services/pixel-tracking.service';
 import { Title } from '@angular/platform-browser';
+import { routeEnum } from '../../../enum/routes';
 
 @Component({
   selector: 'app-taniya-page',
@@ -19,8 +20,13 @@ import { Title } from '@angular/platform-browser';
 export class TaniyaPageComponent implements OnInit {
   s3Bucket = s3Bucket;
   slugId: number = 0;
-  mentor?: mentorTimings = jsonData.find((m) => m.id == 3);
-  constructor(private cartService: CartService, private route: ActivatedRoute, private pixelTracking: PixelTrackingService, private titleService: Title) {
+  mentor: any;
+  constructor(
+    private cartService: CartService,
+    private route: ActivatedRoute,
+    private pixelTracking: PixelTrackingService,
+    private titleService: Title
+  ) {
     const id = this.route.snapshot.paramMap.get('id');
     this.titleService.setTitle('Women wellness with Taniya Verma');
     if (id) {
@@ -28,21 +34,33 @@ export class TaniyaPageComponent implements OnInit {
     }
   }
   ngOnInit(): void {
+    this.getTeachersData(routeEnum.online);
     this.ogMetaTag();
-    this.mentor = jsonData.find((m) => m.id == this.slugId);
+  }
+  getTeachersData(slug: string) {
+    this.cartService.getTeachersData(slug).subscribe({
+      next: (res: any) => {
+        this.mentor = res.find(
+          (t: any) => t.id == this.slugId
+        );
+      },
+      error: (error) => {
+        console.error('Failed to load teachers:', error);
+      },
+    });
   }
   addToCart(mentor?: mentorTimings): void {
     if (mentor) {
       this.cartService.addToCartMentor(mentor);
     }
   }
-   ogMetaTag() {
-     this.pixelTracking.trackViewContent(
-          'taniya online class',
-          'taniya-verma-online-class'
-        );
-        this.trackScrollDepth();
-        this.trackTimeOnPage();
+  ogMetaTag() {
+    this.pixelTracking.trackViewContent(
+      'taniya online class',
+      'taniya-verma-online-class'
+    );
+    this.trackScrollDepth();
+    this.trackTimeOnPage();
   }
   trackTimeOnPage() {
     const timeThresholds = [30, 60, 120, 300];
