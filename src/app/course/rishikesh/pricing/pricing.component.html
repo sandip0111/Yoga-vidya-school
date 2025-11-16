@@ -7,7 +7,10 @@
   <div class="card-container">
     @if(feesData.length>0){
     <div class="price-card" *ngFor="let item of feesData">
-      <div class="card-header">{{ item.title }}</div>
+      <div class="card-header">
+        {{ item.title }} 
+        <span *ngIf="slug==routeEnum['200TTC']">(Early bird)</span>
+      </div>
       <div class="card-body">
         <p class="fee-label">
           <strong><i class="fas fa-tags"></i> Course Fee</strong>
