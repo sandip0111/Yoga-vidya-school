@@ -4,7 +4,7 @@ import {
   jsonData,
   mentorTimings,
 } from '../../course-mentor/course-mentor.component';
-import { CartService } from '../../../cart.service';
+import { CartItem, CartService } from '../../../cart.service';
 import { s3Bucket } from '../../../enum/s3Bucket';
 import { routeEnum } from '../../../enum/routes';
 
@@ -59,7 +59,7 @@ export class AnujPageComponent implements OnInit {
       },
     });
   }
-  addToCart(mentor?: mentorTimings): void {
+  addToCart(mentor: CartItem): void {
     if (mentor) {
       this.cartService.addToCartMentor(mentor);
     }

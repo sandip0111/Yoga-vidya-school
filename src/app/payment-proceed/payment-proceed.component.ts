@@ -66,8 +66,6 @@ export class PaymentProceedComponent implements OnInit {
     this.actRoute.queryParams.subscribe((params) => {
       if (params['hash'] === 'abcdef1234567890') {
         this.isSpecial = true;
-      } else {
-        this.courseAddedFn();
       }
     });
     this.paymentForm = this.fb.group({
@@ -82,18 +80,22 @@ export class PaymentProceedComponent implements OnInit {
     this.setPageTitle(this.courses);
     this.invokeStripe();
     this.loadRazorpayScript();
+    this.getTeachersData(routeEnum.online);
     this.trackCheckoutPageView();
-    // this.getTeachersData(routeEnum.online);
   }
   getTeachersData(slug: string) {
     this.cartService.getTeachersData(slug).subscribe({
       next: (data) => {
         this.courseMentor = data;
-        const mentor: CartItem | undefined = this.courseMentor.find(
-          (x) => x.id == 1
-        );
-        if (mentor) {
-          this.courses.push(mentor);
+        if (this.isSpecial) {
+          const mentor: CartItem | undefined = this.courseMentor.find(
+            (x) => x.id == 1
+          );
+          if (mentor) {
+            this.courses.push(mentor);
+          }
+        } else {
+          this.courseAddedFn(this.courseMentor);
         }
       },
       error: (error) => {
@@ -377,18 +379,18 @@ export class PaymentProceedComponent implements OnInit {
   onPaypalPayment() {
     window.open('https://www.paypal.me/yogavidyafoundation', '_blank');
   }
-  courseAddedFn() {
+  courseAddedFn(courseMentor: CartItem[]) {
     this.courses = this.cartService.getItems();
-    // this.availableCourses = this.courseMentor.map((mentor) => {
-    //   const course: CartItem = {
-    //     id: mentor?.id,
-    //     name: mentor?.name,
-    //     shortDescription: mentor?.description,
-    //     price: mentor?.price,
-    //     quantity: 1,
-    //   };
-    //   return course;
-    // });
+    this.availableCourses = courseMentor.map((mentor) => {
+      const course: CartItem = {
+        id: mentor?.id,
+        name: mentor?.name + ' ' + mentor?.teacher,
+        description: mentor?.description,
+        price: mentor?.price,
+        quantity: 1,
+      };
+      return course;
+    });
   }
 
   private trackCheckoutPageView() {

@@ -57,6 +57,9 @@ export class CartService {
 
   private saveCart(): void {
     localStorage.setItem(this.cartKey, JSON.stringify(this.items));
+    if (this.items.length == 0) {
+      this.clearCart();
+    }
   }
 
   setCurrency(currency: string) {
@@ -157,8 +160,8 @@ export class CartService {
     }
     return total;
   }
-  addToCartMentor(mentor: mentorTimings): void {
-    let course: CartItem;
+  addToCartMentor(mentor: CartItem): void {
+    // let course: CartItem;
     if (mentor) {
       // course = {
       //   id: mentor.id,
@@ -170,6 +173,7 @@ export class CartService {
       // if (course) {
       //   this.addItem(mentor);
       // }
+      mentor.quantity = 1;
       this.addItem(mentor);
       this.router.navigate(['/proceed-payment']).then(() => {
         window.scrollTo({ top: 0, behavior: 'smooth' });

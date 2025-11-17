@@ -52,7 +52,7 @@ export class PrashantPageComponent implements OnInit {
     });
   }
 
-  addToCart(mentor?: mentorTimings): void {
+  addToCart(mentor: CartItem): void {
     if (mentor) {
       this.cartService.addToCartMentor(mentor);
     }

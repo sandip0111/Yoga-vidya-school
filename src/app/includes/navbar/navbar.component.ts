@@ -80,65 +80,15 @@ export class NavbarComponent implements OnInit {
           {
             title: 'Get Certified in Rishikesh',
             link: `/${routeEnum.rishikesh}`,
-            // submenu: [
-            //   {
-            //     title: '100 Hour Yoga TTC',
-            //     link: `/${routeEnum.rishikesh100}`,
-            //   },
-            //   {
-            //     title: '200 Hour Yoga TTC',
-            //     link: `/${routeEnum.rishkesh200}`,
-            //   },
-            //   {
-            //     title: '300 Hour Yoga TTC',
-            //     link: `/${routeEnum.rishikesh300}`,
-            //   },
-            //   // {
-            //   //   title: 'Formacion Intensiva de Yoga en Rishikesh India',
-            //   //   link: '/200-horas-de-formacioacuten-de-profesores-de-yoga-en-rishikesh',
-            //   // },
-            //   // {
-            //   //   title: '200 Hour Yoga Teacher Training Scholarship In Rishikesh',
-            //   //   link: '/200-hour-yoga-teacher-training-scholarship-in-rishikesh',
-            //   // },
-            //   // {
-            //   //   title: '300 Hour Yoga Teacher Training Scholarship In Rishikesh',
-            //   //   link: '/300-hour-yoga-teacher-training-scholarship-in-rishikesh',
-            //   // },
-            // ],
           },
           {
             title: 'Get Certified in Bali',
             link: `/${routeEnum.bali}`,
-            // submenu: [
-            //   {
-            //     title: '200 Hour Yoga TTC',
-            //     link: '/200-hour-yoga-teacher-training-in-bali',
-            //   },
-            //   {
-            //     title: '300 Hour Yoga TTC',
-            //     link: '/300-hour-yoga-teacher-training-in-bali',
-            //   },
-            // ],
           },
           {
             title: 'Get Certified Online',
             link: '/200-hours-yoga-teacher-training-online',
           },
-          // {
-          //   title: 'Get Certified in Kerala',
-          //   link: '#',
-          //   submenu: [
-          //     {
-          //       title: '200 Hour Yoga TTC',
-          //       link: '/200-hour-yoga-teacher-training-in-kerala-india',
-          //     },
-          //     {
-          //       title: '300 Hour Yoga TTC',
-          //       link: '/300-hour-yoga-teacher-training-in-kerala-india',
-          //     },
-          //   ],
-          // },
         ],
       },
       {
@@ -166,15 +116,6 @@ export class NavbarComponent implements OnInit {
             title: 'Pre-recorded Pranayama Courses',
             link: '/pre-recorded-pranayama-courses',
           },
-          // {
-          //   title: 'Yoga Inversion Workshop',
-          //   link: '/yoga-inversion-workshop-headstand',
-          // },
-          // { title: 'Hip Opening Workshop', link: '/online-hip-opening-workshop' },
-          // {
-          //   title: 'Yogic Scriptures Study',
-          //   link: '/yoga-history-and-philosophy',
-          // },
         ],
       },
       {
