@@ -9,6 +9,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { PixelTrackingService } from '../../services/pixel-tracking.service';
+import { reviewLink } from '../../enum/s3Bucket';
 @Component({
   selector: 'app-video-reviews',
   standalone: true,
@@ -40,29 +41,34 @@ export class VideoReviewsComponent implements OnInit {
   ngOnInit(): void {
     if (this.specialvideo) {
       this.videos = [
-        'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/pranic_testimonial1.mp4',
-        'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/pranic_testimonial2.mp4',
-        'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/pranic_testimonial3.mp4',
-        'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/pranic_testimonial4.mp4',
-        'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/pranaarambha1.mp4',
-        'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/pranic_testimonial5.mp4',
-        'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/VID-20241216-WA0001.mp4',
-        'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/VID-20241216-WA0002.mp4',
-        'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/VID-20241216-WA0003.mp4',
-        'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/VID-20241216-WA0004.mp4',
-        'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/WA0005.mp4',
-        'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/WA0006.mp4',
-        'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/WA0007.mp4',
+        reviewLink.reviewNew1,
+        reviewLink.reviewNew2,
+        reviewLink.reviewNew3,
+        reviewLink.reviewNew4,
+        reviewLink.reviewNew5,
+        reviewLink.review1,
+        reviewLink.review2,
+        reviewLink.review3,
+        reviewLink.review4,
+        reviewLink.review5,
+        reviewLink.review6,
+        reviewLink.review7,
+        reviewLink.review8,
+        reviewLink.review9,
+        reviewLink.review10,
+        reviewLink.review11,
+        reviewLink.review12,
+        reviewLink.review13,
       ];
     } else {
       this.videos = [
-        'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/VID-20241216-WA0001.mp4',
-        'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/VID-20241216-WA0002.mp4',
-        'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/VID-20241216-WA0003.mp4',
-        'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/VID-20241216-WA0004.mp4',
-        'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/WA0005.mp4',
-        'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/WA0006.mp4',
-        'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/WA0007.mp4',
+        reviewLink.review7,
+        reviewLink.review8,
+        reviewLink.review9,
+        reviewLink.review10,
+        reviewLink.review11,
+        reviewLink.review12,
+        reviewLink.review13,
       ];
     }
     this.menuWrapper = this.el.nativeElement.querySelector('.menu--wrapper');
@@ -89,7 +95,9 @@ export class VideoReviewsComponent implements OnInit {
 
   playVideo(videoPlayer: HTMLVideoElement, playButton: HTMLElement): void {
     this.isAlreadyPlaying = false;
-    const videoIndex = this.videoPlayers.toArray().findIndex(ref => ref.nativeElement === videoPlayer);
+    const videoIndex = this.videoPlayers
+      .toArray()
+      .findIndex((ref) => ref.nativeElement === videoPlayer);
     const videoTitle = `testimonial_video_${videoIndex + 1}`;
     this.pixelTracking.trackVideoPlay(videoTitle, videoPlayer.duration);
     this.pixelTracking.trackTestimonialEngagement(videoIndex, 'play');

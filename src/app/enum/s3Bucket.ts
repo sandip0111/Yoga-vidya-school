@@ -80,3 +80,23 @@ export enum youtubeLink {
   trainingImportance = 'https://www.youtube.com/embed/t7l1cqDj1tA?si=ZJCQXJYDLzDwLLvm',
   pranaArambh = 'https://d3mzqk1fxuwngx.cloudfront.net/reviews/pranarambha_intro.mp4?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAWGOLULIWBNKET5SM%2F20250106%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250106T163245Z&X-Amz-Expires=3600&X-Amz-Signature=bd6d68f4499c266e99fa1d35bf90b00551ac35dbc778f4838cc74787908c8375&X-Amz-SignedHeaders=host&x-id=GetObject',
 }
+export enum reviewLink {
+  review1 = 'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/pranic_testimonial1.mp4',
+  review2 = 'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/pranic_testimonial2.mp4',
+  review3 = 'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/pranic_testimonial3.mp4',
+  review4 = 'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/pranic_testimonial4.mp4',
+  review5 = 'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/pranaarambha1.mp4',
+  review6 = 'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/pranic_testimonial5.mp4',
+  review7 = 'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/VID-20241216-WA0001.mp4',
+  review8 = 'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/VID-20241216-WA0002.mp4',
+  review9 = 'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/VID-20241216-WA0003.mp4',
+  review10 = 'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/VID-20241216-WA0004.mp4',
+  review11 = 'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/WA0005.mp4',
+  review12 = 'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/WA0006.mp4',
+  review13 = 'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/WA0007.mp4',
+  reviewNew1 = 'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/Elma Pranic Purification Sadhana Aug 25.mp4',
+  reviewNew2 = 'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/Falesha - August 2025 Pranayam Purification Sadhana .mov ',
+  reviewNew3 = 'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/Mariam Zurabashvili - Pranic purification.mp4',
+  reviewNew4 = 'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/Monika Verma.mov',
+  reviewNew5 = 'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/Yasmeen.MOV',
+}

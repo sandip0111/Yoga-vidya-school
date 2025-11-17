@@ -103,8 +103,7 @@ export class BannerComponent implements OnInit {
         break;
       case routeEnum.sa:
         this.rishikesHeroImage = s3Bucket.swHero;
-        this.rishikeshMainHeading =
-          'SWARA SADHANA:';
+        this.rishikeshMainHeading = 'SWARA SADHANA:';
         this.rishikeshSubHeading =
           'an exclusive prerecorded workshopthat will help you to align your energies with your actions\nDiscover the Ancient Science,Which Gives You ControlOver Your Two Energies:Sun 🌞  and Moon 🌙';
         break;
@@ -113,6 +112,12 @@ export class BannerComponent implements OnInit {
           '200 HRS Online TTC - Bring Wisdom to Your Home';
         this.rishikeshSubHeading =
           'Dive into the roots of traditional yoga from wherever you are, and let this journey guide you toward clarity, balance, and a deeper connection with yourself';
+        break;
+      case routeEnum.pranicPurification:
+        this.rishikesHeroImage = s3Bucket.breathDtoxPreRec;
+        this.rishikeshMainHeading = 'PRANIC PURIFICATION';
+        this.rishikeshSubHeading =
+          '21 Days - Online Pranayama Journey with PrashantJ Yoga';
         break;
       default:
         break;

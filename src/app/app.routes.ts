@@ -82,18 +82,16 @@ export const routes: Routes = [
     path: 'yoga-retreat-in-rishikesh-india',
     component: RishikeshIndexComponent,
   },
-  // {path:'yoga-retreat-in-kerala-india', component: RishikeshIndexComponent},
-  // {path:'pranayama-therapy-course-online', component: RishikeshIndexComponent},
+
   { path: 'adjustment-and-alignment', component: RishikeshIndexComponent },
-  // {path:'adjustment-and-alignment-level-2', component: RishikeshIndexComponent},
+
   {
     path: 'yoga-teacher-training-in-india',
     component: RishikeshIndexComponent,
   },
-  // {path:'drop-in-yoga-classes', component: RishikeshIndexComponent},
-  { path: 'pranic-purification', component: RishikeshIndexComponent },
-  // {path:'21-days-ashtanga-yoga-immersion', component: RishikeshIndexComponent},
-  // {path:'yoga-for-weight-loss', component: RishikeshIndexComponent},
+
+  { path: routeEnum.pranicPurification, component: RishikeshIndexComponent },
+
   { path: 'online-yoga-classes', component: CourseComponent },
   { path: routeEnum.bDtox, component: BaliIndexComponent },
   {
@@ -104,14 +102,11 @@ export const routes: Routes = [
     path: 'foundation-of-spirituality-an-online-spiritual-awakening-course',
     component: BaliIndexComponent,
   },
-  // {path:'yoga-inversion-workshop-headstand', component: BaliIndexComponent},
   { path: 'yoga-philosophy-course-free', component: BaliIndexComponent },
-  // {path:'online-hip-opening-workshop', component: RishikeshIndexComponent},
   {
     path: '200-hours-yoga-teacher-training-online',
     component: RishikeshIndexComponent,
   },
-  // {path:'yoga-history-and-philosophy', component: BaliIndexComponent},
   { path: 'my-account', component: MyAccountComponent },
   { path: 'password/:id', component: ChangePasswordComponent },
   { path: 'course-video/:id', component: CourseVideoComponent },

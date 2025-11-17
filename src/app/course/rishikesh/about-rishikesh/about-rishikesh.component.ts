@@ -193,67 +193,40 @@ export class AboutRishikeshComponent implements OnInit {
       this.ispranicPurificationImg = true;
       this.aboutContent = new aboutContentModel(
         'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/FERN8247.jpg',
-        'PRANIC PURIFICATION',
-        ' - (21 Days - Online Pranayama Journey with PrashantJ Yoga)',
+        '',
+        '',
         this.sanitizer
-          .bypassSecurityTrustHtml(`<p>Namaste and Welcome to Pranic Purification – A 21-Day Online Pranayama Sadhana</p>
-            <p>Dear Seeker of Light,</p>
-            <p>It is no coincidence that you have arrived on this page. Your presence here is a sign that your soul is ready to embark on a deeper journey inward — a journey of breath, healing, and inner transformation. And I want to assure you: you are making the right choice by joining Pranic Purification.</p>
-            <p>For over a decade, I have had the divine opportunity to guide countless souls across the world through the sacred science of Pranayama. The experiences shared by students have been nothing short of miraculous. Many have healed from deep emotional wounds, chronic illnesses, depression, and anxiety. Some have even reversed long-standing conditions that modern medicine could not fully address.</p>
-            <p>But beyond healing, something even more profound happens — transformation.
-            Clarity returns. Joy awakens. The mind sharpens. Energy flows freely. Many students have begun sharing this wisdom with their children and families, witnessing beautiful changes in their homes — enhanced memory, calmness, deeper focus, and a growing sense of peace.</p>
-            <p>Pranayama is more than just breathwork. It is a gateway to pranic intelligence, to spiritual awakening, and to harmony with the universe within and around us.</p>
-            <p>I have gathered some real stories of transformation below, so you can feel inspired and trust the process ahead. This 21-day sadhana is not just a course — it is a sacred space, a spiritual commitment to yourself, and a powerful purification of the body, mind, and energy system.</p>
-            <h5 style="color: #f5711a;"><strong>Transformation I am talking about Through Pranayama classes online</strong></h5>
+          .bypassSecurityTrustHtml(`<p>It is no coincidence that you are here. Your presence is a sign that your soul is ready for a deeper journey — one of breath, healing, and true transformation.</p>
+
+            <p>For over a decade, thousands of students worldwide have experienced the power of Pranayama through this sacred practice. Many have shared stories of healing emotional wounds, overcoming depression and anxiety, finding relief from chronic conditions, and regaining balance when nothing else seemed to work.
+            </p>
+
+            <p>
+              <b>✨ But Pranic Purification goes beyond healing.</b></br>
+              This 21-day sadhana awakens clarity, inner peace, focus, and joy. It purifies the pranic body (Pranamaya Kosha), helping you channel your energy in the right direction so life begins to flow with purpose and harmony.
+            </p>
+
             <ul style="list-style: none;">
-            <li><span style="color: #f5711a;">&#10003;</span> People find a way to get out of difficult situations</li>
-            <li><span style="color: #f5711a;">&#10003;</span> Holistic Health – physical, mental and spiritual</li>
-            <li><span style="color: #f5711a;">&#10003;</span> Find the path and purpose</li>
-            <li><span style="color: #f5711a;">&#10003;</span> People get rid of addictions, panic attacks, confusion, stress and depression</li>
-            <li><span style="color: #f5711a;">&#10003;</span> Achieve great success in work and become much more productive</li>
-            <li><span style="color: #f5711a;">&#10003;</span> Improve their meditation and help them to dive deeper inside</li>
-            <li><span style="color: #f5711a;">&#10003;</span> For many, pranayama yoga has become a great boost for their mornings</li>
-            </ul>
-            <p>Pranayama has strong potential to change someone’s life for better. This is proved with my own experience, the transformation of many people whom I know the stories of hundreds of my students.
-            Therefore I know it for sure that pranayama can change your life too, if you give it such an opportunity. For now I invite you to my exclusive course -<strong>21 days</strong> of pranayama classes online “<strong>PRANIC PURIFICATION</strong>” The name itself tells the meaning- purification of pranic body (PranamayaKosha)
-            The main goal of this online pranayama course is to understand your energy body and to help you to purify it in order to channelise your prana into right direction.
-            </p>`),
+                Through this journey, students have experienced:
+                <li><span style="color: #f5711a;">&#10003;</span> A way out of stress, addictions, and difficult emotions</li>
+                <li><span style="color: #f5711a;">&#10003;</span> Greater energy, productivity, and success in work</li>
+                <li><span style="color: #f5711a;">&#10003;</span> Improved meditation and deeper inner stillness</li>
+                <li><span style="color: #f5711a;">&#10003;</span> Holistic health — body, mind, and spirit in balance</li>
+                <li><span style="color: #f5711a;">&#10003;</span> A sense of peace that transforms not only themselves, but also their homes and families</li>
+              </ul>
+
+              <p>Pranayama is not just breathwork. It is a gateway to pranic intelligence, to spiritual awakening, and to a harmonious life connected with the universe within and around us.</p>
+
+              <p>This 21-day course is more than classes — it is a sacred commitment to yourself, a powerful purification process, and an invitation to transform your life from the inside out.</p>
+
+              <p>You did not arrive here by chance — you were guided.</p>
+              </br>
+              <p>
+                <h3 class="text-center">Are you ready to step into your transformation?</h3>
+                <h5 class="text-center">Let every breath in these 21 days be a return to your essence.</h5>
+              </p>`),
         ''
       );
-    } else if (this.slug == '21-days-ashtanga-yoga-immersion') {
-      //       this.aboutContent = {
-      //         image:
-      //           'https://my-s3-images-bucket.s3.amazonaws.com/img/image_1696226417204.jpg',
-      //         title: '21 Days Ashtanga',
-      //         secondTitle: 'Yoga Immersion Online',
-      //         desc: `
-      // <p>Grab the opportunity to dive into the ancient wisdom and traditional practice of Ashtanga Vinyasa &ndash; Primary Series. Covering the historical and philosophical underpinnings of this ancient form of Yoga, this Live Sadhana is created for anyone looking to start or deepen their Ashtanga yoga practice. A best suitable yoga course for those yoga enthusiasts who are looking for traditional, technical and anatomical angles of Ashtanga. In addition, specialised Pranayama and Meditation is also part of this 21 days online yoga course&nbsp;to strengthen inner organs for Vinyasa.</p>
-      //         `,
-      // };
-    } else if (this.slug == 'yoga-for-weight-loss') {
-      //       this.aboutContent = {
-      //         image:
-      //           'https://my-s3-images-bucket.s3.amazonaws.com/images/wl-1_muamjw.jpg',
-      //         title: 'Yoga',
-      //         secondTitle: 'for Weight Loss',
-      //         desc: `
-      // <p><strong>Unlock Active and Effective Weight Loss with Yoga at Home!</strong></p>
-      // <p>Through these Online Yoga Classes, Yoga Vidya School is Introducing the fastest way to reduce extra weight and body fat with Yoga in the comfort of your own home. Learn from the best yoga teachers of Rishikesh, guided by Prashant J Yogawho have created these classes with through research on &nbsp;proven methods, techniques, and processes related to Yoga, Pranayama, Mudras, Meditation and Yogic Diet.&nbsp;</p>
-      // <p>Who says practising yoga won&#39;t help you lose weight? Whether you want to maintain your current weight or lose a few kgs, these online yoga classes for weight loss will take you through different types of practices to build core power, strength, a positive aura, mindfulness and a healthy energy to kick start your journey to a happier and healthier you!</p>
-      // <p>Our weight loss Yoga program consists of chosen Hatha Yoga Asana series in combination with breath work and yogic diet suggestion that not only help you lose weight in a holistic way but also make yoga your daily practice with a spiritual essence.&nbsp;</p>
-      // <p>We run these classes on weekends to ensure maximum people can take benefit of it without worrying about disturbing their professional or busy routine. Commence your healthy weight loss journey with these online yoga classes and grasp the natural techniques to combat obesity for a lifetime.&nbsp;</p>
-      // `,
-      //       };
-    } else if (this.slug == 'online-hip-opening-workshop') {
-      //       this.aboutContent = {
-      //         image:
-      //           'https://my-s3-images-bucket.s3.amazonaws.com/images/inschool_choiya.jpg',
-      //         title: 'Hip Opening Yoga',
-      //         secondTitle: 'Workshop Online',
-      //         desc: `
-      // <p>Live Course with Yogi Prashant from Rishikesh</p><p>Hips are comprises of more than 20 muscles including inner thigh muscles, outer thigh muscles, hip flexors, deep lateral rotators etc. and beneath the structure of these muscles, there is the largest ball and socket joint of the body, which is one of the major joints of the body that bears maximum body weight. If you are suffering from lower back pain, experience muscle spasms in the legs, or have trouble jumping, kicking or sprinting, maybe one of the reasons is the tight hips. And tight hips can not only host physical problems but it will affect your emotions too. Hip opening yoga postures or exercises can bring up a lot of releasing sensations to entire body and mind. If painful hips are limiting your range of movement and giving you a bad feeling all day, and you are searching the right hip opening sessions, this 45 minutes (for 21 days) live course from Rishikesh, India is the best fit for you.</p><p><strong>Things you need to practice with us</strong></p><p>Not a lot of equipment and accessories are required to attend this hip-opening session with us. Simplicity is the essence of our practice and we will show you how you can awaken your sacral and root chakras simply by perfecting our hip-opener yoga sequence. Get started with -</p><ul><li>Laptop, Smartphone, Tablet&nbsp;- Tune in to our daily Live using your smart device and a stable internet connection.</li><li>Telegram App&nbsp;- Download this free app on your device to stay connected with us</li><li>Yoga Mat&nbsp;- A vinyl or rubber yoga mat of medium thickness as per your comfort (rubber mats with jute in them are more eco-friendly!)</li><li>Yoga block&nbsp;- A block of wood, foam, or rubber for support</li><li>Yoga belt&nbsp;- A belt to help you hoist up your hip by yourself as required</li></ul><p>Lastly, keep 30-45 minutes of your time free from all engagements from evening 7 pm to attend this session without interruption, for you would really need to focus on the moves to get them right!</p>
-      // `,
-      //       };
     } else if (this.slug == this.routeEnum['200TTC']) {
       this.date = twoHundredTTCModel['200TTCDate'];
       this.startTime = twoHundredTTCModel['200TTCStart'];
