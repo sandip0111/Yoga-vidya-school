@@ -165,9 +165,7 @@ export class SuccessPaymentComponent {
     }
     if (this.swaraSadhnaStripeSessionId) {
       setTimeout(() => {
-        this.getStripePaymentResultSwaraSadhna(
-          this.swaraSadhnaStripeSessionId
-        );
+        this.getStripePaymentResultSwaraSadhna(this.swaraSadhnaStripeSessionId);
       }, 0);
     }
   }
@@ -186,8 +184,7 @@ export class SuccessPaymentComponent {
         this.ordId = res.paymtId;
         this.amount = res.amount;
         this.cur = this.currencySet(res.currency);
-       // this.pixelTracking.trackPurchase(this.ordId, 'course', 'course', this.amount, this.cur);
-
+        // this.pixelTracking.trackPurchase(this.ordId, 'course', 'course', this.amount, this.cur);
       } else {
         this.paidFlag = 'false';
         this.reuseUrl = res.sessionId;
@@ -207,7 +204,7 @@ export class SuccessPaymentComponent {
         this.ordId = res.paymtId;
         this.amount = res.amount;
         this.cur = this.currencySet(res.currency);
-       // this.pixelTracking.trackPurchase(this.ordId, 'course', 'course', this.amount, this.cur);
+        // this.pixelTracking.trackPurchase(this.ordId, 'course', 'course', this.amount, this.cur);
         this.spinner.hide();
       } else {
         this.paidFlag = 'false';
@@ -218,13 +215,13 @@ export class SuccessPaymentComponent {
   }
 
   getpaymentResultLiveClasses(sessionId: any) {
-     const fbp = this.getCookie('_fbp');
-     const fbc = this.getCookie('_fbc');
+    const fbp = this.getCookie('_fbp');
+    const fbc = this.getCookie('_fbc');
     let val = {
       sessionId: sessionId,
       dbPay: sessionStorage.getItem('onlineLiveClassDbPay'),
       fbp: fbp,
-      fbc: fbc
+      fbc: fbc,
     };
     this.webapiService
       .getPaymentResultAndSendMailForLiveClass(val)
@@ -234,7 +231,13 @@ export class SuccessPaymentComponent {
           this.ordId = res.paymtId;
           this.amount = res.amount;
           this.cur = this.currencySet(res.currency);
-          this.pixelTracking.trackPurchaseLiveClasses(this.ordId, "live_classes", "Live Yoga Classes", this.amount, this.cur);
+          this.pixelTracking.trackPurchaseLiveClasses(
+            this.ordId,
+            'live_classes',
+            'Live Yoga Classes',
+            this.amount,
+            this.cur
+          );
           this.spinner.hide();
         } else {
           this.paidFlag = 'false';
@@ -245,8 +248,8 @@ export class SuccessPaymentComponent {
   }
 
   getpaymentResultLiveClassesRazorPay(razorpay_payment_id: any) {
-     const fbp = this.getCookie('_fbp');
-     const fbc = this.getCookie('_fbc');
+    const fbp = this.getCookie('_fbp');
+    const fbc = this.getCookie('_fbc');
     const paymentResult = {
       razorpay_payment_id: razorpay_payment_id,
       razorpay_order_id: sessionStorage.getItem(
@@ -257,7 +260,7 @@ export class SuccessPaymentComponent {
       ),
       payDbId: sessionStorage.getItem('onlineLiveClassDbPayRazor'),
       fbp: fbp,
-      fbc: fbc
+      fbc: fbc,
     };
     this.webapiService
       .verifyRazorpayPayment(paymentResult)
@@ -267,7 +270,13 @@ export class SuccessPaymentComponent {
           this.ordId = res.paymentId;
           this.amount = res.amount;
           this.cur = this.currencySet(res.currency);
-          this.pixelTracking.trackPurchaseLiveClasses(this.ordId, "live_classes", "Live Yoga Classes", this.amount, this.cur);
+          this.pixelTracking.trackPurchaseLiveClasses(
+            this.ordId,
+            'live_classes',
+            'Live Yoga Classes',
+            this.amount,
+            this.cur
+          );
           this.spinner.hide();
         } else {
           this.paidFlag = 'false';
@@ -297,7 +306,7 @@ export class SuccessPaymentComponent {
           this.ordId = res.orderId;
           this.amount = res.amount;
           this.cur = this.currencySet(res.currency);
-         // this.pixelTracking.trackPurchase(this.ordId, 'prana arambha', 'prana arambha stripe', this.amount, this.cur);
+          // this.pixelTracking.trackPurchase(this.ordId, 'prana arambha', 'prana arambha stripe', this.amount, this.cur);
           this.spinner.hide();
         } else {
           this.paidFlag = 'false';
@@ -316,6 +325,7 @@ export class SuccessPaymentComponent {
         'pranic_purification_razorpay_signature'
       ),
       payDbId: sessionStorage.getItem('pranic_purificationDbPayRazor'),
+      password: this.genratePass(6),
     };
     this.webapiService
       .getRazorPaymentResultPranicPurification(paymentResult)
@@ -338,6 +348,7 @@ export class SuccessPaymentComponent {
     let val = {
       pranicPurificationSessionId: pranicPurificationSessionId,
       payDbId: sessionStorage.getItem(localstorageKey.praanicPayId),
+      password: this.genratePass(6),
     };
     this.webapiService
       .getPaymentResultPranicPurification(val)
@@ -384,19 +395,25 @@ export class SuccessPaymentComponent {
         localStorage.getItem(localstorageKey['200TTCInstallment']) ?? '1st',
       dueAmnt: dueAmnt ? +dueAmnt : 0,
       fbp: fbp,
-      fbc: fbc 
+      fbc: fbc,
     };
     this.webapiService
       .getRazorPaymentResult200TTC(paymentResult)
       .subscribe((res: razorPayReturnModel) => {
-        if (res) {          
+        if (res) {
           this.is200TTC = true;
           this.paidFlag = 'true';
           this.ordId = paymentResult.razorpayOrderId;
           this.amount = res.amount;
           this.cur = this.currencySet(res.currency);
-          localStorage.removeItem(localstorageKey['200TTCRzpId']);          
-          this.pixelTracking.trackPurchase200ttc(this.ordId,  "200_ttc",  "200 Hours Online Yoga Teacher Training Course", this.amount, this.cur);
+          localStorage.removeItem(localstorageKey['200TTCRzpId']);
+          this.pixelTracking.trackPurchase200ttc(
+            this.ordId,
+            '200_ttc',
+            '200 Hours Online Yoga Teacher Training Course',
+            this.amount,
+            this.cur
+          );
           this.spinner.hide();
         } else {
           this.paidFlag = 'false';
@@ -417,7 +434,7 @@ export class SuccessPaymentComponent {
         localStorage.getItem(localstorageKey['200TTCInstallment']) ?? '1st',
       dueAmnt: dueAmnt ? +dueAmnt : 0,
       fbp: fbp,
-      fbc: fbc
+      fbc: fbc,
     };
     this.webapiService
       .getStripePaymentResult200TTC(val)
@@ -430,7 +447,13 @@ export class SuccessPaymentComponent {
           this.ordId = res.paymtId;
           this.amount = res.amount;
           this.cur = this.currencySet(res.currency);
-          this.pixelTracking.trackPurchase200ttc(this.ordId,  "200_ttc",  "200 Hours Online Yoga Teacher Training Course", this.amount, this.cur);
+          this.pixelTracking.trackPurchase200ttc(
+            this.ordId,
+            '200_ttc',
+            '200 Hours Online Yoga Teacher Training Course',
+            this.amount,
+            this.cur
+          );
           this.spinner.hide();
         } else {
           this.paidFlag = 'false';
@@ -458,7 +481,7 @@ export class SuccessPaymentComponent {
           this.ordId = paymentResult.razorpayOrderId;
           this.amount = res.amount;
           this.cur = this.currencySet(res.currency);
-         // this.pixelTracking.trackPurchase(this.ordId, '200 Rishikesh TTC offline', '200 Rishikesh TTC offline razorpay', this.amount, this.cur);
+          // this.pixelTracking.trackPurchase(this.ordId, '200 Rishikesh TTC offline', '200 Rishikesh TTC offline razorpay', this.amount, this.cur);
           this.spinner.hide();
         } else {
           this.paidFlag = 'false';
@@ -531,25 +554,24 @@ export class SuccessPaymentComponent {
   getStripePaymentResultSwaraSadhna(sessionId: string) {
     const paymentResult = {
       sessionId: sessionId,
-      userId: localStorage.getItem(localstorageKey.swaraSadhnaStripeDBId)
-    }
+      userId: localStorage.getItem(localstorageKey.swaraSadhnaStripeDBId),
+    };
     this.webapiService
-    .getPaymentResultSwarSadhana(paymentResult)
-    .subscribe((res: any) => {
-      if (res) {
-        this.isRishikesh = true;
-        this.paidFlag = 'true';
-        this.ordId = res.paymtId;
-        this.amount = 0;
-        this.spinner.hide();
-      } else {
-        this.paidFlag = 'false';
-        this.spinner.hide();
-      }
-      localStorage.removeItem(localstorageKey.swaraSadhnaStripeSessionId);
-      localStorage.removeItem(localstorageKey.swaraSadhnaStripeDBId);
-    });
-    
+      .getPaymentResultSwarSadhana(paymentResult)
+      .subscribe((res: any) => {
+        if (res) {
+          this.isRishikesh = true;
+          this.paidFlag = 'true';
+          this.ordId = res.paymtId;
+          this.amount = 0;
+          this.spinner.hide();
+        } else {
+          this.paidFlag = 'false';
+          this.spinner.hide();
+        }
+        localStorage.removeItem(localstorageKey.swaraSadhnaStripeSessionId);
+        localStorage.removeItem(localstorageKey.swaraSadhnaStripeDBId);
+      });
   }
   currencySet(currency: string) {
     let cur: string = '';
@@ -616,54 +638,33 @@ export class SuccessPaymentComponent {
     return password;
   }
 
-  private getCourseNameFromId(courseId: string): string {
-    const courseNames: { [key: string]: string } = {
-      '100-hours-yoga-teacher-training-in-rishikesh':
-        '100-Hour Yoga Teacher Training',
-      '200-hours-yoga-teacher-training-in-rishikesh':
-        '200-Hour Yoga Teacher Training',
-      '300-hours-yoga-teacher-training-in-rishikesh':
-        '300-Hour Yoga Teacher Training',
-      '200-hour-yoga-teacher-training-in-bali':
-        '200-Hour Yoga Teacher Training Bali',
-      '300-hour-yoga-teacher-training-in-bali':
-        '300-Hour Yoga Teacher Training Bali',
-      'pranic-purification': 'Pranic Purification Course',
-      'breath-detox-yoga': 'Breath Detox Yoga',
-      'pranayama-course-online-pranarambha': 'Pranayama Course Online',
-    };
-    return courseNames[courseId] || 'Yoga Teacher Training';
-  }
-
   getCookie(name: string): string {
-  try {
-    // Debug: Log all cookies to see what's available
-    if (typeof document !== 'undefined' && document.cookie) {
-      console.log('All cookies:', document.cookie);
-      
-      // Split by semicolon and space
-      const cookies = document.cookie.split('; ');
-      
-      for (let i = 0; i < cookies.length; i++) {
-        const cookie = cookies[i];
-        const [cookieName, cookieValue] = cookie.split('=');
-        
-        // Decode the cookie name and value
-        const decodedName = decodeURIComponent(cookieName);
-        const decodedValue = decodeURIComponent(cookieValue || '');
-        
-        if (decodedName === name) {
-          console.log(`Found cookie ${name}:`, decodedValue);
-          return decodedValue;
+    try {
+      // Debug: Log all cookies to see what's available
+      if (typeof document !== 'undefined' && document.cookie) {
+        console.log('All cookies:', document.cookie);
+
+        // Split by semicolon and space
+        const cookies = document.cookie.split('; ');
+
+        for (let i = 0; i < cookies.length; i++) {
+          const cookie = cookies[i];
+          const [cookieName, cookieValue] = cookie.split('=');
+
+          // Decode the cookie name and value
+          const decodedName = decodeURIComponent(cookieName);
+          const decodedValue = decodeURIComponent(cookieValue || '');
+
+          if (decodedName === name) {
+            console.log(`Found cookie ${name}:`, decodedValue);
+            return decodedValue;
+          }
         }
       }
+
+      return '';
+    } catch (error) {
+      return '';
     }
-    
-    
-    return '';
-  } catch (error) {
-    
-    return '';
   }
-}
 }
