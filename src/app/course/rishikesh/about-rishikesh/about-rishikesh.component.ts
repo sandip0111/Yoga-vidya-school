@@ -9,6 +9,7 @@ import { aboutContentModel } from '../../../models/rishikesh';
 import { WorldClockComponent } from '../../world-clock/world-clock.component';
 import { twoHundredTTCModel } from '../../../enum/details';
 import { s3Bucket } from '../../../enum/s3Bucket';
+import { feesDto, feesInfoDto } from '../pricing/pricing.component';
 
 @Component({
   selector: 'app-about-rishikesh',
@@ -39,7 +40,6 @@ export class AboutRishikeshComponent implements OnInit {
 
   ngOnInit() {
     this.getCourseBySlug(this.slug);
-    this.generateHtmlContent();
   }
   generateHtmlContent() {
     if (this.slug == routeEnum.rishikesh100) {
@@ -221,12 +221,12 @@ export class AboutRishikeshComponent implements OnInit {
 
               <p>You did not arrive here by chance — you were guided.</p>
               <br />
-              <p style="font-size: 25px" class="text-center"><span style="color: #f5711a;">Price:</span> <b> ₹3,499.00 / $45.00</b></p>
+              <p style="font-size: 25px" class="text-center"><span style="color: #f5711a;">Price:</span> <b> ${this.inrPrice} / ${this.usdPrice}</b></p>
                <br />
-              <p>
+              <div>
                 <h3 class="text-center">Are you ready to step into your transformation?</h3>
                 <h5 class="text-center">Let every breath in these 21 days be a return to your essence.</h5>
-              </p>`),
+              </div>`),
         ''
       );
     } else if (this.slug == this.routeEnum['200TTC']) {
@@ -280,12 +280,32 @@ export class AboutRishikeshComponent implements OnInit {
 
     this.router.navigate(['/add-to-cart']);
   }
-
+  inrPrice: string = '';
+  usdPrice: string = '';
   getCourseBySlug(slug: any) {
     let data = {
       slug: slug,
     };
     this.webapiService.getCourseById(data).subscribe((res: any) => {
+
+      let feesInfo = res.data[0].feeInfo.find(
+        (f: feesInfoDto) => f.title == 'Price'
+      );
+      let priceData: feesDto = feesInfo.data.find(
+        (f: feesDto) => f.currency == 'INR'
+      );
+      this.inrPrice = new Intl.NumberFormat('en-IN', {
+        style: 'currency',
+        currency: priceData.currency,
+      }).format(priceData.amount);
+      priceData = feesInfo.data.find((f: feesDto) => f.currency == 'USD');
+      this.usdPrice = new Intl.NumberFormat('en-IN', {
+        style: 'currency',
+        currency: priceData.currency,
+      }).format(priceData.amount);
+
+      this.generateHtmlContent();
+
       this.course = {
         id: res.data[0]._id,
         title: res.data[0].coursetitle,
