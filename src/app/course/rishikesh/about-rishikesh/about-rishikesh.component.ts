@@ -216,11 +216,13 @@ export class AboutRishikeshComponent implements OnInit {
               </ul>
 
               <p>Pranayama is not just breathwork. It is a gateway to pranic intelligence, to spiritual awakening, and to a harmonious life connected with the universe within and around us.</p>
-
+              <p>📹 Recordings will be available: every day we will upload the class recordings in our virtual classroom for you.</p>
               <p>This 21-day course is more than classes — it is a sacred commitment to yourself, a powerful purification process, and an invitation to transform your life from the inside out.</p>
 
               <p>You did not arrive here by chance — you were guided.</p>
-              </br>
+              <br />
+              <p style="font-size: 25px" class="text-center"><span style="color: #f5711a;">Price:</span> <b> ₹3,499.00 / $45.00</b></p>
+               <br />
               <p>
                 <h3 class="text-center">Are you ready to step into your transformation?</h3>
                 <h5 class="text-center">Let every breath in these 21 days be a return to your essence.</h5>

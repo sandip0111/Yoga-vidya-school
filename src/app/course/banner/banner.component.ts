@@ -117,7 +117,7 @@ export class BannerComponent implements OnInit {
         this.rishikesHeroImage = s3Bucket.breathDtoxPreRec;
         this.rishikeshMainHeading = 'PRANIC PURIFICATION';
         this.rishikeshSubHeading =
-          '21 Days - Online Pranayama Journey with PrashantJ Yoga';
+          '21 Days - Online Pranayama Journey with PrashantJ';
         break;
       default:
         break;
