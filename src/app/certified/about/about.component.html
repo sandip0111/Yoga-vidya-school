@@ -24,8 +24,10 @@
             {{ this.aboutContent.subTitle }}
           </h4>
         </div>
-
         <div [innerHTML]="this.aboutContent.desc"></div>
+        <div class="mt-3" *ngIf="currentRoute === routeEnum.rishikesh">
+          <h2><span>Next Batches starts</span> March the 1st</h2>
+        </div>
       </div>
     </div>
   </div>
