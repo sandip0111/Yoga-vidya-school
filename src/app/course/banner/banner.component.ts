@@ -55,11 +55,13 @@ export class BannerComponent implements OnInit {
   rishikesHeroImage: string = '';
   rishikeshMainHeading: string = '';
   rishikeshSubHeading: string = '';
+  rishikeshBatchDate: string = '';
   ngOnInit() {
     this.backGroundImageSet();
     this.rishikeshBannerSet();
   }
   rishikeshBannerSet() {
+    this.rishikeshBatchDate = '';
     switch (this.slug) {
       case routeEnum.rishikesh100:
         this.rishikesHeroImage = s3Bucket.rishikesh300Banner;
@@ -67,6 +69,8 @@ export class BannerComponent implements OnInit {
           '100-Hour Yoga Teacher Training in Rishikesh ';
         this.rishikeshSubHeading =
           '– A Transformative Foundation for Your Yogic Journey';
+        this.rishikeshBatchDate =
+          '<h2 class="mt-5"><span>Next Batches starts</span> March the 1st</h2>';
         break;
       case routeEnum.rishkesh200:
         this.rishikesHeroImage = s3Bucket.rishikesh200Banner;
