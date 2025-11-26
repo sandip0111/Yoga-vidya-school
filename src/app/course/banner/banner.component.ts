@@ -78,6 +78,8 @@ export class BannerComponent implements OnInit {
           'Transform Your Life with 200-Hour Yoga TTC in Rishikesh';
         this.rishikeshSubHeading =
           'Enroll for next Batch: October 3rd 2025 – Yoga Alliance Certified';
+        this.rishikeshBatchDate =
+          '<h2 class="mt-5"><span>Next Batches starts</span> March the 24th</h2>';
         break;
       case routeEnum.rishikesh300:
         this.rishikesHeroImage = s3Bucket.rishikesh300Banner;
