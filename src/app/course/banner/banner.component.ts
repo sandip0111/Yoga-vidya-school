@@ -55,38 +55,30 @@ export class BannerComponent implements OnInit {
   rishikesHeroImage: string = '';
   rishikeshMainHeading: string = '';
   rishikeshSubHeading: string = '';
-  rishikeshBatchDate: string = '';
   ngOnInit() {
     this.backGroundImageSet();
     this.rishikeshBannerSet();
   }
   rishikeshBannerSet() {
-    this.rishikeshBatchDate = '';
     switch (this.slug) {
       case routeEnum.rishikesh100:
         this.rishikesHeroImage = s3Bucket.rishikesh300Banner;
         this.rishikeshMainHeading =
           '100-Hour Yoga Teacher Training in Rishikesh ';
         this.rishikeshSubHeading =
-          '– A Transformative Foundation for Your Yogic Journey';
-        this.rishikeshBatchDate =
-          '<h2 class="mt-5"><span>Next Batches starts</span> March the 1st</h2>';
+          'Next Batches starts March the 1st – A Transformative Foundation for Your Yogic Journey';
         break;
       case routeEnum.rishkesh200:
         this.rishikesHeroImage = s3Bucket.rishikesh200Banner;
         this.rishikeshMainHeading =
           'Transform Your Life with 200-Hour Yoga TTC in Rishikesh';
         this.rishikeshSubHeading =
-          'Enroll for next Batch: October 3rd 2025 – Yoga Alliance Certified';
-        this.rishikeshBatchDate =
-          '<h2 class="mt-5"><span>Next Batches starts</span> March the 24th</h2>';
+          'Next Batches starts March the 24th – Yoga Alliance Certified';
         break;
       case routeEnum.rishikesh300:
         this.rishikesHeroImage = s3Bucket.rishikesh300Banner;
         this.rishikeshMainHeading = 'Transform your inner and teaching journey';
-        this.rishikeshSubHeading = 'Deepen presence, wisdom & embodiment';
-        this.rishikeshBatchDate =
-          '<h2 class="mt-5"><span>Next Batches starts</span> March the 28th</h2>';
+        this.rishikeshSubHeading = 'Next Batches starts March the 28th - Deepen presence, wisdom & embodiment';
         break;
       case routeEnum.preRecordPranayamaCourse:
         this.rishikesHeroImage = s3Bucket.preRecordedHero;
