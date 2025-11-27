@@ -103,7 +103,10 @@ export class CheckoutComponent {
   ngOnInit(): void {
     this.spinner.show();
     if (this.slug == routeEnum.rishikesh100) {
-      this.roomList = [{ name: 'Shared Room', value: 1 }];
+      this.roomList = [
+        { name: 'Shared Room', value: 1 },
+        { name: 'Private Room', value: 2 },
+      ];
     } else if (this.slug == routeEnum.rishkesh200) {
       this.roomList = [
         { name: 'Shared Room', value: 1 },
