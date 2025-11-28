@@ -11,9 +11,9 @@ import { WebapiService } from '../webapi.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { routeEnum } from '../enum/routes';
-import { BannerComponent } from "../certified/banner/banner.component";
+import { BannerComponent } from '../certified/banner/banner.component';
 import { s3Bucket } from '../enum/s3Bucket';
-import { Title } from '@angular/platform-browser';
+import { DomSanitizer, SafeHtml, Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-webinar-registration-form',
   standalone: true,
@@ -33,14 +33,14 @@ export class WebinarRegistrationFormComponent implements OnInit {
       title: 'Swar Sadhana',
       link: routeEnum.swaraSadhana + '/',
       description: `Get ready to dive into the transformative workshop on SWAR SADHANA🧘. This powerful session will guide you through the ancient technique of harnessing your energy to drive your actions. Your physical body is fully controlled by two energies present in nature. SUN 🌞 and MOON 🌑. These two energies are flowing constantly in your body and can be controlled by your right and left nostril.
-👃 Swar sadhana is a way to get mastery over these two energies to get spontaneous mastery over your actions.
-This is an ancient method given by SHIVA to PARVATI.
+      👃 Swar sadhana is a way to get mastery over these two energies to get spontaneous mastery over your actions.
+      This is an ancient method given by SHIVA to PARVATI.
 
-Remember, every thought and action you take is fueled by the energy flowing through you. By maintaining this energy flow, you can truly take control of your present moment.
+      Remember, every thought and action you take is fueled by the energy flowing through you. By maintaining this energy flow, you can truly take control of your present moment.
 
-This is an interactive workshop on  SWAR YOG. Which is an ancient method taught by shiva to parwati. This knowledge is hidden and only passed by known Yogi or practitioner. Through this workshop, you will be understanding how to merge your right energy flow with your actions and how to manipulate your flow of energy, which is sun and moon.
+      This is an interactive workshop on  SWAR YOG. Which is an ancient method taught by shiva to parwati. This knowledge is hidden and only passed by known Yogi or practitioner. Through this workshop, you will be understanding how to merge your right energy flow with your actions and how to manipulate your flow of energy, which is sun and moon.
 
-Swar Sadhana, which involves understanding the dominant energy in our body based on the nostril that is more open. We learn how to identify whether our sun or moon energy is more active, and how to choose the appropriate actions and activities that align with the dominant energy. The video covers various scenarios, such as talking to people, physical exercise, running, swimming, climbing, business planning, giving speeches, rest, concentration, long-term planning, reading scriptures, and sleeping, and how to optimize these activities based on the dominant energy.`,
+      Swar Sadhana, which involves understanding the dominant energy in our body based on the nostril that is more open. We learn how to identify whether our sun or moon energy is more active, and how to choose the appropriate actions and activities that align with the dominant energy. The video covers various scenarios, such as talking to people, physical exercise, running, swimming, climbing, business planning, giving speeches, rest, concentration, long-term planning, reading scriptures, and sleeping, and how to optimize these activities based on the dominant energy.`,
       feesINR: '799',
       fesUSD: '',
     },
@@ -58,26 +58,22 @@ Swar Sadhana, which involves understanding the dominant energy in our body based
     //   fesUSD: ''
     //   }
   ];
-bannerTitle: string|undefined;
-imgSlug: string|undefined;
-bannerSubtitle: string|undefined;
-s3Bucket = s3Bucket;
+  bannerTitle: string | undefined;
+  imgSlug: string | undefined;
+  bannerSubtitle: any;
+  s3Bucket = s3Bucket;
   constructor(
     private fb: FormBuilder,
     private webapiService: WebapiService,
     private toastr: ToastrService,
     private spinner: NgxSpinnerService,
-    private title: Title
+    private title: Title,
+    private sanitizer: DomSanitizer
   ) {
     this.registrationForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      webinarDate: ['2025-10-25']
-      // phone: ['', Validators.required],
-      // refferalCode: ['', Validators.required],
-      // webinar: [''],
-      // password: [''],
-      // city: [''], // Optional
+      webinarDate: ['2025-10-25'],
     });
   }
 
@@ -88,8 +84,10 @@ s3Bucket = s3Bucket;
     });
     this.title.setTitle('Free Webinar - Yoga Vidya School');
     console.log(this.registrationForm.get('webinar'));
-    this.bannerSubtitle = "Sadhana to Seva: Becoming the Torchbearer of Yoga with Prashant J - Yoga Vidya School Founder";
-    this.bannerTitle = "Free Online Webinar";
+    this.bannerSubtitle = this.sanitizer.bypassSecurityTrustHtml(`“BREATH OF YOGIS”
+	    With Prashant J - Yoga Vidya School Founder <br /> 
+	    Date: January the 3rd - 6:00 PM IST`);
+    this.bannerTitle = 'Free Online Webinar';
     this.imgSlug = this.s3Bucket.freeWebinnarHero;
     //this.registrationForm.get('webiner')?.setValue(this.selectedOption.label);
   }
@@ -128,11 +126,8 @@ s3Bucket = s3Bucket;
               this.spinner.hide();
               this.submitted = false;
               this.registrationForm.reset({
-                  webinarDate: '2025-10-25' // keep hidden date if needed
-                });
-
-             
-
+                webinarDate: '2025-10-25', // keep hidden date if needed
+              });
             },
             error: (error) => {
               this.toastr.error(error.error.message, 'Invalid Credentials');
@@ -140,8 +135,7 @@ s3Bucket = s3Bucket;
             },
           });
       }
-     
-    };
+    }
   }
 
   genratePass(len: any) {

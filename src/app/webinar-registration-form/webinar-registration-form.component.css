@@ -1,230 +1,225 @@
 .container {
-    max-width: 400px;
-    display: flex;
-    flex-direction: column;
-  }  
-
-
-  
-  .registration-card {
-    border: none;
-    border-radius: 8px;
-    display: flex;                   /* flexbox for centering */
-    justify-content: center;         /* horizontal center */
-    align-items: center;
-    transition: box-shadow 0.3s ease-in-out;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    margin-bottom: 10px;
-    min-width: 300px;
-  }
-  
-  
-  h3{
-    font-size: 1rem;
-    font-weight: bold;
-  }
-
-  .text-center{
-    text-align: center;
-  }
-  h2 {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #f47019;
-  }
-  .btn-primary {
-    background-image: linear-gradient(to right, #f47019, #d55502);
-    border: none;
-  }
-
-  .is-invalid {
-    border-color: #dc3545; /* Bootstrap danger color */
-  }
-  
-  .join-now {
-    background-color: #f47019;; /* Green background */
-    border: none;
-    color: white;
-    padding: 12px 24px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 12px;
-    border-radius: 25px;
-    transition: background-color 0.3s ease;
-  }
-  
-  
-  
-  .text-danger {
-    font-size: 0.875rem;
-  }
-  
-
-  @media (min-width: 768px) {
-    .container {
-      flex-direction: row; /* Horizontal layout on larger screens */
-      max-width: 1500px;
-    }
-    .register-content{
-      max-width: 900px;
-    }
-
-    .registration-card {
-      min-width: 400px;
-    }
-
-
-.webinar-details {
-  background-color: #fff;
-  padding: 3rem 1rem;
-  color: #333;
-  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
 }
 
-.webinar-details .container1 {
-  max-width: 1200px;
-  margin: 0 auto;
-  text-align: center;
-}
-input {
+.registration-card {
+  border: none;
+  border-radius: 8px;
+  display: flex; /* flexbox for centering */
+  justify-content: center; /* horizontal center */
+  align-items: center;
+  transition: box-shadow 0.3s ease-in-out;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  margin-bottom: 10px;
   min-width: 300px;
 }
-.webinar-title {
-  font-size: 2rem;
-  font-weight: 700;
-  color: #d97706;
-  margin-bottom: 1rem;
-}
 
-.lead {
-  font-size: 1.1rem;
-  max-width: 700px;
-  margin: 0 auto 2rem;
-  line-height: 1.6;
-  color: #555;
-}
-
-/* 🔸 Flexible grid */
-.details-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1.5rem;
-  margin-bottom: 2rem;
-  width: 100%;
-}
-
-.detail-item {
-  background: #f9f9f9;
-  padding: 1.5rem;
-  border-radius: 12px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-  text-align: left;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.detail-item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-}
-
-.icon {
-  font-size: 2rem;
-  display: block;
-  margin-bottom: 0.5rem;
-}
-
-.detail-item p {
-  margin: 0;
+h3 {
   font-size: 1rem;
-  line-height: 1.5;
+  font-weight: bold;
 }
 
-.extra-info h4 {
-  font-weight: 600;
-  color: #d97706;
-  margin-bottom: 1rem;
+.text-center {
+  text-align: center;
+}
+h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #f47019;
+}
+.btn-primary {
+  background-image: linear-gradient(to right, #f47019, #d55502);
+  border: none;
 }
 
-.info-list {
-  list-style: none;
-  padding: 0;
-  max-width: 700px;
-  margin: 0 auto;
-  text-align: left;
+.is-invalid {
+  border-color: #dc3545; /* Bootstrap danger color */
 }
 
-.info-list li {
-  padding: 0.5rem 0;
-  font-size: 1rem;
-  line-height: 1.6;
+.join-now {
+  background-color: #f47019; /* Green background */
+  border: none;
+  color: white;
+  padding: 12px 24px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  border-radius: 25px;
+  transition: background-color 0.3s ease;
 }
 
-/* 📱 Mobile adjustments */
-@media (max-width: 768px) {
+.text-danger {
+  font-size: 0.875rem;
+}
+
+@media (min-width: 768px) {
+  .container {
+    flex-direction: row; /* Horizontal layout on larger screens */
+    max-width: 1500px;
+  }
+  .register-content {
+    max-width: 900px;
+  }
+
+  .registration-card {
+    min-width: 400px;
+  }
+
+  .webinar-details {
+    background-color: #fff;
+    padding: 3rem 1rem;
+    color: #333;
+    width: 100%;
+  }
+
+  .webinar-details .container1 {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  input {
+    min-width: 300px;
+  }
   .webinar-title {
-    font-size: 1.6rem;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #d97706;
+    margin-bottom: 1rem;
   }
 
   .lead {
-    font-size: 1rem;
+    font-size: 1.1rem;
+    max-width: 700px;
+    margin: 0 auto 2rem;
+    line-height: 1.6;
+    color: #555;
+  }
+
+  /* 🔸 Flexible grid */
+  .details-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    width: 100%;
   }
 
   .detail-item {
-    text-align: center;
+    background: #f9f9f9;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    text-align: left;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .detail-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
   }
 
   .icon {
-    margin: 0 auto 0.5rem;
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .detail-item p {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  .extra-info h4 {
+    font-weight: 600;
+    color: #d97706;
+    margin-bottom: 1rem;
   }
 
   .info-list {
+    list-style: none;
+    padding: 0;
+    max-width: 700px;
+    margin: 0 auto;
     text-align: left;
   }
-}
+
+  .info-list li {
+    padding: 0.5rem 0;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  /* 📱 Mobile adjustments */
+  @media (max-width: 768px) {
+    .webinar-title {
+      font-size: 1.6rem;
+    }
+
+    .lead {
+      font-size: 1rem;
+    }
+
+    .detail-item {
+      text-align: center;
+    }
+
+    .icon {
+      margin: 0 auto 0.5rem;
+    }
+
+    .info-list {
+      text-align: left;
+    }
+  }
 
   .next-batch-container {
-  background: #fff8f0;
-  border: 2px solid #f9a826;
-  display: inline-block;
-  padding: 12px 25px;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-}
-
-.next-batch-title {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #d35400;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.next-batch-date {
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: #e67e22;
-  background: #fff;
-  padding: 6px 16px;
-  border-radius: 8px;
-  display: inline-block;
-  margin-top: 5px;
-}
-
-@media (max-width: 480px) {
-  .webinar-details {
-    padding: 2rem 0.5rem;
+    background: #fff8f0;
+    border: 2px solid #f9a826;
+    display: inline-block;
+    padding: 12px 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
   }
 
-  .webinar-title {
-    font-size: 1.4rem;
+  .next-batch-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #d35400;
+    text-transform: uppercase;
+    letter-spacing: 1px;
   }
 
-  .lead {
-    font-size: 0.95rem;
+  .next-batch-date {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #e67e22;
+    background: #fff;
+    padding: 6px 16px;
+    border-radius: 8px;
+    display: inline-block;
+    margin-top: 5px;
+  }
+
+  @media (max-width: 480px) {
+    .webinar-details {
+      padding: 2rem 0.5rem;
+    }
+
+    .webinar-title {
+      font-size: 1.4rem;
+    }
+
+    .lead {
+      font-size: 0.95rem;
+    }
   }
 }
 
-
-
-  }
+.sub-list {
+  color: #d97706;
+  font-weight: 500;
+}

@@ -1,21 +1,22 @@
 <section class="about-section section-fower">
-  <div class="row">  
+  <div class="row">
     <div class="col-md-12">
-        <div class="slider position-relative">
+      <div class="slider position-relative">
         <div class="inner image">
-            <img
+          <img
             [src]="imgSlug"
             class="img-fluid banner_image"
             alt="Banner Image"
-            />
-            <div class="banner-text-overlay">
-                {{bannerTitle}}
-            </div>
-            <div class="banner-subtitle-overlay">
-               {{bannerSubtitle}}
-            </div>
+          />
+          <div class="banner-text-overlay">
+            {{ bannerTitle }}
+          </div>
+          <div
+            class="banner-subtitle-overlay"
+            [innerHTML]="bannerSubtitle"
+          ></div>
         </div>
-        </div>
+      </div>
     </div>
-  </div> 
+  </div>
 </section>
