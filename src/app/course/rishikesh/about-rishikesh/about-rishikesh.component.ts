@@ -6,7 +6,6 @@ import { WebapiService } from '../../../webapi.service';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { routeEnum } from '../../../enum/routes';
 import { aboutContentModel } from '../../../models/rishikesh';
-import { WorldClockComponent } from '../../world-clock/world-clock.component';
 import { twoHundredTTCModel } from '../../../enum/details';
 import { s3Bucket } from '../../../enum/s3Bucket';
 import { feesDto, feesInfoDto } from '../pricing/pricing.component';
@@ -14,7 +13,7 @@ import { feesDto, feesInfoDto } from '../pricing/pricing.component';
 @Component({
   selector: 'app-about-rishikesh',
   standalone: true,
-  imports: [WorldClockComponent, CommonModule],
+  imports: [CommonModule],
   templateUrl: './about-rishikesh.component.html',
   styleUrls: ['./about-rishikesh.component.css'],
 })
