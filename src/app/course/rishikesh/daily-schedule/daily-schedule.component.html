@@ -17,7 +17,7 @@
         and a teacher.
       </p>
     </div>
-    <div class="col-md-6">
+    <!-- <div class="col-md-6">
       <div class="card" style="width: 100%">
         <div class="card-header" style="font-weight: 500">
           🧘‍♂️ Asana Practice
@@ -72,6 +72,22 @@
           </ul>
         </div>
       </div>
+    </div> -->
+    <div class="col-md-6">
+      <table class="table">
+        <!-- <thead>
+          <tr>
+            <th>Subject</th>
+            <th>Teacher</th>
+          </tr>
+        </thead> -->
+        <tbody>
+          <tr *ngFor="let teacher of courseTeacher">
+            <td>{{ teacher.course }}</td>
+            <td>{{ teacher.teacher }}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
     <div class="col-md-6">
       <table class="table">
@@ -324,7 +340,23 @@
         Daily Schedule for<span> {{ title }}</span>
       </h2>
     </div>
-    <div class="col-md-12 px-md-5 p-2">
+    <div class="col-md-6 p-2">
+      <table class="table">
+        <!-- <thead>
+          <tr>
+            <th>Subject</th>
+            <th>Teacher</th>
+          </tr>
+        </thead> -->
+        <tbody>
+          <tr *ngFor="let teacher of courseTeacher">
+            <td>{{ teacher.course }}</td>
+            <td>{{ teacher.teacher }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-6 p-2">
       <table class="table">
         <thead>
           <tr>
@@ -337,46 +369,6 @@
             <td>{{ sch.time }}</td>
             <td>{{ sch.activity }}</td>
           </tr>
-          <!-- <tr>
-            <td>06:30 AM - 08:00 AM</td>
-            <td>Asana</td>
-          </tr>
-          <tr>
-            <td>08:00 AM - 08:45 AM</td>
-            <td>Pranayama</td>
-          </tr>
-          <tr>
-            <td>09:00 AM - 10:00 AM</td>
-            <td>Breakfastt</td>
-          </tr>
-          <tr>
-            <td>10:15 AM - 11:15 AM</td>
-            <td>Mantra / Alignment & Adjustment</td>
-          </tr>
-          <tr>
-            <td>11:00 AM - 12:00 PM</td>
-            <td>Yoga Phylosophy</td>
-          </tr>
-          <tr>
-            <td>12:00 PM - 03:00 PM</td>
-            <td>Lunch & Rest</td>
-          </tr>
-          <tr>
-            <td>03:00 PM - 04:00 PM</td>
-            <td>Anatomy / Teaching Methodology</td>
-          </tr>
-          <tr>
-            <td>04:15 PM - 05:45 PM</td>
-            <td>Asana Practice With Alignment</td>
-          </tr>
-          <tr>
-            <td>06:00 PM - 07:00 PM</td>
-            <td>Meditation</td>
-          </tr>
-          <tr>
-            <td>07:30 P.M</td>
-            <td>Dinner</td>
-          </tr> -->
         </tbody>
       </table>
     </div>

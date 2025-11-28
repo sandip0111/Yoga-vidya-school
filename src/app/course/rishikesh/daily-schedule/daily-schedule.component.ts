@@ -13,6 +13,7 @@ import { s3Bucket } from '../../../enum/s3Bucket';
 })
 export class DailyScheduleComponent implements OnInit {
   @Input() data: any;
+  @Input() courseTeacher: any;
   schedule: any;
   title: any;
   slug: string | undefined = '';

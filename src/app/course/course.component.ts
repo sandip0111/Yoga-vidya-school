@@ -1,16 +1,8 @@
-import {
-  Component,
-  Inject,
-  Renderer2,
-} from '@angular/core';
+import { Component, Inject, Renderer2 } from '@angular/core';
 import { CommonModule, DOCUMENT } from '@angular/common';
 import { WebapiService } from '../webapi.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import {
-  DomSanitizer,
-  Title,
-  Meta,
-} from '@angular/platform-browser';
+import { DomSanitizer, Title, Meta } from '@angular/platform-browser';
 import { BottomNavComponent } from '../includes/home/bottom-nav/bottom-nav.component';
 import { AboutComponent } from '../includes/home/about/about.component';
 import { JoinTrainingComponent } from '../includes/home/join-training/join-training.component';
@@ -92,6 +84,44 @@ export class CourseComponent {
       text: 'We are backed with the best yoga teachers of India and thus never compromise with the standards and quality of our classes.',
     },
   ];
+  courseTeacher = [
+    {
+      course: 'Ashtanga',
+      teacher: 'Pankaji',
+    },
+    {
+      course: 'Pranayama',
+      teacher: 'Prashantji',
+    },
+    {
+      course: 'Aligment and Adjustment',
+      teacher: 'Pankaji',
+    },
+    {
+      course: 'Philosophy',
+      teacher: 'Swami Atmararrwanda Saraswati',
+    },
+    {
+      course: 'Anatomy',
+      teacher: 'Raj',
+    },
+    {
+      course: 'Teaching Methodology',
+      teacher: 'Tanyaji',
+    },
+    {
+      course: 'Asana Practice with Aligment',
+      teacher: 'Prashantji',
+    },
+    {
+      course: 'Meditation',
+      teacher: 'Aparnaji',
+    },
+    {
+      course: 'Ayurveda',
+      teacher: 'Naina',
+    },
+  ];
   slug: string | undefined = '';
   courseList: any;
   introLink: string = '';
@@ -114,7 +144,7 @@ export class CourseComponent {
     }
   }
   ngOnInit(): void {
-    this.ogMetaTag(this.slug  ?? '');
+    this.ogMetaTag(this.slug ?? '');
     const canonicalUrl = 'https://www.yogavidyaschool.com' + this.router.url;
     const link = this._document.querySelector('link[rel="canonical"]');
     this._renderer2.setAttribute(link, 'href', canonicalUrl);
@@ -156,14 +186,14 @@ export class CourseComponent {
     });
   }
 
-   ogMetaTag(slug: string) {
-    console.log(slug,'slug--- ');
+  ogMetaTag(slug: string) {
+    console.log(slug, 'slug--- ');
     this.pixelTracking.trackViewContent(
-          'online-yoga-classes',
-          'online-yoga-classes'
-        );
-        this.trackScrollDepth();
-        this.trackTimeOnPage();
+      'online-yoga-classes',
+      'online-yoga-classes'
+    );
+    this.trackScrollDepth();
+    this.trackTimeOnPage();
   }
   trackTimeOnPage() {
     const timeThresholds = [30, 60, 120, 300];

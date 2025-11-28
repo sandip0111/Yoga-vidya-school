@@ -31,8 +31,8 @@ import { BottomNavCourseComponent } from '../../../includes/home/bottom-nav-cour
 import { VideoReviewsComponent } from '../../video-reviews/video-reviews.component';
 import { feesStructureModel } from '../../../models/rishikesh';
 import { routeEnum } from '../../../enum/routes';
-import { PricingComponent } from "../pricing/pricing.component";
-import { BonusComponent } from "../../../certified/bonus/bonus.component";
+import { PricingComponent } from '../pricing/pricing.component';
+import { BonusComponent } from '../../../certified/bonus/bonus.component';
 import { PixelTrackingService } from '../../../services/pixel-tracking.service';
 
 @Component({
@@ -64,8 +64,8 @@ import { PixelTrackingService } from '../../../services/pixel-tracking.service';
     VideoReviewsComponent,
     CommonModule,
     PricingComponent,
-    BonusComponent
-],
+    BonusComponent,
+  ],
   templateUrl: './rishikesh-index.component.html',
   styleUrls: ['./rishikesh-index.component.css'],
 })
@@ -84,6 +84,40 @@ export class RishikeshIndexComponent implements OnInit {
   isPranicPurification = false;
   isYoutubeDataReady: boolean = false;
   routEnum = routeEnum;
+  courseTeacher = [
+    {
+      course: 'Ashtanga',
+      teacher: 'Pankaji',
+    },
+    {
+      course: 'Pranayama',
+      teacher: 'Prashantji',
+    },
+    {
+      course: 'Alignment and Adjustment - Ayurveda',
+      teacher: 'Pankaji - Naina',
+    },
+    {
+      course: 'Philosophy',
+      teacher: 'Swami Atmararrwanda Saraswati',
+    },
+    {
+      course: 'Anatomy',
+      teacher: 'Raj',
+    },
+    {
+      course: 'Teaching Methodology',
+      teacher: 'Tanyaji',
+    },
+    {
+      course: 'Asana Practice with Alignment',
+      teacher: 'Prashantji',
+    },
+    {
+      course: 'Meditation',
+      teacher: 'Aparnaji',
+    },
+  ];
   constructor(
     private webapiService: WebapiService,
     private activatedRoute: ActivatedRoute,
@@ -530,12 +564,9 @@ export class RishikeshIndexComponent implements OnInit {
   }
 
   ogMetaTag(slug: string) {
-     this.pixelTracking.trackViewContent(
-          "rishikesh page",
-          slug
-        );
-        this.trackScrollDepth();
-        this.trackTimeOnPage();
+    this.pixelTracking.trackViewContent('rishikesh page', slug);
+    this.trackScrollDepth();
+    this.trackTimeOnPage();
   }
   trackTimeOnPage() {
     const timeThresholds = [30, 60, 120, 300];
