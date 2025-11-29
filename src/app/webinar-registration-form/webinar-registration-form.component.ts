@@ -89,18 +89,11 @@ export class WebinarRegistrationFormComponent implements OnInit {
 	    Date: January the 3rd - 6:00 PM IST`);
     this.bannerTitle = 'Free Online Webinar';
     this.imgSlug = this.s3Bucket.freeWebinnarHero;
-    //this.registrationForm.get('webiner')?.setValue(this.selectedOption.label);
   }
 
   scrollToForm(event: Event, selectedOption: any) {
-    event.preventDefault(); // Prevent default anchor behavior (page reload)
+    event.preventDefault();
     window.open(selectedOption.link, '_blank');
-    // Get the form element by ID
-    // const element = document.getElementById('register-form');
-    // if (element) {
-    //   // Scroll the element into view with smooth behavior
-    //   element.scrollIntoView({ behavior: 'smooth' });
-    // }
   }
 
   onSelectionChange(selectedValue: any) {
