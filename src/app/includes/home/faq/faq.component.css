@@ -49,6 +49,9 @@
 }
 .join-now-button {
   text-decoration: underline;
-  cursor: pointer;
+  cursor: context-menu;
   color: #f5711a;
+}
+.project-color {
+  font-size: 20px;
 }
