@@ -286,30 +286,27 @@ export class AboutRishikeshComponent implements OnInit {
       slug: slug,
     };
     this.webapiService.getCourseById(data).subscribe((res: any) => {
-
       let feesInfo = res.data[0].feeInfo.find(
         (f: feesInfoDto) => f.title == 'Price'
       );
-      debugger
-      let priceData: feesDto = feesInfo.data.find(
-        (f: feesDto) => f.currency == 'INR'
-      );
-      this.inrPrice = new Intl.NumberFormat('en-IN', {
-        style: 'currency',
-        currency: priceData.currency,
-      }).format(priceData.amount);
-      priceData = feesInfo.data.find((f: feesDto) => f.currency == 'USD');
-      this.usdPrice = new Intl.NumberFormat('en-IN', {
-        style: 'currency',
-        currency: priceData.currency,
-      }).format(priceData.amount);
-
+      let priceData: feesDto;
+      if (feesInfo) {
+        priceData = feesInfo?.data.find((f: feesDto) => f?.currency == 'INR');
+        this.inrPrice = new Intl.NumberFormat('en-IN', {
+          style: 'currency',
+          currency: priceData?.currency,
+        }).format(priceData?.amount);
+        priceData = feesInfo?.data.find((f: feesDto) => f?.currency == 'USD');
+        this.usdPrice = new Intl.NumberFormat('en-IN', {
+          style: 'currency',
+          currency: priceData?.currency,
+        }).format(priceData?.amount);
+      }
       this.generateHtmlContent();
-
       this.course = {
-        id: res.data[0]._id,
-        title: res.data[0].coursetitle,
-        shortDescription: res.data[0].shortDesc,
+        id: res?.data[0]?._id,
+        title: res?.data[0]?.coursetitle,
+        shortDescription: res?.data[0]?.shortDesc,
         priceINR: 0,
         priceUSD: 0,
         quantity: 1,
