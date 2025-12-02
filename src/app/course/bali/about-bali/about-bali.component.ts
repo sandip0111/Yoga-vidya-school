@@ -7,11 +7,12 @@ import { CartItem, CartService } from '../../../cart.service';
 import { routeEnum } from '../../../enum/routes';
 import { s3Bucket, youtubeLink } from '../../../enum/s3Bucket';
 import { PixelTrackingService } from '../../../services/pixel-tracking.service';
+import { RegistrationFormComponent } from '../../../student/registration-form/registration-form.component';
 
 @Component({
   selector: 'app-about-bali',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RegistrationFormComponent],
   templateUrl: './about-bali.component.html',
   styleUrls: ['./about-bali.component.css'],
   encapsulation: ViewEncapsulation.None,

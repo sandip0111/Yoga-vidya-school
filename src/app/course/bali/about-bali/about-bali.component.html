@@ -52,10 +52,14 @@
       class="col-md-6 mb-5"
       [innerHtml]="sanitizer.bypassSecurityTrustHtml(item?.title1)"
     ></div>
-    <div
-      class="col-md-6 mb-5"
-      [innerHtml]="sanitizer.bypassSecurityTrustHtml(item?.title2)"
-    ></div>
+    <div class="col-md-6 mb-5">
+      <div [innerHtml]="sanitizer.bypassSecurityTrustHtml(item?.title2)"></div>
+      <ng-container *ngIf="item.id === 4 && slug === routEnum.bDtox">
+        <div class="registration-form-container mt-5">
+          <app-registration-form></app-registration-form>
+        </div>
+      </ng-container>
+    </div>
     }
   </div>
   }@else{
