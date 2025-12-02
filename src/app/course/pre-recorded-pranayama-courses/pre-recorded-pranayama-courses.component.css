@@ -47,3 +47,8 @@
     padding-inline: 3rem;
   }
 }
+
+.contentrishi .badge-btn {
+  cursor: context-menu;
+  padding: 1px 20px;
+}
