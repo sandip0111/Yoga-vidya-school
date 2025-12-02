@@ -290,6 +290,7 @@ export class AboutRishikeshComponent implements OnInit {
       let feesInfo = res.data[0].feeInfo.find(
         (f: feesInfoDto) => f.title == 'Price'
       );
+      debugger
       let priceData: feesDto = feesInfo.data.find(
         (f: feesDto) => f.currency == 'INR'
       );
