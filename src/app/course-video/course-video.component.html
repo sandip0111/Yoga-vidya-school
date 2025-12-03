@@ -11,6 +11,14 @@
   </ng-container>
   <ng-template #otherTitle>
     <p class="text-center">Start Your {{ courseList?.coursetitle }} Now!</p>
+    <div *ngIf="slug === routeEnum['bDtox']" class="text-center mb-3">
+      <button
+        class="btn btn-success btn-block btn-login"
+        (click)="downloadPdf()"
+      >
+        DOWNLOAD EBOOK
+      </button>
+    </div>
   </ng-template>
   @if(reverseArr && reverseArr.length > 0){
   <div class="container-fluid">
@@ -68,7 +76,7 @@
                 class="row"
                 *ngIf="
                   slug != 'breath-detox-yoga' &&
-                  slug != 'pranayama-course-online-pranarambha' && 
+                  slug != 'pranayama-course-online-pranarambha' &&
                   slug != routeEnum['200TTC']
                 "
               >
