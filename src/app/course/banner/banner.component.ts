@@ -78,7 +78,8 @@ export class BannerComponent implements OnInit {
       case routeEnum.rishikesh300:
         this.rishikesHeroImage = s3Bucket.rishikesh300Banner;
         this.rishikeshMainHeading = 'Transform your inner and teaching journey';
-        this.rishikeshSubHeading = 'Next Batches starts March the 28th - Deepen presence, wisdom & embodiment';
+        this.rishikeshSubHeading =
+          'Next Batches starts March the 28th - Deepen presence, wisdom & embodiment';
         break;
       case routeEnum.preRecordPranayamaCourse:
         this.rishikesHeroImage = s3Bucket.preRecordedHero;
@@ -119,13 +120,25 @@ export class BannerComponent implements OnInit {
         this.rishikeshSubHeading =
           '21 Days - Online Pranayama Journey with PrashantJ';
         break;
+      case routeEnum.bali200:
+        this.rishikesHeroImage = s3Bucket.bali200Hero;
+        this.rishikeshMainHeading =
+          'Transform your life with our 200 HRS TTC in Bali';
+        this.rishikeshSubHeading =
+          'A journey of self-discovery, tradition, and transformation in Ubud.';
+        break;
+      case routeEnum.bali300:
+        this.rishikesHeroImage = s3Bucket.bali300Hero;
+        this.rishikeshMainHeading = '300 hour Yoga Teacher Training in Bali';
+        this.rishikeshSubHeading =
+          'A sacred immersion in advanced yoga practices, set against Bali’s serene landscapes.';
+        break;
       default:
         break;
     }
   }
   backGroundImageSet() {
     if (
-      this.slug == '200-hour-yoga-teacher-training-in-bali' ||
       this.slug == 'yoga-retreat-in-bali' ||
       this.slug == '300-hour-yoga-teacher-training-in-bali' ||
       this.slug == 'adjustment-and-alignment' ||
