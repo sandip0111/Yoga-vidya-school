@@ -32,7 +32,7 @@ import { Title } from '@angular/platform-browser';
     ReadyComponent,
     WhyBaliComponent,
     IncludesBaliComponent,
-    BonusComponent
+    BonusComponent,
   ],
   templateUrl: './certified.component.html',
   styleUrl: './certified.component.css',
@@ -53,8 +53,11 @@ export class CertifiedComponent {
   ) {
     this.spinner.show();
     this.slug = this.activatedRoute.snapshot.routeConfig?.path ?? '';
-    this.titleService.setTitle(this.slug === 'get-certified-in-rishikesh' ? 'Get Certified in Rishikesh' : 'Get Certified in Bali');
-
+    this.titleService.setTitle(
+      this.slug === 'get-certified-in-rishikesh'
+        ? 'Get Certified in Rishikesh'
+        : 'Get Certified in Bali'
+    );
   }
 
   ngOnInit() {
@@ -81,8 +84,8 @@ export class CertifiedComponent {
         'Transform Your Yoga Practice in Rishikesh – Yoga Alliance Certified TTC';
     } else if (this.slug === 'get-certified-in-bali') {
       this.bannerTitle = 'Experience traditional yoga in the heart of paradise';
-      this.bannerSubtitle =
-        'Train with a lineage-rooted school in the spiritual and serene setting of Ubud, Bali. Let the energy of nature, the power of breath, and ancient teachings guide you through a life-changing journey.';
+      this.bannerSubtitle = `Train with a lineage-rooted school in the spiritual and serene setting of Ubud, Bali.
+Let the energy of nature, the power of breath, and ancient teachings guide you through a life-changing journey.`;
     }
   }
 
@@ -99,7 +102,10 @@ export class CertifiedComponent {
 
   // Pixel tracking methods
   private trackPageView() {
-    const pageName = this.slug === 'get-certified-in-rishikesh' ? 'certified-rishikesh' : 'certified-bali';
+    const pageName =
+      this.slug === 'get-certified-in-rishikesh'
+        ? 'certified-rishikesh'
+        : 'certified-bali';
     this.pixelTracking.trackPageView(pageName, this.bannerTitle);
     this.pixelTracking.trackViewContent('certified_page', this.slug);
   }
@@ -110,14 +116,16 @@ export class CertifiedComponent {
     const trackedThresholds = new Set<number>();
 
     window.addEventListener('scroll', () => {
-      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollTop =
+        window.pageYOffset || document.documentElement.scrollTop;
+      const scrollHeight =
+        document.documentElement.scrollHeight - window.innerHeight;
       const scrollPercent = Math.round((scrollTop / scrollHeight) * 100);
 
       if (scrollPercent > maxScroll) {
         maxScroll = scrollPercent;
 
-        scrollThresholds.forEach(threshold => {
+        scrollThresholds.forEach((threshold) => {
           if (scrollPercent >= threshold && !trackedThresholds.has(threshold)) {
             trackedThresholds.add(threshold);
             this.pixelTracking.trackScroll(threshold);
@@ -132,7 +140,7 @@ export class CertifiedComponent {
     const timeThresholds = [30, 60, 120, 300]; // 30s, 1min, 2min, 5min
     const trackedTimes = new Set<number>();
 
-    timeThresholds.forEach(threshold => {
+    timeThresholds.forEach((threshold) => {
       setTimeout(() => {
         if (!trackedTimes.has(threshold)) {
           trackedTimes.add(threshold);
