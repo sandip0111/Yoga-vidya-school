@@ -39,7 +39,8 @@
               slug != routeList.rishkesh200 &&
               slug != routeList.rishikesh300 &&
               slug != routeList['200TTC'] &&
-              slug != ''
+              slug != '' && 
+              slug != routeList.bali300
             "
           >
             FOLLOW ON :
@@ -56,7 +57,7 @@
         </div>
       </div>
     </div>
-    <div *ngIf="!hideBtn" class="col-md-12" (click)="trackElement()">
+    <div *ngIf="!hideBtn" class="col-md-12 mt-2" (click)="trackElement()">
       <a href="/mentors" class="button">View All Mentors</a>
     </div>
   </div>
