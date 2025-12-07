@@ -39,6 +39,7 @@ import { feesStructureModel } from '../../../models/rishikesh';
 import { routeEnum } from '../../../enum/routes';
 import { PixelTrackingService } from '../../../services/pixel-tracking.service';
 import { PricingComponent } from '../../rishikesh/pricing/pricing.component';
+import { BonusComponent } from '../../../certified/bonus/bonus.component';
 @Component({
   selector: 'app-bali-index',
   standalone: true,
@@ -67,6 +68,7 @@ import { PricingComponent } from '../../rishikesh/pricing/pricing.component';
     ReviewListComponentComponent,
     VideoReviewsComponent,
     PricingComponent,
+    BonusComponent,
   ],
   templateUrl: './bali-index.component.html',
   styleUrls: ['./bali-index.component.css'],
