@@ -112,7 +112,10 @@ export class CheckoutComponent {
         { name: 'Shared Room', value: 1 },
         { name: 'Private Room', value: 2 },
       ];
-    } else if (this.slug == routeEnum.rishikesh300) {
+    } else if (
+      this.slug == routeEnum.rishikesh300 ||
+      this.slug == routeEnum.bali300
+    ) {
       this.roomList = [
         { name: 'Shared Room', value: 1 },
         { name: 'Private Room', value: 2 },
@@ -247,11 +250,29 @@ export class CheckoutComponent {
   setRoomPrice(event: any) {
     this.inputValidation('room');
     if (event.target.value == 1 || event.target.value == 2) {
-      this.currencyOptions = ['INR', 'USD'];
-      this.checkData.currency =
-        this.checkData.currency == ''
-          ? this.currencyOptions[0]
-          : this.checkData.currency;
+      let availableCurrencies: string[] = [];
+      if (this.feesData && this.feesData.length > 0) {
+        this.feesData.forEach((item) => {
+          item.data.forEach((d) => {
+            if (!availableCurrencies.includes(d.currency)) {
+              availableCurrencies.push(d.currency);
+            }
+          });
+        });
+      }
+
+      if (availableCurrencies.length > 0) {
+        this.currencyOptions = availableCurrencies;
+      } else {
+        this.currencyOptions = ['INR', 'USD'];
+      }
+
+      if (
+        !this.checkData.currency ||
+        !this.currencyOptions.includes(this.checkData.currency)
+      ) {
+        this.checkData.currency = this.currencyOptions[0];
+      }
     } else {
       this.currencyOptions = [];
       this.checkData.currency = '';
