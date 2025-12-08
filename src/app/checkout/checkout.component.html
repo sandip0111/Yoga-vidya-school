@@ -203,7 +203,8 @@
           *ngIf="
             slug == routeEnum.rishikesh100 ||
             slug == routeEnum.rishkesh200 ||
-            slug == routeEnum.rishikesh300
+            slug == routeEnum.rishikesh300 ||
+            slug == routeEnum.bali300
           "
         >
           <label for="room">Room<span style="color: red">*</span></label>
@@ -275,6 +276,7 @@
             style="border-color: #f9751e"
             class="payment-button"
             (click)="checkoutData(checkData, true)"
+            *ngIf="slug !== routeEnum.bali300"
           >
             <img
               src="assets/razor.svg"
