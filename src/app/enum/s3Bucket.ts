@@ -78,6 +78,8 @@ export enum s3Bucket {
 
   bali200Hero = 'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/bali200.JPG',
   bali300Hero = 'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/bali300.JPG',
+  bali300About = 'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/bali-300-about-new.JPG',
+  bali300SectionImage = 'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/bali-section-image.JPG'
 }
 export enum youtubeLink {
   trainingImportance = 'https://www.youtube.com/embed/t7l1cqDj1tA?si=ZJCQXJYDLzDwLLvm',

@@ -58,8 +58,7 @@ export class AboutBaliComponent implements OnInit {
         <p>Led by experienced and devoted teachers, the training covers advanced asana, pranayama, meditation, yogic anatomy and physiology, as well as sequencing, adjustments, and philosophy. You will also explore how modern perspectives from psychology and neuroscience connect with the timeless patterns of yogic practice.</p>
         <p>More than a certification, this is an invitation to walk a path that transcends the physical, illuminating your inner light and strengthening your role as both practitioner and teacher.</p> 
         `,
-        image:
-          'https://my-s3-images-bucket.s3.amazonaws.com/img/image_1674216026424.jfif',
+        image: s3Bucket.bali300About,
         alt: '300 yoga teacher training in bali',
         subjectInfo: `
     <div class="row mb-5">
@@ -79,7 +78,7 @@ export class AboutBaliComponent implements OnInit {
 </div>
 <div class="col-md-6">
 <div class="imageback">
-<img src="https://my-s3-images-bucket.s3.amazonaws.com/img/image_1696590613162.jpeg" class="img-fluid" alt="300 Hours Yoga Teacher Training in Bali"/>
+<img src=${s3Bucket.bali300SectionImage} class="img-fluid" alt="300 Hours Yoga Teacher Training in Bali"/>
 </div>
 </div>
 </div>
