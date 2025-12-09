@@ -12,9 +12,7 @@
   <small
     *ngIf="
       slug !== routEnum.bDtox &&
-      slug !== routEnum.pranOnlinePranaArambh &&
-      slug !== routEnum.bali200
-    "
+      slug !== routEnum.pranOnlinePranaArambh"
     >Welcome To</small
   >
   <h1>
@@ -35,8 +33,8 @@
           slug != 'pranayama-course-online-pranarambha' &&
           slug != routEnum.bDtox
         "
-        href="/book-now"
-        class="button"
+        (click)="goToPaymentPage()"
+        class="button cursor-pointer"
         >Enroll in the course</a
       >
       <a

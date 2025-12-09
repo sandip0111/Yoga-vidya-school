@@ -62,14 +62,15 @@
   *ngIf="isYoutubeDataReady && slug != routeEnum.bali300"
 ></app-watch-video>
 <app-testimonials *ngIf="slug != routeEnum.bali300"></app-testimonials>
-<app-gallery *ngIf="slug != routeEnum.bali300"></app-gallery>
+<app-gallery *ngIf="slug != routeEnum.bali300 && slug != routeEnum.bali200"></app-gallery>
 <app-video-testimonials
   *ngIf="
     slug != 'yoga-retreat-in-mysore-india' &&
     slug != 'foundation-of-spirituality-an-online-spiritual-awakening-course' &&
     slug != 'yoga-history-and-philosophy' &&
     slug != 'yoga-retreat-in-peru' &&
-    slug != routeEnum.bali300
+    slug != routeEnum.bali300 &&
+    slug != routeEnum.bali200
   "
 ></app-video-testimonials>
 <app-achievements
@@ -77,7 +78,8 @@
     slug != 'yoga-retreat-in-mysore-india' &&
     slug != 'foundation-of-spirituality-an-online-spiritual-awakening-course' &&
     slug != 'yoga-history-and-philosophy' &&
-    slug != 'yoga-retreat-in-peru'
+    slug != 'yoga-retreat-in-peru' &&
+    slug != routeEnum.bali200
   "
 ></app-achievements>
 <app-faq [data]="faqData"></app-faq>

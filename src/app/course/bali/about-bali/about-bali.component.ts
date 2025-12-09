@@ -38,15 +38,12 @@ export class AboutBaliComponent implements OnInit {
       this.aboutItems = {
         title: 'Bali is not only a destination -- ',
         span: 'it’s a sanctuary',
-        desc: `
-        <p>Yoga Vidya School welcomes you to join the 200 hour yoga teacher training in Bali. Our 200 hour yoga teacher training Bali program is an accredited course registered with Yoga Alliance USA. Yoga Vidya School’s bali yoga teacher training 200 hour is guided by certified yoga instructors and yoga masters having years of experience teaching yoga. Helmed by Acharya Prashant Jakhmola, our 200 hour yoga TTC in bali covers different aspects of yoga. From the traditional Hatha yoga/ Ashtanga, Vinyasa flow yoga, pranayama, meditation, Kriya, Bandha, yogic philosophy, anatomy and teaching methodology, our 200 hour yoga teacher training in Bali covers different aspects of yoga practice.
-         </p>
-         <p>Nestled in charming Ubud area, our residential facility at Ahamta retreat, Jl. Sri Wedari No.46, Ubud, Kecamatan Ubud, Kabupaten Gianyar, Bali 80571, Indonesia offers the much needed calm and tranquil ambiance with luxury, for pursuing your yoga teacher training in Bali. Reconnect with your inner being and unearth the many innate intricacies of yoga as you pursue our 200 hour yoga TTC at our magical space in Ahamta retreat, Jl. Sri Wedari No.46, Ubud, Kecamatan Ubud, Kabupaten Gianyar, Bali 80571, Indonesia, Bali.
-</p>
-        `,
-        image:
-          'https://my-s3-images-bucket.s3.amazonaws.com/images/bali_200_npa2hj.jpg',
-        alt: '200 yoga teacher training in bali',
+        desc: `<p>Amid sacred temples, lush nature, and the calm rhythm of island life, every sunrise, every practice, and every breath becomes part of your inner journey. This island energy makes your training more than
+a certification: it’s a transformation.
+</p> `,
+        // image:
+        //   'https://my-s3-images-bucket.s3.amazonaws.com/images/bali_200_npa2hj.jpg',
+        // alt: '200 yoga teacher training in bali',
       };
     } else if (this.slug == '300-hour-yoga-teacher-training-in-bali') {
       this.aboutItems = {
@@ -996,6 +993,7 @@ A watering hole for adventure freaks and solo travellers, Peru with its gorgeous
     });
   }
   goToPaymentPage() {
+    if(this.slug == routeEnum.bali300) this.router.navigate([`/checkout/${this.slug}`]);
     this._pixelTrackingService.trackViewContent('Breath Dtox', routeEnum.bDtox);
     this.router.navigate([routeEnum.bDtox, routeEnum.stRegister]);
   }
