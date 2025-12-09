@@ -257,6 +257,9 @@ h1 span {
   }
 }
 
-.project-color{
+.project-color {
   font-size: 20px;
+}
+.cursor-pointer {
+  cursor: pointer;
 }

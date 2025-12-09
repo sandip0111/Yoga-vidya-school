@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit,Input, SimpleChanges } from '@angular/core';
-import { ActivatedRoute,Router } from '@angular/router';
-
+import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-curriculum',
@@ -11,16 +10,15 @@ import { ActivatedRoute,Router } from '@angular/router';
   styleUrls: ['./curriculum.component.css'],
 })
 export class CurriculumComponent implements OnInit {
-  @Input() data:any
+  @Input() data: any;
   items: item[] = [];
-  slug: any='';
+  slug: any = '';
   currData: any;
   title: any = '';
-  is300Course= false;
-  constructor(private activatedRoute:ActivatedRoute,private router:Router) {
-    this.slug = this.activatedRoute.snapshot.routeConfig?.path
-    if(this.slug == '200-hour-yoga-teacher-training-in-bali'){
-
+  is300Course = false;
+  constructor(private activatedRoute: ActivatedRoute, private router: Router) {
+    this.slug = this.activatedRoute.snapshot.routeConfig?.path;
+    if (this.slug == '200-hour-yoga-teacher-training-in-bali') {
       this.items = [
         {
           image: 'https://placehold.co/50x50',
@@ -97,10 +95,8 @@ export class CurriculumComponent implements OnInit {
           title: 'Ayurveda',
           para: '',
         },
-      ]
-
-    }
-    else if(this.slug == "300-hour-yoga-teacher-training-in-bali"){
+      ];
+    } else if (this.slug == '300-hour-yoga-teacher-training-in-bali') {
       this.is300Course = true;
       this.items = [
         {
@@ -152,25 +148,24 @@ export class CurriculumComponent implements OnInit {
           image: 'https://placehold.co/50x50',
           title: 'Teaching Methodology II',
           para: 'Equip yourself with advanced teaching skills and techniques and learn how to design and structure Master-level yoga classes. Understand how to effectively communicate instructions, and provide individualised adjustments to your students while creating a supportive learning environment.',
-        }
-      ]
-
+        },
+      ];
     }
   }
 
   ngOnInit() {}
 
-  ngOnChanges(changes: SimpleChanges):void {
-    if(changes['data'].currentValue){
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['data'].currentValue) {
       this.currData = changes['data'].currentValue?.curr;
       this.title = changes['data'].currentValue?.title;
     }
     // console.log(this.feesData,'--');
-
+  }
+  goToPaymentPage() {
+    this.router.navigate([`/checkout/${this.slug}`]);
   }
 }
-
-
 
 interface item {
   image: string;

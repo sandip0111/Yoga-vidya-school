@@ -993,9 +993,15 @@ A watering hole for adventure freaks and solo travellers, Peru with its gorgeous
     });
   }
   goToPaymentPage() {
-    if(this.slug == routeEnum.bali300) this.router.navigate([`/checkout/${this.slug}`]);
-    this._pixelTrackingService.trackViewContent('Breath Dtox', routeEnum.bDtox);
-    this.router.navigate([routeEnum.bDtox, routeEnum.stRegister]);
+    if (this.slug == routeEnum.bali300) {
+      this.router.navigate([`/checkout/${this.slug}`]);
+    } else {
+      this._pixelTrackingService.trackViewContent(
+        'Breath Dtox',
+        routeEnum.bDtox
+      );
+      this.router.navigate([routeEnum.bDtox, routeEnum.stRegister]);
+    }
   }
   registerClick(slug: string) {
     this.router.navigate(['checkout', slug]);
