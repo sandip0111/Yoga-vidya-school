@@ -326,11 +326,20 @@ export class WebapiService {
       data
     );
   }
+  checkoutStripeForBali(data: SignupDataModel): Observable<stripePayModel> {
+    return this.http.post<stripePayModel>(
+      this.url + 'api/v1/checkoutStripeForBali',
+      data
+    );
+  }
   getStripePaymentResultRishikesh(data: any) {
     return this.http.post(
       this.url + 'api/v1/getStripePaymentResultRishikesh',
       data
     );
+  }
+  getStripePaymentResultBali(data: any) {
+    return this.http.post(this.url + 'api/v1/getStripePaymentResultBali', data);
   }
   registerSwarSadhanaWebinarUser(data: swaraDataModel) {
     return this.http.post(

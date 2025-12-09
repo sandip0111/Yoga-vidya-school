@@ -40,6 +40,7 @@ export class SuccessPaymentComponent {
   couponCodeId: string | null = '';
   swaraSadhnaRazorPaySessionId: string = '';
   swaraSadhnaStripeSessionId: string = '';
+  bali300StripeSessionId: string = '';
   constructor(
     private webapiService: WebapiService,
     private router: Router,
@@ -83,6 +84,8 @@ export class SuccessPaymentComponent {
       localStorage.getItem(localstorageKey.swaraSadhnaRzpId) ?? '';
     this.swaraSadhnaStripeSessionId =
       localStorage.getItem(localstorageKey.swaraSadhnaStripeSessionId) ?? '';
+    this.bali300StripeSessionId =
+      localStorage.getItem(localstorageKey.bali300StripeSessionId) ?? '';
     // Track purchase completion after a short delay to ensure data is loaded
 
     if (this.sessionId) {
@@ -166,6 +169,11 @@ export class SuccessPaymentComponent {
     if (this.swaraSadhnaStripeSessionId) {
       setTimeout(() => {
         this.getStripePaymentResultSwaraSadhna(this.swaraSadhnaStripeSessionId);
+      }, 0);
+    }
+    if (this.bali300StripeSessionId) {
+      setTimeout(() => {
+        this.getStripePaymentResultBali(this.bali300StripeSessionId);
       }, 0);
     }
   }
@@ -584,6 +592,28 @@ export class SuccessPaymentComponent {
     }
     return cur;
   }
+  getStripePaymentResultBali(sessionId: string) {
+    let val = {
+      sessionId: sessionId,
+      payDbId: localStorage.getItem(localstorageKey.bali300StripeDBId),
+    };
+    this.webapiService.getStripePaymentResultBali(val).subscribe((res: any) => {
+      if (res.data.status == 'success') {
+        this.isRishikesh = true;
+        this.paidFlag = 'true';
+        this.ordId = res.data.paymtId;
+        this.amount = res.data.amount;
+        this.cur = this.currencySet(res.data.currency);
+        this.spinner.hide();
+      } else {
+        this.paidFlag = 'false';
+        this.reuseUrl = res.data.sessionId;
+        this.spinner.hide();
+      }
+      localStorage.removeItem(localstorageKey.bali300StripeSessionId);
+      localStorage.removeItem(localstorageKey.bali300StripeDBId);
+    });
+  }
   gotoAccount() {
     this.router.navigate(['/login']);
     sessionStorage.removeItem('tempCourse');
@@ -602,6 +632,8 @@ export class SuccessPaymentComponent {
     localStorage.removeItem(localstorageKey['200TTCRzpDBId']);
     localStorage.removeItem(localstorageKey['200TTCInstallment']);
     localStorage.removeItem(localstorageKey['200TTCDue']);
+    localStorage.removeItem(localstorageKey.bali300StripeSessionId);
+    localStorage.removeItem(localstorageKey.bali300StripeDBId);
   }
   gotoHome() {
     this.router.navigate(['/']);
@@ -626,6 +658,8 @@ export class SuccessPaymentComponent {
     localStorage.removeItem(localstorageKey['200TTCRzpDBId']);
     localStorage.removeItem(localstorageKey['200TTCInstallment']);
     localStorage.removeItem(localstorageKey['200TTCDue']);
+    localStorage.removeItem(localstorageKey.bali300StripeSessionId);
+    localStorage.removeItem(localstorageKey.bali300StripeDBId);
   }
   genratePass(len: number) {
     const charset =

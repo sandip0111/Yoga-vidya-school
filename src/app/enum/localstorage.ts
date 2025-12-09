@@ -26,4 +26,6 @@ export enum localstorageKey {
   'swaraSadhnaUserID' = 'swara_sadhna_user_id',
   'swaraSadhnaStripeSessionId' = 'swara_sadhna_stripe_session_id',
   'swaraSadhnaStripeDBId' = 'swara_sadhna_stripe_db_id',
+  'bali300StripeSessionId' = 'bali_300_stripe_session_id',
+  'bali300StripeDBId' = 'bali_300_stripe_db_id',
 }

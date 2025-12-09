@@ -494,6 +494,8 @@ export class CheckoutComponent {
           this.slug == routeEnum.rishikesh300
         ) {
           this.rishikesh200Checkout(data, isRazorPay);
+        } else if (this.slug == routeEnum.bali300) {
+          this.baliCheckout(data, isRazorPay);
         } else if (this.slug == routeEnum.sa) {
           this.swaraSadhanaCheckout(data, isRazorPay);
         } else {
@@ -721,6 +723,43 @@ export class CheckoutComponent {
       this.initializePayRish200(signupData);
     }
   }
+
+  baliCheckout(data: checkoutModel, isRazorPay: boolean) {
+    if (isRazorPay) {
+      return;
+    }
+    let room = this.roomList.find((item) => item.value == data.package);
+    let signupData: SignupDataModel = {
+      name: data.name,
+      email: data.email.toLowerCase(),
+      phoneNumber: data.phoneNumber.e164Number,
+      room: room?.name,
+      price: this.isInstallment ? this.firstInstAmnt : this.amount,
+      currency: data.currency,
+      hour: 300,
+    };
+    this.initializePayBali300(signupData);
+  }
+
+  initializePayBali300(data: SignupDataModel) {
+    this.webapiService
+      .checkoutStripeForBali(data)
+      .subscribe((res: stripePayModel) => {
+        if (res.sessionId) {
+          localStorage.setItem(
+            localstorageKey.bali300StripeSessionId,
+            res.sessionId
+          );
+          localStorage.setItem(localstorageKey.bali300StripeDBId, res.payDbId);
+          window.location.href = res.url;
+          this.spinner.hide();
+        } else {
+          alert('Session Genration failed! please try again');
+          this.spinner.hide();
+        }
+      });
+  }
+
   newStudentCheckOut(data: checkoutModel, isRazorPay: boolean, pass: string) {
     let signup = {
       firstName: data.name,
