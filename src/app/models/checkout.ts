@@ -48,6 +48,7 @@ export interface SignupDataModel {
   id?: string;
   room?: string;
   hour?: number;
+  month?: string;
 }
 export interface swaraDataModel {
   city: string;

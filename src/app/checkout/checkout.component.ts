@@ -735,10 +735,13 @@ export class CheckoutComponent {
       return;
     }
     let hour = 100;
+    let month;
     if (this.slug == routeEnum.bali200) {
       hour = 200;
+      month = 'June 2026';
     } else if (this.slug == routeEnum.bali300) {
       hour = 300;
+      month = 'July 2026';
     }
     let room = this.roomList.find((item) => item.value == data.package);
     let signupData: SignupDataModel = {
@@ -749,6 +752,7 @@ export class CheckoutComponent {
       price: this.isInstallment ? this.firstInstAmnt : this.amount,
       currency: data.currency,
       hour: hour,
+      month: month,
     };
     this.initializePayBali300(signupData);
   }
