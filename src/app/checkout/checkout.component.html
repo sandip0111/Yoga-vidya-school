@@ -15,12 +15,18 @@
                   <div>
                     <span class="h4" *ngIf="actualAmount">
                       <strong class="old-price">
-                        {{ actualAmount | currency : checkData.currency }}
+                        {{
+                          actualAmount
+                            | currency : checkData.currency : "symbol" : "1.0-3"
+                        }}
                       </strong>
                     </span>
                     <span class="h4">
                       <strong>
-                        {{ amount | currency : checkData.currency }}
+                        {{
+                          amount
+                            | currency : checkData.currency : "symbol" : "1.0-3"
+                        }}
                       </strong>
                     </span>
                   </div>
@@ -28,12 +34,18 @@
                   <div>
                     <span class="h4">
                       <strong [ngClass]="isDiscounted ? 'old-price' : ''">
-                        {{ amount | currency : checkData.currency }}
+                        {{
+                          amount
+                            | currency : checkData.currency : "symbol" : "1.0-3"
+                        }}
                       </strong>
                     </span>
                     <span class="h4">
                       <strong *ngIf="isDiscounted">
-                        {{ offerAmount | currency : checkData.currency }}
+                        {{
+                          offerAmount
+                            | currency : checkData.currency : "symbol" : "1.0-3"
+                        }}
                       </strong>
                     </span>
                   </div>
@@ -59,8 +71,10 @@
                   <b *ngFor="let obj of item.data; let i = index"
                     >{{
                       isSpecialDiscount && obj.discount
-                        ? (obj.discount | currency : obj.currency)
-                        : (obj.amount | currency : obj.currency)
+                        ? (obj.discount
+                          | currency : obj.currency : "symbol" : "1.0-3")
+                        : (obj.amount
+                          | currency : obj.currency : "symbol" : "1.0-3")
                     }}{{ item.data.length - 1 > i ? " / " : "" }}</b
                   ></span
                 >
@@ -204,7 +218,8 @@
             slug == routeEnum.rishikesh100 ||
             slug == routeEnum.rishkesh200 ||
             slug == routeEnum.rishikesh300 ||
-            slug == routeEnum.bali300
+            slug == routeEnum.bali300 ||
+            slug == routeEnum.bali200
           "
         >
           <label for="room">Room<span style="color: red">*</span></label>
@@ -276,7 +291,7 @@
             style="border-color: #f9751e"
             class="payment-button"
             (click)="checkoutData(checkData, true)"
-            *ngIf="slug !== routeEnum.bali300"
+            *ngIf="slug !== routeEnum.bali300 && slug !== routeEnum.bali200"
           >
             <img
               src="assets/razor.svg"

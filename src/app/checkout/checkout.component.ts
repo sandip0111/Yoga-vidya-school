@@ -107,7 +107,10 @@ export class CheckoutComponent {
         { name: 'Shared Room', value: 1 },
         { name: 'Private Room', value: 2 },
       ];
-    } else if (this.slug == routeEnum.rishkesh200) {
+    } else if (
+      this.slug == routeEnum.rishkesh200 ||
+      this.slug == routeEnum.bali200
+    ) {
       this.roomList = [
         { name: 'Shared Room', value: 1 },
         { name: 'Private Room', value: 2 },
@@ -494,7 +497,10 @@ export class CheckoutComponent {
           this.slug == routeEnum.rishikesh300
         ) {
           this.rishikesh200Checkout(data, isRazorPay);
-        } else if (this.slug == routeEnum.bali300) {
+        } else if (
+          this.slug == routeEnum.bali300 ||
+          this.slug == routeEnum.bali200
+        ) {
           this.baliCheckout(data, isRazorPay);
         } else if (this.slug == routeEnum.sa) {
           this.swaraSadhanaCheckout(data, isRazorPay);
@@ -728,6 +734,12 @@ export class CheckoutComponent {
     if (isRazorPay) {
       return;
     }
+    let hour = 100;
+    if (this.slug == routeEnum.bali200) {
+      hour = 200;
+    } else if (this.slug == routeEnum.bali300) {
+      hour = 300;
+    }
     let room = this.roomList.find((item) => item.value == data.package);
     let signupData: SignupDataModel = {
       name: data.name,
@@ -736,7 +748,7 @@ export class CheckoutComponent {
       room: room?.name,
       price: this.isInstallment ? this.firstInstAmnt : this.amount,
       currency: data.currency,
-      hour: 300,
+      hour: hour,
     };
     this.initializePayBali300(signupData);
   }
