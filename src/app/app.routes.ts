@@ -39,7 +39,7 @@ export const routes: Routes = [
   { path: 'course', component: CourseComponent },
   { path: 'mentors', component: TrainersComponent },
   { path: 'mentor/:id', component: TrainerDetailComponent },
-  { path: 'blogs', component: BlogComponent },
+  { path: routeEnum.blogs, component: BlogComponent },
   { path: 'blog/:id', component: BlogDetailComponent },
   {
     path: '200-hour-yoga-teacher-training-in-bali',
