@@ -384,6 +384,8 @@ export class CheckoutComponent {
     const countryCode = phoneValue?.countryCode?.toLowerCase();
     if (countryCode === 'in' && this.slug == routeEnum['200TTC']) {
       this.currencyOptions = ['INR', 'USD'];
+    } else if (this.slug == routeEnum.foundationOfSpirituality) {
+      this.currencyOptions = ['INR', 'USD'];
     } else if (countryCode === 'in') {
       this.currencyOptions =
         this.slug == routeEnum.pranicPurification
