@@ -597,13 +597,10 @@ a certification: it’s a transformation.
           },
         ],
       };
-    } else if (
-      this.slug ==
-      'foundation-of-spirituality-an-online-spiritual-awakening-course'
-    ) {
+    } else if (this.slug == routeEnum.foundationOfSpirituality) {
       this.aboutItems = {
-        title: 'Foundation of Spirituality:',
-        span: 'An Online Spiritual Awakening Course',
+        title: 'Awaken the Path Within',
+        span: '',
         desc: `
        <p>The topic of spirituality is discussed way often lately and is also something that has been misunderstood a lot too.&nbsp; As more and more people are learning to grow their awareness and accepting their true realities, the word spirituality can be seen used more than ever. But do we really know what spirituality really is? Many people have different perceptions about spirituality, some consider it to be religion while some think the opposite.</p>
 
