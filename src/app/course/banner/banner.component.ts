@@ -56,7 +56,6 @@ export class BannerComponent implements OnInit {
   rishikeshMainHeading: string = '';
   rishikeshSubHeading: string = '';
   ngOnInit() {
-    console.log('sfbsd', this.slug)
     this.backGroundImageSet();
     this.rishikeshBannerSet();
   }
@@ -138,6 +137,11 @@ export class BannerComponent implements OnInit {
         this.rishikesHeroImage = s3Bucket.prashantjiHero;
         this.rishikeshMainHeading = 'Meet Acharya Prashant Jakhmola';
         this.rishikeshSubHeading = 'Yoga Vidya School Founder';
+        break;
+      case routeEnum.aboutUs:
+        this.rishikesHeroImage = s3Bucket.aboutUsBanner;
+        this.rishikeshMainHeading = 'Yoga Vidya School';
+        this.rishikeshSubHeading = 'Rooted in tradition, guided by wisdom';
         break;
       default:
         break;

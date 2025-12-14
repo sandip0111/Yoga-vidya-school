@@ -1,3 +1,4 @@
+<app-banner></app-banner>
 <section class="aboutUs patern-bg2">
   <div class="container">
     <div class="row">
@@ -16,11 +17,21 @@
     </div>
     <div class="row mt-4">
       <div class="col-lg-6">
-        <img loading="lazy" src="https://my-s3-images-bucket.s3.amazonaws.com/img/about1.png" class="w-100" alt="about-us" />
+        <img
+          loading="lazy"
+          [src]="s3Bucket.aboutWritten1"
+          class="w-100"
+          alt="about-us"
+        />
       </div>
 
       <div class="col-lg-6">
-        <img loading="lazy" src="https://my-s3-images-bucket.s3.amazonaws.com/img/about2.png" class="w-100" alt="about-us" />
+        <img
+          loading="lazy"
+          [src]="s3Bucket.aboutWritten2"
+          class="w-100"
+          alt="about-us"
+        />
       </div>
     </div>
 
@@ -61,7 +72,7 @@
       </div>
       <div class="col-lg-6">
         <div class="image_box">
-          <img loading="lazy" src="https://my-s3-images-bucket.s3.amazonaws.com/img/aboutUs.jpg" alt="about-us" />
+          <img loading="lazy" [src]="s3Bucket.about1" alt="about-us" />
         </div>
       </div>
     </div>
@@ -72,47 +83,9 @@
   <div class="container">
     <div class="row">
       <div class="col-12">
-        <h2 class="text-center mb-5">
-          Certified Yoga Courses in India by Yoga Vidya School
-        </h2>
+        <h2 class="text-center mb-5">The Paths of Learning We Share</h2>
       </div>
       <div class="col-lg-6">
-        <p>
-          Yoga Alliance Certified
-          <a
-            title="100 Hour"
-            href="https://yogavidyaschool.com/100-hours-yoga-teacher-training-in-rishikesh"
-            >100 Hour</a
-          >,
-          <a
-            title="200 Hour"
-            href="https://yogavidyaschool.com/200-hours-yoga-teacher-training-in-rishikesh"
-            >200 Hour</a
-          >,
-          <a
-            title="300 Hour"
-            href="https://yogavidyaschool.com/300-hours-yoga-teacher-training-in-rishikesh"
-            >300 Hour</a
-          >
-          and 500 Hour Yoga Teacher Training,
-          <a
-            title="Pranayama Therapy"
-            href="https://yogavidyaschool.com/pranayama-therapy-yoga-course"
-            >Pranayama Therapy</a
-          >, Specialisation of
-          <a
-            title="Alignment &amp; Adjustments"
-            href="https://yogavidyaschool.com/adjustment-and-alignment-level-one-yoga-course"
-            >Alignment &amp; Adjustments</a
-          >
-          of Asana,
-          <a
-            title="Breath Detox"
-            href="https://yogavidyaschool.com/breath-detox-yoga"
-            >Breath Detox</a
-          >, Chakra Marathon, Yoga Darshan, Pranayama Sadhna, Ashtanga Sadhana
-          and more...
-        </p>
         <p>
           Our school emphasise on all round development of the students’ life.
           So we based our teaching process on three pillars, named as
@@ -134,11 +107,23 @@
           postures or a beginner Yoga enthusiast, We cater all your
           requirements.
         </p>
+        <p>
+          Yoga Alliance Certified
+          <a title="100 Hour">100 Hour</a>, <a title="200 Hour">200 Hour</a>,
+          <a title="300 Hour">300 Hour</a>
+          and 500 Hour Yoga Teacher Training,
+          <a title="Pranayama Therapy">Pranayama Therapy</a>, Specialisation of
+          <a title="Alignment &amp; Adjustments">Alignment &amp; Adjustments</a>
+          of Asana,
+          <a title="Breath Detox">Breath Detox</a>, Chakra Marathon, Yoga
+          Darshan, Pranayama Sadhna, Ashtanga Sadhana and more...
+        </p>
       </div>
       <div class="col-lg-6">
         <div class="centerMid">
-          <img loading="lazy"
-            src="https://my-s3-images-bucket.s3.amazonaws.com/img/1638962757_about-yoga-vidya.jpg"
+          <img
+            loading="lazy"
+            [src]="s3Bucket.about2"
             alt="about-us"
             class="w-100 shadow"
           />
@@ -147,66 +132,19 @@
     </div>
   </div>
 </section>
-<section class="travelCulture patern-bg2">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-lg-6">
-        <div class="image_box big">
-          <img loading="lazy" alt="Not Loaded"
-            src="https://my-s3-images-bucket.s3.amazonaws.com/img/rishikesh/travelRishikesh.JPG"
-            alt="Rishikesh Travel"
-            class="w-100"
-          />
-        </div>
-      </div>
-      <div class="col-lg-6 rishikeshText">
-        <h2>
-          Travel Rishikesh and Experience its Culture and Energy while doing
-          Yoga Teacher Training and Yoga Retreats in India.
-        </h2>
-        <p>
-          As mentioned above, the student is not only learning the aspects of
-          yoga practices, they also practice and experience it throughly. Not
-          only inside the school campus, we believe experience comes from
-          visiting places that got energy from ancient yogis and therefore we
-          organise trips to such places where yogis have done Sadhana and
-          Tapasya for years.
-        </p>
-        <h5>Some of the places we visit are:</h5>
-        <ul
-          style="list-style-type: circle; text-align: justify"
-          class="iconlist iconlist-large nobottommargin"
-        >
-          <li><i class="icon-ok-sign"></i>Sivananda yoga ashram</li>
-          <li><i class="icon-ok-sign"></i>Vasishtha Cave&nbsp;</li>
-          <li><i class="icon-ok-sign"></i>Moni Baba Cave&nbsp;</li>
-          <li><i class="icon-ok-sign"></i>Dayananda Ashram</li>
-          <li><i class="icon-ok-sign"></i>84 kuti Ashram / Beatles Ashram</li>
-          <li><i class="icon-ok-sign"></i>Omkarananda Ashram</li>
-          <li><i class="icon-ok-sign"></i>Parmarth Ashram with Ganga Arti</li>
-        </ul>
-        <p>
-          During Yoga Teacher Training in India, we also takes our students for
-          various recreational and cultural activities like sun rise trekking in
-          the Himalayas, Ganga Aarti, Waterfalls and nearby spots (Ganga beach
-          yoga practises and river rafting for creating complete awareness
-          regarding mother nature to our students). In Yoga Vidya School, you
-          are not only practicing&nbsp; the techniques and the methods of yoga
-          practices but also adopting the life style of yoga with the spiritual
-          surroundings of Rishikesh.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
 <section class="ourMission patern-bg2">
   <div class="container">
     <div class="row">
+      <div class="d-flex justify-content-center">
+        <img
+          loading="lazy"
+          alt="flower"
+          [src]="s3Bucket.flower"
+          class="flower-img"
+        />
+      </div>
       <div class="col-12">
-        <h2>
-          Our Mission in all Yoga Destinations – Rishikesh, Kerala, Bali,
-          Romania and Russia
-        </h2>
+        <h2 class="text-center">Our Mission in all Yoga Destinations</h2>
         <p>
           Our mission is to bring out the ancient practices of yoga from the
           <strong>Upanishads</strong> and the <strong>Shastras</strong> into the
@@ -222,7 +160,7 @@
           practitioners.
         </p>
 
-        <h2>What Will You Get in Yoga Vidya School ?</h2>
+        <h2 class="text-center">What Will You Get in Yoga Vidya School ?</h2>
         <p>
           We believe yoga is a path that needs discipline and regularity and
           proper guidance. Our guests or students can find these three
@@ -249,7 +187,7 @@
           <li><i class="icon-ok-sign"></i>Community of Like-minded People</li>
         </ul>
 
-        <h2>Improve Your Yoga and Life at Yoga Vidya School Rishikesh</h2>
+        <h2 class="text-center">Improve Your Yoga and Life at Yoga Vidya School</h2>
         <p>
           We believe there are two ways of improving your yoga practices:<strong
             >Continuous Practice</strong

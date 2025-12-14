@@ -110,7 +110,7 @@ export const routes: Routes = [
   { path: 'my-account', component: MyAccountComponent },
   { path: 'password/:id', component: ChangePasswordComponent },
   { path: 'course-video/:id', component: CourseVideoComponent },
-  { path: 'about-us', component: AboutComponent },
+  { path: routeEnum.aboutUs, component: AboutComponent },
   { path: 'login', component: LoginComponent },
   { path: 'privacy-policy', component: PrivacyPolicyComponent },
   { path: 'gallery', component: YogaGalleryComponent },
