@@ -666,7 +666,7 @@ a certification: it’s a transformation.
 <p>Harsha has also authored a book titled Ashtavakra Gita: The Ultimate Solace – Third Edition, a significant contemporary work in spiritual literature considered as a modern-day masterpiece on spirituality.</p>
 <p>&nbsp;</p>
 <h2><span>Requirements</span></h2>
-<p>No previous knowledge or tools required.</p>
+<h5>Anyone who is interested in introduction to spirituality and philosophy can join this course, no previous knowledge or tools are required.</h5>
         `,
       };
     } else if (this.slug == 'yoga-inversion-workshop-headstand') {

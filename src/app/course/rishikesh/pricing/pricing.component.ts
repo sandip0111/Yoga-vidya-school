@@ -58,6 +58,9 @@ export class PricingComponent implements OnInit {
       case routeEnum.bali300:
         this.mainHeading = 'Pricing of 300 Hours TTC Bali';
         break;
+      case routeEnum.foundationOfSpirituality:
+        this.mainHeading = 'Pricing of Foundation of Spirituality';
+        break;
       default:
         break;
     }
