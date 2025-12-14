@@ -263,3 +263,12 @@ h1 span {
 .cursor-pointer {
   cursor: pointer;
 }
+
+.resp-img {
+  width: 100%;
+}
+@media (min-width: 768px) {
+  .resp-img {
+    width: 25%;
+  }
+}

@@ -617,55 +617,55 @@ a certification: it’s a transformation.
 
 <p>&nbsp;</p>
 
-<p><strong>*Basics of Spirituality</strong></p>
+<p><strong>✨ Basics of Spirituality</strong></p>
 
-<p>&nbsp; -Meaning of spirituality</p>
+<p>&nbsp; -What spirituality truly means</p>
 
-<p>&nbsp; -Goals of spirituality</p>
+<p>&nbsp; -The ultimate goals of spirituality</p>
 
-<p>&nbsp; -Types of suffering</p>
+<p>&nbsp; -Understanding the roots of suffering</p>
 
-<p>&nbsp; -Difference between spirituality and religion</p>
+<p>&nbsp; -Spirituality vs. Religion — the real difference</p>
 
-<p>&nbsp; -Different connotation attached to the word dharma</p>
+<p>&nbsp; -The many meanings of Dharma</p>
 
-<p><strong>*Spiritual Philosophy</strong></p>
+<p><strong>📖 Spiritual Philosophy</strong></p>
 
-<p>&nbsp; -Role of philosophy in Spirituality</p>
+<p>&nbsp; -Why philosophy is essential on the path</p>
 
-<p>&nbsp; -Importance of understanding philosophy in spirituality</p>
+<p>&nbsp; -The role of wisdom in practice</p>
 
-<p>&nbsp; -Pillars of spirituality</p>
+<p>&nbsp; -The pillars that sustain spirituality</p>
 
-<p><strong>*Indian Philosophies</strong></p>
+<p><strong>🕉️ Indian Philosophies</strong></p>
 
-<p>&nbsp; -Classification of Indian Philosophies</p>
+<p>&nbsp; -Overview of Indian philosophical systems</p>
 
-<p>&nbsp; -How to study Indian Philosophies</p>
-
+<p>&nbsp; -How to approach and study them with clarity</p>
 <p>&nbsp;</p>
-
+<p>Ready to jump from Awareness to Liberation?</p>
+<a (click)="goToLink('/checkout/200-hours-yoga-teacher-training-in-rishikesh')" class="button cursor-pointer ms-0">Join Now</a>
+<p>&nbsp;</p>
 <h2>Who is this course for?</h2>
-
-<p>&nbsp;</p>
-
 <p>Anyone who is interested in introduction to spirituality and philosophy.</p>
 
 <p>&nbsp;</p>
 
 <h2><span>Meet The Teacher</span></h2>
-
+<p><img alt="Foundation of Spirituality" class="img-fluid resp-img" src="https://my-s3-images-bucket.s3.amazonaws.com/img/image_1679309899405.jpeg" style="box-shadow: 0px 23.77px 23.77px 0px rgba(0, 0, 0, 0.55); border-radius: 10px;"/></p>
 <p>&nbsp;</p>
 
-<p><img alt="Foundation of Spirituality" class="img-fluid" src="https://my-s3-images-bucket.s3.amazonaws.com/img/image_1679309899405.jpeg" style="box-shadow: 0px 23.77px 23.77px 0px rgba(0, 0, 0, 0.55); border-radius: 10px;"/></p>
+<p>Harshwardhan Yardi blends the depth of ancient spiritual wisdom with a clear, modern perspective. His teachings remain rooted in authentic scriptures, while being relevant to today’s seekers.</p>
+<p>He began his career as a software engineer, but then arrived at a turning point in his mid-twenties where he came across a spiritual book that set him on a path of intense spiritual pursuit.</p>
+<p>For 10 years, Swami ji lived in the harsh conditions of the Himalayas, performing spiritual practices and ascetics.</p>
+<p>Living in a traditional ashram, he studied the original writings of Indian Philosophy in Sanskrit, immersed himself in the truths of the universe, and engaged in knowing one’s true self.</p>
+<p>This combination of personal experience and scriptural immersion helped him uncover the essence of spiritual enlightenment—that later shaped his teaching style rooted in authenticity and clarity.</p>
+<p>Today, Harsha teaches various systems of spiritual philosophy in a precise, evidence-based manner. He is especially known for offering clear metaphysical insights into the nature of soul, the principles of karma, and the deeper fabric of existence—guiding seekers with structured understanding on their path to liberation.</p>
+<p>His lectures have been well-received by his regular students across various countries and cultures.</p>
+<p>He has traveled to Brazil, Russia, Nepal, and major cities across India to deliver discourses on spirituality and self-realization.</p>
+<p>Harsha has also authored a book titled Ashtavakra Gita: The Ultimate Solace – Third Edition, a significant contemporary work in spiritual literature considered as a modern-day masterpiece on spirituality.</p>
 <p>&nbsp;</p>
-
-<p>Harsha Yardi was born and raised in India in a Brahmi Family. He received a higher education in the studies of Software Engineering. But at the age of 25, he left his job and decided to set out on the path of a spiritual seeker. For 10 years, Swami ji lived in the harsh conditions of Himalayas, performing spiritual practices and ascetics. Living in a traditional ashram, he studied the original writings of Indian Philosophy in Sanskrit, immersed himself in the truths of the universe, and engaged in knowing one&rsquo;s true self. Today, Harsha Yardi is the author of books on Spirituality and teaches various systems of Traditional Yogic Philosophy. He conducts seminars related to spirituality and mindfulness in various counties.</p>
-
-<p>&nbsp;</p>
-
 <h2><span>Requirements</span></h2>
-
 <p>No previous knowledge or tools required.</p>
         `,
       };

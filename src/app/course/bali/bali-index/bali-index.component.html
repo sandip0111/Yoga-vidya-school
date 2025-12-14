@@ -51,7 +51,7 @@
 <app-pricing [slug]="slug"></app-pricing>
 <app-fee-structure [data]="feesData"></app-fee-structure>
 <app-choose-us [data]="codecond"></app-choose-us>
-<app-mentors></app-mentors>
+<app-mentors *ngIf="slug != routeEnum.foundationOfSpirituality"></app-mentors>
 <app-services></app-services>
 <app-code-conduct [data]="codecond"></app-code-conduct>
 <app-yoga-alliance [data]="codecond"></app-yoga-alliance>
@@ -59,10 +59,12 @@
 <app-watch-video
   [data]="youtubeVideoData"
   [slug]="slug"
-  *ngIf="isYoutubeDataReady && slug != routeEnum.bali300"
+  *ngIf="isYoutubeDataReady && slug != routeEnum.bali300 && slug != routeEnum.foundationOfSpirituality"
 ></app-watch-video>
-<app-testimonials *ngIf="slug != routeEnum.bali300"></app-testimonials>
-<app-gallery *ngIf="slug != routeEnum.bali300 && slug != routeEnum.bali200"></app-gallery>
+<app-testimonials *ngIf="slug != routeEnum.bali300 && slug != routeEnum.foundationOfSpirituality"></app-testimonials>
+<app-gallery
+  *ngIf="slug != routeEnum.bali300 && slug != routeEnum.bali200"
+></app-gallery>
 <app-video-testimonials
   *ngIf="
     slug != 'yoga-retreat-in-mysore-india' &&
