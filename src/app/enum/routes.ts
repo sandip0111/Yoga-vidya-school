@@ -21,5 +21,6 @@ export enum routeEnum {
   'stRegister' = 'student-register',
   'sa' = 'swara-sadhana',
   'freeWebiner' = 'free-webinar',
-  'aboutUs' = 'about-us'
+  'aboutUs' = 'about-us',
+  'foundationOfSpirituality' = 'foundation-of-spirituality-an-online-spiritual-awakening-course',
 }

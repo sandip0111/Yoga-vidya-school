@@ -91,6 +91,7 @@ export enum s3Bucket {
   aboutWritten2 = 'https://my-s3-images-bucket.s3.amazonaws.com/img/about2.png',
   about1 = 'https://my-s3-images-bucket.s3.amazonaws.com/img/aboutUs.jpg',
   about2 = 'https://my-s3-images-bucket.s3.amazonaws.com/img/1638962757_about-yoga-vidya.jpg',
+  foundationOfSpirituality = 'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/DSC09238.jpg',
 }
 export enum youtubeLink {
   trainingImportance = 'https://www.youtube.com/embed/t7l1cqDj1tA?si=ZJCQXJYDLzDwLLvm',

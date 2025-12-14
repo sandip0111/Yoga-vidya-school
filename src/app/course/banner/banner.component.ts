@@ -143,6 +143,9 @@ export class BannerComponent implements OnInit {
         this.rishikeshMainHeading = 'Yoga Vidya School';
         this.rishikeshSubHeading = 'Rooted in tradition, guided by wisdom';
         break;
+      case routeEnum.foundationOfSpirituality:
+        this.rishikesHeroImage = s3Bucket.foundationOfSpirituality;
+        break;
       default:
         break;
     }
@@ -166,8 +169,7 @@ export class BannerComponent implements OnInit {
       this.slug == '200-hour-yoga-teacher-training-in-kerala-india' ||
       this.slug == 'yoga-retreat-in-kerala-india' ||
       this.slug == 'breath-detox-yoga' ||
-      this.slug ==
-        'foundation-of-spirituality-an-online-spiritual-awakening-course' ||
+      this.slug == routeEnum.foundationOfSpirituality ||
       this.slug == 'yoga-inversion-workshop-headstand' ||
       this.slug == 'yoga-philosophy-course-free' ||
       this.slug == 'yoga-history-and-philosophy' ||
