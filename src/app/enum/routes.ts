@@ -15,6 +15,7 @@ export enum routeEnum {
   'bDtox' = 'breath-detox-yoga',
   'online' = 'online-yoga-classes',
   'prashantjPage' = 'yoga-teacher/acharya-prashant-jakhmola/prashantjyoga',
+  'aboutPrashantJi' = 'yoga-teacher/acharya-prashant-jakhmola/:id',
   'preRecordPranayamaCourse' = 'pre-recorded-pranayama-courses',
   'swaraSadhana' = 'swara-sadhana',
   'stRegister' = 'student-register',

@@ -118,7 +118,7 @@ export const routes: Routes = [
   { path: 'faq', component: FaqComponent },
   { path: 'testimonial', component: TestinomialComponent },
   {
-    path: 'yoga-teacher/acharya-prashant-jakhmola/:id',
+    path: routeEnum.aboutPrashantJi,
     component: YogateacherComponent,
   },
   { path: 'confirmation', component: SuccessPaymentComponent },

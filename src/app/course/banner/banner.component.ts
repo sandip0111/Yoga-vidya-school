@@ -56,6 +56,7 @@ export class BannerComponent implements OnInit {
   rishikeshMainHeading: string = '';
   rishikeshSubHeading: string = '';
   ngOnInit() {
+    console.log('sfbsd', this.slug)
     this.backGroundImageSet();
     this.rishikeshBannerSet();
   }
@@ -132,6 +133,11 @@ export class BannerComponent implements OnInit {
         this.rishikeshMainHeading = '300 hour Yoga Teacher Training in Bali';
         this.rishikeshSubHeading =
           'A sacred immersion in advanced yoga practices, set against Bali’s serene landscapes.';
+        break;
+      case routeEnum.aboutPrashantJi:
+        this.rishikesHeroImage = s3Bucket.prashantjiHero;
+        this.rishikeshMainHeading = 'Meet Acharya Prashant Jakhmola';
+        this.rishikeshSubHeading = 'Yoga Vidya School Founder';
         break;
       default:
         break;
