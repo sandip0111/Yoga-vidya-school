@@ -276,7 +276,7 @@ export class IndexComponent {
           "sameAs": [
              "https://www.facebook.com/yogavidyarishikesh/",
              "https://www.instagram.com/yogavidyaschool/",
-             "https://www.youtube.com/c/prashantjyoga/",
+             "https://www.youtube.com/@yogavidyaschool/",
              "https://twitter.com/Yogavidyaschool",
              "https://www.yogavidyaschool.com/"
           ]
