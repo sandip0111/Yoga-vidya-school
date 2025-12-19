@@ -145,6 +145,8 @@ export class BannerComponent implements OnInit {
         break;
       case routeEnum.foundationOfSpirituality:
         this.rishikesHeroImage = s3Bucket.foundationOfSpirituality;
+        this.rishikeshMainHeading = 'Foundation of Spirituality';
+        this.rishikeshSubHeading = 'An online spiritual awakening course';
         break;
       default:
         break;
