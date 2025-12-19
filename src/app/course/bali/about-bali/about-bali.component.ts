@@ -53,7 +53,7 @@ a certification: it’s a transformation.
         <p><b>Experience profound physical, mental, and spiritual transformation with our 300-hour Yoga Teacher Training in Ubud, Bali. </b>Surrounded by Bali’s lush rice fields, serene beaches, and deep spiritual heritage, this program invites you to immerse yourself in a journey of self-discovery and advanced yogic studies.</p>
         <p>Our 300-hour TTC is designed for students who have completed a 200-hour training and wish to deepen their practice, as well as for seasoned practitioners seeking to refine their knowledge. This Yoga Alliance–certified course combines traditional wisdom with practical teaching methodologies, guiding you into the subtler and more advanced dimensions of yoga.</p>
         <p>Led by experienced and devoted teachers, the training covers advanced asana, pranayama, meditation, yogic anatomy and physiology, as well as sequencing, adjustments, and philosophy. You will also explore how modern perspectives from psychology and neuroscience connect with the timeless patterns of yogic practice.</p>
-        <p>More than a certification, this is an invitation to walk a path that transcends the physical, illuminating your inner light and strengthening your role as both practitioner and teacher.</p> 
+        <p>More than a certification, this is an invitation to walk a path that transcends the physical, illuminating your inner light and strengthening your role as both practitioner and teacher.</p>
         `,
         image: s3Bucket.bali300About,
         alt: '300 yoga teacher training in bali',
@@ -644,7 +644,7 @@ a certification: it’s a transformation.
 <p>&nbsp; -How to approach and study them with clarity</p>
 <p>&nbsp;</p>
 <p>Ready to jump from Awareness to Liberation?</p>
-<a (click)="goToLink('/checkout/200-hours-yoga-teacher-training-in-rishikesh')" class="button cursor-pointer ms-0">Join Now</a>
+<a href="/checkout/${routeEnum.foundationOfSpirituality}" class="button cursor-pointer ms-0">Join Now</a>
 <p>&nbsp;</p>
 <h2>Who is this course for?</h2>
 <p>Anyone who is interested in introduction to spirituality and philosophy.</p>
@@ -990,7 +990,11 @@ A watering hole for adventure freaks and solo travellers, Peru with its gorgeous
     });
   }
   goToPaymentPage() {
-    if (this.slug == routeEnum.bali300 || this.slug == routeEnum.bali200) {
+    if (
+      this.slug == routeEnum.bali300 ||
+      this.slug == routeEnum.bali200 ||
+      this.slug == routeEnum.foundationOfSpirituality
+    ) {
       this.router.navigate([`/checkout/${this.slug}`]);
     } else {
       this._pixelTrackingService.trackViewContent(

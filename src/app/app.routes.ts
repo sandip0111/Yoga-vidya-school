@@ -99,7 +99,7 @@ export const routes: Routes = [
     component: BaliIndexComponent,
   },
   {
-    path: 'foundation-of-spirituality-an-online-spiritual-awakening-course',
+    path: routeEnum.foundationOfSpirituality,
     component: BaliIndexComponent,
   },
   { path: 'yoga-philosophy-course-free', component: BaliIndexComponent },
