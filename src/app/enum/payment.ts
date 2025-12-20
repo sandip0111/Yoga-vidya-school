@@ -17,7 +17,7 @@ export enum stripePaymentKey {
   discountEur = 'price_1RaKFISEQq0H4GuEzeks9Aep',
   // swaraInr = 'price_1R6SxVSEQq0H4GuEkPItyCGM' // for local check
   swaraInr = 'price_1RU5NZSEQq0H4GuEMf7nRCHv',
-  // fosInr = 'price_1SgL0DSEQq0H4GuE8ltUBHUz', //prod
-  fosInr = 'price_1SgL1mSEQq0H4GuEIYnr43Kw', // test
+  fosInr = 'price_1SgL0DSEQq0H4GuE8ltUBHUz', //prod
+  // fosInr = 'price_1SgL1mSEQq0H4GuEIYnr43Kw', // test
   fosUSD = 'price_1SgL0TSEQq0H4GuEVYe4HuVy'
 }
