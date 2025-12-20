@@ -47,7 +47,7 @@
 <app-learning></app-learning>
 <app-curriculum [data]="currData"></app-curriculum>
 <app-includes [data]="feesData"></app-includes>
-<app-bonus></app-bonus>
+<app-bonus *ngIf="slug != routeEnum.foundationOfSpirituality"></app-bonus>
 <app-pricing [slug]="slug"></app-pricing>
 <app-fee-structure [data]="feesData"></app-fee-structure>
 <app-choose-us [data]="codecond"></app-choose-us>
@@ -59,9 +59,17 @@
 <app-watch-video
   [data]="youtubeVideoData"
   [slug]="slug"
-  *ngIf="isYoutubeDataReady && slug != routeEnum.bali300 && slug != routeEnum.foundationOfSpirituality"
+  *ngIf="
+    isYoutubeDataReady &&
+    slug != routeEnum.bali300 &&
+    slug != routeEnum.foundationOfSpirituality
+  "
 ></app-watch-video>
-<app-testimonials *ngIf="slug != routeEnum.bali300 && slug != routeEnum.foundationOfSpirituality"></app-testimonials>
+<app-testimonials
+  *ngIf="
+    slug != routeEnum.bali300 && slug != routeEnum.foundationOfSpirituality
+  "
+></app-testimonials>
 <app-gallery
   *ngIf="slug != routeEnum.bali300 && slug != routeEnum.bali200"
 ></app-gallery>

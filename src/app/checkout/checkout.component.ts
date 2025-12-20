@@ -685,6 +685,7 @@ export class CheckoutComponent {
   }
   pranaArambhCheckout(data: checkoutModel, isRazorPay: boolean) {
     sessionStorage.setItem('tempCourse', this.courseList._id);
+    console.log('mdasntssk');
     let pass = this.genratePass(6);
     if (this.oldStudent == false) {
       this.newStudentCheckOut(data, isRazorPay, pass);
@@ -823,8 +824,13 @@ export class CheckoutComponent {
             } else if (data.currency == 'USD') {
               this.initializePayment(stripePaymentKey.premiumUsd, data.email);
             }
-          } else if (this.courseList.priceId) {
-            this.initializePayment(this.courseList.priceId, data.email);
+          } else if (this.slug == routeEnum.foundationOfSpirituality) {
+            this.initializePayment(
+              data.currency == 'INR'
+                ? stripePaymentKey.fosInr
+                : stripePaymentKey.fosUSD,
+              data.email
+            );
           }
         } else {
           this.initializeRazorPayment(data);
