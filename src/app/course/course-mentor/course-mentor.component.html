@@ -106,7 +106,7 @@
                     </div>
                   </div>
                   <div class="col-md-12 middle-text mt-2">
-                    <h4>{{ mentor.name }} - {{ mentor.time }} Workshop</h4>
+                    <h4>{{ mentor.name }} - {{ mentor.time }}</h4>
                     <p>
                       Price:
                       <span *ngFor="let item of mentor.price; let i = index">
@@ -121,7 +121,7 @@
                       class="button blinking"
                       (click)="goToMentorPage(mentor.url, mentor.id)"
                     >
-                      Book now
+                      More Information
                     </button>
                   </div>
                 </div>
