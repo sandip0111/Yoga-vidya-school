@@ -73,3 +73,15 @@
     aspect-ratio: 7/3;
   }
 }
+.taniya-corner {
+  position: absolute;
+  bottom: 28px;
+  right: 62px;
+  font-weight: 700;
+  color: #ffffff;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+  @media (max-width: 768px) {
+    right: 0;
+    left: 10px;
+  }
+}

@@ -1,7 +1,23 @@
 <div class="row p-0">
   <div class="col-md-12">
     <div style="position: relative">
-      <div class="inner image">
+      <div class="inner image position-relative">
+        <div class="taniya-corner">
+          <p>
+            {{mentor.date}} <br /> From {{mentor.time}} <br />
+            Next batch starts: January 5th.<br />
+            -A new batch starts the first Monday of every month-
+          </p>
+          <div class="d-flex justify-content-center">
+            <button
+              class="button"
+              style="margin-top: 0"
+              (click)="addToCart(mentor)"
+            >
+              Join now
+            </button>
+          </div>
+        </div>
         <img
           [src]="s3Bucket.taniyaHero"
           class="img-fluid banner_image"
@@ -69,7 +85,7 @@
           style="width: 6rem"
         />
         <h2 style="text-align: center">
-          <span>NEXT BATCH STARTS:</span> Coming soon....
+          <span>a practice designed for the wisdom of women’s bodies</span>
         </h2>
         <button
           class="button"
