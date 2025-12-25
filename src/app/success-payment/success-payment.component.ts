@@ -269,6 +269,7 @@ export class SuccessPaymentComponent {
       payDbId: sessionStorage.getItem('onlineLiveClassDbPayRazor'),
       fbp: fbp,
       fbc: fbc,
+      password: this.genratePass(6),
     };
     this.webapiService
       .verifyRazorpayPayment(paymentResult)
