@@ -983,6 +983,14 @@ export class CheckoutComponent {
                 'pranic_purificationDbPayRazor',
                 res.payDbId
               );
+               sessionStorage.setItem(
+                'pranic_purification_razorpay_payment_amount',
+                data.price
+              );
+               sessionStorage.setItem(
+                'pranic_purification_razorpay_payment_currency',
+                res.currency
+              );
               this.router.navigate(['/confirmation']);
             },
             prefill: {

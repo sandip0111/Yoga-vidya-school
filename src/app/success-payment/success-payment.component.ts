@@ -326,6 +326,8 @@ export class SuccessPaymentComponent {
   }
 
   getRazorPaymentResultPranicPurification(razorpay_payment_id: string) {
+    const fbp = this.getCookie('_fbp');
+    const fbc = this.getCookie('_fbc');
     const paymentResult = {
       razorpay_payment_id: razorpay_payment_id,
       razorpay_order_id: sessionStorage.getItem(
@@ -336,6 +338,8 @@ export class SuccessPaymentComponent {
       ),
       payDbId: sessionStorage.getItem('pranic_purificationDbPayRazor'),
       password: this.genratePass(6),
+      fbp: fbp,
+      fbc: fbc,
     };
     this.webapiService
       .getRazorPaymentResultPranicPurification(paymentResult)
@@ -344,7 +348,22 @@ export class SuccessPaymentComponent {
           this.paidFlag = 'true';
           this.ordId = res.orderId;
           sessionStorage.removeItem('pranic_purification_razorpay_payment_id');
+          var currency =  sessionStorage.getItem(
+            'pranic_purification_razorpay_payment_currency'
+            )
+          var amount = Number(sessionStorage.getItem(
+            'pranic_purification_razorpay_payment_amount'
+            )) || 0;
           localStorage.removeItem(localstorageKey.couponCode);
+           this.pixelTracking.trackPurchasePranicPurification(
+            this.ordId,
+            'pranic_purification',
+            'Pranic Purification - Best online pranayama sadhana',
+            amount,
+            this.currencySet(currency ?? 'usd'),
+          );
+           sessionStorage.removeItem('pranic_purification_razorpay_payment_amount');
+           sessionStorage.removeItem('pranic_purification_razorpay_payment_currency');
           //this.pixelTracking.trackPurchase(this.ordId, 'Pranic Purification', 'Pranic Purification razorpay', this.amount, this.cur);
           this.spinner.hide();
         } else {
@@ -355,10 +374,14 @@ export class SuccessPaymentComponent {
   }
 
   getPaymentResultPranicPurification(pranicPurificationSessionId: string) {
+    const fbp = this.getCookie('_fbp');
+    const fbc = this.getCookie('_fbc');
     let val = {
       pranicPurificationSessionId: pranicPurificationSessionId,
       payDbId: sessionStorage.getItem(localstorageKey.praanicPayId),
       password: this.genratePass(6),
+      fbp: fbp,
+      fbc: fbc,
     };
     this.webapiService
       .getPaymentResultPranicPurification(val)
@@ -370,6 +393,13 @@ export class SuccessPaymentComponent {
           this.ordId = res.paymtId;
           this.amount = res.amount;
           this.cur = this.currencySet(res.currency);
+          this.pixelTracking.trackPurchasePranicPurification(
+            this.ordId,
+            'pranic_purification',
+            'Pranic Purification - Best online pranayama sadhana',
+            this.amount,
+            this.cur
+          );
           //this.pixelTracking.trackPurchase(this.ordId, 'Pranic Purification', 'Pranic Purification stripe', this.amount, this.cur);
           this.spinner.hide();
         } else {

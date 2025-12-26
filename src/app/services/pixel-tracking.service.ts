@@ -94,7 +94,24 @@ export class PixelTrackingService {
     fbq('track', 'Purchase', {
       content_ids: ["200_ttc"],
       content_name: "200 Hours Online Yoga Teacher Training Course",
-      content_type: 'yoga_course',
+      content_type: 'online_ttc',
+      value: value,
+      currency: currency,
+      num_items: 1
+    }, {
+      eventID: eventId 
+    });
+  }
+}
+
+  trackPurchasePranicPurification(transactionId: string, courseId: string, courseName: string, value: number, currency: string = 'USD') {
+  if (typeof fbq !== 'undefined') {   
+    const eventId = "pranic_purification";
+    
+    fbq('track', 'Purchase', {
+      content_ids: ["pranic_purification"],
+      content_name: "Pranic Purification - Best online pranayama sadhana",
+      content_type: 'pranic_purification',
       value: value,
       currency: currency,
       num_items: 1
@@ -111,7 +128,7 @@ trackPurchaseLiveClasses(transactionId: string, courseId: string, courseName: st
     fbq('track', 'Purchase', {
       content_ids: ["live_classes"],
       content_name: "Live Yoga Classes",
-      content_type: 'yoga_course',
+      content_type: 'live_yoga_classes',
       value: value,
       currency: currency,
       num_items: 1
