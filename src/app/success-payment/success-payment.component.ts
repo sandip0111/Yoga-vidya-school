@@ -47,7 +47,7 @@ export class SuccessPaymentComponent {
     private spinner: NgxSpinnerService,
     private title: Title,
     private pixelTracking: PixelTrackingService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     setTimeout(() => {
@@ -230,6 +230,7 @@ export class SuccessPaymentComponent {
       dbPay: sessionStorage.getItem('onlineLiveClassDbPay'),
       fbp: fbp,
       fbc: fbc,
+      password: this.genratePass(6),
     };
     this.webapiService
       .getPaymentResultAndSendMailForLiveClass(val)
