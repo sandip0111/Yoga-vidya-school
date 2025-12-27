@@ -104,7 +104,7 @@ export class PixelTrackingService {
   }
 }
 
-  trackPurchasePranicPurification(transactionId: string, courseId: string, courseName: string, value: number, currency: string = 'USD') {
+trackPurchasePranicPurification(transactionId: string, courseId: string, courseName: string, value: number, currency: string = 'USD') {
   if (typeof fbq !== 'undefined') {   
     const eventId = "pranic_purification";
     
@@ -120,6 +120,23 @@ export class PixelTrackingService {
     });
   }
 }
+
+ trackPurchaseRishikeshTTC(transactionId: string, courseId: string, courseName: string, value: number, currency: string = 'USD') {
+  if (typeof fbq !== 'undefined') {   
+    const eventId = "rishikesh_ttc";
+    
+    fbq('track', 'Purchase', {
+      content_ids: ["rishikesh_ttc"],
+      content_name: "Rishikesh Yoga Teacher Training Course",
+      content_type: 'rishikesh_ttc',
+      value: value,
+      currency: currency,
+      num_items: 1
+    }, {
+      eventID: eventId 
+    });
+  }
+}    
 
 trackPurchaseLiveClasses(transactionId: string, courseId: string, courseName: string, value: number, currency: string = 'USD') {
   if (typeof fbq !== 'undefined') {   

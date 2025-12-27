@@ -504,6 +504,8 @@ export class SuccessPaymentComponent {
   }
   isRishikesh: boolean = false;
   getRazorPaymentResultRishikesh200(razorpayPaymentId: string) {
+    const fbp = this.getCookie('_fbp');
+    const fbc = this.getCookie('_fbc');
     const paymentResult: razorPaymentResultModel = {
       razorpayPaymentId: razorpayPaymentId,
       razorpayOrderId: localStorage.getItem(
@@ -511,6 +513,8 @@ export class SuccessPaymentComponent {
       ),
       razorpaySignature: localStorage.getItem(localstorageKey.rishikesh200Sig),
       payDbId: localStorage.getItem(localstorageKey.rishikesh200DBId),
+      fbp: fbp,
+      fbc: fbc,
     };
     this.webapiService
       .getRazorPaymentResultRishikesh(paymentResult)
@@ -521,7 +525,7 @@ export class SuccessPaymentComponent {
           this.ordId = paymentResult.razorpayOrderId;
           this.amount = res.amount;
           this.cur = this.currencySet(res.currency);
-          // this.pixelTracking.trackPurchase(this.ordId, '200 Rishikesh TTC offline', '200 Rishikesh TTC offline razorpay', this.amount, this.cur);
+          this.pixelTracking.trackPurchaseRishikeshTTC(this.ordId, 'rishikesh_ttc', 'Rishikesh Yoga Teacher Training Course', this.amount, this.cur);
           this.spinner.hide();
         } else {
           this.paidFlag = 'false';
@@ -534,9 +538,13 @@ export class SuccessPaymentComponent {
       });
   }
   getStripePaymentResultRishikesh200(sessionId: string) {
+    const fbp = this.getCookie('_fbp');
+    const fbc = this.getCookie('_fbc');
     let val = {
       sessionId: sessionId,
       payDbId: localStorage.getItem(localstorageKey.rishikesh200StripeDBId),
+      fbp: fbp,
+      fbc: fbc,
     };
     this.webapiService
       .getStripePaymentResultRishikesh(val)
@@ -547,7 +555,7 @@ export class SuccessPaymentComponent {
           this.ordId = res.data.paymtId;
           this.amount = res.data.amount;
           this.cur = this.currencySet(res.data.currency);
-          //this.pixelTracking.trackPurchase(this.ordId, '200 Rishikesh TTC offline', '200 Rishikesh TTC offline stripe', this.amount, this.cur);
+          this.pixelTracking.trackPurchaseRishikeshTTC(this.ordId, 'rishikesh_ttc', 'Rishikesh Yoga Teacher Training Course', this.amount, this.cur);
           this.spinner.hide();
         } else {
           this.paidFlag = 'false';
