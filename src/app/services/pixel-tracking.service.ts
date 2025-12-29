@@ -121,6 +121,23 @@ trackPurchasePranicPurification(transactionId: string, courseId: string, courseN
   }
 }
 
+trackPurchaseSwaraSadhana(transactionId: string, courseId: string, courseName: string, value: number, currency: string = 'USD') {
+  if (typeof fbq !== 'undefined') {   
+    const eventId = "swara_sadhana";
+    
+    fbq('track', 'Purchase', {
+      content_ids: ["swara_sadhana"],
+      content_name: "Swara Sadhana",
+      content_type: 'swara_sadhana',
+      value: value,
+      currency: currency,
+      num_items: 1
+    }, {
+      eventID: eventId 
+    });
+  }
+}
+
  trackPurchaseRishikeshTTC(transactionId: string, courseId: string, courseName: string, value: number, currency: string = 'USD') {
   if (typeof fbq !== 'undefined') {   
     const eventId = "rishikesh_ttc";

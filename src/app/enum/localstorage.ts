@@ -23,6 +23,7 @@ export enum localstorageKey {
   'swaraSadhnaSig' = 'swara_sadhna_rzp_signature',
   'swaraSadhnaDBId' = 'swara_sadhna_rzp_db_id',
   'swaraSadhnaAmnt' = 'swara_sadhna_rzp_amnt',
+  'swaraSadhnaCurr' = 'swara_sadhna_rzp_curr',
   'swaraSadhnaUserID' = 'swara_sadhna_user_id',
   'swaraSadhnaStripeSessionId' = 'swara_sadhna_stripe_session_id',
   'swaraSadhnaStripeDBId' = 'swara_sadhna_stripe_db_id',

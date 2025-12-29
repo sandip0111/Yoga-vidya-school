@@ -96,6 +96,9 @@ export interface swaraPaymentResultModel {
   razorpay_payment_id: string;
   razorpay_signature: string;
   userId: string;
+  fbp: string;
+  fbc: string;
+  currency?: string;
 }
 export interface stripePayModel {
   sessionId: string;
