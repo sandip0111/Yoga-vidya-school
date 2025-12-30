@@ -582,6 +582,7 @@ export class CheckoutComponent {
       userId: userId,
     };
     localStorage.setItem(localstorageKey.swaraSadhnaAmnt, amount.toString());
+    localStorage.setItem(localstorageKey.swaraSadhnaCurr, data.currency);
     localStorage.setItem(localstorageKey.swaraSadhnaUserID, userId);
     this.webapiService
       .checkoutRazorpayNewSwarSadhana(razorpayData)

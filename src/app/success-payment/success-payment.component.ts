@@ -567,6 +567,8 @@ export class SuccessPaymentComponent {
       });
   }
   getRazorPaymentResultSwaraSadhna(razorpayPaymentId: string) {
+    const fbp = this.getCookie('_fbp');
+    const fbc = this.getCookie('_fbc');
     const paymentResult: swaraPaymentResultModel = {
       razorpay_payment_id: razorpayPaymentId,
       razorpay_order_id:
@@ -576,6 +578,9 @@ export class SuccessPaymentComponent {
       payDbId: localStorage.getItem(localstorageKey.swaraSadhnaDBId) ?? '',
       userId: localStorage.getItem(localstorageKey.swaraSadhnaUserID) ?? '',
       amount: localStorage.getItem(localstorageKey.swaraSadhnaAmnt) ?? '0',
+      currency: localStorage.getItem(localstorageKey.swaraSadhnaCurr) ?? 'usd',
+      fbp: fbp,
+      fbc: fbc,
     };
     this.webapiService
       .getRazorPaymentResultSwarSadhana(paymentResult)
@@ -583,9 +588,10 @@ export class SuccessPaymentComponent {
         if (res) {
           this.isRishikesh = true;
           this.paidFlag = 'true';
+          this.pixelTracking.trackPurchaseSwaraSadhana(this.ordId, 'swara_sadhana', 'Swara Sadhana', Number(paymentResult.amount), paymentResult.currency);
           this.ordId = paymentResult.razorpay_order_id;
           this.amount = 0;
-          this.cur = this.currencySet(res.currency);
+          this.cur = this.currencySet(res.currency);          
           this.spinner.hide();
         } else {
           this.paidFlag = 'false';
@@ -597,12 +603,17 @@ export class SuccessPaymentComponent {
         localStorage.removeItem(localstorageKey.swaraSadhnaDBId);
         localStorage.removeItem(localstorageKey.swaraSadhnaUserID);
         localStorage.removeItem(localstorageKey.swaraSadhnaAmnt);
+        localStorage.removeItem(localstorageKey.swaraSadhnaCurr);
       });
   }
   getStripePaymentResultSwaraSadhna(sessionId: string) {
+    const fbp = this.getCookie('_fbp');
+    const fbc = this.getCookie('_fbc');
     const paymentResult = {
       sessionId: sessionId,
       userId: localStorage.getItem(localstorageKey.swaraSadhnaStripeDBId),
+      fbp: fbp,
+      fbc: fbc,
     };
     this.webapiService
       .getPaymentResultSwarSadhana(paymentResult)
@@ -612,6 +623,7 @@ export class SuccessPaymentComponent {
           this.paidFlag = 'true';
           this.ordId = res.paymtId;
           this.amount = 0;
+          this.pixelTracking.trackPurchaseSwaraSadhana(this.ordId, 'swara_sadhana', 'Swara Sadhana', res.currency, res.amount);
           this.spinner.hide();
         } else {
           this.paidFlag = 'false';
