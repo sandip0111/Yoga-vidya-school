@@ -6,6 +6,7 @@ import { WebapiService } from '../webapi.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { DomSanitizer } from '@angular/platform-browser';
 import { routeEnum } from '../enum/routes';
+import { CourseEnum } from '../enum/course';
 
 @Component({
   selector: 'app-my-account',
@@ -20,14 +21,13 @@ export class MyAccountComponent {
   courseArrData: any = [];
   reverseArr: any = [];
   counter: boolean = true;
-  // https://my-s3-images-bucket.s3.amazonaws.com//upCourses/Online+200+TTC/welcome.mp4
   constructor(
     private router: Router,
     private webapiService: WebapiService,
     private spinner: NgxSpinnerService,
     protected sanitizer: DomSanitizer,
     private title: Title,
-    private meta: Meta,    
+    private meta: Meta,
     @Inject(DOCUMENT) private _document: Document,
     private _renderer2: Renderer2
   ) {}
@@ -53,12 +53,15 @@ export class MyAccountComponent {
 
   getUserById(id: any) {
     this.webapiService.getUserById(id).subscribe((res: any) => {
-      console.log(res);
       if (res.Data) {
         this.userName = res.Data.firstName;
         if (res.Data.course.length > 0) {
-          for (const ids of res.Data.course) {
-            this.getCourseByIdV2(ids);
+          if (res.Data.paymentCourseId == CourseEnum.ONLINE_LIVE_CLASSES) {
+            this.getOnlineCourseByIdV2(res.Data.course);
+          } else {
+            for (const id of res.Data.course) {
+              this.getCourseByIdV2(id);
+            }
           }
         } else {
           this.counter = false;
@@ -70,8 +73,7 @@ export class MyAccountComponent {
   getCourseByIdV2(id: any) {
     this.webapiService.getCourseByIdV2(id).subscribe((res: any) => {
       if (res?.course) {
-        console.log('mdntsskas', res?.course);
-        if (res.course._id == '63c4e7e72bce43a907211c78') {
+        if (res.course._id == CourseEnum.TWO_THOUSANDS_TTC) {
           res.course.introUrl = res?.course.courseintrovideoId;
           res.course.isImage = true;
         } else {
@@ -83,6 +85,24 @@ export class MyAccountComponent {
         this.courseArrData.push(res.course);
       }
     });
+  }
+
+  getOnlineCourseByIdV2(courses: any) {
+    this.webapiService
+      .getCourseByIdV2(CourseEnum.ONLINE_LIVE_CLASSES)
+      .subscribe((res: any) => {
+        if (res?.course) {
+          for (let obj of courses) {
+            console.log('mdntasssk', courses, res.course.teachersData);
+            let getTeacher = res.course.teachersData.find(
+              (x: any) => x.id == obj.id
+            );
+            getTeacher.introUrl = getTeacher.courseintrovideoId;
+            getTeacher.isImage = true;
+            this.courseArrData.push(getTeacher);
+          }
+        }
+      });
   }
 
   getcurrentDate() {
