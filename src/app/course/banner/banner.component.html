@@ -71,7 +71,25 @@ routeEnum.bali300 || routeEnum.aboutPrashantJi){
   </div>
   <div class="banner-overlay">
     <div class="banner-text-overlay">{{ rishikeshMainHeading }}</div>
+    @if(slug==routEnum.bali200){
+    <div class="banner-subtitle-overlay">
+      2026 Batch: JUNE<br />Booking with the 30% of pricing
+      <br />
+      <button (click)="registerClick(routEnum.bali200)" class="button">
+        JOIN NOW
+      </button>
+    </div>
+    }@else if(slug==routEnum.bali300){
+    <div class="banner-subtitle-overlay">
+      2026 Batch: JULY<br />Booking with the 30% of pricing
+      <br />
+      <button (click)="registerClick(routEnum.bali300)" class="button">
+        JOIN NOW
+      </button>
+    </div>
+    }@else {
     <div class="banner-subtitle-overlay">{{ rishikeshSubHeading }}</div>
+    }
   </div>
 </div>
 } @else{

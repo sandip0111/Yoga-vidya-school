@@ -16,6 +16,7 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { routeEnum } from '../../enum/routes';
 import { s3Bucket } from '../../enum/s3Bucket';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-banner',
@@ -48,13 +49,15 @@ export class BannerComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
+    private sanitizer: DomSanitizer,
     @Inject(PLATFORM_ID) private platformId: Object
   ) {
     this.slug = this.activatedRoute.snapshot.routeConfig?.path;
   }
   rishikesHeroImage: string = '';
   rishikeshMainHeading: string = '';
-  rishikeshSubHeading: string = '';
+  rishikeshSubHeading: string | SafeHtml = '';
+  routEnum = routeEnum;
   ngOnInit() {
     this.backGroundImageSet();
     this.rishikeshBannerSet();
@@ -124,8 +127,6 @@ export class BannerComponent implements OnInit {
         this.rishikesHeroImage = s3Bucket.bali200Hero;
         this.rishikeshMainHeading =
           'Transform your life with our 200 HRS TTC in Bali';
-        this.rishikeshSubHeading =
-          'A journey of self-discovery, tradition, and transformation in Ubud.';
         break;
       case routeEnum.bali300:
         this.rishikesHeroImage = s3Bucket.bali300Hero;

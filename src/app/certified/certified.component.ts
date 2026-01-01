@@ -16,7 +16,7 @@ import { IncludesBaliComponent } from './includes-bali/includes-bali.component';
 import { routeEnum } from '../enum/routes';
 import { BonusComponent } from './bonus/bonus.component';
 import { PixelTrackingService } from '../services/pixel-tracking.service';
-import { Title } from '@angular/platform-browser';
+import { DomSanitizer, SafeHtml, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-certified',
@@ -49,7 +49,8 @@ export class CertifiedComponent {
     private spinner: NgxSpinnerService,
     private activatedRoute: ActivatedRoute,
     private pixelTracking: PixelTrackingService,
-    private titleService: Title
+    private titleService: Title,
+    private sanitizer: DomSanitizer
   ) {
     this.spinner.show();
     this.slug = this.activatedRoute.snapshot.routeConfig?.path ?? '';
@@ -73,7 +74,7 @@ export class CertifiedComponent {
   private setImageSlug() {
     if (this.slug === 'get-certified-in-rishikesh') {
       this.imgSlug = this.s3Bucket.rishikeshAbout;
-    } else if (this.slug === 'get-certified-in-bali') {
+    } else if (this.slug === routeEnum.bali) {
       this.imgSlug = this.s3Bucket.baliAbout;
     }
   }
@@ -82,10 +83,10 @@ export class CertifiedComponent {
     if (this.slug === 'get-certified-in-rishikesh') {
       this.bannerTitle =
         'Transform Your Yoga Practice in Rishikesh – Yoga Alliance Certified TTC';
-    } else if (this.slug === 'get-certified-in-bali') {
+    } else if (this.slug === routeEnum.bali) {
       this.bannerTitle = 'Experience traditional yoga in the heart of paradise';
-      this.bannerSubtitle = `Train with a lineage-rooted school in the spiritual and serene setting of Ubud, Bali.
-Let the energy of nature, the power of breath, and ancient teachings guide you through a life-changing journey.`;
+      this.bannerSubtitle = `2026 Batches: June and July<br/>
+        Booking with the 30% of pricing`;
     }
   }
 
