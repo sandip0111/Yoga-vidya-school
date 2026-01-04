@@ -54,7 +54,7 @@
             <div class="col-lg-6">
               <h2>{{ course?.coursetitle }}</h2>
               <span
-                (click)="getOnlineCourseVideosV2(course._id, course.slug)"
+                (click)="getOnlineCourseVideosV2(course._id, course.slug, course.id ? course.id : 0)"
                 class="btn btn-info"
                 >START NOW</span
               >

@@ -70,12 +70,21 @@ export class CourseVideoComponent {
   ngOnInit(): void {
     this.getCourseBySlug(this.slug);
     this.userId = sessionStorage.getItem('loginId');
+    this.getUserById(this.userId);
     if (!this.userId) {
       this.router.navigate(['/login']);
     }
     const canonicalUrl = 'https://www.yogavidyaschool.com' + this.router.url;
     const link = this._document.querySelector('link[rel="canonical"]');
     this._renderer2.setAttribute(link, 'href', canonicalUrl);
+  }
+  
+  getUserById(id: any) {
+    this.webapiService.getUserById(id).subscribe((res: any) => {
+      if(res.Data){
+        console.log('mdaawmk', res.Data);
+      }
+    });
   }
 
   setHlsOrMp4VideoURL(
@@ -119,7 +128,11 @@ export class CourseVideoComponent {
           name: 'description',
           content: res.data[0].metaDescription,
         });
-        this.checkForCourse(this.userId, res.data[0]._id);
+        if (this.slug !== routeEnum.online) {
+          this.checkForCourse(this.userId, res.data[0]._id);
+        } else {
+          this.studentValidated = true;
+        }
         setTimeout(() => {
           if (this.userId && this.studentValidated) {
             this.getOnlineCourseVideosV2(res.data[0]._id);
@@ -261,7 +274,6 @@ export class CourseVideoComponent {
       student: stud,
     };
     this.webapiService.getcheckCourseStudent(val).subscribe((res: any) => {
-      // console.log(res, '--------------');
       if (res.count == 1) {
         this.studentValidated = true;
       } else {

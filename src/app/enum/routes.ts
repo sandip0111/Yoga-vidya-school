@@ -23,4 +23,5 @@ export enum routeEnum {
   'freeWebiner' = 'free-webinar',
   'aboutUs' = 'about-us',
   'foundationOfSpirituality' = 'foundation-of-spirituality-an-online-spiritual-awakening-course',
+  'courseVideo' = 'course-video',
 }

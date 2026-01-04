@@ -93,13 +93,15 @@ export class MyAccountComponent {
       .subscribe((res: any) => {
         if (res?.course) {
           for (let obj of courses) {
-            console.log('mdntasssk', courses, res.course.teachersData);
             let getTeacher = res.course.teachersData.find(
               (x: any) => x.id == obj.id
             );
             getTeacher.introUrl = getTeacher.courseintrovideoId;
             getTeacher.isImage = true;
+            getTeacher._id = CourseEnum.ONLINE_LIVE_CLASSES;
+            getTeacher.slug = routeEnum.online;
             this.courseArrData.push(getTeacher);
+            console.log(this.courseArrData);
           }
         }
       });
@@ -122,17 +124,14 @@ export class MyAccountComponent {
     return `${year}/${month}/${day}`; // return date string in the format "YYYY/MM/dd"
   }
   getNext24HourDay(hour: any) {
-    // Get the current date and time
     const currentDateTime = new Date();
-
-    // Calculate the date and time for the next 24 hours
     const next24hDateTime = new Date(
       currentDateTime.getTime() + hour * 60 * 60 * 1000
     );
 
     return next24hDateTime.toISOString();
   }
-  getOnlineCourseVideosV2(course: any, slug: string) {
+  getOnlineCourseVideosV2(course: any, slug: string, id: number) {
     this.spinner.show();
     let val = {
       courseId: course,
@@ -180,7 +179,7 @@ export class MyAccountComponent {
             if (res.count == 0 && slug != routeEnum['200TTC']) {
               this.createAccessLog(val);
             }
-            this.router.navigate(['/course-video/', slug]);
+            this.router.navigate([`/${routeEnum.courseVideo}/${slug}/${id}`]);
           });
       } else {
         this.spinner.hide();
