@@ -44,7 +44,10 @@
     }
   </div>
   <div class="row justify-content-center">
-    @if(slug!==routeEnum.pranOnlinePranaArambh) {
+    @if(slug===routeEnum.rishikesh100 || slug===routeEnum.rishkesh200 ||
+    slug===routeEnum.rishikesh300) {
+    <button class="button" (click)="goToPaymentPage()">Join March Batch</button>
+    } @else if(slug!==routeEnum.pranOnlinePranaArambh) {
     <button class="button" (click)="goToPaymentPage()">
       Join this journey
     </button>
