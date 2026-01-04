@@ -83,6 +83,8 @@ export class CertifiedComponent {
     if (this.slug === 'get-certified-in-rishikesh') {
       this.bannerTitle =
         'Transform Your Yoga Practice in Rishikesh – Yoga Alliance Certified TTC';
+      this.bannerSubtitle = `2026 Batches: March and October<br/>
+        Booking with the 30% of pricing`;
     } else if (this.slug === routeEnum.bali) {
       this.bannerTitle = 'Experience traditional yoga in the heart of paradise';
       this.bannerSubtitle = `2026 Batches: June and July<br/>
