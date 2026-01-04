@@ -18,6 +18,7 @@ export class PricingComponent implements OnInit {
   @Input() slug: string = '';
   feesData: feesInfoDto[] = [];
   mainHeading: string = '';
+  subHeading: string = '';
   normalInrPrice: number = 0;
   normalUsdPrice: number = 0;
   isPriceShow: boolean = false;
@@ -39,12 +40,18 @@ export class PricingComponent implements OnInit {
     switch (slug) {
       case routeEnum.rishikesh100:
         this.mainHeading = 'Pricing of 100 Hours TTC Rishikesh';
+        this.subHeading =
+          'The course fee includes accommodation in a shared room; a private room is available with an additional cost.';
         break;
       case routeEnum.rishkesh200:
         this.mainHeading = 'Pricing of 200 Hours TTC Rishikesh';
+        this.subHeading =
+          'The course fee includes accommodation in a shared room; a private room is available with an additional cost.';
         break;
       case routeEnum.rishikesh300:
         this.mainHeading = 'Pricing of 300 Hours TTC Rishikesh';
+        this.subHeading =
+          'The course fee includes accommodation in a shared room; a private room is available with an additional cost.';
         break;
       case routeEnum['200TTC']:
         this.mainHeading = '200 hours Yoga TTC online';
@@ -84,5 +91,6 @@ export interface feesDto {
 }
 export interface feesInfoDto {
   title: string;
+  hidden?: boolean;
   data: feesDto[];
 }
