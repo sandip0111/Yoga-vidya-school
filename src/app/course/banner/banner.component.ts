@@ -59,6 +59,7 @@ export class BannerComponent implements OnInit {
   rishikeshMainHeading: string = '';
   rishikeshSubHeading: string | SafeHtml = '';
   routEnum = routeEnum;
+  MonthEnum = MonthEnum;
   ngOnInit() {
     this.backGroundImageSet();
     this.rishikeshBannerSet();
