@@ -54,7 +54,6 @@ export class FooterComponent implements OnInit {
     this.spinner.show();
     if (data.email && this.validateEmail(data.email)) {
       this.webService.createSubscriber(data).subscribe((res: any) => {
-        console.log(res);
         if (res.status == 'ok') {
           alert(res.msg);
           this.spinner.hide();

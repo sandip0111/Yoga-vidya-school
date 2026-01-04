@@ -83,7 +83,6 @@ export class WebinarRegistrationFormComponent implements OnInit {
       webinar: this.selectedOption.value,
     });
     this.title.setTitle('Free Webinar - Yoga Vidya School');
-    console.log(this.registrationForm.get('webinar'));
     this.bannerSubtitle = this.sanitizer.bypassSecurityTrustHtml(`“BREATH OF YOGIS”
 	    With Prashant J - Yoga Vidya School Founder <br /> 
 	    Date: January the 3rd - 6:00 PM IST`);

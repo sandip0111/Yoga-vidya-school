@@ -40,7 +40,6 @@ export class SwaraSadhanaComponent {
       slug: this.slug,
     };
     this.webapiService.getCourseById(data).subscribe((res: any) => {
-      console.log('mdamk', res);
       const courseData = res.data[0];
       this.price = courseData.feeInfo[0].data.find(
         (a: feesDto) => a.currency == 'INR'

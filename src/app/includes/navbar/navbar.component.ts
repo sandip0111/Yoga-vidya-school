@@ -5,6 +5,7 @@ import { EventBusService } from '../../event-bus.service';
 import { CartService } from '../../cart.service';
 import { s3Bucket } from '../../enum/s3Bucket';
 import { routeEnum } from '../../enum/routes';
+import { localstorageKey } from '../../enum/localstorage';
 
 @Component({
   selector: 'app-navbar',
@@ -28,7 +29,7 @@ export class NavbarComponent implements OnInit {
     private cartService: CartService
   ) {
     if (typeof sessionStorage !== 'undefined') {
-      this.loginUser = sessionStorage.getItem('loginId');
+      this.loginUser = sessionStorage.getItem(localstorageKey.loginId);
     }
   }
   s3Bucket = s3Bucket;
@@ -134,7 +135,7 @@ export class NavbarComponent implements OnInit {
 
   logOut() {
     if (typeof sessionStorage !== 'undefined') {
-      sessionStorage.removeItem('loginId');
+      sessionStorage.removeItem(localstorageKey.loginId);
     }
     window.location.href = '/';
   }

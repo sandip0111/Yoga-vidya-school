@@ -22,16 +22,11 @@ export class WorkshopsComponent implements OnInit {
 
   getAllOnlineEvents() {
     this.webapiService.getAllOnlineEvents().subscribe((res: any) => {
-      // console.log(res.data);
-
-      // this.onlineEventList = res.data
     });
   }
 
   getAllEvents() {
     this.webapiService.getAllEvents().subscribe((res: any) => {
-      // console.log(res.data);
-
       this.workshops = res.data
     });
   }

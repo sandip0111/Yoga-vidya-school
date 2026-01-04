@@ -726,23 +726,14 @@ export class SuccessPaymentComponent {
 
   getCookie(name: string): string {
     try {
-      // Debug: Log all cookies to see what's available
       if (typeof document !== 'undefined' && document.cookie) {
-        console.log('All cookies:', document.cookie);
-
-        // Split by semicolon and space
         const cookies = document.cookie.split('; ');
-
         for (let i = 0; i < cookies.length; i++) {
           const cookie = cookies[i];
           const [cookieName, cookieValue] = cookie.split('=');
-
-          // Decode the cookie name and value
           const decodedName = decodeURIComponent(cookieName);
           const decodedValue = decodeURIComponent(cookieValue || '');
-
           if (decodedName === name) {
-            console.log(`Found cookie ${name}:`, decodedValue);
             return decodedValue;
           }
         }

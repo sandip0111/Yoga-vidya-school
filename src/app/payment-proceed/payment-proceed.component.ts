@@ -284,7 +284,6 @@ export class PaymentProceedComponent implements OnInit {
       script.id = 'razorpay-script';
       script.src = 'https://checkout.razorpay.com/v1/checkout.js';
       script.onload = () => {
-        console.log('Razorpay script loaded.');
       };
       document.body.appendChild(script);
     }

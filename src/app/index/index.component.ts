@@ -396,41 +396,4 @@ export class IndexComponent {
       }
     ]
   }
-
-
-  // getHomeBlog(limit: any) {
-  //   let val = {
-  //     "limit": limit
-  //   }
-  //   this.webapiService.getHomeBlog(val).subscribe((res: any) => {
-  //     // console.log(res);
-  //     this.blogList = res.data;
-  //   });
-  // }
-  // getAllOnlineEvents() {
-  //   this.webapiService.getAllOnlineEvents().subscribe((res: any) => {
-  //     this.onlineEventList = res.data
-  //   });
-  // }
-  // getAllEvents() {
-  //   this.webapiService.getAllEvents().subscribe((res: any) => {
-  //     this.eventList = res.data
-  //   });
-  // }
-  // getHomeMentors(limit: any) {
-  //   let val = {
-  //     "limit": limit
-  //   }
-  //   this.webapiService.getHomeMentors(val).subscribe((res: any) => {
-  //     // console.log(res);
-  //     this.mentorList = res.data;
-  //     sessionStorage.setItem('hmloop', res.data[res.data.length - 1]?.sortBy);
-  //     sessionStorage.setItem('hlimit', res.total);
-  //   });
-  // }
-
-  // getClick(e: any) {
-  //   this.accData = this.accorArr.filter((x: any) => x.title == e);
-  // }
-
 }

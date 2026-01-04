@@ -7,6 +7,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { DomSanitizer } from '@angular/platform-browser';
 import { routeEnum } from '../enum/routes';
 import { CourseEnum } from '../enum/course';
+import { localstorageKey } from '../enum/localstorage';
 
 @Component({
   selector: 'app-my-account',
@@ -42,7 +43,7 @@ export class MyAccountComponent {
       this._renderer2.setAttribute(link, 'href', canonicalUrl);
     }, 1000);
 
-    this.loginId = sessionStorage.getItem('loginId');
+    this.loginId = sessionStorage.getItem(localstorageKey.loginId);
     if (this.loginId) {
       this.getUserById(this.loginId);
     } else {
@@ -101,7 +102,6 @@ export class MyAccountComponent {
             getTeacher._id = CourseEnum.ONLINE_LIVE_CLASSES;
             getTeacher.slug = routeEnum.online;
             this.courseArrData.push(getTeacher);
-            console.log(this.courseArrData);
           }
         }
       });
@@ -250,7 +250,6 @@ export class MyAccountComponent {
 
   createAccessLog(data: any) {
     this.webapiService.createAccessLog(data).subscribe((res: any) => {
-      console.log(res);
     });
   }
   bookSeatV2(slug: any) {

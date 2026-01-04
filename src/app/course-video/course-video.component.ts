@@ -69,22 +69,13 @@ export class CourseVideoComponent {
 
   ngOnInit(): void {
     this.getCourseBySlug(this.slug);
-    this.userId = sessionStorage.getItem('loginId');
-    this.getUserById(this.userId);
+    this.userId = sessionStorage.getItem(localstorageKey.loginId);
     if (!this.userId) {
       this.router.navigate(['/login']);
     }
     const canonicalUrl = 'https://www.yogavidyaschool.com' + this.router.url;
     const link = this._document.querySelector('link[rel="canonical"]');
     this._renderer2.setAttribute(link, 'href', canonicalUrl);
-  }
-  
-  getUserById(id: any) {
-    this.webapiService.getUserById(id).subscribe((res: any) => {
-      if(res.Data){
-        console.log('mdaawmk', res.Data);
-      }
-    });
   }
 
   setHlsOrMp4VideoURL(
@@ -248,7 +239,6 @@ export class CourseVideoComponent {
 
   getFedbackV2Day5(val: any) {
     this.webapiService.getFeedbackByCourse(val).subscribe((res: any) => {
-      //console.log(res, 'day 6');
       if (res.count > 0) {
       } else {
         alert('Please upload Day 9 review video first!!');
@@ -259,7 +249,6 @@ export class CourseVideoComponent {
 
   getFedbackV2(val: any) {
     this.webapiService.getFeedbackByCourse(val).subscribe((res: any) => {
-      // console.log(res, '--------------');
       if (res.count > 0) {
         this.feedbackCounter = true;
       } else {
@@ -416,6 +405,7 @@ export class CourseVideoComponent {
     this.webapiService
       .getCourseVideoV2(val)
       .subscribe((res: onLineVideoModel[]) => {
+        console.log('mdaawmk', res);
         if (res.length > 0) {
           this.reverseArr = res
             .slice()
@@ -543,7 +533,6 @@ export class CourseVideoComponent {
   }
 
   getVideoFile(e: any) {
-    //console.log(e.target.files[0].type, '==');
     if (
       e.target.files[0].type == 'video/mp4' ||
       e.target.files[0].type == 'video/mov' ||
@@ -557,7 +546,6 @@ export class CourseVideoComponent {
       formData.append('video', e.target.files[0]);
       formData.append('type', 'return');
       this.webapiService.uploadVideo(formData).subscribe((res: any) => {
-        //console.log(res);
         if (res.status == 'ok') {
           alert('upload success');
           this.spinner.hide(this.spinner1);
@@ -701,7 +689,6 @@ export class CourseVideoComponent {
     };
     this.isCallbackTriggered = false;
     this.webapiService.createAnalytics(val).subscribe((res: any) => {
-      // console.log(res, '--------------');
     });
   }
   onTabLoad(id: string) {

@@ -32,7 +32,6 @@ export class TrainerDetailComponent {
 
   getMentorBySlug(slug: any) {
     this.webapiService.getMentorBySlug(slug).subscribe((res: any) => {
-      // console.log(res);
       this.mentorData = res.data;
       setTimeout(() => {
         this.title.setTitle(res.data.name);

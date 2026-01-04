@@ -157,11 +157,9 @@ So, once you successfully complete the 300 Hour Yoga Teacher Training in Kerala 
   }
 
   ngOnChanges(changes: SimpleChanges):void {
-    // this.curriculum = changes['data'].currentValue.curr;
     if(changes['data'].currentValue){
       this.title = changes['data'].currentValue.title
     }
-    //  console.log(changes['data'].currentValue);
 
   }
 

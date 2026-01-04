@@ -6,6 +6,7 @@ import { WebapiService } from '../webapi.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { FormsModule } from '@angular/forms';
+import { localstorageKey } from '../enum/localstorage';
 @Component({
   selector: 'app-change-password',
   standalone: true,
@@ -29,7 +30,7 @@ export class ChangePasswordComponent {
       const link = this._document.querySelector('link[rel="canonical"]');
       this._renderer2.setAttribute(link, 'href', canonicalUrl);
       this.studentId = this.route.snapshot.paramMap.get('id'); // Get the parameter
-      this.loginId = sessionStorage.getItem('loginId');
+      this.loginId = sessionStorage.getItem(localstorageKey.loginId);
       if (!this.loginId) {
         sessionStorage.clear();
         this.title.setTitle('login');
