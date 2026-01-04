@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { s3Bucket } from '../../../enum/s3Bucket';
 import { routeEnum } from '../../../enum/routes';
 import { WebapiService } from '../../../webapi.service';
+import { MonthEnum } from '../../../enum/details';
 
 @Component({
   selector: 'app-pricing',
@@ -23,6 +24,7 @@ export class PricingComponent implements OnInit {
   normalUsdPrice: number = 0;
   isPriceShow: boolean = false;
   routeEnum = routeEnum;
+  monthEnum = MonthEnum;
   constructor(private router: Router, private webapiService: WebapiService) {}
   ngOnInit(): void {
     this.getPriceValue(this.slug);
@@ -72,8 +74,8 @@ export class PricingComponent implements OnInit {
         break;
     }
   }
-  goToPaymentPage() {
-    this.router.navigate([`/checkout/${this.slug}`]);
+  goToPaymentPage(month?: string) {
+    this.router.navigate([`/checkout/${this.slug}`, month]);
   }
 }
 interface pricingDto {

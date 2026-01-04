@@ -101,3 +101,7 @@
   color: #e66900; /* same orange as your join button */
   margin-bottom: 10px;
 }
+.join-batch-heading{
+  font-weight: bold;
+  font-size: 18px;
+}

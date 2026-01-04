@@ -43,10 +43,33 @@
     </div>
     }
   </div>
+  <ng-container
+    *ngIf="
+      slug === routeEnum.rishikesh100 ||
+      slug === routeEnum.rishkesh200 ||
+      slug === routeEnum.rishikesh300
+    "
+  >
+    <p class="mt-2 mb-0">
+      <span class="join-batch-heading">Reserve Your Slot with the 30%:</span
+      >(limited places)
+    </p>
+    <p>
+      By paying the 30% deposit, you are reserving your place in a shared room.
+      Should you later wish to upgrade to a private room, this will be subject
+      to availability and the corresponding price difference.Please note that
+      the 30% deposit is non-refundable, as it allows us to lovingly reserve
+      your place and prepare the space, teachers, and accommodations especially
+      for you.
+    </p>
+  </ng-container>
   <div class="row justify-content-center">
     @if(slug===routeEnum.rishikesh100 || slug===routeEnum.rishkesh200 ||
     slug===routeEnum.rishikesh300) {
-    <button class="button" (click)="goToPaymentPage()">Join March Batch</button>
+    <button class="button" (click)="goToPaymentPage(monthEnum.MARCH)">Join March Batch</button>
+    <button class="button" (click)="goToPaymentPage(monthEnum.OCTOBER)">
+      Join October Batch
+    </button>
     } @else if(slug!==routeEnum.pranOnlinePranaArambh) {
     <button class="button" (click)="goToPaymentPage()">
       Join this journey
