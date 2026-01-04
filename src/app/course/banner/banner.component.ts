@@ -17,6 +17,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { routeEnum } from '../../enum/routes';
 import { s3Bucket } from '../../enum/s3Bucket';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { MonthEnum } from '../../enum/details';
 
 @Component({
   selector: 'app-banner',
@@ -304,11 +305,11 @@ export class BannerComponent implements OnInit {
     }
   }
 
-  registerClick(slug: string) {
+  registerClick(slug: string, month?: string) {
     if (slug == 'breath-detox-yoga') {
       this.router.navigate(['breath-detox-yoga', 'student-register']);
     } else {
-      this.router.navigate(['checkout', this.slug]);
+      this.router.navigate(['checkout', this.slug, month]);
     }
   }
 }

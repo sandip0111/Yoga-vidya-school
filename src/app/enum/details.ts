@@ -12,3 +12,7 @@ export enum twoHundredTTCModel {
   '200TTCStart' = '10:30 AM',
   '200TTCEnd' = '01:00 PM',
 }
+export enum MonthEnum {
+  'March26' = 'March, 2026',
+  'October26' = 'October, 2026',
+}
