@@ -10,23 +10,25 @@
 
   <div class="card-container">
     @if(feesData.length>0){
-    <div class="price-card" *ngFor="let item of feesData">
-      <div class="card-header">
-        {{ item.title }}
-        <span *ngIf="slug == routeEnum['200TTC']">(Early bird)</span>
-      </div>
-      <div class="card-body">
-        <p class="fee-label">
-          <strong><i class="fas fa-tags"></i> Course Fee</strong>
-        </p>
-        <div *ngFor="let obj of item.data; let i = index">
-          <p class="price-usd">
-            {{ obj.amount | currency : obj.currency : "symbol" : "1.0-3" }}
+    <ng-container *ngFor="let item of feesData">
+      <div class="price-card" *ngIf="!item.hidden">
+        <div class="card-header">
+          {{ item.title }}
+          <span *ngIf="slug == routeEnum['200TTC']">(Early bird)</span>
+        </div>
+        <div class="card-body">
+          <p class="fee-label">
+            <strong><i class="fas fa-tags"></i> Course Fee</strong>
           </p>
-          <hr class="price-divider" *ngIf="i < item.data.length - 1" />
+          <div *ngFor="let obj of item.data; let i = index">
+            <p class="price-usd">
+              {{ obj.amount | currency : obj.currency : "symbol" : "1.0-3" }}
+            </p>
+            <hr class="price-divider" *ngIf="i < item.data.length - 1" />
+          </div>
         </div>
       </div>
-    </div>
+    </ng-container>
     }@else {
     <div class="price-card" *ngFor="let item of pricing">
       <div class="card-header">{{ item.title }}</div>
