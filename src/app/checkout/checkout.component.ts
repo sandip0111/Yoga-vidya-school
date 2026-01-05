@@ -113,7 +113,7 @@ export class CheckoutComponent {
       this.roomList = [
         { name: 'Shared Room', value: 1 },
         { name: 'Private Room', value: 2 },
-        { name: 'Shared Room With 30%', value: 3 },
+        { name: 'Shared Room with 30%', value: 3 },
       ];
     }
     this.scrollToTop();
@@ -239,12 +239,12 @@ export class CheckoutComponent {
       })
       .subscribe((res) => {
         this.couponCode = res.code;
-        this.couponCodeId = res.id; //SRIK20250719186383
+        this.couponCodeId = res.id;
       });
   }
   setRoomPrice(event: any) {
     this.inputValidation('room');
-    if (event.target.value == 1 || event.target.value == 2) {
+    if ([1, 2, 3].includes(+event.target.value)) {
       let availableCurrencies: string[] = [];
       if (this.feesData && this.feesData.length > 0) {
         this.feesData.forEach((item) => {
