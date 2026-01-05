@@ -9,6 +9,9 @@
               <div class="row align-items-center">
                 <div class="col">
                   <span> {{ courseList.coursetitle }}</span>
+                  <span class="ml-2" *ngIf="selectedMonth"
+                    >({{ selectedMonth }})</span
+                  >
                 </div>
                 <div class="col-auto" *ngIf="amount > 0 && checkData.currency">
                   @if(isSpecialDiscount){
@@ -50,18 +53,6 @@
                     </span>
                   </div>
                   }
-                  <!-- @if(slug == routeEnum['200TTC'] && checkData.currency ===
-                  'INR' && !paymentId) {
-                  <div>
-                    <span>
-                      1st installment : {{ firstInstAmnt | currency : "INR" }}
-                    </span>
-                    <br />
-                    <span>
-                      2nd installment : {{ secondInstAmnt | currency : "INR" }}
-                    </span>
-                  </div>
-                  } -->
                 </div>
               </div>
               @if(feesData.length>0){
@@ -197,21 +188,6 @@
           </div>
           }
         </div>
-        <!-- <div
-          class="mb-3"
-          *ngIf="
-            slug == routeEnum['200TTC'] &&
-            checkData.currency === 'INR' &&
-            !paymentId
-          "
-        >
-          <input
-            type="checkbox"
-            [(ngModel)]="isInstallment"
-            style="margin-right: 10px"
-          />
-          <label> Would you like to make the payment in installments?</label>
-        </div> -->
         <div
           class="mb-3"
           *ngIf="
@@ -222,7 +198,7 @@
             slug == routeEnum.bali200
           "
         >
-          <label for="room">Room<span style="color: red">*</span></label>
+          <label for="room">Booking<span style="color: red">*</span></label>
           <select
             class="form-control"
             name="room"

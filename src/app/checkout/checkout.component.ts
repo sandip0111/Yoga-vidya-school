@@ -74,6 +74,7 @@ export class CheckoutComponent {
   isSpecialDiscount: boolean = false;
   actualAmount: number = 0;
   feesData: feeInfoDto[] = [];
+  selectedMonth: string | null = null;
   constructor(
     private webapiService: WebapiService,
     private _activatedRoute: ActivatedRoute,
@@ -87,16 +88,14 @@ export class CheckoutComponent {
     this._activatedRoute.params.subscribe((params) => {
       this.slug = params['id'];
     });
-    if (
-      this.slug == routeEnum.rishkesh200 ||
-      this.slug == routeEnum['200TTC']
-    ) {
-      this._activatedRoute.queryParams.subscribe((params) => {
-        if (params['hash'] === 'abcdef1234567890') {
-          this.isSpecialDiscount = true;
-        }
-      });
-    }
+    this._activatedRoute.queryParams.subscribe((params) => {
+      if (params['hash'] === 'abcdef1234567890') {
+        this.isSpecialDiscount = true;
+      }
+      if (params['month']) {
+        this.selectedMonth = params['month'];
+      }
+    });
     this.paymentId = this._activatedRoute.snapshot.queryParamMap.get('id');
   }
 
@@ -984,11 +983,11 @@ export class CheckoutComponent {
                 'pranic_purificationDbPayRazor',
                 res.payDbId
               );
-               sessionStorage.setItem(
+              sessionStorage.setItem(
                 'pranic_purification_razorpay_payment_amount',
                 data.price
               );
-               sessionStorage.setItem(
+              sessionStorage.setItem(
                 'pranic_purification_razorpay_payment_currency',
                 res.currency
               );
