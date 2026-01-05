@@ -310,7 +310,13 @@ export class BannerComponent implements OnInit {
     if (slug == 'breath-detox-yoga') {
       this.router.navigate(['breath-detox-yoga', 'student-register']);
     } else {
-      this.router.navigate(['checkout', this.slug, month]);
+      if (month) {
+        this.router.navigate(['checkout', slug], {
+          queryParams: { month: month },
+        });
+      } else {
+        this.router.navigate(['checkout', slug]);
+      }
     }
   }
 }

@@ -74,6 +74,7 @@ export class CheckoutComponent {
   isSpecialDiscount: boolean = false;
   actualAmount: number = 0;
   feesData: feeInfoDto[] = [];
+  selectedMonth: string | null = null;
   constructor(
     private webapiService: WebapiService,
     private _activatedRoute: ActivatedRoute,
@@ -87,41 +88,32 @@ export class CheckoutComponent {
     this._activatedRoute.params.subscribe((params) => {
       this.slug = params['id'];
     });
-    if (
-      this.slug == routeEnum.rishkesh200 ||
-      this.slug == routeEnum['200TTC']
-    ) {
-      this._activatedRoute.queryParams.subscribe((params) => {
-        if (params['hash'] === 'abcdef1234567890') {
-          this.isSpecialDiscount = true;
-        }
-      });
-    }
+    this._activatedRoute.queryParams.subscribe((params) => {
+      if (params['hash'] === 'abcdef1234567890') {
+        this.isSpecialDiscount = true;
+      }
+      if (params['month']) {
+        this.selectedMonth = params['month'];
+      }
+    });
     this.paymentId = this._activatedRoute.snapshot.queryParamMap.get('id');
   }
 
   ngOnInit(): void {
     this.spinner.show();
-    if (this.slug == routeEnum.rishikesh100) {
+    const roomCourses = [
+      routeEnum.rishikesh100,
+      routeEnum.rishkesh200,
+      routeEnum.rishikesh300,
+      routeEnum.bali200,
+      routeEnum.bali300,
+    ];
+
+    if (roomCourses.includes(this.slug as any)) {
       this.roomList = [
         { name: 'Shared Room', value: 1 },
         { name: 'Private Room', value: 2 },
-      ];
-    } else if (
-      this.slug == routeEnum.rishkesh200 ||
-      this.slug == routeEnum.bali200
-    ) {
-      this.roomList = [
-        { name: 'Shared Room', value: 1 },
-        { name: 'Private Room', value: 2 },
-      ];
-    } else if (
-      this.slug == routeEnum.rishikesh300 ||
-      this.slug == routeEnum.bali300
-    ) {
-      this.roomList = [
-        { name: 'Shared Room', value: 1 },
-        { name: 'Private Room', value: 2 },
+        { name: 'Shared Room with 30%', value: 3 },
       ];
     }
     this.scrollToTop();
@@ -247,12 +239,12 @@ export class CheckoutComponent {
       })
       .subscribe((res) => {
         this.couponCode = res.code;
-        this.couponCodeId = res.id; //SRIK20250719186383
+        this.couponCodeId = res.id;
       });
   }
   setRoomPrice(event: any) {
     this.inputValidation('room');
-    if (event.target.value == 1 || event.target.value == 2) {
+    if ([1, 2, 3].includes(+event.target.value)) {
       let availableCurrencies: string[] = [];
       if (this.feesData && this.feesData.length > 0) {
         this.feesData.forEach((item) => {
@@ -984,11 +976,11 @@ export class CheckoutComponent {
                 'pranic_purificationDbPayRazor',
                 res.payDbId
               );
-               sessionStorage.setItem(
+              sessionStorage.setItem(
                 'pranic_purification_razorpay_payment_amount',
                 data.price
               );
-               sessionStorage.setItem(
+              sessionStorage.setItem(
                 'pranic_purification_razorpay_payment_currency',
                 res.currency
               );
