@@ -75,7 +75,13 @@ export class PricingComponent implements OnInit {
     }
   }
   goToPaymentPage(month?: string) {
-    this.router.navigate([`/checkout/${this.slug}`, month]);
+    if (month) {
+      this.router.navigate([`/checkout/${this.slug}`], {
+        queryParams: { month: month },
+      });
+    } else {
+      this.router.navigate([`/checkout/${this.slug}`]);
+    }
   }
 }
 interface pricingDto {
