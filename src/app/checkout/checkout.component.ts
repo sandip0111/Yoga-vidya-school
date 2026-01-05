@@ -101,26 +101,19 @@ export class CheckoutComponent {
 
   ngOnInit(): void {
     this.spinner.show();
-    if (this.slug == routeEnum.rishikesh100) {
+    const roomCourses = [
+      routeEnum.rishikesh100,
+      routeEnum.rishkesh200,
+      routeEnum.rishikesh300,
+      routeEnum.bali200,
+      routeEnum.bali300,
+    ];
+
+    if (roomCourses.includes(this.slug as any)) {
       this.roomList = [
         { name: 'Shared Room', value: 1 },
         { name: 'Private Room', value: 2 },
-      ];
-    } else if (
-      this.slug == routeEnum.rishkesh200 ||
-      this.slug == routeEnum.bali200
-    ) {
-      this.roomList = [
-        { name: 'Shared Room', value: 1 },
-        { name: 'Private Room', value: 2 },
-      ];
-    } else if (
-      this.slug == routeEnum.rishikesh300 ||
-      this.slug == routeEnum.bali300
-    ) {
-      this.roomList = [
-        { name: 'Shared Room', value: 1 },
-        { name: 'Private Room', value: 2 },
+        { name: 'Shared Room With 30%', value: 3 },
       ];
     }
     this.scrollToTop();
