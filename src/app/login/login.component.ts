@@ -38,7 +38,6 @@ export class LoginComponent {
     this.webapiService.login(data).subscribe((res: any) => {
       if (res.user) {
         sessionStorage.setItem(localstorageKey.loginId, res.user.id);
-        sessionStorage.setItem(localstorageKey.userSource, res.user.source);
         if (res.user.isWebinarUser) {
           sessionStorage.setItem('webinarLoginId', res.user.id);
           sessionStorage.setItem('isWebinarUser', res.user.isWebinarUser);

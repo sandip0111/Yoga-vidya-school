@@ -56,6 +56,7 @@ export class MyAccountComponent {
     this.webapiService.getUserById(id).subscribe((res: any) => {
       if (res.Data) {
         this.userName = res.Data.firstName;
+        sessionStorage.setItem(localstorageKey.userSource, res.Data.source);
         if (res.Data.course.length > 0) {
           if (res.Data.paymentCourseId == CourseEnum.ONLINE_LIVE_CLASSES) {
             this.getOnlineCourseByIdV2(res.Data.course);

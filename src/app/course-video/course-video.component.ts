@@ -41,6 +41,7 @@ export class CourseVideoComponent {
   accessLog: any;
   videoClass: string = 'col-lg-8';
   routeEnum = routeEnum;
+  teacherId: number = 0;
   constructor(
     private webapiService: WebapiService,
     private _activatedRoute: ActivatedRoute,
@@ -55,6 +56,7 @@ export class CourseVideoComponent {
     this.spinner.show();
     this._activatedRoute.params.subscribe((params) => {
       this.slug = params['id'];
+      this.teacherId = params['teacherId'] ? params['teacherId'] : 0;
     });
     this.bdQues = [
       'What was the state of your mind and body during practice. Were you focused?',
@@ -405,7 +407,13 @@ export class CourseVideoComponent {
     this.webapiService
       .getCourseVideoV2(val)
       .subscribe((res: onLineVideoModel[]) => {
-        console.log('mdaawmk', res);
+        let source = sessionStorage.getItem(localstorageKey.userSource);
+        let sourceArr = source ? source.split('_') : [];
+        res = res.filter((item: onLineVideoModel) =>
+          item.month === sourceArr[sourceArr.length - 1] &&
+          item.teacherId === +this.teacherId
+        );
+        console.log('mdaawmk', res, this.teacherId);
         if (res.length > 0) {
           this.reverseArr = res
             .slice()
@@ -688,8 +696,7 @@ export class CourseVideoComponent {
       playsCount: '1',
     };
     this.isCallbackTriggered = false;
-    this.webapiService.createAnalytics(val).subscribe((res: any) => {
-    });
+    this.webapiService.createAnalytics(val).subscribe((res: any) => {});
   }
   onTabLoad(id: string) {
     this.reverseArr[0].isShow = true;
