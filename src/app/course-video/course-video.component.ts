@@ -409,11 +409,14 @@ export class CourseVideoComponent {
       .subscribe((res: onLineVideoModel[]) => {
         let source = sessionStorage.getItem(localstorageKey.userSource);
         let sourceArr = source ? source.split('_') : [];
-        res = res.filter((item: onLineVideoModel) =>
-          item.month === sourceArr[sourceArr.length - 1] &&
-          item.teacherId === +this.teacherId
-        );
-        console.log('mdaawmk', res, this.teacherId);
+        if(this.slug == routeEnum.online){
+          res = res.filter((item: onLineVideoModel) =>
+            item.month === sourceArr[sourceArr.length - 1] &&
+            item.teacherId === +this.teacherId
+          );
+          console.log('mdaawmk', res, this.teacherId);
+      }
+        
         if (res.length > 0) {
           this.reverseArr = res
             .slice()
