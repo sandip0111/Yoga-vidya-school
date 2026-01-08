@@ -3,11 +3,29 @@
   *ngIf="userId && onlineCheck && studentValidated"
 >
   <h2 class="text-center">COURSE VIDEOS</h2>
-  <ng-container *ngIf="slug === routeEnum['200TTC']; else otherTitle">
+  <ng-container
+    *ngIf="
+      slug === routeEnum['200TTC'] || slug === routeEnum.online;
+      else otherTitle
+    "
+  >
+    @if(slug === routeEnum['200TTC']){
     <p class="text-center">
       Yoga TTC is not merely a training; it is a divine responsibility — to walk
       the path of awareness and become a channel of consciousness for others.
     </p>
+    } @if(slug === routeEnum.online){ @if(teacherId==1){
+    <p class="text-center">Welcome to your online sadhana with Prashantji</p>
+    } @else if(teacherId==3){
+    <p class="text-center">
+      A warm and heartfelt welcome to all beautiful women🌺
+    </p>
+    <p class="text-center">
+      This wellness batch, you’ve chosen to prioritize yourself—and that itself
+      is powerful. Together, we’ll nurture strength, balance, and inner calm
+      through mindful practices. Excited to walk this path with all of you
+    </p>
+    } }
   </ng-container>
   <ng-template #otherTitle>
     <p class="text-center">Start Your {{ courseList?.coursetitle }} Now!</p>
