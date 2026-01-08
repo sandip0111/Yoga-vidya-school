@@ -63,6 +63,8 @@ export class PricingComponent implements OnInit {
         break;
       case routeEnum.bali200:
         this.mainHeading = 'Pricing of 200 Hours TTC Bali';
+        this.subHeading =
+          'The course fee includes accommodation in a shared room; a private room is available with an additional cost.';
         break;
       case routeEnum.bali300:
         this.mainHeading = 'Pricing of 300 Hours TTC Bali';
