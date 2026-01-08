@@ -711,6 +711,7 @@ export class CheckoutComponent {
       room: room?.name,
       price: this.isInstallment ? this.firstInstAmnt : this.amount,
       currency: data.currency,
+      month: this.selectedMonth || undefined,
     };
     if (this.slug == routeEnum.rishikesh100) {
       signupData.hour = 100;

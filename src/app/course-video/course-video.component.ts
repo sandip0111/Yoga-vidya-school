@@ -713,6 +713,7 @@ export class CourseVideoComponent {
       }
       this.reverseArr[i].isShow =
         this.slug == routeEnum['200TTC'] ? true : false;
+      this.reverseArr[i].isShow = this.slug == routeEnum.online ? true : false;
       this.reverseArr[i].isVideoShown = false;
       this.reverseArr[i].dayNumber = i + 1;
       if (this.slug == 'breath-detox-yoga') {
@@ -737,7 +738,7 @@ export class CourseVideoComponent {
           });
       }
     }, 4000);
-    if (this.slug != routeEnum['200TTC']) {
+    if (this.slug != routeEnum['200TTC'] && this.slug != routeEnum.online) {
       this.getAccessLog(this.userId, id);
     }
   }
