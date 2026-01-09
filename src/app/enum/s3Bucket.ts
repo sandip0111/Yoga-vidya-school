@@ -117,4 +117,8 @@ export enum reviewLink {
   reviewNew3 = 'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/Mariam Zurabashvili - Pranic purification.mp4',
   reviewNew4 = 'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/Monika Verma.mov',
   reviewNew5 = 'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/Yasmeen.MOV',
+  rishikesh1 = "https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/MVI_0364.mp4",
+  rishikesh2 = "https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/954A9428.mp4",
+  rishikesh3 = "https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/MVI_0364_1.mp4",
+  rishikesh4 = "https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/MVI_0364_3.mp4",
 }

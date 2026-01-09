@@ -10,6 +10,7 @@ import {
 } from '@angular/core';
 import { PixelTrackingService } from '../../services/pixel-tracking.service';
 import { reviewLink } from '../../enum/s3Bucket';
+import { routeEnum } from '../../enum/routes';
 @Component({
   selector: 'app-video-reviews',
   standalone: true,
@@ -20,6 +21,7 @@ import { reviewLink } from '../../enum/s3Bucket';
 })
 export class VideoReviewsComponent implements OnInit {
   @Input() specialvideo: boolean = false;
+  @Input() slug: string = '';
   videos: string[] = [];
 
   @ViewChildren('videoPlayer') videoPlayers!: QueryList<
@@ -39,37 +41,46 @@ export class VideoReviewsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    if (this.specialvideo) {
+    if (this.slug == routeEnum.rishikesh) {
       this.videos = [
-        reviewLink.reviewNew1,
-        reviewLink.reviewNew2,
-        reviewLink.reviewNew3,
-        reviewLink.reviewNew4,
-        reviewLink.reviewNew5,
-        reviewLink.review1,
-        reviewLink.review2,
-        reviewLink.review3,
-        reviewLink.review4,
-        reviewLink.review5,
-        reviewLink.review6,
-        reviewLink.review7,
-        reviewLink.review8,
-        reviewLink.review9,
-        reviewLink.review10,
-        reviewLink.review11,
-        reviewLink.review12,
-        reviewLink.review13,
+        reviewLink.rishikesh1,
+        reviewLink.rishikesh2,
+        reviewLink.rishikesh3,
+        reviewLink.rishikesh4,
       ];
     } else {
-      this.videos = [
-        reviewLink.review7,
-        reviewLink.review8,
-        reviewLink.review9,
-        reviewLink.review10,
-        reviewLink.review11,
-        reviewLink.review12,
-        reviewLink.review13,
-      ];
+      if (this.specialvideo) {
+        this.videos = [
+          reviewLink.reviewNew1,
+          reviewLink.reviewNew2,
+          reviewLink.reviewNew3,
+          reviewLink.reviewNew4,
+          reviewLink.reviewNew5,
+          reviewLink.review1,
+          reviewLink.review2,
+          reviewLink.review3,
+          reviewLink.review4,
+          reviewLink.review5,
+          reviewLink.review6,
+          reviewLink.review7,
+          reviewLink.review8,
+          reviewLink.review9,
+          reviewLink.review10,
+          reviewLink.review11,
+          reviewLink.review12,
+          reviewLink.review13,
+        ];
+      } else {
+        this.videos = [
+          reviewLink.review7,
+          reviewLink.review8,
+          reviewLink.review9,
+          reviewLink.review10,
+          reviewLink.review11,
+          reviewLink.review12,
+          reviewLink.review13,
+        ];
+      }
     }
     this.menuWrapper = this.el.nativeElement.querySelector('.menu--wrapper');
     this.menuWrapper.addEventListener(

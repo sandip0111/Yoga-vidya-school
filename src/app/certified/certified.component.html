@@ -6,6 +6,6 @@
 <app-includes *ngIf="slug == routEnum.rishikesh"></app-includes>
 <app-includes-bali *ngIf="slug == routEnum.bali"></app-includes-bali>
 <app-bonus></app-bonus>
-<app-video-reviews></app-video-reviews>
+<app-video-reviews [slug]="slug"></app-video-reviews>
 <app-ready [slug]="slug"></app-ready>
 
