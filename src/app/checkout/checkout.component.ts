@@ -721,40 +721,39 @@ export class CheckoutComponent {
       signupData.hour = 300;
     }
     if (isRazorPay) {
-      this.initializeRazorPayRish200(signupData);
+      this.initializeRazorPayRishi(signupData);
     } else {
-      this.initializePayRish200(signupData);
+      this.initializePayStripeRishi(signupData);
     }
   }
 
   baliCheckout(data: checkoutModel, isRazorPay: boolean) {
-    if (isRazorPay) {
-      return;
-    }
     let hour = 100;
     let month;
     if (this.slug == routeEnum.bali200) {
       hour = 200;
-      month = 'June 2026';
+      month = 'June, 2026';
     } else if (this.slug == routeEnum.bali300) {
       hour = 300;
-      month = 'July 2026';
+      month = 'July, 2026';
     }
     let room = this.roomList.find((item) => item.value == data.package);
-    let signupData: SignupDataModel = {
+    let baliData: SignupDataModel = {
       name: data.name,
       email: data.email.toLowerCase(),
       phoneNumber: data.phoneNumber.e164Number,
       room: room?.name,
-      price: this.isInstallment ? this.firstInstAmnt : this.amount,
+      price: this.amount,
       currency: data.currency,
       hour: hour,
       month: month,
     };
-    this.initializePayBali300(signupData);
+    if (!isRazorPay) {
+      this.initializePayBaliStripe(baliData);
+    }
   }
 
-  initializePayBali300(data: SignupDataModel) {
+  initializePayBaliStripe(data: SignupDataModel) {
     this.webapiService
       .checkoutStripeForBali(data)
       .subscribe((res: stripePayModel) => {
@@ -1115,7 +1114,7 @@ export class CheckoutComponent {
         }
       });
   }
-  initializeRazorPayRish200(data: SignupDataModel) {
+  initializeRazorPayRishi(data: SignupDataModel) {
     this.webapiService
       .checkoutRazorpayRishikesh(data)
       .subscribe((res: razorPayModel) => {
@@ -1167,7 +1166,7 @@ export class CheckoutComponent {
         }
       });
   }
-  initializePayRish200(data: SignupDataModel) {
+  initializePayStripeRishi(data: SignupDataModel) {
     this.webapiService
       .checkoutStripeForRishikesh(data)
       .subscribe((res: stripePayModel) => {
