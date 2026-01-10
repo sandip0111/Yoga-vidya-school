@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PixelTrackingService } from '../../../services/pixel-tracking.service';
+import { s3Bucket } from '../../../enum/s3Bucket';
 
 @Component({
   selector: 'app-testimonials',
@@ -11,11 +12,12 @@ import { PixelTrackingService } from '../../../services/pixel-tracking.service';
   styleUrls: ['./testimonials.component.css'],
 })
 export class TestimonialsComponent implements OnInit {
-  slug: any = '';
+  slug?: string = '';
   isParnicPage = false;
   is300BaliPage = false;
   is200BaliPage = false;
   testimonials: testimonial[] = [];
+  s3Bucket = s3Bucket;
   constructor(
     private activatedRoute: ActivatedRoute,
     private _pixelTracking: PixelTrackingService

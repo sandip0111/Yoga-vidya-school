@@ -91,8 +91,9 @@ export class MentorsComponent implements OnInit {
         },
       ];
     } else if (
-      this.slug == '200-hour-yoga-teacher-training-in-bali' ||
-      this.slug == '300-hour-yoga-teacher-training-in-bali'
+      this.slug == routeEnum.bali100 ||
+      this.slug == routeEnum.bali200 ||
+      this.slug == routeEnum.bali300
     ) {
       this.mentors = [
         {

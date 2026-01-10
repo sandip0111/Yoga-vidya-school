@@ -13,9 +13,7 @@
     <div class="banner-subtitle-overlay">
       2026 Batch: JUNE<br />Booking with the 30% of pricing
       <br />
-      <button (click)="registerClick(routeEnum.bali100)" class="button">
-        JOIN NOW
-      </button>
+      <button (click)="registerClick()" class="button">JOIN NOW</button>
     </div>
   </div>
 </div>
@@ -78,3 +76,294 @@
     </div>
   </div>
 </section>
+<section class="daily-schedule-section" *ngIf="scheduleArr.length > 0">
+  <div class="row">
+    <div class="col-md-12">
+      <div>
+        <img
+          loading="lazy"
+          alt="Not Loaded"
+          src="https://my-s3-images-bucket.s3.amazonaws.com/img/flower-color.png"
+          class="flower-img"
+        />
+      </div>
+      <h3 class="small-head">Daily Schedule Overview</h3>
+      <h2>
+        Daily Schedule for<span> {{ slugData.coursetitle }}</span>
+      </h2>
+    </div>
+    <div class="col-md-6 p-2">
+      <table class="table">
+        <tbody>
+          <tr *ngFor="let teacher of courseTeacher">
+            <td>{{ teacher.course }}</td>
+            <td>{{ teacher.teacher }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-6 p-2">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Time</th>
+            <th>Activity</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let sch of scheduleArr">
+            <td>{{ sch.time }}</td>
+            <td>{{ sch.activity }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+<section class="daily-schedule-section" *ngIf="scheduleArr.length > 0">
+  <div class="row">
+    <div class="col-md-12">
+      <div>
+        <img
+          loading="lazy"
+          alt="Not Loaded"
+          src="https://my-s3-images-bucket.s3.amazonaws.com/img/flower-color.png"
+          class="flower-img"
+        />
+      </div>
+      <h2>
+        <span>{{ slugData.coursetitle }}</span> is Suitable for those who..
+      </h2>
+    </div>
+    <div class="col-md-12 px-md-5 p-2">
+      <ul style="list-style-type: none">
+        <li>
+          1. Are newcomers looking for a structured and an all-round perspective
+          towards learning yoga
+        </li>
+        <li>
+          2. Look at yoga as a hobby and have been practicing and studying it
+          casually
+        </li>
+        <li>
+          3. Are interested in understanding yoga in a holistic way by gaining
+          solid foundation
+        </li>
+        <li>
+          4. Are looking to practice yoga asanas by employing correct techniques
+          and knowledge
+        </li>
+        <li>
+          5. Are seeking to apply yoga as a physical therapy for various health
+          problems
+        </li>
+        <li>
+          6. Are looking to learn different stress relieving techniques for
+          achieving deep, emotional and full body relaxation
+        </li>
+        <li>
+          7. Are looking to find balance of the mind and body and connect with
+          their inner soul
+        </li>
+        <li>
+          8. Are keen to understand Yogic Philosophy, Pranayama and Meditation
+          Practices
+        </li>
+        <li>
+          9. Are registered RYT and looking to garner CE or Continued Education
+          training
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+<section class="includes">
+  <div class="row">
+    <div class="head-content">
+      <h2>What's Included in Your Training</h2>
+    </div>
+    <div class="includes-grid text-center">
+      <div class="include-item">
+        <i class="fas fa-bed"></i>
+        <p>21 nights shared room accommodation with attached bathroom.</p>
+      </div>
+      <div class="include-item">
+        <i class="fas fa-book"></i>
+        <p>
+          Accommodation and Food at beautiful Ahamta retreat, Jl. Sri Wedari
+          No.46, Ubud, Kecamatan Ubud, Kabupaten Gianyar, Bali 80571, Indonesia
+        </p>
+      </div>
+      <div class="include-item">
+        <i class="fa fa-tint"></i>
+        <p>24x7 Filtered drinking water and hot water.</p>
+      </div>
+      <div class="include-item">
+        <i class="fa fa-graduation-cap"></i>
+        <p>Well-designed Course Material.</p>
+      </div>
+      <div class="include-item">
+        <i class="fab fa-uikit"></i>
+        <p>Shat Kriyas or Yogic Cleansing Kit.</p>
+      </div>
+      <div class="include-item">
+        <i class="fas fa-seedling"></i>
+        <p>Three nutritious organic meals per day</p>
+      </div>
+      <div class="include-item">
+        <i class="fas fa-hiking"></i>
+        <p>Cultural Trips and Excursions</p>
+      </div>
+      <div class="include-item">
+        <i class="fas fa-wifi"></i>
+        <p>
+          WiFi and Beautiful sitting area to study and spend quality Me-time
+        </p>
+      </div>
+      <div class="include-item">
+        <i class="fas fa-user-md"></i>
+        <p>On-call Doctor and Emergency Services.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<app-bonus></app-bonus>
+<section class="pricing-section">
+  <div class="section-header">
+    <i class="fas fa-bed section-icon"></i>
+    <h2 class="section-title">Pricing of 100 Hours TTC Bali</h2>
+    <p>
+      The course fee includes accommodation in a shared room; a private room is
+      available with an additional cost.
+    </p>
+  </div>
+  <div class="card-container">
+    @if(feesData.length>0){
+    <ng-container *ngFor="let item of feesData">
+      <div class="price-card" *ngIf="!item.hidden">
+        <div class="card-header">
+          {{ item.title }}
+        </div>
+        <div class="card-body">
+          <p class="fee-label">
+            <strong><i class="fas fa-tags"></i> Course Fee</strong>
+          </p>
+          <div *ngFor="let obj of item.data; let i = index">
+            <p class="price-usd">
+              {{ obj.amount | currency : obj.currency : "symbol" : "1.0-3" }}
+            </p>
+            <hr class="price-divider" *ngIf="i < item.data.length - 1" />
+          </div>
+        </div>
+      </div>
+    </ng-container>
+    }
+  </div>
+  <ng-container>
+    <p class="mt-2 mb-0">
+      <span class="join-batch-heading">Reserve Your Slot with the 30%:</span
+      >(limited places)
+    </p>
+    <p>
+      By paying the
+      <b>30% deposit, you are reserving your place in a shared room</b>. Should
+      you later wish to upgrade to a private room, this will be subject to
+      availability and the corresponding price difference.Please note that the
+      30% deposit is <b>non-refundable</b>, as it allows us to lovingly reserve
+      your place and prepare the space, teachers, and accommodations especially
+      for you.
+    </p>
+  </ng-container>
+  <div class="row justify-content-center">
+    <button class="button" (click)="registerClick()">Join this journey</button>
+  </div>
+</section>
+<section class="choose-us">
+  <div>
+    <img
+      loading="lazy"
+      alt="Not Loaded"
+      src="https://my-s3-images-bucket.s3.amazonaws.com/img/flower-white.png"
+      class="flower-img"
+    />
+  </div>
+  <h2>Why Choose {{ slugData.coursetitle }} at Yoga Vidya School ?</h2>
+  <div class="row my-3">
+    <div class="col-md-6">
+      <div class="images_wrapper">
+        <img loading="lazy" alt="image" [src]="s3Bucket.choose1" class="" />
+        <img
+          loading="lazy"
+          alt="image"
+          [src]="s3Bucket.choose2"
+          class="second_img"
+        />
+      </div>
+    </div>
+    <div class="col-md-6 text-left">
+      <p>
+        Yoga Vidya School offers top-notch 200 Hour Yoga teacher training in
+        Bali. Led by Acharya Prashant Jakhmola, Yoga Vidya School is a Yoga
+        Alliance certified institution offering quality training in yoga. We at
+        Yoga Vidya School can give you a number of reasons for choosing us as
+        your preferred place to learn yoga.
+      </p>
+      <div class="list">
+        <ul>
+          <li *ngFor="let list of chooseList">
+            <img loading="lazy" alt="check" [src]="s3Bucket.whitecheck" />{{
+              list
+            }}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+<app-mentors></app-mentors>
+<div class="know-more-section px-md-5 py-md-5 p-2">
+  <div class="row">
+    <div class="col-md-12">
+      <div>
+        <img
+          loading="lazy"
+          alt="Flower image"
+          [src]="s3Bucket.flower"
+          class="flower-img"
+        />
+      </div>
+      <small>Curriculum Overview</small>
+      <h3 class="small-head">Unleash Your Inner Potential: Dive into Our</h3>
+      <h2>
+        <span>Transformative {{ slugData.coursetitle }} Curriculum!</span>
+      </h2>
+    </div>
+    <div
+      class="col-md-12 text-left mb-3 faq"
+      *ngFor="let cur of slugData.curriculumInfo; let i = index"
+    >
+      <div class="card">
+        <div class="card-header" (click)="openCloseTab(i)">
+          <div class="ques">
+            <div style="max-width: 76px" class="bullet-image_box">
+              <img
+                loading="lazy"
+                alt="Not Loaded"
+                [src]="s3Bucket.lotusBullet"
+                class="img-fluid bullet-image"
+              />
+            </div>
+            <div>
+              <h3 style="color: #212529">{{ cur.title }}</h3>
+            </div>
+          </div>
+        </div>
+        <div class="card-body" *ngIf="cur?.para && selectedIndex == i">
+          <div class="desc" [innerHTML]="cur.para"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-testimonials></app-testimonials>
+<app-faq [data]="faqContent"></app-faq>

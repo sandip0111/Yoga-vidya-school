@@ -60,11 +60,11 @@ export class RishikeshCurriculumComponent implements OnInit {
     //  console.log(changes['data'].currentValue);
   }
   openCloseTab(index: number) {
-     if (this.selectedIndex === index) {
-    this.selectedIndex = -1; 
-  } else {
-    this.selectedIndex = index; 
-  }
+    if (this.selectedIndex === index) {
+      this.selectedIndex = -1;
+    } else {
+      this.selectedIndex = index;
+    }
   }
 
   registerClick() {

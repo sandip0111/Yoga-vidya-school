@@ -11,6 +11,7 @@ export enum s3Bucket {
   roomMain = 'https://my-s3-images-bucket.s3.amazonaws.com/images/IMG_6828_cchusm.jpg',
   food = 'https://my-s3-images-bucket.s3.amazonaws.com/images/food_dwn1yl.jpg',
   whiteArrow = 'https://my-s3-images-bucket.s3.amazonaws.com/img/arrow-white.png',
+  whitecheck = "https://my-s3-images-bucket.s3.amazonaws.com/img/white-check.png",
   offer1 = 'https://my-s3-images-bucket.s3.amazonaws.com/images/online4_tuiozj.jpg',
   offer2 = 'https://my-s3-images-bucket.s3.amazonaws.com/images/onluneoff_vriefa.jpg',
   offer3 = 'https://my-s3-images-bucket.s3.amazonaws.com/images/online3_pseqg1.jpg',
@@ -93,6 +94,9 @@ export enum s3Bucket {
   about1 = 'https://my-s3-images-bucket.s3.amazonaws.com/img/aboutUs.jpg',
   about2 = 'https://my-s3-images-bucket.s3.amazonaws.com/img/1638962757_about-yoga-vidya.jpg',
   foundationOfSpirituality = 'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/DSC09238.jpg',
+
+  choose1 = 'https://my-s3-images-bucket.s3.amazonaws.com/images/why_choose_qzrecb.webp',
+  choose2 = 'https://my-s3-images-bucket.s3.amazonaws.com/images/954A9000_fhwxat.jpg',
 }
 export enum youtubeLink {
   trainingImportance = 'https://www.youtube.com/embed/t7l1cqDj1tA?si=ZJCQXJYDLzDwLLvm',
