@@ -95,7 +95,6 @@ export class Bali100HourComponent {
       this.scheduleArr = this.slugData.scheduleInfo;
       this.feesData = this.slugData.feeInfo;
       this.faqContent = this.slugData.content;
-      console.log(this.slugData.curriculumInfo);
     });
   }
   registerClick() {
