@@ -3,6 +3,7 @@ import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { routeEnum } from '../../../enum/routes';
 import { s3Bucket } from '../../../enum/s3Bucket';
+import { MonthEnum } from '../../../enum/details';
 
 @Component({
   selector: 'app-daily-schedule',
@@ -19,6 +20,7 @@ export class DailyScheduleComponent implements OnInit {
   slug: string | undefined = '';
   routeEnum = routeEnum;
   s3Bucket = s3Bucket;
+  monthEnum = MonthEnum;
   constructor(private activatedRoute: ActivatedRoute, private router: Router) {
     this.slug = this.activatedRoute.snapshot.routeConfig?.path;
   }
@@ -27,7 +29,13 @@ export class DailyScheduleComponent implements OnInit {
     this.schedule = changes['data'].currentValue?.schedule;
     this.title = changes['data'].currentValue?.title;
   }
-  goToPaymentPage() {
-    this.router.navigate([`/checkout/${this.slug}`]);
+  goToPaymentPage(month?: string) {
+    if (month) {
+      this.router.navigate([`/checkout/${this.slug}`], {
+        queryParams: { month: month },
+      });
+    } else {
+      this.router.navigate([`/checkout/${this.slug}`]);
+    }
   }
 }
