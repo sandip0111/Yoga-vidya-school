@@ -32,6 +32,7 @@ import {
   feesDto,
   feesInfoDto,
 } from '../course/rishikesh/pricing/pricing.component';
+import { s3Bucket } from '../enum/s3Bucket';
 
 declare var Razorpay: any;
 @Component({
@@ -75,6 +76,7 @@ export class CheckoutComponent {
   actualAmount: number = 0;
   feesData: feeInfoDto[] = [];
   selectedMonth: string | null = null;
+  s3bucket = s3Bucket;
   constructor(
     private webapiService: WebapiService,
     private _activatedRoute: ActivatedRoute,
@@ -107,6 +109,7 @@ export class CheckoutComponent {
       routeEnum.rishikesh300,
       routeEnum.bali200,
       routeEnum.bali300,
+      routeEnum.bali100,
     ];
 
     if (roomCourses.includes(this.slug as any)) {
@@ -493,7 +496,8 @@ export class CheckoutComponent {
           this.rishikesh200Checkout(data, isRazorPay);
         } else if (
           this.slug == routeEnum.bali300 ||
-          this.slug == routeEnum.bali200
+          this.slug == routeEnum.bali200 ||
+          this.slug == routeEnum.bali100
         ) {
           this.baliCheckout(data, isRazorPay);
         } else if (this.slug == routeEnum.sa) {
@@ -736,6 +740,9 @@ export class CheckoutComponent {
     } else if (this.slug == routeEnum.bali300) {
       hour = 300;
       month = 'July, 2026';
+    } else {
+      hour = 100;
+      month = 'June, 2026';
     }
     let room = this.roomList.find((item) => item.value == data.package);
     let baliData: SignupDataModel = {

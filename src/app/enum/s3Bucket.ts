@@ -11,7 +11,7 @@ export enum s3Bucket {
   roomMain = 'https://my-s3-images-bucket.s3.amazonaws.com/images/IMG_6828_cchusm.jpg',
   food = 'https://my-s3-images-bucket.s3.amazonaws.com/images/food_dwn1yl.jpg',
   whiteArrow = 'https://my-s3-images-bucket.s3.amazonaws.com/img/arrow-white.png',
-  whitecheck = "https://my-s3-images-bucket.s3.amazonaws.com/img/white-check.png",
+  whitecheck = 'https://my-s3-images-bucket.s3.amazonaws.com/img/white-check.png',
   offer1 = 'https://my-s3-images-bucket.s3.amazonaws.com/images/online4_tuiozj.jpg',
   offer2 = 'https://my-s3-images-bucket.s3.amazonaws.com/images/onluneoff_vriefa.jpg',
   offer3 = 'https://my-s3-images-bucket.s3.amazonaws.com/images/online3_pseqg1.jpg',
@@ -97,6 +97,10 @@ export enum s3Bucket {
 
   choose1 = 'https://my-s3-images-bucket.s3.amazonaws.com/images/why_choose_qzrecb.webp',
   choose2 = 'https://my-s3-images-bucket.s3.amazonaws.com/images/954A9000_fhwxat.jpg',
+
+  razorpay = 'assets/razor.svg',
+  stripe = 'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/stripe.png',
+  paypal = 'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/paypal.png',
 }
 export enum youtubeLink {
   trainingImportance = 'https://www.youtube.com/embed/t7l1cqDj1tA?si=ZJCQXJYDLzDwLLvm',
@@ -121,8 +125,8 @@ export enum reviewLink {
   reviewNew3 = 'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/Mariam Zurabashvili - Pranic purification.mp4',
   reviewNew4 = 'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/Monika Verma.mov',
   reviewNew5 = 'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/Yasmeen.MOV',
-  rishikesh1 = "https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/MVI_0364.mp4",
-  rishikesh2 = "https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/954A9428.mp4",
-  rishikesh3 = "https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/MVI_0364_1.mp4",
-  rishikesh4 = "https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/MVI_0364_3.mp4",
+  rishikesh1 = 'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/MVI_0364.mp4',
+  rishikesh2 = 'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/954A9428.mp4',
+  rishikesh3 = 'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/MVI_0364_1.mp4',
+  rishikesh4 = 'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/testimonial/MVI_0364_3.mp4',
 }
