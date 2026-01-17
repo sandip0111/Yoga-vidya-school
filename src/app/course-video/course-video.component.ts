@@ -241,11 +241,11 @@ export class CourseVideoComponent {
 
   getFedbackV2Day5(val: any) {
     this.webapiService.getFeedbackByCourse(val).subscribe((res: any) => {
-      if (res.count > 0) {
-      } else {
-        alert('Please upload Day 9 review video first!!');
-        location.reload();
-      }
+      // if (res.count > 0) {
+      // } else {
+      //   alert('Please upload Day 9 review video first!!');
+      //   location.reload();
+      // }
     });
   }
 
