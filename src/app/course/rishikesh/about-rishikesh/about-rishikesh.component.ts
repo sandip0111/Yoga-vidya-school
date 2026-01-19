@@ -219,7 +219,7 @@ export class AboutRishikeshComponent implements OnInit {
 
               <p>You did not arrive here by chance — you were guided.</p>
               <br />
-              <p style="font-size: 25px" class="text-center"><span style="color: #f5711a;">Price:</span> <b> ${this.inrPrice} / ${this.usdPrice}</b></p>
+              <!--<p style="font-size: 25px" class="text-center"><span style="color: #f5711a;">Price:</span> <b> ${this.inrPrice} / ${this.usdPrice}</b></p>-->
                <br />
               <div>
                 <h3 class="text-center">Are you ready to step into your transformation?</h3>
