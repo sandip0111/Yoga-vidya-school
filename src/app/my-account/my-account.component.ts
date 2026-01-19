@@ -177,7 +177,7 @@ export class MyAccountComponent {
         this.webapiService
           .getAccessLog({ studentId: this.loginId, courseId: course })
           .subscribe((res: any) => {
-            if (res.count == 0 && slug != routeEnum['200TTC'] && slug != routeEnum.online) {
+            if (res.count == 0 && slug != routeEnum['200TTC'] && slug != routeEnum.online && slug != routeEnum.pranicPurification) {
               this.createAccessLog(val);
             }
             this.router.navigate([`/${routeEnum.courseVideo}/${slug}/${id}`]);
