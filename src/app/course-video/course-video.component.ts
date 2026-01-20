@@ -51,7 +51,7 @@ export class CourseVideoComponent {
     private meta: Meta,
     @Inject(DOCUMENT) private _document: Document,
     private _renderer2: Renderer2,
-    private _changeDetect: ChangeDetectorRef
+    private _changeDetect: ChangeDetectorRef,
   ) {
     this.spinner.show();
     this._activatedRoute.params.subscribe((params) => {
@@ -84,7 +84,7 @@ export class CourseVideoComponent {
     isM3U8: boolean,
     updateId: any,
     videoSrc: string,
-    isShow: boolean
+    isShow: boolean,
   ) {
     const id = 'plyrID-' + updateId;
     const video = document.getElementById(id) as HTMLVideoElement;
@@ -413,7 +413,7 @@ export class CourseVideoComponent {
           res = res.filter(
             (item: onLineVideoModel) =>
               item.month === sourceArr[sourceArr.length - 1] &&
-              item.teacherId === +this.teacherId
+              item.teacherId === +this.teacherId,
           );
         }
         if (res.length > 0) {
@@ -712,7 +712,9 @@ export class CourseVideoComponent {
         continue;
       }
       this.reverseArr[i].isShow =
-        this.slug == routeEnum['200TTC'] || this.slug == routeEnum.online || this.slug == routeEnum.pranicPurification
+        this.slug == routeEnum['200TTC'] ||
+        this.slug == routeEnum.online ||
+        this.slug == routeEnum.pranicPurification
           ? true
           : false;
       this.reverseArr[i].isVideoShown = false;
@@ -734,7 +736,7 @@ export class CourseVideoComponent {
               isM3U8,
               video.updateId,
               video.url,
-              video.isShow
+              video.isShow,
             );
           });
       }
@@ -772,7 +774,7 @@ export class CourseVideoComponent {
           isM3U8,
           video.updateId,
           video.url,
-          video.isShow
+          video.isShow,
         );
       }
     }, 4000);
