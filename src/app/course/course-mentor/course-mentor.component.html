@@ -1,3 +1,23 @@
+<section style="padding: 0">
+  <div class="row">
+    <div class="col-md-12">
+      <div style="position: relative">
+        <div class="inner image">
+          <img
+            [src]="s3Bucket.onlineCourseHero"
+            class="img-fluid banner_image"
+            alt="Banner Image"
+          />
+          <div class="banner-text-overlay">Online Daily Yoga Classes</div>
+          <div class="banner-subtitle-overlay">
+            Live, interactive yoga sessions daily — approachable, authentic, led
+            by master teachers
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 <section class="mentors" *ngIf="courseMentor.length > 0">
   <div class="card">
     <div class="row">
@@ -89,7 +109,7 @@
       <div class="col-md-12">
         <div class="col-md-12">
           <div class="middle-text">
-            <h2><span>Next batches starts</span> January 5th</h2>
+            <h2><span>Next batches starts</span> February 2nd</h2>
           </div>
           <div class="row">
             <div class="col-md-6 mt-3" *ngFor="let mentor of courseMentor">
@@ -126,7 +146,6 @@
                   </div>
                 </div>
               </div>
-              <!-- } -->
             </div>
           </div>
         </div>

@@ -33,6 +33,7 @@ import { PrashantPageComponent } from './course/online-course-mentor/prashant-pa
 import { TaniyaPageComponent } from './course/online-course-mentor/taniya-page/taniya-page.component';
 import { AnujPageComponent } from './course/online-course-mentor/anuj-page/anuj-page.component';
 import { routeEnum } from './enum/routes';
+import { CourseMentorComponent } from './course/course-mentor/course-mentor.component';
 
 export const routes: Routes = [
   { path: '', component: IndexComponent },
@@ -92,7 +93,7 @@ export const routes: Routes = [
 
   { path: routeEnum.pranicPurification, component: RishikeshIndexComponent },
 
-  { path: 'online-yoga-classes', component: CourseComponent },
+  { path: routeEnum.online, component: CourseMentorComponent },
   { path: routeEnum.bDtox, component: BaliIndexComponent },
   {
     path: routeEnum.pranOnlinePranaArambh,
