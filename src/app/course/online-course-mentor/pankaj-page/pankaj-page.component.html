@@ -1,0 +1,32 @@
+<div class="row p-0">
+  <div class="col-md-12">
+    <div style="position: relative">
+      <div class="inner image position-relative">
+        <div class="taniya-corner">
+          <p>
+            {{mentor?.date}} <br /> From {{mentor?.time}} <br />
+            A new batch starts the 1st Monday of every month<br />
+            Next Batch starts: February 2nd
+          </p>
+          <div class="d-flex justify-content-center">
+            <button
+              class="button"
+              style="margin-top: 0"
+              (click)="addToCart(mentor)"
+            >
+              Join now
+            </button>
+          </div>
+        </div>
+        <img
+          [src]="s3Bucket.pankajHero"
+          class="img-fluid banner_image"
+          alt="Taniya verma"
+        />
+        <div class="banner-text-overlay">
+          Ashtanga & Alignment-Based Practice - By Pankaj
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

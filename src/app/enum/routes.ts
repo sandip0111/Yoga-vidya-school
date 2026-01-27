@@ -25,4 +25,5 @@ export enum routeEnum {
   'aboutUs' = 'about-us',
   'foundationOfSpirituality' = 'foundation-of-spirituality-an-online-spiritual-awakening-course',
   'courseVideo' = 'course-video',
+  'pankaji' = 'pankaj-ji-online-class'
 }

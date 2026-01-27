@@ -101,6 +101,8 @@ export enum s3Bucket {
   razorpay = 'assets/razor.svg',
   stripe = 'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/stripe.png',
   paypal = 'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/paypal.png',
+
+  pankajHero = 'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/img/954A0126.JPG',
 }
 export enum youtubeLink {
   trainingImportance = 'https://www.youtube.com/embed/t7l1cqDj1tA?si=ZJCQXJYDLzDwLLvm',

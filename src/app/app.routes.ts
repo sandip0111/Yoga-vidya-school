@@ -34,6 +34,7 @@ import { TaniyaPageComponent } from './course/online-course-mentor/taniya-page/t
 import { AnujPageComponent } from './course/online-course-mentor/anuj-page/anuj-page.component';
 import { routeEnum } from './enum/routes';
 import { CourseMentorComponent } from './course/course-mentor/course-mentor.component';
+import { PankajPageComponent } from './course/online-course-mentor/pankaj-page/pankaj-page.component';
 
 export const routes: Routes = [
   { path: '', component: IndexComponent },
@@ -77,8 +78,6 @@ export const routes: Routes = [
     path: '300-hour-yoga-teacher-training-scholarship-in-rishikesh',
     component: RishikeshIndexComponent,
   },
-  // {path:'200-hour-yoga-teacher-training-in-kerala-india', component: RishikeshIndexComponent},
-  // {path:'300-hour-yoga-teacher-training-in-kerala-india', component: RishikeshIndexComponent},
   {
     path: 'yoga-retreat-in-rishikesh-india',
     component: RishikeshIndexComponent,
@@ -158,6 +157,10 @@ export const routes: Routes = [
   {
     path: 'anuj-online-class/:id',
     component: AnujPageComponent,
+  },
+  {
+    path: `${routeEnum.pankaji}/:id`,
+    component: PankajPageComponent,
   },
   {
     path: routeEnum.preRecordPranayamaCourse,
