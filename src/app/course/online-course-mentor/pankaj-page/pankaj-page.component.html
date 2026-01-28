@@ -4,7 +4,8 @@
       <div class="inner image position-relative">
         <div class="taniya-corner">
           <p>
-            {{mentor?.date}} <br /> From {{mentor?.time}} <br />
+            {{ mentor?.date }} <br />
+            From {{ mentor?.time }} <br />
             A new batch starts the 1st Monday of every month<br />
             Next Batch starts: February 2nd
           </p>
@@ -26,6 +27,81 @@
         <div class="banner-text-overlay">
           Ashtanga & Alignment-Based Practice - By Pankaj
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row about-rishikesh-section">
+  <div class="col-md-6 aboutImage">
+    <div class="imageback">
+      <img
+        [src]="s3Bucket.pankaj1"
+        class="img-fluid"
+        loading="lazy"
+        alt="about"
+      />
+    </div>
+  </div>
+  <div class="col-md-6 d-flex align-items-center">
+    <div>
+      <h2><span>Strength & Structure</span></h2>
+      <p>
+        This practice combines the flowing rhythm of Ashtanga Vinyasa with a
+        strong focus on alignment and mindful adjustments. Each asana is
+        explored with practical details, helping students understand correct
+        posture, breath, and movement. Through clear guidance and awareness, the
+        practice builds strength, stability, flexibility, and a deeper
+        connection to the body supporting safe, sustainable, and conscious yoga
+        practice.
+      </p>
+    </div>
+  </div>
+  <div class="col-md-6 d-flex align-items-center">
+    <div>
+      <h2><span>Aligned Practice</span></h2>
+      <p>
+        Ashtanga classes on Mondays and Wednesdays cultivate strength,
+        continuity, and discipline, while alignment-based hatha sessions on
+        Tuesdays and Thursdays focus on stability, and refined awareness. A
+        complete and balanced path for those seeking both fire and structure in
+        their practice.
+      </p>
+    </div>
+  </div>
+  <div class="col-md-6 aboutImage mt-3">
+    <div class="imageback">
+      <img
+        [src]="s3Bucket.pankaj2"
+        class="img-fluid"
+        loading="lazy"
+        alt="about"
+      />
+    </div>
+  </div>
+</div>
+<div class="card">
+  <div class="row mb-3">
+    <div class="col-md-12">
+      <div class="row justify-content-center">
+        <img
+          loading="lazy"
+          alt="Not Loaded"
+          [src]="s3Bucket.flower"
+          style="width: 6rem"
+        />
+        <h2>
+          A complete and balanced path for those seeking both fire and structure in their practice.
+        </h2>
+        <h3 class="ready-title">
+          Step into a practice that honors structure and awareness.
+        </h3>
+        <button
+          class="button"
+          style="margin-top: 0"
+          (click)="addToCart(mentor)"
+        >
+          JOIN NOW
+        </button>
       </div>
     </div>
   </div>

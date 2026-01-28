@@ -92,3 +92,10 @@
     width: 90%;
   }
 }
+.ready-title {
+  font-size: 1.8rem;
+  color: #d35400;
+  margin-bottom: 20px;
+  font-weight: 600;
+  text-align: center;
+}
