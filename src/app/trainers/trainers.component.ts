@@ -8,11 +8,17 @@ import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { s3Bucket } from '../enum/s3Bucket';
+import { YogateacherComponent } from '../yogateacher/yogateacher.component';
 
 @Component({
   selector: 'app-trainers',
   standalone: true,
-  imports: [CommonModule, RouterLink, LazyLoadImageModule],
+  imports: [
+    CommonModule,
+    RouterLink,
+    LazyLoadImageModule,
+    YogateacherComponent,
+  ],
   templateUrl: './trainers.component.html',
   styleUrl: './trainers.component.css',
 })
