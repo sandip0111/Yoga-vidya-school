@@ -3,10 +3,8 @@
       <div class="col-md-12">
         <div><img loading="lazy" alt="Not Loaded" src="https://my-s3-images-bucket.s3.amazonaws.com/img/flower-color.png" class="flower-img" /></div>
         <h2>Our <span>Mentors</span></h2>
-        <!-- <small>Sodales ut etiam sit amet nisl purus. Magna etiam tempor orci eu.</small> -->
-        <!-- <small>Molestie nunc non blandit massa enim.</small> -->
       </div>
-      <div class="col-lg-3 col-md-6" *ngFor="let master of mentorList">
+      <div class="col-lg-3 col-md-6 mt-3" *ngFor="let master of mentorList">
         <div class="card">
             <div class="card-image relative">
               <a style="text-decoration: none;color: black" *ngIf="master.slug == 'acharya-prashant-jakhmola'" routerLink="/yoga-teacher/acharya-prashant-jakhmola/prashantjyoga">
@@ -25,9 +23,7 @@
             <div class="card-body">
               <a style="text-decoration: none;color: black" *ngIf="master.slug == 'acharya-prashant-jakhmola'" routerLink="/yoga-teacher/acharya-prashant-jakhmola/prashantjyoga"><div class="heading fw-600">{{ master.name }}</div></a>
               <a style="text-decoration: none;color: black" *ngIf="master.slug != 'acharya-prashant-jakhmola'" routerLink="/mentor/{{ master.slug }}"><div class="heading fw-600">{{ master.name }}</div></a>
-
               <p class="card-text">{{ master.title }}</p>
-              <div class="button">FOLLOW ON : <a *ngIf="master.instaLink" [href]="master.instaLink" target="_blank"><i class="fa-brands fa-instagram"></i></a><i *ngIf="!master.instaLink" class="fa-brands fa-instagram"></i> <a *ngIf="master.youTubeLink" [href]="master.youTubeLink" target="_blank"><i class="fa-brands fa-youtube"></i></a></div>
             </div>
         </div>
       </div>
