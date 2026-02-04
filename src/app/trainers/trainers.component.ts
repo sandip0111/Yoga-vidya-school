@@ -3,10 +3,11 @@ import { DOCUMENT } from '@angular/common';
 import { WebapiService } from '../webapi.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Router } from '@angular/router';
-import { Title, Meta } from '@angular/platform-browser';
+import { Title, Meta, DomSanitizer } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
+import { s3Bucket } from '../enum/s3Bucket';
 
 @Component({
   selector: 'app-trainers',
@@ -20,6 +21,10 @@ export class TrainersComponent {
     'https://miro.medium.com/max/441/1*9EBHIOzhE1XfMYoKz1JcsQ.gif';
   mentorList: any;
   imageUrl: any;
+  selectedMentor: any = null;
+  selectedMentorSlug: string = '';
+  showModal: boolean = false;
+  s3Bucket = s3Bucket;
 
   constructor(
     private webapiService: WebapiService,
@@ -29,6 +34,7 @@ export class TrainersComponent {
     private router: Router,
     @Inject(DOCUMENT) private _document: Document,
     private _renderer2: Renderer2,
+    public sanitizer: DomSanitizer,
   ) {}
 
   ngOnInit(): void {
@@ -57,5 +63,30 @@ export class TrainersComponent {
       this.mentorList = res.user;
       this.spinner.hide();
     });
+  }
+
+  openModal(slug: string) {
+    this.selectedMentorSlug = slug;
+    this.showModal = true;
+
+    if (slug === 'acharya-prashant-jakhmola') {
+      // Static content, no need to fetch
+      this.selectedMentor = null; // or set a dummy object if needed
+      this._renderer2.addClass(this._document.body, 'modal-open');
+    } else {
+      this.spinner.show();
+      this.webapiService.getMentorBySlug(slug).subscribe((res: any) => {
+        this.selectedMentor = res.data;
+        this.spinner.hide();
+        this._renderer2.addClass(this._document.body, 'modal-open');
+      });
+    }
+  }
+
+  closeModal() {
+    this.showModal = false;
+    this.selectedMentor = null;
+    this.selectedMentorSlug = '';
+    this._renderer2.removeClass(this._document.body, 'modal-open');
   }
 }
