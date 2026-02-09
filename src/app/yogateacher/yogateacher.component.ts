@@ -1,5 +1,5 @@
 import { Component, Renderer2, Inject, Input } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
+import { CommonModule, DOCUMENT } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { BannerComponent } from '../course/banner/banner.component';
@@ -8,7 +8,7 @@ import { s3Bucket } from '../enum/s3Bucket';
 @Component({
   selector: 'app-yogateacher',
   standalone: true,
-  imports: [BannerComponent],
+  imports: [BannerComponent, CommonModule],
   templateUrl: './yogateacher.component.html',
   styleUrl: './yogateacher.component.css',
   host: { ngSkipHydration: 'true' },
