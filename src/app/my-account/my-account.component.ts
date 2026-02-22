@@ -30,7 +30,7 @@ export class MyAccountComponent {
     private title: Title,
     private meta: Meta,
     @Inject(DOCUMENT) private _document: Document,
-    private _renderer2: Renderer2
+    private _renderer2: Renderer2,
   ) {}
 
   ngOnInit(): void {
@@ -78,6 +78,9 @@ export class MyAccountComponent {
         if (res.course._id == CourseEnum.TWO_THOUSANDS_TTC) {
           res.course.introUrl = res?.course.courseintrovideoId;
           res.course.isImage = true;
+        } else if (res.course._id == CourseEnum.BREATCH_DTOX) {
+          res.course.introUrl = res?.course.courseintrovideoId;
+          res.course.isVideo = true;
         } else {
           let url = `https://www.youtube.com/embed/${res?.course.courseintrovideoId}`;
           let safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url);
@@ -96,7 +99,7 @@ export class MyAccountComponent {
         if (res?.course) {
           for (let obj of courses) {
             let getTeacher = res.course.teachersData.find(
-              (x: any) => x.id == obj.id
+              (x: any) => x.id == obj.id,
             );
             getTeacher.introUrl = getTeacher.courseintrovideoId;
             getTeacher.isImage = true;
@@ -127,7 +130,7 @@ export class MyAccountComponent {
   getNext24HourDay(hour: any) {
     const currentDateTime = new Date();
     const next24hDateTime = new Date(
-      currentDateTime.getTime() + hour * 60 * 60 * 1000
+      currentDateTime.getTime() + hour * 60 * 60 * 1000,
     );
 
     return next24hDateTime.toISOString();
@@ -177,7 +180,12 @@ export class MyAccountComponent {
         this.webapiService
           .getAccessLog({ studentId: this.loginId, courseId: course })
           .subscribe((res: any) => {
-            if (res.count == 0 && slug != routeEnum['200TTC'] && slug != routeEnum.online && slug != routeEnum.pranicPurification) {
+            if (
+              res.count == 0 &&
+              slug != routeEnum['200TTC'] &&
+              slug != routeEnum.online &&
+              slug != routeEnum.pranicPurification
+            ) {
               this.createAccessLog(val);
             }
             this.router.navigate([`/${routeEnum.courseVideo}/${slug}/${id}`]);
@@ -250,8 +258,7 @@ export class MyAccountComponent {
   }
 
   createAccessLog(data: any) {
-    this.webapiService.createAccessLog(data).subscribe((res: any) => {
-    });
+    this.webapiService.createAccessLog(data).subscribe((res: any) => {});
   }
   bookSeatV2(slug: any) {
     let url = `checkout/${slug}`;
