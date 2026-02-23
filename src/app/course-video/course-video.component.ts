@@ -169,6 +169,19 @@ export class CourseVideoComponent {
         if (res.count == 1 && res.data.nextSchedule.length > 0) {
           for (let index = 0; index < res.data.nextSchedule.length; index++) {
             if (
+              this.slug == 'pranayama-course-online-pranarambha' &&
+              this.reverseArr[index]?.dayNumber ==
+                res.data.nextSchedule[index].day
+            ) {
+              if (
+                current.getTime() >=
+                new Date(res.data.nextSchedule[index].nextShowDate).getTime()
+              ) {
+                this.reverseArr[index + 1].isShow = true;
+              } else {
+                this.reverseArr[index + 1].isShow = false;
+              }
+            } else if (
               this.reverseArr[index + 1]?.dayNumber ==
               res.data.nextSchedule[index].day
             ) {
