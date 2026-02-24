@@ -23,7 +23,7 @@ export class FooterComponent implements OnInit {
   constructor(
     private webService: WebapiService,
     private spinner: NgxSpinnerService,
-    private router: Router
+    private router: Router,
   ) {
     this.footerAddress =
       'Near Kailashanand Gaushala,Mateshwari Hospital Jonk Village Post, Swarg Ashram Rishikesh, Uttarakhand 249304';
@@ -52,7 +52,7 @@ export class FooterComponent implements OnInit {
 
   subscribeHere(data: any) {
     this.spinner.show();
-    if (data.email && this.validateEmail(data.email)) {
+    if (data.name && data.email && this.validateEmail(data.email)) {
       this.webService.createSubscriber(data).subscribe((res: any) => {
         if (res.status == 'ok') {
           alert(res.msg);
@@ -64,7 +64,7 @@ export class FooterComponent implements OnInit {
         }
       });
     } else {
-      alert('Valid Email is required');
+      alert('Name and Valid Email is required');
       this.spinner.hide();
     }
   }

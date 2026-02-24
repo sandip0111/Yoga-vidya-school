@@ -1,36 +1,116 @@
 <section class="mentors">
-    <div class="row">
-      <div class="col-md-12">
-        <div><img loading="lazy" alt="Not Loaded" src="https://my-s3-images-bucket.s3.amazonaws.com/img/flower-color.png" class="flower-img" /></div>
-        <h2>Our <span>Mentors</span></h2>
-        <!-- <small>Sodales ut etiam sit amet nisl purus. Magna etiam tempor orci eu.</small> -->
-        <!-- <small>Molestie nunc non blandit massa enim.</small> -->
+  <div class="row">
+    <div class="col-md-12">
+      <div>
+        <img
+          loading="lazy"
+          alt="Not Loaded"
+          src="https://my-s3-images-bucket.s3.amazonaws.com/img/flower-color.png"
+          class="flower-img"
+        />
       </div>
-      <div class="col-lg-3 col-md-6" *ngFor="let master of mentorList">
-        <div class="card">
-            <div class="card-image relative">
-              <a style="text-decoration: none;color: black" *ngIf="master.slug == 'acharya-prashant-jakhmola'" routerLink="/yoga-teacher/acharya-prashant-jakhmola/prashantjyoga">
-                <img [defaultImage]="'https://my-s3-images-bucket.s3.amazonaws.com/img/avatar.jpg'"
-                [lazyLoad]="imageUrl + master.picture"
-                alt="{{ master.title }}" class="img-fluid">
-              </a>
-
-              <a style="text-decoration: none;color: black" *ngIf="master.slug != 'acharya-prashant-jakhmola'" routerLink="/mentor/{{ master.slug }}">
-                <img [defaultImage]="'https://my-s3-images-bucket.s3.amazonaws.com/img/avatar.jpg'"
-                [lazyLoad]="imageUrl + master.picture"
-                alt="{{ master.title }}" class="img-fluid">
-              </a>
-
-            </div>
-            <div class="card-body">
-              <a style="text-decoration: none;color: black" *ngIf="master.slug == 'acharya-prashant-jakhmola'" routerLink="/yoga-teacher/acharya-prashant-jakhmola/prashantjyoga"><div class="heading fw-600">{{ master.name }}</div></a>
-              <a style="text-decoration: none;color: black" *ngIf="master.slug != 'acharya-prashant-jakhmola'" routerLink="/mentor/{{ master.slug }}"><div class="heading fw-600">{{ master.name }}</div></a>
-
-              <p class="card-text">{{ master.title }}</p>
-              <div class="button">FOLLOW ON : <a *ngIf="master.instaLink" [href]="master.instaLink" target="_blank"><i class="fa-brands fa-instagram"></i></a><i *ngIf="!master.instaLink" class="fa-brands fa-instagram"></i> <a *ngIf="master.youTubeLink" [href]="master.youTubeLink" target="_blank"><i class="fa-brands fa-youtube"></i></a></div>
-            </div>
+      <h2>Our <span>Mentors</span></h2>
+    </div>
+    <div class="col-lg-3 col-md-6 mt-3" *ngFor="let master of mentorList">
+      <div class="card">
+        <div
+          class="card-image relative"
+          (click)="openModal(master.slug)"
+          style="cursor: pointer"
+        >
+          <img
+            [defaultImage]="
+              'https://my-s3-images-bucket.s3.amazonaws.com/img/avatar.jpg'
+            "
+            [lazyLoad]="imageUrl + master.picture"
+            alt="{{ master.title }}"
+            class="img-fluid"
+          />
+        </div>
+        <div class="card-body">
+          <div
+            class="heading fw-600"
+            (click)="openModal(master.slug)"
+            style="cursor: pointer"
+          >
+            {{ master.name }}
+          </div>
+          <p class="card-text">{{ master.title }}</p>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
+<!-- Bootstrap Modal -->
+<div
+  class="modal fade show"
+  tabindex="-1"
+  role="dialog"
+  style="display: block"
+  *ngIf="showModal"
+>
+  <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" *ngIf="selectedMentor">
+          {{ selectedMentor.name }}
+        </h5>
+        <h5
+          class="modal-title"
+          *ngIf="selectedMentorSlug == 'acharya-prashant-jakhmola'"
+        >
+          Acharya Prashant Jakhmola
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          aria-label="Close"
+          (click)="closeModal()"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <!-- Prashant Static Content -->
+        <div *ngIf="selectedMentorSlug == 'acharya-prashant-jakhmola'">
+          <app-yogateacher [isModal]="true"></app-yogateacher>
+        </div>
+
+        <!-- Other Mentors Dynamic Content -->
+        <div
+          *ngIf="
+            selectedMentorSlug != 'acharya-prashant-jakhmola' && selectedMentor
+          "
+        >
+          <section class="patern-bg2">
+            <div class="container-fluid">
+              <div class="row master">
+                <div class="col-lg-9">
+                  <div class="heading-wrapper title text-left flex">
+                    <h1>{{ selectedMentor?.name }}</h1>
+                    <p>
+                      <span>{{ selectedMentor?.title }}</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div
+                  class=""
+                  [innerHTML]="
+                    sanitizer.bypassSecurityTrustHtml(selectedMentor.intro)
+                  "
+                ></div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Backdrop -->
+<div
+  class="modal-backdrop fade show"
+  *ngIf="showModal"
+  (click)="closeModal()"
+></div>
