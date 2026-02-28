@@ -232,6 +232,7 @@ export class PaymentProceedComponent implements OnInit {
         paymentStatus: 'due',
         price: data.price,
         courses: courseList,
+        month: this.courses[0].month
       };
 
       this.pixelTracking.trackInitiateCheckout(
@@ -299,7 +300,6 @@ export class PaymentProceedComponent implements OnInit {
       const data = this.paymentForm.getRawValue();
       let courseList: any = [];
       this.courses.map((c) => courseList.push({ id: c.id }));
-
       const paymentData = {
         name: data.holderName,
         email: data.email,
@@ -308,6 +308,7 @@ export class PaymentProceedComponent implements OnInit {
         price: data.price,
         courses: courseList,
         paymentStatus: 'due',
+        month: this.courses[0].month
       };
 
       this.pixelTracking.trackInitiateCheckout(

@@ -20,6 +20,7 @@ export interface CartItem {
   description?: string;
   name: string;
   teacher?: string;
+  month?: string;
 }
 
 @Injectable({
