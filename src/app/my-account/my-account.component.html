@@ -25,36 +25,60 @@
         >
           <div class="row">
             <div class="col-lg-6">
-              @if(course.isYoutube){
-              <iframe
-                loading="lazy"
-                style="width: 100%"
-                height="315"
-                [src]="course.introUrl"
-                title="YouTube video player"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen
-                async
-                defer
-              ></iframe>
-              }@else if(course.isImage) {
-              <img
-                loading="lazy"
-                class="intro-image"
-                [src]="course.introUrl"
-                title="Course intro video"
-                controls
-                playsinline
-                preload="metadata"
-                controlsList="nodownload"
-              />
+              @if (course.isYoutube) {
+                <iframe
+                  loading="lazy"
+                  style="width: 100%"
+                  height="315"
+                  [src]="course.introUrl"
+                  title="YouTube video player"
+                  frameborder="0"
+                  allow="
+                    accelerometer;
+                    autoplay;
+                    clipboard-write;
+                    encrypted-media;
+                    gyroscope;
+                    picture-in-picture;
+                  "
+                  allowfullscreen
+                  async
+                  defer
+                ></iframe>
+              } @else if (course.isImage) {
+                <img
+                  loading="lazy"
+                  class="intro-image"
+                  [src]="course.introUrl"
+                  title="Course intro video"
+                  controls
+                  playsinline
+                  preload="metadata"
+                  controlsList="nodownload"
+                />
+              } @else if (course.isVideo) {
+                <video
+                  loading="lazy"
+                  style="width: 100%"
+                  [src]="course.introUrl"
+                  title="Course intro video"
+                  controls
+                  playsinline
+                  preload="metadata"
+                  controlsList="nodownload"
+                ></video>
               }
             </div>
             <div class="col-lg-6">
               <h2>{{ course?.coursetitle }}</h2>
               <span
-                (click)="getOnlineCourseVideosV2(course._id, course.slug, course.id ? course.id : 0)"
+                (click)="
+                  getOnlineCourseVideosV2(
+                    course._id,
+                    course.slug,
+                    course.id ? course.id : 0
+                  )
+                "
                 class="btn btn-info"
                 >START NOW</span
               >

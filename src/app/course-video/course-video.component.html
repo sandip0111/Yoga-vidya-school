@@ -9,27 +9,34 @@
       else otherTitle
     "
   >
-    @if(slug === routeEnum['200TTC']){
-    <p class="text-center">
-      Yoga TTC is not merely a training; it is a divine responsibility — to walk
-      the path of awareness and become a channel of consciousness for others.
-    </p>
-    } @if(slug === routeEnum.online){ @if(teacherId==1){
-    <p class="text-center">Welcome to your online sadhana with Prashantji</p>
-    } @else if(teacherId==3){
-    <p class="text-center">
-      A warm and heartfelt welcome to all beautiful women🌺
-    </p>
-    <p class="text-center">
-      This wellness batch, you’ve chosen to prioritize yourself—and that itself
-      is powerful. Together, we’ll nurture strength, balance, and inner calm
-      through mindful practices. Excited to walk this path with all of you
-    </p>
-    } @else if(teacherId==5){
-    <p class="text-center">
-      A warm welcom to Ashtanga & Alignment-Based class
-    </p>
-    } }
+    @if (slug === routeEnum["200TTC"]) {
+      <p class="text-center">
+        Yoga TTC is not merely a training; it is a divine responsibility — to
+        walk the path of awareness and become a channel of consciousness for
+        others.
+      </p>
+    }
+    @if (slug === routeEnum.online) {
+      @if (teacherId == 1) {
+        <p class="text-center">
+          Welcome to your online sadhana with Prashantji
+        </p>
+      } @else if (teacherId == 3) {
+        <p class="text-center">
+          A warm and heartfelt welcome to all beautiful women🌺
+        </p>
+        <p class="text-center">
+          This wellness batch, you’ve chosen to prioritize yourself—and that
+          itself is powerful. Together, we’ll nurture strength, balance, and
+          inner calm through mindful practices. Excited to walk this path with
+          all of you
+        </p>
+      } @else if (teacherId == 5) {
+        <p class="text-center">
+          A warm welcom to Ashtanga & Alignment-Based class
+        </p>
+      }
+    }
   </ng-container>
   <ng-template #otherTitle>
     <p class="text-center">Start Your {{ courseList?.coursetitle }} Now!</p>
@@ -42,59 +49,59 @@
       </button>
     </div>
   </ng-template>
-  @if(reverseArr && reverseArr.length > 0){
-  <div class="container-fluid">
-    <ul class="nav nav-tabs">
-      <li class="nav-item" *ngFor="let vid of reverseArr; let i = index">
-        <a
-          class="nav-link text-dark"
-          [ngClass]="i == activeIndex ? 'active' : ''"
-          aria-current="page"
-          data-bs-toggle="tab"
-          href="#tab{{ vid?.dayNumber }}"
-          (click)="setDataFeedbackV2(i + 1, vid)"
-          >{{ vid.title }}</a
-        >
-      </li>
-    </ul>
+  @if (reverseArr && reverseArr.length > 0) {
+    <div class="container-fluid">
+      <ul class="nav nav-tabs">
+        <li class="nav-item" *ngFor="let vid of reverseArr; let i = index">
+          <a
+            class="nav-link text-dark"
+            [ngClass]="i == activeIndex ? 'active' : ''"
+            aria-current="page"
+            data-bs-toggle="tab"
+            href="#tab{{ vid?.dayNumber }}"
+            (click)="setDataFeedbackV2(i + 1, vid)"
+            >{{ vid.title }}</a
+          >
+        </li>
+      </ul>
 
-    <div class="tab-content">
-      <div
-        *ngFor="let dt of reverseArr; let i = index"
-        class="tab-pane fade"
-        [ngClass]="i == 0 ? 'show active' : ''"
-        id="tab{{ dt?.dayNumber }}"
-      >
-        <div class="row mt-3 d-flex justify-content-center" *ngIf="dt.isShow">
-          <div [class]="videoClass">
-            <div class="video-container">
-              <video
-                *ngIf="slug != 'pranayama-course-online-pranarambha'"
-                [attr.id]="'plyrID-' + i"
-                controls
-                playsinline
-                (play)="onVideoPlay(dt.updateId)"
-                controlsList="nodownload"
-                (timeupdate)="onTimeUpdate($event, dt.dayNumber)"
-              >
-                <source [attr.src]="dt.url" type="video/mp4" />
-              </video>
-              <video
-                *ngIf="slug == 'pranayama-course-online-pranarambha'"
-                [attr.id]="'plyrID-' + dt.updateId"
-                controls
-                playsinline
-                (play)="onVideoPlay(dt.updateId)"
-                controlsList="nodownload"
-                (timeupdate)="onTimeUpdate($event, dt.dayNumber)"
-              >
-                <source [attr.src]="dt.url" type="video/mp4" />
-              </video>
+      <div class="tab-content">
+        <div
+          *ngFor="let dt of reverseArr; let i = index"
+          class="tab-pane fade"
+          [ngClass]="i == 0 ? 'show active' : ''"
+          id="tab{{ dt?.dayNumber }}"
+        >
+          <div class="row mt-3 d-flex justify-content-center" *ngIf="dt.isShow">
+            <div [class]="videoClass">
+              <div class="video-container">
+                <video
+                  *ngIf="slug != 'pranayama-course-online-pranarambha'"
+                  [attr.id]="'plyrID-' + i"
+                  controls
+                  playsinline
+                  (play)="onVideoPlay(dt.updateId)"
+                  controlsList="nodownload"
+                  (timeupdate)="onTimeUpdate($event, dt.dayNumber)"
+                >
+                  <source [attr.src]="dt.url" type="video/mp4" />
+                </video>
+                <video
+                  *ngIf="slug == 'pranayama-course-online-pranarambha'"
+                  [attr.id]="'plyrID-' + dt.updateId"
+                  controls
+                  playsinline
+                  (play)="onVideoPlay(dt.updateId)"
+                  controlsList="nodownload"
+                  (timeupdate)="onTimeUpdate($event, dt.dayNumber)"
+                >
+                  <source [attr.src]="dt.url" type="video/mp4" />
+                </video>
+              </div>
             </div>
-          </div>
-          <div class="col-lg-4 mt-3">
-            <form #feedback="ngForm">
-              <!-- <div
+            <div class="col-lg-4 mt-3">
+              <form #feedback="ngForm">
+                <!-- <div
                 class="row"
                 *ngIf="
                   slug != 'breath-detox-yoga' &&
@@ -133,12 +140,52 @@
                 </div>
               </div> -->
 
-              <div
-                class="row"
-                *ngIf="slug == 'pranayama-course-online-pranarambha'"
-              >
-                <div *ngIf="!feedbackCounter">
-                  <div class="col-lg-12 form-group mb-3" *ngIf="i == 9">
+                <div
+                  class="row"
+                  *ngIf="slug == 'pranayama-course-online-pranarambha'"
+                >
+                  <div *ngIf="!feedbackCounter">
+                    <div class="col-lg-12 form-group mb-3" *ngIf="i == 9">
+                      <label for=""
+                        ><strong>Video Review (*mandatory)</strong></label
+                      ><br />
+                      <p>
+                        Please record a small video on your phone and upload the
+                        file here. <br />
+                        This is your contribution in making people understand
+                        about the results of true yogic practices and thus we
+                        can make better platform for knowledge and health
+                        seekers.<br />
+                        Duration: 1 minute - 2 minute.
+                      </p>
+                      <input
+                        type="file"
+                        name="video"
+                        accept="video/*"
+                        (change)="getVideoFileV2($event)"
+                      />
+                    </div>
+                    <div class="col-lg-12" *ngIf="i == 9">
+                      <button
+                        style="background-color: #fd7e14; border: none"
+                        type="submit"
+                        class="btn btn-primary form-control"
+                        (click)="getFeedbackV2(feedbackData, i + 2, '')"
+                      >
+                        Submit
+                      </button>
+                    </div>
+                  </div>
+                  <div *ngIf="i == 9 && feedbackCounter">
+                    <h2 class="text-center">Video Already Submitted</h2>
+                  </div>
+                </div>
+
+                <div
+                  class="row"
+                  *ngIf="slug == 'breath-detox-yoga' && dt.questions.length"
+                >
+                  <div class="col-lg-12 form-group" *ngIf="i == 4">
                     <label for=""
                       ><strong>Video Review (*mandatory)</strong></label
                     ><br />
@@ -153,88 +200,49 @@
                     <input
                       type="file"
                       name="video"
-                      accept="video/*"
                       (change)="getVideoFileV2($event)"
                     />
                   </div>
-                  <div class="col-lg-12" *ngIf="i == 9">
+                  <div
+                    class="col-lg-12 form-group"
+                    *ngFor="let ques of dt.questions; let q = index"
+                  >
+                    <label for=""
+                      ><strong>{{ ques }}</strong></label
+                    >
+                    <textarea
+                      class="form-control"
+                      name="question{{ q + 1 }}"
+                      [(ngModel)]="feedbackData['question' + '' + (q + 1)]"
+                      maxlength="100"
+                      rows="5"
+                      placeholder="Please enter your feedback in 100 characters max."
+                    ></textarea>
+                  </div>
+                  <div class="col-lg-12">
                     <button
                       style="background-color: #fd7e14; border: none"
                       type="submit"
                       class="btn btn-primary form-control"
-                      (click)="getFeedbackV2(feedbackData, i + 2, '')"
+                      (click)="getFeedbackV2(feedbackData, i + 1, dt.questions)"
                     >
                       Submit
                     </button>
                   </div>
                 </div>
-                <div *ngIf="i == 9 && feedbackCounter">
-                  <h2 class="text-center">Video Already Submitted</h2>
-                </div>
-              </div>
-
-              <div
-                class="row"
-                *ngIf="slug == 'breath-detox-yoga' && dt.questions.length"
-              >
-                <div class="col-lg-12 form-group" *ngIf="i == 4">
-                  <label for=""
-                    ><strong>Video Review (*mandatory)</strong></label
-                  ><br />
-                  <p>
-                    Please record a small video on your phone and upload the
-                    file here. <br />
-                    This is your contribution in making people understand about
-                    the results of true yogic practices and thus we can make
-                    better platform for knowledge and health seekers.<br />
-                    Duration: 1 minute - 2 minute.
-                  </p>
-                  <input
-                    type="file"
-                    name="video"
-                    (change)="getVideoFileV2($event)"
-                  />
-                </div>
-                <div
-                  class="col-lg-12 form-group"
-                  *ngFor="let ques of dt.questions; let q = index"
-                >
-                  <label for=""
-                    ><strong>{{ ques }}</strong></label
-                  >
-                  <textarea
-                    class="form-control"
-                    name="question{{ q + 1 }}"
-                    [(ngModel)]="feedbackData['question' + '' + (q + 1)]"
-                    maxlength="100"
-                    rows="5"
-                    placeholder="Please enter your feedback in 100 characters max."
-                  ></textarea>
-                </div>
-                <div class="col-lg-12">
-                  <button
-                    style="background-color: #fd7e14; border: none"
-                    type="submit"
-                    class="btn btn-primary form-control"
-                    (click)="getFeedbackV2(feedbackData, i + 1, dt.questions)"
-                  >
-                    Submit
-                  </button>
-                </div>
-              </div>
-            </form>
+              </form>
+            </div>
           </div>
-        </div>
-        <div class="text center mb-3 mt-5" *ngIf="!dt.isShow">
-          <p class="h2">Please watch Previous Day video first.</p>
+          <div class="text center mb-3 mt-5" *ngIf="!dt.isShow">
+            <p class="h2">Please watch Previous Day video first.</p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  }@else{
-  <div>
-    <p>Sorry! No Videos in this course</p>
-  </div>
+  } @else {
+    <div>
+      <p>Sorry! No Videos in this course</p>
+    </div>
   }
 </section>
 <section class="mt-5 mb-3" *ngIf="!userId && !onlineCheck && !studentValidated">
