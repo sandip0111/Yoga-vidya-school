@@ -130,19 +130,25 @@
                     <p>
                       Price:
                       <span *ngFor="let item of mentor.price; let i = index">
-                        {{ item.amount | currency : item.currency }}
+                        {{ item.amount | currency: item.currency }}
                         {{ mentor.price.length - 1 > i ? " / " : "" }}
                       </span>
                       <br />
                       <b>{{ mentor.date }}</b>
                     </p>
                     <p>{{ mentor.description }}</p>
-                    <button
-                      class="button blinking"
-                      (click)="goToMentorPage(mentor.url, mentor.id)"
-                    >
-                      More Information
-                    </button>
+                    @if (mentor.id == 3) {
+                      <button
+                        class="button blinking"
+                      >Coming soon</button>
+                    } @else {
+                      <button
+                        class="button blinking"
+                        (click)="goToMentorPage(mentor.url, mentor.id)"
+                      >
+                        More Information
+                      </button>
+                    }
                   </div>
                 </div>
               </div>

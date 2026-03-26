@@ -150,10 +150,10 @@ export const routes: Routes = [
     path: 'prashant-jhakmola-online-class/:id',
     component: PrashantPageComponent,
   },
-  {
-    path: 'taniya-verma-online-class/:id',
-    component: TaniyaPageComponent,
-  },
+  // {
+  //   path: 'taniya-verma-online-class/:id',
+  //   component: TaniyaPageComponent,
+  // },
   {
     path: 'anuj-online-class/:id',
     component: AnujPageComponent,
