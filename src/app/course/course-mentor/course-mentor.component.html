@@ -127,7 +127,7 @@
                   </div>
                   <div class="col-md-12 middle-text mt-2">
                     <h4>{{ mentor.name }} - {{ mentor.time }}</h4>
-                    <p>
+                    <p *ngIf="mentor.id != 3">
                       Price:
                       <span *ngFor="let item of mentor.price; let i = index">
                         {{ item.amount | currency: item.currency }}
@@ -136,6 +136,7 @@
                       <br />
                       <b>{{ mentor.date }}</b>
                     </p>
+                    <p *ngIf="mentor.id == 3">At the moment, Women Wellness classes are temporarily paused.</p>
                     <p>{{ mentor.description }}</p>
                     @if (mentor.id == 3) {
                       <button
