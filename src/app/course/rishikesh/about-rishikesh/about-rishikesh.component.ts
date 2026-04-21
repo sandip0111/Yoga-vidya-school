@@ -190,7 +190,7 @@ export class AboutRishikeshComponent implements OnInit {
     } else if (this.slug == this.routeEnum.pranicPurification) {
       this.ispranicPurificationImg = true;
       this.aboutContent = new aboutContentModel(
-        'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/FERN8247.jpg',
+        s3Bucket.pranicImage1,
         '',
         '',
         this.sanitizer

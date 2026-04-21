@@ -1,7 +1,6 @@
 import { Component, OnInit, Renderer2, Inject } from '@angular/core';
 import { CommonModule, DOCUMENT } from '@angular/common';
 import { BannerComponent } from '../../banner/banner.component';
-import { BottomNavComponent } from '../../../includes/home/bottom-nav/bottom-nav.component';
 import { AboutRishikeshComponent } from '../about-rishikesh/about-rishikesh.component';
 import { EducationCategoriesComponent } from '../education-categories/education-categories.component';
 import { CertifiedYogaComponent } from '../certified-yoga/certified-yoga.component';
@@ -19,7 +18,6 @@ import { FaqComponent } from '../../../includes/home/faq/faq.component';
 import { WebapiService } from '../../../webapi.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ExcursionsComponent } from '../excursions/excursions.component';
-import { KnowMoreComponent } from '../know-more/know-more.component';
 import { ScheduleComponent } from '../schedule/schedule.component';
 import { RishikeshCurriculumComponent } from '../rishikesh-curriculum/rishikesh-curriculum.component';
 import { DailyScheduleComponent } from '../daily-schedule/daily-schedule.component';

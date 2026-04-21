@@ -1,0 +1,139 @@
+<app-banner></app-banner>
+<section class="about-rishikesh-section py-5">
+  <div class="mb-3">
+    <div class="image-container">
+      <img
+        [src]="s3Bucket.pranicImage1"
+        style="transform: scaleX(-1)"
+        class="img-fluid pranic-purification-img"
+      />
+    </div>
+    <div class="position: relative; z-index: 1;">
+      <div>
+        <div>
+          <p>
+            It is no coincidence that you are here. Your presence is a sign that
+            your soul is ready for a deeper journey — one of breath, healing,
+            and true transformation.
+          </p>
+
+          <p>
+            For over a decade, thousands of students worldwide have experienced
+            the power of Pranayama through this sacred practice. Many have
+            shared stories of healing emotional wounds, overcoming depression
+            and anxiety, finding relief from chronic conditions, and regaining
+            balance when nothing else seemed to work.
+          </p>
+
+          <p>
+            <b>✨ But Pranic Purification II goes beyond healing.</b><br />
+            This 21-day sadhana awakens clarity, inner peace, focus, and joy. It
+            purifies the pranic body (Pranamaya Kosha), helping you channel your
+            energy in the right direction so life begins to flow with purpose
+            and harmony.
+          </p>
+
+          <ul style="list-style: none">
+            Through this journey, students have experienced:
+            <li>
+              <span style="color: #f5711a">&#10003;</span> A way out of stress,
+              addictions, and difficult emotions
+            </li>
+            <li>
+              <span style="color: #f5711a">&#10003;</span> Greater energy,
+              productivity, and success in work
+            </li>
+            <li>
+              <span style="color: #f5711a">&#10003;</span> Improved meditation
+              and deeper inner stillness
+            </li>
+            <li>
+              <span style="color: #f5711a">&#10003;</span> Holistic health —
+              body, mind, and spirit in balance
+            </li>
+            <li>
+              <span style="color: #f5711a">&#10003;</span> A sense of peace that
+              transforms not only themselves, but also their homes and families
+            </li>
+          </ul>
+
+          <p>
+            Pranayama is not just breathwork. It is a gateway to pranic
+            intelligence, to spiritual awakening, and to a harmonious life
+            connected with the universe within and around us.
+          </p>
+          <p>
+            📹 Recordings will be available: every day we will upload the class
+            recordings in our virtual classroom for you.
+          </p>
+          <p>
+            This 21-day course is more than classes — it is a sacred commitment
+            to yourself, a powerful purification process, and an invitation to
+            transform your life from the inside out.
+          </p>
+
+          <p>You did not arrive here by chance — you were guided.</p>
+          <br />
+          <div>
+            <h3 class="text-center">
+              Are you ready to step into your transformation?
+            </h3>
+            <h5 class="text-center">
+              Let every breath in these 21 days be a return to your essence.
+            </h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="know-more-section px-md-5 py-md-5 p-2">
+  <div class="row">
+    <h4>
+      Next Batch: <span>starts on 15<sup>th</sup> May 2026 at 6.30 PM IST</span>
+    </h4>
+    <div class="table-container">
+      <table class="pranic-schedule-table">
+        <thead>
+          <tr>
+            <th>Date Slot</th>
+            <th>Time Slot (IST)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>24th July to 29th July</td>
+            <td>7:30 AM to 8:30 AM</td>
+          </tr>
+          <tr>
+            <td>30th July to 1st August</td>
+            <td>Swadhyay (Self practice)</td>
+          </tr>
+          <tr>
+            <td>2nd August to 15th August</td>
+            <td>8:30PM to 9:30PM</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-12 text-center mt-4">
+      <button class="btn btn-primary register-btn" (click)="registerClick()">Register Now</button>
+    </div>
+  </div>
+</div>
+<section class="training-section py-5">
+  <div>
+    <img
+      loading="lazy"
+      alt="Not Loaded"
+      src="https://my-s3-images-bucket.s3.amazonaws.com/img/flower-color.png"
+      class="flower-img"
+    />
+  </div>
+  <h3>Want to Know More</h3>
+  <h2>
+    <span>21 Days Live Pranic Purification II</span>
+  </h2>
+</section>
+<app-video-reviews [specialvideo]="true"></app-video-reviews>
+<app-faq [data]="faqData"></app-faq>

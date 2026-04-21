@@ -35,6 +35,7 @@ import { AnujPageComponent } from './course/online-course-mentor/anuj-page/anuj-
 import { routeEnum } from './enum/routes';
 import { CourseMentorComponent } from './course/course-mentor/course-mentor.component';
 import { PankajPageComponent } from './course/online-course-mentor/pankaj-page/pankaj-page.component';
+import { PranicPurificationIiComponent } from './course/pranic-purification-ii/pranic-purification-ii.component';
 
 export const routes: Routes = [
   { path: '', component: IndexComponent },
@@ -92,6 +93,8 @@ export const routes: Routes = [
 
   { path: routeEnum.pranicPurification, component: RishikeshIndexComponent },
 
+  { path: routeEnum.pranicPurificationII, component: PranicPurificationIiComponent },
+
   { path: routeEnum.online, component: CourseMentorComponent },
   { path: routeEnum.bDtox, component: BaliIndexComponent },
   {
@@ -109,7 +112,10 @@ export const routes: Routes = [
   },
   { path: 'my-account', component: MyAccountComponent },
   { path: 'password/:id', component: ChangePasswordComponent },
-  { path: routeEnum.courseVideo + '/:id/:teacherId', component: CourseVideoComponent },
+  {
+    path: routeEnum.courseVideo + '/:id/:teacherId',
+    component: CourseVideoComponent,
+  },
   { path: routeEnum.aboutUs, component: AboutComponent },
   { path: 'login', component: LoginComponent },
   { path: 'privacy-policy', component: PrivacyPolicyComponent },
@@ -129,9 +135,9 @@ export const routes: Routes = [
   {
     path: routeEnum.freeWebiner,
     loadComponent: () =>
-      import(
-        './webinar-registration-form/webinar-registration-form.component'
-      ).then((m) => m.WebinarRegistrationFormComponent),
+      import('./webinar-registration-form/webinar-registration-form.component').then(
+        (m) => m.WebinarRegistrationFormComponent,
+      ),
   },
   { path: 'proceed-payment', component: PaymentProceedComponent },
   {
@@ -165,23 +171,23 @@ export const routes: Routes = [
   {
     path: routeEnum.preRecordPranayamaCourse,
     loadComponent: () =>
-      import(
-        './course/pre-recorded-pranayama-courses/pre-recorded-pranayama-courses.component'
-      ).then((m) => m.PreRecordedPranayamaCoursesComponent),
+      import('./course/pre-recorded-pranayama-courses/pre-recorded-pranayama-courses.component').then(
+        (m) => m.PreRecordedPranayamaCoursesComponent,
+      ),
   },
   {
     path: routeEnum.sa,
     loadComponent: () =>
       import('./course/swara-sadhana/swara-sadhana.component').then(
-        (m) => m.SwaraSadhanaComponent
+        (m) => m.SwaraSadhanaComponent,
       ),
   },
   {
     path: routeEnum.bali100,
     loadComponent: () =>
-      import(
-        './course/bali/bali-100-hour/bali-100-hour.component'
-      ).then((m) => m.Bali100HourComponent),
+      import('./course/bali/bali-100-hour/bali-100-hour.component').then(
+        (m) => m.Bali100HourComponent,
+      ),
   },
   { path: 'webinar-video/:name', component: WebinarVideosComponent },
   { path: '**', pathMatch: 'full', component: PagenotfoundComponent },

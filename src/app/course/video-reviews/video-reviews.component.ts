@@ -29,8 +29,6 @@ export class VideoReviewsComponent implements OnInit {
   >;
 
   private menuWrapper!: HTMLElement;
-  private menuWrapperDup!: HTMLElement;
-  private animationFrameId: number | null = null;
   private isPlaying = false;
   private isHover = false;
   private isAlreadyPlaying = false;

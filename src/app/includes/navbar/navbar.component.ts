@@ -99,7 +99,11 @@ export class NavbarComponent implements OnInit {
           { title: 'Online Yoga Classes', link: '/online-yoga-classes' },
           {
             title: 'Pranic Purification',
-            link: '/pranic-purification',
+            link: `/${routeEnum.pranicPurification}`,
+          },
+          {
+            title: 'Pranic Purification II',
+            link: `/${routeEnum.pranicPurificationII}`,
           },
           {
             title: 'Free Webinar',

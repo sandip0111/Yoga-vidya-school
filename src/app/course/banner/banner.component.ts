@@ -119,6 +119,12 @@ export class BannerComponent implements OnInit {
         this.rishikeshSubHeading =
           '21 Days - Online Pranayama Journey with PrashantJ';
         break;
+      case routeEnum.pranicPurificationII:
+        this.rishikesHeroImage = s3Bucket.breathDtoxPreRec;
+        this.rishikeshMainHeading = 'PRANIC PURIFICATION II';
+        this.rishikeshSubHeading =
+          '21 Days - Online Pranayama Journey with PrashantJ';
+        break;
       case routeEnum.bali200:
         this.rishikesHeroImage = s3Bucket.bali200Hero;
         this.rishikeshMainHeading =
