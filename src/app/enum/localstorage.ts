@@ -1,7 +1,9 @@
 export enum localstorageKey {
   'couponCode' = 'used_coupon_code',
   'pranicSessionId' = 'pranicPurificationSessionId',
+  'pranicIISessionId' = 'pranicPurificationIISessionId',
   'praanicPayId' = 'dbPay',
+  'praanicIIPayId' = 'dbPayII',
   '200TTCRzpId' = '200TTC_razorpay_payment_id',
   '200TTCRzpOrderId' = '200TTC_razorpay_order_id',
   '200TTCRzpSig' = '200TTC_razorpay_signature',

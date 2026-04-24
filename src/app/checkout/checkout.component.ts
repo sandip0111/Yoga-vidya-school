@@ -85,7 +85,7 @@ export class CheckoutComponent {
     private spinner: NgxSpinnerService,
     @Inject(DOCUMENT) private _document: Document,
     private _renderer2: Renderer2,
-    private pixelTracking: PixelTrackingService
+    private pixelTracking: PixelTrackingService,
   ) {
     this._activatedRoute.params.subscribe((params) => {
       this.slug = params['id'];
@@ -185,7 +185,7 @@ export class CheckoutComponent {
         this.courseList = res.data[0];
         this.feesData = this.courseList.feeInfo;
         this.feesData.map(
-          (a) => (a.title = a.title == 'Price' ? a.title : `Price(${a.title})`)
+          (a) => (a.title = a.title == 'Price' ? a.title : `Price(${a.title})`),
         );
         this.title.setTitle('Checkout');
         this.spinner.hide();
@@ -279,7 +279,7 @@ export class CheckoutComponent {
       this.setPriceData(
         this.feesData,
         this.checkData.currency,
-        event.target.value
+        event.target.value,
       );
     }
   }
@@ -294,7 +294,7 @@ export class CheckoutComponent {
       if (item.title == 'Price') {
         if (this.isSpecialDiscount) {
           const discountPrice = item.data.find(
-            (f) => f.currency == currency
+            (f) => f.currency == currency,
           )?.discount;
           if (discountPrice) {
             this.amount =
@@ -318,21 +318,21 @@ export class CheckoutComponent {
         })`;
         if (this.isSpecialDiscount) {
           const discountPrice = item.data.find(
-            (f) => f.currency == currency && item.title == room
+            (f) => f.currency == currency && item.title == room,
           )?.discount;
           if (discountPrice) {
             this.amount =
               item.data.find(
-                (f) => f.currency == currency && item.title == room
+                (f) => f.currency == currency && item.title == room,
               )?.discount ?? 0;
             this.actualAmount =
               item.data.find(
-                (f) => f.currency == currency && item.title == room
+                (f) => f.currency == currency && item.title == room,
               )?.amount ?? 0;
           } else {
             this.amount =
               item.data.find(
-                (f) => f.currency == currency && item.title == room
+                (f) => f.currency == currency && item.title == room,
               )?.amount ?? 0;
             this.actualAmount = 0;
           }
@@ -367,7 +367,7 @@ export class CheckoutComponent {
           this.setPriceData(
             this.feesData,
             this.checkData.currency,
-            this.checkData.package
+            this.checkData.package,
           );
         }
         this.inputValidation('cur');
@@ -383,7 +383,8 @@ export class CheckoutComponent {
       this.currencyOptions = ['INR', 'USD'];
     } else if (countryCode === 'in') {
       this.currencyOptions =
-        this.slug == routeEnum.pranicPurification
+        this.slug == routeEnum.pranicPurification ||
+        this.slug == routeEnum.pranicPurificationII
           ? ['INR', 'USD']
           : ['INR', 'USD', 'EUR'];
     } else {
@@ -454,14 +455,17 @@ export class CheckoutComponent {
     this.pixelTracking.trackInitiateCheckout(
       this.slug,
       this.amount,
-      data.currency
+      data.currency,
     );
     this.pixelTracking.trackAddPaymentInfo(
       this.slug,
       this.amount,
-      data.currency
+      data.currency,
     );
-    if (this.slug !== routeEnum.pranicPurification) {
+    if (
+      this.slug !== routeEnum.pranicPurification &&
+      this.slug !== routeEnum.pranicPurificationII
+    ) {
       let isErrMsg: boolean = false;
       if (!data.email) {
         this.emailRequired = 'email is required';
@@ -527,7 +531,11 @@ export class CheckoutComponent {
         isErrMsg = true;
       }
       if (!isErrMsg) {
-        this.pranicPurificationCheckOut(data, isRazorPay);
+        if (this.slug == routeEnum.pranicPurificationII) {
+          this.pranicPurificationIICheckOut(data, isRazorPay);
+        } else if (this.slug == routeEnum.pranicPurification) {
+          this.pranicPurificationCheckOut(data, isRazorPay);
+        }
       }
       this.spinner.hide();
     }
@@ -555,12 +563,12 @@ export class CheckoutComponent {
               data.currency === 'INR'
                 ? stripePaymentKey.swaraInr
                 : data.currency === 'USD'
-                ? 'price_1RU7RCSEQq0H4GuEJylju4cd'
-                : 'price_1RU7RYSEQq0H4GuE8nk5oH79';
+                  ? 'price_1RU7RCSEQq0H4GuEJylju4cd'
+                  : 'price_1RU7RYSEQq0H4GuE8nk5oH79';
             this.initializeStripeSwaraSadhna(
               priceId,
               signupData.email,
-              res.userId
+              res.userId,
             );
           }
         }
@@ -569,7 +577,7 @@ export class CheckoutComponent {
   initializeRazorPaySwaraSadhana(
     data: checkoutModel,
     userId: string,
-    amount: number
+    amount: number,
   ) {
     const razorpayData: swaraRazorModel = {
       currency: data.currency,
@@ -594,19 +602,19 @@ export class CheckoutComponent {
             handler: (response: any) => {
               localStorage.setItem(
                 localstorageKey.swaraSadhnaRzpId,
-                response.razorpay_payment_id
+                response.razorpay_payment_id,
               );
               localStorage.setItem(
                 localstorageKey.swaraSadhnaOrderId,
-                response.razorpay_order_id
+                response.razorpay_order_id,
               );
               localStorage.setItem(
                 localstorageKey.swaraSadhnaSig,
-                response.razorpay_signature
+                response.razorpay_signature,
               );
               localStorage.setItem(
                 localstorageKey.swaraSadhnaDBId,
-                res.payDbId
+                res.payDbId,
               );
               this.router.navigate(['/confirmation']);
             },
@@ -643,11 +651,11 @@ export class CheckoutComponent {
         if (res.sessionId) {
           localStorage.setItem(
             localstorageKey.swaraSadhnaStripeSessionId,
-            res.sessionId
+            res.sessionId,
           );
           localStorage.setItem(
             localstorageKey.swaraSadhnaStripeDBId,
-            res.payDbId
+            res.payDbId,
           );
           window.location.href = res.url;
           this.spinner.hide();
@@ -659,7 +667,7 @@ export class CheckoutComponent {
   }
   pranicPurificationCheckOut(data: checkoutModel, isRazorPay: boolean) {
     var { price, currency } = this.extractPriceAndCurrency(
-      `${this.amount} ${data.currency}`
+      `${this.amount} ${data.currency}`,
     ) || {
       price: 0,
       currency: '',
@@ -678,6 +686,29 @@ export class CheckoutComponent {
       this.initializePaymentForPranicPurification(signup);
     } else {
       this.initializeRazorPaymentForPranicPurification(signup);
+    }
+  }
+  pranicPurificationIICheckOut(data: checkoutModel, isRazorPay: boolean) {
+    var { price, currency } = this.extractPriceAndCurrency(
+      `${this.amount} ${data.currency}`,
+    ) || {
+      price: 0,
+      currency: '',
+    };
+    let signup = {
+      name: data.name,
+      email: data.email.toLowerCase(),
+      phoneNumber: data.phoneNumber.e164Number,
+      address: data.address,
+      price: this.isDiscounted ? this.offerAmount : price,
+      currency: currency,
+      courseStartDate: this.pranicDate,
+      courseTimeDuration: this.pranicDuration,
+    };
+    if (!isRazorPay) {
+      this.initializePaymentForPranicPurificationII(signup);
+    } else {
+      this.initializeRazorPaymentForPranicPurificationII(signup);
     }
   }
   pranaArambhCheckout(data: checkoutModel, isRazorPay: boolean) {
@@ -767,7 +798,7 @@ export class CheckoutComponent {
         if (res.sessionId) {
           localStorage.setItem(
             localstorageKey.bali300StripeSessionId,
-            res.sessionId
+            res.sessionId,
           );
           localStorage.setItem(localstorageKey.bali300StripeDBId, res.payDbId);
           window.location.href = res.url;
@@ -799,7 +830,7 @@ export class CheckoutComponent {
                 this.isDiscounted
                   ? stripePaymentKey.discountInr
                   : stripePaymentKey.basicInr,
-                data.email
+                data.email,
               );
             } else if (data.currency == 'INR') {
               this.initializePayment(stripePaymentKey.standardInr, data.email);
@@ -810,14 +841,14 @@ export class CheckoutComponent {
                 this.isDiscounted
                   ? stripePaymentKey.discountUsd
                   : stripePaymentKey.basicUsd,
-                data.email
+                data.email,
               );
             } else if (data.currency == 'EUR') {
               this.initializePayment(
                 this.isDiscounted
                   ? stripePaymentKey.discountEur
                   : stripePaymentKey.basicEur,
-                data.email
+                data.email,
               );
             } else if (data.currency == 'USD') {
               this.initializePayment(stripePaymentKey.standardUsd, data.email);
@@ -829,7 +860,7 @@ export class CheckoutComponent {
               data.currency == 'INR'
                 ? stripePaymentKey.fosInr
                 : stripePaymentKey.fosUSD,
-              data.email
+              data.email,
             );
           }
         } else {
@@ -903,31 +934,31 @@ export class CheckoutComponent {
               if (this.isDiscounted) {
                 localStorage.setItem(
                   localstorageKey.couponCode,
-                  this.couponCodeId
+                  this.couponCodeId,
                 );
               }
               sessionStorage.setItem(
                 'prana_razorpay_payment_id',
-                response.razorpay_payment_id
+                response.razorpay_payment_id,
               );
               sessionStorage.setItem(
                 'prana_razorpay_order_id',
-                response.razorpay_order_id
+                response.razorpay_order_id,
               );
               sessionStorage.setItem(
                 'prana_razorpay_signature',
-                response.razorpay_signature
+                response.razorpay_signature,
               );
               sessionStorage.setItem('pranaDbPayRazor', res.payDbId);
               sessionStorage.setItem(
                 'prana_razorpay_payment_amount',
                 this.isDiscounted
                   ? this.offerAmount.toString()
-                  : this.amount.toString()
+                  : this.amount.toString(),
               );
               sessionStorage.setItem(
                 'prana_razorpay_payment_currency',
-                data.currency
+                data.currency,
               );
               this.router.navigate(['/confirmation']);
             },
@@ -969,27 +1000,27 @@ export class CheckoutComponent {
             handler: (response: any) => {
               sessionStorage.setItem(
                 'pranic_purification_razorpay_payment_id',
-                response.razorpay_payment_id
+                response.razorpay_payment_id,
               );
               sessionStorage.setItem(
                 'pranic_purification_razorpay_order_id',
-                response.razorpay_order_id
+                response.razorpay_order_id,
               );
               sessionStorage.setItem(
                 'pranic_purification_razorpay_signature',
-                response.razorpay_signature
+                response.razorpay_signature,
               );
               sessionStorage.setItem(
                 'pranic_purificationDbPayRazor',
-                res.payDbId
+                res.payDbId,
               );
               sessionStorage.setItem(
                 'pranic_purification_razorpay_payment_amount',
-                data.price
+                data.price,
               );
               sessionStorage.setItem(
                 'pranic_purification_razorpay_payment_currency',
-                res.currency
+                res.currency,
               );
               this.router.navigate(['/confirmation']);
             },
@@ -1021,9 +1052,89 @@ export class CheckoutComponent {
         if (res.sessionId) {
           sessionStorage.setItem(
             localstorageKey.pranicSessionId,
-            res.sessionId
+            res.sessionId,
           );
           sessionStorage.setItem(localstorageKey.praanicPayId, res.payDbId);
+          window.location.href = res.url;
+          this.spinner.hide();
+        } else {
+          alert('Session Genration failed! please try again');
+          this.spinner.hide();
+        }
+      });
+  }
+  initializeRazorPaymentForPranicPurificationII(data: any) {
+    this.spinner.show();
+    this.webapiService
+      .checkoutRazorpayForPranicPurificationII(data)
+      .subscribe((res: any) => {
+        this.spinner.hide();
+        if (res && res.orderId && res.razorpayKey) {
+          const options = {
+            key: res.razorpayKey,
+            amount: res.amount * 100,
+            currency: res.currency,
+            name: 'Yoga Vidya School',
+            description: 'Pranic Purification II Payment',
+            order_id: res.orderId,
+            handler: (response: any) => {
+              sessionStorage.setItem(
+                'pranic_purificationII_razorpay_payment_id',
+                response.razorpay_payment_id,
+              );
+              sessionStorage.setItem(
+                'pranic_purificationII_razorpay_order_id',
+                response.razorpay_order_id,
+              );
+              sessionStorage.setItem(
+                'pranic_purificationII_razorpay_signature',
+                response.razorpay_signature,
+              );
+              sessionStorage.setItem(
+                'pranic_purificationIIDbPayRazor',
+                res.payDbId,
+              );
+              sessionStorage.setItem(
+                'pranic_purificationII_razorpay_payment_amount',
+                data.price,
+              );
+              sessionStorage.setItem(
+                'pranic_purificationII_razorpay_payment_currency',
+                res.currency,
+              );
+              this.router.navigate(['/confirmation']);
+            },
+            prefill: {
+              name: res.name,
+              email: res.email,
+              contact: res.phoneNumber,
+            },
+            notes: {
+              course: JSON.stringify('Pranic Purification'),
+            },
+            theme: {
+              color: '#3399cc',
+            },
+          };
+          const rzp = new Razorpay(options);
+          rzp.open();
+        } else {
+          alert('Session Genration failed! please try again');
+          this.spinner.hide();
+        }
+      });
+  }
+  initializePaymentForPranicPurificationII(data: any) {
+    this.spinner.show();
+    this.webapiService
+      .checkoutStripeForPranicPurificationII(data)
+      .subscribe((res: any) => {
+        if (res.sessionId) {
+          sessionStorage.setItem(
+            localstorageKey.pranicIISessionId,
+            res.sessionId,
+          );
+          sessionStorage.setItem(localstorageKey.praanicIIPayId, res.payDbId);
           window.location.href = res.url;
           this.spinner.hide();
         } else {
@@ -1047,27 +1158,27 @@ export class CheckoutComponent {
             handler: (response: any) => {
               localStorage.setItem(
                 localstorageKey['200TTCRzpId'],
-                response.razorpay_payment_id
+                response.razorpay_payment_id,
               );
               localStorage.setItem(
                 localstorageKey['200TTCRzpOrderId'],
-                response.razorpay_order_id
+                response.razorpay_order_id,
               );
               localStorage.setItem(
                 localstorageKey['200TTCRzpSig'],
-                response.razorpay_signature
+                response.razorpay_signature,
               );
               localStorage.setItem(
                 localstorageKey['200TTCRzpDBId'],
-                res.payDbId
+                res.payDbId,
               );
               localStorage.setItem(
                 localstorageKey['200TTCInstallment'],
-                this.isInstallment ? '1st' : '2nd'
+                this.isInstallment ? '1st' : '2nd',
               );
               localStorage.setItem(
                 localstorageKey['200TTCDue'],
-                this.isInstallment ? this.secondInstAmnt.toString() : '0'
+                this.isInstallment ? this.secondInstAmnt.toString() : '0',
               );
               this.router.navigate(['/confirmation']);
             },
@@ -1099,19 +1210,19 @@ export class CheckoutComponent {
         if (res.sessionId) {
           localStorage.setItem(
             localstorageKey['200TTCStripeSessionId'],
-            res.sessionId
+            res.sessionId,
           );
           localStorage.setItem(
             localstorageKey['200TTCStripeDBId'],
-            res.payDbId
+            res.payDbId,
           );
           localStorage.setItem(
             localstorageKey['200TTCInstallment'],
-            this.isInstallment ? '1st' : '2nd'
+            this.isInstallment ? '1st' : '2nd',
           );
           localStorage.setItem(
             localstorageKey['200TTCDue'],
-            this.isInstallment ? this.secondInstAmnt.toString() : '0'
+            this.isInstallment ? this.secondInstAmnt.toString() : '0',
           );
           window.location.href = res.url;
           this.spinner.hide();
@@ -1136,19 +1247,19 @@ export class CheckoutComponent {
             handler: (response: any) => {
               localStorage.setItem(
                 localstorageKey.rishikesh200RzpId,
-                response.razorpay_payment_id
+                response.razorpay_payment_id,
               );
               localStorage.setItem(
                 localstorageKey.rishikesh200OrderId,
-                response.razorpay_order_id
+                response.razorpay_order_id,
               );
               localStorage.setItem(
                 localstorageKey.rishikesh200Sig,
-                response.razorpay_signature
+                response.razorpay_signature,
               );
               localStorage.setItem(
                 localstorageKey.rishikesh200DBId,
-                res.payDbId
+                res.payDbId,
               );
               this.router.navigate(['/confirmation']);
             },
@@ -1180,11 +1291,11 @@ export class CheckoutComponent {
         if (res.sessionId) {
           localStorage.setItem(
             localstorageKey.rishikesh20StripeSessionId,
-            res.sessionId
+            res.sessionId,
           );
           localStorage.setItem(
             localstorageKey.rishikesh200StripeDBId,
-            res.payDbId
+            res.payDbId,
           );
           window.location.href = res.url;
           this.spinner.hide();
@@ -1195,7 +1306,7 @@ export class CheckoutComponent {
       });
   }
   extractPriceAndCurrency(
-    value: string
+    value: string,
   ): { price: number; currency: string } | null {
     const match = value.match(/^(\d+)\s*([A-Z]+)$/);
 
@@ -1315,7 +1426,7 @@ export class CheckoutComponent {
     const courseName = this.getCourseName(this.slug);
     this.pixelTracking.trackPageView(
       `checkout-${this.slug}`,
-      `Checkout - ${courseName}`
+      `Checkout - ${courseName}`,
     );
     this.pixelTracking.trackViewContent('checkout_page', this.slug);
   }

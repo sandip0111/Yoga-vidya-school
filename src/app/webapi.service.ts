@@ -173,6 +173,13 @@ export class WebapiService {
     );
   }
 
+  checkoutStripeForPranicPurificationII(data: any) {
+    return this.http.post(
+      this.url + 'api/v1/checkoutStripeForPranicPurificationII',
+      data
+    );
+  }
+
   checkoutStripeForLiveClasses(data: any) {
     return this.http.post(
       this.url + 'api/v1/checkoutStripeForLiveClasses',
@@ -192,6 +199,13 @@ export class WebapiService {
   getPaymentResultPranicPurification(data: any) {
     return this.http.post(
       this.url + 'api/v1/getPaymentResultPranicPurification',
+      data
+    );
+  }
+
+  getPaymentResultPranicPurificationII(data: any) {
+    return this.http.post(
+      this.url + 'api/v1/getPaymentResultPranicPurificationII',
       data
     );
   }
@@ -256,12 +270,27 @@ export class WebapiService {
     );
   }
 
+  checkoutRazorpayForPranicPurificationII(data: any) {
+    return this.http.post(
+      this.url + 'api/v1/checkoutRazorpayForPranicPurificationII',
+      data
+    );
+  }
+
   getRazorPaymentResultPranicPurification(data: any) {
     return this.http.post(
       this.url + 'api/v1/getRazorPaymentResultPranicPurification',
       data
     );
   }
+
+  getRazorPaymentResultPranicPurificationII(data: any) {
+    return this.http.post(
+      this.url + 'api/v1/getRazorPaymentResultPranicPurificationII',
+      data
+    );
+  }
+
   getCouponCode(
     data: getCouponCodeModel
   ): Observable<{ code: string; id: string }> {

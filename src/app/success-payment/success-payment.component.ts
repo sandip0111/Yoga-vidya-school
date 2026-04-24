@@ -24,9 +24,11 @@ export class SuccessPaymentComponent {
   onlinesessionId: any;
   onlineLiveClassesSessionId: any;
   pranicPurificationSessionId: string | null = '';
+  pranicPurificationIISessionId: string | null = '';
   onlineClassRazorpayPaymentId: any;
   pranaArambhaRazorpayPaymentId: string | null = '';
   pranicPurificationRazorPaySessionId: string = '';
+  pranicPurificationIIRazorPaySessionId: string = '';
   twoHundredTTCRazorPaySessionId: string = '';
   twoHundredTTCStripeSessionId: string = '';
   rishikesh200RazorPaySessionId: string = '';
@@ -46,8 +48,8 @@ export class SuccessPaymentComponent {
     private router: Router,
     private spinner: NgxSpinnerService,
     private title: Title,
-    private pixelTracking: PixelTrackingService
-  ) { }
+    private pixelTracking: PixelTrackingService,
+  ) {}
 
   ngOnInit(): void {
     setTimeout(() => {
@@ -58,19 +60,24 @@ export class SuccessPaymentComponent {
     this.sessionId = sessionStorage.getItem('session');
     this.onlinesessionId = sessionStorage.getItem('onlinesession');
     this.onlineLiveClassesSessionId = sessionStorage.getItem(
-      'onlineLiveClassesSessionId'
+      'onlineLiveClassesSessionId',
     );
     this.pranicPurificationSessionId = sessionStorage.getItem(
-      localstorageKey.pranicSessionId
+      localstorageKey.pranicSessionId,
+    );
+    this.pranicPurificationIISessionId = sessionStorage.getItem(
+      localstorageKey.pranicIISessionId,
     );
     this.onlineClassRazorpayPaymentId = sessionStorage.getItem(
-      'online_class_razorpay_payment_id'
+      'online_class_razorpay_payment_id',
     );
     this.pranaArambhaRazorpayPaymentId = sessionStorage.getItem(
-      'prana_razorpay_payment_id'
+      'prana_razorpay_payment_id',
     );
     this.pranicPurificationRazorPaySessionId =
       sessionStorage.getItem('pranic_purification_razorpay_payment_id') ?? '';
+    this.pranicPurificationIIRazorPaySessionId =
+      sessionStorage.getItem('pranic_purificationII_razorpay_payment_id') ?? '';
     this.twoHundredTTCRazorPaySessionId =
       localStorage.getItem(localstorageKey['200TTCRzpId']) ?? '';
     this.rishikesh200RazorPaySessionId =
@@ -107,7 +114,7 @@ export class SuccessPaymentComponent {
     if (this.onlineClassRazorpayPaymentId) {
       setTimeout(() => {
         this.getpaymentResultLiveClassesRazorPay(
-          this.onlineClassRazorpayPaymentId
+          this.onlineClassRazorpayPaymentId,
         );
       }, 1500);
     }
@@ -115,7 +122,15 @@ export class SuccessPaymentComponent {
     if (this.pranicPurificationSessionId) {
       setTimeout(() => {
         this.getPaymentResultPranicPurification(
-          this.pranicPurificationSessionId ?? ''
+          this.pranicPurificationSessionId ?? '',
+        );
+      }, 1500);
+    }
+
+    if (this.pranicPurificationIISessionId) {
+      setTimeout(() => {
+        this.getPaymentResultPranicPurificationII(
+          this.pranicPurificationIISessionId ?? '',
         );
       }, 1500);
     }
@@ -123,7 +138,7 @@ export class SuccessPaymentComponent {
     if (this.pranaArambhaRazorpayPaymentId) {
       setTimeout(() => {
         this.getpaymentResulPranaAramRazorPay(
-          this.pranaArambhaRazorpayPaymentId
+          this.pranaArambhaRazorpayPaymentId,
         );
       }, 1500);
     }
@@ -131,7 +146,14 @@ export class SuccessPaymentComponent {
     if (this.pranicPurificationRazorPaySessionId) {
       setTimeout(() => {
         this.getRazorPaymentResultPranicPurification(
-          this.pranicPurificationRazorPaySessionId
+          this.pranicPurificationRazorPaySessionId,
+        );
+      }, 1500);
+    }
+    if (this.pranicPurificationIIRazorPaySessionId) {
+      setTimeout(() => {
+        this.getRazorPaymentResultPranicPurificationII(
+          this.pranicPurificationIIRazorPaySessionId,
         );
       }, 1500);
     }
@@ -148,21 +170,21 @@ export class SuccessPaymentComponent {
     if (this.rishikesh200RazorPaySessionId) {
       setTimeout(() => {
         this.getRazorPaymentResultRishikesh200(
-          this.rishikesh200RazorPaySessionId
+          this.rishikesh200RazorPaySessionId,
         );
       }, 0);
     }
     if (this.rishikesh200StripeSessionId) {
       setTimeout(() => {
         this.getStripePaymentResultRishikesh200(
-          this.rishikesh200StripeSessionId
+          this.rishikesh200StripeSessionId,
         );
       }, 0);
     }
     if (this.swaraSadhnaRazorPaySessionId) {
       setTimeout(() => {
         this.getRazorPaymentResultSwaraSadhna(
-          this.swaraSadhnaRazorPaySessionId
+          this.swaraSadhnaRazorPaySessionId,
         );
       }, 0);
     }
@@ -245,7 +267,7 @@ export class SuccessPaymentComponent {
             'live_classes',
             'Live Yoga Classes',
             this.amount,
-            this.cur
+            this.cur,
           );
           this.spinner.hide();
         } else {
@@ -262,10 +284,10 @@ export class SuccessPaymentComponent {
     const paymentResult = {
       razorpay_payment_id: razorpay_payment_id,
       razorpay_order_id: sessionStorage.getItem(
-        'online_class_razorpay_order_id'
+        'online_class_razorpay_order_id',
       ),
       razorpay_signature: sessionStorage.getItem(
-        'online_class_razorpay_signature'
+        'online_class_razorpay_signature',
       ),
       payDbId: sessionStorage.getItem('onlineLiveClassDbPayRazor'),
       fbp: fbp,
@@ -285,7 +307,7 @@ export class SuccessPaymentComponent {
             'live_classes',
             'Live Yoga Classes',
             this.amount,
-            this.cur
+            this.cur,
           );
           this.spinner.hide();
         } else {
@@ -331,10 +353,10 @@ export class SuccessPaymentComponent {
     const paymentResult = {
       razorpay_payment_id: razorpay_payment_id,
       razorpay_order_id: sessionStorage.getItem(
-        'pranic_purification_razorpay_order_id'
+        'pranic_purification_razorpay_order_id',
       ),
       razorpay_signature: sessionStorage.getItem(
-        'pranic_purification_razorpay_signature'
+        'pranic_purification_razorpay_signature',
       ),
       payDbId: sessionStorage.getItem('pranic_purificationDbPayRazor'),
       password: this.genratePass(6),
@@ -348,23 +370,83 @@ export class SuccessPaymentComponent {
           this.paidFlag = 'true';
           this.ordId = res.orderId;
           sessionStorage.removeItem('pranic_purification_razorpay_payment_id');
-          var currency =  sessionStorage.getItem(
-            'pranic_purification_razorpay_payment_currency'
-            )
-          var amount = Number(sessionStorage.getItem(
-            'pranic_purification_razorpay_payment_amount'
-            )) || 0;
+          var currency = sessionStorage.getItem(
+            'pranic_purification_razorpay_payment_currency',
+          );
+          var amount =
+            Number(
+              sessionStorage.getItem(
+                'pranic_purification_razorpay_payment_amount',
+              ),
+            ) || 0;
           localStorage.removeItem(localstorageKey.couponCode);
-           this.pixelTracking.trackPurchasePranicPurification(
+          this.pixelTracking.trackPurchasePranicPurification(
             this.ordId,
             'pranic_purification',
             'Pranic Purification - Best online pranayama sadhana',
             amount,
             this.currencySet(currency ?? 'usd'),
           );
-           sessionStorage.removeItem('pranic_purification_razorpay_payment_amount');
-           sessionStorage.removeItem('pranic_purification_razorpay_payment_currency');
+          sessionStorage.removeItem(
+            'pranic_purification_razorpay_payment_amount',
+          );
+          sessionStorage.removeItem(
+            'pranic_purification_razorpay_payment_currency',
+          );
           //this.pixelTracking.trackPurchase(this.ordId, 'Pranic Purification', 'Pranic Purification razorpay', this.amount, this.cur);
+          this.spinner.hide();
+        } else {
+          this.paidFlag = 'false';
+          this.spinner.hide();
+        }
+      });
+  }
+  getRazorPaymentResultPranicPurificationII(razorpay_payment_id: string) {
+    const fbp = this.getCookie('_fbp');
+    const fbc = this.getCookie('_fbc');
+    const paymentResult = {
+      razorpay_payment_id: razorpay_payment_id,
+      razorpay_order_id: sessionStorage.getItem(
+        'pranic_purificationII_razorpay_order_id',
+      ),
+      razorpay_signature: sessionStorage.getItem(
+        'pranic_purificationII_razorpay_signature',
+      ),
+      payDbId: sessionStorage.getItem('pranic_purificationIIDbPayRazor'),
+      password: this.genratePass(6),
+      fbp: fbp,
+      fbc: fbc,
+    };
+    this.webapiService
+      .getRazorPaymentResultPranicPurificationII(paymentResult)
+      .subscribe((res: any) => {
+        if (res.status == 'success') {
+          this.paidFlag = 'true';
+          this.ordId = res.orderId;
+          sessionStorage.removeItem('pranic_purificationII_razorpay_payment_id');
+          var currency = sessionStorage.getItem(
+            'pranic_purificationII_razorpay_payment_currency',
+          );
+          var amount =
+            Number(
+              sessionStorage.getItem(
+                'pranic_purificationII_razorpay_payment_amount',
+              ),
+            ) || 0;
+          localStorage.removeItem(localstorageKey.couponCode);
+          this.pixelTracking.trackPurchasePranicPurification(
+            this.ordId,
+            'pranic_purificationII',
+            'Pranic Purification II - Best online pranayama sadhana',
+            amount,
+            this.currencySet(currency ?? 'usd'),
+          );
+          sessionStorage.removeItem(
+            'pranic_purificationII_razorpay_payment_amount',
+          );
+          sessionStorage.removeItem(
+            'pranic_purificationII_razorpay_payment_currency',
+          );
           this.spinner.hide();
         } else {
           this.paidFlag = 'false';
@@ -398,9 +480,8 @@ export class SuccessPaymentComponent {
             'pranic_purification',
             'Pranic Purification - Best online pranayama sadhana',
             this.amount,
-            this.cur
+            this.cur,
           );
-          //this.pixelTracking.trackPurchase(this.ordId, 'Pranic Purification', 'Pranic Purification stripe', this.amount, this.cur);
           this.spinner.hide();
         } else {
           this.paidFlag = 'false';
@@ -410,6 +491,42 @@ export class SuccessPaymentComponent {
       });
   }
 
+  getPaymentResultPranicPurificationII(pranicPurificationSessionId: string) {
+    const fbp = this.getCookie('_fbp');
+    const fbc = this.getCookie('_fbc');
+    let val = {
+      pranicPurificationSessionId: pranicPurificationSessionId,
+      payDbId: sessionStorage.getItem(localstorageKey.praanicIIPayId),
+      password: this.genratePass(6),
+      fbp: fbp,
+      fbc: fbc,
+    };
+    this.webapiService
+      .getPaymentResultPranicPurificationII(val)
+      .subscribe((res: any) => {
+        if (res.status == 'success') {
+          sessionStorage.removeItem(localstorageKey.pranicIISessionId);
+          sessionStorage.removeItem(localstorageKey.praanicIIPayId);
+          this.paidFlag = 'true';
+          this.ordId = res.paymtId;
+          this.amount = res.amount;
+          this.cur = this.currencySet(res.currency);
+          this.pixelTracking.trackPurchasePranicPurification(
+            this.ordId,
+            'pranic_purification_II',
+            'Pranic Purification II - Best online pranayama sadhana',
+            this.amount,
+            this.cur,
+          );
+          this.spinner.hide();
+        } else {
+          this.paidFlag = 'false';
+          this.reuseUrl = res.sessionId;
+          this.spinner.hide();
+        }
+      });
+  }
+  
   getcurrentDate() {
     const today = new Date(); // get current date and time
     const year = today.getFullYear(); // get year (YYYY)
@@ -426,7 +543,7 @@ export class SuccessPaymentComponent {
     const paymentResult: razorPaymentResultModel = {
       razorpayPaymentId: razorpayPaymentId,
       razorpayOrderId: localStorage.getItem(
-        localstorageKey['200TTCRzpOrderId']
+        localstorageKey['200TTCRzpOrderId'],
       ),
       razorpaySignature: localStorage.getItem(localstorageKey['200TTCRzpSig']),
       payDbId: localStorage.getItem(localstorageKey['200TTCRzpDBId']),
@@ -452,7 +569,7 @@ export class SuccessPaymentComponent {
             '200_ttc',
             '200 Hours Online Yoga Teacher Training Course',
             this.amount,
-            this.cur
+            this.cur,
           );
           this.spinner.hide();
         } else {
@@ -492,7 +609,7 @@ export class SuccessPaymentComponent {
             '200_ttc',
             '200 Hours Online Yoga Teacher Training Course',
             this.amount,
-            this.cur
+            this.cur,
           );
           this.spinner.hide();
         } else {
@@ -509,7 +626,7 @@ export class SuccessPaymentComponent {
     const paymentResult: razorPaymentResultModel = {
       razorpayPaymentId: razorpayPaymentId,
       razorpayOrderId: localStorage.getItem(
-        localstorageKey.rishikesh200OrderId
+        localstorageKey.rishikesh200OrderId,
       ),
       razorpaySignature: localStorage.getItem(localstorageKey.rishikesh200Sig),
       payDbId: localStorage.getItem(localstorageKey.rishikesh200DBId),
@@ -525,7 +642,13 @@ export class SuccessPaymentComponent {
           this.ordId = paymentResult.razorpayOrderId;
           this.amount = res.amount;
           this.cur = this.currencySet(res.currency);
-          this.pixelTracking.trackPurchaseRishikeshTTC(this.ordId, 'rishikesh_ttc', 'Rishikesh Yoga Teacher Training Course', this.amount, this.cur);
+          this.pixelTracking.trackPurchaseRishikeshTTC(
+            this.ordId,
+            'rishikesh_ttc',
+            'Rishikesh Yoga Teacher Training Course',
+            this.amount,
+            this.cur,
+          );
           this.spinner.hide();
         } else {
           this.paidFlag = 'false';
@@ -555,7 +678,13 @@ export class SuccessPaymentComponent {
           this.ordId = res.data.paymtId;
           this.amount = res.data.amount;
           this.cur = this.currencySet(res.data.currency);
-          this.pixelTracking.trackPurchaseRishikeshTTC(this.ordId, 'rishikesh_ttc', 'Rishikesh Yoga Teacher Training Course', this.amount, this.cur);
+          this.pixelTracking.trackPurchaseRishikeshTTC(
+            this.ordId,
+            'rishikesh_ttc',
+            'Rishikesh Yoga Teacher Training Course',
+            this.amount,
+            this.cur,
+          );
           this.spinner.hide();
         } else {
           this.paidFlag = 'false';
@@ -588,10 +717,16 @@ export class SuccessPaymentComponent {
         if (res) {
           this.isRishikesh = true;
           this.paidFlag = 'true';
-          this.pixelTracking.trackPurchaseSwaraSadhana(this.ordId, 'swara_sadhana', 'Swara Sadhana', Number(paymentResult.amount), paymentResult.currency);
+          this.pixelTracking.trackPurchaseSwaraSadhana(
+            this.ordId,
+            'swara_sadhana',
+            'Swara Sadhana',
+            Number(paymentResult.amount),
+            paymentResult.currency,
+          );
           this.ordId = paymentResult.razorpay_order_id;
           this.amount = 0;
-          this.cur = this.currencySet(res.currency);          
+          this.cur = this.currencySet(res.currency);
           this.spinner.hide();
         } else {
           this.paidFlag = 'false';
@@ -623,7 +758,13 @@ export class SuccessPaymentComponent {
           this.paidFlag = 'true';
           this.ordId = res.paymtId;
           this.amount = 0;
-          this.pixelTracking.trackPurchaseSwaraSadhana(this.ordId, 'swara_sadhana', 'Swara Sadhana', res.currency, res.amount);
+          this.pixelTracking.trackPurchaseSwaraSadhana(
+            this.ordId,
+            'swara_sadhana',
+            'Swara Sadhana',
+            res.currency,
+            res.amount,
+          );
           this.spinner.hide();
         } else {
           this.paidFlag = 'false';

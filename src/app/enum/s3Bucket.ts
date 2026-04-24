@@ -18,7 +18,7 @@ export enum s3Bucket {
   offer4 = 'https://my-s3-images-bucket.s3.amazonaws.com/images/onlinr2_lunr65.jpg',
   calender = 'https://my-s3-images-bucket.s3.amazonaws.com/img/calendar.png',
   person = 'https://my-s3-images-bucket.s3.amazonaws.com/img/user.png',
-  hero = 'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/IMG_6446.JPG',
+  hero = 'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/FERN8544.jpg',
   rishikesh100 = 'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/IMG_1614.JPG',
   rishikesh200 = 'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/IMG_1048.JPEG',
   rishikesh300 = 'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/79d6792b-ce4b-458f-808a-af171e291224.jpg',
