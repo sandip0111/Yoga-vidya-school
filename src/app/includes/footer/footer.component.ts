@@ -5,6 +5,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { routeEnum } from '../../enum/routes';
 import { contact } from '../../enum/details';
+import { s3Bucket } from '../../enum/s3Bucket';
 
 @Component({
   selector: 'app-footer',
@@ -20,6 +21,7 @@ export class FooterComponent implements OnInit {
   slug: string = '';
   blogRoute = `/${routeEnum.blogs}`;
   contact = contact;
+  s3Bucket = s3Bucket;
   constructor(
     private webService: WebapiService,
     private spinner: NgxSpinnerService,

@@ -1,5 +1,7 @@
+import { environment } from './environment';
+
 export enum s3Bucket {
-  mainLogo = 'https://my-s3-images-bucket.s3.amazonaws.com/img/logo2.png',
+  mainLogo = `${environment.imageUrl}Yoga-Vidya-Logo.svg`,
   frontPic = 'https://my-s3-images-bucket.s3.amazonaws.com/images/FERN8524-removebg-preview+(1).png',
   homeAbout = 'https://my-s3-images-bucket.s3.amazonaws.com/images/about_section_fweev7.jpg',
   flower = 'https://my-s3-images-bucket.s3.amazonaws.com/img/flower-color.png',
@@ -18,7 +20,7 @@ export enum s3Bucket {
   offer4 = 'https://my-s3-images-bucket.s3.amazonaws.com/images/onlinr2_lunr65.jpg',
   calender = 'https://my-s3-images-bucket.s3.amazonaws.com/img/calendar.png',
   person = 'https://my-s3-images-bucket.s3.amazonaws.com/img/user.png',
-  hero = 'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/FERN8544.jpg',
+  hero = `${environment.imageUrl}FERN8544.jpg`,
   rishikesh100 = 'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/IMG_1614.JPG',
   rishikesh200 = 'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/IMG_1048.JPEG',
   rishikesh300 = 'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/79d6792b-ce4b-458f-808a-af171e291224.jpg',
@@ -53,9 +55,9 @@ export enum s3Bucket {
 
   prashantIndexAbout = '../../../../assets/new-home/IMG_2820.JPG',
   preRecordedHero = '../../assets/new-home/954A0800.JPG',
-  breathDtoxPreRec = '../../assets/new-home/954A0710.JPG',
-  pranaArambhPreRec = '../../assets/new-home/IMG_2063.JPG',
-  swarSadhanaPreRec = '../../assets/new-home/FERN8249.jpg',
+  breathDtoxPreRec = `${environment.imageUrl}954A0710.JPG`,
+  pranaArambhPreRec = `${environment.imageUrl}IMG_2063.JPG`,
+  swarSadhanaPreRec = `${environment.imageUrl}FERN8249.jpg`,
   bDtox1 = 'https://my-s3-images-bucket.s3.amazonaws.com/img/image_1679305129429.jpg',
   bDtox2 = 'https://my-s3-images-bucket.s3.amazonaws.com/img/image_1679305150535.jpg',
   bDtox3 = 'https://my-s3-images-bucket.s3.amazonaws.com/img/image_1679305168857.jpg',
@@ -98,9 +100,9 @@ export enum s3Bucket {
   choose1 = 'https://my-s3-images-bucket.s3.amazonaws.com/images/why_choose_qzrecb.webp',
   choose2 = 'https://my-s3-images-bucket.s3.amazonaws.com/images/954A9000_fhwxat.jpg',
 
-  razorpay = 'assets/razor.svg',
-  stripe = 'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/stripe.png',
-  paypal = 'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/paypal.png',
+  razorpay = `${environment.imageUrl}razor.svg`,
+  stripe = `${environment.imageUrl}stripe-2.png`,
+  paypal = `${environment.imageUrl}paypal.png`,
 
   pankajHero = 'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/img/954A0126.JPG',
   pankaj1 = 'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/954A9553.JPG',
