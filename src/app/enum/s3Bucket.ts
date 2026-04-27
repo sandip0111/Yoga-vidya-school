@@ -107,7 +107,7 @@ export enum s3Bucket {
   pankajHero = 'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/img/954A0126.JPG',
   pankaj1 = 'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/954A9553.JPG',
   pankaj2 = 'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/IMG_9861.JPG',
-  pranicImage1 = 'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/FERN8247.jpg'
+  pranicImage1 = `${environment.imageUrl}FERN8247.jpeg`
 }
 export enum youtubeLink {
   trainingImportance = 'https://www.youtube.com/embed/t7l1cqDj1tA?si=ZJCQXJYDLzDwLLvm',
