@@ -9,6 +9,7 @@ import { RouterLink } from '@angular/router';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { s3Bucket } from '../enum/s3Bucket';
 import { YogateacherComponent } from '../yogateacher/yogateacher.component';
+import { environment } from '../enum/environment';
 
 @Component({
   selector: 'app-trainers',
@@ -26,7 +27,7 @@ export class TrainersComponent {
   public defaultImage =
     'https://miro.medium.com/max/441/1*9EBHIOzhE1XfMYoKz1JcsQ.gif';
   mentorList: any;
-  imageUrl: any;
+  imageUrl: string = environment.imageUrl;
   selectedMentor: any = null;
   selectedMentorSlug: string = '';
   showModal: boolean = false;
@@ -45,7 +46,6 @@ export class TrainersComponent {
 
   ngOnInit(): void {
     this.spinner.show();
-    this.imageUrl = this.webapiService.imageUrl;
     this.getAllMentors();
     setTimeout(() => {
       this.title.setTitle('Mentors');

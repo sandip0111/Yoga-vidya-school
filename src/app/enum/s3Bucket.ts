@@ -44,7 +44,7 @@ export enum s3Bucket {
   courseMentro1 = '../../assets/20190630153357_IMG_0087.JPG',
   courseMentor2 = 'https://my-s3-images-bucket.s3.amazonaws.com/img/image_1695634116777.jpeg',
   courseMentor3 = 'https://my-s3-images-bucket.s3.amazonaws.com/img/IMG_20250331_171325_021.jpg',
-  prashantjiHero = 'https://my-s3-images-bucket.s3.amazonaws.com/img/image_1674209054855.jpg',
+  prashantjiHero = `${environment.imageUrl}image_1674209054855.jpg`,
   prasantAbout1 = 'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/FERN8284.jpg',
   prasantAbout2 = 'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/FERN8341.jpg',
   anujHero1 = 'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/DSC00532_1.jpg',
@@ -90,12 +90,12 @@ export enum s3Bucket {
   prashnatJiAbout2 = 'https://my-s3-images-bucket.s3.amazonaws.com/images/ment2_1_szchyw.jpg',
   prashnatJiAbout3 = 'https://my-s3-images-bucket.s3.amazonaws.com/images/ment4_ugwqwv.jpg',
 
-  aboutUsBanner = 'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/DSC07712.JPG',
+  aboutUsBanner = `${environment.imageUrl}DSC07712.JPG`,
   aboutWritten1 = 'https://my-s3-images-bucket.s3.amazonaws.com/img/about1.png',
   aboutWritten2 = 'https://my-s3-images-bucket.s3.amazonaws.com/img/about2.png',
   about1 = 'https://my-s3-images-bucket.s3.amazonaws.com/img/aboutUs.jpg',
   about2 = 'https://my-s3-images-bucket.s3.amazonaws.com/img/1638962757_about-yoga-vidya.jpg',
-  foundationOfSpirituality = 'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/DSC09238.jpg',
+  foundationOfSpirituality = `${environment.imageUrl}DSC09238.jpg`,
 
   choose1 = 'https://my-s3-images-bucket.s3.amazonaws.com/images/why_choose_qzrecb.webp',
   choose2 = 'https://my-s3-images-bucket.s3.amazonaws.com/images/954A9000_fhwxat.jpg',

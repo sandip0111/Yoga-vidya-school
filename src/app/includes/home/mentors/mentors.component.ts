@@ -5,6 +5,7 @@ import { WebapiService } from '../../../webapi.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { routeEnum } from '../../../enum/routes';
 import { PixelTrackingService } from '../../../services/pixel-tracking.service';
+import { environment } from '../../../enum/environment';
 
 @Component({
   selector: 'app-mentors',
@@ -16,7 +17,7 @@ import { PixelTrackingService } from '../../../services/pixel-tracking.service';
 export class MentorsComponent implements OnInit {
   mentors: mentor[] = [];
   mentorLoop: number = 0;
-  imageurl: string = '';
+  imageurl: string = environment.imageUrl;
   slug: any = '';
   hideBtn = false;
   routeList = routeEnum;
@@ -27,7 +28,6 @@ export class MentorsComponent implements OnInit {
     private router: Router,
     private _pixelTracking: PixelTrackingService
   ) {
-    this.imageurl = this.webapiService.imageUrl;
     this.slug = this.activatedRoute.snapshot.routeConfig?.path;
 
     if (
@@ -48,32 +48,32 @@ export class MentorsComponent implements OnInit {
       this.mentors = [
         {
           name: 'Swami Atmatattwananda Sarawati',
-          picture: 'image_1673271849951.jpg',
+          picture: 'Swamiji.jpg',
           intro: 'Yoga Philosophy',
           slug: 'swami-atmatattwananda-saraswati',
         },
         {
           name: 'Acharya Prashant Jakhmola',
-          picture: 'image_1673271873934.jfif',
+          picture: 'Prashant.jpg',
           intro: 'Pranayama, Asanas ',
           slug: 'acharya-prashant-jakhmola',
         },
 
         {
           name: 'Aparna Sharma',
-          picture: 'image_1673271914610.jpeg',
+          picture: 'Aparna.jpg',
           intro: 'Meditation & Mantras',
           slug: 'aparna-sharma',
         },
         {
           name: 'Pankaj Sharma',
-          picture: 'image_1675167512673.jpeg',
+          picture: 'Pankaj.JPG',
           intro: 'Ashtanga Yoga',
           slug: 'pankaj-sharma',
         },
         {
           name: 'Taniya',
-          picture: 'image_1675243508012.jpg',
+          picture: 'Taniya.jpg',
           intro: 'Hatha/ Yoga Therapy',
           slug: 'taniya',
         },
@@ -85,7 +85,7 @@ export class MentorsComponent implements OnInit {
         },
         {
           name: 'Ksenia Rasapriya Bodhi Ji',
-          picture: 'image_1673271882991.jpg',
+          picture: 'ksenia.jpg',
           intro: 'Yoga Anatomy',
           slug: 'ksenia-rasapriya-bodhi-ji',
         },
@@ -98,19 +98,19 @@ export class MentorsComponent implements OnInit {
       this.mentors = [
         {
           name: 'Swami Atmatattwananda Sarawati',
-          picture: 'image_1673271849951.jpg',
+          picture: 'Swamiji.jpg',
           intro: 'Yoga Philosophy',
           slug: 'swami-atmatattwananda-saraswati',
         },
         {
           name: 'Acharya Prashant Jakhmola',
-          picture: 'image_1673271873934.jfif',
+          picture: 'Prashant.jpg',
           intro: 'Pranayama, Asanas ',
           slug: 'acharya-prashant-jakhmola',
         },
         {
           name: 'Ksenia Rasapriya Bodhi Ji',
-          picture: 'image_1673271882991.jpg',
+          picture: 'ksenia.jpg',
           intro: 'Yoga Anatomy',
           slug: 'ksenia-rasapriya-bodhi-ji',
         },
@@ -131,7 +131,7 @@ export class MentorsComponent implements OnInit {
       this.mentors = [
         {
           name: 'Acharya Prashant Jakhmola',
-          picture: 'image_1673271873934.jfif',
+          picture: 'Prashant.jpg',
           intro: 'Pranayama, Asanas ',
           slug: 'acharya-prashant-jakhmola',
         },
@@ -141,7 +141,7 @@ export class MentorsComponent implements OnInit {
       this.mentors = [
         {
           name: 'Acharya Prashant Jakhmola',
-          picture: 'image_1673271873934.jfif',
+          picture: 'Prashant.jpg',
           intro: 'Pranayama, Asanas ',
           slug: 'acharya-prashant-jakhmola',
         },
@@ -152,13 +152,13 @@ export class MentorsComponent implements OnInit {
       this.mentors = [
         {
           name: 'Acharya Prashant Jakhmola',
-          picture: 'image_1673271873934.jfif',
+          picture: 'Prashant.jpg',
           intro: 'Pranayama, Asanas ',
           slug: 'acharya-prashant-jakhmola',
         },
         {
           name: 'Swami Atmatattwananda Sarawati',
-          picture: 'image_1673271849951.jpg',
+          picture: 'Swamiji.jpg',
           intro: 'Yoga Philosophy',
           slug: 'swami-atmatattwananda-saraswati',
         },
@@ -167,25 +167,25 @@ export class MentorsComponent implements OnInit {
       this.mentors = [
         {
           name: 'Swami Atmatattwananda Sarawati',
-          picture: 'image_1673271849951.jpg',
+          picture: 'Swamiji.jpg',
           intro: 'Yoga Philosophy',
           slug: 'swami-atmatattwananda-saraswati',
         },
         {
           name: 'Reema Saikia Ji',
-          picture: 'image_1673271861555.jpg',
+          picture: 'Reema1.PNG',
           intro: 'Meditation / Yoga Nidra',
           slug: 'reema-saikia-ji',
         },
         {
           name: 'Acharya Prashant Jakhmola',
-          picture: 'image_1673271873934.jfif',
+          picture: 'Prashant.jpg',
           intro: 'Pranayama, Asanas ',
           slug: 'acharya-prashant-jakhmola',
         },
         {
           name: 'Ksenia Rasapriya Bodhi Ji',
-          picture: 'image_1673271882991.jpg',
+          picture: 'ksenia.jpg',
           intro: 'Yoga Anatomy',
           slug: 'ksenia-rasapriya-bodhi-ji',
         },
@@ -207,25 +207,25 @@ export class MentorsComponent implements OnInit {
       this.mentors = [
         {
           name: 'Swami Atmatattwananda Sarawati',
-          picture: 'image_1673271849951.jpg',
+          picture: 'Swamiji.jpg',
           intro: 'Yoga Philosophy',
           slug: 'swami-atmatattwananda-saraswati',
         },
         {
           name: 'Aparna Sharma',
-          picture: 'image_1673271914610.jpeg',
+          picture: 'Aparna.jpg',
           intro: 'Meditation & Mantras',
           slug: 'aparna-sharma',
         },
         {
           name: 'Pankaj Sharma',
-          picture: 'image_1675167512673.jpeg',
+          picture: 'Pankaj.JPG',
           intro: 'Ashtanga Yoga',
           slug: 'pankaj-sharma',
         },
         {
           name: 'Taniya',
-          picture: 'image_1675243508012.jpg',
+          picture: 'Taniya.jpg',
           intro: 'Hatha/ Yoga Therapy',
           slug: 'taniya',
         },
