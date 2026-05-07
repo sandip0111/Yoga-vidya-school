@@ -16,7 +16,7 @@
     rgba(249, 117, 30, 0.21) 110%
   );
   #destination-bg2 {
-    background-image: url("https://my-s3-images-bucket.s3.amazonaws.com/img/destination-bg2.png");
+    background-image: url("../../../../assets/open-rishikesh.JPG");
   }
   .destination {
     position: relative;
