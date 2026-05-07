@@ -4,6 +4,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { feesStructureModel } from '../../../models/rishikesh';
 import { routeEnum } from '../../../enum/routes';
+import { s3Bucket } from '../../../enum/s3Bucket';
 
 @Component({
   selector: 'app-watch-video',
@@ -20,6 +21,7 @@ export class WatchVideoComponent implements OnInit {
   safeUrl: any;
   content: any = '';
   heading3: string = 'Watch Video';
+  s3Bucket = s3Bucket;
   constructor(private sanitizer: DomSanitizer) {}
   ngOnInit() {
     if (this.slug == routeEnum.pranicPurification) {

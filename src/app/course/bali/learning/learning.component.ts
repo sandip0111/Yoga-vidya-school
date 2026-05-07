@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { s3Bucket } from '../../../enum/s3Bucket';
 
 @Component({
   selector: 'app-learning',
@@ -20,6 +21,7 @@ export class LearningComponent implements OnInit {
   weeKTitle: string='';
   weekPara:any='';
   h2Content: string ='';
+  s3Bucket = s3Bucket;
   constructor(private activatedRoute: ActivatedRoute, private router: Router) {
 
     this.slug = this.activatedRoute.snapshot.routeConfig?.path;

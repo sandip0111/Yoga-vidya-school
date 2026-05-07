@@ -74,8 +74,8 @@ a certification: it’s a transformation.
 </div>
 </div>
 <div class="col-md-6">
-<div class="imageback">
-<img src=${s3Bucket.bali300SectionImage} class="img-fluid" alt="300 Hours Yoga Teacher Training in Bali"/>
+<div class="imageback bali_image_back">
+<img src=${s3Bucket.bali300SectionImage} class="baliImage" alt="300 Hours Yoga Teacher Training in Bali"/>
 </div>
 </div>
 </div>
@@ -83,8 +83,8 @@ a certification: it’s a transformation.
 
 <div class="row mb-5">
 <div class="col-md-6">
-<div class="imageback">
-<img src="https://my-s3-images-bucket.s3.amazonaws.com/img/image_1694583929513.jpg" class="img-fluid" alt="300 Hours Yoga Teacher Training in Bali"/>
+<div class="imageback bali_image_back">
+<img src=${s3Bucket.bali300SectionImage2} class="baliImage" alt="300 Hours Yoga Teacher Training in Bali"/>
 </div>
 </div>
     <div class="col-md-6 align-items-center">

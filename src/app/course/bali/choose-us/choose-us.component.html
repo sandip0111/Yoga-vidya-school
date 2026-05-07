@@ -1,5 +1,5 @@
 <section class="choose-us" *ngIf="!noContent">
-  <div><img loading="lazy" alt="Not Loaded" src="https://my-s3-images-bucket.s3.amazonaws.com/img/flower-white.png" class="flower-img" /></div>
+  <div><img loading="lazy" alt="Not Loaded" [src]="s3Bucket.flowerWhite" class="flower-img" /></div>
   <h2>Why Choose {{ title }} at Yoga Vidya School ?</h2>
   <div class="row my-3">
     <div class="col-md-6">

@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { routeEnum } from '../../../enum/routes';
+import { s3Bucket } from '../../../enum/s3Bucket';
 
 @Component({
   selector: 'app-faq',
@@ -18,6 +19,7 @@ export class FaqComponent implements OnInit {
   isPranicPage: boolean = false;
   is300BaliPage: boolean = false;
   routeEnum = routeEnum;
+  s3Bucket = s3Bucket;
   constructor(private activatedRoute: ActivatedRoute, private router: Router) {
     this.slug = this.activatedRoute.snapshot.routeConfig?.path;
   }

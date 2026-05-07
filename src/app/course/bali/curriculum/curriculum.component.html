@@ -1,7 +1,7 @@
 <section class="curriculum py-5" *ngIf="currData?.length > 0">
   <div class="row bottom-abs">
     <div class="col-md-12">
-      <div><img loading="lazy" alt="Not Loaded" src="https://my-s3-images-bucket.s3.amazonaws.com/img/flower-color.png" class="flower-img" /></div>
+      <div><img loading="lazy" alt="Not Loaded" [src]="s3Bucket.flower" class="flower-img" /></div>
       <h2 *ngIf="slug !== '200-hour-yoga-teacher-training-in-bali'">{{title}} <span>Curriculum</span></h2>
       <p>Unleash Your Inner Potential: Dive into Our <span>Transformative {{is300Course? title:'Yoga'}} Curriculum!</span></p>
     </div>

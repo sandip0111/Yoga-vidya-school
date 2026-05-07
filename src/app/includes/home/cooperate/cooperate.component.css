@@ -16,7 +16,7 @@
     rgba(249, 117, 30, 0.21) 110%
   );
   #destination-bg2 {
-    background-image: url("../../../../assets/open-rishikesh.JPG");
+    background-image: var(--bg-image);
   }
   .destination {
     position: relative;

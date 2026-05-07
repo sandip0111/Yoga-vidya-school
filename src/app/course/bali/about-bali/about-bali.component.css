@@ -272,3 +272,13 @@ h1 span {
     width: 25%;
   }
 }
+.baliImage {
+  max-width: 100%;
+  height: 40vw;
+}
+.bali_image_back {
+  background: rgba(249, 117, 30, 1);
+  border-radius: 10px;
+  padding-bottom: 6px;
+  width: 27vw;
+}

@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { routeEnum } from '../../../enum/routes';
 import { PixelTrackingService } from '../../../services/pixel-tracking.service';
 import { environment } from '../../../enum/environment';
+import { s3Bucket } from '../../../enum/s3Bucket';
 
 @Component({
   selector: 'app-mentors',
@@ -18,9 +19,10 @@ export class MentorsComponent implements OnInit {
   mentors: mentor[] = [];
   mentorLoop: number = 0;
   imageurl: string = environment.imageUrl;
-  slug: any = '';
+  slug: string | undefined = '';
   hideBtn = false;
   routeList = routeEnum;
+  s3Bucket = s3Bucket;
   constructor(
     private webapiService: WebapiService,
     protected sanitizer: DomSanitizer,

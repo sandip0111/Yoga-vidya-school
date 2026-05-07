@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { s3Bucket } from '../../../enum/s3Bucket';
 
 @Component({
   selector: 'app-curriculum',
@@ -16,6 +17,7 @@ export class CurriculumComponent implements OnInit {
   currData: any;
   title: any = '';
   is300Course = false;
+  s3Bucket = s3Bucket;
   constructor(private activatedRoute: ActivatedRoute, private router: Router) {
     this.slug = this.activatedRoute.snapshot.routeConfig?.path;
     if (this.slug == '200-hour-yoga-teacher-training-in-bali') {

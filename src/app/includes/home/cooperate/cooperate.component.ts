@@ -13,7 +13,9 @@ export class CooperateComponent implements OnInit {
   s3Bucket = s3Bucket;
   constructor(private router: Router) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    document.getElementById('destination-bg2')?.style.setProperty('--bg-image', `url('${s3Bucket.rishikeshHome}')`);
+  }
   goToPage() {
     this.router.navigate([routeEnum.prashantjPage]);
   }

@@ -1,7 +1,17 @@
 <section class="learning" *ngIf="week1.length > 0">
-  <div><img loading="lazy" alt="Not Loaded" src="https://my-s3-images-bucket.s3.amazonaws.com/img/flower-color.png" class="flower-img" /></div>
-  <h2>What You Will <span>Learn In This {{h2Content != ''? h2Content: 'Course'}}?</span></h2>
-  <small *ngIf="weekPara">{{weekPara}}</small>
+  <div>
+    <img
+      loading="lazy"
+      alt="Not Loaded"
+      [src]="s3Bucket.flower"
+      class="flower-img"
+    />
+  </div>
+  <h2>
+    What You Will
+    <span>Learn In This {{ h2Content != "" ? h2Content : "Course" }}?</span>
+  </h2>
+  <small *ngIf="weekPara">{{ weekPara }}</small>
   <div class="row my-4">
     <div class="col-md-12">
       <ul>
@@ -40,15 +50,90 @@
     </div>
     <div class="col-md-6">
       <div class="learning_right">
-      <img loading="lazy" alt="Not Loaded" class="img-fluid" height="660" width="550" style="border-radius:10px" src="https://my-s3-images-bucket.s3.amazonaws.com/images/FERN8271_fjodwd.jpg" />
-      <div class="thumbnail">
-        <img loading="lazy" alt="Not Loaded" class="img-fluid" height="100" width="83" style="border-radius:10px" src="https://my-s3-images-bucket.s3.amazonaws.com/images/FERN8491_1_abj8zx.jpg" />
-        <img loading="lazy" alt="Not Loaded" class="img-fluid" height="100" width="83" style="border-radius:10px" src="https://my-s3-images-bucket.s3.amazonaws.com/images/FERN8400_wp7mgl.jpg" />
-        <img loading="lazy" alt="Not Loaded" class="img-fluid" height="100" width="83" style="border-radius:10px" src="https://my-s3-images-bucket.s3.amazonaws.com/images/FERN8542_u4gcrj.jpg" />
-        <img loading="lazy" alt="Not Loaded" class="img-fluid" height="100" width="83" style="border-radius:10px" src="https://my-s3-images-bucket.s3.amazonaws.com/images/FERN8435_b7ugwc.jpg" />
-        <!-- <img loading="lazy" alt="Not Loaded" src="https://my-s3-images-bucket.s3.amazonaws.com/img/learning-thumbnail.png" /> -->
+        <img
+          loading="lazy"
+          alt="Not Loaded"
+          class="img-fluid"
+          height="660"
+          width="550"
+          style="border-radius: 10px"
+          [src]="s3Bucket.whatWillLearn1"
+        />
+        <div class="thumbnail">
+          <img
+            loading="lazy"
+            alt="Not Loaded"
+            class="img-fluid"
+            height="100"
+            width="83"
+            style="border-radius: 10px"
+            [src]="s3Bucket.whatWillLearn2"
+          />
+          <img
+            loading="lazy"
+            alt="Not Loaded"
+            class="img-fluid"
+            height="100"
+            width="83"
+            style="border-radius: 10px"
+            [src]="s3Bucket.whatWillLearn3"
+          />
+          <img
+            loading="lazy"
+            alt="Not Loaded"
+            class="img-fluid"
+            height="100"
+            width="83"
+            style="border-radius: 10px"
+            [src]="s3Bucket.whatWillLearn4"
+          />
+          <img
+            loading="lazy"
+            alt="Not Loaded"
+            class="img-fluid"
+            height="100"
+            width="83"
+            style="border-radius: 10px"
+            [src]="s3Bucket.whatWillLearn5"
+          />
+          <img
+            loading="lazy"
+            alt="Not Loaded"
+            class="img-fluid"
+            height="100"
+            width="83"
+            style="border-radius: 10px"
+            [src]="s3Bucket.whatWillLearn6"
+          />
+          <img
+            loading="lazy"
+            alt="Not Loaded"
+            class="img-fluid"
+            height="100"
+            width="83"
+            style="border-radius: 10px"
+            [src]="s3Bucket.whatWillLearn7"
+          />
+          <img
+            loading="lazy"
+            alt="Not Loaded"
+            class="img-fluid"
+            height="100"
+            width="83"
+            style="border-radius: 10px"
+            [src]="s3Bucket.whatWillLearn8"
+          />
+          <img
+            loading="lazy"
+            alt="Not Loaded"
+            class="img-fluid"
+            height="100"
+            width="83"
+            style="border-radius: 10px"
+            [src]="s3Bucket.whatWillLearn9"
+          />
+        </div>
       </div>
     </div>
-  </div>
   </div>
 </section>
