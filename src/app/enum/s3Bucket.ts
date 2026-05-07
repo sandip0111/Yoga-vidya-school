@@ -6,6 +6,7 @@ export enum s3Bucket {
   homeAbout = 'https://my-s3-images-bucket.s3.amazonaws.com/images/about_section_fweev7.jpg',
   flower = `${environment.imageUrl}flower.png`,
   flowerWhite = `${environment.imageUrl}white_flower.png`,
+  alliance = `${environment.imageUrl}image_1674901616808.jpeg `,
   room1 = 'https://my-s3-images-bucket.s3.amazonaws.com/images/acc4_ikf9ta.jpg',
   room2 = 'https://my-s3-images-bucket.s3.amazonaws.com/images/acc3_hbccdh.jpg',
   room3 = 'https://my-s3-images-bucket.s3.amazonaws.com/images/acc2_zwdgpr.jpg',

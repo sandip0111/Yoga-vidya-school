@@ -1,26 +1,31 @@
-import { Component, OnInit,Input, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { DomSanitizer } from '@angular/platform-browser';
+import { s3Bucket } from '../../../enum/s3Bucket';
 
 @Component({
   selector: 'app-yoga-alliance',
   standalone: true,
-  imports:[CommonModule],
+  imports: [CommonModule],
   templateUrl: './yoga-alliance.component.html',
-  styleUrls: ['./yoga-alliance.component.css']
+  styleUrls: ['./yoga-alliance.component.css'],
 })
 export class YogaAllianceComponent implements OnInit {
-  @Input() data:any
-  slug:any='';
-  noContent:boolean=false;
-  title: any='';
-  content:any='';
-  is300baliCourse= false;
-
-  constructor(private router: Router, private activatedRoute: ActivatedRoute,protected sanitizer: DomSanitizer) {
+  @Input() data: any;
+  slug: string | undefined = '';
+  noContent: boolean = false;
+  title: string = '';
+  content: string = '';
+  is300baliCourse = false;
+  s3Bucket = s3Bucket;
+  constructor(
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+    protected sanitizer: DomSanitizer,
+  ) {
     this.slug = this.activatedRoute.snapshot.routeConfig?.path;
-    if(this.slug == '100-hours-yoga-teacher-training-in-rishikesh'){
+    if (this.slug == '100-hours-yoga-teacher-training-in-rishikesh') {
       this.noContent = true;
       this.content = `
       <p style="font-size:18px">
@@ -33,9 +38,8 @@ export class YogaAllianceComponent implements OnInit {
         Receiving a Yoga Alliance accreditation helps yoga professionals gain credibility and value for their education in yoga. It's valued as a credible accomplishment that aspiring yoga teachers can proudly showcase at an international level.
 For continued education in yoga and after having successfully completed the 100 hours yoga ttc in Rishikesh, you can now enroll into the more in-depth and foundational 200-hour Yoga TTC in Rishikesh at Yoga Vidya School.
       </p>
-      `
-    }
-    else if(this.slug == '200-hours-yoga-teacher-training-in-rishikesh'){
+      `;
+    } else if (this.slug == '200-hours-yoga-teacher-training-in-rishikesh') {
       this.noContent = true;
       this.content = `
             <p style="font-size:18px">
@@ -59,9 +63,8 @@ For continued education in yoga and after having successfully completed the 100 
         allows you to register with Yoga Alliance and teach yoga internationally
         with a badge of RYT200.
       </p>
-      `
-    }
-    else if(this.slug == '300-hours-yoga-teacher-training-in-rishikesh'){
+      `;
+    } else if (this.slug == '300-hours-yoga-teacher-training-in-rishikesh') {
       this.noContent = true;
       this.content = `
       <p style="font-size:18px">
@@ -77,9 +80,8 @@ For continued education in yoga and after having successfully completed the 100 
       The Yoga Alliance certification is an acclaimed credential that you can proudly display in the professional world of Yoga Community across the world.
 As an RYT, you can now teach yoga on an international platform catering to yoga teacher and yoga instructor requirements at yoga studios, yoga schools, gyms and wellness centers, corporates and hospitals.
       </p>
-      `
-    }
-    else if(this.slug == '200-hour-yoga-teacher-training-in-bali'){
+      `;
+    } else if (this.slug == '200-hour-yoga-teacher-training-in-bali') {
       this.noContent = true;
       this.content = `
       <p style="font-size:18px">
@@ -93,11 +95,10 @@ Get fundamental knowledge of timeless yoga practices amidst the lush landscapes 
        Yoga Alliance also displays data of Registered Yoga Schools or RYS and certified yoga professionals (RYT) worldwide on its website. So, upon successful completion of your 200 Hour Yoga Teacher Training in Bali from a certified yoga school like Yoga Vidya School, you promptly become eligible to register as an RYT on the Yoga Alliance USA website with completing your yoga instructor certification bali.
 Empowered with a badge of an RYT200, you can now begin teaching yoga internationally.
       </p>
-      `
-    }
-    else if(this.slug == '300-hour-yoga-teacher-training-in-bali'){
+      `;
+    } else if (this.slug == '300-hour-yoga-teacher-training-in-bali') {
       this.noContent = true;
-      this.is300baliCourse= true;
+      this.is300baliCourse = true;
       this.content = `
       <p style="font-size:18px">
 The 300 hour yoga teacher training in bali at Yoga Vidya School is an accredited and registered course with Yoga Alliance USA. You can enroll into this advanced yoga training once you have completed the foundational 200 hours yoga teacher training program.
@@ -111,9 +112,8 @@ Besides, our course fulfills all the criteria laid down by Yoga Alliance, USA, w
 So, once you successfully complete the 300 Hour Yoga Teacher Training in Bali from certified institutions like Yoga Vidya School, you become eligible to register as an RYT on the Yoga Alliance USA online portal.
 Empowered with our globally valid Yoga Alliance USA certified program, embark on a rewarding and fulfilling journey as you transform others’ lives and achieve your own personal goals.
 </p>
-      `
-    }
-    else if(this.slug == '200-hour-yoga-teacher-training-in-kerala-india'){
+      `;
+    } else if (this.slug == '200-hour-yoga-teacher-training-in-kerala-india') {
       this.noContent = true;
       this.content = `
       <p style="font-size:18px">
@@ -127,9 +127,8 @@ Yoga Alliance USA defines a broad outline of curriculum to be followed in the mo
       Earning a Yoga Alliance certification enhances the value and credibility of yoga professionals and yoga institutions across the globe. It's looked upon as a meritorious certification and a credible accomplishment that yogis can present at an international level.
 After successfully completing the 200 hour yoga teacher training in Kerala and earning  the acclaimed Yoga Alliance certification , yoga practitioners can now teach yoga  globally.
       </p>
-      `
-    }
-    else if(this.slug == '300-hour-yoga-teacher-training-in-kerala-india'){
+      `;
+    } else if (this.slug == '300-hour-yoga-teacher-training-in-kerala-india') {
       this.noContent = true;
       this.content = `
       <p style="font-size:18px">The 300 Hour Yoga Teacher Training in Kerala at Yoga Vidya School is an recognised and registered course with Yoga Alliance USA. You can join this advanced yoga training after completing the fundamental 200 hours yoga teacher training program. </p>
@@ -138,9 +137,8 @@ Yoga Alliance USA is a non-profit global yoga body that oversees and regulates y
       </p>
       <p style="font-size:18px">
 So, once you successfully complete the 300 Hour Yoga Teacher Training in Kerala from Yoga Alliance accredited yoga schools like Yoga Vidya School, you can promptly  register as an RYT on the Yoga Alliance USA website. The Yoga Alliance certification  is a badge of honor that you can proudly  display in the global yoga community. You can embark on your yoga teaching career by teaching yoga at yoga studios, yoga schools, wellness and retreats  across the world with a badge of RYT 300.</p>
-      `
-    }
-    else if(this.slug == '100-hours-yoga-teacher-training-in-rishikesh'){
+      `;
+    } else if (this.slug == '100-hours-yoga-teacher-training-in-rishikesh') {
       this.noContent = true;
       this.content = `
       <p style="font-size:18px">Yoga Vidya School offers a Yoga Alliance USA certified 100-Hour Yoga Teacher Training Course in Rishikesh.</p>
@@ -149,18 +147,15 @@ So, once you successfully complete the 300 Hour Yoga Teacher Training in Kerala 
       </p>
       <p style="font-size:18px">Receiving a Yoga Alliance accreditation helps yoga professionals gain credibility and value for their education in yoga. It's valued as a credible accomplishment that aspiring yoga teachers can proudly showcase at an international level. </p>
       <p style="font-size:18px">After successfully completing the 100 hours yoga ttc in Rishikesh and earning  the highly credible Yoga Alliance certification , yoga practitioners can now work as yoga professionals teaching  yoga at yoga studios, yoga schools,  retreat centers, hospitals and more such  places across the world.</p>
-      `
+      `;
     }
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
-  ngOnChanges(changes: SimpleChanges):void {
-    if(changes['data'].currentValue){
-      this.title = changes['data'].currentValue.title
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['data'].currentValue) {
+      this.title = changes['data'].currentValue.title;
     }
-
   }
-
 }
