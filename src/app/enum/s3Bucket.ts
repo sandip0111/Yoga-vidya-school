@@ -121,7 +121,7 @@ export enum s3Bucket {
   whatWillLearn8 = `${environment.imageUrl}IMG_1232.JPEG`,
   whatWillLearn9 = `${environment.imageUrl}IMG_1233.JPEG`,
 
-  pranicPurificationIIBanner = `${environment.imageUrl}pranic_purification_2.png`,
+  pranicPurificationIIBanner = `${environment.imageUrl}IMG_1306.PNG`,
   rishikeshHome = `${environment.imageUrl}open-rishikesh.JPG`,
   baliHome = `${environment.imageUrl}954A1947.JPG`,
 }
