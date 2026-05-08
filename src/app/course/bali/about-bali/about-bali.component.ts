@@ -81,7 +81,7 @@ a certification: it’s a transformation.
 </div>
 <p>&nbsp;</p>
 
-<div class="row mb-5">
+<div class="row mb-5 rowR_2">
 <div class="col-md-6">
 <div class="imageback bali_image_back">
 <img src=${s3Bucket.bali300SectionImage2} class="baliImage" alt="300 Hours Yoga Teacher Training in Bali"/>

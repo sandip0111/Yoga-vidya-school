@@ -17,6 +17,9 @@
   );
   #destination-bg2 {
     background-image: var(--bg-image);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
   }
   #destination-bg1 {
     background-image: var(--bg-bali);
