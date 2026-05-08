@@ -39,6 +39,8 @@
   .pranic-purification-img {
     max-height: none !important;
     border-radius: 10px;
+    height: 45vw;
+    transform: scaleX(-1);
   }
   .button {
     margin: 0 10px;
@@ -297,8 +299,4 @@
     display: inline-block;
     font-size: 17px;
   }
-}
-
-.content-image {
-  height: 45vw;
 }
