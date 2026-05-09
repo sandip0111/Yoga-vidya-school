@@ -151,13 +151,17 @@ export class CourseVideoComponent {
     let data = {
       userId: id,
     };
-    this.webapiService.paidVideoVerifyUser(data).subscribe((res: any) => {
-      if (res.status == 'ok') {
-        this.onlineCheck = true;
-      } else {
-        this.onlineCheck = false;
-      }
-    });
+    if (this.slug !== routeEnum.online) {
+      this.webapiService.paidVideoVerifyUser(data).subscribe((res: any) => {
+        if (res.status == 'ok') {
+          this.onlineCheck = true;
+        } else {
+          this.onlineCheck = false;
+        }
+      });
+    } else {
+      this.onlineCheck = true;
+    }
   }
 
   getAccessLog(stuId: any, cId: string) {
