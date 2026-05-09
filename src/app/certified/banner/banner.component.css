@@ -1,5 +1,5 @@
 section {
-  padding: 0;
+  padding: 0 !important;
 }
 
 .banner_image {
@@ -7,6 +7,10 @@ section {
   height: clamp(475px, 43vw, 588px);
   object-fit: cover;
   display: block;
+  @media (max-width: 768px) {
+    height: auto;
+    min-height: 240px;
+  }
 }
 
 .slider {

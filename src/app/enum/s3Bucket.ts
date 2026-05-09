@@ -31,7 +31,7 @@ export enum s3Bucket {
   certifiedRishikeshAbout = 'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/IMG_1587.JPG',
   certifiedWhyBali = `${environment.imageUrl}IMG_1219_2.JPEG`,
   rishikeshAbout = 'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/954A7672.jpg',
-  baliAbout = `${environment.imageUrl}bali300banner.jpeg`,
+  baliAbout = `${environment.imageUrl}balibannercollage.jpeg`,
   rishikesh200Banner = 'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/_DSC3081.jpg',
   rishi200Certify1 = 'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/954A0789.JPG',
   rishi200Certify2 = 'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/20221017123612_IMG_8678.jpeg',
@@ -121,8 +121,9 @@ export enum s3Bucket {
   whatWillLearn8 = `${environment.imageUrl}IMG_1232.JPEG`,
   whatWillLearn9 = `${environment.imageUrl}IMG_1233.JPEG`,
 
-  pranicPurificationIIBanner = `${environment.imageUrl}pranic_purification_2.png`,
+  pranicPurificationIIBanner = `${environment.imageUrl}IMG_1306.PNG`,
   rishikeshHome = `${environment.imageUrl}open-rishikesh.JPG`,
+  baliHome = `${environment.imageUrl}954A1947.JPG`,
 }
 export enum youtubeLink {
   trainingImportance = 'https://www.youtube.com/embed/t7l1cqDj1tA?si=ZJCQXJYDLzDwLLvm',

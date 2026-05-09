@@ -15,6 +15,7 @@ export class CooperateComponent implements OnInit {
 
   ngOnInit() {
     document.getElementById('destination-bg2')?.style.setProperty('--bg-image', `url('${s3Bucket.rishikeshHome}')`);
+    document.getElementById('destination-bg1')?.style.setProperty('--bg-bali', `url('${s3Bucket.baliHome}')`);
   }
   goToPage() {
     this.router.navigate([routeEnum.prashantjPage]);

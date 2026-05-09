@@ -17,13 +17,18 @@
   );
   #destination-bg2 {
     background-image: var(--bg-image);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+  #destination-bg1 {
+    background-image: var(--bg-bali);
   }
   .destination {
     position: relative;
     height: 530px;
     background-size: 100%;
     overflow: hidden;
-    background-image: url("https://my-s3-images-bucket.s3.amazonaws.com/img/destination-bg3.png");
     .inner {
       z-index: 999;
       position: absolute;

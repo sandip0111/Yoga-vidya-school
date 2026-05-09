@@ -121,9 +121,9 @@ export class BannerComponent implements OnInit {
         break;
       case routeEnum.pranicPurificationII:
         this.rishikesHeroImage = s3Bucket.pranicPurificationIIBanner;
-        this.rishikeshMainHeading = 'PRANIC PURIFICATION II';
-        this.rishikeshSubHeading =
-          '21 Days - Online Pranayama Journey with PrashantJ';
+        // this.rishikeshMainHeading = 'PRANIC PURIFICATION II';
+        // this.rishikeshSubHeading =
+        //   '21 Days - Online Pranayama Journey with PrashantJ';
         break;
       case routeEnum.bali200:
         this.rishikesHeroImage = s3Bucket.bali200Hero;

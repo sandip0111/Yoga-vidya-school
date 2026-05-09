@@ -374,6 +374,9 @@
   height: clamp(460px, 30vw, 588px);
   object-fit: cover;
   display: block;
+  @media (max-width: 768px) {
+    height: auto;
+  }
 }
 .floating-register-btn {
   position: absolute;
