@@ -101,10 +101,10 @@ export class NavbarComponent implements OnInit {
             title: 'Pranic Purification',
             link: `/${routeEnum.pranicPurification}`,
           },
-          {
-            title: 'Pranic Purification II',
-            link: `/${routeEnum.pranicPurificationII}`,
-          },
+          // {
+          //   title: 'Pranic Purification II',
+          //   link: `/${routeEnum.pranicPurificationII}`,
+          // },
           {
             title: 'Free Webinar',
             link: `/${routeEnum.freeWebiner}`,
