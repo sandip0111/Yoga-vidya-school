@@ -65,7 +65,7 @@ export class RegistrationFormComponent {
       return;
     }
     this.spinner.show();
-    let arr = ['63c3f26c461e531f3c3452e1'];
+    let arr = ['6a00ae5a73d17e5a08d3f6ce'];
     this.registrationForm.value.isActive = true;
     this.registrationForm.value.created = new Date(
       Date.now() + 5.5 * 60 * 60 * 1000
@@ -74,7 +74,7 @@ export class RegistrationFormComponent {
     this.registrationForm.value.course = arr;
     let requestData = this.registrationForm.value;
     requestData.paymentCourseId = this.registrationForm.value.isBreatDox
-      ? '63c3f26c461e531f3c3452e1'
+      ? '6a00ae5a73d17e5a08d3f6ce'
       : '';
     this.webapiService.createStudent(requestData).subscribe({
       next: (res: any) => {
