@@ -63,7 +63,7 @@ export class PaymentProceedComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private pixelTracking: PixelTrackingService,
     private actRoute: ActivatedRoute,
-    private titleService: Title
+    private titleService: Title,
   ) {
     this.actRoute.queryParams.subscribe((params) => {
       if (params['hash'] === 'abcdef1234567890') {
@@ -85,13 +85,20 @@ export class PaymentProceedComponent implements OnInit {
     this.getTeachersData(routeEnum.online);
     this.trackCheckoutPageView();
   }
+  getCurrencyOption(courses: CartItem[]) {
+    if (courses.length > 0) {
+      let priceData = courses.map((c) => c.price).flat();
+      let currencySet = new Set(priceData.map((p) => p.currency));
+      this.currencyOptions = Array.from(currencySet);
+    }
+  }
   getTeachersData(slug: string) {
     this.cartService.getTeachersData(slug).subscribe({
       next: (data) => {
         this.courseMentor = data;
         if (this.isSpecial) {
           const mentor: CartItem | undefined = this.courseMentor.find(
-            (x) => x.id == 1
+            (x) => x.id == 1,
           );
           if (mentor) {
             this.courses.push(mentor);
@@ -110,16 +117,16 @@ export class PaymentProceedComponent implements OnInit {
       const firstVal = courses[0];
       if (firstVal.id == 1) {
         this.titleService.setTitle(
-          'Online sadhna with Prashant - Yoga Vidya School'
+          'Online sadhna with Prashant - Yoga Vidya School',
         );
       } else if (firstVal.id == 3) {
         this.titleService.setTitle(
-          'Women wellness yoga with Taniya - Yoga Vidya School'
+          'Women wellness yoga with Taniya - Yoga Vidya School',
         );
       }
     } else {
       this.titleService.setTitle(
-        'Online sadhna with Prashant - Yoga Vidya School'
+        'Online sadhna with Prashant - Yoga Vidya School',
       );
     }
   }
@@ -165,11 +172,7 @@ export class PaymentProceedComponent implements OnInit {
     this.phoneError = '';
     const phoneValue = control.value;
     const countryCode = phoneValue?.countryCode;
-    if (countryCode === 'IN') {
-      this.currencyOptions = ['INR', 'USD'];
-    } else {
-      this.currencyOptions = ['USD'];
-    }
+    this.getCurrencyOption(this.courses);
     this.paymentForm.patchValue({ currency: this.currencyOptions[0] });
     this.updatePrice();
   }
@@ -234,18 +237,18 @@ export class PaymentProceedComponent implements OnInit {
         paymentStatus: 'due',
         price: data.price,
         courses: courseList,
-        month: this.courses[0].month
+        month: this.courses[0].month,
       };
 
       this.pixelTracking.trackInitiateCheckout(
         'stripe-proceed-payment',
         val.price,
-        val.currency
+        val.currency,
       );
       this.pixelTracking.trackAddPaymentInfo(
         'stripe-proceed-payment',
         val.price,
-        val.currency
+        val.currency,
       );
       this.webapiService
         .checkoutStripeForLiveClasses(val)
@@ -286,8 +289,7 @@ export class PaymentProceedComponent implements OnInit {
       const script = document.createElement('script');
       script.id = 'razorpay-script';
       script.src = 'https://checkout.razorpay.com/v1/checkout.js';
-      script.onload = () => {
-      };
+      script.onload = () => {};
       document.body.appendChild(script);
     }
   }
@@ -310,18 +312,18 @@ export class PaymentProceedComponent implements OnInit {
         price: data.price,
         courses: courseList,
         paymentStatus: 'due',
-        month: this.courses[0].month
+        month: this.courses[0].month,
       };
 
       this.pixelTracking.trackInitiateCheckout(
         'razorpay-proceed-payment',
         paymentData.price,
-        paymentData.currency
+        paymentData.currency,
       );
       this.pixelTracking.trackAddPaymentInfo(
         'razorpay-proceed-payment',
         paymentData.price,
-        paymentData.currency
+        paymentData.currency,
       );
       this.spinner.show();
       this.webapiService.createRazorpayOrder(paymentData).subscribe(
@@ -339,19 +341,19 @@ export class PaymentProceedComponent implements OnInit {
               handler: (response: any) => {
                 sessionStorage.setItem(
                   'online_class_razorpay_payment_id',
-                  response.razorpay_payment_id
+                  response.razorpay_payment_id,
                 );
                 sessionStorage.setItem(
                   'online_class_razorpay_order_id',
-                  response.razorpay_order_id
+                  response.razorpay_order_id,
                 );
                 sessionStorage.setItem(
                   'online_class_razorpay_signature',
-                  response.razorpay_signature
+                  response.razorpay_signature,
                 );
                 sessionStorage.setItem(
                   'onlineLiveClassDbPayRazor',
-                  res.payDbId
+                  res.payDbId,
                 );
                 this.router.navigate(['/confirmation']);
               },
@@ -374,7 +376,7 @@ export class PaymentProceedComponent implements OnInit {
         },
         (err) => {
           this.spinner.hide();
-        }
+        },
       );
     }
   }
@@ -398,11 +400,11 @@ export class PaymentProceedComponent implements OnInit {
   private trackCheckoutPageView() {
     this.pixelTracking.trackPageView(
       `checkout- online-live-classes`,
-      `Checkout - ${this.courses.map((c) => c.title).join(', ')}`
+      `Checkout - ${this.courses.map((c) => c.title).join(', ')}`,
     );
     this.pixelTracking.trackViewContent(
       'proceed-payment_page',
-      'proceed-payment'
+      'proceed-payment',
     );
   }
 }

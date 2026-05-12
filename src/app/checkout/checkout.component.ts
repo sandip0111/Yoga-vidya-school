@@ -114,9 +114,9 @@ export class CheckoutComponent {
 
     if (roomCourses.includes(this.slug as any)) {
       this.roomList = [
-        { name: 'Shared Room', value: 1 },
-        { name: 'Private Room', value: 2 },
-        { name: 'Shared Room with 30%', value: 3 },
+        // { name: 'Shared room', value: 1 },
+        { name: 'Private room', value: 2 },
+        // { name: 'Shared room with 30%', value: 3 },
       ];
     }
     this.scrollToTop();
@@ -248,29 +248,28 @@ export class CheckoutComponent {
   setRoomPrice(event: any) {
     this.inputValidation('room');
     if ([1, 2, 3].includes(+event.target.value)) {
-      let availableCurrencies: string[] = [];
-      if (this.feesData && this.feesData.length > 0) {
-        this.feesData.forEach((item) => {
-          item.data.forEach((d) => {
-            if (!availableCurrencies.includes(d.currency)) {
-              availableCurrencies.push(d.currency);
-            }
-          });
-        });
-      }
-
-      if (availableCurrencies.length > 0) {
-        this.currencyOptions = availableCurrencies;
-      } else {
-        this.currencyOptions = ['INR', 'USD'];
-      }
-
-      if (
-        !this.checkData.currency ||
-        !this.currencyOptions.includes(this.checkData.currency)
-      ) {
-        this.checkData.currency = this.currencyOptions[0];
-      }
+      // let availableCurrencies: string[] = [];
+      // if (this.feesData && this.feesData.length > 0) {
+      //   this.feesData.forEach((item) => {
+      //     item.data.forEach((d) => {
+      //       if (!availableCurrencies.includes(d.currency)) {
+      //         availableCurrencies.push(d.currency);
+      //       }
+      //     });
+      //   });
+      // }
+      // if (availableCurrencies.length > 0) {
+      //   this.currencyOptions = availableCurrencies;
+      // } else {
+      //   this.currencyOptions = ['INR', 'USD'];
+      // }
+      this.setCurrencyData(this.feesData, this.checkData);
+      // if (
+      //   !this.checkData.currency ||
+      //   !this.currencyOptions.includes(this.checkData.currency)
+      // ) {
+      //   this.checkData.currency = this.currencyOptions[0];
+      // }
     } else {
       this.currencyOptions = [];
       this.checkData.currency = '';
@@ -363,7 +362,7 @@ export class CheckoutComponent {
         this.slug !== routeEnum.rishikesh300
       ) {
         if (this.feesData.length > 0) {
-          this.setCurrencyData(this.checkData);
+          this.setCurrencyData(this.feesData, this.checkData);
           this.setPriceData(
             this.feesData,
             this.checkData.currency,
@@ -374,23 +373,15 @@ export class CheckoutComponent {
       }
     }
   }
-  setCurrencyData(checkData: checkoutModel) {
-    const phoneValue = checkData.phoneNumber;
-    const countryCode = phoneValue?.countryCode?.toLowerCase();
-    if (countryCode === 'in' && this.slug == routeEnum['200TTC']) {
-      this.currencyOptions = ['INR', 'USD'];
-    } else if (this.slug == routeEnum.foundationOfSpirituality) {
-      this.currencyOptions = ['INR', 'USD'];
-    } else if (countryCode === 'in') {
-      this.currencyOptions =
-        this.slug == routeEnum.pranicPurification ||
-        this.slug == routeEnum.pranicPurificationII
-          ? ['INR', 'USD']
-          : ['INR', 'USD', 'EUR'];
-    } else {
-      this.currencyOptions = ['USD', 'EUR'];
-    }
-    checkData.package = 'Basic';
+  setCurrencyData(feesData: feeInfoDto[], checkData: checkoutModel) {
+    feesData.forEach((item) => {
+      item.data.forEach((d) => {
+        console.log(d.currency, 'currency');
+        if (!this.currencyOptions.includes(d.currency)) {
+          this.currencyOptions.push(d.currency);
+        }
+      });
+    });
     checkData.currency = this.currencyOptions[0];
   }
   onCountryChange(): void {
