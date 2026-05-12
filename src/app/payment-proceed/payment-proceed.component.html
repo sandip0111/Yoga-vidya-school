@@ -204,7 +204,7 @@
                     (click)="onRazorpayPayment()"
                   >
                     <img
-                      src="assets/razor.svg"
+                      [src]="s3Bucket.razorpay"
                       alt="Razorpay"
                       width="128"
                       height="32"
@@ -218,7 +218,7 @@
                     (click)="onStripePayment()"
                   >
                     <img
-                      src="https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/stripe.png"
+                      [src]="s3Bucket.stripe"
                       alt="Stripe"
                       width="128"
                       height="35"
@@ -231,7 +231,7 @@
                     (click)="onPaypalPayment()"
                   >
                     <img
-                      src="https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/paypal.png"
+                      [src]="s3Bucket.paypal"
                       alt="PayPal"
                       width="128"
                       height="30"

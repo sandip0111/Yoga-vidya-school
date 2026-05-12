@@ -19,6 +19,7 @@ import { jsonData } from '../course/course-mentor/course-mentor.component';
 import { PixelTrackingService } from '../services/pixel-tracking.service';
 import { Title } from '@angular/platform-browser';
 import { routeEnum } from '../enum/routes';
+import { s3Bucket } from '../enum/s3Bucket';
 
 declare var Razorpay: any;
 @Component({
@@ -53,6 +54,7 @@ export class PaymentProceedComponent implements OnInit {
   currencyOptions: string[] = [];
   isPhoneValid: boolean = false;
   isSpecial: boolean = false;
+  s3Bucket = s3Bucket;
   constructor(
     private fb: FormBuilder,
     private router: Router,
