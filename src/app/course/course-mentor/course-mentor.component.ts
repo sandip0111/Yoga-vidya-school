@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { s3Bucket } from '../../enum/s3Bucket';
 import { razorPayReturnModel } from '../../models/checkout';
 import { CartService } from '../../cart.service';
+import { routeEnum } from '../../enum/routes';
 
 @Component({
   selector: 'app-course-mentor',
@@ -80,7 +81,7 @@ export let jsonData = [
     },
     description:
       'Interactive class combining Hatha asanas and pranayama each morning for holistic physical, mental, and spiritual growth. Suitable for all levels, with focus on correct alignment and routine building.',
-    url: 'prashant-jhakmola-online-class',
+    url: `${routeEnum.online_prashant_page}`,
   },
   // {
   //   id: 2,
@@ -114,7 +115,7 @@ export let jsonData = [
     price: { priceInIndian: 1999, priceInUSD: 40 },
     description:
       'A gentle and supportive practice designed specially for women from menstruation to menopause combining asana, pranayama, nutrition tips and hormone-balancing restorative techniques.',
-    url: 'taniya-verma-online-class',
+    url: `${routeEnum.online_taniya_page}`,
   },
   // {
   //   id: 4,

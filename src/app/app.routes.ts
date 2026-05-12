@@ -153,11 +153,11 @@ export const routes: Routes = [
     component: CertifiedComponent,
   },
   {
-    path: 'prashant-jhakmola-online-class/:id',
+    path: `${routeEnum.online_prashant_page}/:id`,
     component: PrashantPageComponent,
   },
   // {
-  //   path: 'taniya-verma-online-class/:id',
+  //   path: `${routeEnum.online_taniya_page}/:id`,
   //   component: TaniyaPageComponent,
   // },
   {
