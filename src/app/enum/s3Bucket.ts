@@ -40,7 +40,7 @@ export enum s3Bucket {
   rishikesh100About1 = 'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/_DSC3854.jpg',
   rishikesh300About1 = 'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/IMG_20190324_112943_Bokeh_Original.jpg',
 
-  onlineCourseHero = 'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/IMG_6884_1.JPG',
+  onlineCourseHero = `${environment.imageUrl}online_sadhana_banner.JPG`,
   onlineCourseAbout1 = 'https://my-s3-images-bucket.s3.amazonaws.com/img/image_1677479957069.JPG',
   courseMentro1 = '../../assets/20190630153357_IMG_0087.JPG',
   courseMentor2 = 'https://my-s3-images-bucket.s3.amazonaws.com/img/image_1695634116777.jpeg',
@@ -124,6 +124,7 @@ export enum s3Bucket {
   pranicPurificationIIBanner = `${environment.imageUrl}IMG_1306.PNG`,
   rishikeshHome = `${environment.imageUrl}open-rishikesh.JPG`,
   baliHome = `${environment.imageUrl}954A1947.JPG`,
+  shivam = `${environment.imageUrl}shivam.jpeg`,
 }
 export enum youtubeLink {
   trainingImportance = 'https://www.youtube.com/embed/t7l1cqDj1tA?si=ZJCQXJYDLzDwLLvm',

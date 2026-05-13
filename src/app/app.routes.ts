@@ -40,7 +40,7 @@ import { PranicPurificationIiComponent } from './course/pranic-purification-ii/p
 export const routes: Routes = [
   { path: '', component: IndexComponent },
   { path: 'course', component: CourseComponent },
-  { path: 'mentors', component: TrainersComponent },
+  { path: routeEnum.mentors, component: TrainersComponent },
   { path: 'mentor/:id', component: TrainerDetailComponent },
   { path: routeEnum.blogs, component: BlogComponent },
   { path: 'blog/:id', component: BlogDetailComponent },

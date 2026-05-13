@@ -29,4 +29,5 @@ export enum routeEnum {
   'pankaji' = 'pankaj-ji-online-class',
   'online_prashant_page' = 'prashant-jhakmola-online-class',
   'online_taniya_page' = 'taniya-verma-online-class',
+  'mentors' = 'mentors',
 }

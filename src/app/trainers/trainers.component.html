@@ -5,7 +5,7 @@
         <img
           loading="lazy"
           alt="Not Loaded"
-          src="https://my-s3-images-bucket.s3.amazonaws.com/img/flower-color.png"
+          [src]="s3Bucket.flower"
           class="flower-img"
         />
       </div>
@@ -19,9 +19,6 @@
           style="cursor: pointer"
         >
           <img
-            [defaultImage]="
-              'https://my-s3-images-bucket.s3.amazonaws.com/img/avatar.jpg'
-            "
             [lazyLoad]="imageUrl + master.picture"
             alt="{{ master.title }}"
             class="img-fluid"
