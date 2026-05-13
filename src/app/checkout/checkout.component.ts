@@ -376,7 +376,6 @@ export class CheckoutComponent {
   setCurrencyData(feesData: feeInfoDto[], checkData: checkoutModel) {
     feesData.forEach((item) => {
       item.data.forEach((d) => {
-        console.log(d.currency, 'currency');
         if (!this.currencyOptions.includes(d.currency)) {
           this.currencyOptions.push(d.currency);
         }
@@ -467,7 +466,7 @@ export class CheckoutComponent {
         isErrMsg = true;
       }
       if (!data.package) {
-        if (this.slug !== routeEnum.sa) {
+        if (this.slug !== routeEnum.sa && this.slug !== routeEnum.pranOnlinePranaArambh) {
           this.packageRequired = 'Please select a room';
           isErrMsg = true;
         }
