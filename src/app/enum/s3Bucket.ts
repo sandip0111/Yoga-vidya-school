@@ -93,10 +93,10 @@ export enum s3Bucket {
   prashnatJiAbout3 = 'https://my-s3-images-bucket.s3.amazonaws.com/images/ment4_ugwqwv.jpg',
 
   aboutUsBanner = `${environment.imageUrl}DSC07712.JPG`,
-  aboutWritten1 = 'https://my-s3-images-bucket.s3.amazonaws.com/img/about1.png',
-  aboutWritten2 = 'https://my-s3-images-bucket.s3.amazonaws.com/img/about2.png',
-  about1 = 'https://my-s3-images-bucket.s3.amazonaws.com/img/aboutUs.jpg',
-  about2 = 'https://my-s3-images-bucket.s3.amazonaws.com/img/1638962757_about-yoga-vidya.jpg',
+  aboutWritten1 = `${environment.imageUrl}image_1679305096358.png`,
+  aboutWritten2 = `${environment.imageUrl}image_1679305113396.png`,
+  about1 = `${environment.imageUrl}image_1673334299218.jpg`,
+  about2 = `${environment.imageUrl}DSC07712.JPG`,
   foundationOfSpirituality = `${environment.imageUrl}DSC09238.jpg`,
 
   choose1 = 'https://my-s3-images-bucket.s3.amazonaws.com/images/why_choose_qzrecb.webp',
