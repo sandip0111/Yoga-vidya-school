@@ -18,9 +18,9 @@ export enum s3Bucket {
   offer1 = 'https://my-s3-images-bucket.s3.amazonaws.com/images/online4_tuiozj.jpg',
   offer2 = 'https://my-s3-images-bucket.s3.amazonaws.com/images/onluneoff_vriefa.jpg',
   offer3 = `${environment.imageUrl}image_1683567710389.jpg`,
-  offer4 = 'https://my-s3-images-bucket.s3.amazonaws.com/images/onlinr2_lunr65.jpg',
-  calender = 'https://my-s3-images-bucket.s3.amazonaws.com/img/calendar.png',
-  person = 'https://my-s3-images-bucket.s3.amazonaws.com/img/user.png',
+  offer4 = `${environment.imageUrl}image_1682332031773.jpg`,
+  calender = `${environment.imageUrl}calender.png`,
+  person = `${environment.imageUrl}person.png`,
   hero = `${environment.imageUrl}FERN8544.jpg`,
   rishikesh100 = 'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/IMG_1614.JPG',
   rishikesh200 = 'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/IMG_1048.JPEG',
@@ -125,6 +125,10 @@ export enum s3Bucket {
   rishikeshHome = `${environment.imageUrl}open-rishikesh.JPG`,
   baliHome = `${environment.imageUrl}954A1947.JPG`,
   shivam = `${environment.imageUrl}shivam.jpeg`,
+
+  dash100 = `${environment.imageUrl}100Dashboard.jpg`,
+  dash200 = `${environment.imageUrl}200Dashboard.jpg`,
+  dash300 = `${environment.imageUrl}300Dashboard.jpeg`,
 }
 export enum youtubeLink {
   trainingImportance = 'https://www.youtube.com/embed/t7l1cqDj1tA?si=ZJCQXJYDLzDwLLvm',

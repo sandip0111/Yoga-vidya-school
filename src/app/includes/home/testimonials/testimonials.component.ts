@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PixelTrackingService } from '../../../services/pixel-tracking.service';
 import { s3Bucket } from '../../../enum/s3Bucket';
+import { routeEnum } from '../../../enum/routes';
 
 @Component({
   selector: 'app-testimonials',
@@ -23,7 +24,7 @@ export class TestimonialsComponent implements OnInit {
     private _pixelTracking: PixelTrackingService
   ) {
     this.slug = this.activatedRoute.snapshot.routeConfig?.path;
-    if (this.slug == 'pranic-purification') {
+    if (this.slug == routeEnum.pranicPurification) {
       this.isParnicPage = true;
       this.testimonials = [
         {
@@ -60,9 +61,9 @@ export class TestimonialsComponent implements OnInit {
       ];
     }
 
-    if (this.slug == '300-hour-yoga-teacher-training-in-bali') {
+    if (this.slug == routeEnum.bali300) {
       this.is300BaliPage = true;
-    } else if (this.slug == '200-hour-yoga-teacher-training-in-bali') {
+    } else if (this.slug == routeEnum.bali200) {
       this.is200BaliPage = true;
     }
   }
