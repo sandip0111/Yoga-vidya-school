@@ -1,238 +1,248 @@
-@if(slug === routeEnum['200TTC']){
-<div
-  id="carouselExampleInterval"
-  class="carousel slide image-slide"
-  data-bs-ride="carousel"
-  data-bs-interval="2000"
-  data-bs-pause="false"
->
+@if (slug === routeEnum["200TTC"]) {
+  <div
+    id="carouselExampleInterval"
+    class="carousel slide image-slide"
+    data-bs-ride="carousel"
+    data-bs-interval="2000"
+    data-bs-pause="false"
+  >
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img
+          src="https://d29rwrqvux6m5p.cloudfront.net/images/954A9082.jpg"
+          class="d-block w-100 img-1"
+          alt="Slide 1"
+        />
+      </div>
+      <div class="carousel-item">
+        <img
+          src="https://d29rwrqvux6m5p.cloudfront.net/images/20221017125032_IMG_8691.jpeg"
+          class="d-block w-100 img-2"
+          alt="Slide 2"
+        />
+      </div>
+      <div class="carousel-item">
+        <img
+          src="https://d29rwrqvux6m5p.cloudfront.net/images/954A7672.jpg"
+          class="d-block w-100 img-3"
+          alt="Slide 3"
+        />
+      </div>
+      <div class="banner-overlay">
+        <div class="banner-text-overlay">{{ rishikeshMainHeading }}</div>
+        <div class="banner-subtitle-overlay">{{ rishikeshSubHeading }}</div>
+      </div>
+      <div class="floating-register-btn">
+        <button class="register-btn" (click)="registerClick(slug)">
+          Register Now
+        </button>
+      </div>
+    </div>
+    <button
+      class="carousel-control-prev"
+      type="button"
+      data-bs-target="#carouselExampleInterval"
+      data-bs-slide="prev"
+    >
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button
+      class="carousel-control-next"
+      type="button"
+      data-bs-target="#carouselExampleInterval"
+      data-bs-slide="next"
+    >
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+} @else if (
+  slug == routeEnum.rishikesh100 ||
+  slug === routeEnum.rishkesh200 ||
+  slug === routeEnum.rishikesh300 ||
+  slug == routeEnum.preRecordPranayamaCourse ||
+  routeEnum.bDtox ||
+  routeEnum.pranOnlinePranaArambh ||
+  routeEnum.bali200 ||
+  routeEnum.bali300 ||
+  routeEnum.aboutPrashantJi
+) {
   <div class="carousel-inner">
-    <div class="carousel-item active">
+    <div class="inner">
       <img
-        src="https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/954A9082.jpg"
-        class="d-block w-100 img-1"
-        alt="Slide 1"
-      />
-    </div>
-    <div class="carousel-item">
-      <img
-        src="https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/20221017125032_IMG_8691.jpeg"
-        class="d-block w-100 img-2"
-        alt="Slide 2"
-      />
-    </div>
-    <div class="carousel-item">
-      <img
-        src="https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/954A7672.jpg"
-        class="d-block w-100 img-3"
-        alt="Slide 3"
+        [src]="rishikesHeroImage"
+        class="img-fluid banner_image"
+        alt="Banner Image"
       />
     </div>
     <div class="banner-overlay">
       <div class="banner-text-overlay">{{ rishikeshMainHeading }}</div>
-      <div class="banner-subtitle-overlay">{{ rishikeshSubHeading }}</div>
-    </div>
-    <div class="floating-register-btn">
-      <button class="register-btn" (click)="registerClick(slug)">
-        Register Now
-      </button>
+      @if (slug == routEnum.bali200) {
+        <div class="banner-subtitle-overlay">
+          2026 Batch: JUNE<br />Booking with the 30% of pricing
+          <br />
+          <button (click)="registerClick(routEnum.bali200)" class="button">
+            JOIN NOW
+          </button>
+        </div>
+      } @else if (slug == routEnum.bali300) {
+        <div class="banner-subtitle-overlay">
+          2026 Batch: JULY<br />Booking with the 30% of pricing
+          <br />
+          <button (click)="registerClick(routEnum.bali300)" class="button">
+            JOIN NOW
+          </button>
+        </div>
+      } @else if (
+        slug == routEnum.rishikesh100 ||
+        slug == routEnum.rishkesh200 ||
+        slug == routEnum.rishikesh300
+      ) {
+        <div class="d-flex gap-2">
+          <div class="banner-subtitle-overlay ms-5">
+            2026 Batch: October 3rd<br />Booking with the 30% of pricing
+            <br />
+            <button
+              (click)="registerClick(slug, monthEnum.October26)"
+              class="button"
+            >
+              JOIN NOW
+            </button>
+          </div>
+        </div>
+      } @else {
+        <div class="banner-subtitle-overlay">{{ rishikeshSubHeading }}</div>
+      }
     </div>
   </div>
-  <button
-    class="carousel-control-prev"
-    type="button"
-    data-bs-target="#carouselExampleInterval"
-    data-bs-slide="prev"
-  >
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button
-    class="carousel-control-next"
-    type="button"
-    data-bs-target="#carouselExampleInterval"
-    data-bs-slide="next"
-  >
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-</div>
-}@else if(slug == routeEnum.rishikesh100 || slug === routeEnum.rishkesh200 ||
-slug === routeEnum.rishikesh300 || slug == routeEnum.preRecordPranayamaCourse ||
-routeEnum.bDtox || routeEnum.pranOnlinePranaArambh || routeEnum.bali200 ||
-routeEnum.bali300 || routeEnum.aboutPrashantJi){
-<div class="carousel-inner">
-  <div class="inner">
-    <img
-      [src]="rishikesHeroImage"
-      class="img-fluid banner_image"
-      alt="Banner Image"
-    />
-  </div>
-  <div class="banner-overlay">
-    <div class="banner-text-overlay">{{ rishikeshMainHeading }}</div>
-    @if(slug==routEnum.bali200){
-    <div class="banner-subtitle-overlay">
-      2026 Batch: JUNE<br />Booking with the 30% of pricing
-      <br />
-      <button (click)="registerClick(routEnum.bali200)" class="button">
-        JOIN NOW
-      </button>
-    </div>
-    }@else if(slug==routEnum.bali300){
-    <div class="banner-subtitle-overlay">
-      2026 Batch: JULY<br />Booking with the 30% of pricing
-      <br />
-      <button (click)="registerClick(routEnum.bali300)" class="button">
-        JOIN NOW
-      </button>
-    </div>
-    }@else if(slug==routEnum.rishikesh100 || slug==routEnum.rishkesh200 ||
-    slug==routEnum.rishikesh300){
-    <div class="d-flex gap-2">
-      <div class="banner-subtitle-overlay ms-5">
-        2026 Batch: October 3rd<br />Booking with the 30% of pricing
-        <br />
-        <button
-          (click)="registerClick(slug, monthEnum.October26)"
-          class="button"
-        >
-          JOIN NOW
+} @else {
+  <section #bannerSection class="banner-section" id="bnner_section">
+    @if (slug === routeEnum.pranicPurification || slug === routeEnum.bDtox) {
+      <div class="floating-register-btn">
+        <button class="register-btn" (click)="registerClick(slug)">
+          Register Now
         </button>
       </div>
-    </div>
-    }@else {
-    <div class="banner-subtitle-overlay">{{ rishikeshSubHeading }}</div>
-    }
-  </div>
-</div>
-} @else{
-<section #bannerSection class="banner-section" id="bnner_section">
-  @if(slug === routeEnum.pranicPurification || slug === routeEnum.bDtox){
-  <div class="floating-register-btn">
-    <button class="register-btn" (click)="registerClick(slug)">
-      Register Now
-    </button>
-  </div>
-  }@else{
-  <div class="row">
-    <div class="col-md-6"></div>
-    <div class="col-md-6">
-      <div class="slider">
-        <div class="inner">
-          <div class="form">
-            <h3
-              *ngIf="
-                slug != 'yoga-retreat-in-mysore-india' &&
-                slug != 'yoga-retreat-in-peru' &&
-                !isRegistrationPageLabelToggle &&
-                !isRegistrationPageLabelToggleForAdjusment
-              "
-            >
-              Want To Practice Pranayama Sadhana!
-            </h3>
-            <h3
-              *ngIf="
-                slug != 'yoga-retreat-in-mysore-india' &&
-                slug != 'yoga-retreat-in-peru' &&
-                isRegistrationPageLabelToggle &&
-                !isRegistrationPageLabelToggleForAdjusment
-              "
-            >
-              Want To Become Expert Yoga Teacher!
-            </h3>
-            <h3
-              *ngIf="
-                slug != 'yoga-retreat-in-mysore-india' &&
-                slug != 'yoga-retreat-in-peru' &&
-                isRegistrationPageLabelToggleForAdjusment
-              "
-            >
-              Want To learn Adjusment and Alignments!
-            </h3>
-            <h3
-              *ngIf="
-                slug == 'yoga-retreat-in-mysore-india' ||
-                slug == 'yoga-retreat-in-peru'
-              "
-            >
-              Interested In This Retreat ?
-            </h3>
-            <small
-              *ngIf="
-                slug == 'yoga-retreat-in-mysore-india' ||
-                slug == 'yoga-retreat-in-peru'
-              "
-              >Sign Up Here !</small
-            >
-            <small
-              *ngIf="
-                slug != 'yoga-retreat-in-mysore-india' &&
-                slug != 'yoga-retreat-in-peru'
-              "
-              >Apply Now - We Are Taking Admissions.</small
-            >
-            <form #inquiry="ngForm" (ngSubmit)="saveInquiry(inquiryData)">
-              <div class="form-inputs">
-                <input
-                  type="text"
-                  placeholder="Name"
-                  name="name"
-                  [(ngModel)]="inquiryData.name"
-                />
-                <input
-                  type="text"
-                  placeholder="Email"
-                  name="email"
-                  [(ngModel)]="inquiryData.to"
-                />
-                <select
+    } @else {
+      <div class="row">
+        <div class="col-md-6"></div>
+        <div class="col-md-6">
+          <div class="slider">
+            <div class="inner">
+              <div class="form">
+                <h3
                   *ngIf="
-                    slug != 'breath-detox-yoga' &&
-                    slug != 'pranayama-course-online-pranarambha' &&
-                    slug !=
-                      'foundation-of-spirituality-an-online-spiritual-awakening-course'
+                    slug != 'yoga-retreat-in-mysore-india' &&
+                    slug != 'yoga-retreat-in-peru' &&
+                    !isRegistrationPageLabelToggle &&
+                    !isRegistrationPageLabelToggleForAdjusment
                   "
-                  name="courseDate"
-                  [(ngModel)]="inquiryData.courseDate"
                 >
-                  <option value="undefined">Select Course Date</option>
-                  <option
-                    *ngFor="let date of datesItem"
-                    value="{{ date.startDate | date : 'dd MMMM y' }} ~ {{
-                      date.endDate | date : 'dd MMMM y'
-                    }}"
-                  >
-                    {{ date.startDate | date : "dd MMMM y" }} -
-                    {{ date.endDate | date : "dd MMMM y" }}
-                  </option>
-                </select>
-                <input
-                  type="number"
-                  placeholder="Your Contact Number"
-                  name="contactNumber"
-                  [(ngModel)]="inquiryData.contactNumber"
-                />
-                <textarea
-                  placeholder="Your Message"
-                  rows="2"
+                  Want To Practice Pranayama Sadhana!
+                </h3>
+                <h3
                   *ngIf="
-                    slug != 'breath-detox-yoga' &&
-                    slug != 'pranayama-course-online-pranarambha' &&
-                    slug !=
-                      'foundation-of-spirituality-an-online-spiritual-awakening-course'
+                    slug != 'yoga-retreat-in-mysore-india' &&
+                    slug != 'yoga-retreat-in-peru' &&
+                    isRegistrationPageLabelToggle &&
+                    !isRegistrationPageLabelToggleForAdjusment
                   "
-                  name="message"
-                  [(ngModel)]="inquiryData.message"
-                ></textarea>
-                <input class="button" type="submit" value="Enquiry" />
+                >
+                  Want To Become Expert Yoga Teacher!
+                </h3>
+                <h3
+                  *ngIf="
+                    slug != 'yoga-retreat-in-mysore-india' &&
+                    slug != 'yoga-retreat-in-peru' &&
+                    isRegistrationPageLabelToggleForAdjusment
+                  "
+                >
+                  Want To learn Adjusment and Alignments!
+                </h3>
+                <h3
+                  *ngIf="
+                    slug == 'yoga-retreat-in-mysore-india' ||
+                    slug == 'yoga-retreat-in-peru'
+                  "
+                >
+                  Interested In This Retreat ?
+                </h3>
+                <small
+                  *ngIf="
+                    slug == 'yoga-retreat-in-mysore-india' ||
+                    slug == 'yoga-retreat-in-peru'
+                  "
+                  >Sign Up Here !</small
+                >
+                <small
+                  *ngIf="
+                    slug != 'yoga-retreat-in-mysore-india' &&
+                    slug != 'yoga-retreat-in-peru'
+                  "
+                  >Apply Now - We Are Taking Admissions.</small
+                >
+                <form #inquiry="ngForm" (ngSubmit)="saveInquiry(inquiryData)">
+                  <div class="form-inputs">
+                    <input
+                      type="text"
+                      placeholder="Name"
+                      name="name"
+                      [(ngModel)]="inquiryData.name"
+                    />
+                    <input
+                      type="text"
+                      placeholder="Email"
+                      name="email"
+                      [(ngModel)]="inquiryData.to"
+                    />
+                    <select
+                      *ngIf="
+                        slug != 'breath-detox-yoga' &&
+                        slug != 'pranayama-course-online-pranarambha' &&
+                        slug !=
+                          'foundation-of-spirituality-an-online-spiritual-awakening-course'
+                      "
+                      name="courseDate"
+                      [(ngModel)]="inquiryData.courseDate"
+                    >
+                      <option value="undefined">Select Course Date</option>
+                      <option
+                        *ngFor="let date of datesItem"
+                        value="{{ date.startDate | date: 'dd MMMM y' }} ~ {{
+                          date.endDate | date: 'dd MMMM y'
+                        }}"
+                      >
+                        {{ date.startDate | date: "dd MMMM y" }} -
+                        {{ date.endDate | date: "dd MMMM y" }}
+                      </option>
+                    </select>
+                    <input
+                      type="number"
+                      placeholder="Your Contact Number"
+                      name="contactNumber"
+                      [(ngModel)]="inquiryData.contactNumber"
+                    />
+                    <textarea
+                      placeholder="Your Message"
+                      rows="2"
+                      *ngIf="
+                        slug != 'breath-detox-yoga' &&
+                        slug != 'pranayama-course-online-pranarambha' &&
+                        slug !=
+                          'foundation-of-spirituality-an-online-spiritual-awakening-course'
+                      "
+                      name="message"
+                      [(ngModel)]="inquiryData.message"
+                    ></textarea>
+                    <input class="button" type="submit" value="Enquiry" />
+                  </div>
+                </form>
               </div>
-            </form>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-  }
-</section>
+    }
+  </section>
 }

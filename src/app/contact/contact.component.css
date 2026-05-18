@@ -1,5 +1,5 @@
 section.contact {
-  background-image: url("https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/contactUs.jpg");
+  background-image: url("https://d29rwrqvux6m5p.cloudfront.net/images/contactUs.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   padding: 70px 0;
@@ -14,7 +14,11 @@ section.contact .container {
 
 section.contact .container .content {
   background: rgb(251, 117, 29);
-  background: linear-gradient(227deg, rgba(223, 223, 223, 0.2) 0%, rgba(225, 225, 225, 0.3) 100%);
+  background: linear-gradient(
+    227deg,
+    rgba(223, 223, 223, 0.2) 0%,
+    rgba(225, 225, 225, 0.3) 100%
+  );
   backdrop-filter: blur(10px);
   border-radius: 15px;
   position: relative;
@@ -57,7 +61,11 @@ section.contact form {
   padding: 15px;
   border-radius: 10px;
   background: rgb(251, 117, 29);
-  background: linear-gradient(227deg, rgba(251, 117, 29, 0.6811974789915967) 0%, rgba(255, 245, 238, 0.768) 100%);
+  background: linear-gradient(
+    227deg,
+    rgba(251, 117, 29, 0.6811974789915967) 0%,
+    rgba(255, 245, 238, 0.768) 100%
+  );
   backdrop-filter: blur(1px);
   margin: 50px auto 0;
   max-width: 400px;

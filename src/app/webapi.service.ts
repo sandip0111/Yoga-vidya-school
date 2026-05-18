@@ -22,7 +22,7 @@ import { onLineVideoModel } from './models/video';
 })
 export class WebapiService {
   private url = environment.apiUrl;
-  public imageUrl = 'https://my-s3-images-bucket.s3.amazonaws.com/img/';
+  public imageUrl = 'https://d29rwrqvux6m5p.cloudfront.net/images/';
   public imageUrlv2 = 'https://yogavidyaschool.com:3000/public/img/';
   private youtubeApiKey = 'AIzaSyBBWKHx71MmwvADlvncUc8ivZuJ0k5Wi44';
   // private youtubeChannelId = "UCp8TSIgLoBWsPS1knyeFhaw";
