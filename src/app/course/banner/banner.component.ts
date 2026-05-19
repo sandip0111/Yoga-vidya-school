@@ -51,7 +51,7 @@ export class BannerComponent implements OnInit {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private sanitizer: DomSanitizer,
-    @Inject(PLATFORM_ID) private platformId: Object
+    @Inject(PLATFORM_ID) private platformId: Object,
   ) {
     this.slug = this.activatedRoute.snapshot.routeConfig?.path;
   }
@@ -169,7 +169,7 @@ export class BannerComponent implements OnInit {
         'https://my-s3-images-bucket.s3.amazonaws.com/img/image_1692698338795.jpg';
     } else if (this.slug == 'pranic-purification') {
       this.sliderImage =
-        'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/954A0706.JPG';
+        'https://d29rwrqvux6m5p.cloudfront.net/images/954A0706.JPG';
     } else if (
       this.slug == '200-hour-yoga-teacher-training-in-kerala-india' ||
       this.slug == 'yoga-retreat-in-kerala-india' ||
@@ -221,26 +221,26 @@ export class BannerComponent implements OnInit {
           this.renderer.setStyle(
             this.bannerSection.nativeElement,
             '--bg-image',
-            `url(${this.sliderImage})`
+            `url(${this.sliderImage})`,
           );
         }
       } else {
         this.renderer.setStyle(
           this.bannerSection.nativeElement,
           'background-image',
-          `url(${this.sliderImage})`
+          `url(${this.sliderImage})`,
         );
         this.renderer.setStyle(
           this.bannerSection.nativeElement,
           'height',
-          '650px'
+          '650px',
         );
       }
     }
     if (this.slug == 'pranayama-course-online-pranarambha') {
       if (isPlatformBrowser(this.platformId)) {
         this.videoElement = document.getElementById(
-          'backgroundVideo'
+          'backgroundVideo',
         ) as HTMLVideoElement;
         this.videoElement.muted = true;
         if (this.videoElement) {
