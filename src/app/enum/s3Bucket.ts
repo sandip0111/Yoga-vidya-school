@@ -57,7 +57,7 @@ export enum s3Bucket {
   prashantIndexAbout = '../../../../assets/new-home/IMG_2820.JPG',
   preRecordedHero = '../../assets/new-home/954A0800.JPG',
   breathDtoxPreRec = `${environment.imageUrl}954A0710.JPG`,
-  pranaArambhPreRec = `${environment.imageUrl}IMG_2063.JPG`,
+  pranaArambhPreRec = `${environment.imageUrl}954A0097.jpg`,
   swarSadhanaPreRec = `${environment.imageUrl}FERN8249.jpg`,
   bDtox1 = 'https://my-s3-images-bucket.s3.amazonaws.com/img/image_1679305129429.jpg',
   bDtox2 = 'https://my-s3-images-bucket.s3.amazonaws.com/img/image_1679305150535.jpg',
@@ -88,9 +88,16 @@ export enum s3Bucket {
   bali300SectionImage = `${environment.imageUrl}IMG_1216.JPEG`,
   bali300SectionImage2 = `${environment.imageUrl}IMG_1225.JPEG`,
 
-  prashnatJiAbout1 = 'https://my-s3-images-bucket.s3.amazonaws.com/images/ment3_vn8ivz.jpg',
-  prashnatJiAbout2 = 'https://my-s3-images-bucket.s3.amazonaws.com/images/ment2_1_szchyw.jpg',
-  prashnatJiAbout3 = 'https://my-s3-images-bucket.s3.amazonaws.com/images/ment4_ugwqwv.jpg',
+  prashnatJiAbout1 = `${environment.imageUrl}Prashant_about.jpg`,
+  prashnatJiAbout2 = `${environment.imageUrl}Prashant_about1.jpg`,
+  prashnatJiAbout3 = `${environment.imageUrl}Prashant_about3.jpg`,
+  prashnatJiAbout4 = `${environment.imageUrl}prashant_about2.jfif`,
+
+  prashantPG1 = `${environment.imageUrl}image_1673595398608.jpg`,
+  prashantPG2 = `${environment.imageUrl}image_1673595680270.jfif`,
+  prashantPG3 = `${environment.imageUrl}image_1674211866310.jpeg`,
+  prashantPG4 = `${environment.imageUrl}image_1681706477336.jpg`,
+  prashantPG5 = `${environment.imageUrl}image_1721311791797.jpeg`,
 
   aboutUsBanner = `${environment.imageUrl}DSC07712.JPG`,
   aboutWritten1 = `${environment.imageUrl}image_1679305096358.png`,
