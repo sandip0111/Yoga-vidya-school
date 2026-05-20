@@ -32,7 +32,7 @@ export class AboutRishikeshComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private cartService: CartService,
-    private webapiService: WebapiService
+    private webapiService: WebapiService,
   ) {
     this.slug = this.activatedRoute.snapshot.routeConfig?.path ?? '';
   }
@@ -58,7 +58,7 @@ export class AboutRishikeshComponent implements OnInit {
             <li>📚 <b>Wisdom Hunters</b> – You want to explore Yogic Philosophy, Pranayama, and Meditation in an authentic way.</li>
             <li>📈 <b>Registered Yoga Teachers</b> – You’re seeking Continuing Education (CE) hours to enhance your RYT credentials.</li>
           </ui>
-        `)
+        `),
       );
     } else if (this.slug == routeEnum.rishkesh200) {
       this.aboutContent = new aboutContentModel(
@@ -69,7 +69,7 @@ export class AboutRishikeshComponent implements OnInit {
         <p>Certified by <b>Yoga Alliance</b>, this immersive experience will refine your practice, awaken your inner power, and open you to a more confident, fulfilled, and healthy way of living. You’ll learn from dedicated yogis, scholars, and teachers in the <b>Yoga Capital of the World</b>, surrounded by a global community committed to growth and authenticity. 🌍💫</p>
         <p>From hands-on learning and personalized guidance to sacred rituals and traditional teachings, you'll have the chance to truly embody the art of yoga — not just on the mat, but in every aspect of your life.</p>
         <p>As a <b>student</b>, you'll understand how to align asana with your unique physical and spiritual self.</p>
-        <p>And as a <b>mentor</b>, you’ll learn how to share your voice with clarity, depth, and purpose. 🎓🧘</p>`
+        <p>And as a <b>mentor</b>, you’ll learn how to share your voice with clarity, depth, and purpose. 🎓🧘</p>`,
       );
     } else if (
       this.slug ==
@@ -79,7 +79,7 @@ export class AboutRishikeshComponent implements OnInit {
         'https://my-s3-images-bucket.s3.amazonaws.com/img/image_1674308332559.jpg',
         '200 HORAS',
         'DE FORMACIÓN DE PROFESORES DE YOGA EN RISHIKESH',
-        '<p>Aventúrate en Rishikesh, India, para experimentar un poderoso cambio en tu vida: física, mental y espiritualmente. La formación de profesores de yoga de 200 horas en Yoga Vidya School te llevará a través de grandes intenciones de transformación personal. Este curso certificado por Yoga Alliance te hará avanzar&nbsp; en tu práctica, te capacitará con las mejores técnicas yóguicas, despertará tu energía en todos los aspectos de la vida y te hará más seguro, contento y saludable. Conéctate con una auténtica comunidad de profesores de yoga, eruditos y yoguis dedicados en la Capital Mundial del Yoga.</p><p>Desde el aprendizaje en grupo hasta la ejecución de la práctica , la sadhana personal y las técnicas de correcta alineación, tendrás la oportunidad de sumergirte profundamente en el arte del Yoga. En este curso de formación de Yoga, tendrás&nbsp; más de 14 asignaturas, que cubrirán los secretos ancestrales de la Vida Yóguica que puedes usar en tu vida diaria para equilibrar la vida personal, la vida social (familia) y la vida espiritual. La base de este curso se basa en la investigación de la alineación humana en la Asana funcional y las variaciones que ocurren dentro de los ajustes.</p><p>Y como estudiante, descubrirás cómo individualizar y comprender la práctica de Asana con respecto a tus necesidades espirituales y cuerpo físico.</p><p>Como mentor, tendrás la oportunidad de compartir este viaje yóguico de una manera auténtica, direccional, clara y que hará que tu voz sea más clara.</p><p>No solo obtendrás conocimientos sobre el yoga, sino que también experimentarás la unión sinérgica de almas únicas.</p>'
+        '<p>Aventúrate en Rishikesh, India, para experimentar un poderoso cambio en tu vida: física, mental y espiritualmente. La formación de profesores de yoga de 200 horas en Yoga Vidya School te llevará a través de grandes intenciones de transformación personal. Este curso certificado por Yoga Alliance te hará avanzar&nbsp; en tu práctica, te capacitará con las mejores técnicas yóguicas, despertará tu energía en todos los aspectos de la vida y te hará más seguro, contento y saludable. Conéctate con una auténtica comunidad de profesores de yoga, eruditos y yoguis dedicados en la Capital Mundial del Yoga.</p><p>Desde el aprendizaje en grupo hasta la ejecución de la práctica , la sadhana personal y las técnicas de correcta alineación, tendrás la oportunidad de sumergirte profundamente en el arte del Yoga. En este curso de formación de Yoga, tendrás&nbsp; más de 14 asignaturas, que cubrirán los secretos ancestrales de la Vida Yóguica que puedes usar en tu vida diaria para equilibrar la vida personal, la vida social (familia) y la vida espiritual. La base de este curso se basa en la investigación de la alineación humana en la Asana funcional y las variaciones que ocurren dentro de los ajustes.</p><p>Y como estudiante, descubrirás cómo individualizar y comprender la práctica de Asana con respecto a tus necesidades espirituales y cuerpo físico.</p><p>Como mentor, tendrás la oportunidad de compartir este viaje yóguico de una manera auténtica, direccional, clara y que hará que tu voz sea más clara.</p><p>No solo obtendrás conocimientos sobre el yoga, sino que también experimentarás la unión sinérgica de almas únicas.</p>',
       );
     } else if (this.slug == routeEnum.rishikesh300) {
       this.aboutContent = new aboutContentModel(
@@ -91,8 +91,8 @@ export class AboutRishikeshComponent implements OnInit {
           This is not just a training—it’s an invitation to go deeper into the heart of yoga.
           It’s for those who are committed to their inner journey, eager to refine their skills, and inspired to share the wisdom of yoga to bring more peace, clarity, and joy into the world.</p>
           <p>Training takes place in our peaceful venue, surrounded by lush green Himalayan forest and only a short walk from the sacred Ganges River. Here, in the heart of Rishikesh, you’ll be supported by a team of experienced teachers led by <b>Prashant J Yoga</b>—one of the most trusted yoga educators on YouTube.</p>
-          <p>By the end of the training, you will be internationally certified, ready to teach with greater depth, authenticity, and presence.<br />Many of our graduates go on to lead classes, retreats, festivals, and trainings around the world.</p>`
-        )
+          <p>By the end of the training, you will be internationally certified, ready to teach with greater depth, authenticity, and presence.<br />Many of our graduates go on to lead classes, retreats, festivals, and trainings around the world.</p>`,
+        ),
       );
     } else if (
       this.slug == '200-hour-yoga-teacher-training-scholarship-in-rishikesh'
@@ -102,7 +102,7 @@ export class AboutRishikeshComponent implements OnInit {
         '200 Hours',
         'Yoga Teacher Training Scholarship In Rishikesh',
         `<p>Yoga is a holistic practice that aims for the betterment of human society by awakening conscience in people and promoting mental clarity, physical health, and spiritual well-being. At <a href="https://www.yogavidyaschool.com/">Yoga Vidya School</a>, yoga serves as the quintessential therapy to create balance in life. It is a way of life that uplifts an individual&rsquo;s sense of spirituality and encourages positivity in life. Whether it is meditation techniques, yoga poses, or yoga philosophy, all of it makes you understand the prominence of mental and physical disciplines possessing the power to change your individuality. No wonder yoga has become a global rage, especially amongst health freaks. Practise it on a daily basis and you are set to experience an unprecedented change in your mind and body. And when you are in Rishikesh, the experience is unparalleled.</p>
-      <p>Yoga Vidya School strictly believes that knowledge should be available to everyone, irrespective of anything. It should be imparted without any kind of discrimination. Consequently, the school has introduced the 200 hour yoga teacher training scholarship program for those who do not have any financial means to access yoga education but are equally passionate to learn its dynamism. It has been introduced to support these individuals, break financial barriers, and promote inclusivity. So, get going now and be ready to enrol for the program!</p>`
+      <p>Yoga Vidya School strictly believes that knowledge should be available to everyone, irrespective of anything. It should be imparted without any kind of discrimination. Consequently, the school has introduced the 200 hour yoga teacher training scholarship program for those who do not have any financial means to access yoga education but are equally passionate to learn its dynamism. It has been introduced to support these individuals, break financial barriers, and promote inclusivity. So, get going now and be ready to enrol for the program!</p>`,
       );
     } else if (
       this.slug == '300-hour-yoga-teacher-training-scholarship-in-rishikesh'
@@ -113,14 +113,14 @@ export class AboutRishikeshComponent implements OnInit {
         'Yoga Teacher Training Scholarship In Rishikesh',
         `<p>Encompassing mental, physical, and spiritual disciplines, yoga has been helping people around the world cultivate mindfulness for thousands of years. It is a multidimensional practice rooted in the layers of the self and is an idyllic way to lead a healthy and peaceful life. It is on account of its holistic healing powers, yoga has been successful in becoming a global rage today. Hence, it is highly revered by health freaks and yoga enthusiasts across the world. At <a href="https://www.yogavidyaschool.com/">Yoga Vidya School</a>, yoga is what helps you keep your mind, body, and soul in harmony. It is the yogic lifestyle and daily yoga practice that nurture a state of heightened consciousness.</p>
       <p>So, with our <a href="https://www.yogavidyaschool.com/300-hours-yoga-teacher-training-in-rishikesh">300 hour yoga teacher training program</a>, get ready for a life-changing experience. Indulge in self-introspection and learn how to improve strength and flexibility in your body. Involve in some serious training sessions and understand how to create a balance in life with the help of breathing techniques and yoga asanas. Our specially-designed course with a detailed curriculum on Hatha Yoga and Ashtanga Yoga would help you focus on growth and inner-self. Learn how to open up your chakras and master mudras and mantras.</p>
-      <p>To make yoga an indispensable part of everyone&rsquo;s life, Yoga Vidya School announces the <em>300-hour yoga teacher training scholarship program</em>. It aims at reaching out to those who don&#39;t have financial accessibility. It has been introduced to bring yoga to people of all backgrounds and socio-economic levels. So, be ready to gain some yogic wisdom like never before!</p>`
+      <p>To make yoga an indispensable part of everyone&rsquo;s life, Yoga Vidya School announces the <em>300-hour yoga teacher training scholarship program</em>. It aims at reaching out to those who don&#39;t have financial accessibility. It has been introduced to bring yoga to people of all backgrounds and socio-economic levels. So, be ready to gain some yogic wisdom like never before!</p>`,
       );
     } else if (this.slug == '200-hour-yoga-teacher-training-in-kerala-india') {
       this.aboutContent = new aboutContentModel(
         'https://my-s3-images-bucket.s3.amazonaws.com/img/image_1674211364306.jpeg',
         '200 Hours',
         'Yoga Teacher Training in Kerala, India',
-        `<p>Travel to the land of glistening backwaters, the above of nature's healing legacy, a place blessed with beauty that is akin to heaven, and the land of exotic fauna, Yoga Vidya School welcomes you to an extensive 200 Hour Yoga Teacher Training in Kerala, India. Travel into a world where time stands still with nature's bounty expressed through its picturesque and exceptionally clean beaches, lush rainforests, and hospitality expressed in its vibrant culture and ancient wisdom that thrives even after all these millennia. You are invited to experience and witness the positive transformation of the mind, body, and spirit through authentic teachings and practices of the Hatha and Ashtanga Yoga forms under the guidance of India's noted yoga masters. Redesign your diet and lifestyle that is aligned with the principles of Ayurveda and transition towards a more balanced body and mind. We also suggest you join our rejuvenative yoga retreats at Bali, which will allow you to experience the maximum healing powers of Yoga, to transform your overall wellness. Introduce yourself to the like-minded communities while discovering a blend of relaxation and enlightenment. Whether you are a beginner or a seasoned practitioner, joining the <a href='200-hour-yoga-teacher-training-in-bali'>200 Hour Yoga TTC in Bali</a> As well as Kerala will support you to deepen your practice. Be on your way to becoming a Yoga Alliance certified yoga teacher and a yogi of finesse imbibed from theoretical teachings from the sacred books of yoga and Vedas with Yoga Vidya School's 200 Hour Yoga Teacher Training in Kerala.</p>`
+        `<p>Travel to the land of glistening backwaters, the above of nature's healing legacy, a place blessed with beauty that is akin to heaven, and the land of exotic fauna, Yoga Vidya School welcomes you to an extensive 200 Hour Yoga Teacher Training in Kerala, India. Travel into a world where time stands still with nature's bounty expressed through its picturesque and exceptionally clean beaches, lush rainforests, and hospitality expressed in its vibrant culture and ancient wisdom that thrives even after all these millennia. You are invited to experience and witness the positive transformation of the mind, body, and spirit through authentic teachings and practices of the Hatha and Ashtanga Yoga forms under the guidance of India's noted yoga masters. Redesign your diet and lifestyle that is aligned with the principles of Ayurveda and transition towards a more balanced body and mind. We also suggest you join our rejuvenative yoga retreats at Bali, which will allow you to experience the maximum healing powers of Yoga, to transform your overall wellness. Introduce yourself to the like-minded communities while discovering a blend of relaxation and enlightenment. Whether you are a beginner or a seasoned practitioner, joining the <a href='200-hour-yoga-teacher-training-in-bali'>200 Hour Yoga TTC in Bali</a> As well as Kerala will support you to deepen your practice. Be on your way to becoming a Yoga Alliance certified yoga teacher and a yogi of finesse imbibed from theoretical teachings from the sacred books of yoga and Vedas with Yoga Vidya School's 200 Hour Yoga Teacher Training in Kerala.</p>`,
       );
     } else if (this.slug == '300-hour-yoga-teacher-training-in-kerala-india') {
       //       this.aboutContent = {
@@ -137,7 +137,7 @@ export class AboutRishikeshComponent implements OnInit {
         s3Bucket.prashantjiHero,
         'Yoga Retreat',
         'in Rishikesh India',
-        `<p>Yoga Vidya School in Rishikesh welcomes you to immerse in life transformative authentic yogic practices. This yoga retreat is a unique and energetic program to experience authentic yoga, meditation and pranayama for deep relaxation and transformation. Break away from the mundane to reunite with your mind, body, and spirit through soulful yogic experiences. Also, during the retreat, get an opportunity to explore the yogic culture, Himalayan shrines, organic food, trips to temples and ashrams. Daily Yoga Asana classes in this best yoga retreat in Rishikesh covers both classical Hatha Yoga and Ashtanga Yoga. The yoga teachers who will conduct these classes, have learnt from popular Indian Ashrams and also trained in yoga therapy and modern yoga teaching methodologies.</p>`
+        `<p>Yoga Vidya School in Rishikesh welcomes you to immerse in life transformative authentic yogic practices. This yoga retreat is a unique and energetic program to experience authentic yoga, meditation and pranayama for deep relaxation and transformation. Break away from the mundane to reunite with your mind, body, and spirit through soulful yogic experiences. Also, during the retreat, get an opportunity to explore the yogic culture, Himalayan shrines, organic food, trips to temples and ashrams. Daily Yoga Asana classes in this best yoga retreat in Rishikesh covers both classical Hatha Yoga and Ashtanga Yoga. The yoga teachers who will conduct these classes, have learnt from popular Indian Ashrams and also trained in yoga therapy and modern yoga teaching methodologies.</p>`,
       );
     } else if (this.slug == 'yoga-retreat-in-kerala-india') {
       //       this.aboutContent = {
@@ -154,19 +154,19 @@ export class AboutRishikeshComponent implements OnInit {
         'https://my-s3-images-bucket.s3.amazonaws.com/img/image_1674308332559.jpg',
         'Pranayama',
         'Therapy Course Online',
-        `<p>Many yoga practitioners tend to give more attention to the physical body exercises - aka the asanas - and ignore other important aspects of the yoga practice such as pranayama and meditation? However, breath is considered as a bridge between Physical and Psychic body, so in practice of Yoga it helps to operate efficiently with body and move attention to a subtle level work too. This special Pranayama Therapy Course was designed by our experienced certified yoga teacher Ksenia Ji and aimed to take your practice on a different level by gradual study of breath nature and its power as well as how to develop and use it for your yogic practices daily and in a therapeutic way.</p><p><strong>What is the Meaning of Pranayama ?</strong></p><p>The word Pranayama is consisted of two words. ‘Prana’ refers to the vital energy or breath that is responsible for life and ‘ayama’ means extension. Thus, Pranayama, in simple terms, is the practice of breath regulation which cause regulation of vital energy “prana” which on a physical level brings lightness to the body and remove diseases, while on psychic level it brings mental clarity, calms the mind and induces a meditative state. That is why in ancient scripts pranayama considered as a first step of stairs towards meditation?</p>`
+        `<p>Many yoga practitioners tend to give more attention to the physical body exercises - aka the asanas - and ignore other important aspects of the yoga practice such as pranayama and meditation? However, breath is considered as a bridge between Physical and Psychic body, so in practice of Yoga it helps to operate efficiently with body and move attention to a subtle level work too. This special Pranayama Therapy Course was designed by our experienced certified yoga teacher Ksenia Ji and aimed to take your practice on a different level by gradual study of breath nature and its power as well as how to develop and use it for your yogic practices daily and in a therapeutic way.</p><p><strong>What is the Meaning of Pranayama ?</strong></p><p>The word Pranayama is consisted of two words. ‘Prana’ refers to the vital energy or breath that is responsible for life and ‘ayama’ means extension. Thus, Pranayama, in simple terms, is the practice of breath regulation which cause regulation of vital energy “prana” which on a physical level brings lightness to the body and remove diseases, while on psychic level it brings mental clarity, calms the mind and induces a meditative state. That is why in ancient scripts pranayama considered as a first step of stairs towards meditation?</p>`,
       );
     } else if (this.slug == 'adjustment-and-alignment') {
       this.aboutContent = new aboutContentModel(
-        'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/adjustmentAndAlignment.jpeg',
+        'https://d29rwrqvux6m5p.cloudfront.net/images/adjustmentAndAlignment.jpeg',
         'Adjustment',
         '& Alignment',
-        `<p>The Asana Alignment and Adjustment course was personally constructed by the head teacher of the Yoga Vidya school <a href='https://www.yogavidyaschool.com/mentor/acharya-prashant-jakhmola'>Prashant Jakhmola</a>, who has many years experience in designing and teaching at yoga teacher training courses and various yoga programs in India, Nepal, China, Russia and Indonesia. The present course is ideal choice for all yoga practitioners who requires basement for their asana practice.</p><p><strong>Who is this course for ?</strong></p><p>The Asana Alignment and Adjustment Level 1 course is designed for those people who haven’t done any <a href='https://www.yogavidyaschool.com'>Yoga Teacher Training Course</a> and thinking to do, but need a preparation. In addition, this course is suitable for people who need further guidance in order to improve their personal self yoga practice. Absolute beginners in yoga also can find this course is very helpful to step on the yoga path.</p>`
+        `<p>The Asana Alignment and Adjustment course was personally constructed by the head teacher of the Yoga Vidya school <a href='https://www.yogavidyaschool.com/mentor/acharya-prashant-jakhmola'>Prashant Jakhmola</a>, who has many years experience in designing and teaching at yoga teacher training courses and various yoga programs in India, Nepal, China, Russia and Indonesia. The present course is ideal choice for all yoga practitioners who requires basement for their asana practice.</p><p><strong>Who is this course for ?</strong></p><p>The Asana Alignment and Adjustment Level 1 course is designed for those people who haven’t done any <a href='https://www.yogavidyaschool.com'>Yoga Teacher Training Course</a> and thinking to do, but need a preparation. In addition, this course is suitable for people who need further guidance in order to improve their personal self yoga practice. Absolute beginners in yoga also can find this course is very helpful to step on the yoga path.</p>`,
       );
     } else if (this.slug == 'adjustment-and-alignment-level-2') {
       //       this.aboutContent = {
       //         image:
-      //           'https://my-s3-images-bucket.s3.us-east-1.amazonaws.com/images/adjustmentAndAlignment.jpeg',
+      //           'https://d29rwrqvux6m5p.cloudfront.net/images/adjustmentAndAlignment.jpeg',
       //         title: 'Adjustment',
       //         secondTitle: '& Alignment Level 2',
       //         desc: `
@@ -178,14 +178,14 @@ export class AboutRishikeshComponent implements OnInit {
         'https://my-s3-images-bucket.s3.amazonaws.com/img/image_1674308332559.jpg',
         'Yoga',
         'Teacher Training in India',
-        `<p>Now that you have been practicing yoga for a while and are keen to learn the finer intricacies or nuances of this ancient philosophy, a yoga teacher training program is just apt. Also, accredited <a href="#">yoga teacher training courses</a> can empower you to make teaching yoga as a career option. Yoga is quite popular worldwide; hence, teaching yoga professionally can be a lucrative and fulfilling career option. You will not only gain knowledge and skills for enhancing your own health and well-being but also empower many others to enhance their quality of life. This can be a deeply gratifying experience.</p>`
+        `<p>Now that you have been practicing yoga for a while and are keen to learn the finer intricacies or nuances of this ancient philosophy, a yoga teacher training program is just apt. Also, accredited <a href="#">yoga teacher training courses</a> can empower you to make teaching yoga as a career option. Yoga is quite popular worldwide; hence, teaching yoga professionally can be a lucrative and fulfilling career option. You will not only gain knowledge and skills for enhancing your own health and well-being but also empower many others to enhance their quality of life. This can be a deeply gratifying experience.</p>`,
       );
     } else if (this.slug == 'drop-in-yoga-classes') {
       this.aboutContent = new aboutContentModel(
         'https://my-s3-images-bucket.s3.amazonaws.com/img/image_1674308332559.jpg',
         'Drop-in',
         'Yoga Classes',
-        `<p>The Drop in yoga classes in Rishikesh are provided by Yoga Vidya School for the whole week with different yoga practices where a student can choose the ideal practice of their choice among those: pranayama, traditional hatha yoga, ashtanga vinyasa, vinyasa flow, beginner yoga, meditation, etc.</p><p><strong>Can I do Yoga Classes ?</strong></p><p>We believe that anyone, with enough well, discipline and training could control the yoga physical and philosophical aspects. There is a wide range spectrum of drop in classes where some are for beginners and others are for advanced. Yoga drop in classes are perfect option for those seekers and practitioners who don’t have enough time to be in Rishikesh but still want to know about their body through yogic practice, and those who wants to prepare oneself for the Yoga Teacher Training Certification Course or keep in shape after the course has finished.</p>`
+        `<p>The Drop in yoga classes in Rishikesh are provided by Yoga Vidya School for the whole week with different yoga practices where a student can choose the ideal practice of their choice among those: pranayama, traditional hatha yoga, ashtanga vinyasa, vinyasa flow, beginner yoga, meditation, etc.</p><p><strong>Can I do Yoga Classes ?</strong></p><p>We believe that anyone, with enough well, discipline and training could control the yoga physical and philosophical aspects. There is a wide range spectrum of drop in classes where some are for beginners and others are for advanced. Yoga drop in classes are perfect option for those seekers and practitioners who don’t have enough time to be in Rishikesh but still want to know about their body through yogic practice, and those who wants to prepare oneself for the Yoga Teacher Training Certification Course or keep in shape after the course has finished.</p>`,
       );
     } else if (this.slug == this.routeEnum.pranicPurification) {
       this.ispranicPurificationImg = true;
@@ -225,7 +225,7 @@ export class AboutRishikeshComponent implements OnInit {
                 <h3 class="text-center">Are you ready to step into your transformation?</h3>
                 <h5 class="text-center">Let every breath in these 21 days be a return to your essence.</h5>
               </div>`),
-        ''
+        '',
       );
     } else if (this.slug == this.routeEnum['200TTC']) {
       this.date = twoHundredTTCModel['200TTCDate'];
@@ -265,7 +265,7 @@ export class AboutRishikeshComponent implements OnInit {
             Methodology.
           </p>`),
         '',
-        ''
+        '',
       );
     }
   }
@@ -286,7 +286,7 @@ export class AboutRishikeshComponent implements OnInit {
     };
     this.webapiService.getCourseById(data).subscribe((res: any) => {
       let feesInfo = res.data[0].feeInfo.find(
-        (f: feesInfoDto) => f.title == 'Price'
+        (f: feesInfoDto) => f.title == 'Price',
       );
       let priceData: feesDto;
       if (feesInfo) {

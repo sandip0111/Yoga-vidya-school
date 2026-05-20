@@ -184,7 +184,8 @@ export class MyAccountComponent {
               res.count == 0 &&
               slug != routeEnum['200TTC'] &&
               slug != routeEnum.online &&
-              slug != routeEnum.pranicPurification
+              slug != routeEnum.pranicPurification &&
+              slug != routeEnum.pranicPurificationII
             ) {
               this.createAccessLog(val);
             }

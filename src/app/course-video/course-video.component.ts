@@ -731,7 +731,9 @@ export class CourseVideoComponent {
       this.reverseArr[i].isShow =
         this.slug == routeEnum['200TTC'] ||
         this.slug == routeEnum.online ||
-        this.slug == routeEnum.pranicPurification
+        this.slug == routeEnum.pranicPurification ||
+        this.slug == routeEnum.pranicPurificationII 
+
           ? true
           : false;
       this.reverseArr[i].isVideoShown = false;
