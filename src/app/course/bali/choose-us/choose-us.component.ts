@@ -23,10 +23,8 @@ export class ChooseUsComponent implements OnInit {
     this.slug = this.activatedRoute.snapshot.routeConfig?.path;
     if (this.slug == '200-hour-yoga-teacher-training-in-bali') {
       this.chooseData = {
-        firstImage:
-          'https://my-s3-images-bucket.s3.amazonaws.com/images/why_choose_qzrecb.webp',
-        secondImage:
-          'https://my-s3-images-bucket.s3.amazonaws.com/images/954A9000_fhwxat.jpg',
+        firstImage: s3Bucket.choose3,
+        secondImage: s3Bucket.choose4,
         content:
           'Yoga Vidya School offers top-notch 200 Hour Yoga teacher training in Bali. Led by Acharya Prashant Jakhmola, Yoga Vidya School is a Yoga Alliance certified institution offering quality training in yoga. We at Yoga Vidya School can give you a number of reasons for choosing us as your preferred place to learn yoga.',
         list: [
@@ -39,10 +37,8 @@ export class ChooseUsComponent implements OnInit {
       };
     } else if (this.slug == '300-hour-yoga-teacher-training-in-bali') {
       this.chooseData = {
-        firstImage:
-          'https://my-s3-images-bucket.s3.amazonaws.com/images/why_choose_qzrecb.webp',
-        secondImage:
-          'https://my-s3-images-bucket.s3.amazonaws.com/images/954A9000_fhwxat.jpg',
+        firstImage: s3Bucket.choose5,
+        secondImage: s3Bucket.choose6,
         content:
           'Yoga Vidya School prides itself in offering the best quality 300 Hour Yoga teacher training in Bali. Guided and spearheaded by Acharya Prashant Jakhmola, Yoga Vidya School is a Yoga Alliance accredited organization that offers best-in-class education in yoga. We offer you a multitude of reasons for choosing us as your preferred institution to learn yoga.',
         list: [

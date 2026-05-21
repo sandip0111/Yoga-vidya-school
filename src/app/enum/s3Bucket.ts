@@ -14,7 +14,7 @@ export enum s3Bucket {
   roomMain = 'https://my-s3-images-bucket.s3.amazonaws.com/images/IMG_6828_cchusm.jpg',
   food = 'https://my-s3-images-bucket.s3.amazonaws.com/images/food_dwn1yl.jpg',
   whiteArrow = 'https://my-s3-images-bucket.s3.amazonaws.com/img/arrow-white.png',
-  whitecheck = 'https://my-s3-images-bucket.s3.amazonaws.com/img/white-check.png',
+  whitecheck = `${environment.imageUrl}whitecheck.png`,
   offer1 = 'https://my-s3-images-bucket.s3.amazonaws.com/images/online4_tuiozj.jpg',
   offer2 = 'https://my-s3-images-bucket.s3.amazonaws.com/images/onluneoff_vriefa.jpg',
   offer3 = `${environment.imageUrl}image_1683567710389.jpg`,
@@ -82,11 +82,13 @@ export enum s3Bucket {
 
   freeWebinnarHero = 'https://d29rwrqvux6m5p.cloudfront.net/images/954A1534.jpg',
 
-  bali200Hero = 'https://d29rwrqvux6m5p.cloudfront.net/images/bali200.JPG',
-  bali300Hero = `${environment.imageUrl}IMG_7462.CR2`,
-  bali300About = `${environment.imageUrl}IMG_1223.JPEG`,
-  bali300SectionImage = `${environment.imageUrl}IMG_1216.JPEG`,
-  bali300SectionImage2 = `${environment.imageUrl}IMG_1225.JPEG`,
+  bali100Hero = `${environment.imageUrl}954A0247.JPG`,
+  bali100About1 = `${environment.imageUrl}954A0280.JPG`,
+  bali200Hero = `${environment.imageUrl}954A0314.JPG`,
+  bali300Hero = `${environment.imageUrl}954A9824.JPG`,
+  bali300About = `${environment.imageUrl}954A2119.JPG`,
+  bali300SectionImage = `${environment.imageUrl}954A2110.JPG`,
+  bali300SectionImage2 = `${environment.imageUrl}954A1741.JPG`,
 
   prashnatJiAbout1 = `${environment.imageUrl}Prashant_about.jpg`,
   prashnatJiAbout2 = `${environment.imageUrl}Prashant_about1.jpg`,
@@ -106,8 +108,12 @@ export enum s3Bucket {
   about2 = `${environment.imageUrl}DSC07712.JPG`,
   foundationOfSpirituality = `${environment.imageUrl}DSC09238.jpg`,
 
-  choose1 = 'https://my-s3-images-bucket.s3.amazonaws.com/images/why_choose_qzrecb.webp',
-  choose2 = 'https://my-s3-images-bucket.s3.amazonaws.com/images/954A9000_fhwxat.jpg',
+  choose1 = `${environment.imageUrl}954A0287.JPG`,
+  choose2 = `${environment.imageUrl}954A0295.JPG`,
+  choose3 = `${environment.imageUrl}954A0371.JPG`,
+  choose4 = `${environment.imageUrl}954A0547.JPG`,
+  choose5 = `${environment.imageUrl}954A0754.JPG`,
+  choose6 = `${environment.imageUrl}954A2114.JPG`,
 
   razorpay = `${environment.imageUrl}razor.svg`,
   stripe = `${environment.imageUrl}stripe-2.png`,
@@ -136,6 +142,8 @@ export enum s3Bucket {
   dash100 = `${environment.imageUrl}100Dashboard.jpg`,
   dash200 = `${environment.imageUrl}200Dashboard.jpg`,
   dash300 = `${environment.imageUrl}300Dashboard.jpeg`,
+
+  achive = `${environment.imageUrl}achive.png`,
 }
 export enum youtubeLink {
   trainingImportance = 'https://www.youtube.com/embed/t7l1cqDj1tA?si=ZJCQXJYDLzDwLLvm',

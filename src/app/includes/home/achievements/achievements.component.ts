@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { s3Bucket } from '../../../enum/s3Bucket';
 
 @Component({
   selector: 'app-achievements',
@@ -9,26 +10,26 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./achievements.component.css']
 })
 export class AchievementsComponent implements OnInit {
-
+  
   items: item[] = [
     {
       title: 'Video Count',
-      icon: 'achieve1.png',
+      icon: s3Bucket.achive,
       count: 290
     },
     {
       title: 'Subscriber Count',
-      icon: 'achieve2.png',
+      icon: s3Bucket.achive,
       count: 758000
     },
     {
       title: 'View Count',
-      icon: 'achieve3.png',
+      icon: s3Bucket.achive,
       count: 48263269
     },
     {
       title: 'Years On Youtube',
-      icon: 'achieve4.png',
+      icon: s3Bucket.achive,
       count: 10
     }
   ]
