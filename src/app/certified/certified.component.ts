@@ -55,7 +55,7 @@ export class CertifiedComponent {
     this.spinner.show();
     this.slug = this.activatedRoute.snapshot.routeConfig?.path ?? '';
     this.titleService.setTitle(
-      this.slug === 'get-certified-in-rishikesh'
+      this.slug === routeEnum.rishikesh
         ? 'Get Certified in Rishikesh'
         : 'Get Certified in Bali'
     );
@@ -72,7 +72,7 @@ export class CertifiedComponent {
   }
 
   private setImageSlug() {
-    if (this.slug === 'get-certified-in-rishikesh') {
+    if (this.slug === routeEnum.rishikesh) {
       this.imgSlug = this.s3Bucket.rishikeshAbout;
     } else if (this.slug === routeEnum.bali) {
       this.imgSlug = this.s3Bucket.baliAbout;
@@ -80,7 +80,7 @@ export class CertifiedComponent {
   }
 
   private setBannerTitle() {
-    if (this.slug === 'get-certified-in-rishikesh') {
+    if (this.slug === routeEnum.rishikesh) {
       this.bannerTitle =
         'Transform Your Yoga Practice in Rishikesh – Yoga Alliance Certified TTC';
       this.bannerSubtitle = `2026 Batches: October<br/>
@@ -93,7 +93,7 @@ export class CertifiedComponent {
   }
 
   private setAboutContent() {
-    if (this.slug === 'get-certified-in-rishikesh') {
+    if (this.slug === routeEnum.rishikesh) {
       this.aboutContent = new aboutContentModel(
         s3Bucket.certifiedRishikeshAbout,
         'Get certified as a Yoga Teacher in Rishikesh, India — the world capital of yoga.',
@@ -106,7 +106,7 @@ export class CertifiedComponent {
   // Pixel tracking methods
   private trackPageView() {
     const pageName =
-      this.slug === 'get-certified-in-rishikesh'
+      this.slug === routeEnum.rishikesh
         ? 'certified-rishikesh'
         : 'certified-bali';
     this.pixelTracking.trackPageView(pageName, this.bannerTitle);
