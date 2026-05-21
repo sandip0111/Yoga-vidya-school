@@ -466,7 +466,7 @@ export class CheckoutComponent {
         isErrMsg = true;
       }
       if (!data.package) {
-        if (this.slug !== routeEnum.sa && this.slug !== routeEnum.pranOnlinePranaArambh && this.slug !== routeEnum.foundationOfSpirituality) {
+        if (this.slug !== routeEnum.sa && this.slug !== routeEnum.pranOnlinePranaArambh && this.slug !== routeEnum.foundationOfSpirituality && this.slug !== routeEnum['200TTC']) {
           this.packageRequired = 'Please select a room';
           isErrMsg = true;
         }
