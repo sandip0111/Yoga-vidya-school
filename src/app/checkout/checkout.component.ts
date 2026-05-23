@@ -117,7 +117,6 @@ export class CheckoutComponent {
     if (rishikeshCourses.includes(this.slug as any)) {
       this.roomList = [
         { name: 'Shared room', value: 1 },
-        { name: 'Shared room', value: 1 },
         { name: 'Private room', value: 2 },
       ];
     } else if (baliCourses.includes(this.slug as any)) {
