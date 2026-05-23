@@ -16,7 +16,7 @@
     </div>
     <div class="image-container">
       <img
-        src="{{ this.aboutContent.image }}"
+        [src]="this.aboutContent.image"
         [style]="
           slug == routeEnum.pranicPurification ? 'transform: scaleX(-1);' : ''
         "
@@ -137,11 +137,9 @@
     <div class="col-md-6">
       <div class="imageback">
         <img
-          src="https://my-s3-images-bucket.s3.amazonaws.com/img/image_1721830582388.jpeg"
+          [src]="s3Bucket.rishikesh300About2"
           class="img-fluid"
-          alt="{{ this.aboutContent.title }} {{
-            this.aboutContent.secondTitle
-          }}"
+          alt="rishi 300"
         />
       </div>
     </div>

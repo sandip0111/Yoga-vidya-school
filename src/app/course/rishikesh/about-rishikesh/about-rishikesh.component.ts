@@ -62,7 +62,7 @@ export class AboutRishikeshComponent implements OnInit {
       );
     } else if (this.slug == routeEnum.rishkesh200) {
       this.aboutContent = new aboutContentModel(
-        s3Bucket.rishikesh100,
+        s3Bucket.rishikesh200about1,
         'Step Into the Heart of Yoga -',
         'Rishikesh Awaits You 🕉️✨',
         `<p>Embark on a life-changing journey to <b>Rishikesh, India</b> — where ancient wisdom meets deep personal transformation. Our <b>200-Hour Yoga Teacher Training at Yoga Vidya School</b> isn't just a course — it's a gateway to a stronger body, a clearer mind, and a deeply rooted spiritual connection. 🌿</p>
