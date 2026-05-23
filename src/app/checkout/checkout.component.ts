@@ -103,20 +103,25 @@ export class CheckoutComponent {
 
   ngOnInit(): void {
     this.spinner.show();
-    const roomCourses = [
+    const rishikeshCourses = [
       routeEnum.rishikesh100,
       routeEnum.rishkesh200,
       routeEnum.rishikesh300,
+    ];
+    const baliCourses = [
       routeEnum.bali200,
       routeEnum.bali300,
       routeEnum.bali100,
     ];
 
-    if (roomCourses.includes(this.slug as any)) {
+    if (rishikeshCourses.includes(this.slug as any)) {
       this.roomList = [
-        // { name: 'Shared room', value: 1 },
+        { name: 'Shared room', value: 1 },
         { name: 'Private room', value: 2 },
-        // { name: 'Shared room with 30%', value: 3 },
+      ];
+    } else if (baliCourses.includes(this.slug as any)) {
+      this.roomList = [
+        { name: 'Private room', value: 2 },
       ];
     }
     this.scrollToTop();
@@ -356,21 +361,27 @@ export class CheckoutComponent {
       this.checkData.currency = '';
     } else {
       this.phoneError = '';
-      if (
-        this.slug !== routeEnum.rishikesh100 &&
-        this.slug !== routeEnum.rishkesh200 &&
-        this.slug !== routeEnum.rishikesh300
-      ) {
-        if (this.feesData.length > 0) {
-          this.setCurrencyData(this.feesData, this.checkData);
+      if (this.feesData.length > 0) {
+        this.setCurrencyData(this.feesData, this.checkData);
+        if (
+          this.slug !== routeEnum.rishikesh100 &&
+          this.slug !== routeEnum.rishkesh200 &&
+          this.slug !== routeEnum.rishikesh300
+        ) {
+          this.setPriceData(
+            this.feesData,
+            this.checkData.currency,
+            this.checkData.package,
+          );
+        } else if (this.checkData.package) {
           this.setPriceData(
             this.feesData,
             this.checkData.currency,
             this.checkData.package,
           );
         }
-        this.inputValidation('cur');
       }
+      this.inputValidation('cur');
     }
   }
   setCurrencyData(feesData: feeInfoDto[], checkData: checkoutModel) {
