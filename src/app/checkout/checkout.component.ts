@@ -114,7 +114,7 @@ export class CheckoutComponent {
 
     if (roomCourses.includes(this.slug as any)) {
       this.roomList = [
-        // { name: 'Shared room', value: 1 },
+        { name: 'Shared room', value: 1 },
         { name: 'Private room', value: 2 },
         // { name: 'Shared room with 30%', value: 3 },
       ];
