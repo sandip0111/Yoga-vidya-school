@@ -9,7 +9,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { PixelTrackingService } from '../../services/pixel-tracking.service';
-import { reviewLink } from '../../enum/s3Bucket';
+import { reviewLink, s3Bucket } from '../../enum/s3Bucket';
 import { routeEnum } from '../../enum/routes';
 @Component({
   selector: 'app-video-reviews',
@@ -23,7 +23,7 @@ export class VideoReviewsComponent implements OnInit {
   @Input() specialvideo: boolean = false;
   @Input() slug: string = '';
   videos: string[] = [];
-
+  s3Bucket = s3Bucket;
   @ViewChildren('videoPlayer') videoPlayers!: QueryList<
     ElementRef<HTMLVideoElement>
   >;
@@ -45,6 +45,7 @@ export class VideoReviewsComponent implements OnInit {
         reviewLink.rishikesh2,
         reviewLink.rishikesh3,
         reviewLink.rishikesh4,
+        reviewLink.rishikesh5,
       ];
     } else {
       if (this.specialvideo) {

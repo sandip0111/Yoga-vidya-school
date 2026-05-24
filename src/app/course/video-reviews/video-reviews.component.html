@@ -11,13 +11,13 @@
             (click)="playVideo(videoPlayer, playButton)"
           >
             <img
-              src="https://d29rwrqvux6m5p.cloudfront.net/images/play-icon.png"
+              [src]="s3Bucket.play"
               alt="Play"
             />
           </div>
         </div>
       </div>
-      <div class="menu--item card" *ngFor="let video of videos; let i = index">
+      <!-- <div class="menu--item card" *ngFor="let video of videos; let i = index">
         <div class="video-container">
           <video #videoPlayer [src]="video" muted preload="metadata"></video>
           <div
@@ -31,7 +31,7 @@
             />
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </section>

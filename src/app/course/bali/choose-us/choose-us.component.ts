@@ -2,6 +2,7 @@ import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { s3Bucket } from '../../../enum/s3Bucket';
+import { routeEnum } from '../../../enum/routes';
 @Component({
   selector: 'app-choose-us',
   standalone: true,
@@ -16,12 +17,13 @@ export class ChooseUsComponent implements OnInit {
   noContent: boolean = false;
   title: string = '';
   s3Bucket = s3Bucket;
+  routEnum = routeEnum;
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
   ) {
     this.slug = this.activatedRoute.snapshot.routeConfig?.path;
-    if (this.slug == '200-hour-yoga-teacher-training-in-bali') {
+    if (this.slug == this.routEnum.bali200) {
       this.chooseData = {
         firstImage: s3Bucket.choose3,
         secondImage: s3Bucket.choose4,
@@ -35,7 +37,7 @@ export class ChooseUsComponent implements OnInit {
           'Access to Online Courses: Enrich your yoga knowledge and enhance your physical asana  practice by getting access to a plethora of online yoga courses.',
         ],
       };
-    } else if (this.slug == '300-hour-yoga-teacher-training-in-bali') {
+    } else if (this.slug == this.routEnum.bali300) {
       this.chooseData = {
         firstImage: s3Bucket.choose5,
         secondImage: s3Bucket.choose6,
@@ -49,12 +51,10 @@ export class ChooseUsComponent implements OnInit {
           'Access to Online Learning: Enhance your  knowledge and yoga practice by gaining access to different online yoga literature and courses.',
         ],
       };
-    } else if (this.slug == '200-hours-yoga-teacher-training-in-rishikesh') {
+    } else if (this.slug == this.routEnum.rishkesh200) {
       this.chooseData = {
-        firstImage:
-          'https://my-s3-images-bucket.s3.amazonaws.com/images/why_choose_qzrecb.webp',
-        secondImage:
-          'https://my-s3-images-bucket.s3.amazonaws.com/images/choose2_uumhfx.jpg',
+        firstImage: s3Bucket.choose9,
+        secondImage: s3Bucket.choose10,
         content:
           'We at Yoga Vidya School offer the best-in-class 200 Hour Yoga teacher training in Rishikesh. Helmed by Acharya Prashant Jakhmola, Yoga Vidya School is a Yoga Alliance accredited institution imparting quality education in yoga. We give you innumerable reasons for choosing us as your preferred almamater to learn yoga.',
         list: [
@@ -65,12 +65,10 @@ export class ChooseUsComponent implements OnInit {
           'Get Access to numerous valuable online courses to enhance your knowledge and practice.',
         ],
       };
-    } else if (this.slug == '300-hours-yoga-teacher-training-in-rishikesh') {
+    } else if (this.slug == this.routEnum.rishikesh300) {
       this.chooseData = {
-        firstImage:
-          'https://my-s3-images-bucket.s3.amazonaws.com/images/why_choose_qzrecb.webp',
-        secondImage:
-          'https://my-s3-images-bucket.s3.amazonaws.com/images/choose2_uumhfx.jpg',
+        firstImage: s3Bucket.choose11,
+        secondImage: s3Bucket.choose12,
         content:
           'We at Yoga Vidya School invite you to join our 300 Hour Yoga Teacher Training in Rishikesh. We offer  top quality 300 hour YTTC in Rishikesh that will further hone your skills as a yoga teacher. Headed by Acharya Prashant Jakhmola, we are a Yoga Alliance accredited yoga school imparting best-in-class education in yoga. We offer a number of reasons for choosing us as your most favored yoga school to learn yoga.',
         list: [
@@ -115,10 +113,8 @@ export class ChooseUsComponent implements OnInit {
       };
     } else if (this.slug == '100-hours-yoga-teacher-training-in-rishikesh') {
       this.chooseData = {
-        firstImage:
-          'https://my-s3-images-bucket.s3.amazonaws.com/images/why_choose_qzrecb.webp',
-        secondImage:
-          'https://my-s3-images-bucket.s3.amazonaws.com/images/choose2_uumhfx.jpg',
+        firstImage: s3Bucket.choose7,
+        secondImage: s3Bucket.choose8,
         content:
           'Yoga Vidya School offers a superior  100 Hour Yoga teacher training course in Rishikesh. Founded by Acharya Prashant Jakhmola, all Yoga TTC courses of Yoga Vidya School are Yoga Alliance, USA certified ensuring credibility and quality training in yoga. We at Yoga Vidya School can give you a good amount of rationale for choosing us for pursuing a 100 hours yoga ttc in Rishikesh.',
         list: [

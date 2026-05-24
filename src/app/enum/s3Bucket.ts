@@ -15,6 +15,8 @@ export enum s3Bucket {
   food = 'https://my-s3-images-bucket.s3.amazonaws.com/images/food_dwn1yl.jpg',
   whiteArrow = 'https://my-s3-images-bucket.s3.amazonaws.com/img/arrow-white.png',
   whitecheck = `${environment.imageUrl}whitecheck.png`,
+  play = `${environment.imageUrl}play.png`,
+
   offer1 = 'https://my-s3-images-bucket.s3.amazonaws.com/images/online4_tuiozj.jpg',
   offer2 = 'https://my-s3-images-bucket.s3.amazonaws.com/images/onluneoff_vriefa.jpg',
   offer3 = `${environment.imageUrl}image_1683567710389.jpg`,
@@ -42,6 +44,7 @@ export enum s3Bucket {
   rishikesh100About1 = `${environment.imageUrl}rishi100about_1.jpeg`,
   rishikesh300About1 = `${environment.imageUrl}rishi300about_1.jpeg`,
   rishikesh300About2 = `${environment.imageUrl}rishi300about_2.jpeg`,
+  rishikesh300About3 = `${environment.imageUrl}IMG_1742.jpeg`,
 
   onlineCourseHero = `${environment.imageUrl}online_sadhana_banner.JPG`,
   onlineCourseAbout1 = 'https://my-s3-images-bucket.s3.amazonaws.com/img/image_1677479957069.JPG',
@@ -117,6 +120,12 @@ export enum s3Bucket {
   choose4 = `${environment.imageUrl}954A0547.JPG`,
   choose5 = `${environment.imageUrl}954A0754.JPG`,
   choose6 = `${environment.imageUrl}954A2114.JPG`,
+  choose7 = `${environment.imageUrl}IMG_1738.jpeg`,
+  choose8 = `${environment.imageUrl}IMG_1737.jpeg`,
+  choose9 = `${environment.imageUrl}image00012.jpeg`,
+  choose10 = `${environment.imageUrl}IMG_1740.jpeg`,
+  choose11 = `${environment.imageUrl}IMG_1747.jpeg`,
+  choose12 = `${environment.imageUrl}IMG_1746.jpeg`,
 
   razorpay = `${environment.imageUrl}razor.svg`,
   stripe = `${environment.imageUrl}stripe-2.png`,
@@ -147,6 +156,10 @@ export enum s3Bucket {
   dash300 = `${environment.imageUrl}300Dashboard.jpeg`,
 
   achive = `${environment.imageUrl}achive.png`,
+
+  Kunjapuri = `${environment.imageUrl}DSC00762.jpg`,
+  gangaArti = `${environment.imageUrl}DSC01137.jpg`,
+  maunicave = `${environment.imageUrl}DSC01650.jpg`,
 }
 export enum youtubeLink {
   trainingImportance = 'https://www.youtube.com/embed/t7l1cqDj1tA?si=ZJCQXJYDLzDwLLvm',
@@ -171,8 +184,10 @@ export enum reviewLink {
   reviewNew3 = 'https://d29rwrqvux6m5p.cloudfront.net/testimonial/Mariam Zurabashvili - Pranic purification.mp4',
   reviewNew4 = 'https://d29rwrqvux6m5p.cloudfront.net/testimonial/Monika Verma.mov',
   reviewNew5 = 'https://d29rwrqvux6m5p.cloudfront.net/testimonial/Yasmeen.MOV',
-  rishikesh1 = 'https://d29rwrqvux6m5p.cloudfront.net/testimonial/MVI_0364.mp4',
-  rishikesh2 = 'https://d29rwrqvux6m5p.cloudfront.net/testimonial/954A9428.mp4',
-  rishikesh3 = 'https://d29rwrqvux6m5p.cloudfront.net/testimonial/MVI_0364_1.mp4',
-  rishikesh4 = 'https://d29rwrqvux6m5p.cloudfront.net/testimonial/MVI_0364_3.mp4',
+
+  rishikesh1 = `${environment.imageUrl}954A9428.mp4`,
+  rishikesh2 = `${environment.imageUrl}IMG_1734.MOV`,
+  rishikesh3 = `${environment.imageUrl}MVI_0364.mp4`,
+  rishikesh4 = `${environment.imageUrl}MVI_0364_1.mp4`,
+  rishikesh5 = `${environment.imageUrl}MVI_0364_3.mp4`,
 }

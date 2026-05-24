@@ -35,7 +35,6 @@ export class ContactComponent {
   insertInquiry(data: any) {
     data.type = 2;
     this.webapiService.saveContactInquiry(data).subscribe((res: any) => {
-      console.log(res);
       if (res.status == "ok") {
         alert('Enquiry has been sent');
         this.formData = {};
