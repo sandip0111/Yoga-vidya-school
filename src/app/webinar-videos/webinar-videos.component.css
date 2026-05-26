@@ -12,9 +12,3 @@
     font-weight: bold;
     color: #f47019;
   }
-
-  .pdf-fallback {
-    width: 100%;
-    height: 500px;
-    border: 1px solid #ddd;
-  }
