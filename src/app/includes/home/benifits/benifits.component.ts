@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import {s3Bucket} from '../../../enum/s3Bucket';
 
 @Component({
   selector: 'app-benifits',
@@ -10,6 +11,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./benifits.component.css']
 })
 export class BenifitsComponent implements OnInit {
+  s3bucket = s3Bucket;
   items: item[] = [
     {
       title: 'Year of Experience',
