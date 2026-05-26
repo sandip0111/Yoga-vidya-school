@@ -47,20 +47,12 @@
             <ngx-extended-pdf-viewer 
             *ngIf="i == activeTabIndex"
               [src]="pdfSrc"
-              (pdfLoaded)="handlePdfLoaded()"
-              (pdfLoadingFailed)="handlePdfLoadingFailed()"
               [showDownloadButton]="false" 
               height="500px"
               width="100%"
               [zoom]="'page-fit'"
               [showPrintButton]="false">
             </ngx-extended-pdf-viewer>
-            <iframe
-              *ngIf="i == activeTabIndex && showNativePdfFallback"
-              class="pdf-fallback"
-              [src]="pdfSafeUrl"
-              title="Swar Yoga Presentation PDF"
-            ></iframe>
            </div>
         </div>
       </div>
