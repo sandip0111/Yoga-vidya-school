@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { WebinarVideosInterface } from '../models/WebinarVideosInterface';
 import { ToastrService } from 'ngx-toastr';
-import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
+import { NgxExtendedPdfViewerModule, pdfDefaultOptions } from 'ngx-extended-pdf-viewer';
 
 @Component({
   selector: 'app-webinar-videos',
@@ -27,6 +27,8 @@ export class WebinarVideosComponent implements OnInit {
     this._activatedRoute.params.subscribe(params => {
       this.name = params['name'];
     });  
+    pdfDefaultOptions.disableRange = true;
+    pdfDefaultOptions.disableStream = true;
   }
 
   ngOnInit(): void {
