@@ -232,7 +232,7 @@ export class AboutRishikeshComponent implements OnInit {
       this.startTime = twoHundredTTCModel['200TTCStart'];
       this.endTime = twoHundredTTCModel['200TTCEnd'];
       this.aboutContent = new aboutContentModel(
-        s3Bucket.twoGirl,
+        s3Bucket.alliance,
         'Deepen Your Practice And Share',
         'The Sacred Wisdom Of Health And Happiness With The World By Becoming Certified Yoga Teacher',
         this.sanitizer

@@ -46,6 +46,10 @@ export enum s3Bucket {
   rishikesh300About2 = `${environment.imageUrl}rishi300about_2.jpeg`,
   rishikesh300About3 = `${environment.imageUrl}IMG_1742.jpeg`,
 
+  onlinettcBanner1 = `${environment.imageUrl}IMG_1741.jpeg`,
+  onlinettcBanner2 = `${environment.imageUrl}20221017125032_IMG_8691.jpeg`,
+  onlinettcBanner3 = `${environment.imageUrl}image_1683567759075.jpg`,
+
   onlineCourseHero = `${environment.imageUrl}online_sadhana_banner.JPG`,
   onlineCourseAbout1 = 'https://my-s3-images-bucket.s3.amazonaws.com/img/image_1677479957069.JPG',
   courseMentro1 = '../../assets/20190630153357_IMG_0087.JPG',
@@ -81,7 +85,7 @@ export enum s3Bucket {
   swAbout3 = 'https://my-s3-images-bucket.s3.amazonaws.com/images/IMG_1377.JPG',
   swAbout4 = 'https://my-s3-images-bucket.s3.amazonaws.com/images/IMG_1376.JPG',
 
-  twoGirl = 'https://my-s3-images-bucket.s3.amazonaws.com/images/Gallery5_zoxhnn.jpg',
+  twoGirl = 'assets/IMG_1743.JPG.jpeg',
 
   prasantVideo = 'https://my-s3-images-bucket.s3.amazonaws.com/images/Prashant_Practice_Bali.mp4',
   taniyaVideo = 'https://d29rwrqvux6m5p.cloudfront.net/images/Reel+Taniya.MP4',
