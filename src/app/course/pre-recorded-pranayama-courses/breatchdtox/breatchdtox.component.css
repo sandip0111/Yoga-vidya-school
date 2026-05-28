@@ -1,0 +1,31 @@
+.about-section {
+  text-align: center;
+}
+.registration-form-container .container {
+  max-width: 100% !important;
+}
+.subjectSection {
+  background: -webkit-radial-gradient(
+    circle,
+    rgba(255, 245, 219, 0.94) 60%,
+    rgba(249, 117, 30, 0.21) 110%
+  );
+}
+.lesson-part {
+  padding: 40px 40px;
+  background: radial-gradient(
+    circle,
+    hsla(0, 0%, 100%, 1) 60%,
+    rgba(249, 117, 30, 0.21) 130%
+  );
+  background: -moz-radial-gradient(
+    circle,
+    hsla(0, 0%, 100%, 1) 60%,
+    rgba(249, 117, 30, 0.21) 130%
+  );
+  background: -webkit-radial-gradient(
+    circle,
+    hsla(0, 0%, 100%, 1) 60%,
+    rgba(249, 117, 30, 0.21) 130%
+  );
+}
