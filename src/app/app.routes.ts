@@ -37,6 +37,7 @@ import { CourseMentorComponent } from './course/course-mentor/course-mentor.comp
 import { PankajPageComponent } from './course/online-course-mentor/pankaj-page/pankaj-page.component';
 import { PranicPurificationIiComponent } from './course/pranic-purification-ii/pranic-purification-ii.component';
 import { BreatchdtoxComponent } from './course/pre-recorded-pranayama-courses/breatchdtox/breatchdtox.component';
+import { PranaArambhComponent } from './course/pre-recorded-pranayama-courses/prana-arambh/prana-arambh.component';
 
 export const routes: Routes = [
   { path: '', component: IndexComponent },
@@ -100,7 +101,7 @@ export const routes: Routes = [
   { path: routeEnum.bDtox, component: BreatchdtoxComponent },
   {
     path: routeEnum.pranOnlinePranaArambh,
-    component: BaliIndexComponent,
+    component: PranaArambhComponent,
   },
   {
     path: routeEnum.foundationOfSpirituality,

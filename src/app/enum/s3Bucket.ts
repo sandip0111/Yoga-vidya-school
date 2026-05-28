@@ -74,9 +74,9 @@ export enum s3Bucket {
   bDtox3 = `${environment.imageUrl}IMG_1940.jpeg`,
   bDtox4 = `${environment.imageUrl}84932ACB-1F7B-4307-B3DB-03E1AADC6413.JPG.jpeg`,
   bDtox5 = `${environment.imageUrl}IMG_2822.jpeg`,
-  pArambh1 = 'https://my-s3-images-bucket.s3.amazonaws.com/img/image_1683205846041.JPG',
-  pArambh2 = 'https://my-s3-images-bucket.s3.amazonaws.com/img/image_1683206274526.jpg',
-  pArambh3 = 'https://my-s3-images-bucket.s3.amazonaws.com/img/image_1683205867459.jpg',
+  pArambh1 = `${environment.imageUrl}IMG_1912.jpeg`,
+  pArambh2 = `${environment.imageUrl}84932ACB-1F7B-4307-B3DB-03E1AADC6413.JPG.jpeg`,
+  pArambh3 = `${environment.imageUrl}IMG_2822.jpeg`,
 
   swHero = 'https://my-s3-images-bucket.s3.amazonaws.com/images/IMG_1374.JPG',
   sw1 = 'https://static.wixstatic.com/media/0e2510_c6dd70b9a9a741b8819e5b232fc1dd0f~mv2.png',

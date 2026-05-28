@@ -63,7 +63,6 @@
   slug === routeEnum.rishikesh300 ||
   slug == routeEnum.preRecordPranayamaCourse ||
   routeEnum.bDtox ||
-  routeEnum.pranOnlinePranaArambh ||
   routeEnum.bali200 ||
   routeEnum.bali300 ||
   routeEnum.aboutPrashantJi
@@ -114,6 +113,20 @@
       } @else {
         <div class="banner-subtitle-overlay">{{ rishikeshSubHeading }}</div>
       }
+    </div>
+  </div>
+} @else if (slug == routeEnum.pranOnlinePranaArambh) {
+  <div class="carousel-inner">
+    <div class="inner">
+      <img
+        [src]="rishikesHeroImage"
+        class="img-fluid banner_image"
+        alt="Banner Image"
+      />
+    </div>
+    <div class="banner-overlay">
+      <div class="banner-text-overlay">{{ rishikeshMainHeading }}</div>
+      <div class="banner-subtitle-overlay">{{ rishikeshSubHeading }}</div>
     </div>
   </div>
 } @else {
