@@ -72,7 +72,7 @@ export enum s3Bucket {
   bDtox1 = `${environment.imageUrl}IMG_1937.jpeg`,
   bDtox2 = `${environment.imageUrl}IMG_1939.jpeg`,
   bDtox3 = `${environment.imageUrl}IMG_1940.jpeg`,
-  bDtox4 = `${environment.imageUrl}84932ACB-1F7B-4307-B3DB-03E1AADC6413.JPG.jpeg`,
+  bDtox4 = `${environment.imageUrl}954A0709.JPG`,
   bDtox5 = `${environment.imageUrl}IMG_2822.jpeg`,
   pArambh1 = `${environment.imageUrl}IMG_1912.jpeg`,
   pArambh2 = `${environment.imageUrl}84932ACB-1F7B-4307-B3DB-03E1AADC6413.JPG.jpeg`,
