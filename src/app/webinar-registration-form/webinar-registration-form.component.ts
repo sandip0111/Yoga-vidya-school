@@ -73,7 +73,7 @@ export class WebinarRegistrationFormComponent implements OnInit {
     this.registrationForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      webinarDate: ['2025-10-25'],
+      webinarDate: ['2026-06-13'],
     });
   }
 
@@ -85,7 +85,7 @@ export class WebinarRegistrationFormComponent implements OnInit {
     this.title.setTitle('Free Webinar - Yoga Vidya School');
     this.bannerSubtitle = this.sanitizer.bypassSecurityTrustHtml(`“BREATH OF YOGIS”
 	    With Prashant J - Yoga Vidya School Founder <br /> 
-	    Date: January the 3rd - 6:00 PM IST`);
+	    Date: June the 13th - 6:30 PM IST`);
     this.bannerTitle = 'Free Online Webinar';
     this.imgSlug = this.s3Bucket.freeWebinnarHero;
   }
@@ -118,7 +118,7 @@ export class WebinarRegistrationFormComponent implements OnInit {
               this.spinner.hide();
               this.submitted = false;
               this.registrationForm.reset({
-                webinarDate: '2025-10-25', // keep hidden date if needed
+                webinarDate: '2026-06-13', // keep hidden date if needed
               });
             },
             error: (error) => {
