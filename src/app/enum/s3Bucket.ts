@@ -89,7 +89,7 @@ export enum s3Bucket {
   prasantVideo = 'https://my-s3-images-bucket.s3.amazonaws.com/images/Prashant_Practice_Bali.mp4',
   taniyaVideo = 'https://d29rwrqvux6m5p.cloudfront.net/images/Reel+Taniya.MP4',
 
-  freeWebinnarHero = 'https://d29rwrqvux6m5p.cloudfront.net/images/954A1534.jpg',
+  freeWebinnarHero = `${environment.imageUrl}abc.jpg`,
 
   bali100Hero = `${environment.imageUrl}954A0247.JPG`,
   bali100About1 = `${environment.imageUrl}954A0280.JPG`,
