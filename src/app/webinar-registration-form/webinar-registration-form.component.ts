@@ -31,7 +31,7 @@ export class WebinarRegistrationFormComponent implements OnInit {
       value: 'Swar Sadhana',
       label: 'Swar Sadhana',
       title: 'Swar Sadhana',
-      link: routeEnum.swaraSadhana + '/',
+      link: routeEnum.sa + '/',
       description: `Get ready to dive into the transformative workshop on SWAR SADHANA🧘. This powerful session will guide you through the ancient technique of harnessing your energy to drive your actions. Your physical body is fully controlled by two energies present in nature. SUN 🌞 and MOON 🌑. These two energies are flowing constantly in your body and can be controlled by your right and left nostril.
       👃 Swar sadhana is a way to get mastery over these two energies to get spontaneous mastery over your actions.
       This is an ancient method given by SHIVA to PARVATI.

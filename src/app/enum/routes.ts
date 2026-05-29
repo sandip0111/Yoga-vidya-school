@@ -19,7 +19,6 @@ export enum routeEnum {
   'prashantjPage' = 'yoga-teacher/acharya-prashant-jakhmola/prashantjyoga',
   'aboutPrashantJi' = 'yoga-teacher/acharya-prashant-jakhmola/:id',
   'preRecordPranayamaCourse' = 'pre-recorded-pranayama-courses',
-  'swaraSadhana' = 'swara-sadhana',
   'stRegister' = 'student-register',
   'sa' = 'swara-sadhana',
   'freeWebiner' = 'free-webinar',

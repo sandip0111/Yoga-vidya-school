@@ -68,7 +68,7 @@ export enum s3Bucket {
   preRecordedHero = `${environment.imageUrl}IMG_1933.jpeg`,
   breathDtoxPreRec = `${environment.imageUrl}IMG_1907.JPG.jpeg`,
   pranaArambhPreRec = `${environment.imageUrl}IMG_2820.jpeg`,
-  swarSadhanaPreRec = `${environment.imageUrl}IMG_1910.jpeg`,
+  swarSadhanaPreRec = `${environment.imageUrl}image_1673108469002.JPG`,
   bDtox1 = `${environment.imageUrl}IMG_1937.jpeg`,
   bDtox2 = `${environment.imageUrl}IMG_1939.jpeg`,
   bDtox3 = `${environment.imageUrl}IMG_1940.jpeg`,
@@ -78,12 +78,11 @@ export enum s3Bucket {
   pArambh2 = `${environment.imageUrl}84932ACB-1F7B-4307-B3DB-03E1AADC6413.JPG.jpeg`,
   pArambh3 = `${environment.imageUrl}IMG_2822.jpeg`,
 
-  swHero = 'https://my-s3-images-bucket.s3.amazonaws.com/images/IMG_1374.JPG',
-  sw1 = 'https://static.wixstatic.com/media/0e2510_c6dd70b9a9a741b8819e5b232fc1dd0f~mv2.png',
-  swAbout1 = 'https://my-s3-images-bucket.s3.amazonaws.com/images/IMG_1373.JPG',
-  swAbout2 = 'https://my-s3-images-bucket.s3.amazonaws.com/images/IMG_1375.JPG',
-  swAbout3 = 'https://my-s3-images-bucket.s3.amazonaws.com/images/IMG_1377.JPG',
-  swAbout4 = 'https://my-s3-images-bucket.s3.amazonaws.com/images/IMG_1376.JPG',
+  swHero = `${environment.imageUrl}IMG_1936.jpeg`,
+  swAbout1 = `${environment.imageUrl}IMG_1910.jpeg`,
+  swAbout2 = `${environment.imageUrl}image_1673334364065.jpg`,
+  swAbout3 = `${environment.imageUrl}image_1673333778951.jpg`,
+  swAbout4 = `${environment.imageUrl}IMG_1376.JPG`,
 
   twoGirl = 'assets/IMG_1743.JPG.jpeg',
 
