@@ -31,7 +31,7 @@ export class WebinarRegistrationFormComponent implements OnInit {
       value: 'Swar Sadhana',
       label: 'Swar Sadhana',
       title: 'Swar Sadhana',
-      link: routeEnum.swaraSadhana + '/',
+      link: routeEnum.sa + '/',
       description: `Get ready to dive into the transformative workshop on SWAR SADHANA🧘. This powerful session will guide you through the ancient technique of harnessing your energy to drive your actions. Your physical body is fully controlled by two energies present in nature. SUN 🌞 and MOON 🌑. These two energies are flowing constantly in your body and can be controlled by your right and left nostril.
       👃 Swar sadhana is a way to get mastery over these two energies to get spontaneous mastery over your actions.
       This is an ancient method given by SHIVA to PARVATI.
@@ -73,7 +73,7 @@ export class WebinarRegistrationFormComponent implements OnInit {
     this.registrationForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      webinarDate: ['2025-10-25'],
+      webinarDate: ['2026-06-13'],
     });
   }
 
@@ -85,7 +85,7 @@ export class WebinarRegistrationFormComponent implements OnInit {
     this.title.setTitle('Free Webinar - Yoga Vidya School');
     this.bannerSubtitle = this.sanitizer.bypassSecurityTrustHtml(`“BREATH OF YOGIS”
 	    With Prashant J - Yoga Vidya School Founder <br /> 
-	    Date: January the 3rd - 6:00 PM IST`);
+	    Date: June the 13th - 6:30 PM IST`);
     this.bannerTitle = 'Free Online Webinar';
     this.imgSlug = this.s3Bucket.freeWebinnarHero;
   }
@@ -118,7 +118,7 @@ export class WebinarRegistrationFormComponent implements OnInit {
               this.spinner.hide();
               this.submitted = false;
               this.registrationForm.reset({
-                webinarDate: '2025-10-25', // keep hidden date if needed
+                webinarDate: '2026-06-13', // keep hidden date if needed
               });
             },
             error: (error) => {
