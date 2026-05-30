@@ -95,7 +95,7 @@ export class BannerComponent implements OnInit {
           'Breathe Deep, Live Light — 7 Days to Purify Your Energy and Mind';
         break;
       case routeEnum.pranOnlinePranaArambh:
-        this.rishikesHeroImage = s3Bucket.pranaArambhPreRec;
+        this.rishikesHeroImage = s3Bucket.pranaArambhBanner;
         this.rishikeshMainHeading =
           'Enhance your quality of life by improving your breath';
         this.rishikeshSubHeading =

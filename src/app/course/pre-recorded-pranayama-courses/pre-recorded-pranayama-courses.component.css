@@ -1,3 +1,13 @@
+.imgRishi100{
+  width: 100%;
+  height: clamp(320px, 50vw, 580px);
+  object-fit: cover;
+}
+
+.top_position{
+  object-position: top;
+}
+
 .cooperate-section {
   background: radial-gradient(
     circle,

@@ -68,6 +68,7 @@ export enum s3Bucket {
   preRecordedHero = `${environment.imageUrl}IMG_1933.jpeg`,
   breathDtoxPreRec = `${environment.imageUrl}IMG_1907.JPG.jpeg`,
   pranaArambhPreRec = `${environment.imageUrl}IMG_2820.jpeg`,
+  pranaArambhBanner = `${environment.imageUrl}pranaarambhbanner.jpeg`,
   swarSadhanaPreRec = `${environment.imageUrl}image_1673108469002.JPG`,
   bDtox1 = `${environment.imageUrl}IMG_1937.jpeg`,
   bDtox2 = `${environment.imageUrl}IMG_1939.jpeg`,
@@ -89,7 +90,7 @@ export enum s3Bucket {
   prasantVideo = 'https://my-s3-images-bucket.s3.amazonaws.com/images/Prashant_Practice_Bali.mp4',
   taniyaVideo = 'https://d29rwrqvux6m5p.cloudfront.net/images/Reel+Taniya.MP4',
 
-  freeWebinnarHero = 'https://d29rwrqvux6m5p.cloudfront.net/images/954A1534.jpg',
+  freeWebinnarHero = `${environment.imageUrl}abc.jpg`,
 
   bali100Hero = `${environment.imageUrl}954A0247.JPG`,
   bali100About1 = `${environment.imageUrl}954A0280.JPG`,

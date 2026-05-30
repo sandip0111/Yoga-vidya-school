@@ -68,7 +68,7 @@ export class WebinarRegistrationFormComponent implements OnInit {
     private toastr: ToastrService,
     private spinner: NgxSpinnerService,
     private title: Title,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
   ) {
     this.registrationForm = this.fb.group({
       name: ['', Validators.required],
@@ -83,7 +83,8 @@ export class WebinarRegistrationFormComponent implements OnInit {
       webinar: this.selectedOption.value,
     });
     this.title.setTitle('Free Webinar - Yoga Vidya School');
-    this.bannerSubtitle = this.sanitizer.bypassSecurityTrustHtml(`“BREATH OF YOGIS”
+    this.bannerSubtitle = this.sanitizer
+      .bypassSecurityTrustHtml(`“BREATH OF YOGIS”
 	    With Prashant J - Yoga Vidya School Founder <br /> 
 	    Date: June the 13th - 6:30 PM IST`);
     this.bannerTitle = 'Free Online Webinar';

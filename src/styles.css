@@ -93,6 +93,19 @@ body {
 .text-white {
   color: #fff;
 }
+
+.height_medium{
+  height: clamp(320px, 50vw, 580px);
+  width: 100%;
+  object-fit: cover;
+}
+
+@media screen and (max-width: 767px) {
+  .col_reverse {
+    flex-direction: column-reverse;
+  }
+}
+
 .button {
   background-image: linear-gradient(to right, #f47019, #d55502);
   padding: 8px 26px;

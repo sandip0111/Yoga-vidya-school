@@ -29,3 +29,14 @@
     rgba(249, 117, 30, 0.21) 130%
   );
 }
+
+
+.imageback img.img-fluid{
+  width: 100%;
+  height: clamp(320px, 50vw, 580px);
+  object-fit: cover;
+}
+
+.top_position{
+  object-position: top;
+}
