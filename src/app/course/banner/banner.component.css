@@ -378,6 +378,18 @@
     height: auto;
   }
 }
+.banner_image2 {
+  width: 100%;
+  height: clamp(460px, 50vw, 688px);
+  object-fit: cover;
+  display: block;
+  @media (max-width: 768px) {
+    height: auto;
+  }
+}
+.top_position{
+  object-position: top;
+}
 .floating-register-btn {
   position: absolute;
   bottom: 30px;
