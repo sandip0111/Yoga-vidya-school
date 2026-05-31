@@ -6,8 +6,9 @@ import {
   ViewChild,
   ElementRef,
   PLATFORM_ID,
+  DOCUMENT
 } from '@angular/core';
-import { DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { isPlatformBrowser } from '@angular/common';
 import { AboutBaliComponent } from '../about-bali/about-bali.component';
 import { CurriculumComponent } from '../curriculum/curriculum.component';
 import { IncludesComponent } from '../includes/includes.component';
@@ -184,66 +185,73 @@ export class BaliIndexComponent implements OnInit {
     let data = {
       slug: slug,
     };
-    this.webapiService.getCourseById(data).subscribe((res: any) => {
-      const currentDate = new Date();
-      if (res.data.length > 0) {
-        this.spinner.hide();
-        const courseData = res.data[0];
-        this.faqData = courseData.content;
-        this.upEventData = courseData?.upcomingEventInfo.filter((item: any) => {
-          const itemDate = new Date(item.startDate);
-          return itemDate >= currentDate;
-        });
-        this.bannerData = {
-          event: this.upEventData,
-          courseName: courseData.coursetitle,
-        };
-        this.schEventData = {
-          title: courseData.coursetitle,
-          events: this.upEventData,
-          url: courseData.slug,
-          loc: 'Bali',
-        };
-        this.currData = {
-          title: courseData.coursetitle,
-          curr: courseData.curriculumInfo,
-        };
-        this.youtubeVideoData = {
-          title: courseData.coursetitle,
-          videoId: courseData.courseintrovideoId,
-          amount: '',
-          currency: '',
-        };
-        this.isYoutubeDataReady = true;
-        this.accomData = {
-          accom: courseData.accommodationInfo[0]?.para,
-          food: courseData.foodInfo[0]?.para,
-        };
+    this.webapiService.getCourseById(data).subscribe({
+      next: (res: any) => {
+        const currentDate = new Date();
+        if (res.data.length > 0) {
+          this.spinner.hide();
+          const courseData = res.data[0];
+          this.faqData = courseData.content;
+          this.upEventData = courseData?.upcomingEventInfo.filter((item: any) => {
+            const itemDate = new Date(item.startDate);
+            return itemDate >= currentDate;
+          });
+          this.bannerData = {
+            event: this.upEventData,
+            courseName: courseData.coursetitle,
+          };
+          this.schEventData = {
+            title: courseData.coursetitle,
+            events: this.upEventData,
+            url: courseData.slug,
+            loc: 'Bali',
+          };
+          this.currData = {
+            title: courseData.coursetitle,
+            curr: courseData.curriculumInfo,
+          };
+          this.youtubeVideoData = {
+            title: courseData.coursetitle,
+            videoId: courseData.courseintrovideoId,
+            amount: '',
+            currency: '',
+          };
+          this.isYoutubeDataReady = true;
+          this.accomData = {
+            accom: courseData.accommodationInfo[0]?.para,
+            food: courseData.foodInfo[0]?.para,
+          };
 
-        this.feesData = {
-          amount: courseData.feeInfo[0]?.amount,
-          currency: courseData.feeInfo[0]?.currency,
-        };
+          this.feesData = {
+            amount: courseData.feeInfo[0]?.amount,
+            currency: courseData.feeInfo[0]?.currency,
+          };
 
-        this.codecond = {
-          title: courseData.coursetitle,
-        };
-        this.title.setTitle(courseData.metaTitle);
-        this.meta.updateTag({
-          name: 'keywords',
-          content: courseData.metaKeyword,
-        });
-        this.meta.updateTag({
-          name: 'description',
-          content: courseData.metaDescription,
-        });
-      } else {
-        this.router.navigate(['/']);
-        this.spinner.hide();
-      }
+          this.codecond = {
+            title: courseData.coursetitle,
+          };
+          this.title.setTitle(courseData.metaTitle);
+          this.meta.updateTag({
+            name: 'keywords',
+            content: courseData.metaKeyword,
+          });
+          this.meta.updateTag({
+            name: 'description',
+            content: courseData.metaDescription,
+          });
+        } else {
+          this.router.navigate(['/']);
+          this.spinner.hide();
+        }
+      },
+      error: () => this.spinner.hide(),
     });
   }
   ogMetaTag(slug: string) {
+    if (typeof window === 'undefined' || typeof document === 'undefined') {
+      return;
+    }
+
     switch (slug) {
       case routeEnum.bDtox:
         this.pixelTracking.trackCourseSelection(

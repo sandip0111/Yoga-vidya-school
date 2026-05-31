@@ -1,5 +1,5 @@
-import { Component, OnInit, Renderer2, Inject } from '@angular/core';
-import { CommonModule, DOCUMENT } from '@angular/common';
+import { Component, OnInit, Renderer2, Inject, DOCUMENT } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { BannerComponent } from '../../banner/banner.component';
 import { AboutRishikeshComponent } from '../about-rishikesh/about-rishikesh.component';
 import { EducationCategoriesComponent } from '../education-categories/education-categories.component';
@@ -480,88 +480,95 @@ export class RishikeshIndexComponent implements OnInit {
     let data = {
       slug: slug,
     };
-    this.webapiService.getCourseById(data).subscribe((res: any) => {
-      const currentDate = new Date();
-      if (res.data.length > 0) {
-        this.faqData = res.data[0].content;
-        this.currData = {
-          curr: res.data[0].curriculumInfo,
-          title: res.data[0].coursetitle,
-        };
-        this.upEventData = res.data[0]?.upcomingEventInfo.filter(
-          (item: any) => {
-            const itemDate = new Date(item.startDate);
-            return itemDate >= currentDate;
+    this.webapiService.getCourseById(data).subscribe({
+      next: (res: any) => {
+        const currentDate = new Date();
+        if (res.data.length > 0) {
+          this.faqData = res.data[0].content;
+          this.currData = {
+            curr: res.data[0].curriculumInfo,
+            title: res.data[0].coursetitle,
+          };
+          this.upEventData = res.data[0]?.upcomingEventInfo.filter(
+            (item: any) => {
+              const itemDate = new Date(item.startDate);
+              return itemDate >= currentDate;
+            }
+          );
+          if (this.slug == 'pranic-purification') {
+            this.schEventData = {};
+            this.isPranicPurification = true;
+          } else if (
+            this.slug == 'adjustment-and-alignment' ||
+            this.slug == 'adjustment-and-alignment-level-2'
+          ) {
+            this.schEventData = {
+              title: res.data[0].coursetitle,
+              events: this.upEventData,
+              url: res.data[0].slug,
+              loc: 'Bali',
+            };
+          } else {
+            this.schEventData = {
+              title: res.data[0].coursetitle,
+              events: this.upEventData,
+              url: res.data[0].slug,
+              loc: 'Rishikesh',
+            };
           }
-        );
-        if (this.slug == 'pranic-purification') {
-          this.schEventData = {};
-          this.isPranicPurification = true;
-        } else if (
-          this.slug == 'adjustment-and-alignment' ||
-          this.slug == 'adjustment-and-alignment-level-2'
-        ) {
-          this.schEventData = {
-            title: res.data[0].coursetitle,
-            events: this.upEventData,
-            url: res.data[0].slug,
-            loc: 'Bali',
+          this.bannerData = {
+            event: this.upEventData,
+            courseName: res.data[0].coursetitle,
           };
+          this.schData = {
+            title: res.data[0].coursetitle,
+            schedule: res.data[0].scheduleInfo,
+          };
+          this.youtubeVideoData = {
+            title: res.data[0].coursetitle,
+            amount: res.data[0].feeInfo[0]?.amount,
+            currency: res.data[0].feeInfo[0]?.currency,
+            videoId: res.data[0].courseintrovideoId,
+          };
+          this.isYoutubeDataReady = true;
+          this.accomData = {
+            accom: res.data[0].accommodationInfo[0]?.para,
+            food: res.data[0].foodInfo[0]?.para,
+            amount: res.data[0].feeInfo[0]?.amount,
+            currency: res.data[0].feeInfo[0]?.currency,
+          };
+          this.feesData = {
+            title: res.data[0].coursetitle,
+            amount: res.data[0].feeInfo[0]?.amount,
+            currency: res.data[0].feeInfo[0]?.currency,
+          };
+          this.codecond = {
+            title: res.data[0].coursetitle,
+          };
+          this.title.setTitle(res.data[0].metaTitle);
+          this.meta.updateTag({
+            name: 'keywords',
+            content: res.data[0].metaKeyword,
+          });
+          this.meta.updateTag({
+            name: 'description',
+            content: res.data[0].metaDescription,
+          });
+          this.spinner.hide();
         } else {
-          this.schEventData = {
-            title: res.data[0].coursetitle,
-            events: this.upEventData,
-            url: res.data[0].slug,
-            loc: 'Rishikesh',
-          };
+          this.router.navigate(['/']);
+          this.spinner.hide();
         }
-        this.bannerData = {
-          event: this.upEventData,
-          courseName: res.data[0].coursetitle,
-        };
-        this.schData = {
-          title: res.data[0].coursetitle,
-          schedule: res.data[0].scheduleInfo,
-        };
-        this.youtubeVideoData = {
-          title: res.data[0].coursetitle,
-          amount: res.data[0].feeInfo[0]?.amount,
-          currency: res.data[0].feeInfo[0]?.currency,
-          videoId: res.data[0].courseintrovideoId,
-        };
-        this.isYoutubeDataReady = true;
-        this.accomData = {
-          accom: res.data[0].accommodationInfo[0]?.para,
-          food: res.data[0].foodInfo[0]?.para,
-          amount: res.data[0].feeInfo[0]?.amount,
-          currency: res.data[0].feeInfo[0]?.currency,
-        };
-        this.feesData = {
-          title: res.data[0].coursetitle,
-          amount: res.data[0].feeInfo[0]?.amount,
-          currency: res.data[0].feeInfo[0]?.currency,
-        };
-        this.codecond = {
-          title: res.data[0].coursetitle,
-        };
-        this.title.setTitle(res.data[0].metaTitle);
-        this.meta.updateTag({
-          name: 'keywords',
-          content: res.data[0].metaKeyword,
-        });
-        this.meta.updateTag({
-          name: 'description',
-          content: res.data[0].metaDescription,
-        });
-        this.spinner.hide();
-      } else {
-        this.router.navigate(['/']);
-        this.spinner.hide();
-      }
+      },
+      error: () => this.spinner.hide(),
     });
   }
 
   ogMetaTag(slug: string) {
+    if (typeof window === 'undefined' || typeof document === 'undefined') {
+      return;
+    }
+
     this.pixelTracking.trackViewContent('rishikesh page', slug);
     this.trackScrollDepth();
     this.trackTimeOnPage();

@@ -1,29 +1,14 @@
-import { Component,Inject,Renderer2 } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
+import { Component, Inject, Renderer2, DOCUMENT } from '@angular/core';
+
 import { Title,Meta } from '@angular/platform-browser';
-import { BottomNavComponent } from '../includes/home/bottom-nav/bottom-nav.component';
 import { AboutComponent } from '../includes/home/about/about.component';
-import { JoinTrainingComponent } from '../includes/home/join-training/join-training.component';
-import { AboutYogaComponent } from '../includes/home/about-yoga/about-yoga.component';
-import { MeetComponent } from '../includes/home/meet/meet.component';
-import { TraningImportanceComponent } from '../includes/home/traning-importance/traning-importance.component';
 import { WebapiService } from '../webapi.service';
 import { TeacherTrainingComponent } from '../includes/home/teacher-training/teacher-training.component';
-import { TtRishikeshComponent } from '../includes/home/tt-rishikesh/tt-rishikesh.component';
 import { MentorsComponent } from '../includes/home/mentors/mentors.component';
 import { BlogsComponent } from '../includes/home/blogs/blogs.component';
-import { GalleryComponent } from '../includes/home/gallery/gallery.component';
-import { WorkshopsComponent } from '../includes/home/workshops/workshops.component';
-import { ChooseUsComponent } from '../includes/home/choose-us/choose-us.component';
-import { ServicesComponent } from '../includes/home/services/services.component';
-import { OnlineWorkshopComponent } from '../includes/home/online-workshop/online-workshop.component';
 import { TestimonialsComponent } from '../includes/home/testimonials/testimonials.component';
-import { YoutubeChannelComponent } from '../includes/home/youtube-channel/youtube-channel.component';
 import { WeOfferComponent } from '../includes/home/we-offer/we-offer.component';
-import { FaqComponent } from '../includes/home/faq/faq.component';
-import { AchievementsComponent } from '../includes/home/achievements/achievements.component';
 import { BenifitsComponent } from '../includes/home/benifits/benifits.component';
-import { PopularWorkshopComponent } from '../includes/home/popular-workshop/popular-workshop.component';
 import { BannerComponent } from '../includes/home/banner/banner.component';
 import { CooperateComponent } from '../includes/home/cooperate/cooperate.component';
 import { Router } from '@angular/router';
@@ -32,28 +17,13 @@ import { Router } from '@angular/router';
   selector: 'app-index',
   standalone: true,
   imports: [
-    BottomNavComponent,
     AboutComponent,
-    JoinTrainingComponent,
-    AboutYogaComponent,
-    MeetComponent,
-    TraningImportanceComponent,
     TeacherTrainingComponent,
-    TtRishikeshComponent,
     MentorsComponent,
     BlogsComponent,
-    GalleryComponent,
-    WorkshopsComponent,
-    ChooseUsComponent,
-    ServicesComponent,
-    OnlineWorkshopComponent,
     TestimonialsComponent,
-    YoutubeChannelComponent,
     WeOfferComponent,
-    FaqComponent,
-    AchievementsComponent,
     BenifitsComponent,
-    PopularWorkshopComponent,
     BannerComponent,
     CooperateComponent
   ],

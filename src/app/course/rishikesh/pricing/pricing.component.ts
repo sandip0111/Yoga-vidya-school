@@ -33,9 +33,12 @@ export class PricingComponent implements OnInit {
     let data = {
       slug: slug,
     };
-    this.webapiService.getCourseById(data).subscribe((res: any) => {
-      this.feesData = res.data[0].feeInfo;
-      this.setPriceValue(this.slug);
+    this.webapiService.getCourseById(data).subscribe({
+      next: (res: any) => {
+        this.feesData = res.data[0].feeInfo;
+        this.setPriceValue(this.slug);
+      },
+      error: () => this.setPriceValue(this.slug),
     });
   }
   setPriceValue(slug: string) {

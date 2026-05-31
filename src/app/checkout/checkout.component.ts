@@ -1,5 +1,5 @@
-import { Component, Renderer2, Inject, ViewChild } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
+import { Component, Renderer2, Inject, ViewChild, DOCUMENT } from '@angular/core';
+
 import { WebapiService } from '../webapi.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
@@ -103,6 +103,7 @@ export class CheckoutComponent {
 
   ngOnInit(): void {
     this.spinner.show();
+    const isBrowser = typeof window !== 'undefined' && typeof document !== 'undefined';
     const rishikeshCourses = [
       routeEnum.rishikesh100,
       routeEnum.rishkesh200,
@@ -124,38 +125,44 @@ export class CheckoutComponent {
         { name: 'Private room', value: 2 },
       ];
     }
-    this.scrollToTop();
-    // Track checkout page view
-    this.trackCheckoutPageView();
-    setTimeout(() => {
-      this.invokeStripe();
-      this.loadRazorpayScript();
-      this.title.setTitle('Checkout');
-      const canonicalUrl = 'https://www.yogavidyaschool.com' + this.router.url;
-      const link = this._document.querySelector('link[rel="canonical"]');
-      this._renderer2.setAttribute(link, 'href', canonicalUrl);
-      if (this.slug === routeEnum.pranicPurification) {
-        const storedDateStr = sessionStorage.getItem('pranicDate');
-        if (storedDateStr) {
-          this.pranicDate = new Date(storedDateStr);
-          this.formattedPranicDate = this.pranicDate.toDateString();
+    if (isBrowser) {
+      this.scrollToTop();
+      // Track checkout page view
+      this.trackCheckoutPageView();
+      setTimeout(() => {
+        this.invokeStripe();
+        this.loadRazorpayScript();
+        this.title.setTitle('Checkout');
+        const canonicalUrl = 'https://www.yogavidyaschool.com' + this.router.url;
+        const link = this._document.querySelector('link[rel="canonical"]');
+        this._renderer2.setAttribute(link, 'href', canonicalUrl);
+        if (this.slug === routeEnum.pranicPurification) {
+          const storedDateStr = sessionStorage.getItem('pranicDate');
+          if (storedDateStr) {
+            this.pranicDate = new Date(storedDateStr);
+            this.formattedPranicDate = this.pranicDate.toDateString();
+          }
+          this.pranicDuration = sessionStorage.getItem('pranicDuration');
+          if (!this.pranicDate) {
+            const date = new Date('2026-01-18');
+            this.pranicDate = date;
+            this.pranicDuration = '7PM to 8PM (IST)';
+            sessionStorage.setItem('pranicDate', date.toISOString());
+            sessionStorage.setItem('pranicDuration', this.pranicDuration);
+          }
         }
-        this.pranicDuration = sessionStorage.getItem('pranicDuration');
-        if (!this.pranicDate) {
-          const date = new Date('2026-01-18');
-          this.pranicDate = date;
-          this.pranicDuration = '7PM to 8PM (IST)';
-          sessionStorage.setItem('pranicDate', date.toISOString());
-          sessionStorage.setItem('pranicDuration', this.pranicDuration);
-        }
-      }
-    }, 1000);
+      }, 1000);
+    }
     this.getCourseBySlug(this.slug);
     if (this.paymentId) {
       this.getPaymentDetailsById();
     }
   }
   scrollToTop(): void {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
     window.scrollTo({
       top: 0,
       behavior: 'smooth',
@@ -185,18 +192,21 @@ export class CheckoutComponent {
     let data = {
       slug: slug,
     };
-    this.webapiService.getCourseById(data).subscribe((res: any) => {
-      if (res.data.length > 0) {
-        this.courseList = res.data[0];
-        this.feesData = this.courseList.feeInfo;
-        this.feesData.map(
-          (a) => (a.title = a.title == 'Price' ? a.title : `Price(${a.title})`),
-        );
-        this.title.setTitle('Checkout');
-        this.spinner.hide();
-      } else {
-        this.router.navigate(['/']);
-      }
+    this.webapiService.getCourseById(data).subscribe({
+      next: (res: any) => {
+        if (res.data.length > 0) {
+          this.courseList = res.data[0];
+          this.feesData = this.courseList.feeInfo;
+          this.feesData.map(
+            (a) => (a.title = a.title == 'Price' ? a.title : `Price(${a.title})`),
+          );
+          this.title.setTitle('Checkout');
+          this.spinner.hide();
+        } else {
+          this.router.navigate(['/']);
+        }
+      },
+      error: () => this.spinner.hide(),
     });
   }
   checkEmail(e: any) {

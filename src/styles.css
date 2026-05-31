@@ -5,6 +5,10 @@
 @import "../node_modules/ngx-spinner/animations/ball-pulse-sync.css";
 @import "../node_modules/ngx-spinner/animations/ball-spin-clockwise.css";
 
+ngx-spinner .ngx-spinner-overlay.fade-out {
+  pointer-events: none !important;
+}
+
 :root {
   --universal-white: #fff;
   --tw-gray-100-light: #f9f9f9;

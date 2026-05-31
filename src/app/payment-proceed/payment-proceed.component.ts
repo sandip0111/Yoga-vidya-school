@@ -80,8 +80,10 @@ export class PaymentProceedComponent implements OnInit {
   }
   ngOnInit(): void {
     this.setPageTitle(this.courses);
-    this.invokeStripe();
-    this.loadRazorpayScript();
+    if (typeof window !== 'undefined' && typeof document !== 'undefined') {
+      this.invokeStripe();
+      this.loadRazorpayScript();
+    }
     this.getTeachersData(routeEnum.online);
     this.trackCheckoutPageView();
   }
@@ -271,6 +273,10 @@ export class PaymentProceedComponent implements OnInit {
     this.updatePrice();
   }
   invokeStripe() {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
     if (!window.document.getElementById('stripe-script')) {
       const script = window.document.createElement('script');
       script.id = 'stripe-script';
@@ -285,6 +291,10 @@ export class PaymentProceedComponent implements OnInit {
     }
   }
   loadRazorpayScript() {
+    if (typeof document === 'undefined') {
+      return;
+    }
+
     if (!document.getElementById('razorpay-script')) {
       const script = document.createElement('script');
       script.id = 'razorpay-script';

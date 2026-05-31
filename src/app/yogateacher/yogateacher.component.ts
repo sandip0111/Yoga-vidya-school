@@ -1,5 +1,5 @@
-import { Component, Renderer2, Inject, Input } from '@angular/core';
-import { CommonModule, DOCUMENT } from '@angular/common';
+import { Component, Renderer2, Inject, Input, DOCUMENT } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { BannerComponent } from '../course/banner/banner.component';

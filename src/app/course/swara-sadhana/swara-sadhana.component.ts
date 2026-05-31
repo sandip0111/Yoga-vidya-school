@@ -39,16 +39,19 @@ export class SwaraSadhanaComponent {
     let data = {
       slug: this.slug,
     };
-    this.webapiService.getCourseById(data).subscribe((res: any) => {
-      const courseData = res.data[0];
-      this.price = courseData.feeInfo[0].data.find(
-        (a: feesDto) => a.currency == 'INR'
-      ).amount;
+    this.webapiService.getCourseById(data).subscribe({
+      next: (res: any) => {
+        const courseData = res.data[0];
+        this.price = courseData.feeInfo[0].data.find(
+          (a: feesDto) => a.currency == 'INR'
+        ).amount;
 
-      this.priceUsd = courseData.feeInfo[0].data.find(
-        (a: feesDto) => a.currency == 'USD'
-      ).amount;
-      this.spinner.hide();
+        this.priceUsd = courseData.feeInfo[0].data.find(
+          (a: feesDto) => a.currency == 'USD'
+        ).amount;
+        this.spinner.hide();
+      },
+      error: () => this.spinner.hide(),
     });
     this.faqData = [
       {

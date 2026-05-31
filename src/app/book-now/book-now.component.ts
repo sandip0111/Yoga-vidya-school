@@ -1,5 +1,5 @@
-import { Component, Renderer2, Inject } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
+import { Component, Renderer2, Inject, DOCUMENT } from '@angular/core';
+
 import { Title } from '@angular/platform-browser';
 import { WebapiService } from '../webapi.service';
 import { Router, ActivatedRoute, RouteReuseStrategy } from '@angular/router';

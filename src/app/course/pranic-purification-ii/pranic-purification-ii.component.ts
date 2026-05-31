@@ -34,11 +34,14 @@ export class PranicPurificationIiComponent {
     let data = {
       slug: slug,
     };
-    this.webapiService.getCourseById(data).subscribe((res: any) => {
-      if (res.data.length > 0) {
-        this.faqData = res.data[0].content;
-      }
-      this.spinner.hide();
+    this.webapiService.getCourseById(data).subscribe({
+      next: (res: any) => {
+        if (res.data.length > 0) {
+          this.faqData = res.data[0].content;
+        }
+        this.spinner.hide();
+      },
+      error: () => this.spinner.hide(),
     });
   }
   registerClick() {

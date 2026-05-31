@@ -77,7 +77,7 @@ interface subOffer {
   paraBox2?: string;
   dateTimeBox: string;
   dateTimeBox2?: string;
-  imgBox: s3Bucket;
+  imgBox: string;
   durationBox: string;
   durationBox2?: string;
   url: string;

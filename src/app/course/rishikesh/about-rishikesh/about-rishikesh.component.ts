@@ -284,22 +284,27 @@ export class AboutRishikeshComponent implements OnInit {
     let data = {
       slug: slug,
     };
-    this.webapiService.getCourseById(data).subscribe((res: any) => {
+    this.webapiService.getCourseById(data).subscribe({
+      next: (res: any) => {
       let feesInfo = res.data[0].feeInfo.find(
         (f: feesInfoDto) => f.title == 'Price',
       );
-      let priceData: feesDto;
+      let priceData: feesDto | undefined;
       if (feesInfo) {
         priceData = feesInfo?.data.find((f: feesDto) => f?.currency == 'INR');
-        this.inrPrice = new Intl.NumberFormat('en-IN', {
-          style: 'currency',
-          currency: priceData?.currency,
-        }).format(priceData?.amount);
+        if (priceData?.currency) {
+          this.inrPrice = new Intl.NumberFormat('en-IN', {
+            style: 'currency',
+            currency: priceData.currency,
+          }).format(priceData.amount);
+        }
         priceData = feesInfo?.data.find((f: feesDto) => f?.currency == 'USD');
-        this.usdPrice = new Intl.NumberFormat('en-IN', {
-          style: 'currency',
-          currency: priceData?.currency,
-        }).format(priceData?.amount);
+        if (priceData?.currency) {
+          this.usdPrice = new Intl.NumberFormat('en-IN', {
+            style: 'currency',
+            currency: priceData.currency,
+          }).format(priceData.amount);
+        }
       }
       this.generateHtmlContent();
       this.course = {
@@ -310,6 +315,8 @@ export class AboutRishikeshComponent implements OnInit {
         priceUSD: 0,
         quantity: 1,
       };
+      },
+      error: () => this.generateHtmlContent(),
     });
   }
 }

@@ -90,11 +90,14 @@ export class Bali100HourComponent {
     let data = {
       slug: routeEnum.bali100,
     };
-    this.webapiService.getCourseById(data).subscribe((res: any) => {
-      this.slugData = res.data[0];
-      this.scheduleArr = this.slugData.scheduleInfo;
-      this.feesData = this.slugData.feeInfo;
-      this.faqContent = this.slugData.content;
+    this.webapiService.getCourseById(data).subscribe({
+      next: (res: any) => {
+        this.slugData = res.data[0];
+        this.scheduleArr = this.slugData.scheduleInfo;
+        this.feesData = this.slugData.feeInfo;
+        this.faqContent = this.slugData.content;
+      },
+      error: () => {},
     });
   }
   registerClick() {

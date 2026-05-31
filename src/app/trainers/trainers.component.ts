@@ -1,22 +1,20 @@
-import { Component, Renderer2, Inject } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
+import { Component, Renderer2, Inject, DOCUMENT } from '@angular/core';
+
 import { WebapiService } from '../webapi.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Router } from '@angular/router';
 import { Title, Meta, DomSanitizer } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { s3Bucket } from '../enum/s3Bucket';
 import { YogateacherComponent } from '../yogateacher/yogateacher.component';
-import { environment } from '../enum/environment';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-trainers',
   standalone: true,
   imports: [
     CommonModule,
-    RouterLink,
     LazyLoadImageModule,
     YogateacherComponent,
   ],

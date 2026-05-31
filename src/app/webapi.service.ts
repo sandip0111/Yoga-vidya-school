@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from './enum/environment';
+import { environment } from '../environments/environment';
 import {
   getCouponCodeModel,
   razorPaymentResultModel,
@@ -22,7 +22,7 @@ import { onLineVideoModel } from './models/video';
 })
 export class WebapiService {
   private url = environment.apiUrl;
-  public imageUrl = 'https://d29rwrqvux6m5p.cloudfront.net/images/';
+  public imageUrl = environment.imageUrl;
   public imageUrlv2 = 'https://yogavidyaschool.com:3000/public/img/';
   private youtubeApiKey = 'AIzaSyBBWKHx71MmwvADlvncUc8ivZuJ0k5Wi44';
   // private youtubeChannelId = "UCp8TSIgLoBWsPS1knyeFhaw";
