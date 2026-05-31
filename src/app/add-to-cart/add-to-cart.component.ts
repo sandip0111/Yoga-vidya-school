@@ -52,6 +52,10 @@ export class AddToCartComponent implements AfterViewInit, OnDestroy {
 }
 
   ngAfterViewInit(): void {
+    if (typeof IntersectionObserver === 'undefined') {
+      return;
+    }
+
     setTimeout(() => {
       if (!this.orderCard) {
         console.error('Order card element was not found.');

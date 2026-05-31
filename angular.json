@@ -40,6 +40,11 @@
               "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
               "node_modules/intl-tel-input/build/js/intlTelInput.min.js"
             ],
+            "allowedCommonJsDependencies": [
+              "google-libphonenumber",
+              "node-domexception",
+              "web-streams-polyfill/dist/ponyfill.es2018.js"
+            ],
             "server": "src/main.server.ts",
             "prerender": true,
             "ssr": {
@@ -48,6 +53,12 @@
           },
           "configurations": {
             "production": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
               "budgets": [
                 {
                   "type": "initial",

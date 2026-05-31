@@ -66,9 +66,11 @@ export class CertifiedComponent {
     this.setBannerTitle();
     this.setAboutContent();
     this.spinner.hide();
-    this.trackPageView();
-    this.trackScrollDepth();
-    this.trackTimeOnPage();
+    if (typeof window !== 'undefined' && typeof document !== 'undefined') {
+      this.trackPageView();
+      this.trackScrollDepth();
+      this.trackTimeOnPage();
+    }
   }
 
   private setImageSlug() {

@@ -1,5 +1,5 @@
-import { Component, Renderer2, Inject } from '@angular/core';
-import { DOCUMENT, CommonModule } from '@angular/common';
+import { Component, Renderer2, Inject, DOCUMENT } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { Title, Meta } from '@angular/platform-browser';
 import { Router, RouterLink } from '@angular/router';
 import { WebapiService } from '../webapi.service';
@@ -42,6 +42,10 @@ export class MyAccountComponent {
       const link = this._document.querySelector('link[rel="canonical"]');
       this._renderer2.setAttribute(link, 'href', canonicalUrl);
     }, 1000);
+
+    if (typeof sessionStorage === 'undefined') {
+      return;
+    }
 
     this.loginId = sessionStorage.getItem(localstorageKey.loginId);
     if (this.loginId) {

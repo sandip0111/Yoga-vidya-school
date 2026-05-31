@@ -1,22 +1,13 @@
-import { Component, Inject, Renderer2 } from '@angular/core';
-import { CommonModule, DOCUMENT } from '@angular/common';
+import { Component, Inject, Renderer2, DOCUMENT } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { WebapiService } from '../webapi.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DomSanitizer, Title, Meta } from '@angular/platform-browser';
-import { BottomNavComponent } from '../includes/home/bottom-nav/bottom-nav.component';
-import { AboutComponent } from '../includes/home/about/about.component';
-import { JoinTrainingComponent } from '../includes/home/join-training/join-training.component';
-import { AboutYogaComponent } from '../includes/home/about-yoga/about-yoga.component';
-import { MeetComponent } from '../includes/home/meet/meet.component';
-import { TraningImportanceComponent } from '../includes/home/traning-importance/traning-importance.component';
-import { CourseBannerComponent } from './course-banner/course-banner.component';
 import { StartClassComponent } from './bali/start-class/start-class.component';
 import { MentorsComponent } from '../includes/home/mentors/mentors.component';
 import { BenifitsComponent } from '../includes/home/benifits/benifits.component';
 import { TestimonialsComponent } from '../includes/home/testimonials/testimonials.component';
 import { FaqComponent } from '../includes/home/faq/faq.component';
-import { CourseMentorComponent } from './course-mentor/course-mentor.component';
-import { SafePipe } from '../safe.pipe';
 import { VideoReviewsComponent } from './video-reviews/video-reviews.component';
 import { ReviewListComponentComponent } from '../text-review-list/review-list-component/review-list-component.component';
 import { routeEnum } from '../enum/routes';
@@ -28,21 +19,11 @@ import { PixelTrackingService } from '../services/pixel-tracking.service';
   standalone: true,
   imports: [
     CommonModule,
-    BottomNavComponent,
-    AboutComponent,
-    JoinTrainingComponent,
-    AboutYogaComponent,
-    MeetComponent,
-    TraningImportanceComponent,
-    CourseBannerComponent,
     StartClassComponent,
     MentorsComponent,
     BenifitsComponent,
     TestimonialsComponent,
-    MeetComponent,
     FaqComponent,
-    CourseMentorComponent,
-    SafePipe,
     VideoReviewsComponent,
     ReviewListComponentComponent,
   ],
@@ -154,39 +135,46 @@ export class CourseComponent {
     let data = {
       slug: slug,
     };
-    this.webapiService.getCourseById(data).subscribe((res: any) => {
-      // console.log(res.data, 'course Data');
-      const currentDate = new Date();
-      if (res.data.length > 0) {
-        this.courseList = res.data[0];
-        // this.courseName = res.data[0].coursetitle;
-        // const currentDate = new Date();
-        // this.upcomingDates = res.data[0]?.upcomingEventInfo.filter((item: any) => {
-        //   const itemDate = new Date(item.startDate);
-        //   return itemDate >= currentDate;
-        // });
-        this.introLink =
-          'https://www.youtube.com/embed/' + res.data[0].courseintrovideoId;
-        //console.log(this.introLink,'--');
+    this.webapiService.getCourseById(data).subscribe({
+      next: (res: any) => {
+        // console.log(res.data, 'course Data');
+        const currentDate = new Date();
+        if (res.data.length > 0) {
+          this.courseList = res.data[0];
+          // this.courseName = res.data[0].coursetitle;
+          // const currentDate = new Date();
+          // this.upcomingDates = res.data[0]?.upcomingEventInfo.filter((item: any) => {
+          //   const itemDate = new Date(item.startDate);
+          //   return itemDate >= currentDate;
+          // });
+          this.introLink =
+            'https://www.youtube.com/embed/' + res.data[0].courseintrovideoId;
+          //console.log(this.introLink,'--');
 
-        this.title.setTitle(res.data[0].metaTitle);
-        this.meta.updateTag({
-          name: 'keywords',
-          content: res.data[0].metaKeyword,
-        });
-        this.meta.updateTag({
-          name: 'description',
-          content: res.data[0].metaDescription,
-        });
-        // this.checkForCourse(this.userId, res.data[0]._id);
-      } else {
-        // this.router.navigate(['/']);
-        // this.spinner.hide();
-      }
+          this.title.setTitle(res.data[0].metaTitle);
+          this.meta.updateTag({
+            name: 'keywords',
+            content: res.data[0].metaKeyword,
+          });
+          this.meta.updateTag({
+            name: 'description',
+            content: res.data[0].metaDescription,
+          });
+          // this.checkForCourse(this.userId, res.data[0]._id);
+        } else {
+          // this.router.navigate(['/']);
+          // this.spinner.hide();
+        }
+      },
+      error: () => {},
     });
   }
 
   ogMetaTag(slug: string) {
+    if (typeof window === 'undefined' || typeof document === 'undefined') {
+      return;
+    }
+
     console.log(slug, 'slug--- ');
     this.pixelTracking.trackViewContent(
       'online-yoga-classes',

@@ -1,11 +1,10 @@
 import { Component, AfterViewInit,ElementRef, ViewChild} from '@angular/core';
 import { CommonModule } from '@angular/common'; // Import CommonModule
-import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-review-list-component',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule],
   templateUrl: './review-list-component.component.html',
   styleUrl: './review-list-component.component.css'
 })

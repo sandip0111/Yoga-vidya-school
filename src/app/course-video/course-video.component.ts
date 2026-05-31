@@ -6,12 +6,13 @@ import {
   AfterViewInit,
   ElementRef,
   ChangeDetectorRef,
+  DOCUMENT
 } from '@angular/core';
 import { WebapiService } from '../webapi.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Title, Meta } from '@angular/platform-browser';
-import { CommonModule, DOCUMENT } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import Hls from 'hls.js';
 import { onLineVideoModel } from '../models/video';
@@ -70,6 +71,10 @@ export class CourseVideoComponent {
   }
 
   ngOnInit(): void {
+    if (typeof sessionStorage === 'undefined') {
+      return;
+    }
+
     this.getCourseBySlug(this.slug);
     this.userId = sessionStorage.getItem(localstorageKey.loginId);
     if (!this.userId) {
@@ -109,41 +114,44 @@ export class CourseVideoComponent {
     let data = {
       slug: slug,
     };
-    this.webapiService.getCourseById(data).subscribe((res: any) => {
-      if (res.data) {
-        this.courseList = res.data[0];
-        this.title.setTitle(res.data[0].metaTitle);
-        this.meta.updateTag({
-          name: 'keywords',
-          content: res.data[0].metaKeyword,
-        });
-        this.meta.updateTag({
-          name: 'description',
-          content: res.data[0].metaDescription,
-        });
-        if (this.slug !== routeEnum.online) {
-          this.checkForCourse(this.userId, res.data[0]._id);
-        } else {
-          this.studentValidated = true;
-        }
-        setTimeout(() => {
-          if (this.userId && this.studentValidated) {
-            this.getOnlineCourseVideosV2(res.data[0]._id);
-            setTimeout(() => {
-              if (this.slug == 'pranayama-course-online-pranarambha') {
-                this.setDataFeedbackV3(9);
-              } else {
-                this.setDataFeedbackV3(1);
-              }
-              this.paidVideoVerifyUser(res.data[0]._id);
-            }, 2000);
+    this.webapiService.getCourseById(data).subscribe({
+      next: (res: any) => {
+        if (res.data) {
+          this.courseList = res.data[0];
+          this.title.setTitle(res.data[0].metaTitle);
+          this.meta.updateTag({
+            name: 'keywords',
+            content: res.data[0].metaKeyword,
+          });
+          this.meta.updateTag({
+            name: 'description',
+            content: res.data[0].metaDescription,
+          });
+          if (this.slug !== routeEnum.online) {
+            this.checkForCourse(this.userId, res.data[0]._id);
           } else {
-            this.onlineCheck = false;
+            this.studentValidated = true;
           }
-        }, 2000);
-      } else {
-        this.router.navigate(['/']);
-      }
+          setTimeout(() => {
+            if (this.userId && this.studentValidated) {
+              this.getOnlineCourseVideosV2(res.data[0]._id);
+              setTimeout(() => {
+                if (this.slug == 'pranayama-course-online-pranarambha') {
+                  this.setDataFeedbackV3(9);
+                } else {
+                  this.setDataFeedbackV3(1);
+                }
+                this.paidVideoVerifyUser(res.data[0]._id);
+              }, 2000);
+            } else {
+              this.onlineCheck = false;
+            }
+          }, 2000);
+        } else {
+          this.router.navigate(['/']);
+        }
+      },
+      error: () => this.spinner.hide(),
     });
   }
 

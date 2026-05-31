@@ -14,6 +14,10 @@ export class CooperateComponent implements OnInit {
   constructor(private router: Router) {}
 
   ngOnInit() {
+    if (typeof document === 'undefined') {
+      return;
+    }
+
     document.getElementById('destination-bg2')?.style.setProperty('--bg-image', `url('${s3Bucket.rishikeshHome}')`);
     document.getElementById('destination-bg1')?.style.setProperty('--bg-bali', `url('${s3Bucket.baliHome}')`);
   }

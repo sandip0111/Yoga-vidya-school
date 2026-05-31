@@ -1,5 +1,5 @@
-import { Component,Renderer2, Inject } from '@angular/core';
-import { DOCUMENT,CommonModule } from '@angular/common';
+import { Component, Renderer2, Inject, DOCUMENT } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Title, Meta } from '@angular/platform-browser';
 import { WebapiService } from '../webapi.service';
@@ -30,6 +30,10 @@ export class ChangePasswordComponent {
       const link = this._document.querySelector('link[rel="canonical"]');
       this._renderer2.setAttribute(link, 'href', canonicalUrl);
       this.studentId = this.route.snapshot.paramMap.get('id'); // Get the parameter
+      if (typeof sessionStorage === 'undefined') {
+        return;
+      }
+
       this.loginId = sessionStorage.getItem(localstorageKey.loginId);
       if (!this.loginId) {
         sessionStorage.clear();

@@ -1,5 +1,5 @@
-import { Component, Inject, Renderer2 } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
+import { Component, Inject, Renderer2, DOCUMENT } from '@angular/core';
+
 import { FormsModule } from '@angular/forms';
 import { WebapiService } from '../webapi.service';
 import { Router } from '@angular/router';

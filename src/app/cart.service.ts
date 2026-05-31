@@ -49,14 +49,17 @@ export class CartService {
         );
         return this.jsonData;
       }),
-      catchError((error) => {
-        console.error('Error:', error);
+      catchError(() => {
         return of([]);
       })
     );
   }
 
   private saveCart(): void {
+    if (typeof localStorage === 'undefined') {
+      return;
+    }
+
     localStorage.setItem(this.cartKey, JSON.stringify(this.items));
     if (this.items.length == 0) {
       this.clearCart();
@@ -64,10 +67,18 @@ export class CartService {
   }
 
   setCurrency(currency: string) {
+    if (typeof localStorage === 'undefined') {
+      return;
+    }
+
     localStorage.setItem(this.currency, currency);
   }
 
   getCurrency() {
+    if (typeof localStorage === 'undefined') {
+      return null;
+    }
+
     return localStorage.getItem(this.currency);
   }
 
@@ -143,6 +154,10 @@ export class CartService {
 
   clearCart(): void {
     this.items = [];
+    if (typeof localStorage === 'undefined') {
+      return;
+    }
+
     localStorage.removeItem(this.cartKey);
   }
 
@@ -177,7 +192,9 @@ export class CartService {
       mentor.quantity = 1;
       this.addItem(mentor);
       this.router.navigate(['/proceed-payment']).then(() => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        if (typeof window !== 'undefined') {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
       });
     }
   }

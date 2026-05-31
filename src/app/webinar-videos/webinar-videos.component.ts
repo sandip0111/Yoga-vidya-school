@@ -32,6 +32,10 @@ export class WebinarVideosComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (typeof sessionStorage === 'undefined') {
+      return;
+    }
+
     this.userId = sessionStorage.getItem('webinarLoginId');
     if(!this.userId){
       this.router.navigate(['/login']);

@@ -59,6 +59,10 @@ export class PrashantPageComponent implements OnInit {
   }
 
   ogMetaTag() {
+    if (typeof window === 'undefined' || typeof document === 'undefined') {
+      return;
+    }
+
     this.pixelTracking.trackViewContent(
       'prashant-jhakmola-online-class',
       'prashant-jhakmola-online-class'

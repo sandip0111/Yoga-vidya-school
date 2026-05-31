@@ -55,6 +55,10 @@ export class TaniyaPageComponent implements OnInit {
     }
   }
   ogMetaTag() {
+    if (typeof window === 'undefined' || typeof document === 'undefined') {
+      return;
+    }
+
     this.pixelTracking.trackViewContent(
       'taniya online class',
       'taniya-verma-online-class'

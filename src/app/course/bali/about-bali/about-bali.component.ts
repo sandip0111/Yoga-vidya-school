@@ -720,15 +720,18 @@ A watering hole for adventure freaks and solo travellers, Peru with its gorgeous
     let data = {
       slug: slug,
     };
-    this.webapiService.getCourseById(data).subscribe((res: any) => {
-      this.course = {
-        id: res.data[0]._id,
-        title: res.data[0].coursetitle,
-        shortDescription: res.data[0].shortDesc,
-        priceINR: 0,
-        priceUSD: 0,
-        quantity: 1,
-      };
+    this.webapiService.getCourseById(data).subscribe({
+      next: (res: any) => {
+        this.course = {
+          id: res.data[0]._id,
+          title: res.data[0].coursetitle,
+          shortDescription: res.data[0].shortDesc,
+          priceINR: 0,
+          priceUSD: 0,
+          quantity: 1,
+        };
+      },
+      error: () => {},
     });
   }
   goToPaymentPage() {

@@ -5,7 +5,7 @@ import { WebapiService } from '../../../webapi.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { routeEnum } from '../../../enum/routes';
 import { PixelTrackingService } from '../../../services/pixel-tracking.service';
-import { environment } from '../../../enum/environment';
+import { environment } from '../../../../environments/environment';
 import { s3Bucket } from '../../../enum/s3Bucket';
 
 @Component({

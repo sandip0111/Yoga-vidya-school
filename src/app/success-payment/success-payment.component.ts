@@ -57,6 +57,11 @@ export class SuccessPaymentComponent {
     }, 1000);
 
     this.spinner.show();
+    if (typeof sessionStorage === 'undefined' || typeof localStorage === 'undefined') {
+      this.spinner.hide();
+      return;
+    }
+
     this.sessionId = sessionStorage.getItem('session');
     this.onlinesessionId = sessionStorage.getItem('onlinesession');
     this.onlineLiveClassesSessionId = sessionStorage.getItem(
