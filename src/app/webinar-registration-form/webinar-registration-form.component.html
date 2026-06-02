@@ -1,8 +1,4 @@
-<app-banner
-  [imgSlug]="imgSlug"
-  [bannerTitle]="bannerTitle"
-  [bannerSubtitle]="bannerSubtitle"
-></app-banner>
+<app-banner [imgSlug]="imgSlug" [bannerTitle]="bannerTitle" [bannerSubtitle]="bannerSubtitle"></app-banner>
 <section class="webinar-details">
   <div class="container1">
     <h2 class="webinar-title">
@@ -12,15 +8,34 @@
       Most people think they are breathing…<br />
       Yogis don’t breathe like that.
     </p>
-    <div class="sub-list-container">
-      <b class="sub-list">In this webinar, discover:</b>
-      <ul class="lead">
-        <li>The real difference between bio-energy and Prana</li>
-        <li>How Yogic breathing can heal the mind, body & energy field</li>
-        <li>Why “breathwork” can't be Pranayama</li>
-        <li>The way Yogis breathe to awaken clarity, strength & protection</li>
-        <li>After registration you will reiceve all details to join the webinar in your email inbox</li>
-      </ul>
+    <div class="row webinar-discover-row">
+      <div class="col-md-4">
+        <div class="webinar-image-wrapper">
+          <img
+            [src]="s3Bucket.freeWebinnarDetails"
+            alt="Breath of Yogis webinar"
+            class="webinar-detail-image"
+            loading="lazy"
+          />
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="sub-list-container">
+          <b class="sub-list">In this webinar, discover:</b>
+          <ul class="lead">
+            <li>The real difference between bio-energy and Prana</li>
+            <li>How Yogic breathing can heal the mind, body & energy field</li>
+            <li>Why “breathwork” can't be Pranayama</li>
+            <li>The way Yogis breathe to awaken clarity, strength & protection</li>
+            <li>After registration you will reiceve all details to join the webinar in your email inbox</li>
+            <li>Yogis breath are not the same as yours</li>
+            <li>You breathe air/oxygen - that’s why you are limited with your existence and experiences and yogis
+              breathe prana</li>
+            <li>Your primary organ for breathing and survival, our lungs Yogis don’t depend on them</li>
+            <li>Technique to turn your ordinary breath into yogic breath</li>
+          </ul>
+        </div>
+      </div>
     </div>
     <!-- <div class="details-grid">
       <div class="detail-item">
@@ -88,38 +103,20 @@
     <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
       <div class="mb-3">
         <label for="name" class="form-label">Name</label>
-        <input
-          type="text"
-          id="name"
-          formControlName="name"
-          class="form-control"
-          [ngClass]="{
+        <input type="text" id="name" formControlName="name" class="form-control" [ngClass]="{
             'is-invalid': submitted && registrationForm.get('name')?.invalid
-          }"
-        />
-        <div
-          *ngIf="submitted && registrationForm.get('name')?.invalid"
-          class="text-danger"
-        >
+          }" />
+        <div *ngIf="submitted && registrationForm.get('name')?.invalid" class="text-danger">
           Name is required.
         </div>
       </div>
 
       <div class="mb-3">
         <label for="email" class="form-label">Email</label>
-        <input
-          type="email"
-          id="email"
-          formControlName="email"
-          class="form-control"
-          [ngClass]="{
+        <input type="email" id="email" formControlName="email" class="form-control" [ngClass]="{
             'is-invalid': submitted && registrationForm.get('email')?.invalid
-          }"
-        />
-        <div
-          *ngIf="submitted && registrationForm.get('email')?.invalid"
-          class="text-danger"
-        >
+          }" />
+        <div *ngIf="submitted && registrationForm.get('email')?.invalid" class="text-danger">
           Please enter a valid email.
         </div>
       </div>
