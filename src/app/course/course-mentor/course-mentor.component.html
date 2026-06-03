@@ -33,31 +33,40 @@
       </div>
       <div class="col-md-12">
         <div class="middle-text">
-          <h2>
-            Choose the <span>Online Yoga Class</span> and the Time Slot You Like
-          </h2>
+          <h2>Begin Your Daily <span>Yoga Sadhana</span></h2>
+          <h4>
+            <i>
+              Join a transformative Yoga discipline that nurtures the body,
+              refines the mind, and elevates the flow of prana</i
+            >
+          </h4>
         </div>
       </div>
       <div class="col-md-12 mt-2">
         <div class="row online-about">
           <p>
-            Create a healthy routine from our daily Online classes Yoga Asana
-            and Pranayama to help you stay healthy, active, calm and focused.<br />
-            Yoga Vidya Team welcomes you to join daily online yoga classes.<br />
-            In our classes you will get authentic and insightful sessions
-            related to healthy lifestyle, Asanas, Pranayama, Meditation,
-            Mindfulness and Yogic Philosophy.
+            More than an online class, this is a living Yoga discipline designed
+            to bring balance to the body, steadiness to the mind, and harmony to
+            the flow of pana.
           </p>
           <p>
-            We have classes suitable for all levels of yoga practitioners:
-            beginners to experienced
+            Through regular practice of Asana, Pranayama, Meditation, and Yogic
+            wisdom, you cultivate strength without tension, flexibility without
+            force, and clarity without restlessness.
           </p>
           <p>
-            Guided by highly experienced yoga teachers, you will find exciting
-            yoga classes revolving around strengthening the body, flexibility,
-            correct alignment, detox, hamstrings, hip opening, inversions and so
-            much more.
+            In a world that constantly overstimulates the nervous system, daily
+            Yoga becomes a sacred space to restore balance, regulate energy,
+            sharpen awareness, and reconnect with yourself.
           </p>
+          <p>
+            Whether you are beginning your journey or deepening an established
+            practice, these sessions offer authentic guidance rooted in
+            traditional Yoga, helping you build a sustainable daily sādhana that
+            supports physical wellbeing, emotional resilience, mental clarity,
+            and inner transformation.
+          </p>
+          <p>Begin the discipline. Experience the change.</p>
         </div>
       </div>
     </div>
@@ -77,40 +86,51 @@
       <div class="col-md-12">
         <div class="middle-text">
           <h2>
-            <span>Live Session -</span> New Batch starts the first monday of
-            every month
+            <span>Live Guided Yoga Sadhana</span>
           </h2>
+          <h4>
+            <i>
+              Each session is conducted live, allowing you to receive direct
+              guidance, corrections, and support from experienced Yoga teachers.
+              Your practice is not left to chance or pre-recorded
+              instructions.</i
+            >
+          </h4>
         </div>
       </div>
       <div class="col-md-12 mt-2">
         <div class="row online-about">
           <p>
-            These classes are completely live. You can make or organise your
-            life better by coming regularly in these classes according to your
-            time. Our aim is to bring yoga to all around the world. Yoga is one
-            such medium which provides you physical, mental and spiritual
-            healthiness.
+            <span class="theme-color">More Than Physical Exercise - </span>Yoga is not merely stretching, strengthening, or improving flexibility. Every practice is taught with an understanding of its purpose, principles, energetic effects, and place within the broader path of Yoga.
           </p>
           <p>
-            Regular online yoga classes are an excellent opportunity for people
-            who are looking for a healthy lifestyle or knowledgeable yoga
-            classes from the comfort of their home.
+            <span class="theme-color">Learn from Experienced Teachers - </span> Our teachers bring over 12 years of teaching experience and have guided students from diverse backgrounds through authentic and systematic Yoga practice.
           </p>
-          <div class="record-data">
-            <h4><span>Recordings will be available in our virtual classroom</span></h4>
-            <p>
-              You will also have access to our virtual classroom, where you can watch the recordings of each class. The recordings from every batch remain available until the next batch begins.
-            </p>
-          </div>
+          <p>
+            <span class="theme-color">A Complete Yogic Education - </span> Along with Asana, you will gradually develop an understanding of Pranayama, Meditation, Yogic Lifestyle, and Yogic Philosophy, creating a balanced practice that supports physical health, mental clarity, emotional stability, and spiritual growth.
+          </p>
+          <p>
+            <span class="theme-color">Never Miss a Session - </span> Every live class is recorded and made available in your personal student dashboard shortly after the session. If you miss a class or wish to revisit a lesson, you can study and practice at your own pace, as many times as needed.
+          </p>
+          <p>
+            <span class="theme-color">Build a Sustainable Daily Discipline - </span> Transformation is not created by occasional practice but through consistency. These classes help you establish a realistic and sustainable daily Yoga discipline that can be integrated into modern life.
+          </p>
+          <p>
+            <span class="theme-color">Transform Your Lifestyle - </span> Rather than simply exercising for an hour and returning to old habits, Yoga gradually reshapes the way you breathe, think, eat, rest, respond, and live. With regular practice, Yoga becomes a way of life rather than an activity.
+          </p>
         </div>
       </div>
       <div class="col-md-12">
         <div class="col-md-12">
           <div class="middle-text">
-            <h2><span>Next batches starts</span> 1st June</h2>
+            <h2><span>Next batches starts</span> 8th June</h2>
           </div>
           <div class="row">
-            <div class="col-md-6 mt-3" *ngFor="let mentor of courseMentor">
+            <div
+              class="mt-3"
+              [ngClass]="courseMentor.length === 1 ? 'col-md-12' : 'col-md-6'"
+              *ngFor="let mentor of courseMentor"
+            >
               <div class="card">
                 <div class="row justify-content-center">
                   <div class="col-md-12">
@@ -134,12 +154,13 @@
                       <br />
                       <b>{{ mentor.date }}</b>
                     </p>
-                    <p *ngIf="mentor.id == 3">At the moment, Women Wellness classes are temporarily paused.</p>
+                    <p *ngIf="mentor.id == 3">
+                      At the moment, Women Wellness classes are temporarily
+                      paused.
+                    </p>
                     <p>{{ mentor.description }}</p>
                     @if (mentor.id == 3) {
-                      <button
-                        class="button blinking"
-                      >Coming soon</button>
+                      <button class="button blinking">Coming soon</button>
                     } @else {
                       <button
                         class="button blinking"

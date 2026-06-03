@@ -32,7 +32,7 @@ export class CourseMentorComponent {
   getTeachersData(slug: string) {
     this.cartService.getTeachersData(slug).subscribe({
       next: (data) => {
-        this.courseMentor = data;
+        this.courseMentor = data.filter((mentor) => mentor.id !== 3);
       },
       error: (error) => {
         console.error('Failed to load teachers:', error);

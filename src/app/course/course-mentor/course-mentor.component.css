@@ -99,6 +99,10 @@
     padding: 0;
   }
 
+  .theme-color{
+    color: #f9751e;
+  }
+
   .button {
     background: rgba(249, 117, 30, 1);
     color: #fff;
