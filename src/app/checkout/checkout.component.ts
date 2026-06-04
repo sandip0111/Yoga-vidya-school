@@ -123,6 +123,7 @@ export class CheckoutComponent {
     } else if (baliCourses.includes(this.slug as any)) {
       this.roomList = [
         { name: 'Private room', value: 2 },
+        { name: 'Booking with 30%', value: 3 },
       ];
     }
     if (isBrowser) {
@@ -304,6 +305,9 @@ export class CheckoutComponent {
     this.inputValidation('cur');
   }
   setPriceData(feesData: feesInfoDto[], currency: string, roomId: number) {
+    const isBooking30 = +roomId === 3;
+    const lookupRoomId = isBooking30 ? 2 : +roomId;
+
     for (let item of feesData) {
       if (item.title == 'Price') {
         if (this.isSpecialDiscount) {
@@ -327,36 +331,29 @@ export class CheckoutComponent {
             item.data.find((f) => f.currency == currency)?.discount ?? 0;
         }
       } else {
-        let room = `Price(${
-          this.roomList.find((item) => item.value == roomId)?.name
-        })`;
+        const roomName = this.roomList.find((item) => item.value == lookupRoomId)?.name;
+        const room = `Price(${roomName})`;
+        const matchData = item.data.find(
+          (f) => f.currency == currency && item.title == room,
+        );
+
         if (this.isSpecialDiscount) {
-          const discountPrice = item.data.find(
-            (f) => f.currency == currency && item.title == room,
-          )?.discount;
+          const discountPrice = matchData?.discount;
           if (discountPrice) {
-            this.amount =
-              item.data.find(
-                (f) => f.currency == currency && item.title == room,
-              )?.discount ?? 0;
-            this.actualAmount =
-              item.data.find(
-                (f) => f.currency == currency && item.title == room,
-              )?.amount ?? 0;
+            const baseAmount = discountPrice;
+            const baseActual = matchData?.amount ?? 0;
+            this.amount = isBooking30 ? Math.round(baseAmount * 0.3) : baseAmount;
+            this.actualAmount = isBooking30 ? Math.round(baseActual * 0.3) : baseActual;
           } else {
-            this.amount =
-              item.data.find(
-                (f) => f.currency == currency && item.title == room,
-              )?.amount ?? 0;
+            const baseAmount = matchData?.amount ?? 0;
+            this.amount = isBooking30 ? Math.round(baseAmount * 0.3) : baseAmount;
             this.actualAmount = 0;
           }
         } else {
-          this.amount =
-            item.data.find((f) => f.currency == currency && item.title == room)
-              ?.amount ?? 0;
-          this.offerAmount =
-            item.data.find((f) => f.currency == currency && item.title == room)
-              ?.discount ?? 0;
+          const baseAmount = matchData?.amount ?? 0;
+          const baseOffer = matchData?.discount ?? 0;
+          this.amount = isBooking30 ? Math.round(baseAmount * 0.3) : baseAmount;
+          this.offerAmount = isBooking30 ? Math.round(baseOffer * 0.3) : baseOffer;
         }
       }
       if (this.amount) {
@@ -1447,6 +1444,7 @@ export class CheckoutComponent {
       [routeEnum.rishikesh100]: '100-Hour Yoga Teacher Training',
       [routeEnum.rishkesh200]: '200-Hour Yoga Teacher Training',
       [routeEnum.rishikesh300]: '300-Hour Yoga Teacher Training',
+      [routeEnum.bali100]: '100-Hour Yoga Teacher Training Bali',
       [routeEnum.bali200]: '200-Hour Yoga Teacher Training Bali',
       [routeEnum.bali300]: '300-Hour Yoga Teacher Training Bali',
     };
@@ -1458,6 +1456,7 @@ export class CheckoutComponent {
       [routeEnum.rishikesh100]: 800,
       [routeEnum.rishkesh200]: 1200,
       [routeEnum.rishikesh300]: 1500,
+      [routeEnum.bali100]: 1000,
       [routeEnum.bali200]: 1400,
       [routeEnum.bali300]: 1800,
     };
