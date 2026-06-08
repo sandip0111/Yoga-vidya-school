@@ -379,7 +379,8 @@ export class CheckoutComponent {
         if (
           this.slug !== routeEnum.rishikesh100 &&
           this.slug !== routeEnum.rishkesh200 &&
-          this.slug !== routeEnum.rishikesh300
+          this.slug !== routeEnum.rishikesh300 &&
+          this.slug !== routeEnum.pranayamaCertification
         ) {
           this.setPriceData(
             this.feesData,
