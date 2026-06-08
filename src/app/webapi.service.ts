@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../environments/environment';
 import {
   getCouponCodeModel,
+  PranayamaCertificationSignupModel,
   razorPaymentResultModel,
   razorPayModel,
   razorPayReturnModel,
@@ -395,6 +396,30 @@ export class WebapiService {
   getPaymentResultSwarSadhana(data: any) {
     return this.http.post(
       this.url + 'api/v1/getPaymentResultSwarSadhana',
+      data
+    );
+  }
+  checkoutRazorpayForPranayamaCertification(data: PranayamaCertificationSignupModel): Observable<razorPayModel> {
+    return this.http.post<razorPayModel>(
+      this.url + 'api/v1/checkoutRazorpayForPranayamaCertification',
+      data
+    );
+  }
+  getRazorPaymentResultPranayamaCertification(data: razorPaymentResultModel): Observable<razorPayReturnModel> {
+    return this.http.post<razorPayReturnModel>(
+      this.url + 'api/v1/getRazorPaymentResultPranayamaCertification',
+      data
+    );
+  }
+  checkoutStripeForPranayamaCertification(data: PranayamaCertificationSignupModel): Observable<stripePayModel> {
+    return this.http.post<stripePayModel>(
+      this.url + 'api/v1/checkoutStripeForPranayamaCertification',
+      data
+    );
+  }
+  getStripePaymentResultPranayamaCertification(data: any) {
+    return this.http.post(
+      this.url + 'api/v1/getStripePaymentResultPranayamaCertification',
       data
     );
   }

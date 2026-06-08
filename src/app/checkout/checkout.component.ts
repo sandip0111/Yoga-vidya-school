@@ -18,6 +18,7 @@ import {
   checkoutModel,
   dropdownModel,
   PhoneNumberData,
+  PranayamaCertificationSignupModel,
   razorPayModel,
   SignupDataModel,
   stripePayModel,
@@ -77,6 +78,12 @@ export class CheckoutComponent {
   feesData: feeInfoDto[] = [];
   selectedMonth: string | null = null;
   s3bucket = s3Bucket;
+  isDiscountPlan: boolean = false;
+  // Hardcoded prices for ?plan=discount on 200TTC slug
+  private readonly discountPlanPrices: Record<string, number> = {
+    INR: 79000,
+    USD: 850,
+  };
   constructor(
     private webapiService: WebapiService,
     private _activatedRoute: ActivatedRoute,
@@ -96,6 +103,9 @@ export class CheckoutComponent {
       }
       if (params['month']) {
         this.selectedMonth = params['month'];
+      }
+      if (params['plan'] === 'discount') {
+        this.isDiscountPlan = true;
       }
     });
     this.paymentId = this._activatedRoute.snapshot.queryParamMap.get('id');
@@ -124,6 +134,11 @@ export class CheckoutComponent {
       this.roomList = [
         { name: 'Private room', value: 2 },
         { name: 'Booking with 30%', value: 3 },
+      ];
+    } else if (this.slug === routeEnum.pranayamaCertification) {
+      this.roomList = [
+        { name: 'Full Payment', value: 1 },
+        { name: 'Reserve slot with 30%', value: 3 },
       ];
     }
     if (isBrowser) {
@@ -261,44 +276,45 @@ export class CheckoutComponent {
         this.couponCodeId = res.id;
       });
   }
+
   setRoomPrice(event: any) {
     this.inputValidation('room');
-    if ([1, 2, 3].includes(+event.target.value)) {
-      // let availableCurrencies: string[] = [];
-      // if (this.feesData && this.feesData.length > 0) {
-      //   this.feesData.forEach((item) => {
-      //     item.data.forEach((d) => {
-      //       if (!availableCurrencies.includes(d.currency)) {
-      //         availableCurrencies.push(d.currency);
-      //       }
-      //     });
-      //   });
-      // }
-      // if (availableCurrencies.length > 0) {
-      //   this.currencyOptions = availableCurrencies;
-      // } else {
-      //   this.currencyOptions = ['INR', 'USD'];
-      // }
-      this.setCurrencyData(this.feesData, this.checkData);
-      // if (
-      //   !this.checkData.currency ||
-      //   !this.currencyOptions.includes(this.checkData.currency)
-      // ) {
-      //   this.checkData.currency = this.currencyOptions[0];
-      // }
+    const selectedValue = +event.target.value;
+    if ([1, 2, 3].includes(selectedValue)) {
+      // Populate currency options only on first booking selection — never reset user's choice
+      if (this.currencyOptions.length === 0) {
+        this.feesData.forEach((item) => {
+          item.data.forEach((d) => {
+            if (!this.currencyOptions.includes(d.currency)) {
+              this.currencyOptions.push(d.currency);
+            }
+          });
+        });
+      }
+      // Set a default currency only if none is already selected
+      if (!this.checkData.currency && this.currencyOptions.length > 0) {
+        this.checkData.currency = this.currencyOptions[0];
+      }
     } else {
       this.currencyOptions = [];
       this.checkData.currency = '';
     }
-    if (this.feesData.length > 0) {
+    // Recalculate price using the preserved (or newly set) currency
+    if (this.feesData.length > 0 && this.checkData.currency) {
       this.setPriceData(
         this.feesData,
         this.checkData.currency,
-        event.target.value,
+        selectedValue,
       );
     }
   }
   priceConvert(e: any) {
+    // Discount plan: update amount based on selected currency
+    if (this.isDiscountPlan && this.slug === routeEnum['200TTC']) {
+      this.amount = this.discountPlanPrices[e.target.value] ?? 79000;
+      this.inputValidation('cur');
+      return;
+    }
     if (this.feesData.length > 0) {
       this.setPriceData(this.feesData, e.target.value, this.checkData.package);
     }
@@ -315,20 +331,20 @@ export class CheckoutComponent {
             (f) => f.currency == currency,
           )?.discount;
           if (discountPrice) {
-            this.amount =
-              item.data.find((f) => f.currency == currency)?.discount ?? 0;
-            this.actualAmount =
-              item.data.find((f) => f.currency == currency)?.amount ?? 0;
+            const baseAmount = discountPrice;
+            const baseActual = item.data.find((f) => f.currency == currency)?.amount ?? 0;
+            this.amount = isBooking30 ? Math.round(baseAmount * 0.3) : baseAmount;
+            this.actualAmount = isBooking30 ? Math.round(baseActual * 0.3) : baseActual;
           } else {
-            this.amount =
-              item.data.find((f) => f.currency == currency)?.amount ?? 0;
+            const baseAmount = item.data.find((f) => f.currency == currency)?.amount ?? 0;
+            this.amount = isBooking30 ? Math.round(baseAmount * 0.3) : baseAmount;
             this.actualAmount = 0;
           }
         } else {
-          this.amount =
-            item.data.find((f) => f.currency == currency)?.amount ?? 0;
-          this.offerAmount =
-            item.data.find((f) => f.currency == currency)?.discount ?? 0;
+          const baseAmount = item.data.find((f) => f.currency == currency)?.amount ?? 0;
+          const baseOffer = item.data.find((f) => f.currency == currency)?.discount ?? 0;
+          this.amount = isBooking30 ? Math.round(baseAmount * 0.3) : baseAmount;
+          this.offerAmount = isBooking30 ? Math.round(baseOffer * 0.3) : baseOffer;
         }
       } else {
         const roomName = this.roomList.find((item) => item.value == lookupRoomId)?.name;
@@ -368,12 +384,23 @@ export class CheckoutComponent {
       this.checkData.currency = '';
     } else {
       this.phoneError = '';
+      // Discount plan: set fixed currency options and price, skip feesData logic
+      if (this.isDiscountPlan && this.slug === routeEnum['200TTC']) {
+        if (this.currencyOptions.length === 0) {
+          this.currencyOptions = ['INR', 'USD'];
+          this.checkData.currency = 'INR';
+        }
+        this.amount = this.discountPlanPrices[this.checkData.currency] ?? 79000;
+        this.inputValidation('cur');
+        return;
+      }
       if (this.feesData.length > 0) {
         this.setCurrencyData(this.feesData, this.checkData);
         if (
           this.slug !== routeEnum.rishikesh100 &&
           this.slug !== routeEnum.rishkesh200 &&
-          this.slug !== routeEnum.rishikesh300
+          this.slug !== routeEnum.rishikesh300 &&
+          this.slug !== routeEnum.pranayamaCertification
         ) {
           this.setPriceData(
             this.feesData,
@@ -484,7 +511,7 @@ export class CheckoutComponent {
         isErrMsg = true;
       }
       if (!data.package) {
-        if (this.slug !== routeEnum.sa && this.slug !== routeEnum.pranOnlinePranaArambh && this.slug !== routeEnum.foundationOfSpirituality && this.slug !== routeEnum['200TTC']) {
+        if (this.slug !== routeEnum.sa && this.slug !== routeEnum.pranOnlinePranaArambh && this.slug !== routeEnum.foundationOfSpirituality && this.slug !== routeEnum['200TTC'] && this.slug !== routeEnum.pranayamaCertification && !this.isDiscountPlan) {
           this.packageRequired = 'Please select a room';
           isErrMsg = true;
         }
@@ -514,6 +541,8 @@ export class CheckoutComponent {
           this.baliCheckout(data, isRazorPay);
         } else if (this.slug == routeEnum.sa) {
           this.swaraSadhanaCheckout(data, isRazorPay);
+        } else if (this.slug == routeEnum.pranayamaCertification) {
+          this.pranayamaCertificationCheckout(data, isRazorPay);
         } else {
           this.pranaArambhCheckout(data, isRazorPay);
         }
@@ -809,6 +838,110 @@ export class CheckoutComponent {
             res.sessionId,
           );
           localStorage.setItem(localstorageKey.bali300StripeDBId, res.payDbId);
+          window.location.href = res.url;
+          this.spinner.hide();
+        } else {
+          alert('Session Genration failed! please try again');
+          this.spinner.hide();
+        }
+      });
+  }
+
+  pranayamaCertificationCheckout(data: checkoutModel, isRazorPay: boolean) {
+    const isBooking30 = +data.package === 3;
+    const dueAmount = isBooking30 ? Math.round((this.amount / 0.3) * 0.7) : 0;
+
+    let signupData: PranayamaCertificationSignupModel = {
+      name: data.name,
+      email: data.email.toLowerCase(),
+      phoneNumber: data.phoneNumber.e164Number,
+      price: this.amount,
+      currency: data.currency,
+      dueAmount: dueAmount,
+      month: 'February, 2027',
+    };
+
+    if (isRazorPay) {
+      this.initializeRazorPaymentForPranayamaCertification(signupData);
+    } else {
+      this.initializePaymentForPranayamaCertification(signupData);
+    }
+  }
+
+  initializeRazorPaymentForPranayamaCertification(data: PranayamaCertificationSignupModel) {
+    this.webapiService
+      .checkoutRazorpayForPranayamaCertification(data)
+      .subscribe((res: razorPayModel) => {
+        if (res && res.orderId && res.razorpayKey) {
+          const options = {
+            key: res.razorpayKey,
+            amount: res.amount * 100,
+            currency: data.currency,
+            name: 'Yoga Vidya School',
+            description: 'Pranayama Certification Payment',
+            order_id: res.orderId,
+            handler: (response: any) => {
+              localStorage.setItem(
+                localstorageKey.pranayamaRzpId,
+                response.razorpay_payment_id,
+              );
+              localStorage.setItem(
+                localstorageKey.pranayamaRzpOrderId,
+                response.razorpay_order_id,
+              );
+              localStorage.setItem(
+                localstorageKey.pranayamaRzpSig,
+                response.razorpay_signature,
+              );
+              localStorage.setItem(
+                localstorageKey.pranayamaRzpDBId,
+                res.payDbId,
+              );
+              localStorage.setItem(
+                localstorageKey.pranayamaDue,
+                data.dueAmount ? data.dueAmount.toString() : '0',
+              );
+              this.router.navigate(['/confirmation']);
+            },
+            prefill: {
+              name: data.name,
+              email: data.email,
+              contact: data.phoneNumber,
+            },
+            notes: {
+              course: JSON.stringify('Pranayama Certification'),
+            },
+            theme: {
+              color: '#3399cc',
+            },
+          };
+          this.spinner.hide();
+          const rzp = new Razorpay(options);
+          rzp.open();
+        } else {
+          alert('Session Genration failed! please try again');
+          this.spinner.hide();
+        }
+      });
+  }
+
+  initializePaymentForPranayamaCertification(data: PranayamaCertificationSignupModel) {
+    this.webapiService
+      .checkoutStripeForPranayamaCertification(data)
+      .subscribe((res: stripePayModel) => {
+        if (res.sessionId) {
+          localStorage.setItem(
+            localstorageKey.pranayamaStripeSessionId,
+            res.sessionId,
+          );
+          localStorage.setItem(
+            localstorageKey.pranayamaStripeDBId,
+            res.payDbId,
+          );
+          localStorage.setItem(
+            localstorageKey.pranayamaDue,
+            data.dueAmount ? data.dueAmount.toString() : '0',
+          );
           window.location.href = res.url;
           this.spinner.hide();
         } else {

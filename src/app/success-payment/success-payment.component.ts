@@ -43,6 +43,8 @@ export class SuccessPaymentComponent {
   swaraSadhnaRazorPaySessionId: string = '';
   swaraSadhnaStripeSessionId: string = '';
   bali300StripeSessionId: string = '';
+  pranayamaRzpSessionId: string = '';
+  pranayamaStripeSessionId: string = '';
   constructor(
     private webapiService: WebapiService,
     private router: Router,
@@ -98,6 +100,10 @@ export class SuccessPaymentComponent {
       localStorage.getItem(localstorageKey.swaraSadhnaStripeSessionId) ?? '';
     this.bali300StripeSessionId =
       localStorage.getItem(localstorageKey.bali300StripeSessionId) ?? '';
+    this.pranayamaRzpSessionId =
+      localStorage.getItem(localstorageKey.pranayamaRzpId) ?? '';
+    this.pranayamaStripeSessionId =
+      localStorage.getItem(localstorageKey.pranayamaStripeSessionId) ?? '';
     // Track purchase completion after a short delay to ensure data is loaded
 
     if (this.sessionId) {
@@ -201,6 +207,16 @@ export class SuccessPaymentComponent {
     if (this.bali300StripeSessionId) {
       setTimeout(() => {
         this.getStripePaymentResultBali(this.bali300StripeSessionId);
+      }, 0);
+    }
+    if (this.pranayamaRzpSessionId) {
+      setTimeout(() => {
+        this.getRazorPaymentResultPranayamaCertification(this.pranayamaRzpSessionId);
+      }, 0);
+    }
+    if (this.pranayamaStripeSessionId) {
+      setTimeout(() => {
+        this.getStripePaymentResultPranayamaCertification(this.pranayamaStripeSessionId);
       }, 0);
     }
   }
@@ -812,6 +828,76 @@ export class SuccessPaymentComponent {
       localStorage.removeItem(localstorageKey.bali300StripeDBId);
     });
   }
+  getRazorPaymentResultPranayamaCertification(razorpayPaymentId: string) {
+    let pass = this.genratePass(6);
+    let dueAmnt = localStorage.getItem(localstorageKey.pranayamaDue);
+    const fbp = this.getCookie('_fbp');
+    const fbc = this.getCookie('_fbc');
+    const paymentResult: razorPaymentResultModel = {
+      razorpayPaymentId: razorpayPaymentId,
+      razorpayOrderId: localStorage.getItem(localstorageKey.pranayamaRzpOrderId),
+      razorpaySignature: localStorage.getItem(localstorageKey.pranayamaRzpSig),
+      payDbId: localStorage.getItem(localstorageKey.pranayamaRzpDBId),
+      password: pass,
+      dueAmnt: dueAmnt ? +dueAmnt : 0,
+      fbp: fbp,
+      fbc: fbc,
+    };
+    this.webapiService
+      .getRazorPaymentResultPranayamaCertification(paymentResult)
+      .subscribe((res: razorPayReturnModel) => {
+        if (res) {
+          this.paidFlag = 'true';
+          this.ordId = paymentResult.razorpayOrderId;
+          this.amount = res.amount;
+          this.cur = this.currencySet(res.currency);
+          
+          localStorage.removeItem(localstorageKey.pranayamaRzpId);
+          localStorage.removeItem(localstorageKey.pranayamaRzpOrderId);
+          localStorage.removeItem(localstorageKey.pranayamaRzpSig);
+          localStorage.removeItem(localstorageKey.pranayamaRzpDBId);
+          localStorage.removeItem(localstorageKey.pranayamaDue);
+
+          this.spinner.hide();
+        } else {
+          this.paidFlag = 'false';
+          this.spinner.hide();
+        }
+      });
+  }
+  getStripePaymentResultPranayamaCertification(sessionId: string) {
+    let pass = this.genratePass(6);
+    const fbp = this.getCookie('_fbp');
+    const fbc = this.getCookie('_fbc');
+    let dueAmnt = localStorage.getItem(localstorageKey.pranayamaDue);
+    let val = {
+      sessionId: sessionId,
+      payDbId: localStorage.getItem(localstorageKey.pranayamaStripeDBId),
+      password: pass,
+      dueAmnt: dueAmnt ? +dueAmnt : 0,
+      fbp: fbp,
+      fbc: fbc,
+    };
+    this.webapiService
+      .getStripePaymentResultPranayamaCertification(val)
+      .subscribe((res: any) => {
+        if (res.status == 'success') {
+          localStorage.removeItem(localstorageKey.pranayamaStripeSessionId);
+          localStorage.removeItem(localstorageKey.pranayamaStripeDBId);
+          localStorage.removeItem(localstorageKey.pranayamaDue);
+
+          this.paidFlag = 'true';
+          this.ordId = res.paymtId;
+          this.amount = res.amount;
+          this.cur = this.currencySet(res.currency);
+          this.spinner.hide();
+        } else {
+          this.paidFlag = 'false';
+          this.reuseUrl = res.sessionId;
+          this.spinner.hide();
+        }
+      });
+  }
   gotoAccount() {
     this.router.navigate(['/login']);
     sessionStorage.removeItem('tempCourse');
@@ -832,6 +918,13 @@ export class SuccessPaymentComponent {
     localStorage.removeItem(localstorageKey['200TTCDue']);
     localStorage.removeItem(localstorageKey.bali300StripeSessionId);
     localStorage.removeItem(localstorageKey.bali300StripeDBId);
+    localStorage.removeItem(localstorageKey.pranayamaRzpId);
+    localStorage.removeItem(localstorageKey.pranayamaRzpOrderId);
+    localStorage.removeItem(localstorageKey.pranayamaRzpSig);
+    localStorage.removeItem(localstorageKey.pranayamaRzpDBId);
+    localStorage.removeItem(localstorageKey.pranayamaDue);
+    localStorage.removeItem(localstorageKey.pranayamaStripeSessionId);
+    localStorage.removeItem(localstorageKey.pranayamaStripeDBId);
   }
   gotoHome() {
     this.router.navigate(['/']);
@@ -858,6 +951,13 @@ export class SuccessPaymentComponent {
     localStorage.removeItem(localstorageKey['200TTCDue']);
     localStorage.removeItem(localstorageKey.bali300StripeSessionId);
     localStorage.removeItem(localstorageKey.bali300StripeDBId);
+    localStorage.removeItem(localstorageKey.pranayamaRzpId);
+    localStorage.removeItem(localstorageKey.pranayamaRzpOrderId);
+    localStorage.removeItem(localstorageKey.pranayamaRzpSig);
+    localStorage.removeItem(localstorageKey.pranayamaRzpDBId);
+    localStorage.removeItem(localstorageKey.pranayamaDue);
+    localStorage.removeItem(localstorageKey.pranayamaStripeSessionId);
+    localStorage.removeItem(localstorageKey.pranayamaStripeDBId);
   }
   genratePass(len: number) {
     const charset =
