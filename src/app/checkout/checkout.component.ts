@@ -267,40 +267,35 @@ export class CheckoutComponent {
         this.couponCodeId = res.id;
       });
   }
+
   setRoomPrice(event: any) {
     this.inputValidation('room');
-    if ([1, 2, 3].includes(+event.target.value)) {
-      // let availableCurrencies: string[] = [];
-      // if (this.feesData && this.feesData.length > 0) {
-      //   this.feesData.forEach((item) => {
-      //     item.data.forEach((d) => {
-      //       if (!availableCurrencies.includes(d.currency)) {
-      //         availableCurrencies.push(d.currency);
-      //       }
-      //     });
-      //   });
-      // }
-      // if (availableCurrencies.length > 0) {
-      //   this.currencyOptions = availableCurrencies;
-      // } else {
-      //   this.currencyOptions = ['INR', 'USD'];
-      // }
-      this.setCurrencyData(this.feesData, this.checkData);
-      // if (
-      //   !this.checkData.currency ||
-      //   !this.currencyOptions.includes(this.checkData.currency)
-      // ) {
-      //   this.checkData.currency = this.currencyOptions[0];
-      // }
+    const selectedValue = +event.target.value;
+    if ([1, 2, 3].includes(selectedValue)) {
+      // Populate currency options only on first booking selection — never reset user's choice
+      if (this.currencyOptions.length === 0) {
+        this.feesData.forEach((item) => {
+          item.data.forEach((d) => {
+            if (!this.currencyOptions.includes(d.currency)) {
+              this.currencyOptions.push(d.currency);
+            }
+          });
+        });
+      }
+      // Set a default currency only if none is already selected
+      if (!this.checkData.currency && this.currencyOptions.length > 0) {
+        this.checkData.currency = this.currencyOptions[0];
+      }
     } else {
       this.currencyOptions = [];
       this.checkData.currency = '';
     }
-    if (this.feesData.length > 0) {
+    // Recalculate price using the preserved (or newly set) currency
+    if (this.feesData.length > 0 && this.checkData.currency) {
       this.setPriceData(
         this.feesData,
         this.checkData.currency,
-        event.target.value,
+        selectedValue,
       );
     }
   }
@@ -321,20 +316,20 @@ export class CheckoutComponent {
             (f) => f.currency == currency,
           )?.discount;
           if (discountPrice) {
-            this.amount =
-              item.data.find((f) => f.currency == currency)?.discount ?? 0;
-            this.actualAmount =
-              item.data.find((f) => f.currency == currency)?.amount ?? 0;
+            const baseAmount = discountPrice;
+            const baseActual = item.data.find((f) => f.currency == currency)?.amount ?? 0;
+            this.amount = isBooking30 ? Math.round(baseAmount * 0.3) : baseAmount;
+            this.actualAmount = isBooking30 ? Math.round(baseActual * 0.3) : baseActual;
           } else {
-            this.amount =
-              item.data.find((f) => f.currency == currency)?.amount ?? 0;
+            const baseAmount = item.data.find((f) => f.currency == currency)?.amount ?? 0;
+            this.amount = isBooking30 ? Math.round(baseAmount * 0.3) : baseAmount;
             this.actualAmount = 0;
           }
         } else {
-          this.amount =
-            item.data.find((f) => f.currency == currency)?.amount ?? 0;
-          this.offerAmount =
-            item.data.find((f) => f.currency == currency)?.discount ?? 0;
+          const baseAmount = item.data.find((f) => f.currency == currency)?.amount ?? 0;
+          const baseOffer = item.data.find((f) => f.currency == currency)?.discount ?? 0;
+          this.amount = isBooking30 ? Math.round(baseAmount * 0.3) : baseAmount;
+          this.offerAmount = isBooking30 ? Math.round(baseOffer * 0.3) : baseOffer;
         }
       } else {
         const roomName = this.roomList.find((item) => item.value == lookupRoomId)?.name;
