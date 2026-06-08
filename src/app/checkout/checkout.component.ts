@@ -78,6 +78,12 @@ export class CheckoutComponent {
   feesData: feeInfoDto[] = [];
   selectedMonth: string | null = null;
   s3bucket = s3Bucket;
+  isDiscountPlan: boolean = false;
+  // Hardcoded prices for ?plan=discount on 200TTC slug
+  private readonly discountPlanPrices: Record<string, number> = {
+    INR: 79000,
+    USD: 850,
+  };
   constructor(
     private webapiService: WebapiService,
     private _activatedRoute: ActivatedRoute,
@@ -97,6 +103,9 @@ export class CheckoutComponent {
       }
       if (params['month']) {
         this.selectedMonth = params['month'];
+      }
+      if (params['plan'] === 'discount') {
+        this.isDiscountPlan = true;
       }
     });
     this.paymentId = this._activatedRoute.snapshot.queryParamMap.get('id');
@@ -300,6 +309,12 @@ export class CheckoutComponent {
     }
   }
   priceConvert(e: any) {
+    // Discount plan: update amount based on selected currency
+    if (this.isDiscountPlan && this.slug === routeEnum['200TTC']) {
+      this.amount = this.discountPlanPrices[e.target.value] ?? 79000;
+      this.inputValidation('cur');
+      return;
+    }
     if (this.feesData.length > 0) {
       this.setPriceData(this.feesData, e.target.value, this.checkData.package);
     }
@@ -369,6 +384,16 @@ export class CheckoutComponent {
       this.checkData.currency = '';
     } else {
       this.phoneError = '';
+      // Discount plan: set fixed currency options and price, skip feesData logic
+      if (this.isDiscountPlan && this.slug === routeEnum['200TTC']) {
+        if (this.currencyOptions.length === 0) {
+          this.currencyOptions = ['INR', 'USD'];
+          this.checkData.currency = 'INR';
+        }
+        this.amount = this.discountPlanPrices[this.checkData.currency] ?? 79000;
+        this.inputValidation('cur');
+        return;
+      }
       if (this.feesData.length > 0) {
         this.setCurrencyData(this.feesData, this.checkData);
         if (
@@ -486,7 +511,7 @@ export class CheckoutComponent {
         isErrMsg = true;
       }
       if (!data.package) {
-        if (this.slug !== routeEnum.sa && this.slug !== routeEnum.pranOnlinePranaArambh && this.slug !== routeEnum.foundationOfSpirituality && this.slug !== routeEnum['200TTC'] && this.slug !== routeEnum.pranayamaCertification) {
+        if (this.slug !== routeEnum.sa && this.slug !== routeEnum.pranOnlinePranaArambh && this.slug !== routeEnum.foundationOfSpirituality && this.slug !== routeEnum['200TTC'] && this.slug !== routeEnum.pranayamaCertification && !this.isDiscountPlan) {
           this.packageRequired = 'Please select a room';
           isErrMsg = true;
         }

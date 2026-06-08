@@ -14,7 +14,18 @@
                       >({{ selectedMonth }})</span
                     >
                   </div>
-                  <div class="col-auto" *ngIf="amount > 0 && checkData.currency">
+                  <!-- Discount plan: show selected currency price top-right -->
+                  <div class="col-auto" *ngIf="amount > 0 && checkData.currency && isDiscountPlan">
+                    <div>
+                      <span class="h4">
+                        <strong>
+                          {{ amount | currency : checkData.currency : "symbol" : "1.0-3" }}
+                        </strong>
+                      </span>
+                    </div>
+                  </div>
+                  <!-- Normal plans: show price top-right after phone + currency selected -->
+                  <div class="col-auto" *ngIf="amount > 0 && checkData.currency && !isDiscountPlan">
                     @if(isSpecialDiscount){
                     <div>
                       <span class="h4" *ngIf="actualAmount">
@@ -37,8 +48,8 @@
                     }@else {
                     <div>
                       <span class="h4">
-                        <strong [ngClass]="isDiscounted ? 'old-price' : ''">
-                          {{
+                        <strong [ngClass]="isDiscounted ? 'old-price' : ''"
+                          >{{
                             amount
                               | currency : checkData.currency : "symbol" : "1.0-3"
                           }}
@@ -56,7 +67,12 @@
                     }
                   </div>
                 </div>
-                @if(feesData.length>0){
+                @if(isDiscountPlan && slug === routeEnum['200TTC']){
+                <div class="row align-items-center">
+                  <span>Price : <b>$850 / ₹79,000</b></span>
+                </div>
+                }
+                @if(feesData.length>0 && !isDiscountPlan){
                 <div class="row align-items-center" *ngFor="let item of feesData">
                   <span
                     >{{ item.title }} :
@@ -192,13 +208,14 @@
           <div
             class="mb-3"
             *ngIf="
-              slug == routeEnum.rishikesh100 ||
+              !isDiscountPlan &&
+              (slug == routeEnum.rishikesh100 ||
               slug == routeEnum.rishkesh200 ||
               slug == routeEnum.rishikesh300 ||
               slug == routeEnum.bali300 ||
               slug == routeEnum.bali200 ||
               slug == routeEnum.bali100 ||
-              slug == routeEnum.pranayamaCertification
+              slug == routeEnum.pranayamaCertification)
             "
           >
             <label for="room">Booking<span style="color: red">*</span></label>
