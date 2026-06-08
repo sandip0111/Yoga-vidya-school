@@ -50,6 +50,15 @@ export interface SignupDataModel {
   hour?: number;
   month?: string;
 }
+export interface PranayamaCertificationSignupModel {
+  name: string;
+  email: string;
+  phoneNumber: string;
+  price: number;
+  currency: string;
+  dueAmount: number;
+  month: string;
+}
 export interface swaraDataModel {
   city: string;
   email: string;

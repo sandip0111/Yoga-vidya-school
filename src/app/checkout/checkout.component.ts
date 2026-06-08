@@ -18,6 +18,7 @@ import {
   checkoutModel,
   dropdownModel,
   PhoneNumberData,
+  PranayamaCertificationSignupModel,
   razorPayModel,
   SignupDataModel,
   stripePayModel,
@@ -124,6 +125,11 @@ export class CheckoutComponent {
       this.roomList = [
         { name: 'Private room', value: 2 },
         { name: 'Booking with 30%', value: 3 },
+      ];
+    } else if (this.slug === routeEnum.pranayamaCertification) {
+      this.roomList = [
+        { name: 'Full Payment', value: 1 },
+        { name: 'Reserve slot with 30%', value: 3 },
       ];
     }
     if (isBrowser) {
@@ -484,7 +490,7 @@ export class CheckoutComponent {
         isErrMsg = true;
       }
       if (!data.package) {
-        if (this.slug !== routeEnum.sa && this.slug !== routeEnum.pranOnlinePranaArambh && this.slug !== routeEnum.foundationOfSpirituality && this.slug !== routeEnum['200TTC']) {
+        if (this.slug !== routeEnum.sa && this.slug !== routeEnum.pranOnlinePranaArambh && this.slug !== routeEnum.foundationOfSpirituality && this.slug !== routeEnum['200TTC'] && this.slug !== routeEnum.pranayamaCertification) {
           this.packageRequired = 'Please select a room';
           isErrMsg = true;
         }
@@ -514,6 +520,8 @@ export class CheckoutComponent {
           this.baliCheckout(data, isRazorPay);
         } else if (this.slug == routeEnum.sa) {
           this.swaraSadhanaCheckout(data, isRazorPay);
+        } else if (this.slug == routeEnum.pranayamaCertification) {
+          this.pranayamaCertificationCheckout(data, isRazorPay);
         } else {
           this.pranaArambhCheckout(data, isRazorPay);
         }
@@ -809,6 +817,110 @@ export class CheckoutComponent {
             res.sessionId,
           );
           localStorage.setItem(localstorageKey.bali300StripeDBId, res.payDbId);
+          window.location.href = res.url;
+          this.spinner.hide();
+        } else {
+          alert('Session Genration failed! please try again');
+          this.spinner.hide();
+        }
+      });
+  }
+
+  pranayamaCertificationCheckout(data: checkoutModel, isRazorPay: boolean) {
+    const isBooking30 = +data.package === 3;
+    const dueAmount = isBooking30 ? Math.round((this.amount / 0.3) * 0.7) : 0;
+
+    let signupData: PranayamaCertificationSignupModel = {
+      name: data.name,
+      email: data.email.toLowerCase(),
+      phoneNumber: data.phoneNumber.e164Number,
+      price: this.amount,
+      currency: data.currency,
+      dueAmount: dueAmount,
+      month: 'February, 2027',
+    };
+
+    if (isRazorPay) {
+      this.initializeRazorPaymentForPranayamaCertification(signupData);
+    } else {
+      this.initializePaymentForPranayamaCertification(signupData);
+    }
+  }
+
+  initializeRazorPaymentForPranayamaCertification(data: PranayamaCertificationSignupModel) {
+    this.webapiService
+      .checkoutRazorpayForPranayamaCertification(data)
+      .subscribe((res: razorPayModel) => {
+        if (res && res.orderId && res.razorpayKey) {
+          const options = {
+            key: res.razorpayKey,
+            amount: res.amount * 100,
+            currency: data.currency,
+            name: 'Yoga Vidya School',
+            description: 'Pranayama Certification Payment',
+            order_id: res.orderId,
+            handler: (response: any) => {
+              localStorage.setItem(
+                localstorageKey.pranayamaRzpId,
+                response.razorpay_payment_id,
+              );
+              localStorage.setItem(
+                localstorageKey.pranayamaRzpOrderId,
+                response.razorpay_order_id,
+              );
+              localStorage.setItem(
+                localstorageKey.pranayamaRzpSig,
+                response.razorpay_signature,
+              );
+              localStorage.setItem(
+                localstorageKey.pranayamaRzpDBId,
+                res.payDbId,
+              );
+              localStorage.setItem(
+                localstorageKey.pranayamaDue,
+                data.dueAmount ? data.dueAmount.toString() : '0',
+              );
+              this.router.navigate(['/confirmation']);
+            },
+            prefill: {
+              name: data.name,
+              email: data.email,
+              contact: data.phoneNumber,
+            },
+            notes: {
+              course: JSON.stringify('Pranayama Certification'),
+            },
+            theme: {
+              color: '#3399cc',
+            },
+          };
+          this.spinner.hide();
+          const rzp = new Razorpay(options);
+          rzp.open();
+        } else {
+          alert('Session Genration failed! please try again');
+          this.spinner.hide();
+        }
+      });
+  }
+
+  initializePaymentForPranayamaCertification(data: PranayamaCertificationSignupModel) {
+    this.webapiService
+      .checkoutStripeForPranayamaCertification(data)
+      .subscribe((res: stripePayModel) => {
+        if (res.sessionId) {
+          localStorage.setItem(
+            localstorageKey.pranayamaStripeSessionId,
+            res.sessionId,
+          );
+          localStorage.setItem(
+            localstorageKey.pranayamaStripeDBId,
+            res.payDbId,
+          );
+          localStorage.setItem(
+            localstorageKey.pranayamaDue,
+            data.dueAmount ? data.dueAmount.toString() : '0',
+          );
           window.location.href = res.url;
           this.spinner.hide();
         } else {

@@ -35,4 +35,12 @@ export enum localstorageKey {
 
   'userSource' = 'user_source',
   'loginId' = 'login_id',
+  'pranayamaRzpId' = 'pranayama_rzp_id',
+  'pranayamaRzpOrderId' = 'pranayama_rzp_order_id',
+  'pranayamaRzpSig' = 'pranayama_rzp_signature',
+  'pranayamaRzpDBId' = 'pranayama_rzp_db_id',
+  'pranayamaStripeSessionId' = 'pranayama_stripe_session_id',
+  'pranayamaStripeDBId' = 'pranayama_stripe_db_id',
+  'pranayamaInstallment' = 'pranayama_installment',
+  'pranayamaDue' = 'pranayama_due',
 }
