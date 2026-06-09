@@ -131,7 +131,12 @@
     </div>
   </div>
 } @else {
-  <section #bannerSection class="banner-section" id="bnner_section">
+  <section
+    #bannerSection
+    class="banner-section"
+    [class.pranic-banner-section]="slug === routeEnum.pranicPurification"
+    id="bnner_section"
+  >
     @if (slug === routeEnum.bDtox) {
       <div class="floating-register-btn">
         <button class="register-btn" (click)="registerClick(slug)">
@@ -140,7 +145,21 @@
       </div>
     } @else {
       <div class="row">
-        <div class="col-md-6"></div>
+        <div class="col-md-6 pranic-banner-copy-col">
+          @if (slug === routeEnum.pranicPurification) {
+            <div class="pranic-banner-copy">
+              <div class="pranic-banner-kicker">Online Pranayama Journey</div>
+              <h1>PRANIC PURIFICATION</h1>
+              <p class="pranic-banner-subtitle">
+                Connect to your Energy body
+              </p>
+              <div class="pranic-batch-date">
+                <span>New batch starting</span>
+                <strong>January 7, 2027</strong>
+              </div>
+            </div>
+          }
+        </div>
         <div class="col-md-6">
           <div class="slider">
             <div class="inner">

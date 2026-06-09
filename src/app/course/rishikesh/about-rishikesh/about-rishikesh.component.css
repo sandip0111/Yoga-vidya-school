@@ -1,6 +1,14 @@
 .about-rishikesh-section {
   background: #f8eed8;
 
+  &.pranic-about-section {
+    padding-top: 14px !important;
+  }
+
+  &.pranic-about-section > .mb-3 {
+    margin-top: 0 !important;
+  }
+
   small {
     text-align: left;
     padding: 0;

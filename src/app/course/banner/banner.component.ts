@@ -18,6 +18,7 @@ import { routeEnum } from '../../enum/routes';
 import { s3Bucket } from '../../enum/s3Bucket';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { MonthEnum } from '../../enum/details';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-banner',
@@ -169,7 +170,7 @@ export class BannerComponent implements OnInit {
         'https://my-s3-images-bucket.s3.amazonaws.com/img/image_1692698338795.jpg';
     } else if (this.slug == 'pranic-purification') {
       this.sliderImage =
-        'https://d29rwrqvux6m5p.cloudfront.net/images/954A0706.JPG';
+        `${environment.imageUrl}IMG_3011.jpeg`;
     } else if (
       this.slug == '200-hour-yoga-teacher-training-in-kerala-india' ||
       this.slug == 'yoga-retreat-in-kerala-india' ||
