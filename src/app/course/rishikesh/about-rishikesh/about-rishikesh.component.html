@@ -1,4 +1,7 @@
-<section class="about-rishikesh-section py-5">
+<section
+  class="about-rishikesh-section py-5"
+  [class.pranic-about-section]="slug == routeEnum.pranicPurification"
+>
   @if(slug == routeEnum.pranicPurification){
   <div class="mb-3">
     <div class="d-flex flex-column justify-content-center align-items-center">
