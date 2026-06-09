@@ -87,7 +87,7 @@ export const s3Bucket = {
 
   twoGirl: 'assets/IMG_1743.JPG.jpeg',
 
-  prasantVideo: 'https://my-s3-images-bucket.s3.amazonaws.com/images/Prashant_Practice_Bali.mp4',
+  prasantVideo: `${environment.imageUrl}IMG_3010.MOV`,
   taniyaVideo: 'https://d29rwrqvux6m5p.cloudfront.net/images/Reel+Taniya.MP4',
 
   freeWebinnarHero: `${environment.imageUrl}abc.jpg`,

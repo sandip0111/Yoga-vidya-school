@@ -4,9 +4,9 @@
       <div class="inner image position-relative">
         <div class="prasantji-corner">
           <p>
-            {{mentor?.date}} from {{mentor?.time}} <br />
+            {{ mentor?.date }} from {{ mentor?.time }} <br />
             A new batch starts the first Monday of every month <br />
-            NEXT BATCH: starts {{mentor?.startDate}}
+            NEXT BATCH: starts {{ mentor?.startDate }}
           </p>
           <div class="d-flex justify-content-center">
             <button
@@ -97,8 +97,8 @@
   </div>
 </div>
 <div class="card">
-  <div class="row mb-3">
-    <div class="col-md-12">
+  <div class="row mb-3 align-items-center">
+    <div class="col-md-6">
       <div class="row justify-content-center">
         <img
           loading="lazy"
@@ -118,10 +118,10 @@
         </button>
       </div>
     </div>
+    <div class="col-md-6 text-end">
+      <video class="pVideo" controls muted loop style="border-radius: 8px">
+        <source [src]="s3Bucket.prasantVideo" type="video/mp4" />
+      </video>
+    </div>
   </div>
-</div>
-<div class="d-flex justify-content-center mb-4">
-  <video class="pVideo" controls muted loop style="border-radius: 8px">
-    <source [src]="s3Bucket.prasantVideo" type="video/mp4" />
-  </video>
 </div>
