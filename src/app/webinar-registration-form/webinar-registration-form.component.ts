@@ -73,7 +73,7 @@ export class WebinarRegistrationFormComponent implements OnInit {
     this.registrationForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      webinarDate: ['2026-06-13'],
+      webinarDate: ['2026-06-21'],
     });
   }
 
@@ -118,7 +118,7 @@ export class WebinarRegistrationFormComponent implements OnInit {
               this.spinner.hide();
               this.submitted = false;
               this.registrationForm.reset({
-                webinarDate: '2026-06-13', // keep hidden date if needed
+                webinarDate: '2026-06-21',
               });
             },
             error: (error) => {
