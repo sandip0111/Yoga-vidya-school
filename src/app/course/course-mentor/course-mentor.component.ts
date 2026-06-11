@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { s3Bucket } from '../../enum/s3Bucket';
 import { razorPayReturnModel } from '../../models/checkout';
-import { CartService } from '../../cart.service';
+import { CartItem, CartService } from '../../cart.service';
 import { routeEnum } from '../../enum/routes';
 
 @Component({
@@ -21,7 +21,7 @@ export class CourseMentorComponent {
   constructor(
     private _activatedRoute: ActivatedRoute,
     private router: Router,
-    private cartService: CartService
+    private cartService: CartService,
   ) {
     this.slug = this._activatedRoute.snapshot.routeConfig?.path;
     if (this.slug == 'online-yoga-classes') {
@@ -44,6 +44,11 @@ export class CourseMentorComponent {
       this.router.navigate([url, id]).then(() => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
       });
+    }
+  }
+  addToCart(mentor: CartItem): void {
+    if (mentor) {
+      this.cartService.addToCartMentor(mentor);
     }
   }
 }
