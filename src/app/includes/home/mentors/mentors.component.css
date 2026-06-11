@@ -27,6 +27,16 @@
     .card-image{
         height: 260px;
         overflow: hidden;
+        .img-border {
+            height: 100%;
+            width: 100%;
+        }
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
     }
     .button{
         background: rgba(249, 117, 30, 1);
