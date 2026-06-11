@@ -56,6 +56,8 @@
   .card-image-mentor {
     height: 23rem;
     width: 18rem;
+    object-fit: cover;
+    object-position: center;
   }
 
   .content-section {
