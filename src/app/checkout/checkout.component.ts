@@ -125,7 +125,14 @@ export class CheckoutComponent {
       routeEnum.bali100,
     ];
 
-    if (rishikeshCourses.includes(this.slug as any)) {
+    if (this.slug === routeEnum.rishkesh200 || this.slug === routeEnum.rishikesh300) {
+      this.roomList = [
+        { name: 'Shared room', value: 1 },
+        { name: 'Private room', value: 2 },
+        { name: 'Booking Shared Room With 30%', value: 3 },
+        { name: 'Booking Private Room With 30%', value: 4 },
+      ];
+    } else if (this.slug === routeEnum.rishikesh100) {
       this.roomList = [
         { name: 'Shared room', value: 1 },
         { name: 'Private room', value: 2 },
@@ -280,7 +287,7 @@ export class CheckoutComponent {
   setRoomPrice(event: any) {
     this.inputValidation('room');
     const selectedValue = +event.target.value;
-    if ([1, 2, 3].includes(selectedValue)) {
+    if ([1, 2, 3, 4].includes(selectedValue)) {
       // Populate currency options only on first booking selection — never reset user's choice
       if (this.currencyOptions.length === 0) {
         this.feesData.forEach((item) => {
@@ -321,8 +328,21 @@ export class CheckoutComponent {
     this.inputValidation('cur');
   }
   setPriceData(feesData: feesInfoDto[], currency: string, roomId: number) {
-    const isBooking30 = +roomId === 3;
-    const lookupRoomId = isBooking30 ? 2 : +roomId;
+    let isBooking30 = false;
+    let lookupRoomId = +roomId;
+
+    if (this.slug === this.routeEnum.rishkesh200 || this.slug === this.routeEnum.rishikesh300) {
+      if (+roomId === 3) {
+        isBooking30 = true;
+        lookupRoomId = 1;
+      } else if (+roomId === 4) {
+        isBooking30 = true;
+        lookupRoomId = 2;
+      }
+    } else {
+      isBooking30 = +roomId === 3;
+      lookupRoomId = isBooking30 ? (this.slug === this.routeEnum.pranayamaCertification ? 1 : 2) : +roomId;
+    }
 
     for (let item of feesData) {
       if (item.title == 'Price') {
