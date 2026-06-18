@@ -70,6 +70,11 @@
     <button class="button" (click)="goToPaymentPage(monthEnum.October26)">
       Join October Batch
     </button>
+    } @else if(slug === routeEnum['200TTC']) {
+    <div class="btn-group-200ttc">
+      <button class="button" (click)="goToPaymentPage()">Join this journey</button>
+      <button class="button button-deposit" (click)="goToPaymentPageWith30()">&#127775; Book with 30%</button>
+    </div>
     } @else if(slug!==routeEnum.pranOnlinePranaArambh) {
     <button class="button" (click)="goToPaymentPage()">
       Join this journey

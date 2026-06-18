@@ -578,6 +578,33 @@
 .register-btn:hover {
   background-color: #e65c00;
 }
+
+/* Secondary 30% deposit booking button in 200TTC banner */
+.register-btn-30 {
+  display: block;
+  margin-top: 10px;
+  background: linear-gradient(135deg, #1a6b3c 0%, #28a060 100%);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  transition: background 0.3s ease, transform 0.2s ease;
+  letter-spacing: 0.3px;
+  width: 100%;
+  @media (max-width: 768px) {
+    padding: 4px 9px;
+    font-size: 13px;
+  }
+}
+
+.register-btn-30:hover {
+  background: linear-gradient(135deg, #155730 0%, #1f8a52 100%);
+  transform: translateY(-2px);
+}
 .banner-overlay {
   position: absolute;
   top: 50%;

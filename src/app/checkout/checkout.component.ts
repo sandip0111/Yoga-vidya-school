@@ -79,6 +79,7 @@ export class CheckoutComponent {
   selectedMonth: string | null = null;
   s3bucket = s3Bucket;
   isDiscountPlan: boolean = false;
+  isBookingWith30: boolean = false;
   // Hardcoded prices for ?plan=discount on 200TTC slug
   private readonly discountPlanPrices: Record<string, number> = {
     INR: 79000,
@@ -107,6 +108,9 @@ export class CheckoutComponent {
       if (params['plan'] === 'discount') {
         this.isDiscountPlan = true;
       }
+      if (params['bookingwith30'] === 'true') {
+        this.isBookingWith30 = true;
+      }
     });
     this.paymentId = this._activatedRoute.snapshot.queryParamMap.get('id');
   }
@@ -125,7 +129,14 @@ export class CheckoutComponent {
       routeEnum.bali100,
     ];
 
-    if (rishikeshCourses.includes(this.slug as any)) {
+    if (this.slug === routeEnum.rishkesh200 || this.slug === routeEnum.rishikesh300) {
+      this.roomList = [
+        { name: 'Shared room', value: 1 },
+        { name: 'Private room', value: 2 },
+        { name: 'Booking Shared Room With 30%', value: 3 },
+        { name: 'Booking Private Room With 30%', value: 4 },
+      ];
+    } else if (this.slug === routeEnum.rishikesh100) {
       this.roomList = [
         { name: 'Shared room', value: 1 },
         { name: 'Private room', value: 2 },
@@ -280,7 +291,7 @@ export class CheckoutComponent {
   setRoomPrice(event: any) {
     this.inputValidation('room');
     const selectedValue = +event.target.value;
-    if ([1, 2, 3].includes(selectedValue)) {
+    if ([1, 2, 3, 4].includes(selectedValue)) {
       // Populate currency options only on first booking selection — never reset user's choice
       if (this.currencyOptions.length === 0) {
         this.feesData.forEach((item) => {
@@ -315,14 +326,47 @@ export class CheckoutComponent {
       this.inputValidation('cur');
       return;
     }
+    // 30% booking deposit: recalculate 30% for the newly selected currency
+    if (this.isBookingWith30) {
+      this.setPriceWith30(e.target.value);
+      this.inputValidation('cur');
+      return;
+    }
     if (this.feesData.length > 0) {
       this.setPriceData(this.feesData, e.target.value, this.checkData.package);
     }
     this.inputValidation('cur');
   }
+
+  /**
+   * Sets this.amount to 30% of the base price for the given currency.
+   * Used when the ?bookingwith30=true query param is active.
+   */
+  setPriceWith30(currency: string): void {
+    for (const item of this.feesData) {
+      const priceEntry = item.data.find(f => f.currency === currency);
+      if (priceEntry && priceEntry.amount > 0) {
+        this.amount = Math.round(priceEntry.amount * 0.3);
+        return;
+      }
+    }
+  }
   setPriceData(feesData: feesInfoDto[], currency: string, roomId: number) {
-    const isBooking30 = +roomId === 3;
-    const lookupRoomId = isBooking30 ? 2 : +roomId;
+    let isBooking30 = false;
+    let lookupRoomId = +roomId;
+
+    if (this.slug === this.routeEnum.rishkesh200 || this.slug === this.routeEnum.rishikesh300) {
+      if (+roomId === 3) {
+        isBooking30 = true;
+        lookupRoomId = 1;
+      } else if (+roomId === 4) {
+        isBooking30 = true;
+        lookupRoomId = 2;
+      }
+    } else {
+      isBooking30 = +roomId === 3;
+      lookupRoomId = isBooking30 ? (this.slug === this.routeEnum.pranayamaCertification ? 1 : 2) : +roomId;
+    }
 
     for (let item of feesData) {
       if (item.title == 'Price') {
@@ -391,6 +435,17 @@ export class CheckoutComponent {
           this.checkData.currency = 'INR';
         }
         this.amount = this.discountPlanPrices[this.checkData.currency] ?? 79000;
+        this.inputValidation('cur');
+        return;
+      }
+      // 30% booking deposit: populate currencies from feesData and compute 30%
+      if (this.isBookingWith30) {
+        if (this.feesData.length > 0) {
+          if (this.currencyOptions.length === 0) {
+            this.setCurrencyData(this.feesData, this.checkData);
+          }
+          this.setPriceWith30(this.checkData.currency);
+        }
         this.inputValidation('cur');
         return;
       }
