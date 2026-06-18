@@ -79,6 +79,7 @@ export class CheckoutComponent {
   selectedMonth: string | null = null;
   s3bucket = s3Bucket;
   isDiscountPlan: boolean = false;
+  isBookingWith30: boolean = false;
   // Hardcoded prices for ?plan=discount on 200TTC slug
   private readonly discountPlanPrices: Record<string, number> = {
     INR: 79000,
@@ -106,6 +107,9 @@ export class CheckoutComponent {
       }
       if (params['plan'] === 'discount') {
         this.isDiscountPlan = true;
+      }
+      if (params['bookingwith30'] === 'true') {
+        this.isBookingWith30 = true;
       }
     });
     this.paymentId = this._activatedRoute.snapshot.queryParamMap.get('id');
@@ -322,10 +326,30 @@ export class CheckoutComponent {
       this.inputValidation('cur');
       return;
     }
+    // 30% booking deposit: recalculate 30% for the newly selected currency
+    if (this.isBookingWith30) {
+      this.setPriceWith30(e.target.value);
+      this.inputValidation('cur');
+      return;
+    }
     if (this.feesData.length > 0) {
       this.setPriceData(this.feesData, e.target.value, this.checkData.package);
     }
     this.inputValidation('cur');
+  }
+
+  /**
+   * Sets this.amount to 30% of the base price for the given currency.
+   * Used when the ?bookingwith30=true query param is active.
+   */
+  setPriceWith30(currency: string): void {
+    for (const item of this.feesData) {
+      const priceEntry = item.data.find(f => f.currency === currency);
+      if (priceEntry && priceEntry.amount > 0) {
+        this.amount = Math.round(priceEntry.amount * 0.3);
+        return;
+      }
+    }
   }
   setPriceData(feesData: feesInfoDto[], currency: string, roomId: number) {
     let isBooking30 = false;
@@ -411,6 +435,17 @@ export class CheckoutComponent {
           this.checkData.currency = 'INR';
         }
         this.amount = this.discountPlanPrices[this.checkData.currency] ?? 79000;
+        this.inputValidation('cur');
+        return;
+      }
+      // 30% booking deposit: populate currencies from feesData and compute 30%
+      if (this.isBookingWith30) {
+        if (this.feesData.length > 0) {
+          if (this.currencyOptions.length === 0) {
+            this.setCurrencyData(this.feesData, this.checkData);
+          }
+          this.setPriceWith30(this.checkData.currency);
+        }
         this.inputValidation('cur');
         return;
       }

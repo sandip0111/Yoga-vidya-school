@@ -240,3 +240,20 @@ payment-alert {
     flex-direction: column;
   }
 }
+
+/* 30% Deposit badge shown in Order Summary when bookingwith30=true */
+.deposit-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(135deg, #eafaf1 0%, #d5f5e3 100%);
+  border: 1.5px solid #28a060;
+  color: #1a6b3c;
+  font-weight: 700;
+  font-size: 0.88rem;
+  padding: 6px 14px;
+  border-radius: 20px;
+  margin-top: 6px;
+  letter-spacing: 0.3px;
+  box-shadow: 0 2px 8px rgba(26, 107, 60, 0.12);
+}

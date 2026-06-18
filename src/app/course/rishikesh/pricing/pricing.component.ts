@@ -88,6 +88,13 @@ export class PricingComponent implements OnInit {
       this.router.navigate([`/checkout/${this.slug}`]);
     }
   }
+
+  /** Navigates to checkout with ?bookingwith30=true for 30% deposit booking */
+  goToPaymentPageWith30(): void {
+    this.router.navigate([`/checkout/${this.slug}`], {
+      queryParams: { bookingwith30: 'true' },
+    });
+  }
 }
 interface pricingDto {
   title: string;

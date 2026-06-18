@@ -320,4 +320,11 @@ export class BannerComponent implements OnInit {
       }
     }
   }
+
+  /** Navigates to checkout with ?bookingwith30=true for 30% deposit booking */
+  registerWith30Click(slug: string): void {
+    this.router.navigate(['checkout', slug], {
+      queryParams: { bookingwith30: 'true' },
+    });
+  }
 }
