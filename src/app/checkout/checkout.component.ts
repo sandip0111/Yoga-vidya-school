@@ -584,7 +584,7 @@ export class CheckoutComponent {
       name: data.name,
       password: this.genratePass(6),
       phone: data.phoneNumber.e164Number,
-      timeSlot: '67e033dc5cd9be5b6d38a7fd',
+      timeSlot: '69fed2c141cc943f7e6489ea',
       webinar: 'Swara Sadhana',
       isWebsite: true,
       paymentType: isRazorPay ? 'razorpay' : 'stripe',
