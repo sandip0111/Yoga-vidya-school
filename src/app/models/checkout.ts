@@ -50,6 +50,19 @@ export interface SignupDataModel {
   hour?: number;
   month?: string;
 }
+export interface TwoHundredTTCSignupModel {
+  name: string;
+  email: string;
+  phoneNumber: string;
+  package?: string;
+  room?: string;
+  price: number;
+  currency: string;
+  courseStartDate?: string;
+  courseTimeDuration?: string;
+  id?: string;
+  dueAmount?: number;
+}
 export interface PranayamaCertificationSignupModel {
   name: string;
   email: string;

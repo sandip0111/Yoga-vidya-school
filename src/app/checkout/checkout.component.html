@@ -208,14 +208,15 @@
           <div
             class="mb-3"
             *ngIf="
-              !isDiscountPlan &&
+              slug == routeEnum['200TTC'] ||
+              (!isDiscountPlan &&
               (slug == routeEnum.rishikesh100 ||
               slug == routeEnum.rishkesh200 ||
               slug == routeEnum.rishikesh300 ||
               slug == routeEnum.bali300 ||
               slug == routeEnum.bali200 ||
               slug == routeEnum.bali100 ||
-              slug == routeEnum.pranayamaCertification)
+              slug == routeEnum.pranayamaCertification))
             "
           >
             <label for="room">Booking<span style="color: red">*</span></label>

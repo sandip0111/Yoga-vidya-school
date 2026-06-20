@@ -14,6 +14,7 @@ import {
   swaraPaymentResultModel,
   swaraRazorModel,
   swaraStripeModel,
+  TwoHundredTTCSignupModel,
 } from './models/checkout';
 import { Observable } from 'rxjs';
 import { getSlugDataModel } from './models/rishikesh';
@@ -300,7 +301,7 @@ export class WebapiService {
       data
     );
   }
-  checkoutRazorpayFor200TTC(data: SignupDataModel): Observable<razorPayModel> {
+  checkoutRazorpayFor200TTC(data: TwoHundredTTCSignupModel): Observable<razorPayModel> {
     return this.http.post<razorPayModel>(
       this.url + 'api/v1/checkoutRazorpayFor200TTC',
       data
@@ -314,7 +315,7 @@ export class WebapiService {
       data
     );
   }
-  checkoutStripeFor200TTC(data: SignupDataModel): Observable<stripePayModel> {
+  checkoutStripeFor200TTC(data: TwoHundredTTCSignupModel): Observable<stripePayModel> {
     return this.http.post<stripePayModel>(
       this.url + 'api/v1/checkoutStripeFor200TTC',
       data
