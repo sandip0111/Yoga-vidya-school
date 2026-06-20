@@ -105,39 +105,3 @@
   font-weight: bold;
   font-size: 18px;
 }
-
-/* Button group for 200TTC dual-action buttons */
-.btn-group-200ttc {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 12px;
-  margin-top: 4px;
-}
-
-/* 30% deposit booking button */
-.button-deposit {
-  background: linear-gradient(135deg, #1a6b3c 0%, #28a060 100%);
-  color: #fff;
-  border: none;
-  padding: 12px 28px;
-  border-radius: 8px;
-  font-size: 15px;
-  font-weight: 700;
-  cursor: pointer;
-  letter-spacing: 0.4px;
-  box-shadow: 0 4px 14px rgba(26, 107, 60, 0.35);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.button-deposit:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(26, 107, 60, 0.45);
-}
-
-@media (max-width: 576px) {
-  .btn-group-200ttc {
-    flex-direction: column;
-    align-items: center;
-  }
-}

@@ -78,11 +78,11 @@
                     >{{ item.title }} :
                     <b *ngFor="let obj of item.data; let i = index"
                       >{{
-                        isBookingWith30
-                          ? (obj.amount * 0.3 | currency : obj.currency : "symbol" : "1.0-0")
-                          : (isSpecialDiscount && obj.discount
-                            ? (obj.discount | currency : obj.currency : "symbol" : "1.0-3")
-                            : (obj.amount  | currency : obj.currency : "symbol" : "1.0-3"))
+                        isSpecialDiscount && obj.discount
+                          ? (obj.discount
+                            | currency : obj.currency : "symbol" : "1.0-3")
+                          : (obj.amount
+                            | currency : obj.currency : "symbol" : "1.0-3")
                       }}{{ item.data.length - 1 > i ? " / " : "" }}</b
                     ></span
                   >
