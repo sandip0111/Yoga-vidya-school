@@ -806,7 +806,7 @@ export class CheckoutComponent {
   }
   twoHundredTTCCheckout(data: checkoutModel, isRazorPay: boolean) {
     const selectedRoom = this.roomList.find((r) => r.value == data.package);
-    const isBooking30 = +data.package === 3;
+    const isBooking30 = !this.paymentId && (+data.package === 3);
     const dueAmount = isBooking30
       ? Math.round((this.amount / 0.3) * 0.7)
       : 0;
@@ -1369,13 +1369,14 @@ export class CheckoutComponent {
                 localstorageKey['200TTCRzpDBId'],
                 res.payDbId,
               );
+              const isDue = !this.paymentId && data.dueAmount && data.dueAmount > 0;
               localStorage.setItem(
                 localstorageKey['200TTCInstallment'],
-                this.isInstallment ? '1st' : '2nd',
+                isDue ? '1st' : '2nd',
               );
               localStorage.setItem(
                 localstorageKey['200TTCDue'],
-                this.isInstallment ? this.secondInstAmnt.toString() : '0',
+                 isDue ? data.dueAmount!.toString() : '0',
               );
               this.router.navigate(['/confirmation']);
             },
@@ -1413,13 +1414,14 @@ export class CheckoutComponent {
             localstorageKey['200TTCStripeDBId'],
             res.payDbId,
           );
+          const isDue = !this.paymentId && data.dueAmount && data.dueAmount > 0;
           localStorage.setItem(
             localstorageKey['200TTCInstallment'],
-            this.isInstallment ? '1st' : '2nd',
+            isDue ? '1st' : '2nd',
           );
           localStorage.setItem(
             localstorageKey['200TTCDue'],
-            this.isInstallment ? this.secondInstAmnt.toString() : '0',
+            isDue ? data.dueAmount!.toString() : '0',
           );
           window.location.href = res.url;
           this.spinner.hide();
