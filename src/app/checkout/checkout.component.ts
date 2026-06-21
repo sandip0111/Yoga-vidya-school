@@ -25,6 +25,7 @@ import {
   swaraDataModel,
   swaraRazorModel,
   swaraStripeModel,
+  TwoHundredTTCSignupModel,
 } from '../models/checkout';
 import { localstorageKey } from '../enum/localstorage';
 import { routeEnum } from '../enum/routes';
@@ -79,7 +80,6 @@ export class CheckoutComponent {
   selectedMonth: string | null = null;
   s3bucket = s3Bucket;
   isDiscountPlan: boolean = false;
-  isBookingWith30: boolean = false;
   // Hardcoded prices for ?plan=discount on 200TTC slug
   private readonly discountPlanPrices: Record<string, number> = {
     INR: 79000,
@@ -107,9 +107,6 @@ export class CheckoutComponent {
       }
       if (params['plan'] === 'discount') {
         this.isDiscountPlan = true;
-      }
-      if (params['bookingwith30'] === 'true') {
-        this.isBookingWith30 = true;
       }
     });
     this.paymentId = this._activatedRoute.snapshot.queryParamMap.get('id');
@@ -140,6 +137,11 @@ export class CheckoutComponent {
       this.roomList = [
         { name: 'Shared room', value: 1 },
         { name: 'Private room', value: 2 },
+      ];
+    } else if (this.slug === routeEnum['200TTC']) {
+      this.roomList = [
+        { name: 'Full Amount', value: 1 },
+        { name: 'Booking with 30%', value: 3 },
       ];
     } else if (baliCourses.includes(this.slug as any)) {
       this.roomList = [
@@ -291,6 +293,17 @@ export class CheckoutComponent {
   setRoomPrice(event: any) {
     this.inputValidation('room');
     const selectedValue = +event.target.value;
+
+    // Discount plan + 200TTC: prices are hardcoded — compute directly without feesData
+    if (this.isDiscountPlan && this.slug === routeEnum['200TTC']) {
+      if (this.checkData.currency) {
+        const baseAmount = this.discountPlanPrices[this.checkData.currency] ?? 79000;
+        const isBooking30 = selectedValue === 3;
+        this.amount = isBooking30 ? Math.round(baseAmount * 0.3) : baseAmount;
+      }
+      return;
+    }
+
     if ([1, 2, 3, 4].includes(selectedValue)) {
       // Populate currency options only on first booking selection — never reset user's choice
       if (this.currencyOptions.length === 0) {
@@ -320,15 +333,11 @@ export class CheckoutComponent {
     }
   }
   priceConvert(e: any) {
-    // Discount plan: update amount based on selected currency
+    // Discount plan + 200TTC: recompute respecting the currently selected booking type
     if (this.isDiscountPlan && this.slug === routeEnum['200TTC']) {
-      this.amount = this.discountPlanPrices[e.target.value] ?? 79000;
-      this.inputValidation('cur');
-      return;
-    }
-    // 30% booking deposit: recalculate 30% for the newly selected currency
-    if (this.isBookingWith30) {
-      this.setPriceWith30(e.target.value);
+      const baseAmount = this.discountPlanPrices[e.target.value] ?? 79000;
+      const isBooking30 = +this.checkData.package === 3;
+      this.amount = isBooking30 ? Math.round(baseAmount * 0.3) : baseAmount;
       this.inputValidation('cur');
       return;
     }
@@ -336,20 +345,6 @@ export class CheckoutComponent {
       this.setPriceData(this.feesData, e.target.value, this.checkData.package);
     }
     this.inputValidation('cur');
-  }
-
-  /**
-   * Sets this.amount to 30% of the base price for the given currency.
-   * Used when the ?bookingwith30=true query param is active.
-   */
-  setPriceWith30(currency: string): void {
-    for (const item of this.feesData) {
-      const priceEntry = item.data.find(f => f.currency === currency);
-      if (priceEntry && priceEntry.amount > 0) {
-        this.amount = Math.round(priceEntry.amount * 0.3);
-        return;
-      }
-    }
   }
   setPriceData(feesData: feesInfoDto[], currency: string, roomId: number) {
     let isBooking30 = false;
@@ -428,23 +423,17 @@ export class CheckoutComponent {
       this.checkData.currency = '';
     } else {
       this.phoneError = '';
-      // Discount plan: set fixed currency options and price, skip feesData logic
+      // Discount plan: set fixed currency options; amount is driven by booking selection
       if (this.isDiscountPlan && this.slug === routeEnum['200TTC']) {
         if (this.currencyOptions.length === 0) {
           this.currencyOptions = ['INR', 'USD'];
           this.checkData.currency = 'INR';
         }
-        this.amount = this.discountPlanPrices[this.checkData.currency] ?? 79000;
-        this.inputValidation('cur');
-        return;
-      }
-      // 30% booking deposit: populate currencies from feesData and compute 30%
-      if (this.isBookingWith30) {
-        if (this.feesData.length > 0) {
-          if (this.currencyOptions.length === 0) {
-            this.setCurrencyData(this.feesData, this.checkData);
-          }
-          this.setPriceWith30(this.checkData.currency);
+        // Only calculate amount when user has already chosen a booking type
+        if (this.checkData.package) {
+          const baseAmount = this.discountPlanPrices[this.checkData.currency] ?? 79000;
+          const isBooking30 = +this.checkData.package === 3;
+          this.amount = isBooking30 ? Math.round(baseAmount * 0.3) : baseAmount;
         }
         this.inputValidation('cur');
         return;
@@ -455,6 +444,7 @@ export class CheckoutComponent {
           this.slug !== routeEnum.rishikesh100 &&
           this.slug !== routeEnum.rishkesh200 &&
           this.slug !== routeEnum.rishikesh300 &&
+          this.slug !== routeEnum['200TTC'] &&
           this.slug !== routeEnum.pranayamaCertification
         ) {
           this.setPriceData(
@@ -566,8 +556,11 @@ export class CheckoutComponent {
         isErrMsg = true;
       }
       if (!data.package) {
-        if (this.slug !== routeEnum.sa && this.slug !== routeEnum.pranOnlinePranaArambh && this.slug !== routeEnum.foundationOfSpirituality && this.slug !== routeEnum['200TTC'] && this.slug !== routeEnum.pranayamaCertification && !this.isDiscountPlan) {
-          this.packageRequired = 'Please select a room';
+        // 200TTC always requires a booking selection (even on discount plan)
+        // All other courses only require it when not on a discount plan
+        const requires200TTCPackage = this.slug === routeEnum['200TTC'];
+        if (this.slug !== routeEnum.sa && this.slug !== routeEnum.pranOnlinePranaArambh && this.slug !== routeEnum.foundationOfSpirituality && this.slug !== routeEnum.pranayamaCertification && (!this.isDiscountPlan || requires200TTCPackage)) {
+          this.packageRequired = 'Please select a Booking';
           isErrMsg = true;
         }
       }
@@ -812,16 +805,24 @@ export class CheckoutComponent {
     }
   }
   twoHundredTTCCheckout(data: checkoutModel, isRazorPay: boolean) {
-    let signupData: SignupDataModel = {
+    const selectedRoom = this.roomList.find((r) => r.value == data.package);
+    const isBooking30 = !this.paymentId && (+data.package === 3);
+    const dueAmount = isBooking30
+      ? Math.round((this.amount / 0.3) * 0.7)
+      : 0;
+
+    let signupData: TwoHundredTTCSignupModel = {
       name: data.name,
       email: data.email.toLowerCase(),
       phoneNumber: data.phoneNumber.e164Number,
       package: data.package,
+      room: selectedRoom?.name,
       price: this.isInstallment ? this.firstInstAmnt : this.amount,
       currency: data.currency,
       courseStartDate: twoHundredTTCModel['200TTCDate'],
       courseTimeDuration: `${twoHundredTTCModel['200TTCStart']} - ${twoHundredTTCModel['200TTCEnd']} (IST)`,
       id: this.paymentId ?? undefined,
+      dueAmount: dueAmount,
     };
     if (isRazorPay) {
       this.initializeRazorPaymentFor200TTC(signupData);
@@ -1339,7 +1340,7 @@ export class CheckoutComponent {
         }
       });
   }
-  initializeRazorPaymentFor200TTC(data: SignupDataModel) {
+  initializeRazorPaymentFor200TTC(data: TwoHundredTTCSignupModel) {
     this.webapiService
       .checkoutRazorpayFor200TTC(data)
       .subscribe((res: razorPayModel) => {
@@ -1368,13 +1369,14 @@ export class CheckoutComponent {
                 localstorageKey['200TTCRzpDBId'],
                 res.payDbId,
               );
+              const isDue = !this.paymentId && data.dueAmount && data.dueAmount > 0;
               localStorage.setItem(
                 localstorageKey['200TTCInstallment'],
-                this.isInstallment ? '1st' : '2nd',
+                isDue ? '1st' : '2nd',
               );
               localStorage.setItem(
                 localstorageKey['200TTCDue'],
-                this.isInstallment ? this.secondInstAmnt.toString() : '0',
+                 isDue ? data.dueAmount!.toString() : '0',
               );
               this.router.navigate(['/confirmation']);
             },
@@ -1399,7 +1401,7 @@ export class CheckoutComponent {
         }
       });
   }
-  initializePaymentFor200TTC(data: SignupDataModel) {
+  initializePaymentFor200TTC(data: TwoHundredTTCSignupModel) {
     this.webapiService
       .checkoutStripeFor200TTC(data)
       .subscribe((res: stripePayModel) => {
@@ -1412,13 +1414,14 @@ export class CheckoutComponent {
             localstorageKey['200TTCStripeDBId'],
             res.payDbId,
           );
+          const isDue = !this.paymentId && data.dueAmount && data.dueAmount > 0;
           localStorage.setItem(
             localstorageKey['200TTCInstallment'],
-            this.isInstallment ? '1st' : '2nd',
+            isDue ? '1st' : '2nd',
           );
           localStorage.setItem(
             localstorageKey['200TTCDue'],
-            this.isInstallment ? this.secondInstAmnt.toString() : '0',
+            isDue ? data.dueAmount!.toString() : '0',
           );
           window.location.href = res.url;
           this.spinner.hide();
