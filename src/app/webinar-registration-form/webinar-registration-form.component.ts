@@ -84,8 +84,8 @@ export class WebinarRegistrationFormComponent implements OnInit {
     });
     this.title.setTitle('Free Webinar - Yoga Vidya School');
     this.bannerSubtitle = this.sanitizer
-      .bypassSecurityTrustHtml(`<b style="color: #f47019;">BREATH OF YOGIS<br /> 
-	    Date: June the 21st - 6:30 PM IST</b>`);
+      .bypassSecurityTrustHtml(`<b style="color: #f47019;">COMING SOON...<br /> 
+	    <!--Date: June the 21st - 6:30 PM IST--></b>`);
     this.bannerTitle = 'Free Online Webinar';
     this.imgSlug = this.s3Bucket.freeWebinnarHero;
   }
