@@ -154,6 +154,9 @@ export class CheckoutComponent {
         { name: 'Reserve slot with 30%', value: 3 },
       ];
     }
+    if (this.roomList && this.roomList.length > 0) {
+      this.checkData.package = this.roomList[0].value;
+    }
     if (isBrowser) {
       this.scrollToTop();
       // Track checkout page view
@@ -229,6 +232,26 @@ export class CheckoutComponent {
           this.feesData.map(
             (a) => (a.title = a.title == 'Price' ? a.title : `Price(${a.title})`),
           );
+          if (!this.paymentId) {
+            if (this.isDiscountPlan && this.slug === routeEnum['200TTC']) {
+              this.currencyOptions = ['INR', 'USD'];
+              this.checkData.currency = 'INR';
+              if (this.checkData.package) {
+                const baseAmount = this.discountPlanPrices[this.checkData.currency] ?? 79000;
+                const isBooking30 = +this.checkData.package === 3;
+                this.amount = isBooking30 ? Math.round(baseAmount * 0.3) : baseAmount;
+              }
+            } else {
+              if (this.feesData.length > 0) {
+                this.setCurrencyData(this.feesData, this.checkData);
+                this.setPriceData(
+                  this.feesData,
+                  this.checkData.currency,
+                  this.checkData.package,
+                );
+              }
+            }
+          }
           this.title.setTitle('Checkout');
           this.spinner.hide();
         } else {
@@ -417,10 +440,9 @@ export class CheckoutComponent {
     }
   }
   onPhoneInputChange(isValid: boolean | null | undefined): void {
+    if (this.paymentId) return;
     if (!isValid) {
       this.phoneError = 'Invalid phone number';
-      this.currencyOptions = [];
-      this.checkData.currency = '';
     } else {
       this.phoneError = '';
       // Discount plan: set fixed currency options; amount is driven by booking selection
@@ -439,26 +461,14 @@ export class CheckoutComponent {
         return;
       }
       if (this.feesData.length > 0) {
-        this.setCurrencyData(this.feesData, this.checkData);
-        if (
-          this.slug !== routeEnum.rishikesh100 &&
-          this.slug !== routeEnum.rishkesh200 &&
-          this.slug !== routeEnum.rishikesh300 &&
-          this.slug !== routeEnum['200TTC'] &&
-          this.slug !== routeEnum.pranayamaCertification
-        ) {
-          this.setPriceData(
-            this.feesData,
-            this.checkData.currency,
-            this.checkData.package,
-          );
-        } else if (this.checkData.package) {
-          this.setPriceData(
-            this.feesData,
-            this.checkData.currency,
-            this.checkData.package,
-          );
+        if (this.currencyOptions.length === 0) {
+          this.setCurrencyData(this.feesData, this.checkData);
         }
+        this.setPriceData(
+          this.feesData,
+          this.checkData.currency,
+          this.checkData.package,
+        );
       }
       this.inputValidation('cur');
     }
@@ -471,15 +481,14 @@ export class CheckoutComponent {
         }
       });
     });
-    checkData.currency = this.currencyOptions[0];
+    if (!checkData.currency && this.currencyOptions.length > 0) {
+      checkData.currency = this.currencyOptions[0];
+    }
   }
   onCountryChange(): void {
+    if (this.paymentId) return;
     this.phoneError = 'Invalid phone number';
-    this.currencyOptions = [];
-    this.checkData.currency = '';
     this.checkData.phoneNumber = new PhoneNumberData();
-    this.amount = 0;
-    this.price = '';
   }
   inputValidation(type: string) {
     if (type === 'email') {
