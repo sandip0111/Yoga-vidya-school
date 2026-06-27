@@ -43,18 +43,7 @@
     </div>
     }
   </div>
-  <ng-container
-    *ngIf="
-      slug === routeEnum.rishikesh100 ||
-      slug === routeEnum.rishkesh200 ||
-      slug === routeEnum.rishikesh300 ||
-      slug === routeEnum.bali200
-    "
-  >
-    <p class="mt-2 mb-0">
-      <span class="join-batch-heading">Reserve Your Slot with the 30%:</span
-      >(limited places)
-    </p>
+  <ng-container *ngIf="showRoomDescription">
     <p>
       By paying the <b>30% deposit, you are reserving your place in a shared room</b>.
       Should you later wish to upgrade to a private room, this will be subject
@@ -78,4 +67,7 @@
     <button class="button" (click)="goToPaymentPage()">Get Access</button>
     }
   </div>
+  <p *ngIf="showReserveText" class="mt-2 mb-0 text-center">
+    <span class="join-batch-heading">Reserve Your Slot with the 30%:</span>(limited places)
+  </p>
 </section>
