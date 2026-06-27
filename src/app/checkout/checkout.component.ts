@@ -85,6 +85,25 @@ export class CheckoutComponent {
     INR: 79000,
     USD: 850,
   };
+
+  /** True when the user has selected a 30% deposit booking option */
+  get is30PercentBooking(): boolean {
+    return +this.checkData.package === 3 || +this.checkData.package === 4;
+  }
+
+  /** True when the course is Rishikesh 200/300, Bali 100/200/300, or online 200TTC */
+  get show30PercentDepositSection(): boolean {
+    const allowedSlugs = [
+      routeEnum.rishkesh200,
+      routeEnum.rishikesh300,
+      routeEnum.bali100,
+      routeEnum.bali200,
+      routeEnum.bali300,
+      routeEnum['200TTC'],
+    ];
+    return allowedSlugs.includes(this.slug as any);
+  }
+
   constructor(
     private webapiService: WebapiService,
     private _activatedRoute: ActivatedRoute,
@@ -130,8 +149,8 @@ export class CheckoutComponent {
       this.roomList = [
         { name: 'Shared room', value: 1 },
         { name: 'Private room', value: 2 },
-        { name: 'Booking Shared Room With 30%', value: 3 },
-        { name: 'Booking Private Room With 30%', value: 4 },
+        { name: 'Reserve your shared room with a 30% deposit', value: 3 },
+        { name: 'Reserve your private room with a 30% deposit', value: 4 },
       ];
     } else if (this.slug === routeEnum.rishikesh100) {
       this.roomList = [
@@ -141,12 +160,12 @@ export class CheckoutComponent {
     } else if (this.slug === routeEnum['200TTC']) {
       this.roomList = [
         { name: 'Full Amount', value: 1 },
-        { name: 'Booking with 30%', value: 3 },
+        { name: 'Reserve your private room with a 30% deposit', value: 3 },
       ];
     } else if (baliCourses.includes(this.slug as any)) {
       this.roomList = [
         { name: 'Private room', value: 2 },
-        { name: 'Booking with 30%', value: 3 },
+        { name: 'Reserve your private room with a 30% deposit', value: 3 },
       ];
     } else if (this.slug === routeEnum.pranayamaCertification) {
       this.roomList = [

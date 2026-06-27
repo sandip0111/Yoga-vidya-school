@@ -240,3 +240,18 @@ payment-alert {
     flex-direction: column;
   }
 }
+
+/* ── 30% Deposit Section ────────────────────────────── */
+.deposit-heading-row {
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1.5px dashed #e8834a;
+}
+
+.summary-section-heading {
+  font-size: 16px;
+  font-weight: 700;
+  color: #212529;
+  line-height: 1.4;
+  display: inline-block;
+}
