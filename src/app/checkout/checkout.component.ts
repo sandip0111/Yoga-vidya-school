@@ -85,6 +85,25 @@ export class CheckoutComponent {
     INR: 79000,
     USD: 850,
   };
+
+  /** True when the user has selected a 30% deposit booking option */
+  get is30PercentBooking(): boolean {
+    return +this.checkData.package === 3 || +this.checkData.package === 4;
+  }
+
+  /** True when the course is Rishikesh 200/300, Bali 100/200/300, or online 200TTC */
+  get show30PercentDepositSection(): boolean {
+    const allowedSlugs = [
+      routeEnum.rishkesh200,
+      routeEnum.rishikesh300,
+      routeEnum.bali100,
+      routeEnum.bali200,
+      routeEnum.bali300,
+      routeEnum['200TTC'],
+    ];
+    return allowedSlugs.includes(this.slug as any);
+  }
+
   constructor(
     private webapiService: WebapiService,
     private _activatedRoute: ActivatedRoute,
