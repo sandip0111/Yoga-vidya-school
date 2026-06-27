@@ -130,8 +130,8 @@ export class CheckoutComponent {
       this.roomList = [
         { name: 'Shared room', value: 1 },
         { name: 'Private room', value: 2 },
-        { name: 'Booking Shared Room With 30%', value: 3 },
-        { name: 'Booking Private Room With 30%', value: 4 },
+        { name: 'Reserve your shared room with a 30% deposit', value: 3 },
+        { name: 'Reserve your private room with a 30% deposit', value: 4 },
       ];
     } else if (this.slug === routeEnum.rishikesh100) {
       this.roomList = [

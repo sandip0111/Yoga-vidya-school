@@ -43,8 +43,6 @@ export class PricingComponent implements OnInit {
     const validRoomSlugs = [
       routeEnum.rishkesh200,
       routeEnum.rishikesh300,
-      routeEnum.bali200,
-      routeEnum.bali300,
       '200-horas-de-formacioacuten-de-profesores-de-yoga-en-rishikesh',
       '200-hour-yoga-teacher-training-scholarship-in-rishikesh',
       '300-hour-yoga-teacher-training-scholarship-in-rishikesh',
