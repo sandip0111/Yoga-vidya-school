@@ -86,11 +86,11 @@ export class CertifiedComponent {
       this.bannerTitle =
         'Transform Your Yoga Practice in Rishikesh – Yoga Alliance Certified TTC';
       this.bannerSubtitle = `2026 Batches: October<br/>
-        Booking with the 30% of pricing`;
+        Reserve your room with 30% deposit`;
     } else if (this.slug === routeEnum.bali) {
       this.bannerTitle = 'Experience traditional yoga in the heart of paradise';
       this.bannerSubtitle = `2026 Batches: June and July<br/>
-        Booking with the 30% of pricing`;
+        Reserve your room with 30% deposit`;
     }
   }
 
