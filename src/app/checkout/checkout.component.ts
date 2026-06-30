@@ -91,7 +91,6 @@ export class CheckoutComponent {
     return +this.checkData.package === 3 || +this.checkData.package === 4;
   }
 
-  /** True when the course is Rishikesh 200/300, Bali 100/200/300, or online 200TTC */
   get show30PercentDepositSection(): boolean {
     const allowedSlugs = [
       routeEnum.rishkesh200,
@@ -100,6 +99,7 @@ export class CheckoutComponent {
       routeEnum.bali200,
       routeEnum.bali300,
       routeEnum['200TTC'],
+      routeEnum.pranayamaCertification,
     ];
     return allowedSlugs.includes(this.slug as any);
   }
@@ -170,7 +170,7 @@ export class CheckoutComponent {
     } else if (this.slug === routeEnum.pranayamaCertification) {
       this.roomList = [
         { name: 'Full Payment', value: 1 },
-        { name: 'Reserve slot with 30%', value: 3 },
+        { name: 'Reserve your room with a 30% deposit', value: 3 },
       ];
     }
     if (this.roomList && this.roomList.length > 0) {
