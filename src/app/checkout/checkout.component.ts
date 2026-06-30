@@ -160,7 +160,7 @@ export class CheckoutComponent {
     } else if (this.slug === routeEnum['200TTC']) {
       this.roomList = [
         { name: 'Full Amount', value: 1 },
-        { name: 'Reserve your private room with a 30% deposit', value: 3 },
+        { name: 'Reserve your room with a 30% deposit', value: 3 },
       ];
     } else if (baliCourses.includes(this.slug as any)) {
       this.roomList = [
