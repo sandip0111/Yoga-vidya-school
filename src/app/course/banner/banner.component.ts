@@ -63,9 +63,9 @@ export class BannerComponent implements OnInit {
   monthEnum = MonthEnum;
   ngOnInit() {
     this.backGroundImageSet();
-    this.rishikeshBannerSet();
+    this.mainBannerSet();
   }
-  rishikeshBannerSet() {
+  mainBannerSet() {
     switch (this.slug) {
       case routeEnum.rishikesh100:
         this.rishikesHeroImage = s3Bucket.rishikesh100Banner;
@@ -122,9 +122,6 @@ export class BannerComponent implements OnInit {
         break;
       case routeEnum.pranicPurificationII:
         this.rishikesHeroImage = s3Bucket.pranicPurificationIIBanner;
-        // this.rishikeshMainHeading = 'PRANIC PURIFICATION II';
-        // this.rishikeshSubHeading =
-        //   '21 Days - Online Pranayama Journey with PrashantJ';
         break;
       case routeEnum.bali200:
         this.rishikesHeroImage = s3Bucket.bali200Hero;
@@ -151,6 +148,9 @@ export class BannerComponent implements OnInit {
         this.rishikesHeroImage = s3Bucket.foundationOfSpirituality;
         this.rishikeshMainHeading = 'Foundation of Spirituality';
         this.rishikeshSubHeading = 'An online spiritual awakening course';
+        break;
+      case routeEnum.pg:
+        this.rishikesHeroImage = '';
         break;
       default:
         break;

@@ -71,7 +71,8 @@ export class NavbarComponent implements OnInit {
             title: 'Prashant Ji',
             link: '/yoga-teacher/acharya-prashant-jakhmola/prashantjyoga',
           },
-          { title: 'Yoga Teachers', link: '/mentors' },
+          { title: 'Yoga Teachers', link: `/${routeEnum.mentors}` },
+          { title: 'Personal Guidance', link: `/${routeEnum.pg}` },
         ],
       },
       {

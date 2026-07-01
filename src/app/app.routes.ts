@@ -38,6 +38,7 @@ import { PankajPageComponent } from './course/online-course-mentor/pankaj-page/p
 import { PranicPurificationIiComponent } from './course/pranic-purification-ii/pranic-purification-ii.component';
 import { BreatchdtoxComponent } from './course/pre-recorded-pranayama-courses/breatchdtox/breatchdtox.component';
 import { PranaArambhComponent } from './course/pre-recorded-pranayama-courses/prana-arambh/prana-arambh.component';
+import { PersonalGuidance } from './about/personal-guidance/personal-guidance';
 
 export const routes: Routes = [
   { path: '', component: IndexComponent },
@@ -191,6 +192,7 @@ export const routes: Routes = [
         (m) => m.Bali100HourComponent,
       ),
   },
+  { path: routeEnum.pg, component: PersonalGuidance },
   { path: 'webinar-video/:name', component: WebinarVideosComponent },
   { path: '**', pathMatch: 'full', component: PagenotfoundComponent },
 ];
