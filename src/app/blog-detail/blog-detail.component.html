@@ -58,15 +58,31 @@
       
       <div class="col-lg-12 col-md-12 readBlogContent">
         <div class="content">
-          <img
-            [defaultImage]="defaultImage"
-            [lazyLoad]="imageUrl + blogArr?.image"
-            class="img-fluid thumbnail"
-            alt="{{ blogArr?.title }}"
-          />
-          <h1 class="mb-3 mt-3">
+          <!-- Wrap image in a container for modern skeleton shimmer loading -->
+          <div
+            class="detail-image-wrapper"
+            *ngIf="blogArr?.image && blogArr?.image !== 'null' && blogArr?.image !== 'undefined' && blogArr?.image.trim() !== '' && !blogArr?.imageFailed"
+          >
+            <img
+              [defaultImage]="defaultImage"
+              [lazyLoad]="imageUrl + blogArr?.image"
+              (error)="blogArr.imageFailed = true"
+              class="img-fluid thumbnail"
+              alt="{{ blogArr?.title }}"
+            />
+          </div>
+          
+          <h1 class="mb-2 mt-3">
             {{ blogArr?.title }}
           </h1>
+          
+          <div class="blog-meta mb-4" *ngIf="blogArr?.created">
+            <span class="meta-item">
+              <i class="far fa-calendar-alt me-2"></i>
+              Posted on {{ blogArr?.created | date : "dd MMMM yyyy" }}
+            </span>
+          </div>
+
           <div class="para mt-3" [innerHTML]="this.sanitizer.bypassSecurityTrustHtml(blogArr?.content)"></div>
         </div>
       </div>
