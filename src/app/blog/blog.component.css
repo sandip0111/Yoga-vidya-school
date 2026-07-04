@@ -100,11 +100,25 @@ section.blogs .single-blog:hover {
   justify-content: space-between;
 }
 
+.blog-card-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
 .date-badge {
   font-size: 13px;
   color: #f47019;
   font-weight: 500;
-  margin-bottom: 8px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.author-badge {
+  font-size: 13px;
+  color: #727782;
+  font-weight: 500;
   display: inline-flex;
   align-items: center;
 }

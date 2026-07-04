@@ -107,6 +107,8 @@ section.blogArea {
       .blog-meta {
         display: flex;
         align-items: center;
+        flex-wrap: wrap;
+        gap: 15px;
         color: #727782;
         font-size: 14px;
         border-bottom: 1px solid #eef0f6;

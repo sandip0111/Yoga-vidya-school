@@ -76,10 +76,14 @@
             {{ blogArr?.title }}
           </h1>
           
-          <div class="blog-meta mb-4" *ngIf="blogArr?.created">
-            <span class="meta-item">
+          <div class="blog-meta mb-4" *ngIf="blogArr?.created || blogArr?.authorName">
+            <span class="meta-item" *ngIf="blogArr?.created">
               <i class="far fa-calendar-alt me-2"></i>
               Posted on {{ blogArr?.created | date : "dd MMMM yyyy" }}
+            </span>
+            <span class="meta-item ms-4" *ngIf="blogArr?.authorName">
+              <i class="far fa-user me-2"></i>
+              By {{ blogArr?.authorName }}
             </span>
           </div>
 

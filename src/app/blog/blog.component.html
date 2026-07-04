@@ -40,10 +40,16 @@
             
             <div class="blog-content-wrapper">
               <div>
-                <span class="date-badge">
-                  <i class="far fa-calendar-alt me-1"></i>
-                  {{ blog?.created | date : "dd MMM yyyy" }}
-                </span>
+                <div class="blog-card-meta mb-2">
+                  <span class="date-badge">
+                    <i class="far fa-calendar-alt me-1"></i>
+                    {{ blog?.created | date : "dd MMM yyyy" }}
+                  </span>
+                  <span class="author-badge ms-3" *ngIf="blog?.authorName">
+                    <i class="far fa-user me-1"></i>
+                    By {{ blog?.authorName }}
+                  </span>
+                </div>
                 <a routerLink="/blog/{{ blog?.slug }}" class="blog-title-link">
                   <h3 class="blog-title">{{ blog?.title }}</h3>
                 </a>
