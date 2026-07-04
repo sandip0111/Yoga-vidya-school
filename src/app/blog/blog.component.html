@@ -20,31 +20,50 @@
             | paginate : { itemsPerPage: 10, currentPage: p, totalItems: total }
         "
       >
-        <div class="single-blog shadow">
-          <div class="blogTitle">
-            <a routerLink="/blog/{{ blog?.slug }}">
-              <img
-                [defaultImage]="defaultImage"
-                [lazyLoad]="imageUrl + blog?.image"
-                class="img-fluid"
-                alt="{{ blog?.title }}"
-              />
-            </a>
-            <div>
+        <div class="single-blog shadow-sm">
+          <div class="blog-card-body">
+            <!-- Render image only if it exists and is not null/undefined -->
+            <div
+              class="blog-image-wrapper"
+              *ngIf="blog?.image && blog?.image !== 'null' && blog?.image !== 'undefined' && blog?.image.trim() !== '' && !blog?.imageFailed"
+            >
               <a routerLink="/blog/{{ blog?.slug }}">
-                <h3>{{ blog?.title }}</h3>
+                <img
+                  [defaultImage]="defaultImage"
+                  [lazyLoad]="imageUrl + blog?.image"
+                  (error)="blog.imageFailed = true"
+                  class="img-fluid blog-img"
+                  alt="{{ blog?.title }}"
+                />
               </a>
-              <span class="date">
-                Posted on {{ blog?.created | date : "dd/MM/yyyy" }}</span
-              >
+            </div>
+            
+            <div class="blog-content-wrapper">
+              <div>
+                <div class="blog-card-meta mb-2">
+                  <span class="date-badge">
+                    <i class="far fa-calendar-alt me-1"></i>
+                    {{ blog?.created | date : "dd MMM yyyy" }}
+                  </span>
+                  <span class="author-badge ms-3" *ngIf="blog?.authorName">
+                    <i class="far fa-user me-1"></i>
+                    By {{ blog?.authorName }}
+                  </span>
+                </div>
+                <a routerLink="/blog/{{ blog?.slug }}" class="blog-title-link">
+                  <h3 class="blog-title">{{ blog?.title }}</h3>
+                </a>
+                <p class="blog-desc">{{ blog?.shortDesc }}...</p>
+              </div>
+              <div class="blog-card-footer">
+                <a routerLink="/blog/{{ blog?.slug }}" class="blog-readmore-btn">
+                  Read More
+                  <i class="fas fa-arrow-right ms-2"></i>
+                </a>
+              </div>
             </div>
           </div>
-          <p>{{ blog?.shortDesc }}...</p>
-          <a routerLink="/blog/{{ blog?.slug }}" class="standard-btn btn"
-            >Read More</a
-          >
         </div>
-
       </div>
     </div>
     <div class="row mt-5">

@@ -19,7 +19,7 @@ import { routeEnum } from '../enum/routes';
 export class BlogDetailComponent {
   public loading = false;
   public defaultImage =
-    'https://miro.medium.com/max/441/1*9EBHIOzhE1XfMYoKz1JcsQ.gif';
+    'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1 1"%3E%3C/svg%3E';
   imageUrl: any;
   blogId: any;
   blogArr: any;
