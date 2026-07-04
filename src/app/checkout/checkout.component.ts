@@ -676,7 +676,7 @@ export class CheckoutComponent {
               data.currency === 'INR'
                 ? stripePaymentKey.swaraInr
                 : data.currency === 'USD'
-                  ? 'price_1RU7RCSEQq0H4GuEJylju4cd'
+                  ? 'price_1TpLvUSEQq0H4GuESdeYezVj'
                   : 'price_1RU7RYSEQq0H4GuE8nk5oH79';
             this.initializeStripeSwaraSadhna(
               priceId,

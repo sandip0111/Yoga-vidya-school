@@ -7,7 +7,7 @@ export enum stripePaymentKey {
   // basicInr = 'price_1NI7hnSEQq0H4GuEWS5qIffa', // test
   standardInr = 'price_1NI6oxSEQq0H4GuERpBbilF2',
   premiumInr = 'price_1NI6oxSEQq0H4GuEx9fdhEd0',
-  basicUsd = 'price_1QmychSEQq0H4GuEAipCDoPU',
+  basicUsd = 'price_1TpLyMSEQq0H4GuE00ArRzna',
   basicEur = 'price_1Qq8OGSEQq0H4GuExvBjijrv',
   standardUsd = 'price_1NIRatSEQq0H4GuE0DOlcCNa',
   premiumUsd = 'price_1NIRbNSEQq0H4GuEeLvnyPu2',
