@@ -4,6 +4,7 @@
 
   ol {
     margin-bottom: 0;
+    row-gap: 4px;
 
     li {
       color: #fff;
@@ -64,6 +65,7 @@ section.blogArea {
 
       .detail-image-wrapper {
         width: 100%;
+        aspect-ratio: 16 / 10;
         max-height: 500px;
         border-radius: 16px;
         overflow: hidden;
@@ -122,6 +124,7 @@ section.blogArea {
         .meta-item {
           display: inline-flex;
           align-items: center;
+          min-width: 0;
         }
       }
 
@@ -241,3 +244,105 @@ section.blogArea {
     }
   }
 }
+@media only screen and (max-width: 767px) {
+  .breadcrumb_section {
+    padding: 10px 0;
+
+    .container {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    .breadcrumb {
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    .breadcrumb-item {
+      overflow-wrap: anywhere;
+    }
+  }
+
+  section.blogArea {
+    padding: 24px 0 40px !important;
+
+    .container-fluid {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    .readBlogContent {
+      max-width: none;
+      padding-left: 0;
+      padding-right: 0;
+
+      .content {
+        margin: 0;
+
+        h1 {
+          font-size: 24px;
+          line-height: 1.32;
+          margin-top: 0;
+          margin-bottom: 14px;
+          overflow-wrap: anywhere;
+        }
+
+        .blog-meta {
+          align-items: flex-start;
+          flex-direction: column;
+          gap: 10px;
+          font-size: 13px;
+          line-height: 1.45;
+          padding-bottom: 18px;
+          margin-bottom: 22px;
+        }
+
+        .blog-meta .meta-item {
+          width: 100%;
+        }
+
+        .blog-meta .meta-item.ms-4 {
+          margin-left: 0 !important;
+        }
+
+        .detail-image-wrapper {
+          aspect-ratio: 4 / 3;
+          border-radius: 12px;
+          margin-bottom: 24px;
+          max-height: none;
+        }
+
+        img.thumbnail {
+          max-height: none;
+        }
+
+        .para {
+          font-size: 16px;
+          line-height: 1.7;
+
+          ::ng-deep p {
+            margin-bottom: 18px;
+          }
+
+          ::ng-deep h2 {
+            font-size: 24px;
+            line-height: 1.35;
+            margin-top: 30px;
+            margin-bottom: 12px;
+          }
+
+          ::ng-deep h3 {
+            font-size: 20px;
+            line-height: 1.4;
+          }
+
+          ::ng-deep ul,
+          ::ng-deep ol {
+            padding-left: 20px;
+          }
+        }
+      }
+    }
+  }
+}
+

@@ -1,0 +1,48 @@
+[33m>[39m Building...
+[32m√[39m Building...
+[35mBrowser bundles[39m     
+[1mInitial chunk files[22m [2m | [22m[1mNames[22m                                   [2m | [22m [1mRaw size[22m
+[32mmain.js[39m             [2m | [22m[2mmain[22m                                    [2m | [22m  [36m1.99 MB[39m[2m | [22m
+[32mstyles.css[39m          [2m | [22m[2mstyles[22m                                  [2m | [22m[36m414.37 kB[39m[2m | [22m
+[32mscripts.js[39m          [2m | [22m[2mscripts[22m                                 [2m | [22m[36m151.91 kB[39m[2m | [22m
+[32mchunk-UBKIJOMY.js[39m   [2m | [22m[2m-[22m                                       [2m | [22m [36m65.58 kB[39m[2m | [22m
+[32mchunk-SDJTQY5D.js[39m   [2m | [22m[2m-[22m                                       [2m | [22m [36m44.51 kB[39m[2m | [22m
+[32mchunk-ULCDR34P.js[39m   [2m | [22m[2m-[22m                                       [2m | [22m [36m25.92 kB[39m[2m | [22m
+[32mchunk-JTWH5BHZ.js[39m   [2m | [22m[2m-[22m                                       [2m | [22m [36m22.35 kB[39m[2m | [22m
+[32mchunk-PBV53INS.js[39m   [2m | [22m[2m-[22m                                       [2m | [22m [36m14.16 kB[39m[2m | [22m
+[32mchunk-EXZTXYNC.js[39m   [2m | [22m[2m-[22m                                       [2m | [22m  [36m5.79 kB[39m[2m | [22m
+[32mpolyfills.js[39m        [2m | [22m[2mpolyfills[22m                               [2m | [22m [36m95 bytes[39m[2m | [22m
+
+[1m [22m                   [2m | [22m[1mInitial total[22m                           [2m | [22m  [1m2.73 MB[22m
+
+[1mLazy chunk files[22m    [2m | [22m[1mNames[22m                                   [2m | [22m [1mRaw size[22m
+[32mchunk-MXIBM2PB.js[39m   [2m | [22m[2mbali-100-hour-component[22m                 [2m | [22m [36m89.59 kB[39m[2m | [22m
+[32mchunk-GGNUUYYH.js[39m   [2m | [22m[2mswara-sadhana-component[22m                 [2m | [22m [36m40.78 kB[39m[2m | [22m
+[32mchunk-3RM7FXXV.js[39m   [2m | [22m[2mwebinar-registration-form-component[22m     [2m | [22m [36m29.30 kB[39m[2m | [22m
+[32mchunk-7JKUHV4M.js[39m   [2m | [22m[2mpre-recorded-pranayama-courses-component[22m[2m | [22m [36m21.22 kB[39m[2m | [22m
+
+
+[35mServer bundles[39m      
+[1mInitial chunk files[22m [2m | [22m[1mNames[22m                                   [2m | [22m [1mRaw size[22m
+[32mchunk-EZC7JGGB.mjs[39m  [2m | [22m[2m-[22m                                       [2m | [22m  [36m1.99 MB[39m[2m | [22m
+[32mchunk-KZCKBYNU.mjs[39m  [2m | [22m[2m-[22m                                       [2m | [22m [36m65.61 kB[39m[2m | [22m
+[32mchunk-WRB7QNPD.mjs[39m  [2m | [22m[2m-[22m                                       [2m | [22m [36m44.55 kB[39m[2m | [22m
+[32mchunk-QVCTF54D.mjs[39m  [2m | [22m[2m-[22m                                       [2m | [22m [36m25.95 kB[39m[2m | [22m
+[32mchunk-LPIEF2XI.mjs[39m  [2m | [22m[2m-[22m                                       [2m | [22m [36m22.38 kB[39m[2m | [22m
+[32mchunk-VG3YPHBK.mjs[39m  [2m | [22m[2m-[22m                                       [2m | [22m [36m14.20 kB[39m[2m | [22m
+[32mchunk-FQQU76EQ.mjs[39m  [2m | [22m[2m-[22m                                       [2m | [22m  [36m5.83 kB[39m[2m | [22m
+[32mserver.mjs[39m          [2m | [22m[2mserver[22m                                  [2m | [22m  [36m1.72 kB[39m[2m | [22m
+[32mmain.server.mjs[39m     [2m | [22m[2mmain.server[22m                             [2m | [22m[36m986 bytes[39m[2m | [22m
+[32mpolyfills.server.mjs[39m[2m | [22m[2mpolyfills.server[22m                        [2m | [22m[36m266 bytes[39m[2m | [22m
+
+[1mLazy chunk files[22m    [2m | [22m[1mNames[22m                                   [2m | [22m [1mRaw size[22m
+[32mchunk-3XBB5SDH.mjs[39m  [2m | [22m[2mbali-100-hour-component[22m                 [2m | [22m [36m89.63 kB[39m[2m | [22m
+[32mchunk-GDO4RRBC.mjs[39m  [2m | [22m[2mswara-sadhana-component[22m                 [2m | [22m [36m40.82 kB[39m[2m | [22m
+[32mchunk-ECL34SIW.mjs[39m  [2m | [22m[2mwebinar-registration-form-component[22m     [2m | [22m [36m29.33 kB[39m[2m | [22m
+[32mchunk-ZFJ6YQFG.mjs[39m  [2m | [22m[2mpre-recorded-pranayama-courses-component[22m[2m | [22m [36m21.25 kB[39m[2m | [22m
+
+Application bundle generation complete. [6.230 seconds] - 2026-07-05T12:03:43.858Z
+
+Watch mode enabled. Watching for file changes...
+NOTE: Raw file sizes do not reflect development server per-request transformations.
+  [32m➜[39m  [1mLocal[22m:   [36mhttp://127.0.0.1:[1m4200[22m/[39m
