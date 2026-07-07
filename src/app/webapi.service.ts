@@ -4,6 +4,8 @@ import { environment } from '../environments/environment';
 import {
   getCouponCodeModel,
   PranayamaCertificationSignupModel,
+  paypalPaymentResultModel,
+  paypalPayModel,
   razorPaymentResultModel,
   razorPayModel,
   razorPayReturnModel,
@@ -321,9 +323,21 @@ export class WebapiService {
       data
     );
   }
+  checkoutPaypalFor200TTC(data: TwoHundredTTCSignupModel): Observable<paypalPayModel> {
+    return this.http.post<paypalPayModel>(
+      this.url + 'api/v1/checkoutPaypalFor200TTC',
+      data
+    );
+  }
   getStripePaymentResult200TTC(data: any) {
     return this.http.post(
       this.url + 'api/v1/getStripePaymentResult200TTC',
+      data
+    );
+  }
+  getPaypalPaymentResult200TTC(data: paypalPaymentResultModel) {
+    return this.http.post(
+      this.url + 'api/v1/getPaypalPaymentResult200TTC',
       data
     );
   }

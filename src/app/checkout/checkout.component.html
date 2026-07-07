@@ -341,6 +341,23 @@
                 height="35"
               />
             </a>
+            <a
+              href="javascript:void(0)"
+              style="border-color: #f9751e"
+              class="payment-button"
+              [class.payment-button-disabled]="!canUsePaypal"
+              [attr.aria-disabled]="!canUsePaypal"
+              [attr.title]="canUsePaypal ? 'Pay with PayPal' : 'PayPal is available for USD payments'"
+              (click)="checkoutData(checkData, 'paypal')"
+              *ngIf="showPaypalButton"
+            >
+              <img
+                [src]="s3bucket.paypal"
+                alt="PayPal"
+                width="128"
+                height="30"
+              />
+            </a>
             <!-- <a
               href="https://www.paypal.me/yogavidyafoundation"
               style="border-color: #f9751e"

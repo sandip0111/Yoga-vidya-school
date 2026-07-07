@@ -19,6 +19,7 @@ import {
   dropdownModel,
   PhoneNumberData,
   PranayamaCertificationSignupModel,
+  paypalPayModel,
   razorPayModel,
   SignupDataModel,
   stripePayModel,
@@ -85,6 +86,7 @@ export class CheckoutComponent {
     INR: 79000,
     USD: 850,
   };
+  private readonly paypalSupportedCurrencies = ['USD'];
 
   /** True when the user has selected a 30% deposit booking option */
   get is30PercentBooking(): boolean {
@@ -102,6 +104,14 @@ export class CheckoutComponent {
       routeEnum.pranayamaCertification,
     ];
     return allowedSlugs.includes(this.slug as any);
+  }
+
+  get showPaypalButton(): boolean {
+    return this.slug === routeEnum['200TTC'];
+  }
+
+  get canUsePaypal(): boolean {
+    return this.paypalSupportedCurrencies.includes(this.checkData.currency);
   }
 
   constructor(
@@ -558,7 +568,9 @@ export class CheckoutComponent {
   packageRequired: string = '';
   phoneRequired: string = '';
   currencyRequired: string = '';
-  checkoutData(data: checkoutModel, isRazorPay: boolean) {
+  checkoutData(data: checkoutModel, paymentGateway: boolean | 'paypal') {
+    const isPaypal = paymentGateway === 'paypal';
+    const isRazorPay = paymentGateway === true;
     this.spinner.show();
     this.pixelTracking.trackInitiateCheckout(
       this.slug,
@@ -602,7 +614,7 @@ export class CheckoutComponent {
       }
       if (!isErrMsg) {
         if (this.slug == routeEnum['200TTC']) {
-          this.twoHundredTTCCheckout(data, isRazorPay);
+          this.twoHundredTTCCheckout(data, isRazorPay, isPaypal);
         } else if (
           this.slug == routeEnum.rishikesh100 ||
           this.slug == routeEnum.rishkesh200 ||
@@ -832,7 +844,16 @@ export class CheckoutComponent {
       this.newStudentCheckOut(data, isRazorPay, pass);
     }
   }
-  twoHundredTTCCheckout(data: checkoutModel, isRazorPay: boolean) {
+  twoHundredTTCCheckout(
+    data: checkoutModel,
+    isRazorPay: boolean,
+    isPaypal: boolean = false,
+  ) {
+    if (isPaypal && !this.canUsePaypal) {
+      alert('PayPal is available for USD payments on this checkout.');
+      this.spinner.hide();
+      return;
+    }
     const selectedRoom = this.roomList.find((r) => r.value == data.package);
     const isBooking30 = !this.paymentId && (+data.package === 3);
     const dueAmount = isBooking30
@@ -852,7 +873,9 @@ export class CheckoutComponent {
       id: this.paymentId ?? undefined,
       dueAmount: dueAmount,
     };
-    if (isRazorPay) {
+    if (isPaypal) {
+      this.initializePayPalPaymentFor200TTC(signupData);
+    } else if (isRazorPay) {
       this.initializeRazorPaymentFor200TTC(signupData);
     } else {
       this.initializePaymentFor200TTC(signupData);
@@ -1452,6 +1475,36 @@ export class CheckoutComponent {
             isDue ? data.dueAmount!.toString() : '0',
           );
           window.location.href = res.url;
+          this.spinner.hide();
+        } else {
+          alert('Session Genration failed! please try again');
+          this.spinner.hide();
+        }
+      });
+  }
+  initializePayPalPaymentFor200TTC(data: TwoHundredTTCSignupModel) {
+    this.webapiService
+      .checkoutPaypalFor200TTC(data)
+      .subscribe((res: paypalPayModel) => {
+        if (res.orderId && res.payDbId && res.approvalUrl) {
+          localStorage.setItem(
+            localstorageKey['200TTCPaypalOrderId'],
+            res.orderId,
+          );
+          localStorage.setItem(
+            localstorageKey['200TTCPaypalDBId'],
+            res.payDbId,
+          );
+          const isDue = !this.paymentId && data.dueAmount && data.dueAmount > 0;
+          localStorage.setItem(
+            localstorageKey['200TTCInstallment'],
+            isDue ? '1st' : '2nd',
+          );
+          localStorage.setItem(
+            localstorageKey['200TTCDue'],
+            isDue ? data.dueAmount!.toString() : '0',
+          );
+          window.location.href = res.approvalUrl;
           this.spinner.hide();
         } else {
           alert('Session Genration failed! please try again');
