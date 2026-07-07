@@ -179,3 +179,15 @@
     }
   }
 }
+
+/* Accordion spacing and simple summary styling */
+.accordion-list details {
+  margin-bottom: 1rem;
+}
+.accordion-list summary {
+  font-weight: 600;
+  padding: 0.5rem 0.25rem;
+}
+.accordion-list .accordion-body {
+  padding-left: 0.5rem;
+}
