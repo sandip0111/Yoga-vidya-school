@@ -18,7 +18,7 @@ import { LazyLoadImageModule } from 'ng-lazyload-image';
 })
 export class BlogComponent {
 
-  public defaultImage = 'https://miro.medium.com/max/441/1*9EBHIOzhE1XfMYoKz1JcsQ.gif';
+  public defaultImage = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1 1"%3E%3C/svg%3E';
   loading: boolean = false;
   imageUrl: any
   blogList: any;

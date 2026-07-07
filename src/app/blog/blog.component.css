@@ -16,60 +16,201 @@
 }
 
 section.blogs {
-  background-image: url("https://d29rwrqvux6m5p.cloudfront.net/images/blog.JPG");
-  background-repeat: no-repeat;
-  background-size: cover;
-  padding: 70px 0;
-  background-position: top;
-  background-attachment: fixed;
+  background: linear-gradient(180deg, #fdfbf7 0%, #f7f1e5 100%);
+  padding: 60px 0;
 }
 
-/* blog */
 section.blogs .single-blog {
-  background: linear-gradient(
-    227deg,
-    rgba(223, 223, 223, 0.2) 0%,
-    rgba(225, 225, 225, 0.3) 100%
-  );
-  backdrop-filter: blur(10px);
-  border-radius: 15px;
-  color: white;
-  padding: 15px;
-  margin: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.04);
   height: 100%;
+  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
-section.blogs .single-blog .blogTitle {
+section.blogs .single-blog:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 36px rgba(244, 112, 25, 0.08) !important;
+  border-color: rgba(244, 112, 25, 0.2);
+}
+
+.blog-card-body {
+  display: flex;
+  gap: 24px;
+  height: 100%;
+}
+
+@media (max-width: 768px) {
+  .blog-card-body {
+    flex-direction: column;
+    gap: 16px;
+  }
+}
+
+.blog-image-wrapper {
+  flex: 0 0 240px;
+  max-width: 240px;
+  align-self: stretch;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  background: #f0f2f5;
+  background: linear-gradient(90deg, #f0f2f5 25%, #e6e8eb 37%, #f0f2f5 63%);
+  background-size: 400% 100%;
+  animation: skeleton-loading 1.4s ease infinite;
+}
+
+.blog-image-wrapper a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@media (max-width: 768px) {
+  .blog-image-wrapper {
+    flex: 0 0 auto;
+    max-width: 100%;
+    width: 100%;
+    height: 220px;
+  }
+}
+
+.blog-image-wrapper .blog-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.blog-image-wrapper:hover .blog-img {
+  transform: scale(1.06);
+}
+
+.blog-content-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.blog-card-meta {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  gap: 20px;
+  flex-wrap: wrap;
+  gap: 12px;
 }
 
-section.blogs .single-blog img {
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  width: 250px;
-  border-radius: 10px;
+.date-badge {
+  font-size: 13px;
+  color: #f47019;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
 }
 
-section.blogs .single-blog .standard-btn {
-  position: absolute;
-  bottom: 15px;
-  left: 15px;
+.author-badge {
+  font-size: 13px;
+  color: #727782;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
 }
 
-section.blogs .single-blog a {
+.blog-title-link {
   text-decoration: none;
-  color: #fff;
 }
 
-section.blogs .single-blog a h3 {
+.blog-title {
+  font-size: 20px;
   font-weight: 600;
-  font-size: 25px;
+  color: #1e2129;
+  margin-top: 0;
+  margin-bottom: 10px;
+  line-height: 1.4;
+  transition: color 0.2s ease;
+}
+
+.blog-title-link:hover .blog-title {
+  color: #f47019;
+}
+
+.blog-desc {
+  font-size: 14px;
+  color: #4b5675;
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.blog-card-footer {
+  margin-top: auto;
+}
+
+.blog-readmore-btn {
+  display: inline-flex;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 600;
+  color: #f47019;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.blog-readmore-btn i {
+  transition: transform 0.2s ease;
+}
+
+.blog-readmore-btn:hover {
+  color: #d55502;
+}
+
+.blog-readmore-btn:hover i {
+  transform: translateX(4px);
+}
+
+/* Pagination Styling */
+::ng-deep .ngx-pagination {
+  padding-left: 0;
+  display: inline-flex;
+  justify-content: center;
+  gap: 5px;
+}
+
+::ng-deep .ngx-pagination li {
+  border-radius: 8px !important;
+  transition: all 0.2s ease;
+}
+
+::ng-deep .ngx-pagination a, 
+::ng-deep .ngx-pagination button {
+  color: #1e2129 !important;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 8px 16px !important;
+  display: block;
 }
 
 ::ng-deep .ngx-pagination .current {
-  background: #f9751e !important;
+  background: #f47019 !important;
+  border-radius: 8px !important;
+  padding: 8px 16px !important;
+  font-weight: 600;
+}
+
+::ng-deep .ngx-pagination a:hover {
+  background: rgba(244, 112, 25, 0.1) !important;
+  border-radius: 8px !important;
 }

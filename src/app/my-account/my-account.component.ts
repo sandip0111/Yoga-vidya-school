@@ -190,7 +190,9 @@ export class MyAccountComponent {
               slug != routeEnum.online &&
               slug != routeEnum.pranicPurification &&
               slug != routeEnum.pranicPurificationII &&
-              slug != routeEnum.pranayamaCertification
+              slug != routeEnum.pranayamaCertification &&
+              slug != routeEnum.sa &&
+              slug != routeEnum.foundationOfSpirituality
             ) {
               this.createAccessLog(val);
             }

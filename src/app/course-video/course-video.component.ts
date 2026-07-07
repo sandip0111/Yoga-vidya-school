@@ -544,6 +544,7 @@ export class CourseVideoComponent {
 
   // Callback function
   onVideoProgressComplete(dayNumber: number) {
+    if (!this.accessLog || !this.accessLog.nextSchedule) return;
     var isChanged = false;
     var currentDate = new Date();
     this.accessLog.nextSchedule.forEach((day: any) => {
@@ -740,8 +741,9 @@ export class CourseVideoComponent {
         this.slug == routeEnum['200TTC'] ||
         this.slug == routeEnum.online ||
         this.slug == routeEnum.pranicPurification ||
-        this.slug == routeEnum.pranicPurificationII 
-
+        this.slug == routeEnum.pranicPurificationII ||
+        this.slug == routeEnum.sa ||
+        this.slug == routeEnum.foundationOfSpirituality
           ? true
           : false;
       this.reverseArr[i].isVideoShown = false;
@@ -768,7 +770,12 @@ export class CourseVideoComponent {
           });
       }
     }, 4000);
-    if (this.slug != routeEnum['200TTC'] && this.slug != routeEnum.online) {
+    if (
+      this.slug != routeEnum['200TTC'] &&
+      this.slug != routeEnum.online &&
+      this.slug != routeEnum.sa &&
+      this.slug != routeEnum.foundationOfSpirituality
+    ) {
       this.getAccessLog(this.userId, id);
     }
   }

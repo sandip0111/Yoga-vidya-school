@@ -22,6 +22,7 @@ export class FooterComponent implements OnInit {
   blogRoute = `/${routeEnum.blogs}`;
   contact = contact;
   s3Bucket = s3Bucket;
+  currentYear: number = new Date().getFullYear();
   constructor(
     private webService: WebapiService,
     private spinner: NgxSpinnerService,
