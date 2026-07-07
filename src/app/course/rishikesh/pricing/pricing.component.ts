@@ -27,6 +27,7 @@ export class PricingComponent implements OnInit {
   monthEnum = MonthEnum;
   get showReserveText(): boolean {
     const validSlugs = [
+      routeEnum.rishikesh100,
       routeEnum.rishkesh200,
       routeEnum.rishikesh300,
       routeEnum.bali200,
@@ -41,6 +42,7 @@ export class PricingComponent implements OnInit {
   }
   get showRoomDescription(): boolean {
     const validRoomSlugs = [
+      routeEnum.rishikesh100,
       routeEnum.rishkesh200,
       routeEnum.rishikesh300,
       '200-horas-de-formacioacuten-de-profesores-de-yoga-en-rishikesh',

@@ -93,6 +93,7 @@ export class CheckoutComponent {
 
   get show30PercentDepositSection(): boolean {
     const allowedSlugs = [
+      routeEnum.rishikesh100,
       routeEnum.rishkesh200,
       routeEnum.rishikesh300,
       routeEnum.bali100,
@@ -145,17 +146,16 @@ export class CheckoutComponent {
       routeEnum.bali100,
     ];
 
-    if (this.slug === routeEnum.rishkesh200 || this.slug === routeEnum.rishikesh300) {
+    if (
+      this.slug === routeEnum.rishikesh100 ||
+      this.slug === routeEnum.rishkesh200 ||
+      this.slug === routeEnum.rishikesh300
+    ) {
       this.roomList = [
         { name: 'Shared room', value: 1 },
         { name: 'Private room', value: 2 },
         { name: 'Reserve your shared room with a 30% deposit', value: 3 },
         { name: 'Reserve your private room with a 30% deposit', value: 4 },
-      ];
-    } else if (this.slug === routeEnum.rishikesh100) {
-      this.roomList = [
-        { name: 'Shared room', value: 1 },
-        { name: 'Private room', value: 2 },
       ];
     } else if (this.slug === routeEnum['200TTC']) {
       this.roomList = [
@@ -392,7 +392,11 @@ export class CheckoutComponent {
     let isBooking30 = false;
     let lookupRoomId = +roomId;
 
-    if (this.slug === this.routeEnum.rishkesh200 || this.slug === this.routeEnum.rishikesh300) {
+    if (
+      this.slug === this.routeEnum.rishikesh100 ||
+      this.slug === this.routeEnum.rishkesh200 ||
+      this.slug === this.routeEnum.rishikesh300
+    ) {
       if (+roomId === 3) {
         isBooking30 = true;
         lookupRoomId = 1;
