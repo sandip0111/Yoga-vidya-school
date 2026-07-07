@@ -33,6 +33,7 @@ export class FaqComponent implements OnInit {
     }
   }
   ngOnInit() {
+    this.faqs = this.data;
     if (this.slug == routeEnum.pranicPurification) {
       this.isPranicPage = true;
     }
