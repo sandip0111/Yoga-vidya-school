@@ -257,6 +257,10 @@
   padding: 0 22px; /* reduce top padding so card aligns with image */
   border-radius: 6px;
   box-shadow: inset 0 0 0 2px rgba(245,113,26,0.03);
+
+  @media screen and (max-width: 768px) {
+    padding: 0; /* small padding on mobile */
+  }
 }
 
 .accordion-list {
@@ -282,6 +286,12 @@
   cursor: pointer;
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  @media screen and (max-width: 768px) {
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
 
 .accordion-list .accordion-body {
@@ -315,16 +325,14 @@
 /* Read more button (pure CSS) */
 .accordion-list summary::after {
   content: 'Read more';
-  position: absolute;
-  right: 0.25rem;
-  top: 50%;
-  transform: translateY(-50%);
   background: #f5711a;
   color: #fff;
   padding: 6px 10px;
   border-radius: 6px;
   font-size: 0.85rem;
   font-weight: 600;
+  text-align: center;
+  flex-shrink: 0;
 }
 
 .accordion-list details[open] summary::after {
@@ -348,7 +356,7 @@
   width: 100%;
   align-self: flex-start; /* keep image container fixed and not stretched */
   display: block;
-  height: 680px; /* fixed height for the image box - change as needed */
+  height: 740px; /* fixed height for the image box - change as needed */
   padding-top: 8px; /* match left panel top offset */
 }
 
