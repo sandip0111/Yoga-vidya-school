@@ -180,14 +180,216 @@
   }
 }
 
+/* Mobile: put left panel above the image and make both full width */
+@media screen and (max-width: 768px) {
+  .subjectSection .row {
+    display: block;
+  }
+
+  .subjectSection .row > .col-md-6 {
+    width: 100%;
+    display: block;
+  }
+
+  .left-panel {
+    padding: 12px 16px; /* small padding on mobile */
+  }
+
+  .accordion-list {
+    padding: 12px;
+    margin-bottom: 18px;
+  }
+
+  .imageback {
+    height: auto; /* let image size naturally on mobile */
+    padding-top: 0;
+    margin-top: 0;
+  }
+
+  .imageback img {
+    height: auto;
+    max-width: 100%;
+    border-radius: 8px;
+  }
+
+  /* Mobile: prevent summary text and read button overlapping */
+  .accordion-list summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 3.5rem; /* keep space for bullet */
+    gap: 12px;
+  }
+
+  .accordion-list summary > strong,
+  .accordion-list summary > span,
+  .accordion-list summary > *:not(::after) {
+    flex: 1 1 auto;
+  }
+
+  .accordion-list summary::before {
+    left: 8px;
+    width: 34px;
+    height: 34px;
+  }
+
+  .accordion-list summary::after {
+    position: static;
+    transform: none;
+    margin-left: 8px;
+  }
+
+  .accordion-list details[open] summary::after {
+    background: #555;
+    color: #fff;
+  }
+}
+
 /* Accordion spacing and simple summary styling */
 .accordion-list details {
   margin-bottom: 1rem;
 }
-.accordion-list summary {
-  font-weight: 600;
-  padding: 0.5rem 0.25rem;
+
+/* Outer left panel that fills the left column */
+.left-panel {
+  width: 100%;
+  background: linear-gradient(180deg, rgba(255,249,240,0.6), rgba(255,245,219,0.6));
+  padding: 0 22px; /* reduce top padding so card aligns with image */
+  border-radius: 6px;
+  box-shadow: inset 0 0 0 2px rgba(245,113,26,0.03);
+
+  @media screen and (max-width: 768px) {
+    padding: 0; /* small padding on mobile */
+  }
 }
+
+.accordion-list {
+  width: 100%;
+  max-width: 100%;
+  background: #fffaf3; /* inner white-ish card */
+  padding: 8px; /* reduce inner top padding to align with image */
+  border-radius: 6px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.03);
+  border: 1px solid rgba(245,113,26,0.06);
+}
+
+.accordion-list details {
+  margin-bottom: 1rem;
+}
+
+.accordion-list summary {
+  font-weight: 700;
+  padding: 0.75rem 0.25rem;
+  position: relative;
+  padding-left: 3.5rem;
+  font-size: 1.05rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  @media screen and (max-width: 768px) {
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
 .accordion-list .accordion-body {
   padding-left: 0.5rem;
+}
+
+/* Fancy bullet */
+.accordion-list summary::before {
+  content: '\25B6'; /* triangle */
+  position: absolute;
+  left: 0.25rem;
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  font-size: 16px;
+  color: #f5711a;
+  background: #fff7ef;
+  border-radius: 50%;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.08);
+  transition: transform 0.2s ease;
+}
+
+.accordion-list details[open] summary::before {
+  transform: translateY(-50%) rotate(90deg);
+}
+
+/* Read more button (pure CSS) */
+.accordion-list summary::after {
+  content: 'Read more';
+  background: #f5711a;
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.accordion-list details[open] summary::after {
+  content: 'Read less';
+  background: #555;
+}
+
+/* Make the two columns align vertically */
+.subjectSection .row {
+  display: flex;
+  align-items: flex-start; /* columns independent; left can grow */
+}
+
+.subjectSection .row > .col-md-6 {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* ensure children start at same top */
+}
+
+.imageback {
+  width: 100%;
+  align-self: flex-start; /* keep image container fixed and not stretched */
+  display: block;
+  height: 740px; /* fixed height for the image box - change as needed */
+  padding-top: 8px; /* match left panel top offset */
+}
+
+.imageback img {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  object-fit: cover;
+  box-shadow: 0 10px 30px rgba(245,113,26,0.12);
+}
+
+/* Hide native disclosure marker to avoid duplicate triangle */
+summary::-webkit-details-marker {
+  display: none;
+}
+summary::marker {
+  display: none;
+}
+summary {
+  list-style: none;
+}
+
+/* Ensure accordion card fills left-panel height and becomes scrollable if needed */
+.left-panel {
+  display: block;
+}
+.accordion-list {
+  display: block;
+  max-height: none; /* allow it to grow independently */
+  overflow: visible;
+  margin-top: 0; /* ensure card starts at top of panel */
+}
+.accordion-list .accordion-body {
+  max-height: none;
+  overflow: visible;
 }

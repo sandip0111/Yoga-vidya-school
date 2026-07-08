@@ -1,7 +1,10 @@
 <section class="pricing-section">
   <div class="section-header" *ngIf="mainHeading">
     <i
-      *ngIf="slug != routeEnum.foundationOfSpirituality"
+      *ngIf="
+        slug != routeEnum.foundationOfSpirituality &&
+        slug != routeEnum.pranOnlinePranaArambh
+      "
       class="fas fa-bed section-icon"
     ></i>
     <h2 class="section-title">{{ mainHeading }}</h2>
@@ -9,65 +12,70 @@
   </div>
 
   <div class="card-container">
-    @if(feesData.length>0){
-    <ng-container *ngFor="let item of feesData">
-      <div class="price-card" *ngIf="!item.hidden">
-        <div class="card-header">
-          {{ item.title }}
-          <span *ngIf="slug == routeEnum['200TTC']">(Early bird)</span>
+    @if (feesData.length > 0) {
+      <ng-container *ngFor="let item of feesData">
+        <div class="price-card" *ngIf="!item.hidden">
+          <div class="card-header">
+            {{ item.title }}
+            <span *ngIf="slug == routeEnum['200TTC']">(Early bird)</span>
+          </div>
+          <div class="card-body">
+            <p class="fee-label">
+              <strong><i class="fas fa-tags"></i> Course Fee</strong>
+            </p>
+            <div *ngFor="let obj of item.data; let i = index">
+              <p class="price-usd">
+                {{ obj.amount | currency: obj.currency : "symbol" : "1.0-3" }}
+              </p>
+              <hr class="price-divider" *ngIf="i < item.data.length - 1" />
+            </div>
+          </div>
         </div>
+      </ng-container>
+    } @else {
+      <div class="price-card" *ngFor="let item of pricing">
+        <div class="card-header">{{ item.title }}</div>
         <div class="card-body">
           <p class="fee-label">
             <strong><i class="fas fa-tags"></i> Course Fee</strong>
           </p>
-          <div *ngFor="let obj of item.data; let i = index">
-            <p class="price-usd">
-              {{ obj.amount | currency : obj.currency : "symbol" : "1.0-3" }}
-            </p>
-            <hr class="price-divider" *ngIf="i < item.data.length - 1" />
-          </div>
+          <p class="price-usd">{{ item.usd | currency: "USD" }}</p>
+          <hr class="price-divider" />
+          <p class="price-inr">{{ item.inr | currency: "INR" }}</p>
         </div>
       </div>
-    </ng-container>
-    }@else {
-    <div class="price-card" *ngFor="let item of pricing">
-      <div class="card-header">{{ item.title }}</div>
-      <div class="card-body">
-        <p class="fee-label">
-          <strong><i class="fas fa-tags"></i> Course Fee</strong>
-        </p>
-        <p class="price-usd">{{ item.usd | currency : "USD" }}</p>
-        <hr class="price-divider" />
-        <p class="price-inr">{{ item.inr | currency : "INR" }}</p>
-      </div>
-    </div>
     }
   </div>
   <ng-container *ngIf="showRoomDescription">
     <p class="mt-3">
-      By paying the <b>30% deposit, you are reserving your place in a shared room</b>.
-      Should you later wish to upgrade to a private room, this will be subject
-      to availability and the corresponding price difference.Please note that
-      the 30% deposit is <b>non-refundable</b>, as it allows us to lovingly reserve
+      By paying the
+      <b>30% deposit, you are reserving your place in a shared room</b>. Should
+      you later wish to upgrade to a private room, this will be subject to
+      availability and the corresponding price difference.Please note that the
+      30% deposit is <b>non-refundable</b>, as it allows us to lovingly reserve
       your place and prepare the space, teachers, and accommodations especially
       for you.
     </p>
   </ng-container>
   <div class="row justify-content-center">
-    @if(slug===routeEnum.rishikesh100 || slug===routeEnum.rishkesh200 ||
-    slug===routeEnum.rishikesh300) {
-    <button class="button" (click)="goToPaymentPage(monthEnum.October26)">
-      Join October Batch
-    </button>
-    } @else if(slug!==routeEnum.pranOnlinePranaArambh) {
-    <button class="button" (click)="goToPaymentPage()">
-      Join this journey
-    </button>
+    @if (
+      slug === routeEnum.rishikesh100 ||
+      slug === routeEnum.rishkesh200 ||
+      slug === routeEnum.rishikesh300
+    ) {
+      <button class="button" (click)="goToPaymentPage(monthEnum.October26)">
+        Join October Batch
+      </button>
+    } @else if (slug !== routeEnum.pranOnlinePranaArambh) {
+      <button class="button" (click)="goToPaymentPage()">
+        Join this journey
+      </button>
     } @else {
-    <button class="button" (click)="goToPaymentPage()">Get Access</button>
+      <button class="button" (click)="goToPaymentPage()">Join Now</button>
     }
   </div>
   <p *ngIf="showReserveText" class="mt-2 mb-0 text-center">
-    <span class="join-batch-heading">Reserve Your Slot with the 30%:</span>(limited places)
+    <span class="join-batch-heading">Reserve Your Slot with the 30%:</span
+    >(limited places)
   </p>
 </section>
