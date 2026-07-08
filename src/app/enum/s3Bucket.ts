@@ -168,7 +168,7 @@ export const s3Bucket = {
 } as const;
 export const youtubeLink = {
   trainingImportance: 'https://www.youtube.com/embed/t7l1cqDj1tA?si=ZJCQXJYDLzDwLLvm',
-  pranaArambh: 'https://d3mzqk1fxuwngx.cloudfront.net/reviews/pranarambha_intro.mp4?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAWGOLULIWBNKET5SM%2F20250106%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250106T163245Z&X-Amz-Expires=3600&X-Amz-Signature=bd6d68f4499c266e99fa1d35bf90b00551ac35dbc778f4838cc74787908c8375&X-Amz-SignedHeaders=host&x-id=GetObject',
+  pranaArambh: `${environment.imageUrl}test.mp4`,
 } as const;
 export const reviewLink = {
   review1: 'https://d29rwrqvux6m5p.cloudfront.net/testimonial/pranic_testimonial1.mp4',
