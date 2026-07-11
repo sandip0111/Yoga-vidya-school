@@ -1,3 +1,96 @@
+.about-rishikesh-section {
+  background: #f8eed8;
+
+  small {
+    text-align: left;
+    padding: 0;
+  }
+
+  h3,
+  .namaste {
+    color: #f5711a;
+  }
+
+  .namaste {
+    font-family: "Julee", cursive;
+    font-size: 30px;
+  }
+
+  & .imageback {
+    width: 100%;
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    min-height: 320px;
+    -webkit-box-shadow: 6px 6px 0px 0px var(--tw-primary-light);
+    -moz-box-shadow: 6px 6px 0px 0px var(--tw-primary-light);
+    box-shadow: 6px 6px 0px 0px var(--tw-primary-light);
+    max-height: 380px;
+
+    & img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      max-height: 380px;
+    }
+  }
+
+  @media screen and (max-width: 767px) {
+    .imageback {
+      min-height: 200px;
+    }
+    .aboutImage {
+      margin-bottom: 20px !important;
+    }
+  }
+}
+
+.why-rishikesh-section {
+  padding: 60px 15px;
+  background-color: #fff;
+  color: #333;
+}
+
+.why-rishikesh-section .main-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #f37021;
+  margin-bottom: 20px;
+}
+
+.why-rishikesh-section .lead-paragraph {
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+}
+
+.why-rishikesh-section .highlights {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #444;
+  margin: 20px 0;
+}
+
+.why-rishikesh-section .final-line {
+  font-style: italic;
+  font-size: 1.1rem;
+  color: #555;
+}
+
+.headingBlock {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+@media only screen and (max-width: 767px) {
+  .responsiveList {
+    padding-left: 45px;
+  }
+  .resposnsiveBali300 {
+    height: 30rem !important;
+  }
+}
+
 .daily-schedule-section {
   padding: 80px 0;
 }

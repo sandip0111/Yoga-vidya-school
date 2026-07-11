@@ -1,140 +1,249 @@
-@if(isPranicPurification){
-<app-banner [data]="bannerData"></app-banner>
-<app-bottom-nav-course
-  *ngIf="
-    slug != 'pranic-purification' &&
-    slug != '200-hours-yoga-teacher-training-online'
-  "
-></app-bottom-nav-course>
-<app-about-rishikesh></app-about-rishikesh>
-<app-education-categories [data]="feesData"></app-education-categories>
-<app-certified-yoga></app-certified-yoga>
-<app-rishikesh-curriculum [data]="currData"></app-rishikesh-curriculum>
-<app-watch-video
-  *ngIf="isYoutubeDataReady"
-  [data]="youtubeVideoData"
-  [slug]="slug"
-></app-watch-video>
-<app-learning></app-learning>
-<app-daily-schedule
-  [data]="schData"
-  [courseTeacher]="courseTeacher"
-></app-daily-schedule>
-<app-includes [data]="youtubeVideoData"></app-includes>
-<app-choose-us [data]="codecond"></app-choose-us>
-<!-- <app-mentors></app-mentors> -->
-<app-services [data]="accomData"></app-services>
-<app-fee-structure [data]="feesData"></app-fee-structure>
-<app-code-conduct [data]="codecond"></app-code-conduct>
-<app-yoga-alliance [data]="codecond"></app-yoga-alliance>
-<app-schedule [data]="schEventData"></app-schedule>
-<app-excursions></app-excursions>
-<app-video-reviews
-  *ngIf="isPranicPurification"
-  [specialvideo]="true"
-></app-video-reviews>
-<app-faq [data]="faqData"></app-faq>
-<!-- <app-gallery></app-gallery> -->
-<app-benifits></app-benifits>
-} @else if(slug == routEnum['200TTC']){
-<app-banner [data]="bannerData"></app-banner>
-<app-about-rishikesh></app-about-rishikesh>
-<app-certified-yoga></app-certified-yoga>
-<app-daily-schedule
-  [data]="schData"
-  [courseTeacher]="courseTeacher"
-></app-daily-schedule>
-<app-mentors></app-mentors>
-<app-bonus></app-bonus>
-<app-pricing [slug]="slug"></app-pricing>
-<app-services [data]="accomData"></app-services>
-<app-fee-structure [data]="feesData"></app-fee-structure>
-<app-code-conduct [data]="codecond"></app-code-conduct>
-<app-yoga-alliance [data]="codecond"></app-yoga-alliance>
-<app-schedule [data]="schEventData"></app-schedule>
-<app-excursions></app-excursions>
-<app-testimonials></app-testimonials>
-<app-gallery></app-gallery>
-<app-faq [data]="faqData"></app-faq>
-<app-benifits></app-benifits>
-} @else{
-<app-banner [data]="bannerData"></app-banner>
-<app-about-rishikesh></app-about-rishikesh>
-<app-education-categories
-  [data]="feesData"
-  *ngIf="
-    slug != routEnum.rishikesh100 &&
-    slug != routEnum.rishkesh200 &&
-    slug != routEnum.rishikesh300
-  "
-></app-education-categories>
-<app-certified-yoga></app-certified-yoga>
-<app-daily-schedule
-  [data]="schData"
-  [courseTeacher]="courseTeacher"
-></app-daily-schedule>
-<app-learning></app-learning>
-<app-includes [data]="youtubeVideoData"></app-includes>
-<app-bonus
-  *ngIf="
-    slug == routEnum.rishikesh100 ||
-    slug == routEnum.rishkesh200 ||
-    slug == routEnum.rishikesh300
-  "
-></app-bonus>
-<app-pricing [slug]="slug"></app-pricing>
-<app-choose-us [data]="codecond"></app-choose-us>
-<app-mentors></app-mentors>
-<app-rishikesh-curriculum
-  *ngIf="slug != routEnum.rishkesh200"
-  [data]="currData"
-></app-rishikesh-curriculum>
-<app-services
-  [data]="accomData"
-  *ngIf="
-    slug != routEnum.rishikesh100 &&
-    slug != routEnum.rishkesh200 &&
-    slug != routEnum.rishikesh300
-  "
-></app-services>
-<app-fee-structure
-  [data]="feesData"
-  *ngIf="slug != routEnum.rishikesh100 && slug != routEnum.rishkesh200"
-></app-fee-structure>
-<app-code-conduct
-  [data]="codecond"
-  *ngIf="slug != routEnum.rishkesh200"
-></app-code-conduct>
-<app-yoga-alliance
-  *ngIf="
-    slug != routEnum.rishikesh100 &&
-    slug != routEnum.rishkesh200 &&
-    slug != routEnum.rishikesh300
-  "
-  [data]="codecond"
-></app-yoga-alliance>
-<app-schedule
-  [data]="schEventData"
-  *ngIf="slug != routEnum.rishkesh200 && slug != routEnum.rishikesh300"
-></app-schedule>
-<app-excursions></app-excursions>
-<app-testimonials></app-testimonials>
-<app-video-reviews
-  *ngIf="isPranicPurification"
-  [specialvideo]="true"
-></app-video-reviews>
-<app-gallery
-  *ngIf="
-    slug != routEnum.rishikesh100 &&
-    slug != routEnum.rishkesh200 &&
-    slug != routEnum.rishikesh300
-  "
-></app-gallery>
-<app-watch-video
-  *ngIf="isYoutubeDataReady"
-  [data]="youtubeVideoData"
-  [slug]="slug"
-></app-watch-video>
-<app-faq [data]="faqData"></app-faq>
-<app-benifits></app-benifits>
+@if (isPranicPurification) {
+  <app-banner [data]="bannerData"></app-banner>
+  <app-bottom-nav-course
+    *ngIf="
+      slug != 'pranic-purification' &&
+      slug != '200-hours-yoga-teacher-training-online'
+    "
+  ></app-bottom-nav-course>
+  <app-about-rishikesh></app-about-rishikesh>
+  <app-education-categories [data]="feesData"></app-education-categories>
+  <app-certified-yoga></app-certified-yoga>
+  <app-rishikesh-curriculum [data]="currData"></app-rishikesh-curriculum>
+  <app-watch-video
+    *ngIf="isYoutubeDataReady"
+    [data]="youtubeVideoData"
+    [slug]="slug"
+  ></app-watch-video>
+  <app-learning></app-learning>
+  <app-daily-schedule
+    [data]="schData"
+    [courseTeacher]="courseTeacher"
+  ></app-daily-schedule>
+  <app-includes [data]="youtubeVideoData"></app-includes>
+  <app-choose-us [data]="codecond"></app-choose-us>
+  <!-- <app-mentors></app-mentors> -->
+  <app-services [data]="accomData"></app-services>
+  <app-fee-structure [data]="feesData"></app-fee-structure>
+  <app-code-conduct [data]="codecond"></app-code-conduct>
+  <app-yoga-alliance [data]="codecond"></app-yoga-alliance>
+  <app-schedule [data]="schEventData"></app-schedule>
+  <app-excursions></app-excursions>
+  <app-video-reviews
+    *ngIf="isPranicPurification"
+    [specialvideo]="true"
+  ></app-video-reviews>
+  <app-faq [data]="faqData"></app-faq>
+  <!-- <app-gallery></app-gallery> -->
+  <app-benifits></app-benifits>
+} @else if (slug == routEnum["200TTC"]) {
+  <app-banner [data]="bannerData"></app-banner>
+  <app-about-rishikesh></app-about-rishikesh>
+  <app-certified-yoga></app-certified-yoga>
+  <app-daily-schedule
+    [data]="schData"
+    [courseTeacher]="courseTeacher"
+  ></app-daily-schedule>
+  <!-- Daily Schedule -->
+  <section class="daily-schedule-section py-5">
+    <div class="container">
+      <div class="daily-schedule-intro text-center mb-4">
+        <h2 class="daily-schedule-title">Daily Schedule</h2>
+        <p class="daily-schedule-description">
+          A balanced flow of practice, study, and reflection designed to support
+          your yoga journey.
+        </p>
+      </div>
+
+      <div class="daily-schedule-card">
+        <ul class="daily-schedule-list">
+          <li class="daily-schedule-item">
+            <div class="daily-schedule-time-wrap">
+              <span class="daily-schedule-icon" aria-hidden="true">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <circle cx="12" cy="12" r="9"></circle>
+                  <path d="M12 7v5l3 2"></path>
+                </svg>
+              </span>
+              <div class="daily-schedule-time">09:00 AM</div>
+            </div>
+            <div class="daily-schedule-label">Asana (Prashant ji )</div>
+          </li>
+          <li class="daily-schedule-item">
+            <div class="daily-schedule-time-wrap">
+              <span class="daily-schedule-icon" aria-hidden="true">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <circle cx="12" cy="12" r="9"></circle>
+                  <path d="M12 7v5l3 2"></path>
+                </svg>
+              </span>
+              <div class="daily-schedule-time">10:30 AM</div>
+            </div>
+            <div class="daily-schedule-label">
+              Pranayama (Shivam ji / Archana ji )
+            </div>
+          </li>
+          <li class="daily-schedule-item">
+            <div class="daily-schedule-time-wrap">
+              <span class="daily-schedule-icon" aria-hidden="true">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <circle cx="12" cy="12" r="9"></circle>
+                  <path d="M12 7v5l3 2"></path>
+                </svg>
+              </span>
+              <div class="daily-schedule-time">04:00 PM</div>
+            </div>
+            <div class="daily-schedule-label">
+              Anatomy / Philosophy- (Swamiji)
+            </div>
+          </li>
+          <li class="daily-schedule-item">
+            <div class="daily-schedule-time-wrap">
+              <span class="daily-schedule-icon" aria-hidden="true">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <circle cx="12" cy="12" r="9"></circle>
+                  <path d="M12 7v5l3 2"></path>
+                </svg>
+              </span>
+              <div class="daily-schedule-time">06:30 PM</div>
+            </div>
+            <div class="daily-schedule-label">Meditation ( Rima ji)</div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <app-mentors></app-mentors>
+  <app-bonus></app-bonus>
+  <app-pricing [slug]="slug"></app-pricing>
+  <app-services [data]="accomData"></app-services>
+  <app-fee-structure [data]="feesData"></app-fee-structure>
+  <app-code-conduct [data]="codecond"></app-code-conduct>
+  <app-yoga-alliance [data]="codecond"></app-yoga-alliance>
+  <app-schedule [data]="schEventData"></app-schedule>
+  <app-excursions></app-excursions>
+  <app-testimonials></app-testimonials>
+  <app-gallery></app-gallery>
+  <app-faq [data]="faqData"></app-faq>
+  <app-benifits></app-benifits>
+} @else {
+  <app-banner [data]="bannerData"></app-banner>
+  <app-about-rishikesh></app-about-rishikesh>
+  <app-education-categories
+    [data]="feesData"
+    *ngIf="
+      slug != routEnum.rishikesh100 &&
+      slug != routEnum.rishkesh200 &&
+      slug != routEnum.rishikesh300
+    "
+  ></app-education-categories>
+  <app-certified-yoga></app-certified-yoga>
+  <app-daily-schedule
+    [data]="schData"
+    [courseTeacher]="courseTeacher"
+  ></app-daily-schedule>
+  <app-learning></app-learning>
+  <app-includes [data]="youtubeVideoData"></app-includes>
+  <app-bonus
+    *ngIf="
+      slug == routEnum.rishikesh100 ||
+      slug == routEnum.rishkesh200 ||
+      slug == routEnum.rishikesh300
+    "
+  ></app-bonus>
+  <app-pricing [slug]="slug"></app-pricing>
+  <app-choose-us [data]="codecond"></app-choose-us>
+  <app-mentors></app-mentors>
+  <app-rishikesh-curriculum
+    *ngIf="slug != routEnum.rishkesh200"
+    [data]="currData"
+  ></app-rishikesh-curriculum>
+  <app-services
+    [data]="accomData"
+    *ngIf="
+      slug != routEnum.rishikesh100 &&
+      slug != routEnum.rishkesh200 &&
+      slug != routEnum.rishikesh300
+    "
+  ></app-services>
+  <app-fee-structure
+    [data]="feesData"
+    *ngIf="slug != routEnum.rishikesh100 && slug != routEnum.rishkesh200"
+  ></app-fee-structure>
+  <app-code-conduct
+    [data]="codecond"
+    *ngIf="slug != routEnum.rishkesh200"
+  ></app-code-conduct>
+  <app-yoga-alliance
+    *ngIf="
+      slug != routEnum.rishikesh100 &&
+      slug != routEnum.rishkesh200 &&
+      slug != routEnum.rishikesh300
+    "
+    [data]="codecond"
+  ></app-yoga-alliance>
+  <app-schedule
+    [data]="schEventData"
+    *ngIf="slug != routEnum.rishkesh200 && slug != routEnum.rishikesh300"
+  ></app-schedule>
+  <app-excursions></app-excursions>
+  <app-testimonials></app-testimonials>
+  <app-video-reviews
+    *ngIf="isPranicPurification"
+    [specialvideo]="true"
+  ></app-video-reviews>
+  <app-gallery
+    *ngIf="
+      slug != routEnum.rishikesh100 &&
+      slug != routEnum.rishkesh200 &&
+      slug != routEnum.rishikesh300
+    "
+  ></app-gallery>
+  <app-watch-video
+    *ngIf="isYoutubeDataReady"
+    [data]="youtubeVideoData"
+    [slug]="slug"
+  ></app-watch-video>
+  <app-faq [data]="faqData"></app-faq>
+  <app-benifits></app-benifits>
 }
