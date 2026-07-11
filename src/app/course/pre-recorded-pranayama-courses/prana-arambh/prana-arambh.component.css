@@ -182,7 +182,7 @@
 
 @media screen and (min-width: 992px) {
   .banner {
-    align-items: flex-start;
+    align-items: stretch;
   }
 
   .banner .video-container {
