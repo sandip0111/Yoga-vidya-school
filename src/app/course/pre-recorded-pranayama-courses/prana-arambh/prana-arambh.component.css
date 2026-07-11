@@ -180,6 +180,25 @@
   }
 }
 
+@media screen and (min-width: 992px) {
+  .banner {
+    align-items: flex-start;
+  }
+
+  .banner .video-container {
+    height: auto !important;
+    max-height: 430px !important;
+    overflow: hidden;
+  }
+
+  .banner .background-video {
+    width: 100% !important;
+    height: auto !important;
+    max-height: 430px !important;
+    object-fit: contain !important;
+  }
+}
+
 /* Mobile: put left panel above the image and make both full width */
 @media screen and (max-width: 768px) {
   .subjectSection .row {
