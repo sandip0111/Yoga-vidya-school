@@ -119,6 +119,39 @@
   line-height: 1.6;
 }
 
+.daily-schedule-note {
+  max-width: 620px;
+  margin: 0.75rem auto 0;
+  padding: 12px 16px;
+  border-left: 4px solid #f47019;
+  background: #fff7ef;
+  color: #7b5f4d;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  font-style: italic;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.daily-schedule-note-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #f47019;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.daily-schedule-note-icon svg {
+  width: 14px;
+  height: 14px;
+}
+
 .daily-schedule-card {
   max-width: 700px;
   margin: 0 auto;
