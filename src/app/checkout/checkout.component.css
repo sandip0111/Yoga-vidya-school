@@ -37,6 +37,16 @@ h3 {
   transform: scale(1.05);
 }
 
+.payment-button-disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.payment-button-disabled:hover {
+  border-color: #f9751e;
+  transform: none;
+}
+
 .payment-button svg {
   height: 40px;
   width: auto;

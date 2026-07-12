@@ -1,0 +1,235 @@
+.about-rishikesh-section {
+  background: #f8eed8;
+
+  small {
+    text-align: left;
+    padding: 0;
+  }
+
+  h3,
+  .namaste {
+    color: #f5711a;
+  }
+
+  .namaste {
+    font-family: "Julee", cursive;
+    font-size: 30px;
+  }
+
+  & .imageback {
+    width: 100%;
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    min-height: 320px;
+    -webkit-box-shadow: 6px 6px 0px 0px var(--tw-primary-light);
+    -moz-box-shadow: 6px 6px 0px 0px var(--tw-primary-light);
+    box-shadow: 6px 6px 0px 0px var(--tw-primary-light);
+    max-height: 380px;
+
+    & img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      max-height: 380px;
+    }
+  }
+
+  @media screen and (max-width: 767px) {
+    .imageback {
+      min-height: 200px;
+    }
+    .aboutImage {
+      margin-bottom: 20px !important;
+    }
+  }
+}
+
+.why-rishikesh-section {
+  padding: 60px 15px;
+  background-color: #fff;
+  color: #333;
+}
+
+.why-rishikesh-section .main-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #f37021;
+  margin-bottom: 20px;
+}
+
+.why-rishikesh-section .lead-paragraph {
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+}
+
+.why-rishikesh-section .highlights {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #444;
+  margin: 20px 0;
+}
+
+.why-rishikesh-section .final-line {
+  font-style: italic;
+  font-size: 1.1rem;
+  color: #555;
+}
+
+.headingBlock {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+@media only screen and (max-width: 767px) {
+  .responsiveList {
+    padding-left: 45px;
+  }
+  .resposnsiveBali300 {
+    height: 30rem !important;
+  }
+}
+
+.daily-schedule-section {
+  padding: 80px 0;
+}
+
+.daily-schedule-intro {
+  margin-bottom: 2rem;
+}
+
+.daily-schedule-title {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: #fff5eb;
+  color: #f47019;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 1.8rem;
+  font-weight: 800;
+}
+
+.daily-schedule-description {
+  max-width: 620px;
+  margin: 0 auto;
+  color: #7b5f4d;
+  line-height: 1.6;
+}
+
+.daily-schedule-note {
+  max-width: 620px;
+  margin: 0.75rem auto 0;
+  padding: 12px 16px;
+  border-left: 4px solid #f47019;
+  background: #fff7ef;
+  color: #7b5f4d;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  font-style: italic;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.daily-schedule-note-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #f47019;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.daily-schedule-note-icon svg {
+  width: 14px;
+  height: 14px;
+}
+
+.daily-schedule-card {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 24px;
+  border-radius: 24px;
+  background: linear-gradient(135deg, #fffdf9 0%, #fff7ee 100%);
+  box-shadow: 0 20px 40px rgba(244, 112, 25, 0.12);
+  border: 1px solid #f8dfca;
+}
+
+.daily-schedule-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.daily-schedule-item {
+  display: flex;
+  align-items: center;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.daily-schedule-item-last {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.daily-schedule-time-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 140px;
+}
+
+.daily-schedule-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #f47019;
+  color: #fff;
+  box-shadow: 0 8px 20px rgba(244, 112, 25, 0.25);
+}
+
+.daily-schedule-icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+.daily-schedule-time {
+  font-weight: 700;
+  color: #333;
+  white-space: nowrap;
+}
+
+.daily-schedule-label {
+  flex: 1;
+  padding-left: 8px;
+  font-size: 1rem;
+  color: #5b3d2c;
+  font-weight: 600;
+}
+
+@media (max-width: 575px) {
+  .daily-schedule-card {
+    padding: 18px;
+  }
+
+  .daily-schedule-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .daily-schedule-label {
+    padding-left: 0;
+  }
+}

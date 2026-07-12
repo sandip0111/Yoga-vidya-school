@@ -269,7 +269,7 @@
               class="form-control"
               name="currency"
               [(ngModel)]="checkData.currency"
-              (change)="priceConvert($event)"
+              (ngModelChange)="onCurrencyChange($event)"
               [disabled]="paymentId ? true : false"
             >
               <option *ngFor="let option of currencyOptions" [value]="option">
@@ -341,6 +341,23 @@
                 height="35"
               />
             </a>
+            @if(showPaypalButton && canUsePaypal) {
+            <a
+              href="javascript:void(0)"
+              style="border-color: #f9751e"
+              class="payment-button"
+              [attr.title]="canUsePaypal ? 'Pay with PayPal' : 'Pay with PayPal (will auto-switch to USD)'"
+              (click)="onPaypalClick()"
+            >
+              <img
+                [src]="s3bucket.paypal"
+                alt="PayPal"
+                width="128"
+                height="30"
+              />
+            </a>
+            }
+
             <!-- <a
               href="https://www.paypal.me/yogavidyafoundation"
               style="border-color: #f9751e"
@@ -355,8 +372,10 @@
               />
             </a> -->
           </div>
+
         </div>
       </div>
+
     </div>
   </div>
 }@else {

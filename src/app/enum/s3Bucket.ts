@@ -168,7 +168,7 @@ export const s3Bucket = {
 } as const;
 export const youtubeLink = {
   trainingImportance: 'https://www.youtube.com/embed/t7l1cqDj1tA?si=ZJCQXJYDLzDwLLvm',
-  pranaArambh: `${environment.imageUrl}test.mp4`,
+  pranaArambh: `${environment.imageUrl}pranaarambhVdo.MP4`,
 } as const;
 export const reviewLink = {
   review1: 'https://d29rwrqvux6m5p.cloudfront.net/testimonial/pranic_testimonial1.mp4',

@@ -127,6 +127,20 @@ export interface stripePayModel {
   payDbId: string;
   url: string;
 }
+export interface paypalPayModel {
+  orderId: string;
+  payDbId: string;
+  approvalUrl: string;
+}
+export interface paypalPaymentResultModel {
+  paypalOrderId: string | null;
+  payDbId: string | null;
+  password?: string;
+  installment?: string;
+  dueAmnt?: number;
+  fbc?: string;
+  fbp?: string;
+}
 export interface razorPayReturnModel {
   amount: number;
   currency: string;

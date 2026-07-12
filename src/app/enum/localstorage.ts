@@ -10,6 +10,8 @@ export enum localstorageKey {
   '200TTCRzpDBId' = '200TTC_razorpay_db_id',
   '200TTCStripeSessionId' = '200TTC_stripe_session_id',
   '200TTCStripeDBId' = '200TTC_stripe_db_id',
+  '200TTCPaypalOrderId' = '200TTC_paypal_order_id',
+  '200TTCPaypalDBId' = '200TTC_paypal_db_id',
   'pranaArambhVideo' = 'prana_arambh',
   '200TTCInstallment' = '200TTC_installment',
   '200TTCDue' = '200TTC_due',

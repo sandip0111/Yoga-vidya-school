@@ -1,0 +1,415 @@
+<app-banner
+  [imgSlug]="s3Bucket.rishikeshAbout"
+  [bannerTitle]="bannerTitle"
+  [bannerSubtitle]="bannerSubtitle"
+></app-banner>
+<section class="about-rishikesh-section py-5">
+  <div class="row mb-3 align-items-center">
+    <div class="col-md-6 aboutImage">
+      <div class="imageback">
+        <img
+          [src]="s3Bucket.certifiedRishikeshAbout"
+          class="img-fluid"
+          loading="lazy"
+          alt="about-rishikesh"
+        />
+      </div>
+    </div>
+    <div class="col-md-6 d-flex align-items-center">
+      <div>
+        <h1>Train Where Yoga Was Born</h1>
+        <h3>
+          Get certified as a Yoga Teacher in Rishikesh, India — the world
+          capital of yoga.
+        </h3>
+        <div>
+          <p>
+            Join us at Yoga Vidya School for a transformational journey rooted
+            in traditional practice, deep wisdom, and immersive experience.
+          </p>
+        </div>
+        <div class="mt-3">
+          <h2><span>Next Batches starts</span> October the 3rd</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="why-rishikesh-section text-center">
+  <div class="container">
+    <h2 class="main-title">Why Rishikesh?</h2>
+    <p class="lead-paragraph">
+      Rishikesh, nestled at the foothills of the Himalayas and along the sacred
+      Ganges River, is the spiritual heart of yoga.
+    </p>
+    <p>
+      This ancient town is home to countless sages, yogis, and seekers, and
+      offers the ideal environment to dive into the true essence of yoga.
+    </p>
+    <p class="highlights">
+      Spirituality 🕉 &nbsp;|&nbsp; Nature 🌿 &nbsp;|&nbsp; Tradition ⚕️
+    </p>
+    <p class="final-line">
+      Experience yoga not just as a practice, but as a sacred way of life.
+    </p>
+  </div>
+</section>
+<div class="section-traning-path">
+  <div class="d-flex justify-content-center">
+    <img
+      loading="lazy"
+      alt="flower"
+      [src]="s3Bucket.flower"
+      class="flower-img"
+    />
+  </div>
+  <div class="row headingBlock">
+    <h3 class="col-md-12">Choose Your Training Path</h3>
+    <h4 class="col-md-12" style="color: #f47019">
+      Next Batches Starts: October the 3rd
+    </h4>
+  </div>
+  <div class="row align-items-center mainContent">
+    <div class="col-md-6 contentrishi">
+      <h4 style="color: #f47019">📘 100-Hour Yoga Teacher Training</h4>
+      <p>
+        <b>Perfect for:</b> Beginners or those deepening their personal practice
+      </p>
+      <ul class="responsiveList">
+        <li>Fundamentals of Hatha Yoga</li>
+        <li>Ashtanga Vinyasa Primary Serie</li>
+        <li>Introduction to Yogic Philosophy</li>
+        <li>Basic Pranayama & Meditation Techniques</li>
+        <li>Duration: 12 days</li>
+      </ul>
+      <button
+        class="button"
+        style="margin-top: 0"
+        (click)="goToLink(routEnum.rishikesh100)"
+      >
+        See more details
+      </button>
+    </div>
+    <div class="col-md-6">
+      <img
+        loading="lazy"
+        class="img-fluid imgRishi100"
+        alt="rishikesh100"
+        [src]="s3Bucket.rishikesh100"
+      />
+    </div>
+  </div>
+  <div class="row align-items-center mainContent cl-reverse">
+    <div class="col-md-6">
+      <img
+        loading="lazy"
+        class="img-fluid imgRishi100"
+        alt="rishikesh200"
+        [src]="s3Bucket.rishikesh200"
+      />
+    </div>
+    <div class="col-md-6 contentrishi">
+      <h4 style="color: #f47019">📗 200-Hour Yoga Teacher Training</h4>
+      <p><b>Perfect for:</b> Aspiring teachers or serious practitioners</p>
+      <ul class="responsiveList">
+        <li>Certified by Yoga Alliance</li>
+        <li>In-depth Asana, Anatomy, and Teaching Methodology</li>
+        <li>Philosophy, Mudra, Mantra, Pranayama & Meditation</li>
+        <li>Duration: 24 days</li>
+      </ul>
+      <p style="font-weight: 800">✅ International Certification</p>
+      <button
+        class="button"
+        style="margin-top: 0"
+        (click)="goToLink(routEnum.rishkesh200)"
+      >
+        See more details
+      </button>
+    </div>
+  </div>
+  <div class="row align-items-center mainContent">
+    <div class="col-md-6 contentrishi">
+      <h4 style="color: #f47019">📙 300-Hour Yoga Teacher Training</h4>
+      <p>
+        <b>Perfect for:</b> Certified teachers (200 hour Yoga Alliance) who want
+        to go deeper
+      </p>
+      <ul class="responsiveList">
+        <li>Advanced Hatha & Ashtanga Techniques</li>
+        <li>Pranayama & Kriya Practices</li>
+        <li>Yoga Philosophy, Therapeutic Adjustments & Teaching Practicum</li>
+        <li>Duration: 28 days</li>
+      </ul>
+      <p style="font-weight: 800">✅ Advanced Level</p>
+      <button
+        class="button"
+        style="margin-top: 0"
+        (click)="goToLink(routEnum.rishikesh300)"
+      >
+        See more details
+      </button>
+    </div>
+    <div class="col-md-6">
+      <img
+        loading="lazy"
+        class="img-fluid imgRishi100"
+        alt="rishikesh300"
+        [src]="s3Bucket.rishikesh300"
+      />
+    </div>
+  </div>
+</div>
+
+<!-- Daily Schedule -->
+<section class="daily-schedule-section py-5">
+  <div class="container">
+    <div class="daily-schedule-intro text-center mb-4">
+      <h2 class="daily-schedule-title">
+        This is the classes schedule for rishikesh ttc
+      </h2>
+      <p class="daily-schedule-description">
+        Yoga ttc schedule
+      </p>
+      <p class="daily-schedule-note">
+        <span class="daily-schedule-note-icon" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10" />
+            <line x1="12" y1="8" x2="12" y2="12" />
+            <line x1="12" y1="16" x2="12.01" y2="16" />
+          </svg>
+        </span>
+        given schedule is subject to change
+      </p>
+    </div>
+
+    <div class="daily-schedule-card">
+      <ul class="daily-schedule-list">
+        <li class="daily-schedule-item">
+          <div class="daily-schedule-time-wrap">
+            <span class="daily-schedule-icon" aria-hidden="true">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="12" cy="12" r="9"></circle>
+                <path d="M12 7v5l3 2"></path>
+              </svg>
+            </span>
+            <div class="daily-schedule-time">06:00 AM</div>
+          </div>
+          <div class="daily-schedule-label">Shatkarma</div>
+        </li>
+        <li class="daily-schedule-item">
+          <div class="daily-schedule-time-wrap">
+            <span class="daily-schedule-icon" aria-hidden="true">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="12" cy="12" r="9"></circle>
+                <path d="M12 7v5l3 2"></path>
+              </svg>
+            </span>
+            <div class="daily-schedule-time">06:30 AM</div>
+          </div>
+          <div class="daily-schedule-label">Ashtanga Vinyasa</div>
+        </li>
+        <li class="daily-schedule-item">
+          <div class="daily-schedule-time-wrap">
+            <span class="daily-schedule-icon" aria-hidden="true">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="12" cy="12" r="9"></circle>
+                <path d="M12 7v5l3 2"></path>
+              </svg>
+            </span>
+            <div class="daily-schedule-time">08:15 AM</div>
+          </div>
+          <div class="daily-schedule-label">Pranayama</div>
+        </li>
+        <li class="daily-schedule-item">
+          <div class="daily-schedule-time-wrap">
+            <span class="daily-schedule-icon" aria-hidden="true">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="12" cy="12" r="9"></circle>
+                <path d="M12 7v5l3 2"></path>
+              </svg>
+            </span>
+            <div class="daily-schedule-time">09:00 AM</div>
+          </div>
+          <div class="daily-schedule-label">Breakfast</div>
+        </li>
+        <li class="daily-schedule-item">
+          <div class="daily-schedule-time-wrap">
+            <span class="daily-schedule-icon" aria-hidden="true">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="12" cy="12" r="9"></circle>
+                <path d="M12 7v5l3 2"></path>
+              </svg>
+            </span>
+            <div class="daily-schedule-time">10:30 AM</div>
+          </div>
+          <div class="daily-schedule-label">Philosophy</div>
+        </li>
+        <li class="daily-schedule-item">
+          <div class="daily-schedule-time-wrap">
+            <span class="daily-schedule-icon" aria-hidden="true">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="12" cy="12" r="9"></circle>
+                <path d="M12 7v5l3 2"></path>
+              </svg>
+            </span>
+            <div class="daily-schedule-time">11:45 AM</div>
+          </div>
+          <div class="daily-schedule-label">Asana Alignment / Mantra</div>
+        </li>
+        <li class="daily-schedule-item">
+          <div class="daily-schedule-time-wrap">
+            <span class="daily-schedule-icon" aria-hidden="true">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="12" cy="12" r="9"></circle>
+                <path d="M12 7v5l3 2"></path>
+              </svg>
+            </span>
+            <div class="daily-schedule-time">01:00 PM</div>
+          </div>
+          <div class="daily-schedule-label">Lunch / Rest</div>
+        </li>
+        <li class="daily-schedule-item">
+          <div class="daily-schedule-time-wrap">
+            <span class="daily-schedule-icon" aria-hidden="true">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="12" cy="12" r="9"></circle>
+                <path d="M12 7v5l3 2"></path>
+              </svg>
+            </span>
+            <div class="daily-schedule-time">03:00 PM</div>
+          </div>
+          <div class="daily-schedule-label">Anatomy</div>
+        </li>
+        <li class="daily-schedule-item">
+          <div class="daily-schedule-time-wrap">
+            <span class="daily-schedule-icon" aria-hidden="true">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="12" cy="12" r="9"></circle>
+                <path d="M12 7v5l3 2"></path>
+              </svg>
+            </span>
+            <div class="daily-schedule-time">04:15 PM</div>
+          </div>
+          <div class="daily-schedule-label">Hatha Yoga</div>
+        </li>
+        <li class="daily-schedule-item daily-schedule-item-last">
+          <div class="daily-schedule-time-wrap">
+            <span class="daily-schedule-icon" aria-hidden="true">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="12" cy="12" r="9"></circle>
+                <path d="M12 7v5l3 2"></path>
+              </svg>
+            </span>
+            <div class="daily-schedule-time">06:00 PM</div>
+          </div>
+          <div class="daily-schedule-label">Meditation</div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<app-includes></app-includes>
+<app-bonus></app-bonus>
+<app-video-reviews [slug]="routEnum.rishikesh"></app-video-reviews>
+<app-ready [slug]="routEnum.rishikesh"></app-ready>

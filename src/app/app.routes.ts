@@ -38,6 +38,7 @@ import { PankajPageComponent } from './course/online-course-mentor/pankaj-page/p
 import { PranicPurificationIiComponent } from './course/pranic-purification-ii/pranic-purification-ii.component';
 import { BreatchdtoxComponent } from './course/pre-recorded-pranayama-courses/breatchdtox/breatchdtox.component';
 import { PranaArambhComponent } from './course/pre-recorded-pranayama-courses/prana-arambh/prana-arambh.component';
+import { RishikshMain } from './course/rishikesh/rishiksh-main/rishiksh-main';
 
 export const routes: Routes = [
   { path: '', component: IndexComponent },
@@ -109,7 +110,7 @@ export const routes: Routes = [
   },
   { path: 'yoga-philosophy-course-free', component: BaliIndexComponent },
   {
-    path: '200-hours-yoga-teacher-training-online',
+    path: routeEnum['200TTC'],
     component: RishikeshIndexComponent,
   },
   { path: 'my-account', component: MyAccountComponent },
@@ -147,8 +148,8 @@ export const routes: Routes = [
     component: RegistrationFormComponent,
   },
   {
-    path: 'get-certified-in-rishikesh',
-    component: CertifiedComponent,
+    path: routeEnum.rishikesh,
+    component: RishikshMain,
   },
   {
     path: 'get-certified-in-bali',
