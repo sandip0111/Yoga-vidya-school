@@ -86,7 +86,8 @@ export class CheckoutComponent {
     INR: 79000,
     USD: 850,
   };
-  private readonly paypalSupportedCurrencies = ['USD'];
+  /** PayPal only supports USD — this is the single source of truth. */
+  private readonly PAYPAL_CURRENCY = 'USD' as const;
 
   /** True when the user has selected a 30% deposit booking option */
   get is30PercentBooking(): boolean {
@@ -110,8 +111,18 @@ export class CheckoutComponent {
     return this.slug === routeEnum['200TTC'];
   }
 
+  /** True only when the selected currency is USD (the sole currency PayPal accepts here). */
   get canUsePaypal(): boolean {
-    return this.paypalSupportedCurrencies.includes(this.checkData.currency);
+    return this.checkData.currency === this.PAYPAL_CURRENCY;
+  }
+
+  /**
+   * PayPal entry-point called from the template.
+   * The button is only rendered when canUsePaypal is true (currency === USD),
+   * so no currency switching is needed here.
+   */
+  onPaypalClick(): void {
+    this.checkoutData(this.checkData, 'paypal');
   }
 
   constructor(
@@ -849,16 +860,17 @@ export class CheckoutComponent {
     isRazorPay: boolean,
     isPaypal: boolean = false,
   ) {
-    if (isPaypal && !this.canUsePaypal) {
-      alert('PayPal is available for USD payments on this checkout.');
-      this.spinner.hide();
-      return;
-    }
     const selectedRoom = this.roomList.find((r) => r.value == data.package);
     const isBooking30 = !this.paymentId && (+data.package === 3);
     const dueAmount = isBooking30
       ? Math.round((this.amount / 0.3) * 0.7)
       : 0;
+
+    // ─── PayPal: enforce USD as the only accepted currency ───────────────────
+    // This is a critical frontend safety net: even if canUsePaypal was somehow
+    // bypassed, the payload sent to the backend will always carry 'USD'.
+    // The backend MUST also enforce this on its side.
+    const effectiveCurrency = isPaypal ? this.PAYPAL_CURRENCY : data.currency;
 
     let signupData: TwoHundredTTCSignupModel = {
       name: data.name,
@@ -867,7 +879,7 @@ export class CheckoutComponent {
       package: data.package,
       room: selectedRoom?.name,
       price: this.isInstallment ? this.firstInstAmnt : this.amount,
-      currency: data.currency,
+      currency: effectiveCurrency,
       courseStartDate: twoHundredTTCModel['200TTCDate'],
       courseTimeDuration: `${twoHundredTTCModel['200TTCStart']} - ${twoHundredTTCModel['200TTCEnd']} (IST)`,
       id: this.paymentId ?? undefined,
