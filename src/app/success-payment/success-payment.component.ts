@@ -31,6 +31,7 @@ export class SuccessPaymentComponent {
   pranicPurificationIIRazorPaySessionId: string = '';
   twoHundredTTCRazorPaySessionId: string = '';
   twoHundredTTCStripeSessionId: string = '';
+  twoHundredTTCPaypalOrderId: string = '';
   rishikesh200RazorPaySessionId: string = '';
   rishikesh200StripeSessionId: string = '';
   message: string = '';
@@ -91,6 +92,8 @@ export class SuccessPaymentComponent {
       localStorage.getItem(localstorageKey.rishikesh200RzpId) ?? '';
     this.twoHundredTTCStripeSessionId =
       localStorage.getItem(localstorageKey['200TTCStripeSessionId']) ?? '';
+    this.twoHundredTTCPaypalOrderId =
+      localStorage.getItem(localstorageKey['200TTCPaypalOrderId']) ?? '';
     this.rishikesh200StripeSessionId =
       localStorage.getItem(localstorageKey.rishikesh20StripeSessionId) ?? '';
     this.couponCodeId = localStorage.getItem(localstorageKey.couponCode);
@@ -176,6 +179,11 @@ export class SuccessPaymentComponent {
     if (this.twoHundredTTCStripeSessionId) {
       setTimeout(() => {
         this.getStripePaymentResult200TTC(this.twoHundredTTCStripeSessionId);
+      }, 0);
+    }
+    if (this.twoHundredTTCPaypalOrderId) {
+      setTimeout(() => {
+        this.getPaypalPaymentResult200TTC(this.twoHundredTTCPaypalOrderId);
       }, 0);
     }
     if (this.rishikesh200RazorPaySessionId) {
@@ -640,6 +648,48 @@ export class SuccessPaymentComponent {
         }
       });
   }
+  getPaypalPaymentResult200TTC(paypalOrderId: string) {
+    let pass = this.genratePass(6);
+    const fbp = this.getCookie('_fbp');
+    const fbc = this.getCookie('_fbc');
+    let dueAmnt = localStorage.getItem(localstorageKey['200TTCDue']);
+    let val = {
+      paypalOrderId: paypalOrderId,
+      payDbId: localStorage.getItem(localstorageKey['200TTCPaypalDBId']),
+      password: pass,
+      installment:
+        localStorage.getItem(localstorageKey['200TTCInstallment']) ?? '1st',
+      dueAmnt: dueAmnt ? +dueAmnt : 0,
+      fbp: fbp,
+      fbc: fbc,
+    };
+    this.webapiService
+      .getPaypalPaymentResult200TTC(val)
+      .subscribe((res: any) => {
+        if (res.status == 'success') {
+          this.is200TTC = true;
+          localStorage.removeItem(localstorageKey['200TTCPaypalOrderId']);
+          localStorage.removeItem(localstorageKey['200TTCPaypalDBId']);
+          localStorage.removeItem(localstorageKey['200TTCInstallment']);
+          localStorage.removeItem(localstorageKey['200TTCDue']);
+          this.paidFlag = 'true';
+          this.ordId = res.paymtId;
+          this.amount = res.amount;
+          this.cur = this.currencySet(res.currency);
+          this.pixelTracking.trackPurchase200ttc(
+            this.ordId,
+            '200_ttc',
+            '200 Hours Online Yoga Teacher Training Course',
+            this.amount,
+            this.cur,
+          );
+          this.spinner.hide();
+        } else {
+          this.paidFlag = 'false';
+          this.spinner.hide();
+        }
+      });
+  }
   isRishikesh: boolean = false;
   getRazorPaymentResultRishikesh200(razorpayPaymentId: string) {
     const fbp = this.getCookie('_fbp');
@@ -914,6 +964,10 @@ export class SuccessPaymentComponent {
     localStorage.removeItem(localstorageKey['200TTCRzpOrderId']);
     localStorage.removeItem(localstorageKey['200TTCRzpSig']);
     localStorage.removeItem(localstorageKey['200TTCRzpDBId']);
+    localStorage.removeItem(localstorageKey['200TTCStripeSessionId']);
+    localStorage.removeItem(localstorageKey['200TTCStripeDBId']);
+    localStorage.removeItem(localstorageKey['200TTCPaypalOrderId']);
+    localStorage.removeItem(localstorageKey['200TTCPaypalDBId']);
     localStorage.removeItem(localstorageKey['200TTCInstallment']);
     localStorage.removeItem(localstorageKey['200TTCDue']);
     localStorage.removeItem(localstorageKey.bali300StripeSessionId);
@@ -947,6 +1001,10 @@ export class SuccessPaymentComponent {
     localStorage.removeItem(localstorageKey['200TTCRzpOrderId']);
     localStorage.removeItem(localstorageKey['200TTCRzpSig']);
     localStorage.removeItem(localstorageKey['200TTCRzpDBId']);
+    localStorage.removeItem(localstorageKey['200TTCStripeSessionId']);
+    localStorage.removeItem(localstorageKey['200TTCStripeDBId']);
+    localStorage.removeItem(localstorageKey['200TTCPaypalOrderId']);
+    localStorage.removeItem(localstorageKey['200TTCPaypalDBId']);
     localStorage.removeItem(localstorageKey['200TTCInstallment']);
     localStorage.removeItem(localstorageKey['200TTCDue']);
     localStorage.removeItem(localstorageKey.bali300StripeSessionId);

@@ -19,6 +19,7 @@ import {
   dropdownModel,
   PhoneNumberData,
   PranayamaCertificationSignupModel,
+  paypalPayModel,
   razorPayModel,
   SignupDataModel,
   stripePayModel,
@@ -85,6 +86,8 @@ export class CheckoutComponent {
     INR: 79000,
     USD: 850,
   };
+  /** PayPal only supports USD — this is the single source of truth. */
+  private readonly PAYPAL_CURRENCY = 'USD' as const;
 
   /** True when the user has selected a 30% deposit booking option */
   get is30PercentBooking(): boolean {
@@ -103,6 +106,24 @@ export class CheckoutComponent {
       routeEnum.pranayamaCertification,
     ];
     return allowedSlugs.includes(this.slug as any);
+  }
+
+  get showPaypalButton(): boolean {
+    return this.slug === routeEnum['200TTC'];
+  }
+
+  /** True only when the selected currency is USD (the sole currency PayPal accepts here). */
+  get canUsePaypal(): boolean {
+    return this.checkData.currency === this.PAYPAL_CURRENCY;
+  }
+
+  /**
+   * PayPal entry-point called from the template.
+   * The button is only rendered when canUsePaypal is true (currency === USD),
+   * so no currency switching is needed here.
+   */
+  onPaypalClick(): void {
+    this.checkoutData(this.checkData, 'paypal');
   }
 
   constructor(
@@ -374,17 +395,18 @@ export class CheckoutComponent {
       );
     }
   }
-  priceConvert(e: any) {
+  onCurrencyChange(value: string) {
+    this.checkData.currency = value;
     // Discount plan + 200TTC: recompute respecting the currently selected booking type
     if (this.isDiscountPlan && this.slug === routeEnum['200TTC']) {
-      const baseAmount = this.discountPlanPrices[e.target.value] ?? 79000;
+      const baseAmount = this.discountPlanPrices[value] ?? 79000;
       const isBooking30 = +this.checkData.package === 3;
       this.amount = isBooking30 ? Math.round(baseAmount * 0.3) : baseAmount;
       this.inputValidation('cur');
       return;
     }
     if (this.feesData.length > 0) {
-      this.setPriceData(this.feesData, e.target.value, this.checkData.package);
+      this.setPriceData(this.feesData, value, this.checkData.package);
     }
     this.inputValidation('cur');
   }
@@ -562,7 +584,9 @@ export class CheckoutComponent {
   packageRequired: string = '';
   phoneRequired: string = '';
   currencyRequired: string = '';
-  checkoutData(data: checkoutModel, isRazorPay: boolean) {
+  checkoutData(data: checkoutModel, paymentGateway: boolean | 'paypal') {
+    const isPaypal = paymentGateway === 'paypal';
+    const isRazorPay = paymentGateway === true;
     this.spinner.show();
     this.pixelTracking.trackInitiateCheckout(
       this.slug,
@@ -606,7 +630,7 @@ export class CheckoutComponent {
       }
       if (!isErrMsg) {
         if (this.slug == routeEnum['200TTC']) {
-          this.twoHundredTTCCheckout(data, isRazorPay);
+          this.twoHundredTTCCheckout(data, isRazorPay, isPaypal);
         } else if (
           this.slug == routeEnum.rishikesh100 ||
           this.slug == routeEnum.rishkesh200 ||
@@ -836,12 +860,22 @@ export class CheckoutComponent {
       this.newStudentCheckOut(data, isRazorPay, pass);
     }
   }
-  twoHundredTTCCheckout(data: checkoutModel, isRazorPay: boolean) {
+  twoHundredTTCCheckout(
+    data: checkoutModel,
+    isRazorPay: boolean,
+    isPaypal: boolean = false,
+  ) {
     const selectedRoom = this.roomList.find((r) => r.value == data.package);
     const isBooking30 = !this.paymentId && (+data.package === 3);
     const dueAmount = isBooking30
       ? Math.round((this.amount / 0.3) * 0.7)
       : 0;
+
+    // ─── PayPal: enforce USD as the only accepted currency ───────────────────
+    // This is a critical frontend safety net: even if canUsePaypal was somehow
+    // bypassed, the payload sent to the backend will always carry 'USD'.
+    // The backend MUST also enforce this on its side.
+    const effectiveCurrency = isPaypal ? this.PAYPAL_CURRENCY : data.currency;
 
     let signupData: TwoHundredTTCSignupModel = {
       name: data.name,
@@ -850,13 +884,15 @@ export class CheckoutComponent {
       package: data.package,
       room: selectedRoom?.name,
       price: this.isInstallment ? this.firstInstAmnt : this.amount,
-      currency: data.currency,
+      currency: effectiveCurrency,
       courseStartDate: twoHundredTTCModel['200TTCDate'],
       courseTimeDuration: `${twoHundredTTCModel['200TTCStart']} - ${twoHundredTTCModel['200TTCEnd']} (IST)`,
       id: this.paymentId ?? undefined,
       dueAmount: dueAmount,
     };
-    if (isRazorPay) {
+    if (isPaypal) {
+      this.initializePayPalPaymentFor200TTC(signupData);
+    } else if (isRazorPay) {
       this.initializeRazorPaymentFor200TTC(signupData);
     } else {
       this.initializePaymentFor200TTC(signupData);
@@ -1456,6 +1492,36 @@ export class CheckoutComponent {
             isDue ? data.dueAmount!.toString() : '0',
           );
           window.location.href = res.url;
+          this.spinner.hide();
+        } else {
+          alert('Session Genration failed! please try again');
+          this.spinner.hide();
+        }
+      });
+  }
+  initializePayPalPaymentFor200TTC(data: TwoHundredTTCSignupModel) {
+    this.webapiService
+      .checkoutPaypalFor200TTC(data)
+      .subscribe((res: paypalPayModel) => {
+        if (res.orderId && res.payDbId && res.approvalUrl) {
+          localStorage.setItem(
+            localstorageKey['200TTCPaypalOrderId'],
+            res.orderId,
+          );
+          localStorage.setItem(
+            localstorageKey['200TTCPaypalDBId'],
+            res.payDbId,
+          );
+          const isDue = !this.paymentId && data.dueAmount && data.dueAmount > 0;
+          localStorage.setItem(
+            localstorageKey['200TTCInstallment'],
+            isDue ? '1st' : '2nd',
+          );
+          localStorage.setItem(
+            localstorageKey['200TTCDue'],
+            isDue ? data.dueAmount!.toString() : '0',
+          );
+          window.location.href = res.approvalUrl;
           this.spinner.hide();
         } else {
           alert('Session Genration failed! please try again');
