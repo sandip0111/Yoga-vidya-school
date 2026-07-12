@@ -269,7 +269,7 @@
               class="form-control"
               name="currency"
               [(ngModel)]="checkData.currency"
-              (change)="priceConvert($event)"
+              (ngModelChange)="onCurrencyChange($event)"
               [disabled]="paymentId ? true : false"
             >
               <option *ngFor="let option of currencyOptions" [value]="option">

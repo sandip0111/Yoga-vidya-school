@@ -395,17 +395,18 @@ export class CheckoutComponent {
       );
     }
   }
-  priceConvert(e: any) {
+  onCurrencyChange(value: string) {
+    this.checkData.currency = value;
     // Discount plan + 200TTC: recompute respecting the currently selected booking type
     if (this.isDiscountPlan && this.slug === routeEnum['200TTC']) {
-      const baseAmount = this.discountPlanPrices[e.target.value] ?? 79000;
+      const baseAmount = this.discountPlanPrices[value] ?? 79000;
       const isBooking30 = +this.checkData.package === 3;
       this.amount = isBooking30 ? Math.round(baseAmount * 0.3) : baseAmount;
       this.inputValidation('cur');
       return;
     }
     if (this.feesData.length > 0) {
-      this.setPriceData(this.feesData, e.target.value, this.checkData.package);
+      this.setPriceData(this.feesData, value, this.checkData.package);
     }
     this.inputValidation('cur');
   }
