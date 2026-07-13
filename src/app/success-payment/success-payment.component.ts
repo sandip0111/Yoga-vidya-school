@@ -46,6 +46,7 @@ export class SuccessPaymentComponent {
   bali300StripeSessionId: string = '';
   pranayamaRzpSessionId: string = '';
   pranayamaStripeSessionId: string = '';
+  retreatRazorPaySessionId: string = '';
   constructor(
     private webapiService: WebapiService,
     private router: Router,
@@ -60,7 +61,10 @@ export class SuccessPaymentComponent {
     }, 1000);
 
     this.spinner.show();
-    if (typeof sessionStorage === 'undefined' || typeof localStorage === 'undefined') {
+    if (
+      typeof sessionStorage === 'undefined' ||
+      typeof localStorage === 'undefined'
+    ) {
       this.spinner.hide();
       return;
     }
@@ -107,6 +111,8 @@ export class SuccessPaymentComponent {
       localStorage.getItem(localstorageKey.pranayamaRzpId) ?? '';
     this.pranayamaStripeSessionId =
       localStorage.getItem(localstorageKey.pranayamaStripeSessionId) ?? '';
+    this.retreatRazorPaySessionId =
+      localStorage.getItem(localstorageKey.retreatRzpId) ?? '';
     // Track purchase completion after a short delay to ensure data is loaded
 
     if (this.sessionId) {
@@ -219,12 +225,21 @@ export class SuccessPaymentComponent {
     }
     if (this.pranayamaRzpSessionId) {
       setTimeout(() => {
-        this.getRazorPaymentResultPranayamaCertification(this.pranayamaRzpSessionId);
+        this.getRazorPaymentResultPranayamaCertification(
+          this.pranayamaRzpSessionId,
+        );
       }, 0);
     }
     if (this.pranayamaStripeSessionId) {
       setTimeout(() => {
-        this.getStripePaymentResultPranayamaCertification(this.pranayamaStripeSessionId);
+        this.getStripePaymentResultPranayamaCertification(
+          this.pranayamaStripeSessionId,
+        );
+      }, 0);
+    }
+    if (this.retreatRazorPaySessionId) {
+      setTimeout(() => {
+        this.getRazorPaymentResultRetreat(this.retreatRazorPaySessionId);
       }, 0);
     }
   }
@@ -452,7 +467,9 @@ export class SuccessPaymentComponent {
         if (res.status == 'success') {
           this.paidFlag = 'true';
           this.ordId = res.orderId;
-          sessionStorage.removeItem('pranic_purificationII_razorpay_payment_id');
+          sessionStorage.removeItem(
+            'pranic_purificationII_razorpay_payment_id',
+          );
           var currency = sessionStorage.getItem(
             'pranic_purificationII_razorpay_payment_currency',
           );
@@ -555,7 +572,7 @@ export class SuccessPaymentComponent {
         }
       });
   }
-  
+
   getcurrentDate() {
     const today = new Date(); // get current date and time
     const year = today.getFullYear(); // get year (YYYY)
@@ -885,7 +902,9 @@ export class SuccessPaymentComponent {
     const fbc = this.getCookie('_fbc');
     const paymentResult: razorPaymentResultModel = {
       razorpayPaymentId: razorpayPaymentId,
-      razorpayOrderId: localStorage.getItem(localstorageKey.pranayamaRzpOrderId),
+      razorpayOrderId: localStorage.getItem(
+        localstorageKey.pranayamaRzpOrderId,
+      ),
       razorpaySignature: localStorage.getItem(localstorageKey.pranayamaRzpSig),
       payDbId: localStorage.getItem(localstorageKey.pranayamaRzpDBId),
       password: pass,
@@ -901,7 +920,7 @@ export class SuccessPaymentComponent {
           this.ordId = paymentResult.razorpayOrderId;
           this.amount = res.amount;
           this.cur = this.currencySet(res.currency);
-          
+
           localStorage.removeItem(localstorageKey.pranayamaRzpId);
           localStorage.removeItem(localstorageKey.pranayamaRzpOrderId);
           localStorage.removeItem(localstorageKey.pranayamaRzpSig);
@@ -1016,6 +1035,13 @@ export class SuccessPaymentComponent {
     localStorage.removeItem(localstorageKey.pranayamaDue);
     localStorage.removeItem(localstorageKey.pranayamaStripeSessionId);
     localStorage.removeItem(localstorageKey.pranayamaStripeDBId);
+    localStorage.removeItem(localstorageKey.retreatRzpId);
+    localStorage.removeItem(localstorageKey.retreatOrderId);
+    localStorage.removeItem(localstorageKey.retreatSig);
+    localStorage.removeItem(localstorageKey.retreatDBId);
+    localStorage.removeItem(localstorageKey.retreatAmnt);
+    localStorage.removeItem(localstorageKey.retreatCurr);
+    localStorage.removeItem(localstorageKey.retreatUserID);
   }
   genratePass(len: number) {
     const charset =
@@ -1048,4 +1074,39 @@ export class SuccessPaymentComponent {
       return '';
     }
   }
+  //#region retreat
+  getRazorPaymentResultRetreat(razorpayPaymentId: string) {
+    const fbp = this.getCookie('_fbp');
+    const fbc = this.getCookie('_fbc');
+    const paymentResult: razorPaymentResultModel = {
+      razorpayPaymentId: razorpayPaymentId,
+      razorpayOrderId: localStorage.getItem(localstorageKey.retreatRzpId),
+      razorpaySignature: localStorage.getItem(localstorageKey.retreatSig),
+      payDbId: localStorage.getItem(localstorageKey.retreatDBId),
+      fbp: fbp,
+      fbc: fbc,
+    };
+    this.webapiService
+      .getRazorPaymentResultRetreat(paymentResult)
+      .subscribe((res: razorPayReturnModel) => {
+        if (res) {
+          this.paidFlag = 'true';
+          this.ordId = paymentResult.razorpayOrderId;
+          this.amount = res.amount;
+          this.cur = this.currencySet(res.currency);
+          this.spinner.hide();
+        } else {
+          this.paidFlag = 'false';
+          this.spinner.hide();
+        }
+        localStorage.removeItem(localstorageKey.retreatRzpId);
+        localStorage.removeItem(localstorageKey.retreatOrderId);
+        localStorage.removeItem(localstorageKey.retreatSig);
+        localStorage.removeItem(localstorageKey.retreatDBId);
+        localStorage.removeItem(localstorageKey.retreatAmnt);
+        localStorage.removeItem(localstorageKey.retreatCurr);
+        localStorage.removeItem(localstorageKey.retreatUserID);
+      });
+  }
+  //#endregion
 }

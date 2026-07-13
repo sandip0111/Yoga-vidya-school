@@ -45,4 +45,12 @@ export enum localstorageKey {
   'pranayamaStripeDBId' = 'pranayama_stripe_db_id',
   'pranayamaInstallment' = 'pranayama_installment',
   'pranayamaDue' = 'pranayama_due',
+
+  'retreatRzpId' = 'retreat_rzp_id',
+  'retreatOrderId' = 'retreat_rzp_order_id',
+  'retreatSig' = 'retreat_rzp_signature',
+  'retreatDBId' = 'retreat_rzp_db_id',
+  'retreatAmnt' = 'retreat_rzp_amnt',
+  'retreatCurr' = 'retreat_rzp_curr',
+  'retreatUserID' = 'retreat_user_id',
 }
