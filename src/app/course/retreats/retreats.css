@@ -44,3 +44,273 @@
     }
   }
 }
+
+.retreat-details-section {
+  background: linear-gradient(135deg, #fff8ee 0%, #f6ebd8 100%);
+  padding-top: 2rem;
+  padding-bottom: 3rem;
+}
+
+.retreat-details-card {
+  background: #fffaf2;
+  border: 1px solid rgba(245, 113, 26, 0.18);
+  border-radius: 24px;
+  padding: 2rem;
+  box-shadow: 0 20px 45px rgba(120, 79, 34, 0.12);
+}
+
+.retreat-schedule-card {
+  background: linear-gradient(145deg, #ffffff 0%, #fef5e9 100%);
+  border: 1px solid rgba(245, 113, 26, 0.14);
+  border-radius: 20px;
+  padding: 1.4rem;
+}
+
+.schedule-heading {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.schedule-heading h3 {
+  color: #7a3a0a;
+  margin-bottom: 0.25rem;
+}
+
+.schedule-heading p {
+  color: #6b4d2f;
+  margin-bottom: 0;
+}
+
+.schedule-table {
+  display: grid;
+  border: 1px solid rgba(245, 113, 26, 0.12);
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.schedule-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 0.85rem 1rem;
+  gap: 1rem;
+  background: #fffdf8;
+  border-bottom: 1px solid rgba(245, 113, 26, 0.1);
+  align-items: center;
+}
+
+.schedule-row:last-child {
+  border-bottom: 0;
+}
+
+.schedule-head {
+  background: #f8ead5;
+  font-weight: 700;
+  color: #7a3a0a;
+  text-align: center;
+}
+
+.schedule-row span {
+  text-align: center;
+}
+
+.schedule-row span:first-child {
+  color: #a9550c;
+  font-weight: 600;
+}
+
+.schedule-row span:last-child {
+  color: #5c452d;
+}
+
+.retreat-details-header {
+  margin-bottom: 1.5rem;
+}
+
+.retreat-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #fef2e6;
+  color: #a9550c;
+  font-weight: 700;
+  padding: 0.45rem 0.85rem;
+  border-radius: 999px;
+  margin-bottom: 0.8rem;
+}
+
+.retreat-details-header h2 {
+  color: #7a3a0a;
+  margin-bottom: 0.5rem;
+}
+
+.retreat-details-header p {
+  color: #6b4d2f;
+  margin-bottom: 0;
+}
+
+.retreat-info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.info-card,
+.arrival-card {
+  background: linear-gradient(145deg, #ffffff 0%, #fef5e9 100%);
+  border-radius: 18px;
+  padding: 1.2rem;
+  border: 1px solid rgba(245, 113, 26, 0.14);
+}
+
+.info-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.9rem;
+}
+
+.info-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  /* background: linear-gradient(135deg, #cac6c4 0%, #ddd8d3 100%); */
+  font-size: 1.2rem;
+  box-shadow: 0 8px 20px rgba(245, 113, 26, 0.2);
+}
+
+.info-card h4,
+.arrival-title h3 {
+  color: #7a3a0a;
+  margin-bottom: 0.25rem;
+}
+
+.info-card p,
+.arrival-card li {
+  color: #6b4d2f;
+  margin-bottom: 0;
+}
+
+.arrival-title {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 0.9rem;
+}
+
+.detail-points {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.7rem;
+}
+
+.detail-points li {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.7rem 0.8rem;
+  background: rgba(245, 113, 26, 0.06);
+  border-radius: 12px;
+}
+
+.point-icon {
+  font-size: 1.05rem;
+}
+
+.retreat-offerings-card {
+  background: linear-gradient(145deg, #ffffff 0%, #fef5e9 100%);
+  border: 1px solid rgba(245, 113, 26, 0.14);
+  border-radius: 20px;
+  padding: 1.4rem;
+}
+
+.offerings-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  /* margin-bottom: 1.3rem; */
+}
+
+.offering-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.9rem;
+  padding: 1rem;
+  background: rgba(245, 113, 26, 0.06);
+  border-radius: 14px;
+}
+
+.offering-icon {
+  font-size: 1.4rem;
+}
+
+.offering-item h4 {
+  color: #7a3a0a;
+  margin-bottom: 0.25rem;
+}
+
+.offering-item p {
+  color: #6b4d2f;
+  margin-bottom: 0;
+}
+
+.included-title {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+}
+
+.included-title h3 {
+  color: #7a3a0a;
+  margin-bottom: 0;
+}
+
+.included-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.6rem;
+}
+
+.included-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 0.8rem;
+  background: rgba(245, 113, 26, 0.05);
+  border-radius: 10px;
+  color: #5c452d;
+}
+
+.check-mark {
+  color: #a9550c;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+@media screen and (max-width: 767px) {
+  .retreat-details-card {
+    padding: 1.25rem;
+  }
+
+  .retreat-info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .schedule-row {
+    grid-template-columns: 1fr;
+    gap: 0.3rem;
+  }
+
+  .offering-item {
+    flex-direction: column;
+  }
+}

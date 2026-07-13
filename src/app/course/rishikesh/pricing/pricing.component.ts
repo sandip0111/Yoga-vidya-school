@@ -36,7 +36,7 @@ export class PricingComponent implements OnInit {
       '200-horas-de-formacioacuten-de-profesores-de-yoga-en-rishikesh',
       '200-hour-yoga-teacher-training-scholarship-in-rishikesh',
       '300-hour-yoga-teacher-training-scholarship-in-rishikesh',
-      'yoga-teacher-training-in-india'
+      'yoga-teacher-training-in-india',
     ];
     return validSlugs.includes(this.slug as any);
   }
@@ -48,11 +48,14 @@ export class PricingComponent implements OnInit {
       '200-horas-de-formacioacuten-de-profesores-de-yoga-en-rishikesh',
       '200-hour-yoga-teacher-training-scholarship-in-rishikesh',
       '300-hour-yoga-teacher-training-scholarship-in-rishikesh',
-      'yoga-teacher-training-in-india'
+      'yoga-teacher-training-in-india',
     ];
     return validRoomSlugs.includes(this.slug as any);
   }
-  constructor(private router: Router, private webapiService: WebapiService) {}
+  constructor(
+    private router: Router,
+    private webapiService: WebapiService,
+  ) {}
   ngOnInit(): void {
     this.getPriceValue(this.slug);
   }
@@ -101,6 +104,10 @@ export class PricingComponent implements OnInit {
         break;
       case routeEnum.foundationOfSpirituality:
         this.mainHeading = 'Pricing of Foundation of Spirituality';
+        break;
+      case routeEnum.retreats:
+        this.mainHeading =
+          'Choose the space that supports your practice — in solitude or in company';
         break;
       default:
         break;

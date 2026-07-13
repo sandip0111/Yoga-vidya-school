@@ -17,6 +17,10 @@
   margin: 0 auto;
 }
 
+.retreat-grid {
+  grid-template-columns: repeat(3, 1fr);
+}
+
 .include-item {
   background: #fdf7f3;
   border-radius: 10px;
