@@ -88,7 +88,11 @@ export class NavbarComponent implements OnInit {
           },
           {
             title: 'Get Certified Online',
-            link: '/200-hours-yoga-teacher-training-online',
+            link: `/${routeEnum['200TTC']}`,
+          },
+          {
+            title: 'The Essence of Yoga – Mysore Retreat 2026',
+            link: `/${routeEnum.retreats}`,
           },
         ],
       },
