@@ -47,6 +47,8 @@ export class SuccessPaymentComponent {
   pranayamaRzpSessionId: string = '';
   pranayamaStripeSessionId: string = '';
   retreatRazorPaySessionId: string = '';
+  is200TTC: boolean = false;
+  isRetreat: boolean = false;
   constructor(
     private webapiService: WebapiService,
     private router: Router,
@@ -580,7 +582,6 @@ export class SuccessPaymentComponent {
     const day = String(today.getDate()).padStart(2, '0'); // get day (dd) and pad with leading zero if necessary
     return `${year}-${month}-${day}`; // return date string in the format "YYYY/MM/dd"
   }
-  is200TTC: boolean = false;
   getRazorPaymentResult200TTC(razorpayPaymentId: string) {
     let pass = this.genratePass(6);
     let dueAmnt = localStorage.getItem(localstorageKey['200TTCDue']);
@@ -1080,7 +1081,7 @@ export class SuccessPaymentComponent {
     const fbc = this.getCookie('_fbc');
     const paymentResult: razorPaymentResultModel = {
       razorpayPaymentId: razorpayPaymentId,
-      razorpayOrderId: localStorage.getItem(localstorageKey.retreatRzpId),
+      razorpayOrderId: localStorage.getItem(localstorageKey.retreatOrderId),
       razorpaySignature: localStorage.getItem(localstorageKey.retreatSig),
       payDbId: localStorage.getItem(localstorageKey.retreatDBId),
       fbp: fbp,
@@ -1090,6 +1091,7 @@ export class SuccessPaymentComponent {
       .getRazorPaymentResultRetreat(paymentResult)
       .subscribe((res: razorPayReturnModel) => {
         if (res) {
+          this.isRetreat = true;
           this.paidFlag = 'true';
           this.ordId = paymentResult.razorpayOrderId;
           this.amount = res.amount;
