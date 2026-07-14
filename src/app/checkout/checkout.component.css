@@ -384,6 +384,13 @@ h3 {
   transition: all 0.2s ease;
 }
 
+.stripe-logo {
+  width: 100% !important;
+  height: 100% !important;
+  max-height: 100% !important;
+  object-fit: fill !important;
+}
+
 .payment-method-btn:hover .gateway-logo {
   transform: scale(1.04);
 }
