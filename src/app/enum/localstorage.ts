@@ -53,4 +53,6 @@ export enum localstorageKey {
   'retreatAmnt' = 'retreat_rzp_amnt',
   'retreatCurr' = 'retreat_rzp_curr',
   'retreatUserID' = 'retreat_user_id',
+  'retreatStripeSessionId' = 'retreat_stripe_session_id',
+  'retreatStripeDBId' = 'retreat_stripe_db_id',
 }

@@ -464,4 +464,16 @@ export class WebapiService {
       data,
     );
   }
+  checkoutStripeForRetreat(data: SignupDataModel): Observable<stripePayModel> {
+    return this.http.post<stripePayModel>(
+      this.url + 'api/v1/checkoutStripeForRetreat',
+      data,
+    );
+  }
+  getStripePaymentResultRetreat(data: any) {
+    return this.http.post(
+      this.url + 'api/v1/getStripePaymentResultRetreat',
+      data,
+    );
+  }
 }

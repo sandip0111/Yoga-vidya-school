@@ -49,6 +49,7 @@ export class SuccessPaymentComponent {
   retreatRazorPaySessionId: string = '';
   is200TTC: boolean = false;
   isRetreat: boolean = false;
+  retreatStripeSessionId: string = '';
   constructor(
     private webapiService: WebapiService,
     private router: Router,
@@ -115,6 +116,8 @@ export class SuccessPaymentComponent {
       localStorage.getItem(localstorageKey.pranayamaStripeSessionId) ?? '';
     this.retreatRazorPaySessionId =
       localStorage.getItem(localstorageKey.retreatRzpId) ?? '';
+    this.retreatStripeSessionId =
+      localStorage.getItem(localstorageKey.retreatStripeSessionId) ?? '';
     // Track purchase completion after a short delay to ensure data is loaded
 
     if (this.sessionId) {
@@ -242,6 +245,11 @@ export class SuccessPaymentComponent {
     if (this.retreatRazorPaySessionId) {
       setTimeout(() => {
         this.getRazorPaymentResultRetreat(this.retreatRazorPaySessionId);
+      }, 0);
+    }
+    if (this.retreatStripeSessionId) {
+      setTimeout(() => {
+        this.getStripePaymentResultRetreat(this.retreatStripeSessionId);
       }, 0);
     }
   }
@@ -1043,6 +1051,8 @@ export class SuccessPaymentComponent {
     localStorage.removeItem(localstorageKey.retreatAmnt);
     localStorage.removeItem(localstorageKey.retreatCurr);
     localStorage.removeItem(localstorageKey.retreatUserID);
+    localStorage.removeItem(localstorageKey.retreatStripeSessionId);
+    localStorage.removeItem(localstorageKey.retreatStripeDBId);
   }
   genratePass(len: number) {
     const charset =
@@ -1108,6 +1118,34 @@ export class SuccessPaymentComponent {
         localStorage.removeItem(localstorageKey.retreatAmnt);
         localStorage.removeItem(localstorageKey.retreatCurr);
         localStorage.removeItem(localstorageKey.retreatUserID);
+      });
+  }
+  getStripePaymentResultRetreat(sessionId: string) {
+    const fbp = this.getCookie('_fbp');
+    const fbc = this.getCookie('_fbc');
+    let val = {
+      sessionId: sessionId,
+      payDbId: localStorage.getItem(localstorageKey.retreatStripeDBId),
+      fbp: fbp,
+      fbc: fbc,
+    };
+    this.webapiService
+      .getStripePaymentResultRetreat(val)
+      .subscribe((res: any) => {
+        if (res.data.status == 'success') {
+          this.isRetreat = true;
+          this.paidFlag = 'true';
+          this.ordId = res.data.paymtId;
+          this.amount = res.data.amount;
+          this.cur = this.currencySet(res.data.currency);
+          this.spinner.hide();
+        } else {
+          this.paidFlag = 'false';
+          this.reuseUrl = res.data.sessionId;
+          this.spinner.hide();
+        }
+        localStorage.removeItem(localstorageKey.retreatStripeSessionId);
+        localStorage.removeItem(localstorageKey.retreatStripeDBId);
       });
   }
   //#endregion

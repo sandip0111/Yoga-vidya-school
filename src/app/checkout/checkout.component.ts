@@ -1793,7 +1793,7 @@ export class CheckoutComponent {
     if (isRazorPay) {
       this.initializeRazorPayRetreat(retreatData);
     } else {
-      // this.initializePayStripeRishi(retreatData);
+      this.initializePayStripeRetreat(retreatData);
     }
   }
   initializeRazorPayRetreat(data: SignupDataModel) {
@@ -1841,6 +1841,27 @@ export class CheckoutComponent {
           this.spinner.hide();
           const rzp = new Razorpay(options);
           rzp.open();
+        } else {
+          alert('Session Genration failed! please try again');
+          this.spinner.hide();
+        }
+      });
+  }
+  initializePayStripeRetreat(data: SignupDataModel) {
+    this.webapiService
+      .checkoutStripeForRetreat(data)
+      .subscribe((res: stripePayModel) => {
+        if (res.sessionId) {
+          localStorage.setItem(
+            localstorageKey.retreatStripeSessionId,
+            res.sessionId,
+          );
+          localStorage.setItem(
+            localstorageKey.retreatStripeDBId,
+            res.payDbId,
+          );
+          window.location.href = res.url;
+          this.spinner.hide();
         } else {
           alert('Session Genration failed! please try again');
           this.spinner.hide();
