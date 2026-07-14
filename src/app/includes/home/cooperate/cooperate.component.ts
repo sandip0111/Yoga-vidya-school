@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { s3Bucket } from '../../../enum/s3Bucket';
 import { Router } from '@angular/router';
 import { routeEnum } from '../../../enum/routes';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-cooperate',
@@ -11,6 +12,7 @@ import { routeEnum } from '../../../enum/routes';
 })
 export class CooperateComponent implements OnInit {
   s3Bucket = s3Bucket;
+  imageurl: string = environment.imageUrl;
   constructor(private router: Router) {}
 
   ngOnInit() {
