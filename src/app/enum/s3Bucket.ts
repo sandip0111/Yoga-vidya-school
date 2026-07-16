@@ -105,6 +105,8 @@ export const s3Bucket = {
   prashnatJiAbout2: `${environment.imageUrl}Prashant_about1.jpg`,
   prashnatJiAbout3: `${environment.imageUrl}Prashant_about3.jpg`,
   prashnatJiAbout4: `${environment.imageUrl}prashant_about2.jfif`,
+  prashnatJiAbout5: `${environment.imageUrl}Prashant_about.jpeg`,
+
 
   prashantPG1: `${environment.imageUrl}image_1673595398608.jpg`,
   prashantPG2: `${environment.imageUrl}image_1673595680270.jfif`,
