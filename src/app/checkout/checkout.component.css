@@ -1,10 +1,11 @@
+/* --- Disclaimer & Helper Styles --- */
 .disclaimer {
   font-size: 0.7rem;
   font-weight: 800;
   color: #e50a1f;
-  a {
-    cursor: pointer;
-  }
+}
+.disclaimer a {
+  cursor: pointer;
 }
 
 h3 {
@@ -13,255 +14,383 @@ h3 {
   color: #333;
 }
 
-.payment-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  margin-top: 50px;
+.old-price {
+  text-decoration: line-through;
+  color: #a0aec0;
+  margin-right: 10px;
+  font-weight: 500;
+  font-size: 0.95rem;
 }
 
-.payment-button {
-  background-color: #fff;
-  border: 2px solid #ccc;
-  border-radius: 10px;
-  padding: 10px 20px;
-  cursor: pointer;
+.whatsapp-div {
+  display: block;
+}
+
+/* --- Container & Cards Overhaul --- */
+.checkout-container {
+  max-width: 1200px !important;
+}
+
+.checkout-card {
+  background: #ffffff;
+  border-radius: 16px !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.03) !important;
+  border: 1px solid #edf2f7 !important;
   transition: all 0.3s ease;
+}
+
+.summary-card {
+  background: #fffdfa;
+  border: 1px solid rgba(244, 112, 25, 0.08) !important;
+}
+
+.form-card {
+  border: 1px solid #edf2f7 !important;
+}
+
+/* --- Titles & Headers --- */
+.summary-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1a202c;
+  letter-spacing: 0.5px;
+  position: relative;
+  padding-bottom: 12px;
+}
+
+.summary-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 3px;
+  background: #f47019;
+  border-radius: 2px;
+}
+
+.checkout-form-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1a202c;
+  letter-spacing: -0.2px;
+}
+
+/* --- Receipt Summary Styling --- */
+.summary-receipt {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid #edf2f7;
+}
+
+.summary-section-heading {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #2d3748;
+  line-height: 1.4;
+  display: inline-block;
+}
+
+.selected-month-badge {
+  font-size: 0.85rem;
+  color: #f47019;
+  font-weight: 600;
+  margin-left: 6px;
+}
+
+.price-display {
+  text-align: right;
+}
+
+.price-amount {
+  font-size: 1.4rem;
+  color: #f47019;
+  font-weight: 700;
+}
+
+.price-subtitle-row {
+  border-top: 1px dashed #e2e8f0;
+  padding-top: 10px;
+}
+
+.price-subtitle {
+  font-size: 0.9rem;
+  color: #718096;
+}
+
+.highlight-text {
+  color: #2d3748;
+  font-weight: 600;
+}
+
+/* --- 30% Deposit Section --- */
+.deposit-section {
+  border-top: 2px dashed #ffddc7;
+}
+
+.deposit-title {
+  color: #e5600c;
+}
+
+.deposit-subtitle-row {
+  padding-top: 2px;
+}
+
+/* --- Payment Instructions & Custom Alert --- */
+.payment-instructions-header {
+  border-top: 1px solid #edf2f7;
+  padding-top: 20px;
+}
+
+.payment-instructions-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #2d3748;
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: 8px;
 }
 
-.payment-button:hover {
-  border-color: #333;
-  transform: scale(1.05);
+.payment-icon-svg {
+  width: 20px;
+  height: 20px;
+  color: #f47019;
 }
 
-.payment-button-disabled {
-  cursor: not-allowed;
-  opacity: 0.55;
+.custom-payment-alert {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: #fff9eb;
+  border: 1px solid #ffeeba;
+  border-radius: 10px;
+  padding: 14px 16px;
+  color: #705400;
+  font-size: 0.875rem;
+  line-height: 1.5;
 }
 
-.payment-button-disabled:hover {
-  border-color: #f9751e;
-  transform: none;
+.alert-icon-container {
+  flex-shrink: 0;
+  margin-top: 2px;
 }
 
-.payment-button svg {
-  height: 40px;
-  width: auto;
+.alert-icon-svg {
+  width: 18px;
+  height: 18px;
+  color: #d97706;
 }
 
-.iti {
+.alert-text-container {
+  flex: 1;
+}
+
+/* --- Form Fields & Custom Inputs --- */
+.custom-form-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #4a5568;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.required-asterisk {
+  color: #e53e3e;
+  margin-left: 2px;
+  font-weight: 700;
+}
+
+.custom-input, 
+.custom-select {
+  height: 48px !important;
+  border: 1px solid #cbd5e0 !important;
+  border-radius: 8px !important;
+  padding: 10px 16px !important;
+  font-size: 0.95rem !important;
+  color: #2d3748 !important;
+  background-color: #ffffff !important;
+  box-shadow: none !important;
+  transition: all 0.2s ease-in-out !important;
+}
+
+.custom-input:focus, 
+.custom-select:focus {
+  border-color: #f47019 !important;
+  background-color: #ffffff !important;
+  box-shadow: 0 0 0 3px rgba(244, 112, 25, 0.15) !important;
+  outline: 0 !important;
+}
+
+.custom-input:hover, 
+.custom-select:hover {
+  border-color: #a0aec0 !important;
+}
+
+.custom-input[readOnly], 
+.custom-select[disabled] {
+  background-color: #f7fafc !important;
+  color: #718096 !important;
+  cursor: not-allowed !important;
+  border-color: #cbd5e0 !important;
+}
+
+.select-wrapper-custom {
+  position: relative;
+}
+
+.select-wrapper-custom::after {
+  content: '';
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 10px;
+  height: 6px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6' fill='none'%3E%3Cpath d='M1 1L5 5L9 1' stroke='%234A5568' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: contain;
+  pointer-events: none;
+}
+
+.custom-select {
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  padding-right: 40px !important;
+}
+
+.referral-hint {
+  font-size: 0.8rem;
+  color: #718096;
+  line-height: 1.4;
+}
+
+.validation-error-text {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #e53e3e;
+}
+
+/* --- WhatsApp Input (ngx-intl-tel-input overrides) --- */
+::ng-deep ngx-intl-tel-input .iti {
   display: block !important;
-  margin-bottom: 20px;
+  width: 100% !important;
 }
 
-.iti .dropdown-menu.country-dropdown {
-  border-top-left-radius: 0px;
-  border-top-right-radius: 0px;
-  border-color: #c7cace;
-  margin-top: -1px;
+::ng-deep ngx-intl-tel-input input.phone_input {
+  height: 48px !important;
+  border: 1px solid #cbd5e0 !important;
+  border-radius: 8px !important;
+  font-size: 0.95rem !important;
+  width: 100% !important;
+  background-color: #ffffff !important;
+  color: #2d3748 !important;
+  transition: all 0.2s ease-in-out !important;
+  box-shadow: none !important;
+  margin-bottom: 0px !important;
+}
+
+::ng-deep ngx-intl-tel-input input.phone_input:focus {
+  border-color: #f47019 !important;
+  box-shadow: 0 0 0 3px rgba(244, 112, 25, 0.15) !important;
+  outline: 0 !important;
+}
+
+::ng-deep ngx-intl-tel-input input.phone_input:hover {
+  border-color: #a0aec0 !important;
 }
 
 ::ng-deep ngx-intl-tel-input .iti__country-list {
-  box-shadow: none;
+  border-radius: 8px !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08) !important;
+  border: 1px solid #e2e8f0 !important;
+  z-index: 1050 !important;
   font-size: 14px;
-  margin-left: 0;
-  width: 244px;
-  max-height: 170px;
+  width: 280px;
+  max-height: 200px;
 }
 
-.iti__flag-container.open + input {
-  border-bottom-left-radius: 0px;
-  border-bottom-right-radius: 0px;
+.iti .dropdown-menu.country-dropdown {
+  border-radius: 8px;
+  border-color: #cbd5e0;
 }
 
 .iti .search-container input {
   font-size: 14px;
-  border-color: #c7cace;
-  border-radius: 0;
-  padding: 5px 10px;
+  border-color: #cbd5e0;
+  border-radius: 4px;
+  padding: 6px 12px;
 }
 
 .iti .search-container input:focus {
   outline: none;
+  border-color: #f47019;
 }
 
 @media screen and (max-width: 479px) {
-  .iti .iti__country-list {
-    width: 88.3vw;
+  ::ng-deep ngx-intl-tel-input .iti__country-list {
+    width: 85vw;
   }
 }
 
-ngx-intl-tel-input input {
-  height: 44px;
-  margin-bottom: 20px;
-  padding: 10px;
-  border-style: solid;
-  border-width: 1px;
-  border-color: #c7cace;
-  border-radius: 4px;
-  font-size: 18px;
+/* --- Payment Method Buttons --- */
+.payment-selector-container {
+  border-top: 1px solid #edf2f7;
 }
 
-ngx-intl-tel-input.ng-invalid.ng-touched input {
-  border: 1px solid #c0392b;
+.payment-methods-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 16px;
 }
 
-ngx-intl-tel-input input:hover {
-  box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.24);
-}
-
-ngx-intl-tel-input input:focus {
-  outline: none !important;
-  border-color: #3498db;
-  box-shadow: 0 0 0 0 #000;
-}
-
-ngx-intl-tel-input input::-webkit-input-placeholder {
-  color: #bac2c7;
-}
-
-ngx-intl-tel-input input:-ms-input-placeholder {
-  color: #bac2c7;
-}
-
-ngx-intl-tel-input input::-ms-input-placeholder {
-  color: #bac2c7;
-}
-
-ngx-intl-tel-input input::placeholder {
-  color: #bac2c7;
-}
-
-ngx-intl-tel-input input[disabled] {
-  background-color: #e5eaf1;
-}
-
-.old-price {
-  text-decoration: line-through;
-  color: #999;
-  margin-right: 10px;
-  font-weight: bold;
-}
-.whatsapp-div {
-  display: flex;
-  gap: 10px;
-  span {
-    font-size: 15px;
-    color: #e1600b;
-    font-weight: 500;
-  }
-}
-
-.payment-alert {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  background: #fff3cd;          /* soft yellow */
-  border: 1px solid #ffeeba;    /* light yellow border */
-  color: #856404;               /* dark gold text */
+.payment-method-btn {
+  background-color: #ffffff;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 12px;
   padding: 12px 16px;
-  border-radius: 8px;
-  font-size: 14px;
-  margin-top: 15px;
-}
-
-.payment-alert-icon {
-  font-size: 20px;
-  line-height: 1;
-}
-
-.payment-alert-text {
-  flex: 1;
-}
-
-payment-alert {
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  background: #fff3cd;      
-  border: 1px solid #ffeeba; 
-  color: #856404;             
-  padding: 12px 16px;
-  border-radius: 8px;
-  font-size: 14px;           
-  margin-top: 15px;
+  align-items: center;
+  justify-content: center;
+  height: 56px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.01);
+  outline: none;
 }
 
-.payment-alert-icon {
-  font-size: 20px;
-  line-height: 1;
+.payment-method-btn:hover {
+  border-color: #f47019;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(244, 112, 25, 0.08);
+  background-color: #fffdfb;
 }
 
-.payment-alert-text {
-  flex: 1;
+.payment-method-btn:focus {
+  border-color: #f47019;
+  box-shadow: 0 0 0 3px rgba(244, 112, 25, 0.15);
 }
 
-.paypal-alert {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  background: #f0f7ff;           
-  border: 1px solid #b6e0fe;    
-  color: #084298;              
-  padding: 12px 16px;
-  border-radius: 8px;
-  font-size: 14px;
-  line-height: 1.5;
-  margin-top: 15px;
+.payment-method-btn:active {
+  transform: translateY(0);
 }
 
-.paypal-alert-icon {
-  font-size: 20px;
-  line-height: 1;
+.gateway-logo {
+  max-height: 26px;
+  max-width: 100%;
+  object-fit: contain;
+  transition: all 0.2s ease;
 }
 
-.paypal-alert-text {
-  flex: 1;
+.stripe-logo {
+  width: 100% !important;
+  height: 100% !important;
+  max-height: 100% !important;
+  object-fit: fill !important;
 }
 
-.paypal-alert-link {
-  color: #0d6efd;              
-  font-weight: 600;
-  text-decoration: none;
-}
-
-.paypal-alert-link:hover {
-  text-decoration: underline;
-}
-
-.payment-title {
-  font-size: 1.2rem;
-  font-weight: 700;
-  background: linear-gradient(90deg, #f7f7f7, #fff);
-  padding: 10px 15px;
-  border-left: 4px solid #f5b041; 
-  border-radius: 6px;
-  color: #333;
-  display: inline-block;
-  letter-spacing: 0.5px;
-}
-
-
-@media screen and (max-width: 910px) and (min-width: 300px) {
-  .whatsapp-div {
-    flex-direction: column;
-  }
-}
-
-/* ── 30% Deposit Section ────────────────────────────── */
-.deposit-heading-row {
-  margin-top: 10px;
-  padding-top: 8px;
-  border-top: 1.5px dashed #e8834a;
-}
-
-.summary-section-heading {
-  font-size: 16px;
-  font-weight: 700;
-  color: #212529;
-  line-height: 1.4;
-  display: inline-block;
+.payment-method-btn:hover .gateway-logo {
+  transform: scale(1.04);
 }
