@@ -30,5 +30,5 @@ export enum routeEnum {
   'online_taniya_page' = 'taniya-verma-online-class',
   'mentors' = 'mentors',
   'pranayamaCertification' = 'pranayama-certification',
-  'retreats' = 'yoga-retreats',
+  'retreats' = 'mysore-retreat',
 }

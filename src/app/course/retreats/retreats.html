@@ -30,8 +30,8 @@
   </div>
 </section>
 
-<section class="retreat-details-section py-1">
-  <div class="col-md-12 middle-text">
+<section class="retreat-details-section">
+  <div class="col-md-12 middle-text retreat-section-flower">
     <img
       loading="lazy"
       alt="Not Loaded"
@@ -39,96 +39,110 @@
       class="flower-img"
     />
   </div>
-  <div class="container">
-    <div class="retreat-details-card">
-      <div class="retreat-info-grid">
-        <div class="info-card">
-          <div class="info-icon">📅</div>
-          <div>
-            <h4>Retreat Dates</h4>
-            <p>September 15–20, 2026</p>
+  <div class="container retreat-details-container">
+    <div class="retreat-main-layout">
+      <div class="retreat-main-left">
+        <div class="retreat-details-card">
+          <div class="retreat-info-layout">
+            <div class="retreat-info-left">
+              <div class="info-card info-card-dates">
+                <div class="info-icon">📅</div>
+                <div class="info-card-body">
+                  <span class="info-label">When</span>
+                  <h4>Retreat Dates</h4>
+                  <p>September 15–20, 2026</p>
+                </div>
+              </div>
+
+              <div class="arrival-card">
+                <div class="arrival-title">
+                  <div class="info-icon">🧘</div>
+                  <div class="info-card-body">
+                    <span class="info-label">Day One</span>
+                    <h3>Arrival — September 15</h3>
+                  </div>
+                </div>
+                <ul class="detail-points">
+                  <li>
+                    <span class="point-icon">⏰</span>
+                    <span>Check-in: from 12:00 PM</span>
+                  </li>
+                  <li>
+                    <span class="point-icon">✨</span>
+                    <span>Welcome Gathering & Yoga Talk: 7:00 PM</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="info-card info-card-location">
+              <div class="info-icon">📍</div>
+              <div class="info-card-body">
+                <span class="info-label">Where</span>
+                <h4>Location</h4>
+                <p>Anokhi Garden Guesthouse & Café</p>
+                <p class="info-location-city">Mysore, India</p>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="info-card">
-          <div class="info-icon">📍</div>
-          <div>
-            <h4>Location</h4>
-            <p>Anokhi Garden Guesthouse & Café Mysore, India</p>
+        <div class="retreat-offerings-card">
+          <div class="offering-item">
+            <div class="offering-icon">🏛️</div>
+            <h4>Special Activity</h4>
+            <p>September 17 — Traditional temple visit (after breakfast)</p>
           </div>
         </div>
       </div>
 
-      <div class="arrival-card">
-        <div class="arrival-title">
-          <div class="info-icon">🧘</div>
-          <h3>Arrival — September 15</h3>
-        </div>
-        <ul class="detail-points">
-          <li>
-            <span class="point-icon">⏰</span>
-            <span>Check-in: from 12:00 PM</span>
-          </li>
-          <li>
-            <span class="point-icon">✨</span>
-            <span>Welcome Gathering & Yoga Talk: 7:00 PM</span>
-          </li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="retreat-schedule-card mt-4">
-      <div class="schedule-heading">
-        <div class="info-icon">🗓️</div>
-        <div>
+      <div class="retreat-schedule-card">
+        <div class="schedule-heading">
+          <div class="info-icon">🗓️</div>
           <h3>Daily Schedule (from September 16)</h3>
           <p>A day here has rhythm, not rush. Each part supports the next.</p>
         </div>
-      </div>
 
-      <div class="schedule-table">
-        <div class="schedule-row schedule-head">
-          <span>Time</span>
-          <span>Activity</span>
-        </div>
-        <div class="schedule-row">
-          <span>6:00 – 7:30 AM</span>
-          <span>Ashtanga Yoga (Led Class)</span>
-        </div>
-        <div class="schedule-row">
-          <span>7:45 – 8:45 AM</span>
-          <span>Pranayama</span>
-        </div>
-        <div class="schedule-row">
-          <span>9:00 AM</span>
-          <span>Breakfast</span>
-        </div>
-        <div class="schedule-row">
-          <span>11:00 AM</span>
-          <span>Philosophy & Yoga Talk</span>
-        </div>
-        <div class="schedule-row">
-          <span>1:00 PM</span>
-          <span>Lunch</span>
-        </div>
-        <div class="schedule-row">
-          <span>7:00 – 8:00 PM</span>
-          <span>Meditation</span>
-        </div>
-        <div class="schedule-row">
-          <span>8:00 PM</span>
-          <span>Dinner</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="retreat-offerings-card mt-4">
-      <div class="offerings-grid">
-        <div class="offering-item">
-          <div class="offering-icon">🏛️</div>
-          <div>
-            <h4>Special Activity</h4>
-            <p>September 17 — Traditional temple visit (after breakfast)</p>
+        <div class="schedule-table">
+          <div class="schedule-row schedule-head">
+            <span class="schedule-time">Time</span>
+            <span class="schedule-divider" aria-hidden="true"></span>
+            <span class="schedule-activity">Activity</span>
+          </div>
+          <div class="schedule-row">
+            <span class="schedule-time">6:00 – 7:30 AM</span>
+            <span class="schedule-divider" aria-hidden="true"></span>
+            <span class="schedule-activity">Ashtanga Yoga (Led Class)</span>
+          </div>
+          <div class="schedule-row">
+            <span class="schedule-time">7:45 – 8:45 AM</span>
+            <span class="schedule-divider" aria-hidden="true"></span>
+            <span class="schedule-activity">Pranayama</span>
+          </div>
+          <div class="schedule-row">
+            <span class="schedule-time">9:00 AM</span>
+            <span class="schedule-divider" aria-hidden="true"></span>
+            <span class="schedule-activity">Breakfast</span>
+          </div>
+          <div class="schedule-row">
+            <span class="schedule-time">11:00 AM</span>
+            <span class="schedule-divider" aria-hidden="true"></span>
+            <span class="schedule-activity">Philosophy & Yoga Talk</span>
+          </div>
+          <div class="schedule-row">
+            <span class="schedule-time">1:00 PM</span>
+            <span class="schedule-divider" aria-hidden="true"></span>
+            <span class="schedule-activity">Lunch</span>
+          </div>
+          <div class="schedule-row">
+            <span class="schedule-time">7:00 – 8:00 PM</span>
+            <span class="schedule-divider" aria-hidden="true"></span>
+            <span class="schedule-activity">Meditation</span>
+          </div>
+          <div class="schedule-row">
+            <span class="schedule-time">8:00 PM</span>
+            <span class="schedule-divider" aria-hidden="true"></span>
+            <span class="schedule-activity">Dinner</span>
           </div>
         </div>
       </div>

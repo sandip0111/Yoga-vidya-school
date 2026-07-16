@@ -200,6 +200,11 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./course/retreats/retreats').then((m) => m.Retreats),
   },
+  {
+    path: 'yoga-retreats',
+    redirectTo: routeEnum.retreats,
+    pathMatch: 'full',
+  },
   { path: 'webinar-video/:name', component: WebinarVideosComponent },
   { path: '**', pathMatch: 'full', component: PagenotfoundComponent },
 ];

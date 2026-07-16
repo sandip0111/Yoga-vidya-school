@@ -75,6 +75,16 @@ export class NavbarComponent implements OnInit {
         ],
       },
       {
+        title: 'Retreat',
+        link: '#',
+        submenu: [
+          {
+            title: 'Mysore Retreat',
+            link: `/${routeEnum.retreats}`,
+          },
+        ],
+      },
+      {
         title: 'Yoga Teacher Training',
         link: '#',
         submenu: [
@@ -89,10 +99,6 @@ export class NavbarComponent implements OnInit {
           {
             title: 'Get Certified Online',
             link: `/${routeEnum['200TTC']}`,
-          },
-          {
-            title: 'The Essence of Yoga – Mysore Retreat 2026',
-            link: `/${routeEnum.retreats}`,
           },
         ],
       },
