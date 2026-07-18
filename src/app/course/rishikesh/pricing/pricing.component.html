@@ -67,12 +67,26 @@
       <button class="button" (click)="goToPaymentPage(monthEnum.October26)">
         Join October Batch
       </button>
-    } @else if (slug !== routeEnum.pranOnlinePranaArambh) {
+    } @else if (slug == routeEnum.pranOnlinePranaArambh) {
+      <button class="button" (click)="goToPaymentPage()">Join Now</button>
+    } @else if (slug == routeEnum.retreats) {
+      <div class="retreat-info-container">
+        <div class="retreat-info-card">
+          <div class="info-decoration-top">🧘</div>
+          <p class="retreat-info-text">
+            Six days. One practice. A tradition that has not changed because it does
+            not need to.
+          </p>
+          <div class="info-decoration-bottom">✨</div>
+        </div>
+      </div>
+      <button class="button" (click)="goToPaymentPage()">
+        Reserve Your Place
+      </button>
+    } @else {
       <button class="button" (click)="goToPaymentPage()">
         Join this journey
       </button>
-    } @else {
-      <button class="button" (click)="goToPaymentPage()">Join Now</button>
     }
   </div>
   <p *ngIf="showReserveText" class="mt-2 mb-0 text-center">

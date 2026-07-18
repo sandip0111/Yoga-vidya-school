@@ -167,6 +167,9 @@ export const s3Bucket = {
   Kunjapuri: `${environment.imageUrl}DSC00762.jpg`,
   gangaArti: `${environment.imageUrl}DSC01137.jpg`,
   maunicave: `${environment.imageUrl}DSC01650.jpg`,
+
+  retreats: `${environment.imageUrl}retreat_home.JPG`,
+  retreatAbt: `${environment.imageUrl}retreat_about.jpg`,
 } as const;
 export const youtubeLink = {
   trainingImportance: 'https://www.youtube.com/embed/t7l1cqDj1tA?si=ZJCQXJYDLzDwLLvm',

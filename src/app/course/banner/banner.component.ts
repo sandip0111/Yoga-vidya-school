@@ -152,6 +152,12 @@ export class BannerComponent implements OnInit {
         this.rishikeshMainHeading = 'Foundation of Spirituality';
         this.rishikeshSubHeading = 'An online spiritual awakening course';
         break;
+      case routeEnum.retreats:
+        this.rishikesHeroImage = s3Bucket.retreats;
+        this.rishikeshMainHeading = 'The Essence of Yoga — Mysore Retreat 2026';
+        this.rishikeshSubHeading =
+          'A return to practice, in the living home of Ashtanga Yoga';
+        break;
       default:
         break;
     }
@@ -169,8 +175,7 @@ export class BannerComponent implements OnInit {
       this.sliderImage =
         'https://my-s3-images-bucket.s3.amazonaws.com/img/image_1692698338795.jpg';
     } else if (this.slug == 'pranic-purification') {
-      this.sliderImage =
-        `${environment.imageUrl}IMG_3011.jpeg`;
+      this.sliderImage = `${environment.imageUrl}IMG_3011.jpeg`;
     } else if (
       this.slug == '200-hour-yoga-teacher-training-in-kerala-india' ||
       this.slug == 'yoga-retreat-in-kerala-india' ||

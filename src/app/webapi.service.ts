@@ -82,7 +82,7 @@ export class WebapiService {
   getSubCourseCategoryBySubCatId(data: any) {
     return this.http.post(
       this.url + 'api/v1/getSubCourseCategoryBySubCatId/',
-      data
+      data,
     );
   }
   getAllMentors(id = '') {
@@ -163,7 +163,7 @@ export class WebapiService {
   getCourseVideoV2(data: { courseId: string }): Observable<onLineVideoModel[]> {
     return this.http.post<onLineVideoModel[]>(
       this.url + 'api/v1/getCourseVideosById',
-      data
+      data,
     );
   }
   stripe(data: any) {
@@ -173,21 +173,21 @@ export class WebapiService {
   checkoutStripeForPranicPurification(data: any) {
     return this.http.post(
       this.url + 'api/v1/checkoutStripeForPranicPurification',
-      data
+      data,
     );
   }
 
   checkoutStripeForPranicPurificationII(data: any) {
     return this.http.post(
       this.url + 'api/v1/checkoutStripeForPranicPurificationII',
-      data
+      data,
     );
   }
 
   checkoutStripeForLiveClasses(data: any) {
     return this.http.post(
       this.url + 'api/v1/checkoutStripeForLiveClasses',
-      data
+      data,
     );
   }
 
@@ -203,21 +203,21 @@ export class WebapiService {
   getPaymentResultPranicPurification(data: any) {
     return this.http.post(
       this.url + 'api/v1/getPaymentResultPranicPurification',
-      data
+      data,
     );
   }
 
   getPaymentResultPranicPurificationII(data: any) {
     return this.http.post(
       this.url + 'api/v1/getPaymentResultPranicPurificationII',
-      data
+      data,
     );
   }
 
   getPaymentResultAndSendMailForLiveClass(data: any) {
     return this.http.post(
       this.url + 'api/v1/getPaymentResultAndSendMailForLiveClass',
-      data
+      data,
     );
   }
 
@@ -249,96 +249,102 @@ export class WebapiService {
   verifyRazorpayPayment(data: any) {
     return this.http.post(
       this.url + 'api/v1/verifyRazorpayPaymentAndSendMail',
-      data
+      data,
     );
   }
 
   checkoutRazorpayNewPranaarabha(data: any) {
     return this.http.post(
       this.url + 'api/v1/checkoutRazorpayNewPranaarabha',
-      data
+      data,
     );
   }
 
   getRazorpayPaymentResultForPranarambha(data: any) {
     return this.http.post(
       this.url + 'api/v1/getRazorpayPaymentResultForPranarambha',
-      data
+      data,
     );
   }
 
   checkoutRazorpayForPranicPurification(data: any) {
     return this.http.post(
       this.url + 'api/v1/checkoutRazorpayForPranicPurification',
-      data
+      data,
     );
   }
 
   checkoutRazorpayForPranicPurificationII(data: any) {
     return this.http.post(
       this.url + 'api/v1/checkoutRazorpayForPranicPurificationII',
-      data
+      data,
     );
   }
 
   getRazorPaymentResultPranicPurification(data: any) {
     return this.http.post(
       this.url + 'api/v1/getRazorPaymentResultPranicPurification',
-      data
+      data,
     );
   }
 
   getRazorPaymentResultPranicPurificationII(data: any) {
     return this.http.post(
       this.url + 'api/v1/getRazorPaymentResultPranicPurificationII',
-      data
+      data,
     );
   }
 
   getCouponCode(
-    data: getCouponCodeModel
+    data: getCouponCodeModel,
   ): Observable<{ code: string; id: string }> {
     return this.http.post<{ code: string; id: string }>(
       this.url + 'api/v1/getCouponCode',
-      data
+      data,
     );
   }
-  checkoutRazorpayFor200TTC(data: TwoHundredTTCSignupModel): Observable<razorPayModel> {
+  checkoutRazorpayFor200TTC(
+    data: TwoHundredTTCSignupModel,
+  ): Observable<razorPayModel> {
     return this.http.post<razorPayModel>(
       this.url + 'api/v1/checkoutRazorpayFor200TTC',
-      data
+      data,
     );
   }
   getRazorPaymentResult200TTC(
-    data: razorPaymentResultModel
+    data: razorPaymentResultModel,
   ): Observable<razorPayReturnModel> {
     return this.http.post<razorPayReturnModel>(
       this.url + 'api/v1/getRazorPaymentResult200TTC',
-      data
+      data,
     );
   }
-  checkoutStripeFor200TTC(data: TwoHundredTTCSignupModel): Observable<stripePayModel> {
+  checkoutStripeFor200TTC(
+    data: TwoHundredTTCSignupModel,
+  ): Observable<stripePayModel> {
     return this.http.post<stripePayModel>(
       this.url + 'api/v1/checkoutStripeFor200TTC',
-      data
+      data,
     );
   }
-  checkoutPaypalFor200TTC(data: TwoHundredTTCSignupModel): Observable<paypalPayModel> {
+  checkoutPaypalFor200TTC(
+    data: TwoHundredTTCSignupModel,
+  ): Observable<paypalPayModel> {
     return this.http.post<paypalPayModel>(
       this.url + 'api/v1/checkoutPaypalFor200TTC',
-      data
+      data,
     );
   }
   getStripePaymentResult200TTC(data: any) {
     return this.http.post(
       this.url + 'api/v1/getStripePaymentResult200TTC',
-      data
+      data,
     );
   }
   getPaypalPaymentResult200TTC(data: paypalPaymentResultModel) {
     return this.http.post(
       this.url + 'api/v1/getPaypalPaymentResult200TTC',
-      data
+      data,
     );
   }
   getTabVideo(data: { fileName: string }): Observable<string> {
@@ -352,35 +358,35 @@ export class WebapiService {
   checkoutRazorpayRishikesh(data: SignupDataModel): Observable<razorPayModel> {
     return this.http.post<razorPayModel>(
       this.url + 'api/v1/checkoutRazorpayRishikesh',
-      data
+      data,
     );
   }
   getRazorPaymentResultRishikesh(
-    data: razorPaymentResultModel
+    data: razorPaymentResultModel,
   ): Observable<razorPayReturnModel> {
     return this.http.post<razorPayReturnModel>(
       this.url + 'api/v1/getRazorPaymentResultRishikesh',
-      data
+      data,
     );
   }
   checkoutStripeForRishikesh(
-    data: SignupDataModel
+    data: SignupDataModel,
   ): Observable<stripePayModel> {
     return this.http.post<stripePayModel>(
       this.url + 'api/v1/checkoutStripeForRishikesh',
-      data
+      data,
     );
   }
   checkoutStripeForBali(data: SignupDataModel): Observable<stripePayModel> {
     return this.http.post<stripePayModel>(
       this.url + 'api/v1/checkoutStripeForBali',
-      data
+      data,
     );
   }
   getStripePaymentResultRishikesh(data: any) {
     return this.http.post(
       this.url + 'api/v1/getStripePaymentResultRishikesh',
-      data
+      data,
     );
   }
   getStripePaymentResultBali(data: any) {
@@ -389,19 +395,19 @@ export class WebapiService {
   registerSwarSadhanaWebinarUser(data: swaraDataModel) {
     return this.http.post(
       this.url + 'api/v1/registerSwarSadhanaWebinarUser',
-      data
+      data,
     );
   }
   checkoutRazorpayNewSwarSadhana(data: swaraRazorModel) {
     return this.http.post(
       this.url + 'api/v1/checkoutRazorpayNewSwarSadhana',
-      data
+      data,
     );
   }
   getRazorPaymentResultSwarSadhana(data: swaraPaymentResultModel) {
     return this.http.post(
       this.url + 'api/v1/getRazorPaymentResultSwarSadhana',
-      data
+      data,
     );
   }
   checkoutSwarSadhanaStripe(data: swaraStripeModel) {
@@ -411,31 +417,63 @@ export class WebapiService {
   getPaymentResultSwarSadhana(data: any) {
     return this.http.post(
       this.url + 'api/v1/getPaymentResultSwarSadhana',
-      data
+      data,
     );
   }
-  checkoutRazorpayForPranayamaCertification(data: PranayamaCertificationSignupModel): Observable<razorPayModel> {
+  checkoutRazorpayForPranayamaCertification(
+    data: PranayamaCertificationSignupModel,
+  ): Observable<razorPayModel> {
     return this.http.post<razorPayModel>(
       this.url + 'api/v1/checkoutRazorpayForPranayamaCertification',
-      data
+      data,
     );
   }
-  getRazorPaymentResultPranayamaCertification(data: razorPaymentResultModel): Observable<razorPayReturnModel> {
+  getRazorPaymentResultPranayamaCertification(
+    data: razorPaymentResultModel,
+  ): Observable<razorPayReturnModel> {
     return this.http.post<razorPayReturnModel>(
       this.url + 'api/v1/getRazorPaymentResultPranayamaCertification',
-      data
+      data,
     );
   }
-  checkoutStripeForPranayamaCertification(data: PranayamaCertificationSignupModel): Observable<stripePayModel> {
+  checkoutStripeForPranayamaCertification(
+    data: PranayamaCertificationSignupModel,
+  ): Observable<stripePayModel> {
     return this.http.post<stripePayModel>(
       this.url + 'api/v1/checkoutStripeForPranayamaCertification',
-      data
+      data,
     );
   }
   getStripePaymentResultPranayamaCertification(data: any) {
     return this.http.post(
       this.url + 'api/v1/getStripePaymentResultPranayamaCertification',
-      data
+      data,
+    );
+  }
+  checkoutRazorpayRetreat(data: SignupDataModel): Observable<razorPayModel> {
+    return this.http.post<razorPayModel>(
+      this.url + 'api/v1/checkoutRazorpayRetreat',
+      data,
+    );
+  }
+  getRazorPaymentResultRetreat(
+    data: razorPaymentResultModel,
+  ): Observable<razorPayReturnModel> {
+    return this.http.post<razorPayReturnModel>(
+      this.url + 'api/v1/getRazorPaymentResultRetreat',
+      data,
+    );
+  }
+  checkoutStripeForRetreat(data: SignupDataModel): Observable<stripePayModel> {
+    return this.http.post<stripePayModel>(
+      this.url + 'api/v1/checkoutStripeForRetreat',
+      data,
+    );
+  }
+  getStripePaymentResultRetreat(data: any) {
+    return this.http.post(
+      this.url + 'api/v1/getStripePaymentResultRetreat',
+      data,
     );
   }
 }

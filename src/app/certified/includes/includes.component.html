@@ -1,37 +1,69 @@
-<section class="includes-section text-center">
+@if (slug == routeEnum.retreats) {
+  <section class="includes-section text-center">
+    <h2 class="section-title">What's Included in Your Training</h2>
+    <div class="includes-grid retreat-grid">
+      <div class="include-item">
+        <i class="fas fa-bed"></i>
+        <p>5 nights accommodation</p>
+      </div>
+      <div class="include-item">
+        <i class="fas fa-utensils"></i>
+        <p>Three vegetarian meals per day</p>
+      </div>
+      <div class="include-item">
+        <i class="fas fa-car"></i>
+        <p>Airport pick-up</p>
+      </div>
+      <div class="include-item">
+        <i class="fas fa-spa"></i>
+        <p>One traditional massage</p>
+      </div>
+      <div class="include-item">
+        <i class="fas fa-gopuram"></i>
+        <p>One traditional temple visit</p>
+      </div>
+      <div class="include-item">
+        <i class="fas fa-motorcycle"></i>
+        <p>Use of one scooty for a local visit</p>
+      </div>
+    </div>
+  </section>
+} @else {
+  <section class="includes-section text-center">
     <h2 class="section-title">What's Included in Your Training</h2>
     <div class="includes-grid">
-        <div class="include-item">
-            <i class="fas fa-bed"></i>
-            <p>Accommodation with private bathroom</p>
-        </div>
-        <div class="include-item">
-            <i class="fas fa-seedling"></i>
-            <p>Three organic vegetarian meals per day</p>
-        </div>
-        <div class="include-item">
-            <i class="fas fa-book"></i>
-            <p>Course materials + Kriya cleansing kit</p>
-        </div>
-        <div class="include-item">
-            <i class="fas fa-certificate"></i>
-            <p>Yoga Alliance Certification</p>
-        </div>
-        <div class="include-item">
-            <i class="fas fa-hiking"></i>
-            <p>Excursions and cultural activities</p>
-        </div>
-        <div class="include-item">
-            <i class="fas fa-tint"></i>
-            <p>24/7 filtered water and hot water</p>
-        </div>
-        <div class="include-item">
-            <i class="fas fa-wifi"></i>
-            <p>WiFi</p>
-        </div>
-        <div class="include-item">
-            <i class="fas fa-user-md"></i>
-            <p>On-call doctor and emergency services</p>
-        </div>
+      <div class="include-item">
+        <i class="fas fa-bed"></i>
+        <p>Accommodation with private bathroom</p>
+      </div>
+      <div class="include-item">
+        <i class="fas fa-seedling"></i>
+        <p>Three organic vegetarian meals per day</p>
+      </div>
+      <div class="include-item">
+        <i class="fas fa-book"></i>
+        <p>Course materials + Kriya cleansing kit</p>
+      </div>
+      <div class="include-item">
+        <i class="fas fa-certificate"></i>
+        <p>Yoga Alliance Certification</p>
+      </div>
+      <div class="include-item">
+        <i class="fas fa-hiking"></i>
+        <p>Excursions and cultural activities</p>
+      </div>
+      <div class="include-item">
+        <i class="fas fa-tint"></i>
+        <p>24/7 filtered water and hot water</p>
+      </div>
+      <div class="include-item">
+        <i class="fas fa-wifi"></i>
+        <p>WiFi</p>
+      </div>
+      <div class="include-item">
+        <i class="fas fa-user-md"></i>
+        <p>On-call doctor and emergency services</p>
+      </div>
     </div>
-</section>
+  </section>
+}

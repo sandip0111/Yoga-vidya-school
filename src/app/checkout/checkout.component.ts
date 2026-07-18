@@ -1,4 +1,10 @@
-import { Component, Renderer2, Inject, ViewChild, DOCUMENT } from '@angular/core';
+import {
+  Component,
+  Renderer2,
+  Inject,
+  ViewChild,
+  DOCUMENT,
+} from '@angular/core';
 
 import { WebapiService } from '../webapi.service';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -104,6 +110,7 @@ export class CheckoutComponent {
       routeEnum.bali300,
       routeEnum['200TTC'],
       routeEnum.pranayamaCertification,
+      routeEnum.retreats,
     ];
     return allowedSlugs.includes(this.slug as any);
   }
@@ -155,48 +162,9 @@ export class CheckoutComponent {
 
   ngOnInit(): void {
     this.spinner.show();
-    const isBrowser = typeof window !== 'undefined' && typeof document !== 'undefined';
-    const rishikeshCourses = [
-      routeEnum.rishikesh100,
-      routeEnum.rishkesh200,
-      routeEnum.rishikesh300,
-    ];
-    const baliCourses = [
-      routeEnum.bali200,
-      routeEnum.bali300,
-      routeEnum.bali100,
-    ];
-
-    if (
-      this.slug === routeEnum.rishikesh100 ||
-      this.slug === routeEnum.rishkesh200 ||
-      this.slug === routeEnum.rishikesh300
-    ) {
-      this.roomList = [
-        { name: 'Shared room', value: 1 },
-        { name: 'Private room', value: 2 },
-        { name: 'Reserve your shared room with a 30% deposit', value: 3 },
-        { name: 'Reserve your private room with a 30% deposit', value: 4 },
-      ];
-    } else if (this.slug === routeEnum['200TTC']) {
-      this.roomList = [
-        { name: 'Full Amount', value: 1 },
-        { name: 'Reserve your room with a 30% deposit', value: 3 },
-      ];
-    } else if (baliCourses.includes(this.slug as any)) {
-      this.roomList = [
-        { name: 'Private room', value: 2 },
-        { name: 'Reserve your private room with a 30% deposit', value: 3 },
-      ];
-    } else if (this.slug === routeEnum.pranayamaCertification) {
-      this.roomList = [
-        { name: 'Full Payment', value: 1 },
-        { name: 'Reserve your room with a 30% deposit', value: 3 },
-      ];
-    }
-    if (this.roomList && this.roomList.length > 0) {
-      this.checkData.package = this.roomList[0].value;
-    }
+    const isBrowser =
+      typeof window !== 'undefined' && typeof document !== 'undefined';
+    this.getRoomListOption(this.slug);
     if (isBrowser) {
       this.scrollToTop();
       // Track checkout page view
@@ -205,7 +173,8 @@ export class CheckoutComponent {
         this.invokeStripe();
         this.loadRazorpayScript();
         this.title.setTitle('Checkout');
-        const canonicalUrl = 'https://www.yogavidyaschool.com' + this.router.url;
+        const canonicalUrl =
+          'https://www.yogavidyaschool.com' + this.router.url;
         const link = this._document.querySelector('link[rel="canonical"]');
         this._renderer2.setAttribute(link, 'href', canonicalUrl);
         if (this.slug === routeEnum.pranicPurification) {
@@ -240,6 +209,50 @@ export class CheckoutComponent {
       behavior: 'smooth',
     });
   }
+  getRoomListOption(pageSlug: string) {
+    const baliCourses = [
+      routeEnum.bali200,
+      routeEnum.bali300,
+      routeEnum.bali100,
+    ];
+    if (
+      pageSlug === routeEnum.rishikesh100 ||
+      pageSlug === routeEnum.rishkesh200 ||
+      pageSlug === routeEnum.rishikesh300
+    ) {
+      this.roomList = [
+        { name: 'Shared room', value: 1 },
+        { name: 'Private room', value: 2 },
+        { name: 'Reserve your shared room with a 30% deposit', value: 3 },
+        { name: 'Reserve your private room with a 30% deposit', value: 4 },
+      ];
+    } else if (pageSlug === routeEnum['200TTC']) {
+      this.roomList = [
+        { name: 'Full Amount', value: 1 },
+        { name: 'Reserve your room with a 30% deposit', value: 3 },
+      ];
+    } else if (baliCourses.includes(pageSlug as any)) {
+      this.roomList = [
+        { name: 'Private room', value: 2 },
+        { name: 'Reserve your private room with a 30% deposit', value: 3 },
+      ];
+    } else if (pageSlug === routeEnum.pranayamaCertification) {
+      this.roomList = [
+        { name: 'Full Payment', value: 1 },
+        { name: 'Reserve your room with a 30% deposit', value: 3 },
+      ];
+    } else if (pageSlug === routeEnum.retreats) {
+      this.roomList = [
+        { name: 'Shared room', value: 1 },
+        { name: 'Single room', value: 2 },
+        { name: 'Reserve your shared room with a 30% deposit', value: 3 },
+        { name: 'Reserve your Single room with a 30% deposit', value: 4 },
+      ];
+    }
+    if (this.roomList && this.roomList.length > 0) {
+      this.checkData.package = this.roomList[0].value;
+    }
+  }
   getPaymentDetailsById() {
     this.webapiService
       .getPaymentDetailsById(this.paymentId)
@@ -270,16 +283,20 @@ export class CheckoutComponent {
           this.courseList = res.data[0];
           this.feesData = this.courseList.feeInfo;
           this.feesData.map(
-            (a) => (a.title = a.title == 'Price' ? a.title : `Price(${a.title})`),
+            (a) =>
+              (a.title = a.title == 'Price' ? a.title : `Price(${a.title})`),
           );
           if (!this.paymentId) {
             if (this.isDiscountPlan && this.slug === routeEnum['200TTC']) {
               this.currencyOptions = ['INR', 'USD'];
               this.checkData.currency = 'INR';
               if (this.checkData.package) {
-                const baseAmount = this.discountPlanPrices[this.checkData.currency] ?? 79000;
+                const baseAmount =
+                  this.discountPlanPrices[this.checkData.currency] ?? 79000;
                 const isBooking30 = +this.checkData.package === 3;
-                this.amount = isBooking30 ? Math.round(baseAmount * 0.3) : baseAmount;
+                this.amount = isBooking30
+                  ? Math.round(baseAmount * 0.3)
+                  : baseAmount;
               }
             } else {
               if (this.feesData.length > 0) {
@@ -356,11 +373,10 @@ export class CheckoutComponent {
   setRoomPrice(event: any) {
     this.inputValidation('room');
     const selectedValue = +event.target.value;
-
-    // Discount plan + 200TTC: prices are hardcoded — compute directly without feesData
     if (this.isDiscountPlan && this.slug === routeEnum['200TTC']) {
       if (this.checkData.currency) {
-        const baseAmount = this.discountPlanPrices[this.checkData.currency] ?? 79000;
+        const baseAmount =
+          this.discountPlanPrices[this.checkData.currency] ?? 79000;
         const isBooking30 = selectedValue === 3;
         this.amount = isBooking30 ? Math.round(baseAmount * 0.3) : baseAmount;
       }
@@ -388,11 +404,7 @@ export class CheckoutComponent {
     }
     // Recalculate price using the preserved (or newly set) currency
     if (this.feesData.length > 0 && this.checkData.currency) {
-      this.setPriceData(
-        this.feesData,
-        this.checkData.currency,
-        selectedValue,
-      );
+      this.setPriceData(this.feesData, this.checkData.currency, selectedValue);
     }
   }
   onCurrencyChange(value: string) {
@@ -417,7 +429,8 @@ export class CheckoutComponent {
     if (
       this.slug === this.routeEnum.rishikesh100 ||
       this.slug === this.routeEnum.rishkesh200 ||
-      this.slug === this.routeEnum.rishikesh300
+      this.slug === this.routeEnum.rishikesh300 ||
+      this.slug === this.routeEnum.retreats
     ) {
       if (+roomId === 3) {
         isBooking30 = true;
@@ -428,7 +441,11 @@ export class CheckoutComponent {
       }
     } else {
       isBooking30 = +roomId === 3;
-      lookupRoomId = isBooking30 ? (this.slug === this.routeEnum.pranayamaCertification ? 1 : 2) : +roomId;
+      lookupRoomId = isBooking30
+        ? this.slug === this.routeEnum.pranayamaCertification
+          ? 1
+          : 2
+        : +roomId;
     }
 
     for (let item of feesData) {
@@ -439,22 +456,36 @@ export class CheckoutComponent {
           )?.discount;
           if (discountPrice) {
             const baseAmount = discountPrice;
-            const baseActual = item.data.find((f) => f.currency == currency)?.amount ?? 0;
-            this.amount = isBooking30 ? Math.round(baseAmount * 0.3) : baseAmount;
-            this.actualAmount = isBooking30 ? Math.round(baseActual * 0.3) : baseActual;
+            const baseActual =
+              item.data.find((f) => f.currency == currency)?.amount ?? 0;
+            this.amount = isBooking30
+              ? Math.round(baseAmount * 0.3)
+              : baseAmount;
+            this.actualAmount = isBooking30
+              ? Math.round(baseActual * 0.3)
+              : baseActual;
           } else {
-            const baseAmount = item.data.find((f) => f.currency == currency)?.amount ?? 0;
-            this.amount = isBooking30 ? Math.round(baseAmount * 0.3) : baseAmount;
+            const baseAmount =
+              item.data.find((f) => f.currency == currency)?.amount ?? 0;
+            this.amount = isBooking30
+              ? Math.round(baseAmount * 0.3)
+              : baseAmount;
             this.actualAmount = 0;
           }
         } else {
-          const baseAmount = item.data.find((f) => f.currency == currency)?.amount ?? 0;
-          const baseOffer = item.data.find((f) => f.currency == currency)?.discount ?? 0;
+          const baseAmount =
+            item.data.find((f) => f.currency == currency)?.amount ?? 0;
+          const baseOffer =
+            item.data.find((f) => f.currency == currency)?.discount ?? 0;
           this.amount = isBooking30 ? Math.round(baseAmount * 0.3) : baseAmount;
-          this.offerAmount = isBooking30 ? Math.round(baseOffer * 0.3) : baseOffer;
+          this.offerAmount = isBooking30
+            ? Math.round(baseOffer * 0.3)
+            : baseOffer;
         }
       } else {
-        const roomName = this.roomList.find((item) => item.value == lookupRoomId)?.name;
+        const roomName = this.roomList.find(
+          (item) => item.value == lookupRoomId,
+        )?.name;
         const room = `Price(${roomName})`;
         const matchData = item.data.find(
           (f) => f.currency == currency && item.title == room,
@@ -465,18 +496,26 @@ export class CheckoutComponent {
           if (discountPrice) {
             const baseAmount = discountPrice;
             const baseActual = matchData?.amount ?? 0;
-            this.amount = isBooking30 ? Math.round(baseAmount * 0.3) : baseAmount;
-            this.actualAmount = isBooking30 ? Math.round(baseActual * 0.3) : baseActual;
+            this.amount = isBooking30
+              ? Math.round(baseAmount * 0.3)
+              : baseAmount;
+            this.actualAmount = isBooking30
+              ? Math.round(baseActual * 0.3)
+              : baseActual;
           } else {
             const baseAmount = matchData?.amount ?? 0;
-            this.amount = isBooking30 ? Math.round(baseAmount * 0.3) : baseAmount;
+            this.amount = isBooking30
+              ? Math.round(baseAmount * 0.3)
+              : baseAmount;
             this.actualAmount = 0;
           }
         } else {
           const baseAmount = matchData?.amount ?? 0;
           const baseOffer = matchData?.discount ?? 0;
           this.amount = isBooking30 ? Math.round(baseAmount * 0.3) : baseAmount;
-          this.offerAmount = isBooking30 ? Math.round(baseOffer * 0.3) : baseOffer;
+          this.offerAmount = isBooking30
+            ? Math.round(baseOffer * 0.3)
+            : baseOffer;
         }
       }
       if (this.amount) {
@@ -498,7 +537,8 @@ export class CheckoutComponent {
         }
         // Only calculate amount when user has already chosen a booking type
         if (this.checkData.package) {
-          const baseAmount = this.discountPlanPrices[this.checkData.currency] ?? 79000;
+          const baseAmount =
+            this.discountPlanPrices[this.checkData.currency] ?? 79000;
           const isBooking30 = +this.checkData.package === 3;
           this.amount = isBooking30 ? Math.round(baseAmount * 0.3) : baseAmount;
         }
@@ -615,7 +655,13 @@ export class CheckoutComponent {
         // 200TTC always requires a booking selection (even on discount plan)
         // All other courses only require it when not on a discount plan
         const requires200TTCPackage = this.slug === routeEnum['200TTC'];
-        if (this.slug !== routeEnum.sa && this.slug !== routeEnum.pranOnlinePranaArambh && this.slug !== routeEnum.foundationOfSpirituality && this.slug !== routeEnum.pranayamaCertification && (!this.isDiscountPlan || requires200TTCPackage)) {
+        if (
+          this.slug !== routeEnum.sa &&
+          this.slug !== routeEnum.pranOnlinePranaArambh &&
+          this.slug !== routeEnum.foundationOfSpirituality &&
+          this.slug !== routeEnum.pranayamaCertification &&
+          (!this.isDiscountPlan || requires200TTCPackage)
+        ) {
           this.packageRequired = 'Please select a Booking';
           isErrMsg = true;
         }
@@ -647,6 +693,8 @@ export class CheckoutComponent {
           this.swaraSadhanaCheckout(data, isRazorPay);
         } else if (this.slug == routeEnum.pranayamaCertification) {
           this.pranayamaCertificationCheckout(data, isRazorPay);
+        } else if (this.slug == routeEnum.retreats) {
+          this.retreatsCheckout(data, isRazorPay);
         } else {
           this.pranaArambhCheckout(data, isRazorPay);
         }
@@ -866,10 +914,8 @@ export class CheckoutComponent {
     isPaypal: boolean = false,
   ) {
     const selectedRoom = this.roomList.find((r) => r.value == data.package);
-    const isBooking30 = !this.paymentId && (+data.package === 3);
-    const dueAmount = isBooking30
-      ? Math.round((this.amount / 0.3) * 0.7)
-      : 0;
+    const isBooking30 = !this.paymentId && +data.package === 3;
+    const dueAmount = isBooking30 ? Math.round((this.amount / 0.3) * 0.7) : 0;
 
     // ─── PayPal: enforce USD as the only accepted currency ───────────────────
     // This is a critical frontend safety net: even if canUsePaypal was somehow
@@ -970,7 +1016,6 @@ export class CheckoutComponent {
         }
       });
   }
-
   pranayamaCertificationCheckout(data: checkoutModel, isRazorPay: boolean) {
     const isBooking30 = +data.package === 3;
     const dueAmount = isBooking30 ? Math.round((this.amount / 0.3) * 0.7) : 0;
@@ -991,8 +1036,9 @@ export class CheckoutComponent {
       this.initializePaymentForPranayamaCertification(signupData);
     }
   }
-
-  initializeRazorPaymentForPranayamaCertification(data: PranayamaCertificationSignupModel) {
+  initializeRazorPaymentForPranayamaCertification(
+    data: PranayamaCertificationSignupModel,
+  ) {
     this.webapiService
       .checkoutRazorpayForPranayamaCertification(data)
       .subscribe((res: razorPayModel) => {
@@ -1048,8 +1094,9 @@ export class CheckoutComponent {
         }
       });
   }
-
-  initializePaymentForPranayamaCertification(data: PranayamaCertificationSignupModel) {
+  initializePaymentForPranayamaCertification(
+    data: PranayamaCertificationSignupModel,
+  ) {
     this.webapiService
       .checkoutStripeForPranayamaCertification(data)
       .subscribe((res: stripePayModel) => {
@@ -1074,7 +1121,6 @@ export class CheckoutComponent {
         }
       });
   }
-
   newStudentCheckOut(data: checkoutModel, isRazorPay: boolean, pass: string) {
     let signup = {
       firstName: data.name,
@@ -1437,14 +1483,15 @@ export class CheckoutComponent {
                 localstorageKey['200TTCRzpDBId'],
                 res.payDbId,
               );
-              const isDue = !this.paymentId && data.dueAmount && data.dueAmount > 0;
+              const isDue =
+                !this.paymentId && data.dueAmount && data.dueAmount > 0;
               localStorage.setItem(
                 localstorageKey['200TTCInstallment'],
                 isDue ? '1st' : '2nd',
               );
               localStorage.setItem(
                 localstorageKey['200TTCDue'],
-                 isDue ? data.dueAmount!.toString() : '0',
+                isDue ? data.dueAmount!.toString() : '0',
               );
               this.router.navigate(['/confirmation']);
             },
@@ -1616,7 +1663,6 @@ export class CheckoutComponent {
 
     return null;
   }
-
   invokeStripe() {
     if (!window.document.getElementById('stripe-script')) {
       const script = window.document.createElement('script');
@@ -1631,7 +1677,6 @@ export class CheckoutComponent {
       window.document.body.appendChild(script);
     }
   }
-
   loadRazorpayScript() {
     if (!document.getElementById('razorpay-script')) {
       const script = document.createElement('script');
@@ -1643,7 +1688,6 @@ export class CheckoutComponent {
       document.body.appendChild(script);
     }
   }
-
   isValidEmail(email: any) {
     // Regular expression pattern for email validation
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -1651,7 +1695,6 @@ export class CheckoutComponent {
     // Test the email against the pattern
     return emailPattern.test(email);
   }
-
   initializePaymentV2(id: any, email: any, studId: any) {
     // if (this.paymentHandler && this.paymentHandler.redirectToCheckout) {
     this.spinner.show();
@@ -1675,7 +1718,6 @@ export class CheckoutComponent {
       }
     });
   }
-
   setMode(e: any) {
     if (e.target.value == 'STRIPE') {
       this.stripeCounter = true;
@@ -1717,7 +1759,6 @@ export class CheckoutComponent {
         break;
     }
   }
-
   // Pixel tracking methods
   private trackCheckoutPageView() {
     const courseName = this.getCourseName(this.slug);
@@ -1727,7 +1768,6 @@ export class CheckoutComponent {
     );
     this.pixelTracking.trackViewContent('checkout_page', this.slug);
   }
-
   private getCourseName(slug: string): string {
     const courseNames: { [key: string]: string } = {
       [routeEnum.rishikesh100]: '100-Hour Yoga Teacher Training',
@@ -1739,18 +1779,96 @@ export class CheckoutComponent {
     };
     return courseNames[slug] || 'Yoga Teacher Training';
   }
-
-  private getCourseValue(slug: string): number {
-    const courseValues: { [key: string]: number } = {
-      [routeEnum.rishikesh100]: 800,
-      [routeEnum.rishkesh200]: 1200,
-      [routeEnum.rishikesh300]: 1500,
-      [routeEnum.bali100]: 1000,
-      [routeEnum.bali200]: 1400,
-      [routeEnum.bali300]: 1800,
+  //#region retreat
+  retreatsCheckout(data: checkoutModel, isRazorPay: boolean) {
+    let room = this.roomList.find((item) => item.value == data.package);
+    let retreatData: SignupDataModel = {
+      name: data.name,
+      email: data.email.toLowerCase(),
+      phoneNumber: data.phoneNumber.e164Number,
+      room: room?.name,
+      price: this.amount,
+      currency: data.currency,
     };
-    return courseValues[slug] || 1000;
+    if (isRazorPay) {
+      this.initializeRazorPayRetreat(retreatData);
+    } else {
+      this.initializePayStripeRetreat(retreatData);
+    }
   }
+  initializeRazorPayRetreat(data: SignupDataModel) {
+    this.webapiService
+      .checkoutRazorpayRetreat(data)
+      .subscribe((res: razorPayModel) => {
+        if (res && res.orderId && res.razorpayKey) {
+          const options = {
+            key: res.razorpayKey,
+            amount: res.amount * 100,
+            currency: data.currency,
+            name: 'Yoga Vidya School',
+            description: 'The Essence of Yoga – Mysore Retreat 2026 Payment',
+            order_id: res.orderId,
+            handler: (response: any) => {
+              localStorage.setItem(
+                localstorageKey.retreatRzpId,
+                response.razorpay_payment_id,
+              );
+              localStorage.setItem(
+                localstorageKey.retreatOrderId,
+                response.razorpay_order_id,
+              );
+              localStorage.setItem(
+                localstorageKey.retreatSig,
+                response.razorpay_signature,
+              );
+              localStorage.setItem(localstorageKey.retreatDBId, res.payDbId);
+              this.router.navigate(['/confirmation']);
+            },
+            prefill: {
+              name: data.name,
+              email: data.email,
+              contact: data.phoneNumber,
+            },
+            notes: {
+              course: JSON.stringify(
+                'The Essence of Yoga – Mysore Retreat 2026 Payment',
+              ),
+            },
+            theme: {
+              color: '#3399cc',
+            },
+          };
+          this.spinner.hide();
+          const rzp = new Razorpay(options);
+          rzp.open();
+        } else {
+          alert('Session Genration failed! please try again');
+          this.spinner.hide();
+        }
+      });
+  }
+  initializePayStripeRetreat(data: SignupDataModel) {
+    this.webapiService
+      .checkoutStripeForRetreat(data)
+      .subscribe((res: stripePayModel) => {
+        if (res.sessionId) {
+          localStorage.setItem(
+            localstorageKey.retreatStripeSessionId,
+            res.sessionId,
+          );
+          localStorage.setItem(
+            localstorageKey.retreatStripeDBId,
+            res.payDbId,
+          );
+          window.location.href = res.url;
+          this.spinner.hide();
+        } else {
+          alert('Session Genration failed! please try again');
+          this.spinner.hide();
+        }
+      });
+  }
+  //#endregion
 }
 class courseListDto {
   _id: string = '';

@@ -96,7 +96,10 @@ export const routes: Routes = [
 
   { path: routeEnum.pranicPurification, component: RishikeshIndexComponent },
 
-  { path: routeEnum.pranicPurificationII, component: PranicPurificationIiComponent },
+  {
+    path: routeEnum.pranicPurificationII,
+    component: PranicPurificationIiComponent,
+  },
 
   { path: routeEnum.online, component: CourseMentorComponent },
   { path: routeEnum.bDtox, component: BreatchdtoxComponent },
@@ -191,6 +194,16 @@ export const routes: Routes = [
       import('./course/bali/bali-100-hour/bali-100-hour.component').then(
         (m) => m.Bali100HourComponent,
       ),
+  },
+  {
+    path: routeEnum.retreats,
+    loadComponent: () =>
+      import('./course/retreats/retreats').then((m) => m.Retreats),
+  },
+  {
+    path: 'yoga-retreats',
+    redirectTo: routeEnum.retreats,
+    pathMatch: 'full',
   },
   { path: 'webinar-video/:name', component: WebinarVideosComponent },
   { path: '**', pathMatch: 'full', component: PagenotfoundComponent },

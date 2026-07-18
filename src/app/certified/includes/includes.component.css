@@ -17,6 +17,49 @@
   margin: 0 auto;
 }
 
+.retreat-grid {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+/* Responsive breakpoints for retreat grid */
+@media screen and (max-width: 1024px) {
+  .retreat-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .retreat-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .include-item {
+    padding: 25px 15px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .retreat-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .include-item {
+    padding: 20px 15px;
+  }
+  
+  .include-item i {
+    font-size: 1.8rem;
+  }
+  
+  .include-item p {
+    font-size: 0.95rem;
+  }
+  
+  .section-title {
+    font-size: 1.5rem;
+  }
+}
+
 .include-item {
   background: #fdf7f3;
   border-radius: 10px;
