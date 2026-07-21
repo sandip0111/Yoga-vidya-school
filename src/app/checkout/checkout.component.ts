@@ -19,7 +19,7 @@ import {
 } from 'ngx-intl-tel-input';
 import { SearchCountryField } from 'ngx-intl-tel-input';
 import { CountryISO } from 'ngx-intl-tel-input';
-import { paymentkey, stripePaymentKey } from '../enum/payment';
+import { paymentkey, PaymentType, stripePaymentKey } from '../enum/payment';
 import {
   checkoutModel,
   dropdownModel,
@@ -75,6 +75,7 @@ export class CheckoutComponent {
     SearchCountryField.Iso2,
   ];
   currencyOptions: string[] = [];
+  currencyOption2: string[] = [];
   firstInstAmnt: number = 0;
   secondInstAmnt: number = 0;
   routeEnum = routeEnum;
@@ -268,8 +269,8 @@ export class CheckoutComponent {
           dialCode: '+91',
         };
         this.checkData.package = res.package;
-        this.currencyOptions = [res.currency];
-        this.checkData.currency = this.currencyOptions[0];
+        this.currencyOption2 = [res.currency];
+        // this.checkData.currency = this.currencyOptions[0];
         this.amount = res.dueAmount;
       });
   }
@@ -288,7 +289,7 @@ export class CheckoutComponent {
           );
           if (!this.paymentId) {
             if (this.isDiscountPlan && this.slug === routeEnum['200TTC']) {
-              this.currencyOptions = ['INR', 'USD'];
+              // this.currencyOptions = ['INR', 'USD'];
               this.checkData.currency = 'INR';
               if (this.checkData.package) {
                 const baseAmount =
@@ -300,7 +301,7 @@ export class CheckoutComponent {
               }
             } else {
               if (this.feesData.length > 0) {
-                this.setCurrencyData(this.feesData, this.checkData);
+                // this.setCurrencyData(this.feesData, this.checkData);
                 this.setPriceData(
                   this.feesData,
                   this.checkData.currency,
@@ -523,17 +524,22 @@ export class CheckoutComponent {
       }
     }
   }
-  onPhoneInputChange(isValid: boolean | null | undefined): void {
+  onPhoneInputChange(
+    isValid: boolean | null | undefined,
+    phoneInput: any,
+  ): void {
     if (this.paymentId) return;
     if (!isValid) {
       this.phoneError = 'Invalid phone number';
+      this.currencyOptions = [];
+      this.checkData.currency = '';
     } else {
       this.phoneError = '';
       // Discount plan: set fixed currency options; amount is driven by booking selection
       if (this.isDiscountPlan && this.slug === routeEnum['200TTC']) {
         if (this.currencyOptions.length === 0) {
-          this.currencyOptions = ['INR', 'USD'];
-          this.checkData.currency = 'INR';
+          this.currencyOptions = this.currencyOption2;
+          this.checkData.currency = this.currencyOptions[0];
         }
         // Only calculate amount when user has already chosen a booking type
         if (this.checkData.package) {
@@ -547,7 +553,7 @@ export class CheckoutComponent {
       }
       if (this.feesData.length > 0) {
         if (this.currencyOptions.length === 0) {
-          this.setCurrencyData(this.feesData, this.checkData);
+          this.setCurrencyData(this.feesData, this.checkData, phoneInput.model);
         }
         this.setPriceData(
           this.feesData,
@@ -558,22 +564,48 @@ export class CheckoutComponent {
       this.inputValidation('cur');
     }
   }
-  setCurrencyData(feesData: feeInfoDto[], checkData: checkoutModel) {
-    feesData.forEach((item) => {
-      item.data.forEach((d) => {
-        if (!this.currencyOptions.includes(d.currency)) {
-          this.currencyOptions.push(d.currency);
-        }
+  setCurrencyData(
+    feesData: feeInfoDto[],
+    checkData: checkoutModel,
+    phoneInputModel: any,
+  ) {
+    if (phoneInputModel.countryCode == 'IN') {
+      feesData.forEach((item) => {
+        item.data.forEach((d) => {
+          if (!this.currencyOptions.includes(d.currency)) {
+            this.currencyOptions.push(d.currency);
+          }
+        });
       });
-    });
-    if (!checkData.currency && this.currencyOptions.length > 0) {
-      checkData.currency = this.currencyOptions[0];
+      if (!checkData.currency && this.currencyOptions.length > 0) {
+        checkData.currency = this.currencyOptions.includes(
+          PaymentType.indianCur,
+        )
+          ? PaymentType.indianCur
+          : this.currencyOptions[0];
+      }
+    } else {
+      feesData.forEach((item) => {
+        item.data.forEach((d) => {
+          if (
+            !this.currencyOptions.includes(d.currency) &&
+            d.currency !== PaymentType.indianCur
+          ) {
+            this.currencyOptions.push(d.currency);
+          }
+        });
+      });
+      if (!checkData.currency && this.currencyOptions.length > 0) {
+        checkData.currency = this.currencyOptions[0];
+      }
     }
   }
   onCountryChange(): void {
     if (this.paymentId) return;
     this.phoneError = 'Invalid phone number';
     this.checkData.phoneNumber = new PhoneNumberData();
+    this.currencyOptions = [];
+    this.checkData.currency = '';
   }
   inputValidation(type: string) {
     if (type === 'email') {
@@ -902,7 +934,6 @@ export class CheckoutComponent {
   }
   pranaArambhCheckout(data: checkoutModel, isRazorPay: boolean) {
     sessionStorage.setItem('tempCourse', this.courseList._id);
-    console.log('mdasntssk');
     let pass = this.genratePass(6);
     if (this.oldStudent == false) {
       this.newStudentCheckOut(data, isRazorPay, pass);
@@ -1143,10 +1174,6 @@ export class CheckoutComponent {
                   : stripePaymentKey.basicInr,
                 data.email,
               );
-            } else if (data.currency == 'INR') {
-              this.initializePayment(stripePaymentKey.standardInr, data.email);
-            } else if (data.currency == 'INR') {
-              this.initializePayment(stripePaymentKey.premiumInr, data.email);
             } else if (data.currency == 'USD') {
               this.initializePayment(
                 this.isDiscounted
@@ -1856,10 +1883,7 @@ export class CheckoutComponent {
             localstorageKey.retreatStripeSessionId,
             res.sessionId,
           );
-          localStorage.setItem(
-            localstorageKey.retreatStripeDBId,
-            res.payDbId,
-          );
+          localStorage.setItem(localstorageKey.retreatStripeDBId, res.payDbId);
           window.location.href = res.url;
           this.spinner.hide();
         } else {

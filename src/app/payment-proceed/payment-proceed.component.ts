@@ -14,7 +14,7 @@ import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 import { SearchCountryField } from 'ngx-intl-tel-input';
 import { CountryISO } from 'ngx-intl-tel-input';
 import { ActivatedRoute, Router } from '@angular/router';
-import { paymentkey } from '../enum/payment';
+import { paymentkey, PaymentType } from '../enum/payment';
 import { jsonData } from '../course/course-mentor/course-mentor.component';
 import { PixelTrackingService } from '../services/pixel-tracking.service';
 import { Title } from '@angular/platform-browser';
@@ -87,11 +87,24 @@ export class PaymentProceedComponent implements OnInit {
     this.getTeachersData(routeEnum.online);
     this.trackCheckoutPageView();
   }
-  getCurrencyOption(courses: CartItem[]) {
+  getCurrencyOption(courses: CartItem[], countryCode: string) {
     if (courses.length > 0) {
       let priceData = courses.map((c) => c.price).flat();
-      let currencySet = new Set(priceData.map((p) => p.currency));
-      this.currencyOptions = Array.from(currencySet);
+      if (countryCode == 'IN') {
+        let currencySet = new Set(priceData.map((p) => p.currency));
+        this.currencyOptions = Array.from(currencySet);
+        this.paymentForm.patchValue({ currency: PaymentType.indianCur });
+      } else {
+        let currencySet = new Set(
+          priceData
+            .map((p) => (p.currency !== PaymentType.indianCur ? p.currency : undefined))
+            .filter((c): c is string => c !== undefined),
+        );
+        if(currencySet) {
+          this.currencyOptions = Array.from(currencySet);
+          this.paymentForm.patchValue({ currency: this.currencyOptions[0] });
+        }
+      }
     }
   }
   getTeachersData(slug: string) {
@@ -174,8 +187,7 @@ export class PaymentProceedComponent implements OnInit {
     this.phoneError = '';
     const phoneValue = control.value;
     const countryCode = phoneValue?.countryCode;
-    this.getCurrencyOption(this.courses);
-    this.paymentForm.patchValue({ currency: this.currencyOptions[0] });
+    this.getCurrencyOption(this.courses, countryCode);
     this.updatePrice();
   }
   onCountryChange(country: any): void {

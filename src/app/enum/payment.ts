@@ -21,3 +21,7 @@ export enum stripePaymentKey {
   // fosInr = 'price_1SgL1mSEQq0H4GuEIYnr43Kw', // test
   fosUSD = 'price_1SgL0TSEQq0H4GuEVYe4HuVy'
 }
+export enum PaymentType {
+  indianCur = 'INR',
+  usdCur = 'USD'
+}

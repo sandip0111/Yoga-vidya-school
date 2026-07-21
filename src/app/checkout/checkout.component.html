@@ -236,7 +236,7 @@
                     [phoneValidation]="true"
                     #phoneInput="ngModel"
                     required
-                    (input)="onPhoneInputChange(!!phoneInput.valid)"
+                    (input)="onPhoneInputChange(!!phoneInput.valid, phoneInput)"
                     [(ngModel)]="checkData.phoneNumber"
                     (countryChange)="onCountryChange()"
                     (keyup)="inputValidation('phone')"
