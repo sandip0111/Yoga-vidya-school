@@ -384,7 +384,6 @@
                     type="button"
                     class="payment-method-btn"
                     *ngIf="showPaypalButton && canUsePaypal"
-                    [attr.title]="canUsePaypal ? 'Pay with PayPal' : 'Pay with PayPal (will auto-switch to USD)'"
                     (click)="onPaypalClick()"
                   >
                     <img

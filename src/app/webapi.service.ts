@@ -476,4 +476,17 @@ export class WebapiService {
       data,
     );
   }
+  checkoutPaypalForRetreat(data: SignupDataModel): Observable<paypalPayModel> {
+    return this.http.post<paypalPayModel>(
+      this.url + 'api/v1/checkoutPaypalForRetreat',
+      data,
+    );
+  }
+  getPaypalPaymentResultRetreat(data: paypalPaymentResultModel) {
+    return this.http.post(
+      this.url + 'api/v1/getPaypalPaymentResultRetreat',
+      data,
+    );
+  }
 }
+

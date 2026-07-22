@@ -117,7 +117,9 @@ export class CheckoutComponent {
   }
 
   get showPaypalButton(): boolean {
-    return this.slug === routeEnum['200TTC'];
+    return (
+      this.slug === routeEnum['200TTC'] || this.slug === routeEnum.retreats
+    );
   }
 
   /** True only when the selected currency is USD (the sole currency PayPal accepts here). */
@@ -131,7 +133,11 @@ export class CheckoutComponent {
    * so no currency switching is needed here.
    */
   onPaypalClick(): void {
-    this.checkoutData(this.checkData, 'paypal');
+    if (this.slug === routeEnum['200TTC']) {
+      this.checkoutData(this.checkData, 'paypal');
+    } else if (this.slug === routeEnum.retreats) {
+      this.checkoutData(this.checkData, 'paypal');
+    }
   }
 
   constructor(
@@ -726,7 +732,7 @@ export class CheckoutComponent {
         } else if (this.slug == routeEnum.pranayamaCertification) {
           this.pranayamaCertificationCheckout(data, isRazorPay);
         } else if (this.slug == routeEnum.retreats) {
-          this.retreatsCheckout(data, isRazorPay);
+          this.retreatsCheckout(data, isRazorPay, isPaypal);
         } else {
           this.pranaArambhCheckout(data, isRazorPay);
         }
@@ -1807,17 +1813,23 @@ export class CheckoutComponent {
     return courseNames[slug] || 'Yoga Teacher Training';
   }
   //#region retreat
-  retreatsCheckout(data: checkoutModel, isRazorPay: boolean) {
+  retreatsCheckout(data: checkoutModel, isRazorPay: boolean, isPaypal: boolean = false) {
     let room = this.roomList.find((item) => item.value == data.package);
+
+    // PayPal enforces USD as the only accepted currency
+    const effectiveCurrency = isPaypal ? this.PAYPAL_CURRENCY : data.currency;
+
     let retreatData: SignupDataModel = {
       name: data.name,
       email: data.email.toLowerCase(),
       phoneNumber: data.phoneNumber.e164Number,
       room: room?.name,
       price: this.amount,
-      currency: data.currency,
+      currency: effectiveCurrency,
     };
-    if (isRazorPay) {
+    if (isPaypal) {
+      this.initializePayPalPaymentForRetreat(retreatData);
+    } else if (isRazorPay) {
       this.initializeRazorPayRetreat(retreatData);
     } else {
       this.initializePayStripeRetreat(retreatData);
@@ -1888,6 +1900,31 @@ export class CheckoutComponent {
           this.spinner.hide();
         } else {
           alert('Session Genration failed! please try again');
+          this.spinner.hide();
+        }
+      });
+  }
+  /**
+   * PayPal checkout for The Essence of Yoga – Mysore Retreat.
+   * Currency is always forced to USD (PayPal requirement).
+   */
+  initializePayPalPaymentForRetreat(data: SignupDataModel) {
+    this.webapiService
+      .checkoutPaypalForRetreat(data)
+      .subscribe((res: paypalPayModel) => {
+        if (res.orderId && res.payDbId && res.approvalUrl) {
+          localStorage.setItem(
+            localstorageKey.retreatPaypalOrderId,
+            res.orderId,
+          );
+          localStorage.setItem(
+            localstorageKey.retreatPaypalDBId,
+            res.payDbId,
+          );
+          window.location.href = res.approvalUrl;
+          this.spinner.hide();
+        } else {
+          alert('Session Generation failed! please try again');
           this.spinner.hide();
         }
       });

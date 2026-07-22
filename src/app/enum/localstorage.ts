@@ -55,4 +55,7 @@ export enum localstorageKey {
   'retreatUserID' = 'retreat_user_id',
   'retreatStripeSessionId' = 'retreat_stripe_session_id',
   'retreatStripeDBId' = 'retreat_stripe_db_id',
+
+  'retreatPaypalOrderId' = 'retreat_paypal_order_id',
+  'retreatPaypalDBId' = 'retreat_paypal_db_id',
 }

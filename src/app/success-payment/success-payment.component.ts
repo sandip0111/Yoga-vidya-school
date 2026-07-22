@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { WebapiService } from '../webapi.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { CommonModule } from '@angular/common';
 import { localstorageKey } from '../enum/localstorage';
@@ -50,9 +50,11 @@ export class SuccessPaymentComponent {
   is200TTC: boolean = false;
   isRetreat: boolean = false;
   retreatStripeSessionId: string = '';
+  retreatPaypalOrderId: string = '';
   constructor(
     private webapiService: WebapiService,
     private router: Router,
+    private route: ActivatedRoute,
     private spinner: NgxSpinnerService,
     private title: Title,
     private pixelTracking: PixelTrackingService,
@@ -99,8 +101,11 @@ export class SuccessPaymentComponent {
       localStorage.getItem(localstorageKey.rishikesh200RzpId) ?? '';
     this.twoHundredTTCStripeSessionId =
       localStorage.getItem(localstorageKey['200TTCStripeSessionId']) ?? '';
+    const tokenFromUrl = this.route.snapshot.queryParams['token'];
     this.twoHundredTTCPaypalOrderId =
-      localStorage.getItem(localstorageKey['200TTCPaypalOrderId']) ?? '';
+      localStorage.getItem(localstorageKey['200TTCPaypalOrderId']) ||
+      (this.router.url.includes('200') ? tokenFromUrl : '') ||
+      '';
     this.rishikesh200StripeSessionId =
       localStorage.getItem(localstorageKey.rishikesh20StripeSessionId) ?? '';
     this.couponCodeId = localStorage.getItem(localstorageKey.couponCode);
@@ -118,6 +123,10 @@ export class SuccessPaymentComponent {
       localStorage.getItem(localstorageKey.retreatRzpId) ?? '';
     this.retreatStripeSessionId =
       localStorage.getItem(localstorageKey.retreatStripeSessionId) ?? '';
+    this.retreatPaypalOrderId =
+      localStorage.getItem(localstorageKey.retreatPaypalOrderId) ||
+      tokenFromUrl ||
+      '';
     // Track purchase completion after a short delay to ensure data is loaded
 
     if (this.sessionId) {
@@ -250,6 +259,11 @@ export class SuccessPaymentComponent {
     if (this.retreatStripeSessionId) {
       setTimeout(() => {
         this.getStripePaymentResultRetreat(this.retreatStripeSessionId);
+      }, 0);
+    }
+    if (this.retreatPaypalOrderId) {
+      setTimeout(() => {
+        this.getPaypalPaymentResultRetreat(this.retreatPaypalOrderId);
       }, 0);
     }
   }
@@ -692,16 +706,24 @@ export class SuccessPaymentComponent {
     this.webapiService
       .getPaypalPaymentResult200TTC(val)
       .subscribe((res: any) => {
-        if (res.status == 'success') {
+        const responseData = res?.data || res;
+        if (
+          responseData &&
+          (responseData.status === 'success' ||
+            res.status === 'success' ||
+            res.status === 200)
+        ) {
           this.is200TTC = true;
           localStorage.removeItem(localstorageKey['200TTCPaypalOrderId']);
           localStorage.removeItem(localstorageKey['200TTCPaypalDBId']);
           localStorage.removeItem(localstorageKey['200TTCInstallment']);
           localStorage.removeItem(localstorageKey['200TTCDue']);
           this.paidFlag = 'true';
-          this.ordId = res.paymtId;
-          this.amount = res.amount;
-          this.cur = this.currencySet(res.currency);
+          this.ordId = responseData.paymtId || res.paymtId || paypalOrderId;
+          this.amount = responseData.amount || res.amount || 0;
+          this.cur = this.currencySet(
+            responseData.currency || res.currency || 'USD',
+          );
           this.pixelTracking.trackPurchase200ttc(
             this.ordId,
             '200_ttc',
@@ -1007,6 +1029,8 @@ export class SuccessPaymentComponent {
     localStorage.removeItem(localstorageKey.pranayamaDue);
     localStorage.removeItem(localstorageKey.pranayamaStripeSessionId);
     localStorage.removeItem(localstorageKey.pranayamaStripeDBId);
+    localStorage.removeItem(localstorageKey.retreatPaypalOrderId);
+    localStorage.removeItem(localstorageKey.retreatPaypalDBId);
   }
   gotoHome() {
     this.router.navigate(['/']);
@@ -1053,6 +1077,8 @@ export class SuccessPaymentComponent {
     localStorage.removeItem(localstorageKey.retreatUserID);
     localStorage.removeItem(localstorageKey.retreatStripeSessionId);
     localStorage.removeItem(localstorageKey.retreatStripeDBId);
+    localStorage.removeItem(localstorageKey.retreatPaypalOrderId);
+    localStorage.removeItem(localstorageKey.retreatPaypalDBId);
   }
   genratePass(len: number) {
     const charset =
@@ -1146,6 +1172,41 @@ export class SuccessPaymentComponent {
         }
         localStorage.removeItem(localstorageKey.retreatStripeSessionId);
         localStorage.removeItem(localstorageKey.retreatStripeDBId);
+      });
+  }
+  getPaypalPaymentResultRetreat(paypalOrderId: string) {
+    const fbp = this.getCookie('_fbp');
+    const fbc = this.getCookie('_fbc');
+    let val = {
+      paypalOrderId: paypalOrderId,
+      payDbId: localStorage.getItem(localstorageKey.retreatPaypalDBId),
+      fbp: fbp,
+      fbc: fbc,
+    };
+    this.webapiService
+      .getPaypalPaymentResultRetreat(val)
+      .subscribe((res: any) => {
+        const responseData = res?.data || res;
+        if (
+          responseData &&
+          (responseData.status === 'success' ||
+            res.status === 'success' ||
+            res.status === 200)
+        ) {
+          this.isRetreat = true;
+          localStorage.removeItem(localstorageKey.retreatPaypalOrderId);
+          localStorage.removeItem(localstorageKey.retreatPaypalDBId);
+          this.paidFlag = 'true';
+          this.ordId = responseData.paymtId || res.paymtId || paypalOrderId;
+          this.amount = responseData.amount || res.amount || 0;
+          this.cur = this.currencySet(
+            responseData.currency || res.currency || 'USD',
+          );
+          this.spinner.hide();
+        } else {
+          this.paidFlag = 'false';
+          this.spinner.hide();
+        }
       });
   }
   //#endregion
