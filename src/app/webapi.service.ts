@@ -406,6 +406,18 @@ export class WebapiService {
   getStripePaymentResultBali(data: any) {
     return this.http.post(this.url + 'api/v1/getStripePaymentResultBali', data);
   }
+  checkoutPaypalForBali(data: SignupDataModel): Observable<paypalPayModel> {
+    return this.http.post<paypalPayModel>(
+      this.url + 'api/v1/checkoutPaypalForBali',
+      data,
+    );
+  }
+  getPaypalPaymentResultBali(data: paypalPaymentResultModel) {
+    return this.http.post(
+      this.url + 'api/v1/getPaypalPaymentResultBali',
+      data,
+    );
+  }
   registerSwarSadhanaWebinarUser(data: swaraDataModel) {
     return this.http.post(
       this.url + 'api/v1/registerSwarSadhanaWebinarUser',

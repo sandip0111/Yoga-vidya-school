@@ -37,6 +37,9 @@ export enum localstorageKey {
   'bali300StripeSessionId' = 'bali_300_stripe_session_id',
   'bali300StripeDBId' = 'bali_300_stripe_db_id',
 
+  'baliPaypalOrderId' = 'bali_paypal_order_id',
+  'baliPaypalDBId' = 'bali_paypal_db_id',
+
   'userSource' = 'user_source',
   'loginId' = 'login_id',
   'pranayamaRzpId' = 'pranayama_rzp_id',

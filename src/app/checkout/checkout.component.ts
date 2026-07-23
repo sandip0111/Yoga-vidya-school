@@ -122,7 +122,10 @@ export class CheckoutComponent {
       this.slug === routeEnum.retreats ||
       this.slug === routeEnum.rishikesh100 ||
       this.slug === routeEnum.rishkesh200 ||
-      this.slug === routeEnum.rishikesh300
+      this.slug === routeEnum.rishikesh300 ||
+      this.slug === routeEnum.bali100 ||
+      this.slug === routeEnum.bali200 ||
+      this.slug === routeEnum.bali300
     );
   }
 
@@ -692,7 +695,7 @@ export class CheckoutComponent {
           this.slug == routeEnum.bali200 ||
           this.slug == routeEnum.bali100
         ) {
-          this.baliCheckout(data, isRazorPay);
+          this.baliCheckout(data, isRazorPay, isPaypal);
         } else if (this.slug == routeEnum.sa) {
           this.swaraSadhanaCheckout(data, isRazorPay);
         } else if (this.slug == routeEnum.pranayamaCertification) {
@@ -978,7 +981,7 @@ export class CheckoutComponent {
     }
   }
 
-  baliCheckout(data: checkoutModel, isRazorPay: boolean) {
+  baliCheckout(data: checkoutModel, isRazorPay: boolean, isPaypal: boolean = false) {
     let hour = 100;
     let month;
     if (this.slug == routeEnum.bali200) {
@@ -992,17 +995,20 @@ export class CheckoutComponent {
       month = 'June, 2026';
     }
     let room = this.roomList.find((item) => item.value == data.package);
+    const effectiveCurrency = isPaypal ? this.PAYPAL_CURRENCY : data.currency;
     let baliData: SignupDataModel = {
       name: data.name,
       email: data.email.toLowerCase(),
       phoneNumber: data.phoneNumber.e164Number,
       room: room?.name,
       price: this.amount,
-      currency: data.currency,
+      currency: effectiveCurrency,
       hour: hour,
       month: month,
     };
-    if (!isRazorPay) {
+    if (isPaypal) {
+      this.initializePayPalPaymentForBali(baliData);
+    } else if (!isRazorPay) {
       this.initializePayBaliStripe(baliData);
     }
   }
@@ -1021,6 +1027,28 @@ export class CheckoutComponent {
           this.spinner.hide();
         } else {
           alert('Session Genration failed! please try again');
+          this.spinner.hide();
+        }
+      });
+  }
+
+  initializePayPalPaymentForBali(data: SignupDataModel) {
+    this.webapiService
+      .checkoutPaypalForBali(data)
+      .subscribe((res: paypalPayModel) => {
+        if (res.orderId && res.payDbId && res.approvalUrl) {
+          localStorage.setItem(
+            localstorageKey.baliPaypalOrderId,
+            res.orderId,
+          );
+          localStorage.setItem(
+            localstorageKey.baliPaypalDBId,
+            res.payDbId,
+          );
+          window.location.href = res.approvalUrl;
+          this.spinner.hide();
+        } else {
+          alert('Session Generation failed! please try again');
           this.spinner.hide();
         }
       });

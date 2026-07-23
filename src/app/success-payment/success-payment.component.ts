@@ -52,6 +52,7 @@ export class SuccessPaymentComponent {
   retreatStripeSessionId: string = '';
   retreatPaypalOrderId: string = '';
   rishikeshPaypalOrderId: string = '';
+  baliPaypalOrderId: string = '';
   constructor(
     private webapiService: WebapiService,
     private router: Router,
@@ -131,6 +132,12 @@ export class SuccessPaymentComponent {
     this.rishikeshPaypalOrderId =
       localStorage.getItem(localstorageKey.rishikeshPaypalOrderId) ||
       (this.retreatPaypalOrderId ? '' : tokenFromUrl) ||
+      '';
+    this.baliPaypalOrderId =
+      localStorage.getItem(localstorageKey.baliPaypalOrderId) ||
+      (this.retreatPaypalOrderId || this.rishikeshPaypalOrderId
+        ? ''
+        : tokenFromUrl) ||
       '';
     // Track purchase completion after a short delay to ensure data is loaded
 
@@ -274,6 +281,11 @@ export class SuccessPaymentComponent {
     if (this.rishikeshPaypalOrderId) {
       setTimeout(() => {
         this.getPaypalPaymentResultRishikesh(this.rishikeshPaypalOrderId);
+      }, 0);
+    }
+    if (this.baliPaypalOrderId) {
+      setTimeout(() => {
+        this.getPaypalPaymentResultBali(this.baliPaypalOrderId);
       }, 0);
     }
   }
@@ -1043,6 +1055,8 @@ export class SuccessPaymentComponent {
     localStorage.removeItem(localstorageKey.retreatPaypalDBId);
     localStorage.removeItem(localstorageKey.rishikeshPaypalOrderId);
     localStorage.removeItem(localstorageKey.rishikeshPaypalDBId);
+    localStorage.removeItem(localstorageKey.baliPaypalOrderId);
+    localStorage.removeItem(localstorageKey.baliPaypalDBId);
   }
   gotoHome() {
     this.router.navigate(['/']);
@@ -1093,6 +1107,8 @@ export class SuccessPaymentComponent {
     localStorage.removeItem(localstorageKey.retreatPaypalDBId);
     localStorage.removeItem(localstorageKey.rishikeshPaypalOrderId);
     localStorage.removeItem(localstorageKey.rishikeshPaypalDBId);
+    localStorage.removeItem(localstorageKey.baliPaypalOrderId);
+    localStorage.removeItem(localstorageKey.baliPaypalDBId);
   }
   genratePass(len: number) {
     const charset =
@@ -1257,6 +1273,41 @@ export class SuccessPaymentComponent {
             'Rishikesh Yoga Teacher Training Course',
             this.amount,
             this.cur,
+          );
+          this.spinner.hide();
+        } else {
+          this.paidFlag = 'false';
+          this.spinner.hide();
+        }
+      });
+  }
+  getPaypalPaymentResultBali(paypalOrderId: string) {
+    const fbp = this.getCookie('_fbp');
+    const fbc = this.getCookie('_fbc');
+    let val = {
+      paypalOrderId: paypalOrderId,
+      payDbId: localStorage.getItem(localstorageKey.baliPaypalDBId),
+      fbp: fbp,
+      fbc: fbc,
+    };
+    this.webapiService
+      .getPaypalPaymentResultBali(val)
+      .subscribe((res: any) => {
+        const responseData = res?.data || res;
+        if (
+          responseData &&
+          (responseData.status === 'success' ||
+            res.status === 'success' ||
+            res.status === 200)
+        ) {
+          this.isRishikesh = true;
+          localStorage.removeItem(localstorageKey.baliPaypalOrderId);
+          localStorage.removeItem(localstorageKey.baliPaypalDBId);
+          this.paidFlag = 'true';
+          this.ordId = responseData.paymtId || res.paymtId || paypalOrderId;
+          this.amount = responseData.amount || res.amount || 0;
+          this.cur = this.currencySet(
+            responseData.currency || res.currency || 'USD',
           );
           this.spinner.hide();
         } else {
