@@ -67,7 +67,7 @@ export class CheckoutComponent {
   amount: number = 0;
   CountryISO = CountryISO;
   emailSuggestion: string | null = null;
-  currency: string = 'INR';
+  currency: string = 'USD';
   @ViewChild('phoneRef', { static: false }) phoneRef!: NgxIntlTelInputComponent;
   searchFields = [
     SearchCountryField.Name,
@@ -294,27 +294,7 @@ export class CheckoutComponent {
               (a.title = a.title == 'Price' ? a.title : `Price(${a.title})`),
           );
           if (!this.paymentId) {
-            if (this.isDiscountPlan && this.slug === routeEnum['200TTC']) {
-              // this.currencyOptions = ['INR', 'USD'];
-              this.checkData.currency = 'INR';
-              if (this.checkData.package) {
-                const baseAmount =
-                  this.discountPlanPrices[this.checkData.currency] ?? 79000;
-                const isBooking30 = +this.checkData.package === 3;
-                this.amount = isBooking30
-                  ? Math.round(baseAmount * 0.3)
-                  : baseAmount;
-              }
-            } else {
-              if (this.feesData.length > 0) {
-                // this.setCurrencyData(this.feesData, this.checkData);
-                this.setPriceData(
-                  this.feesData,
-                  this.checkData.currency,
-                  this.checkData.package,
-                );
-              }
-            }
+            this.updateCurrencyOptions(false);
           }
           this.title.setTitle('Checkout');
           this.spinner.hide();
@@ -380,39 +360,9 @@ export class CheckoutComponent {
   setRoomPrice(event: any) {
     this.inputValidation('room');
     const selectedValue = +event.target.value;
-    if (this.isDiscountPlan && this.slug === routeEnum['200TTC']) {
-      if (this.checkData.currency) {
-        const baseAmount =
-          this.discountPlanPrices[this.checkData.currency] ?? 79000;
-        const isBooking30 = selectedValue === 3;
-        this.amount = isBooking30 ? Math.round(baseAmount * 0.3) : baseAmount;
-      }
-      return;
-    }
-
-    if ([1, 2, 3, 4].includes(selectedValue)) {
-      // Populate currency options only on first booking selection — never reset user's choice
-      if (this.currencyOptions.length === 0) {
-        this.feesData.forEach((item) => {
-          item.data.forEach((d) => {
-            if (!this.currencyOptions.includes(d.currency)) {
-              this.currencyOptions.push(d.currency);
-            }
-          });
-        });
-      }
-      // Set a default currency only if none is already selected
-      if (!this.checkData.currency && this.currencyOptions.length > 0) {
-        this.checkData.currency = this.currencyOptions[0];
-      }
-    } else {
-      this.currencyOptions = [];
-      this.checkData.currency = '';
-    }
-    // Recalculate price using the preserved (or newly set) currency
-    if (this.feesData.length > 0 && this.checkData.currency) {
-      this.setPriceData(this.feesData, this.checkData.currency, selectedValue);
-    }
+    this.checkData.package = selectedValue;
+    const isIndian = this.checkData.phoneNumber?.countryCode === 'IN';
+    this.updateCurrencyOptions(!!isIndian);
   }
   onCurrencyChange(value: string) {
     this.checkData.currency = value;
@@ -535,83 +485,97 @@ export class CheckoutComponent {
     phoneInput: any,
   ): void {
     if (this.paymentId) return;
-    if (!isValid) {
+    const countryCode =
+      phoneInput?.model?.countryCode ||
+      phoneInput?.country?.iso2?.toUpperCase() ||
+      this.checkData.phoneNumber?.countryCode;
+    const isIndian = !!isValid && countryCode === 'IN';
+    if (!isValid && phoneInput?.model?.number) {
       this.phoneError = 'Invalid phone number';
-      this.currencyOptions = [];
-      this.checkData.currency = '';
     } else {
       this.phoneError = '';
-      // Discount plan: set fixed currency options; amount is driven by booking selection
-      if (this.isDiscountPlan && this.slug === routeEnum['200TTC']) {
-        if (this.currencyOptions.length === 0) {
-          this.currencyOptions = this.currencyOption2;
-          this.checkData.currency = this.currencyOptions[0];
+    }
+    this.updateCurrencyOptions(isIndian);
+    this.inputValidation('cur');
+  }
+
+  updateCurrencyOptions(isIndian: boolean): void {
+    if (this.paymentId) return;
+
+    if (this.isDiscountPlan && this.slug === routeEnum['200TTC']) {
+      this.currencyOptions = isIndian ? ['USD', 'INR'] : ['USD'];
+      if (isIndian) {
+        if (!this.checkData.currency || this.checkData.currency !== 'INR') {
+          this.checkData.currency = 'INR';
         }
-        // Only calculate amount when user has already chosen a booking type
-        if (this.checkData.package) {
-          const baseAmount =
-            this.discountPlanPrices[this.checkData.currency] ?? 79000;
-          const isBooking30 = +this.checkData.package === 3;
-          this.amount = isBooking30 ? Math.round(baseAmount * 0.3) : baseAmount;
-        }
-        this.inputValidation('cur');
-        return;
+      } else {
+        this.checkData.currency = 'USD';
       }
-      if (this.feesData.length > 0) {
-        if (this.currencyOptions.length === 0) {
-          this.setCurrencyData(this.feesData, this.checkData, phoneInput.model);
-        }
-        this.setPriceData(
-          this.feesData,
-          this.checkData.currency,
-          this.checkData.package,
-        );
+      if (this.checkData.package) {
+        const baseAmount =
+          this.discountPlanPrices[this.checkData.currency] ?? 850;
+        const isBooking30 = +this.checkData.package === 3;
+        this.amount = isBooking30 ? Math.round(baseAmount * 0.3) : baseAmount;
       }
-      this.inputValidation('cur');
+      return;
+    }
+
+    if (this.feesData.length > 0) {
+      const optionsSet = new Set<string>();
+      this.feesData.forEach((item) => {
+        item.data.forEach((d) => {
+          if (isIndian || d.currency !== PaymentType.indianCur) {
+            optionsSet.add(d.currency);
+          }
+        });
+      });
+      this.currencyOptions = Array.from(optionsSet);
+      if (this.currencyOptions.length === 0) {
+        this.currencyOptions = ['USD'];
+      }
+
+      if (isIndian) {
+        this.checkData.currency = this.currencyOptions.includes(
+          PaymentType.indianCur,
+        )
+          ? PaymentType.indianCur
+          : this.checkData.currency || 'USD';
+      } else {
+        if (
+          this.checkData.currency === PaymentType.indianCur ||
+          !this.currencyOptions.includes(this.checkData.currency)
+        ) {
+          this.checkData.currency = this.currencyOptions[0] || 'USD';
+        }
+      }
+
+      this.setPriceData(
+        this.feesData,
+        this.checkData.currency,
+        this.checkData.package,
+      );
+    } else {
+      this.currencyOptions = isIndian ? ['USD', 'INR'] : ['USD'];
+      if (!isIndian) {
+        this.checkData.currency = 'USD';
+      }
     }
   }
+
   setCurrencyData(
     feesData: feeInfoDto[],
     checkData: checkoutModel,
     phoneInputModel: any,
   ) {
-    if (phoneInputModel.countryCode == 'IN') {
-      feesData.forEach((item) => {
-        item.data.forEach((d) => {
-          if (!this.currencyOptions.includes(d.currency)) {
-            this.currencyOptions.push(d.currency);
-          }
-        });
-      });
-      if (!checkData.currency && this.currencyOptions.length > 0) {
-        checkData.currency = this.currencyOptions.includes(
-          PaymentType.indianCur,
-        )
-          ? PaymentType.indianCur
-          : this.currencyOptions[0];
-      }
-    } else {
-      feesData.forEach((item) => {
-        item.data.forEach((d) => {
-          if (
-            !this.currencyOptions.includes(d.currency) &&
-            d.currency !== PaymentType.indianCur
-          ) {
-            this.currencyOptions.push(d.currency);
-          }
-        });
-      });
-      if (!checkData.currency && this.currencyOptions.length > 0) {
-        checkData.currency = this.currencyOptions[0];
-      }
-    }
+    const isIndian = phoneInputModel?.countryCode === 'IN';
+    this.updateCurrencyOptions(isIndian);
   }
+
   onCountryChange(): void {
     if (this.paymentId) return;
-    this.phoneError = 'Invalid phone number';
+    this.phoneError = '';
     this.checkData.phoneNumber = new PhoneNumberData();
-    this.currencyOptions = [];
-    this.checkData.currency = '';
+    this.updateCurrencyOptions(false);
   }
   inputValidation(type: string) {
     if (type === 'email') {

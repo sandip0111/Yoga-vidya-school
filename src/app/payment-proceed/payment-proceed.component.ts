@@ -93,6 +93,9 @@ export class PaymentProceedComponent implements OnInit {
       if (countryCode == 'IN') {
         let currencySet = new Set(priceData.map((p) => p.currency));
         this.currencyOptions = Array.from(currencySet);
+        if (this.currencyOptions.length === 0) {
+          this.currencyOptions = ['USD', 'INR'];
+        }
         this.paymentForm.patchValue({ currency: PaymentType.indianCur });
       } else {
         let currencySet = new Set(
@@ -100,10 +103,19 @@ export class PaymentProceedComponent implements OnInit {
             .map((p) => (p.currency !== PaymentType.indianCur ? p.currency : undefined))
             .filter((c): c is string => c !== undefined),
         );
-        if(currencySet) {
-          this.currencyOptions = Array.from(currencySet);
-          this.paymentForm.patchValue({ currency: this.currencyOptions[0] });
+        this.currencyOptions = Array.from(currencySet);
+        if (this.currencyOptions.length === 0) {
+          this.currencyOptions = ['USD'];
         }
+        this.paymentForm.patchValue({ currency: this.currencyOptions[0] });
+      }
+    } else {
+      if (countryCode == 'IN') {
+        this.currencyOptions = ['USD', 'INR'];
+        this.paymentForm.patchValue({ currency: PaymentType.indianCur });
+      } else {
+        this.currencyOptions = ['USD'];
+        this.paymentForm.patchValue({ currency: 'USD' });
       }
     }
   }
@@ -118,6 +130,8 @@ export class PaymentProceedComponent implements OnInit {
           if (mentor) {
             this.courses.push(mentor);
           }
+          this.getCurrencyOption(this.courses, '');
+          this.updatePrice('USD');
         } else {
           this.courseAddedFn(this.courseMentor);
         }
@@ -179,9 +193,13 @@ export class PaymentProceedComponent implements OnInit {
     const control = this.paymentForm.controls['mobile'];
     this.isPhoneValid = control.valid;
     if (!this.isPhoneValid) {
-      this.phoneError = 'Invalid phone number';
-      this.currencyOptions = [];
-      this.paymentForm.patchValue({ currency: '', price: '' });
+      if (control.value) {
+        this.phoneError = 'Invalid phone number';
+      } else {
+        this.phoneError = '';
+      }
+      this.getCurrencyOption(this.courses, '');
+      this.updatePrice();
       return;
     }
     this.phoneError = '';
@@ -192,9 +210,10 @@ export class PaymentProceedComponent implements OnInit {
   }
   onCountryChange(country: any): void {
     this.phoneError = '';
-    this.currencyOptions = [];
-    this.paymentForm.patchValue({ currency: '', price: '' });
+    const countryCode = country?.iso2?.toUpperCase() || '';
     this.paymentForm.controls['mobile'].setValue(null);
+    this.getCurrencyOption(this.courses, countryCode);
+    this.updatePrice();
   }
   onCurrencyChange(event: Event): void {
     const selectedCurrency = (event.target as HTMLSelectElement).value;
