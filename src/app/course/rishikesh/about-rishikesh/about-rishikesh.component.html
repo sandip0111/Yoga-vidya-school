@@ -2,39 +2,7 @@
   class="about-rishikesh-section py-5"
   [class.pranic-about-section]="slug == routeEnum.pranicPurification"
 >
-  @if(slug == routeEnum.pranicPurification){
-  <div class="mb-3">
-    <div class="d-flex flex-column justify-content-center align-items-center">
-      <!-- <small class="p-0">Yoga Vidya Present's</small> -->
-      <h1 style="text-align: center">
-        {{ this.aboutContent.title }}
-        <span>{{ this.aboutContent.secondTitle }}</span>
-      </h1>
-      <h4 *ngIf="this.aboutContent.subTitle">
-        {{ this.aboutContent.subTitle }}
-      </h4>
-      <p *ngIf="this.aboutContent.subTitle1">
-        <strong>{{ this.aboutContent.subTitle1 }}</strong>
-      </p>
-    </div>
-    <div class="image-container">
-      <img
-        [src]="this.aboutContent.image"
-        [style]="
-          slug == routeEnum.pranicPurification ? 'transform: scaleX(-1);' : ''
-        "
-        class="img-fluid pranic-purification-img"
-        alt="{{ this.aboutContent.title }} {{ this.aboutContent.secondTitle }}"
-      />
-    </div>
-
-    <div class="position: relative; z-index: 1;">
-      <div>
-        <div [innerHTML]="this.aboutContent.desc"></div>
-      </div>
-    </div>
-  </div>
-  } @else if(slug==routeEnum['200TTC']){
+  @if(slug==routeEnum['200TTC']){
   <div class="mb-3">
     <div class="d-flex flex-column justify-content-center align-items-center">
       <h3 style="text-align: center">

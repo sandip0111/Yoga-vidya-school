@@ -1,0 +1,304 @@
+<app-banner></app-banner>
+
+<section class="pranic-path-intro-section py-5">
+  <div class="container">
+    <div class="d-flex justify-content-center">
+      <img
+        loading="lazy"
+        alt="flower"
+        [src]="s3Bucket.flower"
+        class="flower-img"
+      />
+    </div>
+    <h3 style="text-align: center">
+      <span class="project-color">At Yoga Vidya School,</span> we have designed
+      a progressive learning journey that we call the Pranic Path. It is a
+      structured progression that takes students from the foundations of breath
+      awareness to our most advanced Pranayama Certification: Pranic Bodh.
+    </h3>
+    <div class="pranic-path-wrapper">
+      <div class="pranic-path-image">
+        <img
+          [src]="s3Bucket.pranicImage2"
+          class="img-fluid pranic-path-img"
+          alt="Pranic Path Journey"
+        />
+      </div>
+      <div class="pranic-path-content">
+        <h2 class="pranic-path-title">Why is this progression important?</h2>
+        <p>
+          Each stage builds upon the previous one. As the practices become more
+          subtle and powerful, they require a strong foundation in both
+          knowledge and personal experience.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cooperate-section py-5 section-fower">
+  <div>
+    <div class="middle-text">
+      <img
+        loading="lazy"
+        alt="Not Loaded"
+        [src]="s3Bucket.flower"
+        class="flower-img"
+      />
+    </div>
+    <div class="row align-items-center mainContent">
+      <div class="col-md-6 contentrishi">
+        <h4 style="color: #f47019">
+          Breath Detox Yoga
+          <button class="button badge-btn">FREE</button>
+        </h4>
+        <p><i>Breath Detox Yoga</i> – 7 Days to Purify Your Energy and Mind</p>
+        <p>
+          This course is a guidance to purify the five vāyus (vital energy
+          currents) and transform the way you breathe. Created by
+          <b>Prashant J.</b>, it is a direct and practical experience, designed
+          for those ready to commit to a short and mindful daily routine. With
+          dedication, you will achieve profound changes in your mind, energy
+        </p>
+        <button
+          class="button"
+          style="margin-top: 0"
+          (click)="goToLink(routEnum.bDtox)"
+        >
+          View Course
+        </button>
+      </div>
+      <div class="col-md-6">
+        <img
+          loading="lazy"
+          class="img-fluid imgRishi100"
+          alt="Breath Dtox"
+          [src]="s3Bucket.breathDtoxPreRec"
+        />
+      </div>
+    </div>
+    <div class="row align-items-center mainContent cl-reverse">
+      <div class="col-md-6">
+        <img
+          loading="lazy"
+          class="img-fluid imgRishi100 long-pic top_position"
+          alt="Prana Arambh"
+          [src]="s3Bucket.pranaArambhPreRec"
+        />
+      </div>
+      <div class="col-md-6 contentrishi">
+        <h4 style="color: #f47019">Prana Arambha</h4>
+        <p>
+          <i>Prana Arambha</i> - Gain quality of life by improving your breath
+        </p>
+        <p>
+          This workshop explores the ancient science of pranic body rhythms,
+          offering insight into how breath flow can be harnessed to align your
+          energies with your everyday actions — physical and mental. It provides
+          access to rare and sacred teachings once transmitted through
+          guru-disciple traditions, now available in recorded format. Through
+          this practice, you'll develop awareness of the subtle breath patterns
+          (swara) and learn how they influence your vitality, clarity, and
+          harmony.
+        </p>
+        <button
+          class="button"
+          style="margin-top: 0"
+          (click)="goToLink(routEnum.pranOnlinePranaArambh)"
+        >
+          View Course
+        </button>
+      </div>
+    </div>
+    <div class="row align-items-center mainContent">
+      <div class="col-md-6 contentrishi">
+        <h4 style="color: #f47019">Swara Sadhana</h4>
+        <p><i>Swara Sadhana</i> - Align your energies with your actions</p>
+        <p>
+          This workshop explores the ancient science of pranic body rhythms,
+          offering insight into how breath flow can be harnessed to align your
+          energies with your everyday actions — physical and mental. It provides
+          access to rare and sacred teachings once transmitted through
+          guru-disciple traditions, now available in recorded format. Through
+          this practice, you'll develop awareness of the subtle breath patterns
+          (swara) and learn how they influence your vitality, clarity, and
+          harmony.
+        </p>
+        <button class="button swara-button" (click)="goToLink(routEnum.sa)">
+          View Course
+        </button>
+      </div>
+      <div class="col-md-6">
+        <img
+          loading="lazy"
+          class="img-fluid imgRishi100 long-pic top_position"
+          alt="Swara Sadhana"
+          [src]="s3Bucket.swarSadhanaPreRec"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="about-rishikesh-section py-5 pranic-about-section">
+  <div class="mb-3">
+    <div class="image-container">
+      <img
+        [src]="s3Bucket.pranicImage1"
+        class="img-fluid pranic-purification-img pranic-img-flipped"
+        alt="about pranic path"
+      />
+    </div>
+    <div class="pranic-content-wrapper">
+      <h3 class="project-color">
+        Title: Pranic Purification I - Online Live Sadhana
+      </h3>
+      <p class="pranic-intro">
+        A <b>21-day live online sadhana with Prashant Jakhmola,</b> where
+        students begin a profound process of purification and transformation
+        through guided daily practice.
+      </p>
+
+      <div class="next-batch-section">
+        <div class="next-batch-badge">
+          <span class="batch-icon">📅</span>
+          <span class="batch-label">Next Batch Starts</span>
+          <span class="batch-date">January 7th</span>
+        </div>
+      </div>
+
+      <div class="prerequisite-section">
+        <div class="prerequisite-banner">
+          <span class="prerequisite-icon">⚡</span>
+          <div class="prerequisite-content">
+            <span class="prerequisite-label">IMPORTANT</span>
+            <span class="prerequisite-text">Prana Arambha is required to join Pranic Purification</span>
+          </div>
+        </div>
+      </div>
+
+      <p class="pranic-highlight">
+        <b>✨ But Pranic Purification goes beyond healing.</b><br />
+        This 21-day sadhana awakens clarity, inner peace, focus, and joy. It
+        purifies the pranic body (Pranamaya Kosha), helping you channel your
+        energy in the right direction so life begins to flow with purpose and
+        harmony.
+      </p>
+
+      <div class="pranic-benefits-section">
+        <p class="pranic-benefits-title">
+          Through this journey, students have experienced:
+        </p>
+        <ul class="pranic-benefits-list">
+          <li>
+            <span class="pranic-checkmark">&#10003;</span> A way out of stress,
+            addictions, and difficult emotions
+          </li>
+          <li>
+            <span class="pranic-checkmark">&#10003;</span> Greater energy,
+            productivity, and success in work
+          </li>
+          <li>
+            <span class="pranic-checkmark">&#10003;</span> Improved meditation
+            and deeper inner stillness
+          </li>
+          <li>
+            <span class="pranic-checkmark">&#10003;</span> Holistic health —
+            body, mind, and spirit in balance
+          </li>
+          <li>
+            <span class="pranic-checkmark">&#10003;</span> A sense of peace that
+            transforms not only themselves, but also their homes and families
+          </li>
+        </ul>
+      </div>
+
+      <p class="pranic-body-text">
+        Pranayama is not just breathwork. It is a gateway to pranic
+        intelligence, to spiritual awakening, and to a harmonious life connected
+        with the universe within and around us.
+      </p>
+
+      <p class="pranic-recording-note">
+        📹 Recordings will be available: every day we will upload the class
+        recordings in our virtual classroom for you.
+      </p>
+
+      <p class="pranic-body-text">
+        This 21-day course is more than classes — it is a sacred commitment to
+        yourself, a powerful purification process, and an invitation to
+        transform your life from the inside out.
+      </p>
+
+      <p class="pranic-guided">
+        You did not arrive here by chance — you were guided.
+      </p>
+    </div>
+  </div>
+
+  <div class="pranic-cta-section">
+    <h3 class="pranic-cta-title">
+      Are you ready to step into your transformation?
+    </h3>
+    <h5 class="pranic-cta-subtitle">
+      Let every breath in these 21 days be a return to your essence.
+    </h5>
+  </div>
+</section>
+
+<section class="pranic-progression-section py-5">
+  <div class="container">
+    <h2 class="progression-section-title">Continue Your Journey</h2>
+    <div class="progression-cards-wrapper">
+      <div class="progression-card">
+        <div class="progression-card-number">02</div>
+        <h3 class="progression-card-title">Pranic Purification II</h3>
+        <p class="progression-card-description">
+          A second 21-day sadhana for those who wish to deepen their practice and prepare for advanced pranayama.
+        </p>
+        <div class="progression-card-requirement">
+          <span class="requirement-icon">✓</span>
+          <span class="requirement-text">Pranic Purification I is required</span>
+        </div>
+      </div>
+
+      <div class="progression-card">
+        <div class="progression-card-number">03</div>
+        <h3 class="progression-card-title">Pranic Bodh</h3>
+        <p class="progression-card-description">
+          Our advanced Pranayama Certification Program (Yoga Alliance), intended for dedicated practitioners who have completed the previous stages and are ready for the deepest teachings.
+        </p>
+        <div class="progression-card-requirement">
+          <span class="requirement-icon">✓</span>
+          <span class="requirement-text">Pranic Purification II is required</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- <app-certified-yoga></app-certified-yoga>
+<app-rishikesh-curriculum [data]="currData"></app-rishikesh-curriculum>
+<app-watch-video
+  *ngIf="isYoutubeDataReady"
+  [data]="youtubeVideoData"
+  [slug]="slug"
+></app-watch-video>
+<app-learning></app-learning>
+<app-daily-schedule
+  [data]="schData"
+  [courseTeacher]="courseTeacher"
+></app-daily-schedule>
+<app-includes [data]="youtubeVideoData"></app-includes>
+<app-choose-us [data]="codecond"></app-choose-us>
+<app-services [data]="accomData"></app-services>
+<app-fee-structure [data]="feesData"></app-fee-structure>
+<app-code-conduct [data]="codecond"></app-code-conduct>
+<app-yoga-alliance [data]="codecond"></app-yoga-alliance>
+<app-schedule [data]="schEventData"></app-schedule>
+<app-excursions></app-excursions>
+<app-video-reviews
+  *ngIf="isPranicPurification"
+  [specialvideo]="true"
+></app-video-reviews>
+<app-faq [data]="faqData"></app-faq>
+<app-benifits></app-benifits> -->

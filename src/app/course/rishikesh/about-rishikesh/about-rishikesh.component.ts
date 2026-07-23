@@ -187,46 +187,6 @@ export class AboutRishikeshComponent implements OnInit {
         'Yoga Classes',
         `<p>The Drop in yoga classes in Rishikesh are provided by Yoga Vidya School for the whole week with different yoga practices where a student can choose the ideal practice of their choice among those: pranayama, traditional hatha yoga, ashtanga vinyasa, vinyasa flow, beginner yoga, meditation, etc.</p><p><strong>Can I do Yoga Classes ?</strong></p><p>We believe that anyone, with enough well, discipline and training could control the yoga physical and philosophical aspects. There is a wide range spectrum of drop in classes where some are for beginners and others are for advanced. Yoga drop in classes are perfect option for those seekers and practitioners who don’t have enough time to be in Rishikesh but still want to know about their body through yogic practice, and those who wants to prepare oneself for the Yoga Teacher Training Certification Course or keep in shape after the course has finished.</p>`,
       );
-    } else if (this.slug == this.routeEnum.pranicPurification) {
-      this.ispranicPurificationImg = true;
-      this.aboutContent = new aboutContentModel(
-        s3Bucket.pranicImage1,
-        '',
-        '',
-        this.sanitizer
-          .bypassSecurityTrustHtml(`<p>It is no coincidence that you are here. Your presence is a sign that your soul is ready for a deeper journey — one of breath, healing, and true transformation.</p>
-
-            <p>For over a decade, thousands of students worldwide have experienced the power of Pranayama through this sacred practice. Many have shared stories of healing emotional wounds, overcoming depression and anxiety, finding relief from chronic conditions, and regaining balance when nothing else seemed to work.
-            </p>
-
-            <p>
-              <b>✨ But Pranic Purification goes beyond healing.</b></br>
-              This 21-day sadhana awakens clarity, inner peace, focus, and joy. It purifies the pranic body (Pranamaya Kosha), helping you channel your energy in the right direction so life begins to flow with purpose and harmony.
-            </p>
-
-            <ul style="list-style: none;">
-                Through this journey, students have experienced:
-                <li><span style="color: #f5711a;">&#10003;</span> A way out of stress, addictions, and difficult emotions</li>
-                <li><span style="color: #f5711a;">&#10003;</span> Greater energy, productivity, and success in work</li>
-                <li><span style="color: #f5711a;">&#10003;</span> Improved meditation and deeper inner stillness</li>
-                <li><span style="color: #f5711a;">&#10003;</span> Holistic health — body, mind, and spirit in balance</li>
-                <li><span style="color: #f5711a;">&#10003;</span> A sense of peace that transforms not only themselves, but also their homes and families</li>
-              </ul>
-
-              <p>Pranayama is not just breathwork. It is a gateway to pranic intelligence, to spiritual awakening, and to a harmonious life connected with the universe within and around us.</p>
-              <p>📹 Recordings will be available: every day we will upload the class recordings in our virtual classroom for you.</p>
-              <p>This 21-day course is more than classes — it is a sacred commitment to yourself, a powerful purification process, and an invitation to transform your life from the inside out.</p>
-
-              <p>You did not arrive here by chance — you were guided.</p>
-              <br />
-              <!--<p style="font-size: 25px" class="text-center"><span style="color: #f5711a;">Price:</span> <b> ${this.inrPrice} / ${this.usdPrice}</b></p>-->
-               <br />
-              <div>
-                <h3 class="text-center">Are you ready to step into your transformation?</h3>
-                <h5 class="text-center">Let every breath in these 21 days be a return to your essence.</h5>
-              </div>`),
-        '',
-      );
     } else if (this.slug == this.routeEnum['200TTC']) {
       this.date = twoHundredTTCModel['200TTCDate'];
       this.startTime = twoHundredTTCModel['200TTCStart'];

@@ -1,12 +1,96 @@
 @if (isPranicPurification) {
   <app-banner [data]="bannerData"></app-banner>
-  <app-bottom-nav-course
-    *ngIf="
-      slug != 'pranic-purification' &&
-      slug != '200-hours-yoga-teacher-training-online'
-    "
-  ></app-bottom-nav-course>
-  <app-about-rishikesh></app-about-rishikesh>
+  <section class="about-rishikesh-section py-5 pranic-about-section">
+    <div class="mb-3">
+      <div class="image-container">
+        <img
+          [src]="s3Bucket.pranicImage1"
+          style="transform: scaleX(-1)"
+          class="img-fluid pranic-purification-img"
+          alt="about pranic path"
+        />
+      </div>
+      <div class="position: relative; z-index: 1;">
+        <div>
+          <div>
+            <p>
+              It is no coincidence that you are here. Your presence is a sign
+              that your soul is ready for a deeper journey — one of breath,
+              healing, and true transformation.
+            </p>
+
+            <p>
+              For over a decade, thousands of students worldwide have
+              experienced the power of Pranayama through this sacred practice.
+              Many have shared stories of healing emotional wounds, overcoming
+              depression and anxiety, finding relief from chronic conditions,
+              and regaining balance when nothing else seemed to work.
+            </p>
+
+            <p>
+              <b>✨ But Pranic Purification goes beyond healing.</b><br />
+              This 21-day sadhana awakens clarity, inner peace, focus, and joy.
+              It purifies the pranic body (Pranamaya Kosha), helping you channel
+              your energy in the right direction so life begins to flow with
+              purpose and harmony.
+            </p>
+
+            <ul style="list-style: none">
+              Through this journey, students have experienced:
+              <li>
+                <span style="color: #f5711a">&#10003;</span> A way out of
+                stress, addictions, and difficult emotions
+              </li>
+              <li>
+                <span style="color: #f5711a">&#10003;</span> Greater energy,
+                productivity, and success in work
+              </li>
+              <li>
+                <span style="color: #f5711a">&#10003;</span> Improved meditation
+                and deeper inner stillness
+              </li>
+              <li>
+                <span style="color: #f5711a">&#10003;</span> Holistic health —
+                body, mind, and spirit in balance
+              </li>
+              <li>
+                <span style="color: #f5711a">&#10003;</span> A sense of peace
+                that transforms not only themselves, but also their homes and
+                families
+              </li>
+            </ul>
+
+            <p>
+              Pranayama is not just breathwork. It is a gateway to pranic
+              intelligence, to spiritual awakening, and to a harmonious life
+              connected with the universe within and around us.
+            </p>
+            <p>
+              📹 Recordings will be available: every day we will upload the
+              class recordings in our virtual classroom for you.
+            </p>
+            <p>
+              This 21-day course is more than classes — it is a sacred
+              commitment to yourself, a powerful purification process, and an
+              invitation to transform your life from the inside out.
+            </p>
+
+            <p>You did not arrive here by chance — you were guided.</p>
+            <br />
+            <br />
+            <div>
+              <h3 class="text-center">
+                Are you ready to step into your transformation?
+              </h3>
+              <h5 class="text-center">
+                Let every breath in these 21 days be a return to your essence.
+              </h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
   <app-education-categories [data]="feesData"></app-education-categories>
   <app-certified-yoga></app-certified-yoga>
   <app-rishikesh-curriculum [data]="currData"></app-rishikesh-curriculum>
@@ -49,35 +133,37 @@
     <div class="container">
       <div class="daily-schedule-intro text-center mb-4">
         <h2 class="daily-schedule-title">Schedule (IST TIME)</h2>
-       
       </div>
       <div class="schedule-info">
-          <div class="schedule-info-item">
-    <span class="schedule-info-icon">
-        <i class="fa-regular fa-calendar"></i>
-    </span>
-    <span>Classes from <strong>Monday to Friday</strong>.</span>
+        <div class="schedule-info-item">
+          <span class="schedule-info-icon">
+            <i class="fa-regular fa-calendar"></i>
+          </span>
+          <span>Classes from <strong>Monday to Friday</strong>.</span>
         </div>
 
         <div class="schedule-divider"></div>
 
         <div class="schedule-info-item">
-            <span class="schedule-info-icon">
-                <i class="fa-regular fa-comments"></i>
-            </span>
-            <span><strong>Q&A Session</strong> every Saturday with <strong>Prashantji</strong>.</span>
+          <span class="schedule-info-icon">
+            <i class="fa-regular fa-comments"></i>
+          </span>
+          <span
+            ><strong>Q&A Session</strong> every Saturday with
+            <strong>Prashantji</strong>.</span
+          >
         </div>
       </div>
       <div class="daily-schedule-note mb-4">
-    <span class="daily-schedule-note-icon" aria-hidden="true">
-        <i class="fa-solid fa-video"></i>
-    </span>
+        <span class="daily-schedule-note-icon" aria-hidden="true">
+          <i class="fa-solid fa-video"></i>
+        </span>
 
-    <span class="daily-schedule-note-text">
-        Recordings will be available in our virtual classroom for
-        <strong>6 extra weeks</strong> after the course ends.
-    </span>
-</div>
+        <span class="daily-schedule-note-text">
+          Recordings will be available in our virtual classroom for
+          <strong>6 extra weeks</strong> after the course ends.
+        </span>
+      </div>
       <div class="daily-schedule-card">
         <ul class="daily-schedule-list">
           <li class="daily-schedule-item">
@@ -100,7 +186,9 @@
               </span>
               <div class="daily-schedule-time">05:30 PM - 07:15 PM</div>
             </div>
-            <div class="daily-schedule-label">Asana / Pranayama / History of Yoga</div>
+            <div class="daily-schedule-label">
+              Asana / Pranayama / History of Yoga
+            </div>
           </li>
           <li class="daily-schedule-item">
             <div class="daily-schedule-time-wrap">
@@ -122,9 +210,7 @@
               </span>
               <div class="daily-schedule-time">07:45 PM - 08:45 PM</div>
             </div>
-            <div class="daily-schedule-label">
-              Philosophy / Anatomy
-            </div>
+            <div class="daily-schedule-label">Philosophy / Anatomy</div>
           </li>
           <li class="daily-schedule-item">
             <div class="daily-schedule-time-wrap">
@@ -146,9 +232,7 @@
               </span>
               <div class="daily-schedule-time">09:00 PM - 10:00 PM</div>
             </div>
-            <div class="daily-schedule-label">
-              Meditation/ Mantra
-            </div>
+            <div class="daily-schedule-label">Meditation/ Mantra</div>
           </li>
           <!-- <li class="daily-schedule-item">
             <div class="daily-schedule-time-wrap">
@@ -176,9 +260,15 @@
       </div>
       <div class="daily-schedule-note">
         <span class="daily-schedule-note-icon" aria-hidden="true">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="2" stroke-linecap="round"
-            stroke-linejoin="round">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
             <circle cx="12" cy="12" r="10"></circle>
             <line x1="12" y1="8" x2="12" y2="12"></line>
             <line x1="12" y1="16" x2="12.01" y2="16"></line>

@@ -32,6 +32,7 @@ import { routeEnum } from '../../../enum/routes';
 import { PricingComponent } from '../pricing/pricing.component';
 import { BonusComponent } from '../../../certified/bonus/bonus.component';
 import { PixelTrackingService } from '../../../services/pixel-tracking.service';
+import { s3Bucket } from '../../../enum/s3Bucket';
 
 @Component({
   selector: 'app-rishikesh-index',
@@ -58,7 +59,6 @@ import { PixelTrackingService } from '../../../services/pixel-tracking.service';
     DailyScheduleComponent,
     YogaAllianceComponent,
     LearningComponent,
-    BottomNavCourseComponent,
     VideoReviewsComponent,
     CommonModule,
     PricingComponent,
@@ -82,6 +82,7 @@ export class RishikeshIndexComponent implements OnInit {
   isPranicPurification = false;
   isYoutubeDataReady: boolean = false;
   routEnum = routeEnum;
+  s3Bucket = s3Bucket;
   courseTeacher = [
     {
       course: 'Ashtanga',
@@ -495,7 +496,7 @@ export class RishikeshIndexComponent implements OnInit {
               return itemDate >= currentDate;
             }
           );
-          if (this.slug == 'pranic-purification') {
+          if (this.slug == routeEnum.pranicPurification) {
             this.schEventData = {};
             this.isPranicPurification = true;
           } else if (
