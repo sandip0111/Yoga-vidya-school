@@ -51,6 +51,7 @@ export class SuccessPaymentComponent {
   isRetreat: boolean = false;
   retreatStripeSessionId: string = '';
   retreatPaypalOrderId: string = '';
+  rishikeshPaypalOrderId: string = '';
   constructor(
     private webapiService: WebapiService,
     private router: Router,
@@ -126,6 +127,10 @@ export class SuccessPaymentComponent {
     this.retreatPaypalOrderId =
       localStorage.getItem(localstorageKey.retreatPaypalOrderId) ||
       tokenFromUrl ||
+      '';
+    this.rishikeshPaypalOrderId =
+      localStorage.getItem(localstorageKey.rishikeshPaypalOrderId) ||
+      (this.retreatPaypalOrderId ? '' : tokenFromUrl) ||
       '';
     // Track purchase completion after a short delay to ensure data is loaded
 
@@ -264,6 +269,11 @@ export class SuccessPaymentComponent {
     if (this.retreatPaypalOrderId) {
       setTimeout(() => {
         this.getPaypalPaymentResultRetreat(this.retreatPaypalOrderId);
+      }, 0);
+    }
+    if (this.rishikeshPaypalOrderId) {
+      setTimeout(() => {
+        this.getPaypalPaymentResultRishikesh(this.rishikeshPaypalOrderId);
       }, 0);
     }
   }
@@ -1031,6 +1041,8 @@ export class SuccessPaymentComponent {
     localStorage.removeItem(localstorageKey.pranayamaStripeDBId);
     localStorage.removeItem(localstorageKey.retreatPaypalOrderId);
     localStorage.removeItem(localstorageKey.retreatPaypalDBId);
+    localStorage.removeItem(localstorageKey.rishikeshPaypalOrderId);
+    localStorage.removeItem(localstorageKey.rishikeshPaypalDBId);
   }
   gotoHome() {
     this.router.navigate(['/']);
@@ -1079,6 +1091,8 @@ export class SuccessPaymentComponent {
     localStorage.removeItem(localstorageKey.retreatStripeDBId);
     localStorage.removeItem(localstorageKey.retreatPaypalOrderId);
     localStorage.removeItem(localstorageKey.retreatPaypalDBId);
+    localStorage.removeItem(localstorageKey.rishikeshPaypalOrderId);
+    localStorage.removeItem(localstorageKey.rishikeshPaypalDBId);
   }
   genratePass(len: number) {
     const charset =
@@ -1201,6 +1215,48 @@ export class SuccessPaymentComponent {
           this.amount = responseData.amount || res.amount || 0;
           this.cur = this.currencySet(
             responseData.currency || res.currency || 'USD',
+          );
+          this.spinner.hide();
+        } else {
+          this.paidFlag = 'false';
+          this.spinner.hide();
+        }
+      });
+  }
+  getPaypalPaymentResultRishikesh(paypalOrderId: string) {
+    const fbp = this.getCookie('_fbp');
+    const fbc = this.getCookie('_fbc');
+    let val = {
+      paypalOrderId: paypalOrderId,
+      payDbId: localStorage.getItem(localstorageKey.rishikeshPaypalDBId),
+      fbp: fbp,
+      fbc: fbc,
+    };
+    this.webapiService
+      .getPaypalPaymentResultRishikesh(val)
+      .subscribe((res: any) => {
+        const responseData = res?.data || res;
+        if (
+          responseData &&
+          (responseData.status === 'success' ||
+            res.status === 'success' ||
+            res.status === 200)
+        ) {
+          this.isRishikesh = true;
+          localStorage.removeItem(localstorageKey.rishikeshPaypalOrderId);
+          localStorage.removeItem(localstorageKey.rishikeshPaypalDBId);
+          this.paidFlag = 'true';
+          this.ordId = responseData.paymtId || res.paymtId || paypalOrderId;
+          this.amount = responseData.amount || res.amount || 0;
+          this.cur = this.currencySet(
+            responseData.currency || res.currency || 'USD',
+          );
+          this.pixelTracking.trackPurchaseRishikeshTTC(
+            this.ordId,
+            'rishikesh_ttc',
+            'Rishikesh Yoga Teacher Training Course',
+            this.amount,
+            this.cur,
           );
           this.spinner.hide();
         } else {

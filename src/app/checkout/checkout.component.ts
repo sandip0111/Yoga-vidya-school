@@ -118,7 +118,11 @@ export class CheckoutComponent {
 
   get showPaypalButton(): boolean {
     return (
-      this.slug === routeEnum['200TTC'] || this.slug === routeEnum.retreats
+      this.slug === routeEnum['200TTC'] ||
+      this.slug === routeEnum.retreats ||
+      this.slug === routeEnum.rishikesh100 ||
+      this.slug === routeEnum.rishkesh200 ||
+      this.slug === routeEnum.rishikesh300
     );
   }
 
@@ -133,9 +137,7 @@ export class CheckoutComponent {
    * so no currency switching is needed here.
    */
   onPaypalClick(): void {
-    if (this.slug === routeEnum['200TTC']) {
-      this.checkoutData(this.checkData, 'paypal');
-    } else if (this.slug === routeEnum.retreats) {
+    if (this.showPaypalButton) {
       this.checkoutData(this.checkData, 'paypal');
     }
   }
@@ -684,7 +686,7 @@ export class CheckoutComponent {
           this.slug == routeEnum.rishkesh200 ||
           this.slug == routeEnum.rishikesh300
         ) {
-          this.rishikesh200Checkout(data, isRazorPay);
+          this.rishikesh200Checkout(data, isRazorPay, isPaypal);
         } else if (
           this.slug == routeEnum.bali300 ||
           this.slug == routeEnum.bali200 ||
@@ -945,15 +947,19 @@ export class CheckoutComponent {
       this.initializePaymentFor200TTC(signupData);
     }
   }
-  rishikesh200Checkout(data: checkoutModel, isRazorPay: boolean) {
+  rishikesh200Checkout(data: checkoutModel, isRazorPay: boolean, isPaypal: boolean = false) {
     let room = this.roomList.find((item) => item.value == data.package);
+
+    // PayPal enforces USD as the only accepted currency
+    const effectiveCurrency = isPaypal ? this.PAYPAL_CURRENCY : data.currency;
+
     let signupData: SignupDataModel = {
       name: data.name,
       email: data.email.toLowerCase(),
       phoneNumber: data.phoneNumber.e164Number,
       room: room?.name,
       price: this.isInstallment ? this.firstInstAmnt : this.amount,
-      currency: data.currency,
+      currency: effectiveCurrency,
       month: this.selectedMonth || undefined,
     };
     if (this.slug == routeEnum.rishikesh100) {
@@ -963,7 +969,9 @@ export class CheckoutComponent {
     } else if (this.slug == routeEnum.rishikesh300) {
       signupData.hour = 300;
     }
-    if (isRazorPay) {
+    if (isPaypal) {
+      this.initializePayPalPaymentForRishikesh(signupData);
+    } else if (isRazorPay) {
       this.initializeRazorPayRishi(signupData);
     } else {
       this.initializePayStripeRishi(signupData);
@@ -1642,6 +1650,31 @@ export class CheckoutComponent {
           this.spinner.hide();
         } else {
           alert('Session Genration failed! please try again');
+          this.spinner.hide();
+        }
+      });
+  }
+  /**
+   * PayPal checkout for Rishikesh 100 / 200 / 300 Hours Yoga TTC.
+   * Currency is always forced to USD (PayPal requirement).
+   */
+  initializePayPalPaymentForRishikesh(data: SignupDataModel) {
+    this.webapiService
+      .checkoutPaypalForRishikesh(data)
+      .subscribe((res: paypalPayModel) => {
+        if (res.orderId && res.payDbId && res.approvalUrl) {
+          localStorage.setItem(
+            localstorageKey.rishikeshPaypalOrderId,
+            res.orderId,
+          );
+          localStorage.setItem(
+            localstorageKey.rishikeshPaypalDBId,
+            res.payDbId,
+          );
+          window.location.href = res.approvalUrl;
+          this.spinner.hide();
+        } else {
+          alert('Session Generation failed! please try again');
           this.spinner.hide();
         }
       });

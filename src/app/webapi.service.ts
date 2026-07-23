@@ -389,6 +389,20 @@ export class WebapiService {
       data,
     );
   }
+  checkoutPaypalForRishikesh(
+    data: SignupDataModel,
+  ): Observable<paypalPayModel> {
+    return this.http.post<paypalPayModel>(
+      this.url + 'api/v1/checkoutPaypalForRishikesh',
+      data,
+    );
+  }
+  getPaypalPaymentResultRishikesh(data: paypalPaymentResultModel) {
+    return this.http.post(
+      this.url + 'api/v1/getPaypalPaymentResultRishikesh',
+      data,
+    );
+  }
   getStripePaymentResultBali(data: any) {
     return this.http.post(this.url + 'api/v1/getStripePaymentResultBali', data);
   }

@@ -21,6 +21,8 @@ export enum localstorageKey {
   'rishikesh200DBId' = 'rishikesh_200_hour_rzp_db_id',
   'rishikesh20StripeSessionId' = 'rishikesh_200_stripe_session_id',
   'rishikesh200StripeDBId' = 'rishikesh-200_stripe_db_id',
+  'rishikeshPaypalOrderId' = 'rishikesh_paypal_order_id',
+  'rishikeshPaypalDBId' = 'rishikesh_paypal_db_id',
 
   'swaraSadhnaRzpId' = 'swara_sadhna_rzp_id',
   'swaraSadhnaOrderId' = 'swara_sadhna_rzp_order_id',
