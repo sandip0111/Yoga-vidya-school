@@ -179,6 +179,31 @@
   margin-left: 0;
 }
 
+/* Keep the Pranic Purification image and course details aligned side by side. */
+.pranic-about-section > .mb-3 {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.9fr) minmax(0, 1.1fr);
+  align-items: start;
+  gap: 2rem;
+}
+
+.pranic-about-section .image-container {
+  float: none;
+  width: auto;
+  margin: 0;
+}
+
+.pranic-about-section .pranic-purification-img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.pranic-about-section .pranic-content-wrapper {
+  min-width: 0;
+  overflow: visible;
+}
+
 .pranic-intro,
 .pranic-body-text,
 .pranic-highlight {
@@ -368,6 +393,38 @@
   text-align: center;
 }
 
+@media screen and (max-width: 767px) {
+  .pranic-about-section > .mb-3 {
+    grid-template-columns: minmax(160px, 0.9fr) minmax(0, 1.1fr);
+    gap: 1.5rem;
+  }
+
+  .pranic-about-section .pranic-content-wrapper {
+    padding: 0;
+  }
+
+  .pranic-about-section .project-color {
+    font-size: 1.55rem;
+    line-height: 1.3;
+  }
+
+  .pranic-about-section .pranic-intro {
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .pranic-about-section > .mb-3 {
+    grid-template-columns: 1fr;
+  }
+
+  .pranic-about-section .image-container {
+    max-width: 320px;
+    margin: 0 auto;
+  }
+}
+
 .pranic-cta-section {
   background: linear-gradient(135deg, #fff5e6 0%, #ffe8cc 100%);
   padding: 2rem;
@@ -549,5 +606,42 @@
   p {
     font-style: italic;
     font-weight: 700;
+  }
+}
+
+.pranic-journey-message-section {
+  background: #fff;
+  padding: 3rem 1rem 2.5rem;
+  text-align: center;
+}
+
+.pranic-journey-message {
+  color: #d60000;
+  font-size: 1.65rem;
+  font-weight: 700;
+  line-height: 1.25;
+  margin: 0;
+}
+
+.pranic-journey-divider {
+  background: #ef5757;
+  display: block;
+  height: 1.8rem;
+  margin: 0.45rem auto 0.55rem;
+  width: 3px;
+}
+
+.pranic-journey-closing {
+  color: #f5711a;
+  font-size: 1.65rem;
+  font-weight: 700;
+  line-height: 1.25;
+  margin: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .pranic-journey-message,
+  .pranic-journey-closing {
+    font-size: 1.25rem;
   }
 }
