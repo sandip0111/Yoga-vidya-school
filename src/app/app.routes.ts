@@ -39,6 +39,7 @@ import { PranicPurificationIiComponent } from './course/pranic-purification-ii/p
 import { BreatchdtoxComponent } from './course/pre-recorded-pranayama-courses/breatchdtox/breatchdtox.component';
 import { PranaArambhComponent } from './course/pre-recorded-pranayama-courses/prana-arambh/prana-arambh.component';
 import { RishikshMain } from './course/rishikesh/rishiksh-main/rishiksh-main';
+import { PranicPurification } from './course/pranic-purification/pranic-purification';
 
 export const routes: Routes = [
   { path: '', component: IndexComponent },
@@ -94,7 +95,7 @@ export const routes: Routes = [
     component: RishikeshIndexComponent,
   },
 
-  { path: routeEnum.pranicPurification, component: RishikeshIndexComponent },
+  { path: routeEnum.pranicPurification, component: PranicPurification },
 
   {
     path: routeEnum.pranicPurificationII,

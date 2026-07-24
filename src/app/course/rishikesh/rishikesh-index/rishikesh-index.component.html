@@ -1,42 +1,4 @@
-@if (isPranicPurification) {
-  <app-banner [data]="bannerData"></app-banner>
-  <app-bottom-nav-course
-    *ngIf="
-      slug != 'pranic-purification' &&
-      slug != '200-hours-yoga-teacher-training-online'
-    "
-  ></app-bottom-nav-course>
-  <app-about-rishikesh></app-about-rishikesh>
-  <app-education-categories [data]="feesData"></app-education-categories>
-  <app-certified-yoga></app-certified-yoga>
-  <app-rishikesh-curriculum [data]="currData"></app-rishikesh-curriculum>
-  <app-watch-video
-    *ngIf="isYoutubeDataReady"
-    [data]="youtubeVideoData"
-    [slug]="slug"
-  ></app-watch-video>
-  <app-learning></app-learning>
-  <app-daily-schedule
-    [data]="schData"
-    [courseTeacher]="courseTeacher"
-  ></app-daily-schedule>
-  <app-includes [data]="youtubeVideoData"></app-includes>
-  <app-choose-us [data]="codecond"></app-choose-us>
-  <!-- <app-mentors></app-mentors> -->
-  <app-services [data]="accomData"></app-services>
-  <app-fee-structure [data]="feesData"></app-fee-structure>
-  <app-code-conduct [data]="codecond"></app-code-conduct>
-  <app-yoga-alliance [data]="codecond"></app-yoga-alliance>
-  <app-schedule [data]="schEventData"></app-schedule>
-  <app-excursions></app-excursions>
-  <app-video-reviews
-    *ngIf="isPranicPurification"
-    [specialvideo]="true"
-  ></app-video-reviews>
-  <app-faq [data]="faqData"></app-faq>
-  <!-- <app-gallery></app-gallery> -->
-  <app-benifits></app-benifits>
-} @else if (slug == routEnum["200TTC"]) {
+@if (slug == routEnum["200TTC"]) {
   <app-banner [data]="bannerData"></app-banner>
   <app-about-rishikesh></app-about-rishikesh>
   <app-certified-yoga></app-certified-yoga>
@@ -49,35 +11,37 @@
     <div class="container">
       <div class="daily-schedule-intro text-center mb-4">
         <h2 class="daily-schedule-title">Schedule (IST TIME)</h2>
-       
       </div>
       <div class="schedule-info">
-          <div class="schedule-info-item">
-    <span class="schedule-info-icon">
-        <i class="fa-regular fa-calendar"></i>
-    </span>
-    <span>Classes from <strong>Monday to Friday</strong>.</span>
+        <div class="schedule-info-item">
+          <span class="schedule-info-icon">
+            <i class="fa-regular fa-calendar"></i>
+          </span>
+          <span>Classes from <strong>Monday to Friday</strong>.</span>
         </div>
 
         <div class="schedule-divider"></div>
 
         <div class="schedule-info-item">
-            <span class="schedule-info-icon">
-                <i class="fa-regular fa-comments"></i>
-            </span>
-            <span><strong>Q&A Session</strong> every Saturday with <strong>Prashantji</strong>.</span>
+          <span class="schedule-info-icon">
+            <i class="fa-regular fa-comments"></i>
+          </span>
+          <span
+            ><strong>Q&A Session</strong> every Saturday with
+            <strong>Prashantji</strong>.</span
+          >
         </div>
       </div>
       <div class="daily-schedule-note mb-4">
-    <span class="daily-schedule-note-icon" aria-hidden="true">
-        <i class="fa-solid fa-video"></i>
-    </span>
+        <span class="daily-schedule-note-icon" aria-hidden="true">
+          <i class="fa-solid fa-video"></i>
+        </span>
 
-    <span class="daily-schedule-note-text">
-        Recordings will be available in our virtual classroom for
-        <strong>6 extra weeks</strong> after the course ends.
-    </span>
-</div>
+        <span class="daily-schedule-note-text">
+          Recordings will be available in our virtual classroom for
+          <strong>6 extra weeks</strong> after the course ends.
+        </span>
+      </div>
       <div class="daily-schedule-card">
         <ul class="daily-schedule-list">
           <li class="daily-schedule-item">
@@ -100,7 +64,9 @@
               </span>
               <div class="daily-schedule-time">05:30 PM - 07:15 PM</div>
             </div>
-            <div class="daily-schedule-label">Asana / Pranayama / History of Yoga</div>
+            <div class="daily-schedule-label">
+              Asana / Pranayama / History of Yoga
+            </div>
           </li>
           <li class="daily-schedule-item">
             <div class="daily-schedule-time-wrap">
@@ -122,9 +88,7 @@
               </span>
               <div class="daily-schedule-time">07:45 PM - 08:45 PM</div>
             </div>
-            <div class="daily-schedule-label">
-              Philosophy / Anatomy
-            </div>
+            <div class="daily-schedule-label">Philosophy / Anatomy</div>
           </li>
           <li class="daily-schedule-item">
             <div class="daily-schedule-time-wrap">
@@ -146,9 +110,7 @@
               </span>
               <div class="daily-schedule-time">09:00 PM - 10:00 PM</div>
             </div>
-            <div class="daily-schedule-label">
-              Meditation/ Mantra
-            </div>
+            <div class="daily-schedule-label">Meditation/ Mantra</div>
           </li>
           <!-- <li class="daily-schedule-item">
             <div class="daily-schedule-time-wrap">
@@ -176,9 +138,15 @@
       </div>
       <div class="daily-schedule-note">
         <span class="daily-schedule-note-icon" aria-hidden="true">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="2" stroke-linecap="round"
-            stroke-linejoin="round">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
             <circle cx="12" cy="12" r="10"></circle>
             <line x1="12" y1="8" x2="12" y2="12"></line>
             <line x1="12" y1="16" x2="12.01" y2="16"></line>

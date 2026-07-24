@@ -108,7 +108,7 @@ export class NavbarComponent implements OnInit {
         submenu: [
           { title: 'Online Yoga Classes', link: '/online-yoga-classes' },
           {
-            title: 'Pranic Purification',
+            title: 'Pranic Path',
             link: `/${routeEnum.pranicPurification}`,
           },
           // {
@@ -126,10 +126,6 @@ export class NavbarComponent implements OnInit {
           {
             title: 'योग शास्त्र / योग ग्रंथ अध्यन',
             link: '/yoga-philosophy-course-free',
-          },
-          {
-            title: 'Pre-recorded Pranayama Courses',
-            link: '/pre-recorded-pranayama-courses',
           },
         ],
       },

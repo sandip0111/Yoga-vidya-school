@@ -1,0 +1,647 @@
+.about-rishikesh-section {
+  background: #f8eed8;
+
+  &.pranic-about-section {
+    padding-top: 14px !important;
+  }
+
+  &.pranic-about-section > .mb-3 {
+    margin-top: 0 !important;
+  }
+
+  small {
+    text-align: left;
+    padding: 0;
+  }
+  h1,
+  .namaste {
+    color: #f5711a;
+  }
+  .image {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+  }
+  .namaste {
+    font-family: "Julee", cursive;
+    font-size: 30px;
+  }
+
+  & .imageback {
+    width: 100%;
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    min-height: 320px;
+    -webkit-box-shadow: 6px 6px 0px 0px var(--tw-primary-light);
+    -moz-box-shadow: 6px 6px 0px 0px var(--tw-primary-light);
+    box-shadow: 6px 6px 0px 0px var(--tw-primary-light);
+    max-height: 380px;
+    & img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      max-height: 632px;
+    }
+  }
+  .pranic-purification-img {
+    max-height: none !important;
+    border-radius: 10px;
+  }
+  .button {
+    margin: 0 10px;
+  }
+
+  .image-container {
+    float: left;
+    width: 49%;
+    margin-right: 20px;
+  }
+
+  .next-batch-container {
+    background: #fff8f0;
+    border: 2px solid #f9a826;
+    display: inline-block;
+    padding: 12px 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  }
+
+  .next-batch-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #d35400;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .next-batch-date {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #e67e22;
+    background: #fff;
+    padding: 6px 16px;
+    border-radius: 8px;
+    display: inline-block;
+    margin-top: 5px;
+  }
+
+  @media screen and (max-width: 767px) {
+    .imageback {
+      min-height: 200px;
+      margin-bottom: 20px;
+    }
+  }
+}
+
+/* Pranic Path Introduction Section */
+.pranic-path-intro-section {
+  background: linear-gradient(135deg, #f8eed8 0%, #fff5e6 100%);
+  border-bottom: 3px solid #f5711a;
+}
+
+.pranic-path-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+
+.pranic-path-image {
+  flex: 1;
+  min-width: 280px;
+  text-align: center;
+}
+
+.pranic-path-img {
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(245, 113, 26, 0.15);
+  max-width: 100%;
+  height: auto;
+}
+
+.pranic-path-content {
+  flex: 1;
+  min-width: 300px;
+}
+
+.pranic-path-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #f5711a;
+  margin-bottom: 1.5rem;
+  letter-spacing: 2px;
+}
+
+.pranic-path-intro-text {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #2c3e50;
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+}
+
+.pranic-path-body-text {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.8;
+  margin-bottom: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .pranic-path-wrapper {
+    gap: 1.5rem;
+  }
+
+  .pranic-path-title {
+    font-size: 1.6rem;
+  }
+
+  .pranic-path-intro-text {
+    font-size: 1rem;
+  }
+
+  .pranic-path-body-text {
+    font-size: 0.95rem;
+  }
+}
+
+/* Pranic Purification Content Styling */
+.pranic-img-flipped {
+  transform: scaleX(-1);
+}
+
+.pranic-content-wrapper {
+  position: relative;
+  z-index: 1;
+  padding: 20px 0;
+  overflow: auto;
+  margin-left: 0;
+}
+
+/* Keep the Pranic Purification image and course details aligned side by side. */
+.pranic-about-section > .mb-3 {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.9fr) minmax(0, 1.1fr);
+  align-items: start;
+  gap: 2rem;
+}
+
+.pranic-about-section .image-container {
+  float: none;
+  width: auto;
+  margin: 0;
+}
+
+.pranic-about-section .pranic-purification-img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.pranic-about-section .pranic-content-wrapper {
+  min-width: 0;
+  overflow: visible;
+}
+
+.pranic-intro,
+.pranic-body-text,
+.pranic-highlight {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #333;
+  margin-bottom: 1.5rem;
+}
+
+.pranic-intro {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #2c3e50;
+}
+
+.next-batch-section {
+  margin: 2rem 0;
+}
+
+.next-batch-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  background: transparent;
+  padding: 0.5rem 1.5rem;
+  border-radius: 8px;
+  border: 2px solid #f5711a;
+}
+
+.batch-icon {
+  font-size: 1.8rem;
+}
+
+.batch-label {
+  display: inline;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #f5711a;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: relative;
+  z-index: 1;
+}
+
+.batch-date {
+  display: inline;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #f5711a;
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translate(-100%, -100%) rotate(0deg);
+  }
+  100% {
+    transform: translate(100%, 100%) rotate(360deg);
+  }
+}
+
+.prerequisite-section {
+  margin: 2rem 0;
+}
+
+.prerequisite-banner {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  background: linear-gradient(135deg, #fff3e0 0%, #ffe8cc 100%);
+  border-left: 5px solid #f5711a;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 15px rgba(245, 113, 26, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.prerequisite-banner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(circle, rgba(245, 113, 26, 0.1) 1px, transparent 1px);
+  background-size: 15px 15px;
+  opacity: 0.5;
+}
+
+.prerequisite-icon {
+  font-size: 2rem;
+  color: #f5711a;
+  position: relative;
+  z-index: 1;
+  animation: pulse-icon 2s infinite;
+}
+
+.prerequisite-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.prerequisite-label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #e67e22;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.prerequisite-text {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #2c3e50;
+  line-height: 1.4;
+}
+
+@keyframes pulse-icon {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+.pranic-highlight {
+  background-color: #fff5e6;
+  padding: 1rem;
+  border-left: 4px solid #f5711a;
+  border-radius: 4px;
+}
+
+.pranic-benefits-section {
+  margin: 2rem 0;
+}
+
+.pranic-benefits-title {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}
+
+.pranic-benefits-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  li {
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+    position: relative;
+    line-height: 1.6;
+    color: #555;
+  }
+}
+
+.pranic-checkmark {
+  color: #f5711a;
+  font-weight: bold;
+  margin-right: 0.5rem;
+  position: absolute;
+  left: 0;
+}
+
+.pranic-recording-note {
+  background-color: #f0f7ff;
+  padding: 1rem;
+  border-radius: 6px;
+  border-left: 4px solid #2196f3;
+  font-size: 0.95rem;
+  color: #1565c0;
+}
+
+.pranic-guided {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #2c3e50;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+@media screen and (max-width: 767px) {
+  .pranic-about-section > .mb-3 {
+    grid-template-columns: minmax(160px, 0.9fr) minmax(0, 1.1fr);
+    gap: 1.5rem;
+  }
+
+  .pranic-about-section .pranic-content-wrapper {
+    padding: 0;
+  }
+
+  .pranic-about-section .project-color {
+    font-size: 1.55rem;
+    line-height: 1.3;
+  }
+
+  .pranic-about-section .pranic-intro {
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .pranic-about-section > .mb-3 {
+    grid-template-columns: 1fr;
+  }
+
+  .pranic-about-section .image-container {
+    max-width: 320px;
+    margin: 0 auto;
+  }
+}
+
+.pranic-cta-section {
+  background: linear-gradient(135deg, #fff5e6 0%, #ffe8cc 100%);
+  padding: 2rem;
+  border-radius: 0;
+  text-align: center;
+  margin: 2rem 0 0 0;
+  border: 2px solid #f5711a;
+  border-top: 2px solid #f5711a;
+  clear: both;
+}
+
+.pranic-cta-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+}
+
+.pranic-cta-subtitle {
+  font-size: 1.1rem;
+  color: #f5711a;
+  font-weight: 500;
+  margin: 0;
+}
+
+/* Progression Section */
+.pranic-progression-section {
+  background: linear-gradient(180deg, #fff9f0 0%, #f8eed8 100%);
+  padding: 4rem 0;
+}
+
+.progression-section-title {
+  text-align: center;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #f5711a;
+  margin-bottom: 3rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.progression-cards-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 0 1rem;
+}
+
+.progression-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 2.5rem 2rem;
+  box-shadow: 0 8px 25px rgba(245, 113, 26, 0.12);
+  border-top: 5px solid #f5711a;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+}
+
+.progression-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 35px rgba(245, 113, 26, 0.2);
+}
+
+.progression-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 80px;
+  height: 80px;
+  background: radial-gradient(circle, rgba(245, 113, 26, 0.08) 1px, transparent 1px);
+  background-size: 15px 15px;
+}
+
+.progression-card-number {
+  position: absolute;
+  top: 1.5rem;
+  right: 2rem;
+  font-size: 3rem;
+  font-weight: 700;
+  color: rgba(245, 113, 26, 0.15);
+  font-family: 'Arial', sans-serif;
+}
+
+.progression-card-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 1rem;
+  position: relative;
+  z-index: 1;
+}
+
+.progression-card-description {
+  font-size: 1rem;
+  color: #666;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.progression-card-requirement {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: #f0f7ff;
+  padding: 1rem;
+  border-radius: 6px;
+  border-left: 4px solid #2196f3;
+  position: relative;
+  z-index: 1;
+}
+
+.requirement-icon {
+  color: #2196f3;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.requirement-text {
+  font-size: 0.95rem;
+  color: #1565c0;
+  font-weight: 500;
+}
+
+@media screen and (max-width: 768px) {
+  .progression-section-title {
+    font-size: 1.6rem;
+    margin-bottom: 2rem;
+  }
+
+  .progression-cards-wrapper {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .progression-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .progression-card-number {
+    font-size: 2.5rem;
+  }
+}
+
+.cooperate-section {
+  background: radial-gradient(
+    circle,
+    rgba(255, 245, 219, 0.94) 60%,
+    rgba(249, 117, 30, 0.21) 110%
+  );
+  background: -moz-radial-gradient(
+    circle,
+    rgba(255, 245, 219, 0.94) 60%,
+    rgba(249, 117, 30, 0.21) 110%
+  );
+  background: -webkit-radial-gradient(
+    circle,
+    rgba(255, 245, 219, 0.94) 60%,
+    rgba(249, 117, 30, 0.21) 110%
+  );
+}
+.swara-button {
+  margin-top: 0;
+  position: relative;
+  z-index: 1000;
+}
+.bottom-block {
+  background: -webkit-radial-gradient(
+    circle,
+    hsla(0, 0%, 100%, 1) 26%,
+    rgba(249, 117, 30, 0.568) 130%
+  );
+  padding-top: 92px;
+  padding-bottom: 92px;
+  text-align: center;
+  p {
+    font-style: italic;
+    font-weight: 700;
+  }
+}
+
+.pranic-journey-message-section {
+  background: #fff;
+  padding: 3rem 1rem 2.5rem;
+  text-align: center;
+}
+
+.pranic-journey-message {
+  color: #d60000;
+  font-size: 1.65rem;
+  font-weight: 700;
+  line-height: 1.25;
+  margin: 0;
+}
+
+.pranic-journey-divider {
+  background: #ef5757;
+  display: block;
+  height: 1.8rem;
+  margin: 0.45rem auto 0.55rem;
+  width: 3px;
+}
+
+.pranic-journey-closing {
+  color: #f5711a;
+  font-size: 1.65rem;
+  font-weight: 700;
+  line-height: 1.25;
+  margin: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .pranic-journey-message,
+  .pranic-journey-closing {
+    font-size: 1.25rem;
+  }
+}

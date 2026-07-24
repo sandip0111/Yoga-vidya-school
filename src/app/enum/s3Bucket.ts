@@ -2,8 +2,10 @@ import { environment } from '../../environments/environment';
 
 export const s3Bucket = {
   mainLogo: `${environment.imageUrl}Yoga-Vidya-Logo.svg`,
-  frontPic: 'https://my-s3-images-bucket.s3.amazonaws.com/images/FERN8524-removebg-preview+(1).png',
-  homeAbout: 'https://my-s3-images-bucket.s3.amazonaws.com/images/about_section_fweev7.jpg',
+  frontPic:
+    'https://my-s3-images-bucket.s3.amazonaws.com/images/FERN8524-removebg-preview+(1).png',
+  homeAbout:
+    'https://my-s3-images-bucket.s3.amazonaws.com/images/about_section_fweev7.jpg',
   flower: `${environment.imageUrl}flower.png`,
   flowerWhite: `${environment.imageUrl}white_flower.png`,
   alliance: `${environment.imageUrl}image_1674901616808.jpeg`,
@@ -11,14 +13,18 @@ export const s3Bucket = {
   room2: 'https://my-s3-images-bucket.s3.amazonaws.com/images/acc3_hbccdh.jpg',
   room3: 'https://my-s3-images-bucket.s3.amazonaws.com/images/acc2_zwdgpr.jpg',
   room4: 'https://my-s3-images-bucket.s3.amazonaws.com/images/acc1_e2fcux.jpg',
-  roomMain: 'https://my-s3-images-bucket.s3.amazonaws.com/images/IMG_6828_cchusm.jpg',
+  roomMain:
+    'https://my-s3-images-bucket.s3.amazonaws.com/images/IMG_6828_cchusm.jpg',
   food: 'https://my-s3-images-bucket.s3.amazonaws.com/images/food_dwn1yl.jpg',
-  whiteArrow: 'https://my-s3-images-bucket.s3.amazonaws.com/img/arrow-white.png',
+  whiteArrow:
+    'https://my-s3-images-bucket.s3.amazonaws.com/img/arrow-white.png',
   whitecheck: `${environment.imageUrl}whitecheck.png`,
   play: `${environment.imageUrl}play.png`,
 
-  offer1: 'https://my-s3-images-bucket.s3.amazonaws.com/images/online4_tuiozj.jpg',
-  offer2: 'https://my-s3-images-bucket.s3.amazonaws.com/images/onluneoff_vriefa.jpg',
+  offer1:
+    'https://my-s3-images-bucket.s3.amazonaws.com/images/online4_tuiozj.jpg',
+  offer2:
+    'https://my-s3-images-bucket.s3.amazonaws.com/images/onluneoff_vriefa.jpg',
   offer3: `${environment.imageUrl}image_1683567710389.jpg`,
   offer4: `${environment.imageUrl}image_1682332031773.jpg`,
   calender: `${environment.imageUrl}calender.png`,
@@ -38,7 +44,8 @@ export const s3Bucket = {
   rishikesh200Banner: `${environment.imageUrl}rishikesh200Banner.jpeg`,
   rishikesh200about1: `${environment.imageUrl}rishi200about_1.jpeg`,
   rishi200Certify1: `${environment.imageUrl}rishi200certify1.jpeg`,
-  rishi200Certify2: 'https://d29rwrqvux6m5p.cloudfront.net/images/20221017123612_IMG_8678.jpeg',
+  rishi200Certify2:
+    'https://d29rwrqvux6m5p.cloudfront.net/images/20221017123612_IMG_8678.jpeg',
   lotusBullet: 'https://my-s3-images-bucket.s3.amazonaws.com/img/bullet.png',
   rishikesh300Banner: `${environment.imageUrl}rishi300banner.jpeg`,
   rishikesh100About1: `${environment.imageUrl}rishi100about_1.jpeg`,
@@ -51,18 +58,23 @@ export const s3Bucket = {
   onlinettcBanner3: `${environment.imageUrl}image_1683567759075.jpg`,
 
   onlineCourseHero: `${environment.imageUrl}online_sadhana_banner.JPG`,
-  onlineCourseAbout1: 'https://my-s3-images-bucket.s3.amazonaws.com/img/image_1677479957069.JPG',
+  onlineCourseAbout1:
+    'https://my-s3-images-bucket.s3.amazonaws.com/img/image_1677479957069.JPG',
   courseMentro1: '../../assets/20190630153357_IMG_0087.JPG',
-  courseMentor2: 'https://my-s3-images-bucket.s3.amazonaws.com/img/image_1695634116777.jpeg',
-  courseMentor3: 'https://my-s3-images-bucket.s3.amazonaws.com/img/IMG_20250331_171325_021.jpg',
+  courseMentor2:
+    'https://my-s3-images-bucket.s3.amazonaws.com/img/image_1695634116777.jpeg',
+  courseMentor3:
+    'https://my-s3-images-bucket.s3.amazonaws.com/img/IMG_20250331_171325_021.jpg',
   prashantjiHero: `${environment.imageUrl}Prashant_banner.jpg`,
   prasantAbout1: `${environment.imageUrl}IMG_2415.jpeg`,
   prasantAbout2: `${environment.imageUrl}IMG_3003.jpeg`,
   anujHero1: 'https://d29rwrqvux6m5p.cloudfront.net/images/DSC00532_1.jpg',
   anujHero2: 'https://d29rwrqvux6m5p.cloudfront.net/images/IMG_3894.JPG',
   taniyaHero: `${environment.imageUrl}Taniya_banner.jpg`,
-  taniyaAbout: 'https://d29rwrqvux6m5p.cloudfront.net/images/IMG-20250704-WA0010.jpg',
-  beautyfulLadyPic: 'https://my-s3-images-bucket.s3.amazonaws.com/img/rishikesh/travelRishikesh.JPG',
+  taniyaAbout:
+    'https://d29rwrqvux6m5p.cloudfront.net/images/IMG-20250704-WA0010.jpg',
+  beautyfulLadyPic:
+    'https://my-s3-images-bucket.s3.amazonaws.com/img/rishikesh/travelRishikesh.JPG',
 
   prashantIndexAbout: '../../../../assets/new-home/IMG_2820.JPG',
   preRecordedHero: `${environment.imageUrl}IMG_1933.jpeg`,
@@ -107,7 +119,6 @@ export const s3Bucket = {
   prashnatJiAbout4: `${environment.imageUrl}prashant_about2.jfif`,
   prashnatJiAbout5: `${environment.imageUrl}Prashant_about.jpeg`,
 
-
   prashantPG1: `${environment.imageUrl}image_1673595398608.jpg`,
   prashantPG2: `${environment.imageUrl}image_1673595680270.jfif`,
   prashantPG3: `${environment.imageUrl}image_1674211866310.jpeg`,
@@ -142,6 +153,7 @@ export const s3Bucket = {
   pankaj1: 'https://d29rwrqvux6m5p.cloudfront.net/images/954A9553.JPG',
   pankaj2: 'https://d29rwrqvux6m5p.cloudfront.net/images/IMG_9861.JPG',
   pranicImage1: `${environment.imageUrl}FERN8247.jpeg`,
+  pranicImage2: `${environment.imageUrl}pranic1.png`,
 
   whatWillLearn1: `${environment.imageUrl}IMG_1222.JPEG`,
   whatWillLearn2: `${environment.imageUrl}IMG_1226.JPEG`,
@@ -172,27 +184,42 @@ export const s3Bucket = {
   retreatAbt: `${environment.imageUrl}retreat_about.jpg`,
 } as const;
 export const youtubeLink = {
-  trainingImportance: 'https://www.youtube.com/embed/t7l1cqDj1tA?si=ZJCQXJYDLzDwLLvm',
+  trainingImportance:
+    'https://www.youtube.com/embed/t7l1cqDj1tA?si=ZJCQXJYDLzDwLLvm',
   pranaArambh: `${environment.imageUrl}pranaarambhVdo.MP4`,
 } as const;
 export const reviewLink = {
-  review1: 'https://d29rwrqvux6m5p.cloudfront.net/testimonial/pranic_testimonial1.mp4',
-  review2: 'https://d29rwrqvux6m5p.cloudfront.net/testimonial/pranic_testimonial2.mp4',
-  review3: 'https://d29rwrqvux6m5p.cloudfront.net/testimonial/pranic_testimonial3.mp4',
-  review4: 'https://d29rwrqvux6m5p.cloudfront.net/testimonial/pranic_testimonial4.mp4',
-  review5: 'https://d29rwrqvux6m5p.cloudfront.net/testimonial/pranaarambha1.mp4',
-  review6: 'https://d29rwrqvux6m5p.cloudfront.net/testimonial/pranic_testimonial5.mp4',
-  review7: 'https://d29rwrqvux6m5p.cloudfront.net/testimonial/VID-20241216-WA0001.mp4',
-  review8: 'https://d29rwrqvux6m5p.cloudfront.net/testimonial/VID-20241216-WA0002.mp4',
-  review9: 'https://d29rwrqvux6m5p.cloudfront.net/testimonial/VID-20241216-WA0003.mp4',
-  review10: 'https://d29rwrqvux6m5p.cloudfront.net/testimonial/VID-20241216-WA0004.mp4',
+  review1:
+    'https://d29rwrqvux6m5p.cloudfront.net/testimonial/pranic_testimonial1.mp4',
+  review2:
+    'https://d29rwrqvux6m5p.cloudfront.net/testimonial/pranic_testimonial2.mp4',
+  review3:
+    'https://d29rwrqvux6m5p.cloudfront.net/testimonial/pranic_testimonial3.mp4',
+  review4:
+    'https://d29rwrqvux6m5p.cloudfront.net/testimonial/pranic_testimonial4.mp4',
+  review5:
+    'https://d29rwrqvux6m5p.cloudfront.net/testimonial/pranaarambha1.mp4',
+  review6:
+    'https://d29rwrqvux6m5p.cloudfront.net/testimonial/pranic_testimonial5.mp4',
+  review7:
+    'https://d29rwrqvux6m5p.cloudfront.net/testimonial/VID-20241216-WA0001.mp4',
+  review8:
+    'https://d29rwrqvux6m5p.cloudfront.net/testimonial/VID-20241216-WA0002.mp4',
+  review9:
+    'https://d29rwrqvux6m5p.cloudfront.net/testimonial/VID-20241216-WA0003.mp4',
+  review10:
+    'https://d29rwrqvux6m5p.cloudfront.net/testimonial/VID-20241216-WA0004.mp4',
   review11: 'https://d29rwrqvux6m5p.cloudfront.net/testimonial/WA0005.mp4',
   review12: 'https://d29rwrqvux6m5p.cloudfront.net/testimonial/WA0006.mp4',
   review13: 'https://d29rwrqvux6m5p.cloudfront.net/testimonial/WA0007.mp4',
-  reviewNew1: 'https://d29rwrqvux6m5p.cloudfront.net/testimonial/Elma Pranic Purification Sadhana Aug 25.mp4',
-  reviewNew2: 'https://d29rwrqvux6m5p.cloudfront.net/testimonial/Falesha - August 2025 Pranayam Purification Sadhana .mov ',
-  reviewNew3: 'https://d29rwrqvux6m5p.cloudfront.net/testimonial/Mariam Zurabashvili - Pranic purification.mp4',
-  reviewNew4: 'https://d29rwrqvux6m5p.cloudfront.net/testimonial/Monika Verma.mov',
+  reviewNew1:
+    'https://d29rwrqvux6m5p.cloudfront.net/testimonial/Elma Pranic Purification Sadhana Aug 25.mp4',
+  reviewNew2:
+    'https://d29rwrqvux6m5p.cloudfront.net/testimonial/Falesha - August 2025 Pranayam Purification Sadhana .mov ',
+  reviewNew3:
+    'https://d29rwrqvux6m5p.cloudfront.net/testimonial/Mariam Zurabashvili - Pranic purification.mp4',
+  reviewNew4:
+    'https://d29rwrqvux6m5p.cloudfront.net/testimonial/Monika Verma.mov',
   reviewNew5: 'https://d29rwrqvux6m5p.cloudfront.net/testimonial/Yasmeen.MOV',
 
   rishikesh1: `${environment.imageUrl}954A9428.mp4`,
