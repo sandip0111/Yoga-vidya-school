@@ -85,7 +85,9 @@ export class CartService {
   private loadCart(): void {
     if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
       const savedCart = localStorage.getItem(this.cartKey);
-      this.items = savedCart ? JSON.parse(savedCart) : [];
+      this.items = (savedCart ? JSON.parse(savedCart) : []).filter(
+        (item: CartItem) => item.id !== 3
+      );
       this.items.forEach((item) => {
         this.getTeachersData(routeEnum.online).subscribe(
           (dataArray) => {
@@ -177,8 +179,7 @@ export class CartService {
     return total;
   }
   addToCartMentor(mentor: CartItem): void {
-    // let course: CartItem;
-    if (mentor) {
+    if (mentor && mentor.id !== 3) {
       // course = {
       //   id: mentor.id,
       //   name: mentor ? `${mentor?.name} - ${mentor?.teacher}` : '',

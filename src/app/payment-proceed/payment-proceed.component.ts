@@ -122,7 +122,7 @@ export class PaymentProceedComponent implements OnInit {
   getTeachersData(slug: string) {
     this.cartService.getTeachersData(slug).subscribe({
       next: (data) => {
-        this.courseMentor = data;
+        this.courseMentor = data.filter((mentor) => mentor.id !== 3);
         if (this.isSpecial) {
           const mentor: CartItem | undefined = this.courseMentor.find(
             (x) => x.id == 1,
@@ -425,11 +425,12 @@ export class PaymentProceedComponent implements OnInit {
     window.open('https://www.paypal.me/yogavidyafoundation', '_blank');
   }
   courseAddedFn(courseMentor: CartItem[]) {
-    this.courses = this.cartService.getItems();
+    this.courses = this.cartService.getItems().filter((c) => c.id !== 3);
     this.availableCourses = courseMentor.map((mentor) => {
+      const teacherName = mentor?.teacher ? ` ${mentor.teacher}` : '';
       const course: CartItem = {
         id: mentor?.id,
-        name: mentor?.name + ' ' + mentor?.teacher,
+        name: `${mentor?.name || ''}${teacherName}`.trim(),
         description: mentor?.description,
         price: mentor?.price,
         quantity: 1,
