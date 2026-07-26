@@ -63,4 +63,7 @@ export enum localstorageKey {
 
   'retreatPaypalOrderId' = 'retreat_paypal_order_id',
   'retreatPaypalDBId' = 'retreat_paypal_db_id',
+
+  'liveClassesPaypalOrderId' = 'live_classes_paypal_order_id',
+  'liveClassesPaypalDBId' = 'live_classes_paypal_db_id',
 }

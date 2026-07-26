@@ -418,6 +418,18 @@ export class WebapiService {
       data,
     );
   }
+  checkoutPaypalForLiveClasses(data: any): Observable<paypalPayModel> {
+    return this.http.post<paypalPayModel>(
+      this.url + 'api/v1/checkoutPaypalForLiveClasses',
+      data,
+    );
+  }
+  getPaypalPaymentResultLiveClasses(data: any) {
+    return this.http.post(
+      this.url + 'api/v1/getPaypalPaymentResultLiveClasses',
+      data,
+    );
+  }
   registerSwarSadhanaWebinarUser(data: swaraDataModel) {
     return this.http.post(
       this.url + 'api/v1/registerSwarSadhanaWebinarUser',

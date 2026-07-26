@@ -1,13 +1,14 @@
-<div class="container mt-5">
-  <div class="d-flex justify-content-between align-items-center mb-4">
-    <h4 class="small_text">Online Classes</h4>
-    <div class="dropdown mb-3">
+<div class="checkout-page">
+  <!-- Header Bar -->
+  <div class="checkout-header">
+    <h1 class="checkout-heading">Online Class Checkout</h1>
+    <div class="dropdown">
       <button
-        class="btn custom-btn-orange dropdown-toggle"
+        class="btn-add-more dropdown-toggle"
         type="button"
         data-bs-toggle="dropdown"
       >
-        Add More Classes
+        <span class="add-icon">+</span> Add More Classes
       </button>
       <ul class="dropdown-menu p-3" style="max-height: 300px; overflow-y: auto">
         <li *ngFor="let course of availableCourses">
@@ -28,232 +29,181 @@
       </ul>
     </div>
   </div>
-  <div class="addToCard_wrapper">
-    <div class="">
-      <div class="row">
-        <div class="col-md-12" *ngFor="let course of courses">
-          <div class="card_box mb-4">
-            <div class="card-body d-flex flex-column">
-              <h5 class="card-title">{{ course.name }} - {{ course.teacher }}</h5>
-              <p class="card-text">{{ course.description }}</p>
-              <div class="card_amount_area">
-                <h6 class="card-subtitle">
-                  {{ course.price[0].amount | currency : "INR" }} /
-                  {{ course.price[1].amount | currency : "USD" }}
-                </h6>
-                <h6 class="card-subtitle">Quanity: 1</h6>
-                <button
-                  class="button danger mt-0"
-                  (click)="removeItem(course.id)"
-                >
-                  Remove
-                </button>
-              </div>
+
+  <!-- Two Column Layout -->
+  <div class="checkout-grid">
+
+    <!-- LEFT: Order Summary -->
+    <div class="panel panel-left">
+      <div class="panel-title">
+        <span class="panel-icon">🛒</span> Order Summary
+      </div>
+
+      <div class="course-list">
+        <div class="course-card" *ngFor="let course of courses">
+          <div class="course-card-header">
+            <div class="course-badge">LIVE</div>
+            <button class="btn-remove" (click)="removeItem(course.id)">✕ Remove</button>
+          </div>
+          <h3 class="course-name">{{ course.name }}{{ course.teacher ? ' — ' + course.teacher : '' }}</h3>
+          <p class="course-desc">{{ course.description }}</p>
+          <div class="course-price-row">
+            <div class="course-price-item">
+              <span class="price-label">INR</span>
+              <span class="price-amount">{{ course.price[0].amount | currency:'INR':'symbol':'1.0-0' }}</span>
             </div>
+            <span class="price-sep">/</span>
+            <div class="course-price-item">
+              <span class="price-label">USD</span>
+              <span class="price-amount">{{ course.price[1].amount | currency:'USD':'symbol':'1.0-0' }}</span>
+            </div>
+            <span class="course-qty">Qty: 1</span>
           </div>
         </div>
-      </div>
-     <h3 class="payment-title text-uppercase mt-3">💳 Payment Instructions</h3>
-      <div class="row">
-        <div class="payment-alert">
-            <span class="payment-alert-icon">⏳</span>
-            <span class="payment-alert-text">
-              Please wait to be redirected back to our website after payment to receive your <strong>confirmation email</strong>.
-            </span>
+
+        <div class="empty-cart" *ngIf="courses.length === 0">
+          <span>🧘</span>
+          <p>No classes in your cart. Add a class to continue.</p>
         </div>
       </div>
-      <!-- <div class="row">
-        <div class="paypal-alert">
-          <span class="paypal-alert-icon">📸</span>
-          <span class="paypal-alert-text">
-            If you are using <strong>PayPal</strong> for payment, please upload the screenshot of your payment to
-            <a href="mailto:info@yogavidyaschool.com" target="_blank" class="paypal-alert-link">
-              Yoga Vidya Mail
-            </a>.
+
+      <!-- Payment Instructions -->
+      <div class="instruction-block">
+        <div class="instruction-title">
+          <span>💳</span> Payment Instructions
+        </div>
+        <div class="instruction-alert">
+          <span class="alert-icon">⏳</span>
+          <span>
+            Please wait to be redirected back to our website after payment to receive your <strong>confirmation email</strong>.
           </span>
         </div>
-      </div> -->
+      </div>
     </div>
-    <div class="payment_card">
-      <div class="row">
-        <div class="col-sm-12 p-0 box">
-          <div class="card rounded-0 border-0 card2" id="paypage">
-            <form [formGroup]="paymentForm">
-              <div class="form-card">
-                <h2 id="heading2" class="text-danger">Payment Method</h2>
-                <div class="mb-4">
-                  <label class="pay">Name</label>
-                  <input
-                    type="text"
-                    name="holdername"
-                    placeholder="John Smith"
-                    formControlName="holderName"
-                  />
-                  <div
-                    *ngIf="
-                      paymentForm.get('holderName')?.hasError('required') &&
-                      submitted
-                    "
-                  >
-                    <span class="text-danger">Name is required.</span>
-                  </div>
-                </div>
 
-                <div class="row mb-4">
-                  <div class="col-md-12">
-                    <label class="pay">Email</label>
-                  </div>
-                  <div class="col-md-12">
-                    <input
-                      type="email"
-                      name="email"
-                      (blur)="checkEmail()"
-                      placeholder="abc@1235gmail.com"
-                      formControlName="email"
-                    />
-                    <div
-                      *ngIf="
-                        paymentForm.get('email')?.hasError('required') &&
-                        submitted
-                      "
-                    >
-                      <span class="text-danger">Email is required.</span>
-                    </div>
-                    <div
-                      *ngIf="
-                        paymentForm.get('email')?.hasError('email') &&
-                        paymentForm.get('email')?.touched
-                      "
-                    >
-                      <span class="text-danger">Enter a valid email.</span>
-                    </div>
-                    <div *ngIf="emailSuggestion" class="text-warning">
-                      {{ emailSuggestion }}
-                    </div>
-                  </div>
-                </div>
+    <!-- RIGHT: Payment Method -->
+    <div class="panel panel-right">
+      <div class="panel-title">
+        <span class="panel-icon">💳</span> Payment Details
+      </div>
 
-                <div class="row mb-4">
-                  <div class="col-md-12 mb-4">
-                    <label class="pay">Contact Number</label><br />
-                    <ngx-intl-tel-input
-                      [cssClass]="'form-control phone_input'"
-                      [separateDialCode]="true"
-                      [preferredCountries]="['in', 'us']"
-                      [enableAutoCountrySelect]="true"
-                      [enablePlaceholder]="false"
-                      [searchCountryFlag]="true"
-                      [searchCountryField]="searchFields"
-                      [selectFirstCountry]="false"
-                      [selectedCountryISO]="CountryISO.India"
-                      [maxLength]="15"
-                      (countryChange)="onCountryChange($event)"
-                      name="mobile"
-                      (input)="onPhoneInputChange()"
-                      formControlName="mobile"
-                    >
-                    </ngx-intl-tel-input>
+      <form [formGroup]="paymentForm" class="pay-form">
 
-                    <!-- Validation message -->
-                    <div *ngIf="phoneError" class="text-danger mt-1">
-                      {{ phoneError }}
-                    </div>
+        <!-- Name -->
+        <div class="form-group">
+          <label class="form-label">Full Name</label>
+          <input
+            type="text"
+            class="form-input"
+            placeholder="John Smith"
+            formControlName="holderName"
+          />
+          <span class="error-msg" *ngIf="paymentForm.get('holderName')?.hasError('required') && submitted">
+            Name is required.
+          </span>
+        </div>
 
-                    <!-- <div *ngIf="paymentForm.get('mobile')?.hasError('pattern') && paymentForm.get('mobile')?.touched">
-                      <span class="text-danger">Enter a valid mobile number.</span>
-                    </div> -->
-                  </div>
-                  <div class="col-md-6">
-                    <label class="pay">Currency</label>
-                    <select
-                      class="placeicon"
-                      name="currency"
-                      formControlName="currency"
-                      [(ngModel)]="currency"
-                      (change)="onCurrencyChange($event)"
-                      required
-                    >
-                      <option value="" disabled selected>Select</option>
-                      <option
-                        *ngFor="let option of currencyOptions"
-                        [value]="option"
-                      >
-                        {{ option }}
-                      </option>
-                    </select>
-                  </div>
+        <!-- Email -->
+        <div class="form-group">
+          <label class="form-label">Email Address</label>
+          <input
+            type="email"
+            class="form-input"
+            (blur)="checkEmail()"
+            placeholder="you@example.com"
+            formControlName="email"
+          />
+          <span class="error-msg" *ngIf="paymentForm.get('email')?.hasError('required') && submitted">
+            Email is required.
+          </span>
+          <span class="error-msg" *ngIf="paymentForm.get('email')?.hasError('email') && paymentForm.get('email')?.touched">
+            Enter a valid email.
+          </span>
+          <span class="warn-msg" *ngIf="emailSuggestion">{{ emailSuggestion }}</span>
+        </div>
 
-                  <div class="col-md-6">
-                    <label class="pay">Price</label>
-                    <input
-                      type="text"
-                      name="price"
-                      formControlName="price"
-                      [(ngModel)]="price"
-                      class="placeicon"
-                      readonly
-                    />
-                  </div>
-                </div>
+        <!-- Phone -->
+        <div class="form-group">
+          <label class="form-label">Contact Number</label>
+          <ngx-intl-tel-input
+            [cssClass]="'form-control phone_input'"
+            [separateDialCode]="true"
+            [preferredCountries]="['in', 'us']"
+            [enableAutoCountrySelect]="true"
+            [enablePlaceholder]="false"
+            [searchCountryFlag]="true"
+            [searchCountryField]="searchFields"
+            [selectFirstCountry]="false"
+            [selectedCountryISO]="CountryISO.India"
+            [maxLength]="15"
+            (countryChange)="onCountryChange($event)"
+            name="mobile"
+            (input)="onPhoneInputChange()"
+            formControlName="mobile"
+          >
+          </ngx-intl-tel-input>
+          <span class="error-msg" *ngIf="phoneError">{{ phoneError }}</span>
+        </div>
 
-                <div class="d-flex w-100 justify-content-start gap-3 mt-3">
-                  <button
-                    type="button"
-                    style="border-color: #f9751e"
-                    class="payment-button"
-                    (click)="onRazorpayPayment()"
-                  >
-                    <img
-                      [src]="s3Bucket.razorpay"
-                      alt="Razorpay"
-                      width="128"
-                      height="32"
-                    />
-                  </button>
-
-                  <button
-                    type="button"
-                    style="border-color: #f9751e"
-                    class="payment-button"
-                    (click)="onStripePayment()"
-                  >
-                    <img
-                      [src]="s3Bucket.stripe"
-                      alt="Stripe"
-                      width="128"
-                      height="35"
-                    />
-                  </button>
-                  <!-- <button
-                    type="button"
-                    style="border-color: #f9751e"
-                    class="payment-button"
-                    (click)="onPaypalPayment()"
-                  >
-                    <img
-                      [src]="s3Bucket.paypal"
-                      alt="PayPal"
-                      width="128"
-                      height="30"
-                    />
-                  </button> -->
-                </div>
-                <!-- <h3 class="text-uppercase mt-3">Payment Instructions:</h3>
-                <h5 class="disclaimer text-uppercase mt-3">
-                  If you are using PayPal for payment, please upload the
-                  screenshot of the payment in the
-                  <a href="mailto:info@yogavidyaschool.com" target="_blank">
-                    yoga vidya mail
-                  </a>
-                </h5>
-                <h5 class="disclaimer text-uppercase mt-3">
-                  Wait until you are redirected back to our website after payment to receive confirmation email
-                </h5> -->
-              </div>
-            </form>
+        <!-- Currency & Price Row -->
+        <div class="currency-price-row">
+          <div class="form-group half">
+            <label class="form-label">Currency</label>
+            <select
+              class="form-select-custom"
+              formControlName="currency"
+              [(ngModel)]="currency"
+              (change)="onCurrencyChange($event)"
+            >
+              <option value="" disabled>Select</option>
+              <option *ngFor="let option of currencyOptions" [value]="option">
+                {{ option }}
+              </option>
+            </select>
+          </div>
+          <div class="form-group half">
+            <label class="form-label">Total Price</label>
+            <input
+              type="text"
+              class="form-input price-input"
+              formControlName="price"
+              [(ngModel)]="price"
+              readonly
+            />
           </div>
         </div>
-      </div>
+
+        <!-- Payment Buttons -->
+        <div class="payment-methods-title">Choose Payment Method</div>
+        <div class="payment-buttons-grid">
+          <button
+            type="button"
+            class="pay-btn razorpay-btn"
+            (click)="onRazorpayPayment()"
+          >
+            <img [src]="s3Bucket.razorpay" alt="Razorpay" width="120" height="30" />
+          </button>
+
+          <button
+            type="button"
+            class="pay-btn stripe-btn"
+            (click)="onStripePayment()"
+          >
+            <img [src]="s3Bucket.stripe" alt="Stripe" width="120" height="33" />
+          </button>
+
+          <button
+            type="button"
+            class="pay-btn paypal-btn"
+            *ngIf="canUsePaypal"
+            (click)="onPaypalPayment()"
+          >
+            <img [src]="s3Bucket.paypal" alt="PayPal" width="120" height="28" />
+          </button>
+        </div>
+
+        <p class="secure-notice">🔒 Your payment is secured with 256-bit SSL encryption</p>
+      </form>
     </div>
   </div>
 </div>
