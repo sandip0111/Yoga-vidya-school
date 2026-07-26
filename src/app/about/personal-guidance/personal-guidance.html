@@ -93,7 +93,11 @@
           </blockquote>
           <div class="session-details">
             <p><span>Duration</span>45 minutes</p>
-            <p><span>Investment</span>USD 179 / INR 17,500</p>
+            <p>
+              <span>Investment</span>{{feesData1.data[0].amount| currency:
+              feesData1.data[0].currency}} / {{feesData1.data[1].amount|
+              currency: feesData1.data[1].currency}}
+            </p>
           </div>
           <div class="text-center">
             <a class="button" href="/checkout/personal-guidance"
@@ -104,7 +108,7 @@
       </div>
       <div class="col-lg-12">
         <div class="personal-guidance-card">
-          <h2>2. Personal Sadhana & Spiritual Guidance</h2>
+          <h2><span>Personal Sadhana & Spiritual Guidance</span></h2>
           <p class="section-intro">
             For sincere practitioners looking for clarity in their yoga journey,
             including asana, pranayama, meditation, daily practice, philosophy,
@@ -147,7 +151,11 @@
           </blockquote>
           <div class="session-details">
             <p><span>Duration</span>45 minutes</p>
-            <p><span>Investment</span>USD 179 / INR 17,500</p>
+            <p>
+              <span>Investment</span>{{feesData2.data[0].amount| currency:
+              feesData2.data[0].currency}} / {{feesData2.data[1].amount|
+              currency: feesData2.data[1].currency}}
+            </p>
           </div>
           <div class="text-center">
             <a class="button" href="/checkout/personal-guidance"
@@ -158,7 +166,7 @@
       </div>
       <div class="col-lg-12">
         <div class="personal-guidance-card">
-          <h2>3. Professional Mentorship</h2>
+          <h2><span>Professional Mentorship</span></h2>
           <p class="section-intro">Build Your Vision with Clarity</p>
           <p>
             Many Yoga teachers are passionate about sharing Yoga but struggle
@@ -193,7 +201,11 @@
           </blockquote>
           <div class="session-details">
             <p><span>Duration</span>45 minutes</p>
-            <p><span>Investment</span>USD 299 / INR 29,500</p>
+            <p>
+              <span>Investment</span>{{feesData3.data[0].amount| currency:
+              feesData3.data[0].currency}} / {{feesData3.data[1].amount|
+              currency: feesData3.data[1].currency}}
+            </p>
           </div>
           <div class="text-center">
             <a class="button" href="/checkout/personal-guidance"
@@ -207,8 +219,8 @@
     <div class="personal-guidance-block mt-5">
       <p>
         <strong
-          >Please submit your request with a brief description of your
-          situation and the guidance you are seeking.</strong
+          >Please submit your request with a brief description of your situation
+          and the guidance you are seeking.</strong
         >
       </p>
       <p>
