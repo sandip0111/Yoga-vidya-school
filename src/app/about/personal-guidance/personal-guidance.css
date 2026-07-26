@@ -22,6 +22,81 @@
   color: #2b241f;
 }
 
+.guidance-intro {
+  position: relative;
+  max-width: 930px;
+  margin: 2rem auto 0;
+  padding: 2.5rem 3rem;
+  overflow: hidden;
+  text-align: left;
+  background: rgba(255, 253, 248, 0.78);
+  border: 1px solid rgba(166, 124, 82, 0.28);
+  border-radius: 1.25rem;
+  box-shadow: 0 18px 45px rgba(82, 76, 70, 0.1);
+}
+
+.guidance-intro::before,
+.guidance-intro::after {
+  position: absolute;
+  color: #f6bc95;
+  font-family: Georgia, serif;
+  font-size: 7rem;
+  line-height: 1;
+}
+
+.guidance-intro::before {
+  top: 0.35rem;
+  left: 1rem;
+  content: "\201C";
+}
+
+.guidance-intro::after {
+  right: 1.15rem;
+  bottom: -2.7rem;
+  content: "\201D";
+}
+
+.guidance-intro p {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 1.15rem;
+  font-size: 1.08rem;
+  line-height: 1.8;
+}
+
+.guidance-intro .intro {
+  margin-bottom: 1.4rem;
+  color: #f5711a;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  line-height: 1.3;
+}
+
+.guidance-intro .intro::after {
+  display: block;
+  width: 4.5rem;
+  height: 2px;
+  margin-top: 1rem;
+  content: "";
+  background: linear-gradient(90deg, #361601, transparent);
+}
+
+.guidance-intro .highlight {
+  margin: 1.5rem 0;
+  padding: 1.1rem 1.25rem;
+  color: #f5711a;
+  background: #f8f0ea;
+  border-left: 3px solid #a44505;
+  border-radius: 0 0.65rem 0.65rem 0;
+}
+
+.guidance-intro .closing-note {
+  margin-bottom: 0;
+  color: #755331;
+  font-family: Georgia, "Times New Roman", serif;
+  font-style: italic;
+}
+
 .personal-guidance-content {
   padding: 2rem 0 4rem;
 }
@@ -79,6 +154,34 @@
   color: #1f1a14;
 }
 
+.session-details {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin: 1.75rem 0;
+}
+
+.session-details p {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin: 0;
+  padding: 0.9rem 1rem;
+  color: #4b2a17;
+  background: linear-gradient(135deg, #fff7ef, #fff0e4);
+  border: 1px solid rgba(249, 117, 30, 0.34);
+  border-radius: 0.7rem;
+  box-shadow: 0 6px 16px rgba(249, 117, 30, 0.1);
+}
+
+.session-details span {
+  color: #f9751e;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
 .personal-guidance-block {
   margin-top: 2.5rem;
 }
@@ -116,6 +219,24 @@
 
   .personal-guidance-card {
     padding: 1.5rem;
+  }
+
+  .guidance-intro {
+    padding: 2rem 1.5rem;
+  }
+
+  .guidance-intro::before {
+    top: -1.8rem;
+    left: 0.9rem;
+    font-size: 5rem;
+  }
+
+  .guidance-intro .intro {
+    padding-top: 1.15rem;
+  }
+
+  .session-details {
+    grid-template-columns: 1fr;
   }
 }
 
