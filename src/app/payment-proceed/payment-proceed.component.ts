@@ -20,6 +20,8 @@ import { PixelTrackingService } from '../services/pixel-tracking.service';
 import { Title } from '@angular/platform-browser';
 import { routeEnum } from '../enum/routes';
 import { s3Bucket } from '../enum/s3Bucket';
+import { localstorageKey } from '../enum/localstorage';
+import { paypalPayModel } from '../models/checkout';
 
 declare var Razorpay: any;
 @Component({
@@ -74,7 +76,7 @@ export class PaymentProceedComponent implements OnInit {
       holderName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       mobile: ['', Validators.required],
-      currency: ['', Validators.required],
+      currency: ['USD', Validators.required],
       price: [{ value: '', disabled: true }],
     });
   }
@@ -88,13 +90,14 @@ export class PaymentProceedComponent implements OnInit {
     this.trackCheckoutPageView();
   }
   getCurrencyOption(courses: CartItem[], countryCode: string) {
+    const isIndian = countryCode === 'IN';
     if (courses.length > 0) {
       let priceData = courses.map((c) => c.price).flat();
-      if (countryCode == 'IN') {
+      if (isIndian) {
         let currencySet = new Set(priceData.map((p) => p.currency));
         this.currencyOptions = Array.from(currencySet);
         if (this.currencyOptions.length === 0) {
-          this.currencyOptions = ['USD', 'INR'];
+          this.currencyOptions = ['INR', 'USD'];
         }
         this.paymentForm.patchValue({ currency: PaymentType.indianCur });
       } else {
@@ -107,17 +110,21 @@ export class PaymentProceedComponent implements OnInit {
         if (this.currencyOptions.length === 0) {
           this.currencyOptions = ['USD'];
         }
-        this.paymentForm.patchValue({ currency: this.currencyOptions[0] });
+        this.paymentForm.patchValue({ currency: 'USD' });
       }
     } else {
-      if (countryCode == 'IN') {
-        this.currencyOptions = ['USD', 'INR'];
+      if (isIndian) {
+        this.currencyOptions = ['INR', 'USD'];
         this.paymentForm.patchValue({ currency: PaymentType.indianCur });
       } else {
         this.currencyOptions = ['USD'];
         this.paymentForm.patchValue({ currency: 'USD' });
       }
     }
+    this.updatePrice();
+  }
+  get canUsePaypal(): boolean {
+    return this.paymentForm.get('currency')?.value === 'USD';
   }
   getTeachersData(slug: string) {
     this.cartService.getTeachersData(slug).subscribe({
@@ -198,15 +205,15 @@ export class PaymentProceedComponent implements OnInit {
       } else {
         this.phoneError = '';
       }
-      this.getCurrencyOption(this.courses, '');
-      this.updatePrice();
+      // keep current currency options, do not reset
       return;
     }
     this.phoneError = '';
     const phoneValue = control.value;
-    const countryCode = phoneValue?.countryCode;
-    this.getCurrencyOption(this.courses, countryCode);
-    this.updatePrice();
+    // ngx-intl-tel-input stores countryCode as the ISO2 code (e.g. 'IN')
+    const countryCode = phoneValue?.countryCode || phoneValue?.dialCode?.replace('+', '');
+    const resolvedCode = phoneValue?.countryCode ?? '';
+    this.getCurrencyOption(this.courses, resolvedCode);
   }
   onCountryChange(country: any): void {
     this.phoneError = '';
@@ -421,8 +428,66 @@ export class PaymentProceedComponent implements OnInit {
       );
     }
   }
-  onPaypalPayment() {
-    window.open('https://www.paypal.me/yogavidyafoundation', '_blank');
+  onPaypalPayment(): void {
+    this.submitted = true;
+    const isInvalid = this.paymentForm.controls['mobile'].invalid;
+    if (isInvalid) {
+      this.phoneError = 'Invalid phone number';
+      return;
+    }
+    if (this.paymentForm.valid) {
+      this.spinner.show();
+      const data = this.paymentForm.getRawValue();
+      const courseList = this.cartService.getItems();
+      let val = {
+        name: data.holderName,
+        email: data.email,
+        phone: data.mobile.e164Number,
+        currency: 'USD',
+        paymentStatus: 'due',
+        price: data.price,
+        courses: courseList,
+        month: this.courses[0]?.month,
+      };
+
+      this.pixelTracking.trackInitiateCheckout(
+        'paypal-proceed-payment',
+        val.price,
+        val.currency,
+      );
+      this.pixelTracking.trackAddPaymentInfo(
+        'paypal-proceed-payment',
+        val.price,
+        val.currency,
+      );
+      this.webapiService
+        .checkoutPaypalForLiveClasses(val)
+        .subscribe({
+          next: (res: paypalPayModel) => {
+            this.spinner.hide();
+            if (res.orderId && res.payDbId && res.approvalUrl) {
+              sessionStorage.setItem('liveClassesPaypalOrderId', res.orderId);
+              sessionStorage.setItem('liveClassesPaypalDBId', res.payDbId);
+              localStorage.setItem(
+                localstorageKey.liveClassesPaypalOrderId,
+                res.orderId,
+              );
+              localStorage.setItem(
+                localstorageKey.liveClassesPaypalDBId,
+                res.payDbId,
+              );
+              window.location.href = res.approvalUrl;
+            } else {
+              alert('Session Generation failed! please try again');
+              this.spinner.hide();
+            }
+          },
+          error: () => {
+            this.spinner.hide();
+            alert('Session Generation failed! please try again');
+          },
+        });
+    }
   }
   courseAddedFn(courseMentor: CartItem[]) {
     this.courses = this.cartService.getItems().filter((c) => c.id !== 3);
@@ -437,6 +502,10 @@ export class PaymentProceedComponent implements OnInit {
       };
       return course;
     });
+    // Set default USD price on initial load
+    this.currencyOptions = ['USD'];
+    this.paymentForm.patchValue({ currency: 'USD' });
+    this.updatePrice('USD');
   }
 
   private trackCheckoutPageView() {

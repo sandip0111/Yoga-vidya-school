@@ -53,6 +53,7 @@ export class SuccessPaymentComponent {
   retreatPaypalOrderId: string = '';
   rishikeshPaypalOrderId: string = '';
   baliPaypalOrderId: string = '';
+  liveClassesPaypalOrderId: string = '';
   constructor(
     private webapiService: WebapiService,
     private router: Router,
@@ -136,6 +137,15 @@ export class SuccessPaymentComponent {
     this.baliPaypalOrderId =
       localStorage.getItem(localstorageKey.baliPaypalOrderId) ||
       (this.retreatPaypalOrderId || this.rishikeshPaypalOrderId
+        ? ''
+        : tokenFromUrl) ||
+      '';
+    this.liveClassesPaypalOrderId =
+      sessionStorage.getItem('liveClassesPaypalOrderId') ||
+      localStorage.getItem(localstorageKey.liveClassesPaypalOrderId) ||
+      (this.retreatPaypalOrderId ||
+      this.rishikeshPaypalOrderId ||
+      this.baliPaypalOrderId
         ? ''
         : tokenFromUrl) ||
       '';
@@ -286,6 +296,11 @@ export class SuccessPaymentComponent {
     if (this.baliPaypalOrderId) {
       setTimeout(() => {
         this.getPaypalPaymentResultBali(this.baliPaypalOrderId);
+      }, 0);
+    }
+    if (this.liveClassesPaypalOrderId) {
+      setTimeout(() => {
+        this.getPaypalPaymentResultLiveClasses(this.liveClassesPaypalOrderId);
       }, 0);
     }
   }
@@ -1057,6 +1072,10 @@ export class SuccessPaymentComponent {
     localStorage.removeItem(localstorageKey.rishikeshPaypalDBId);
     localStorage.removeItem(localstorageKey.baliPaypalOrderId);
     localStorage.removeItem(localstorageKey.baliPaypalDBId);
+    sessionStorage.removeItem('liveClassesPaypalOrderId');
+    sessionStorage.removeItem('liveClassesPaypalDBId');
+    localStorage.removeItem(localstorageKey.liveClassesPaypalOrderId);
+    localStorage.removeItem(localstorageKey.liveClassesPaypalDBId);
   }
   gotoHome() {
     this.router.navigate(['/']);
@@ -1109,6 +1128,10 @@ export class SuccessPaymentComponent {
     localStorage.removeItem(localstorageKey.rishikeshPaypalDBId);
     localStorage.removeItem(localstorageKey.baliPaypalOrderId);
     localStorage.removeItem(localstorageKey.baliPaypalDBId);
+    sessionStorage.removeItem('liveClassesPaypalOrderId');
+    sessionStorage.removeItem('liveClassesPaypalDBId');
+    localStorage.removeItem(localstorageKey.liveClassesPaypalOrderId);
+    localStorage.removeItem(localstorageKey.liveClassesPaypalDBId);
   }
   genratePass(len: number) {
     const charset =
@@ -1314,6 +1337,52 @@ export class SuccessPaymentComponent {
           this.paidFlag = 'false';
           this.spinner.hide();
         }
+      });
+  }
+  getPaypalPaymentResultLiveClasses(paypalOrderId: string) {
+    const fbp = this.getCookie('_fbp');
+    const fbc = this.getCookie('_fbc');
+    let val = {
+      paypalOrderId: paypalOrderId,
+      payDbId:
+        sessionStorage.getItem('liveClassesPaypalDBId') ||
+        localStorage.getItem(localstorageKey.liveClassesPaypalDBId),
+      fbp: fbp,
+      fbc: fbc,
+      password: this.genratePass(6),
+    };
+    this.webapiService
+      .getPaypalPaymentResultLiveClasses(val)
+      .subscribe((res: any) => {
+        const responseData = res?.data || res;
+        if (
+          responseData &&
+          (responseData.status === 'success' ||
+            res.status === 'success' ||
+            res.status === 200)
+        ) {
+          this.paidFlag = 'true';
+          this.ordId = responseData.paymtId || res.paymtId || paypalOrderId;
+          this.amount = responseData.amount || res.amount || 0;
+          this.cur = this.currencySet(
+            responseData.currency || res.currency || 'USD',
+          );
+          this.pixelTracking.trackPurchaseLiveClasses(
+            this.ordId,
+            'live_classes',
+            'Live Yoga Classes',
+            this.amount,
+            this.cur,
+          );
+          this.spinner.hide();
+        } else {
+          this.paidFlag = 'false';
+          this.spinner.hide();
+        }
+        sessionStorage.removeItem('liveClassesPaypalOrderId');
+        sessionStorage.removeItem('liveClassesPaypalDBId');
+        localStorage.removeItem(localstorageKey.liveClassesPaypalOrderId);
+        localStorage.removeItem(localstorageKey.liveClassesPaypalDBId);
       });
   }
   //#endregion
