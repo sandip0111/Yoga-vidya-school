@@ -31,4 +31,5 @@ export enum routeEnum {
   'mentors' = 'mentors',
   'pranayamaCertification' = 'pranayama-certification',
   'retreats' = 'mysore-retreat',
+  'pg' = 'personal-guidance',
 }

@@ -40,6 +40,7 @@ import { BreatchdtoxComponent } from './course/pre-recorded-pranayama-courses/br
 import { PranaArambhComponent } from './course/pre-recorded-pranayama-courses/prana-arambh/prana-arambh.component';
 import { RishikshMain } from './course/rishikesh/rishiksh-main/rishiksh-main';
 import { PranicPurification } from './course/pranic-purification/pranic-purification';
+import { PersonalGuidance } from './about/personal-guidance/personal-guidance';
 
 export const routes: Routes = [
   { path: '', component: IndexComponent },
@@ -201,11 +202,7 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./course/retreats/retreats').then((m) => m.Retreats),
   },
-  {
-    path: 'yoga-retreats',
-    redirectTo: routeEnum.retreats,
-    pathMatch: 'full',
-  },
+  { path: routeEnum.pg, component: PersonalGuidance },
   { path: 'webinar-video/:name', component: WebinarVideosComponent },
   { path: '**', pathMatch: 'full', component: PagenotfoundComponent },
 ];

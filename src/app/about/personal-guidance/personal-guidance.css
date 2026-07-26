@@ -1,0 +1,126 @@
+.header-container {
+  text-align: center;
+  padding: 40px 40px 0px 40px;
+}
+
+.header-container h1 {
+  font-size: 3rem;
+  line-height: 1.1;
+  margin-bottom: 1.3rem;
+  color: #1f1a14;
+}
+
+.header-container .intro,
+.header-container p {
+  font-size: 1rem;
+  color: #4b453f;
+  margin-bottom: 1rem;
+}
+
+.header-container .highlight {
+  font-weight: 600;
+  color: #2b241f;
+}
+
+.personal-guidance-content {
+  padding: 2rem 0 4rem;
+}
+
+.personal-guidance-card {
+  background: #ffffff;
+  border: 1px solid rgba(32, 35, 37, 0.08);
+  border-radius: 1rem;
+  padding: 2rem;
+  min-height: 100%;
+  box-shadow: 0 12px 30px rgba(82, 76, 70, 0.08);
+}
+
+.personal-guidance-card h2 {
+  margin-bottom: 0.8rem;
+  font-size: 1.5rem;
+  color: #1f1a14;
+}
+
+.personal-guidance-card .section-intro {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #846a51;
+  margin-bottom: 1rem;
+}
+
+.personal-guidance-card p,
+.personal-guidance-card li {
+  color: #4d473f;
+  line-height: 1.75;
+}
+
+.personal-guidance-card ul {
+  padding-left: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.personal-guidance-card li {
+  margin-bottom: 0.65rem;
+}
+
+.personal-guidance-card blockquote {
+  margin: 1.5rem 0;
+  padding: 1rem 1.25rem;
+  border-left: 4px solid #a67c52;
+  background: #faf5ed;
+  color: #3f372f;
+  font-style: italic;
+  border-radius: 0.5rem;
+}
+
+.personal-guidance-card .action {
+  margin-top: 1rem;
+  font-weight: 700;
+  color: #1f1a14;
+}
+
+.personal-guidance-block {
+  margin-top: 2.5rem;
+}
+
+.personal-guidance-block h2 {
+  font-size: 1.9rem;
+  margin-bottom: 1rem;
+  color: #1f1a14;
+}
+
+.personal-guidance-block p,
+.personal-guidance-block li {
+  color: #4c453d;
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+.personal-guidance-block ul {
+  padding-left: 1.2rem;
+}
+
+.personal-guidance-block li {
+  margin-bottom: 0.75rem;
+}
+
+.personal-guidance-block .final-note {
+  margin-top: 1rem;
+  font-weight: 600;
+}
+
+@media (max-width: 767px) {
+  .header-container h1 {
+    font-size: 2.25rem;
+  }
+
+  .personal-guidance-card {
+    padding: 1.5rem;
+  }
+}
+
+.body-container {
+  display: flex;
+  gap: 12px;
+  flex-direction: column;
+}
