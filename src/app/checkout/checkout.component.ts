@@ -53,6 +53,26 @@ declare var Razorpay: any;
 })
 export class CheckoutComponent {
   checkData: checkoutModel = new checkoutModel();
+  minimumAppointmentDate: string = this.getTodayDate();
+  timeSlots = this.createTimeSlots();
+  isCalendarOpen: boolean = false;
+  calendarViewDate: Date = this.getStartOfDay(new Date());
+  readonly calendarWeekdays: string[] = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  readonly calendarMonths: string[] = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ];
+  readonly calendarYears: number[] = this.createCalendarYears();
   oldStudent: boolean = false;
   slug: string = '';
   price: string = '';
@@ -170,6 +190,178 @@ export class CheckoutComponent {
       }
     });
     this.paymentId = this._activatedRoute.snapshot.queryParamMap.get('id');
+  }
+
+  private getTodayDate(): string {
+    return this.formatDateValue(this.getStartOfDay(new Date()));
+  }
+
+  get calendarMonthLabel(): string {
+    return this.calendarViewDate.toLocaleDateString('en-US', {
+      month: 'long',
+      year: 'numeric',
+    });
+  }
+
+  get calendarDays(): CalendarDay[] {
+    const year = this.calendarViewDate.getFullYear();
+    const month = this.calendarViewDate.getMonth();
+    const firstDayOfMonth = new Date(year, month, 1);
+    const firstCalendarDay = new Date(year, month, 1 - firstDayOfMonth.getDay());
+    const today = this.getStartOfDay(new Date());
+
+    return Array.from({ length: 42 }, (_, index) => {
+      const date = new Date(
+        firstCalendarDay.getFullYear(),
+        firstCalendarDay.getMonth(),
+        firstCalendarDay.getDate() + index,
+      );
+      const normalizedDate = this.getStartOfDay(date);
+
+      return {
+        date: normalizedDate,
+        value: this.formatDateValue(normalizedDate),
+        dayNumber: normalizedDate.getDate(),
+        isCurrentMonth: normalizedDate.getMonth() === month,
+        isToday: normalizedDate.getTime() === today.getTime(),
+        isPast: normalizedDate.getTime() < today.getTime(),
+      };
+    });
+  }
+
+  get canViewPreviousMonth(): boolean {
+    const today = new Date();
+    return (
+      this.calendarViewDate.getFullYear() > today.getFullYear() ||
+      (this.calendarViewDate.getFullYear() === today.getFullYear() &&
+        this.calendarViewDate.getMonth() > today.getMonth())
+    );
+  }
+
+  toggleCalendar(): void {
+    if (this.paymentId) return;
+    this.isCalendarOpen = !this.isCalendarOpen;
+    if (this.isCalendarOpen && this.checkData.appointmentDate) {
+      this.calendarViewDate = this.getStartOfDay(this.checkData.appointmentDate);
+    }
+  }
+
+  showPreviousMonth(): void {
+    if (this.canViewPreviousMonth) {
+      this.calendarViewDate = new Date(
+        this.calendarViewDate.getFullYear(),
+        this.calendarViewDate.getMonth() - 1,
+        1,
+      );
+    }
+  }
+
+  showNextMonth(): void {
+    this.calendarViewDate = new Date(
+      this.calendarViewDate.getFullYear(),
+      this.calendarViewDate.getMonth() + 1,
+      1,
+    );
+  }
+
+  setCalendarMonth(month: number): void {
+    const selectedMonth = Number(month);
+    if (this.isCalendarMonthDisabled(selectedMonth)) return;
+    this.calendarViewDate = new Date(
+      this.calendarViewDate.getFullYear(),
+      selectedMonth,
+      1,
+    );
+  }
+
+  setCalendarYear(year: number): void {
+    const selectedYear = Number(year);
+    const today = new Date();
+    const selectedMonth =
+      selectedYear === today.getFullYear() &&
+      this.calendarViewDate.getMonth() < today.getMonth()
+        ? today.getMonth()
+        : this.calendarViewDate.getMonth();
+
+    this.calendarViewDate = new Date(selectedYear, selectedMonth, 1);
+  }
+
+  isCalendarMonthDisabled(month: number): boolean {
+    const today = new Date();
+    return (
+      this.calendarViewDate.getFullYear() === today.getFullYear() &&
+      month < today.getMonth()
+    );
+  }
+
+  selectAppointmentDate(day: CalendarDay): void {
+    if (day.isPast) return;
+    this.checkData.appointmentDate = day.date;
+    this.inputValidation('appointmentDate');
+    this.isCalendarOpen = false;
+  }
+
+  selectToday(): void {
+    const today = this.getStartOfDay(new Date());
+    this.calendarViewDate = today;
+    this.checkData.appointmentDate = today;
+    this.inputValidation('appointmentDate');
+    this.isCalendarOpen = false;
+  }
+
+  formatSelectedDate(): string {
+    const selectedDate = this.checkData.appointmentDate;
+    return selectedDate
+      ? selectedDate.toLocaleDateString('en-GB', {
+          day: '2-digit',
+          month: 'short',
+          year: 'numeric',
+        })
+      : '';
+  }
+
+  isSelectedCalendarDate(day: CalendarDay): boolean {
+    return day.date.getTime() === this.checkData.appointmentDate?.getTime();
+  }
+
+  private getStartOfDay(date: Date): Date {
+    return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+  }
+
+  private formatDateValue(date: Date): string {
+    const year = date.getFullYear();
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const day = date.getDate().toString().padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  }
+
+  private createCalendarYears(): number[] {
+    const currentYear = new Date().getFullYear();
+    return Array.from({ length: 11 }, (_, index) => currentYear + index);
+  }
+
+  private createTimeSlots(): { label: string; value: string }[] {
+    const slots: { label: string; value: string }[] = [];
+    const startMinutes = 9 * 60;
+    const endMinutes = 17 * 60;
+
+    for (let start = startMinutes; start + 45 <= endMinutes; start += 45) {
+      const end = start + 45;
+      slots.push({
+        value: `${this.formatTime(start)} - ${this.formatTime(end)}`,
+        label: `${this.formatTime(start)} - ${this.formatTime(end)}`,
+      });
+    }
+
+    return slots;
+  }
+
+  private formatTime(totalMinutes: number): string {
+    const hour = Math.floor(totalMinutes / 60);
+    const minute = totalMinutes % 60;
+    const period = hour >= 12 ? 'PM' : 'AM';
+    const displayHour = hour % 12 || 12;
+    return `${displayHour}:${minute.toString().padStart(2, '0')} ${period}`;
   }
 
   ngOnInit(): void {
@@ -625,12 +817,24 @@ export class CheckoutComponent {
         this.currencyRequired = 'Currency is required';
       }
     }
+    if (type === 'appointmentDate') {
+      this.appointmentDateRequired = this.checkData.appointmentDate
+        ? ''
+        : 'Please select a date';
+    }
+    if (type === 'appointmentTime') {
+      this.appointmentTimeRequired = this.checkData.appointmentTime
+        ? ''
+        : 'Please select a time slot';
+    }
   }
   emailRequired: string = '';
   nameRequired: string = '';
   packageRequired: string = '';
   phoneRequired: string = '';
   currencyRequired: string = '';
+  appointmentDateRequired: string = '';
+  appointmentTimeRequired: string = '';
   checkoutData(data: checkoutModel, paymentGateway: boolean | 'paypal') {
     const isPaypal = paymentGateway === 'paypal';
     const isRazorPay = paymentGateway === true;
@@ -679,6 +883,14 @@ export class CheckoutComponent {
       }
       if (!data.currency) {
         this.currencyRequired = 'Currency is required';
+        isErrMsg = true;
+      }
+      if (this.slug === routeEnum.pg && !data.appointmentDate) {
+        this.appointmentDateRequired = 'Please select a date';
+        isErrMsg = true;
+      }
+      if (this.slug === routeEnum.pg && !data.appointmentTime) {
+        this.appointmentTimeRequired = 'Please select a time slot';
         isErrMsg = true;
       }
       if (!isErrMsg) {
@@ -1965,4 +2177,13 @@ class courseListDto {
 interface feeInfoDto {
   title: string;
   data: feesDto[];
+}
+
+interface CalendarDay {
+  date: Date;
+  value: string;
+  dayNumber: number;
+  isCurrentMonth: boolean;
+  isToday: boolean;
+  isPast: boolean;
 }

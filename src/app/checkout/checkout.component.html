@@ -1,11 +1,15 @@
-@if(slug !== routeEnum.pranicPurificationII){
+@if (slug !== routeEnum.pranicPurificationII) {
   <div class="container checkout-container py-5">
     <div class="row g-4">
       <!-- Left Column: Order Summary -->
       <div class="col-lg-6">
         <div class="card checkout-card summary-card border-0 shadow-sm mt-3">
-          <div class="card-header bg-transparent border-0 pt-4 pb-0 text-center">
-            <h4 class="card-title text-uppercase summary-title m-0">Order Summary</h4>
+          <div
+            class="card-header bg-transparent border-0 pt-4 pb-0 text-center"
+          >
+            <h4 class="card-title text-uppercase summary-title m-0">
+              Order Summary
+            </h4>
           </div>
           <div class="card-body px-4 pb-4 pt-3">
             <div class="summary-receipt">
@@ -14,123 +18,225 @@
                   <div class="col">
                     <span class="summary-section-heading">
                       {{ courseList.coursetitle }}
-                      <span *ngIf="selectedMonth" class="selected-month-badge">({{ selectedMonth }})</span>
+                      <span *ngIf="selectedMonth" class="selected-month-badge"
+                        >({{ selectedMonth }})</span
+                      >
                     </span>
                   </div>
                   <!-- Discount plan: show selected currency price top-right -->
-                  <div class="col-auto" *ngIf="amount > 0 && checkData.currency && isDiscountPlan">
+                  <div
+                    class="col-auto"
+                    *ngIf="amount > 0 && checkData.currency && isDiscountPlan"
+                  >
                     <div class="price-display">
                       <span class="h4 m-0">
                         <strong class="price-amount">
-                          {{ amount | currency : checkData.currency : "symbol" : "1.0-3" }}
+                          {{
+                            amount
+                              | currency
+                                : checkData.currency
+                                : "symbol"
+                                : "1.0-3"
+                          }}
                         </strong>
                       </span>
                     </div>
                   </div>
                   <!-- Normal plans: show price top-right ONLY when NOT a 30% deposit booking -->
-                  <div class="col-auto" *ngIf="amount > 0 && checkData.currency && !isDiscountPlan && !is30PercentBooking">
-                    @if(isSpecialDiscount){
-                    <div class="price-display">
-                      <span class="h4 m-0" *ngIf="actualAmount">
-                        <strong class="old-price">
-                          {{
-                            actualAmount
-                              | currency : checkData.currency : "symbol" : "1.0-3"
-                          }}
-                        </strong>
-                      </span>
-                      <span class="h4 m-0">
-                        <strong class="price-amount">
-                          {{
-                            amount
-                              | currency : checkData.currency : "symbol" : "1.0-3"
-                          }}
-                        </strong>
-                      </span>
-                    </div>
-                    }@else {
-                    <div class="price-display">
-                      <span class="h4 m-0">
-                        <strong [ngClass]="isDiscounted ? 'old-price' : ''"
-                          >{{
-                            amount
-                              | currency : checkData.currency : "symbol" : "1.0-3"
-                          }}
-                        </strong>
-                      </span>
-                      <span class="h4 m-0">
-                        <strong *ngIf="isDiscounted" class="price-amount">
-                          {{
-                            offerAmount
-                              | currency : checkData.currency : "symbol" : "1.0-3"
-                          }}
-                        </strong>
-                      </span>
-                    </div>
+                  <div
+                    class="col-auto"
+                    *ngIf="
+                      amount > 0 &&
+                      checkData.currency &&
+                      !isDiscountPlan &&
+                      !is30PercentBooking
+                    "
+                  >
+                    @if (isSpecialDiscount) {
+                      <div class="price-display">
+                        <span class="h4 m-0" *ngIf="actualAmount">
+                          <strong class="old-price">
+                            {{
+                              actualAmount
+                                | currency
+                                  : checkData.currency
+                                  : "symbol"
+                                  : "1.0-3"
+                            }}
+                          </strong>
+                        </span>
+                        <span class="h4 m-0">
+                          <strong class="price-amount">
+                            {{
+                              amount
+                                | currency
+                                  : checkData.currency
+                                  : "symbol"
+                                  : "1.0-3"
+                            }}
+                          </strong>
+                        </span>
+                      </div>
+                    } @else {
+                      <div class="price-display">
+                        <span class="h4 m-0">
+                          <strong [ngClass]="isDiscounted ? 'old-price' : ''"
+                            >{{
+                              amount
+                                | currency
+                                  : checkData.currency
+                                  : "symbol"
+                                  : "1.0-3"
+                            }}
+                          </strong>
+                        </span>
+                        <span class="h4 m-0">
+                          <strong *ngIf="isDiscounted" class="price-amount">
+                            {{
+                              offerAmount
+                                | currency
+                                  : checkData.currency
+                                  : "symbol"
+                                  : "1.0-3"
+                            }}
+                          </strong>
+                        </span>
+                      </div>
                     }
                   </div>
                 </div>
 
                 <!-- Price Subtitle Details -->
-                @if(isDiscountPlan && slug === routeEnum['200TTC']){
-                <div class="price-subtitle-row mt-2">
-                  <span class="price-subtitle">Full Price: <b class="highlight-text">$850 / ₹79,000</b></span>
-                </div>
+                @if (isDiscountPlan && slug === routeEnum["200TTC"]) {
+                  <div class="price-subtitle-row mt-2">
+                    <span class="price-subtitle"
+                      >Full Price:
+                      <b class="highlight-text">$850 / ₹79,000</b></span
+                    >
+                  </div>
                 }
-                @if(feesData.length>0 && !isDiscountPlan){
-                <div class="price-subtitle-row mt-2" *ngFor="let item of feesData">
-                  <span class="price-subtitle"
-                    >{{ item.title }}:
-                    <b class="highlight-text" *ngFor="let obj of item.data; let i = index"
-                      >{{
-                        isSpecialDiscount && obj.discount
-                          ? (obj.discount
-                            | currency : obj.currency : "symbol" : "1.0-3")
-                          : (obj.amount
-                            | currency : obj.currency : "symbol" : "1.0-3")
-                      }}{{ item.data.length - 1 > i ? " / " : "" }}</b
-                    ></span
+                @if (feesData.length > 0 && !isDiscountPlan) {
+                  <div
+                    class="price-subtitle-row mt-2"
+                    *ngFor="let item of feesData"
                   >
-                </div>
+                    <span class="price-subtitle"
+                      >{{ item.title }}:
+                      <b
+                        class="highlight-text"
+                        *ngFor="let obj of item.data; let i = index"
+                        >{{
+                          isSpecialDiscount && obj.discount
+                            ? (obj.discount
+                              | currency: obj.currency : "symbol" : "1.0-3")
+                            : (obj.amount
+                              | currency: obj.currency : "symbol" : "1.0-3")
+                        }}{{ item.data.length - 1 > i ? " / " : "" }}</b
+                      ></span
+                    >
+                  </div>
                 }
               </div>
 
               <!-- 30% Deposit Section — always visible when feesData is available for allowed courses -->
-              @if(show30PercentDepositSection && feesData.length > 0 && !isDiscountPlan){
-              <div class="deposit-section mt-4 pt-3">
-                <div class="row align-items-center deposit-heading-row m-0">
-                  <div class="col p-0">
-                    <span class="summary-section-heading deposit-title">Reserve your room with 30% deposit</span>
+              @if (
+                show30PercentDepositSection &&
+                feesData.length > 0 &&
+                !isDiscountPlan
+              ) {
+                <div class="deposit-section mt-4 pt-3">
+                  <div class="row align-items-center deposit-heading-row m-0">
+                    <div class="col p-0">
+                      <span class="summary-section-heading deposit-title"
+                        >Reserve your room with 30% deposit</span
+                      >
+                    </div>
+                    <div
+                      class="col-auto p-0"
+                      *ngIf="
+                        amount > 0 && checkData.currency && is30PercentBooking
+                      "
+                    >
+                      @if (isSpecialDiscount) {
+                        <span class="h4 m-0 price-display">
+                          <strong class="old-price" *ngIf="actualAmount">{{
+                            actualAmount
+                              | currency
+                                : checkData.currency
+                                : "symbol"
+                                : "1.0-3"
+                          }}</strong>
+                          <strong class="price-amount">{{
+                            amount
+                              | currency
+                                : checkData.currency
+                                : "symbol"
+                                : "1.0-3"
+                          }}</strong>
+                        </span>
+                      } @else {
+                        <span class="h4 m-0 price-display">
+                          <strong [ngClass]="isDiscounted ? 'old-price' : ''">{{
+                            amount
+                              | currency
+                                : checkData.currency
+                                : "symbol"
+                                : "1.0-3"
+                          }}</strong>
+                          <strong *ngIf="isDiscounted" class="price-amount">{{
+                            offerAmount
+                              | currency
+                                : checkData.currency
+                                : "symbol"
+                                : "1.0-3"
+                          }}</strong>
+                        </span>
+                      }
+                    </div>
                   </div>
-                  <div class="col-auto p-0" *ngIf="amount > 0 && checkData.currency && is30PercentBooking">
-                    @if(isSpecialDiscount){
-                    <span class="h4 m-0 price-display">
-                      <strong class="old-price" *ngIf="actualAmount">{{ actualAmount | currency : checkData.currency : "symbol" : "1.0-3" }}</strong>
-                      <strong class="price-amount">{{ amount | currency : checkData.currency : "symbol" : "1.0-3" }}</strong>
+                  <div
+                    class="deposit-subtitle-row mt-2"
+                    *ngFor="let item of feesData"
+                  >
+                    <span class="price-subtitle"
+                      >{{ item.title }} Deposit:
+                      <b
+                        class="highlight-text"
+                        *ngFor="let obj of item.data; let i = index"
+                        >{{
+                          obj.amount * 0.3
+                            | currency: obj.currency : "symbol" : "1.0-0"
+                        }}{{ item.data.length - 1 > i ? " / " : "" }}</b
+                      >
                     </span>
-                    }@else{
-                    <span class="h4 m-0 price-display">
-                      <strong [ngClass]="isDiscounted ? 'old-price' : ''">{{ amount | currency : checkData.currency : "symbol" : "1.0-3" }}</strong>
-                      <strong *ngIf="isDiscounted" class="price-amount">{{ offerAmount | currency : checkData.currency : "symbol" : "1.0-3" }}</strong>
-                    </span>
-                    }
                   </div>
                 </div>
-                <div class="deposit-subtitle-row mt-2" *ngFor="let item of feesData">
-                  <span class="price-subtitle">{{ item.title }} Deposit:
-                    <b class="highlight-text" *ngFor="let obj of item.data; let i = index">{{ (obj.amount * 0.3 | currency : obj.currency : "symbol" : "1.0-0") }}{{ item.data.length - 1 > i ? " / " : "" }}</b>
-                  </span>
-                </div>
-              </div>
               }
             </div>
 
             <!-- Payment Instructions Header -->
             <div class="payment-instructions-header mt-4">
               <span class="payment-instructions-title">
-                <svg class="payment-icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M2 8.5H22M2 6C2 4.89543 2.89543 4 4 4H20C21.1046 4 22 4.89543 22 6V18C22 19.1046 21.1046 20 20 20H4C2.89543 20 2 19.1046 2 18V6Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M6 14H10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <svg
+                  class="payment-icon-svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M2 8.5H22M2 6C2 4.89543 2.89543 4 4 4H20C21.1046 4 22 4.89543 22 6V18C22 19.1046 21.1046 20 20 20H4C2.89543 20 2 19.1046 2 18V6Z"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M6 14H10"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
                 </svg>
                 Payment Instructions
               </span>
@@ -139,13 +245,24 @@
             <!-- Redirection Warning Alert -->
             <div class="custom-payment-alert mt-3">
               <div class="alert-icon-container">
-                <svg class="alert-icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M12 8V12M12 16H12.01M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <svg
+                  class="alert-icon-svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M12 8V12M12 16H12.01M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
                 </svg>
               </div>
               <div class="alert-text-container">
-                Please wait to be redirected back to our website after payment to
-                receive your <strong>confirmation email</strong>.
+                Please wait to be redirected back to our website after payment
+                to receive your <strong>confirmation email</strong>.
               </div>
             </div>
           </div>
@@ -158,10 +275,11 @@
           <div class="card-body p-4">
             <h2 class="checkout-form-title mb-4">Checkout</h2>
             <div class="check-user">
-              
               <!-- Email Input -->
               <div class="mb-4 form-group-custom">
-                <label for="email" class="custom-form-label">Email Address <span class="required-asterisk">*</span></label>
+                <label for="email" class="custom-form-label"
+                  >Email Address <span class="required-asterisk">*</span></label
+                >
                 <div class="input-wrapper-custom">
                   <input
                     type="email"
@@ -175,10 +293,16 @@
                     [readOnly]="paymentId ? true : false"
                   />
                 </div>
-                <div *ngIf="emailSuggestion" class="validation-error-text text-danger mt-1">
+                <div
+                  *ngIf="emailSuggestion"
+                  class="validation-error-text text-danger mt-1"
+                >
                   {{ emailSuggestion }}
                 </div>
-                <div *ngIf="emailRequired" class="validation-error-text text-danger mt-1">
+                <div
+                  *ngIf="emailRequired"
+                  class="validation-error-text text-danger mt-1"
+                >
                   {{ emailRequired }}
                 </div>
               </div>
@@ -191,7 +315,9 @@
                   (!oldStudent && slug !== 'pranic-purification')
                 "
               >
-                <label for="name" class="custom-form-label">Full Name <span class="required-asterisk">*</span></label>
+                <label for="name" class="custom-form-label"
+                  >Full Name <span class="required-asterisk">*</span></label
+                >
                 <div class="input-wrapper-custom">
                   <input
                     type="text"
@@ -203,52 +329,66 @@
                     [readOnly]="paymentId ? true : false"
                   />
                 </div>
-                <div *ngIf="nameRequired" class="validation-error-text text-danger mt-1">
+                <div
+                  *ngIf="nameRequired"
+                  class="validation-error-text text-danger mt-1"
+                >
                   {{ nameRequired }}
                 </div>
               </div>
 
               <!-- WhatsApp Number Input -->
               <div class="mb-4 form-group-custom">
-                <label class="custom-form-label">WhatsApp Number <span class="required-asterisk">*</span></label>
-                @if(paymentId){
-                <div class="input-wrapper-custom">
-                  <input
-                    type="text"
-                    class="form-control custom-input"
-                    [(ngModel)]="checkData.phoneNumber.e164Number"
-                    [readOnly]="true"
-                  />
-                </div>
-                }@else{
-                <div class="whatsapp-div custom-whatsapp-wrapper">
-                  <ngx-intl-tel-input
-                    [cssClass]="'form-control custom-input phone_input'"
-                    [separateDialCode]="true"
-                    [preferredCountries]="['in', 'us']"
-                    [enableAutoCountrySelect]="true"
-                    [enablePlaceholder]="false"
-                    [searchCountryFlag]="true"
-                    [searchCountryField]="searchFields"
-                    [selectFirstCountry]="false"
-                    [selectedCountryISO]="CountryISO.India"
-                    [maxLength]="15"
-                    [phoneValidation]="true"
-                    #phoneInput="ngModel"
-                    required
-                    (input)="onPhoneInputChange(!!phoneInput.valid, phoneInput)"
-                    [(ngModel)]="checkData.phoneNumber"
-                    (countryChange)="onCountryChange()"
-                    (keyup)="inputValidation('phone')"
+                <label class="custom-form-label"
+                  >WhatsApp Number
+                  <span class="required-asterisk">*</span></label
+                >
+                @if (paymentId) {
+                  <div class="input-wrapper-custom">
+                    <input
+                      type="text"
+                      class="form-control custom-input"
+                      [(ngModel)]="checkData.phoneNumber.e164Number"
+                      [readOnly]="true"
+                    />
+                  </div>
+                } @else {
+                  <div class="whatsapp-div custom-whatsapp-wrapper">
+                    <ngx-intl-tel-input
+                      [cssClass]="'form-control custom-input phone_input'"
+                      [separateDialCode]="true"
+                      [preferredCountries]="['in', 'us']"
+                      [enableAutoCountrySelect]="true"
+                      [enablePlaceholder]="false"
+                      [searchCountryFlag]="true"
+                      [searchCountryField]="searchFields"
+                      [selectFirstCountry]="false"
+                      [selectedCountryISO]="CountryISO.India"
+                      [maxLength]="15"
+                      [phoneValidation]="true"
+                      #phoneInput="ngModel"
+                      required
+                      (input)="
+                        onPhoneInputChange(!!phoneInput.valid, phoneInput)
+                      "
+                      [(ngModel)]="checkData.phoneNumber"
+                      (countryChange)="onCountryChange()"
+                      (keyup)="inputValidation('phone')"
+                    >
+                    </ngx-intl-tel-input>
+                  </div>
+                  <div
+                    *ngIf="phoneError"
+                    class="validation-error-text text-danger mt-1"
                   >
-                  </ngx-intl-tel-input>
-                </div>
-                <div *ngIf="phoneError" class="validation-error-text text-danger mt-1">
-                  {{ phoneError }}
-                </div>
-                <div *ngIf="phoneRequired" class="validation-error-text text-danger mt-1">
-                  {{ phoneRequired }}
-                </div>
+                    {{ phoneError }}
+                  </div>
+                  <div
+                    *ngIf="phoneRequired"
+                    class="validation-error-text text-danger mt-1"
+                  >
+                    {{ phoneRequired }}
+                  </div>
                 }
               </div>
 
@@ -258,17 +398,20 @@
                 *ngIf="
                   slug == routeEnum['200TTC'] ||
                   (!isDiscountPlan &&
-                  (slug == routeEnum.rishikesh100 ||
-                  slug == routeEnum.rishkesh200 ||
-                  slug == routeEnum.rishikesh300 ||
-                  slug == routeEnum.bali300 ||
-                  slug == routeEnum.bali200 ||
-                  slug == routeEnum.bali100 ||
-                  slug == routeEnum.pranayamaCertification ||
-              slug == routeEnum.retreats))
+                    (slug == routeEnum.rishikesh100 ||
+                      slug == routeEnum.rishkesh200 ||
+                      slug == routeEnum.rishikesh300 ||
+                      slug == routeEnum.bali300 ||
+                      slug == routeEnum.bali200 ||
+                      slug == routeEnum.bali100 ||
+                      slug == routeEnum.pranayamaCertification ||
+                      slug == routeEnum.retreats))
                 "
               >
-                <label for="room" class="custom-form-label">Booking Option <span class="required-asterisk">*</span></label>
+                <label for="room" class="custom-form-label"
+                  >Booking Option
+                  <span class="required-asterisk">*</span></label
+                >
                 <div class="input-wrapper-custom select-wrapper-custom">
                   <select
                     class="form-control custom-select"
@@ -281,14 +424,158 @@
                     </option>
                   </select>
                 </div>
-                <div *ngIf="packageRequired" class="validation-error-text text-danger mt-1">
+                <div
+                  *ngIf="packageRequired"
+                  class="validation-error-text text-danger mt-1"
+                >
                   {{ packageRequired }}
                 </div>
               </div>
 
+              <!-- Appointment Date & Time Selection -->
+              @if (slug == routeEnum.pg) {
+                <div class="mb-4 form-group-custom appointment-selection">
+                  <label for="appointmentDate" class="custom-form-label"
+                    >Select Date <span class="required-asterisk">*</span></label
+                  >
+                  <div class="input-wrapper-custom custom-calendar-wrapper">
+                    <button
+                      type="button"
+                      class="form-control custom-input custom-calendar-trigger"
+                      id="appointmentDate"
+                      [disabled]="paymentId ? true : false"
+                      (click)="toggleCalendar()"
+                      [attr.aria-expanded]="isCalendarOpen"
+                      aria-haspopup="dialog"
+                    >
+                      <span
+                        [class.calendar-placeholder]="
+                          !checkData.appointmentDate
+                        "
+                      >
+                        {{ formatSelectedDate() || "dd-mm-yyyy" }}
+                      </span>
+                      <svg
+                        class="calendar-trigger-icon"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        aria-hidden="true"
+                      >
+                        <path
+                          d="M7 3V6M17 3V6M4 9H20M5 5H19C19.5523 5 20 5.44772 20 6V19C20 19.5523 19.5523 20 19 20H5C4.44772 20 4 19.5523 4 19V6C4 5.44772 4.44772 5 5 5Z"
+                          stroke="currentColor"
+                          stroke-width="1.8"
+                          stroke-linecap="round"
+                        />
+                      </svg>
+                    </button>
+
+                    <div
+                      *ngIf="isCalendarOpen"
+                      class="custom-calendar-popup"
+                      role="dialog"
+                      aria-label="Select appointment date"
+                    >
+                      <div class="calendar-header">
+                        <div>
+                          <strong>{{ calendarMonthLabel }}</strong>
+                        </div>
+                        <div class="calendar-navigation">
+                          <button
+                            type="button"
+                            class="calendar-nav-button"
+                            (click)="showPreviousMonth()"
+                            [disabled]="!canViewPreviousMonth"
+                            aria-label="Previous month"
+                          >
+                            <span aria-hidden="true" style="color: #fff">‹</span>
+                          </button>
+                          <button
+                            type="button"
+                            class="calendar-nav-button"
+                            (click)="showNextMonth()"
+                            aria-label="Next month"
+                          >
+                            <span aria-hidden="true" style="color: #fff">›</span>
+                          </button>
+                        </div>
+                      </div>
+
+                      <div class="calendar-weekdays">
+                        <span *ngFor="let weekday of calendarWeekdays">{{
+                          weekday
+                        }}</span>
+                      </div>
+                      <div class="calendar-days">
+                        <button
+                          *ngFor="let day of calendarDays"
+                          type="button"
+                          class="calendar-day"
+                          [class.calendar-day-outside]="!day.isCurrentMonth"
+                          [class.calendar-day-today]="day.isToday"
+                          [class.calendar-day-selected]="
+                            isSelectedCalendarDate(day)
+                          "
+                          [disabled]="day.isPast"
+                          (click)="selectAppointmentDate(day)"
+                        >
+                          {{ day.dayNumber }}
+                        </button>
+                      </div>
+
+                      <div class="calendar-footer">
+                        <span>Available from today</span>
+                        <button type="button" (click)="selectToday()">
+                          Today
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    *ngIf="appointmentDateRequired"
+                    class="validation-error-text text-danger mt-1"
+                  >
+                    {{ appointmentDateRequired }}
+                  </div>
+
+                  <label for="appointmentTime" class="custom-form-label mt-3"
+                    >Select Time <span class="required-asterisk">*</span></label
+                  >
+                  <div class="input-wrapper-custom select-wrapper-custom">
+                    <select
+                      class="form-control custom-select"
+                      id="appointmentTime"
+                      name="appointmentTime"
+                      [(ngModel)]="checkData.appointmentTime"
+                      [disabled]="paymentId ? true : false"
+                      (ngModelChange)="inputValidation('appointmentTime')"
+                    >
+                      <option value="" disabled>
+                        Select a 45-minute time slot
+                      </option>
+                      <option
+                        *ngFor="let slot of timeSlots"
+                        [value]="slot.value"
+                      >
+                        {{ slot.label }}
+                      </option>
+                    </select>
+                  </div>
+                  <div
+                    *ngIf="appointmentTimeRequired"
+                    class="validation-error-text text-danger mt-1"
+                  >
+                    {{ appointmentTimeRequired }}
+                  </div>
+                </div>
+              }
+
               <!-- Payment Currency Selection -->
               <div class="mb-4 form-group-custom">
-                <label for="currency" class="custom-form-label">Payment Currency <span class="required-asterisk">*</span></label>
+                <label for="currency" class="custom-form-label"
+                  >Payment Currency
+                  <span class="required-asterisk">*</span></label
+                >
                 <div class="input-wrapper-custom select-wrapper-custom">
                   <select
                     class="form-control custom-select"
@@ -297,20 +584,34 @@
                     (ngModelChange)="onCurrencyChange($event)"
                     [disabled]="paymentId ? true : false"
                   >
-                    <option *ngFor="let option of currencyOptions" [value]="option">
+                    <option
+                      *ngFor="let option of currencyOptions"
+                      [value]="option"
+                    >
                       {{ option }}
                     </option>
                   </select>
                 </div>
-                <div *ngIf="currencyRequired" class="validation-error-text text-danger mt-1">
+                <div
+                  *ngIf="currencyRequired"
+                  class="validation-error-text text-danger mt-1"
+                >
                   {{ currencyRequired }}
                 </div>
               </div>
 
               <!-- Referral Code Input -->
-              <div class="mb-4 form-group-custom" *ngIf="slug == 'pranayama-course-online-pranarambha'">
-                <label for="refferal" class="custom-form-label">Referral Code</label>
-                <span class="referral-hint d-block mb-2">Use the referral code you received when purchasing Pranayama Sadhana.</span>
+              <div
+                class="mb-4 form-group-custom"
+                *ngIf="slug == 'pranayama-course-online-pranarambha'"
+              >
+                <label for="refferal" class="custom-form-label"
+                  >Referral Code</label
+                >
+                <span class="referral-hint d-block mb-2"
+                  >Use the referral code you received when purchasing Pranayama
+                  Sadhana.</span
+                >
                 <div class="input-wrapper-custom">
                   <input
                     type="text"
@@ -321,7 +622,10 @@
                     (blur)="checkDiscount()"
                   />
                 </div>
-                <div *ngIf="codeError" class="validation-error-text text-danger mt-1">
+                <div
+                  *ngIf="codeError"
+                  class="validation-error-text text-danger mt-1"
+                >
                   {{ codeError }}
                 </div>
               </div>
@@ -329,7 +633,11 @@
               <!-- Address Input (Certain Slugs only) -->
               <div
                 class="mb-4 form-group-custom"
-                *ngIf="slug === routeEnum.pranicPurification || slug == routeEnum.sa || slug == routeEnum.pranicPurificationII"
+                *ngIf="
+                  slug === routeEnum.pranicPurification ||
+                  slug == routeEnum.sa ||
+                  slug == routeEnum.pranicPurificationII
+                "
               >
                 <label for="address" class="custom-form-label">Address</label>
                 <div class="input-wrapper-custom">
@@ -345,9 +653,11 @@
 
               <!-- Payment Buttons Selector -->
               <div class="payment-selector-container mt-4 pt-2">
-                <span class="custom-form-label d-block mb-3">Pay Securely With <span class="required-asterisk">*</span></span>
+                <span class="custom-form-label d-block mb-3"
+                  >Pay Securely With
+                  <span class="required-asterisk">*</span></span
+                >
                 <div class="payment-methods-grid">
-                  
                   <!-- Razorpay -->
                   <button
                     type="button"
@@ -392,16 +702,14 @@
                       class="gateway-logo"
                     />
                   </button>
-                  
                 </div>
               </div>
-
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-}@else {
+} @else {
   <h1>404 Not Found</h1>
 }
