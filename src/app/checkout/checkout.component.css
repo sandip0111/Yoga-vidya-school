@@ -296,6 +296,42 @@ h3 {
   border-radius: 13px 13px 0 0;
 }
 
+.calendar-select-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.calendar-select {
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 6px;
+  padding: 4px 8px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  outline: none;
+  transition: background 0.2s ease, border-color 0.2s ease;
+  appearance: auto;
+}
+
+.calendar-select:hover,
+.calendar-select:focus {
+  background: rgba(255, 255, 255, 0.35);
+  border-color: rgba(255, 255, 255, 0.7);
+}
+
+.calendar-select option {
+  background: #ffffff;
+  color: #222222;
+  font-weight: 600;
+}
+
+.calendar-select option:disabled {
+  color: #aaaaaa;
+}
+
 .calendar-header-label {
   display: block;
   margin-bottom: 2px;

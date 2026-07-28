@@ -477,8 +477,38 @@
                       aria-label="Select appointment date"
                     >
                       <div class="calendar-header">
-                        <div>
-                          <strong>{{ calendarMonthLabel }}</strong>
+                        <div class="calendar-select-group">
+                          <select
+                            class="calendar-select"
+                            [ngModel]="calendarViewDate.getMonth()"
+                            (ngModelChange)="setCalendarMonth($event)"
+                            aria-label="Select month"
+                          >
+                            <option
+                              *ngFor="
+                                let month of calendarMonths;
+                                let i = index
+                              "
+                              [value]="i"
+                              [disabled]="isCalendarMonthDisabled(i)"
+                            >
+                              {{ month }}
+                            </option>
+                          </select>
+
+                          <select
+                            class="calendar-select"
+                            [ngModel]="calendarViewDate.getFullYear()"
+                            (ngModelChange)="setCalendarYear($event)"
+                            aria-label="Select year"
+                          >
+                            <option
+                              *ngFor="let year of calendarYears"
+                              [value]="year"
+                            >
+                              {{ year }}
+                            </option>
+                          </select>
                         </div>
                         <div class="calendar-navigation">
                           <button
