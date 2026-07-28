@@ -54,6 +54,7 @@ export class SuccessPaymentComponent {
   rishikeshPaypalOrderId: string = '';
   baliPaypalOrderId: string = '';
   liveClassesPaypalOrderId: string = '';
+  pgRazorPaySessionId: string = '';
   constructor(
     private webapiService: WebapiService,
     private router: Router,
@@ -149,6 +150,8 @@ export class SuccessPaymentComponent {
         ? ''
         : tokenFromUrl) ||
       '';
+    this.pgRazorPaySessionId =
+      localStorage.getItem(localstorageKey.pgRzpId) ?? '';
     // Track purchase completion after a short delay to ensure data is loaded
 
     if (this.sessionId) {
@@ -301,6 +304,11 @@ export class SuccessPaymentComponent {
     if (this.liveClassesPaypalOrderId) {
       setTimeout(() => {
         this.getPaypalPaymentResultLiveClasses(this.liveClassesPaypalOrderId);
+      }, 0);
+    }
+    if (this.pgRazorPaySessionId) {
+      setTimeout(() => {
+        this.getRazorPaymentResultPg(this.pgRazorPaySessionId);
       }, 0);
     }
   }
@@ -1262,6 +1270,7 @@ export class SuccessPaymentComponent {
         }
       });
   }
+  //#endregion
   getPaypalPaymentResultRishikesh(paypalOrderId: string) {
     const fbp = this.getCookie('_fbp');
     const fbc = this.getCookie('_fbc');
@@ -1313,31 +1322,29 @@ export class SuccessPaymentComponent {
       fbp: fbp,
       fbc: fbc,
     };
-    this.webapiService
-      .getPaypalPaymentResultBali(val)
-      .subscribe((res: any) => {
-        const responseData = res?.data || res;
-        if (
-          responseData &&
-          (responseData.status === 'success' ||
-            res.status === 'success' ||
-            res.status === 200)
-        ) {
-          this.isRishikesh = true;
-          localStorage.removeItem(localstorageKey.baliPaypalOrderId);
-          localStorage.removeItem(localstorageKey.baliPaypalDBId);
-          this.paidFlag = 'true';
-          this.ordId = responseData.paymtId || res.paymtId || paypalOrderId;
-          this.amount = responseData.amount || res.amount || 0;
-          this.cur = this.currencySet(
-            responseData.currency || res.currency || 'USD',
-          );
-          this.spinner.hide();
-        } else {
-          this.paidFlag = 'false';
-          this.spinner.hide();
-        }
-      });
+    this.webapiService.getPaypalPaymentResultBali(val).subscribe((res: any) => {
+      const responseData = res?.data || res;
+      if (
+        responseData &&
+        (responseData.status === 'success' ||
+          res.status === 'success' ||
+          res.status === 200)
+      ) {
+        this.isRishikesh = true;
+        localStorage.removeItem(localstorageKey.baliPaypalOrderId);
+        localStorage.removeItem(localstorageKey.baliPaypalDBId);
+        this.paidFlag = 'true';
+        this.ordId = responseData.paymtId || res.paymtId || paypalOrderId;
+        this.amount = responseData.amount || res.amount || 0;
+        this.cur = this.currencySet(
+          responseData.currency || res.currency || 'USD',
+        );
+        this.spinner.hide();
+      } else {
+        this.paidFlag = 'false';
+        this.spinner.hide();
+      }
+    });
   }
   getPaypalPaymentResultLiveClasses(paypalOrderId: string) {
     const fbp = this.getCookie('_fbp');
@@ -1383,6 +1390,41 @@ export class SuccessPaymentComponent {
         sessionStorage.removeItem('liveClassesPaypalDBId');
         localStorage.removeItem(localstorageKey.liveClassesPaypalOrderId);
         localStorage.removeItem(localstorageKey.liveClassesPaypalDBId);
+      });
+  }
+  //#region personal guidance
+  getRazorPaymentResultPg(razorpayPaymentId: string) {
+    const fbp = this.getCookie('_fbp');
+    const fbc = this.getCookie('_fbc');
+    const paymentResult: razorPaymentResultModel = {
+      razorpayPaymentId: razorpayPaymentId,
+      razorpayOrderId: localStorage.getItem(localstorageKey.pgOrderId),
+      razorpaySignature: localStorage.getItem(localstorageKey.pgSig),
+      payDbId: localStorage.getItem(localstorageKey.pgDBId),
+      fbp: fbp,
+      fbc: fbc,
+    };
+    this.webapiService
+      .getRazorPaymentResultPg(paymentResult)
+      .subscribe((res: razorPayReturnModel) => {
+        if (res) {
+          this.isRetreat = true;
+          this.paidFlag = 'true';
+          this.ordId = paymentResult.razorpayOrderId;
+          this.amount = res.amount;
+          this.cur = this.currencySet(res.currency);
+          this.spinner.hide();
+        } else {
+          this.paidFlag = 'false';
+          this.spinner.hide();
+        }
+        localStorage.removeItem(localstorageKey.pgRzpId);
+        localStorage.removeItem(localstorageKey.pgOrderId);
+        localStorage.removeItem(localstorageKey.pgSig);
+        localStorage.removeItem(localstorageKey.pgDBId);
+        localStorage.removeItem(localstorageKey.pgAmnt);
+        localStorage.removeItem(localstorageKey.pgCurr);
+        localStorage.removeItem(localstorageKey.pgUserID);
       });
   }
   //#endregion

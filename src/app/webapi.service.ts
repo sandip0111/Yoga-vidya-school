@@ -529,4 +529,12 @@ export class WebapiService {
       data,
     );
   }
+  getRazorPaymentResultPg(
+    data: razorPaymentResultModel,
+  ): Observable<razorPayReturnModel> {
+    return this.http.post<razorPayReturnModel>(
+      this.url + 'api/v1/getRazorPaymentResultPg',
+      data,
+    );
+  }
 }
