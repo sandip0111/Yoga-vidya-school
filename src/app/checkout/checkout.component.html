@@ -478,43 +478,93 @@
                     >
                       <div class="calendar-header">
                         <div class="calendar-select-group">
-                          <select
-                            class="calendar-select"
-                            [ngModel]="calendarViewDate.getMonth()"
-                            (ngModelChange)="setCalendarMonth($event)"
-                            aria-label="Select month"
-                          >
-                            <option
-                              *ngFor="
-                                let month of calendarMonths;
-                                let i = index
-                              "
-                              [value]="i"
-                              [disabled]="isCalendarMonthDisabled(i)"
+                          <!-- Month Custom Dropdown -->
+                          <div class="calendar-dropdown-container">
+                            <button
+                              type="button"
+                              class="calendar-dropdown-btn"
+                              (click)="toggleMonthDropdown($event)"
                             >
-                              {{ month }}
-                            </option>
-                          </select>
+                              <span>{{
+                                calendarMonths[calendarViewDate.getMonth()]
+                              }}</span>
+                              <svg
+                                class="dropdown-chevron"
+                                viewBox="0 0 20 20"
+                                fill="currentColor"
+                              >
+                                <path
+                                  fill-rule="evenodd"
+                                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                  clip-rule="evenodd"
+                                />
+                              </svg>
+                            </button>
+                            <div
+                              *ngIf="isMonthDropdownOpen"
+                              class="calendar-dropdown-menu month-dropdown-menu fancy-scrollbar"
+                            >
+                              <button
+                                *ngFor="
+                                  let month of calendarMonths;
+                                  let i = index
+                                "
+                                type="button"
+                                class="calendar-dropdown-item"
+                                [class.active]="
+                                  calendarViewDate.getMonth() === i
+                                "
+                                [disabled]="isCalendarMonthDisabled(i)"
+                                (click)="selectMonth(i, $event)"
+                              >
+                                {{ month }}
+                              </button>
+                            </div>
+                          </div>
 
-                          <select
-                            class="calendar-select"
-                            [ngModel]="calendarViewDate.getFullYear()"
-                            (ngModelChange)="setCalendarYear($event)"
-                            aria-label="Select year"
-                          >
-                            <option
-                              *ngFor="let year of calendarYears"
-                              [value]="year"
+                          <!-- Year Custom Dropdown -->
+                          <div class="calendar-dropdown-container">
+                            <button
+                              type="button"
+                              class="calendar-dropdown-btn"
+                              (click)="toggleYearDropdown($event)"
                             >
-                              {{ year }}
-                            </option>
-                          </select>
+                              <span>{{ calendarViewDate.getFullYear() }}</span>
+                              <svg
+                                class="dropdown-chevron"
+                                viewBox="0 0 20 20"
+                                fill="currentColor"
+                              >
+                                <path
+                                  fill-rule="evenodd"
+                                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                  clip-rule="evenodd"
+                                />
+                              </svg>
+                            </button>
+                            <div
+                              *ngIf="isYearDropdownOpen"
+                              class="calendar-dropdown-menu year-dropdown-menu fancy-scrollbar"
+                            >
+                              <button
+                                *ngFor="let year of calendarYears"
+                                type="button"
+                                class="calendar-dropdown-item"
+                                [class.active]="
+                                  calendarViewDate.getFullYear() === year
+                                "
+                                (click)="selectYear(year, $event)"
+                              >
+                                {{ year }}
+                              </button>
+                            </div>
+                          </div>
                         </div>
                         <div class="calendar-navigation">
                           <button
                             type="button"
                             class="calendar-nav-button"
-                            (click)="showPreviousMonth()"
+                            (click)="showPreviousMonth($event)"
                             [disabled]="!canViewPreviousMonth"
                             aria-label="Previous month"
                           >
@@ -523,7 +573,7 @@
                           <button
                             type="button"
                             class="calendar-nav-button"
-                            (click)="showNextMonth()"
+                            (click)="showNextMonth($event)"
                             aria-label="Next month"
                           >
                             <span aria-hidden="true" style="color: #fff">›</span>

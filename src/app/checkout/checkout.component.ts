@@ -4,6 +4,8 @@ import {
   Inject,
   ViewChild,
   DOCUMENT,
+  ElementRef,
+  HostListener,
 } from '@angular/core';
 
 import { WebapiService } from '../webapi.service';
@@ -183,6 +185,7 @@ export class CheckoutComponent {
     @Inject(DOCUMENT) private _document: Document,
     private _renderer2: Renderer2,
     private pixelTracking: PixelTrackingService,
+    private elementRef: ElementRef,
   ) {
     this._activatedRoute.params.subscribe((params) => {
       this.slug = params['id'];
@@ -203,6 +206,75 @@ export class CheckoutComponent {
       const id = this._activatedRoute.snapshot.queryParamMap.get('type');
       this.pgId = id ? +id : 0;
     }
+  }
+
+  isMonthDropdownOpen: boolean = false;
+  isYearDropdownOpen: boolean = false;
+
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent): void {
+    if (!this.isCalendarOpen) return;
+    const target = event.target as HTMLElement;
+    if (!target || !document.body.contains(target)) return;
+    const calendarWrapper =
+      this.elementRef.nativeElement.querySelector('.custom-calendar-wrapper');
+    if (calendarWrapper && !calendarWrapper.contains(target)) {
+      this.isCalendarOpen = false;
+      this.isMonthDropdownOpen = false;
+      this.isYearDropdownOpen = false;
+    }
+  }
+
+  toggleMonthDropdown(event?: Event): void {
+    if (event) event.stopPropagation();
+    this.isMonthDropdownOpen = !this.isMonthDropdownOpen;
+    this.isYearDropdownOpen = false;
+    if (this.isMonthDropdownOpen) {
+      setTimeout(
+        () => this.scrollToActiveDropdownItem('.month-dropdown-menu'),
+        0,
+      );
+    }
+  }
+
+  toggleYearDropdown(event?: Event): void {
+    if (event) event.stopPropagation();
+    this.isYearDropdownOpen = !this.isYearDropdownOpen;
+    this.isMonthDropdownOpen = false;
+    if (this.isYearDropdownOpen) {
+      setTimeout(
+        () => this.scrollToActiveDropdownItem('.year-dropdown-menu'),
+        0,
+      );
+    }
+  }
+
+  private scrollToActiveDropdownItem(menuSelector: string): void {
+    const menu = this.elementRef.nativeElement.querySelector(
+      menuSelector,
+    ) as HTMLElement;
+    if (!menu) return;
+    const activeItem = menu.querySelector(
+      '.calendar-dropdown-item.active',
+    ) as HTMLElement;
+    if (activeItem) {
+      const targetScrollTop =
+        activeItem.offsetTop -
+        (menu.clientHeight - activeItem.offsetHeight) / 2;
+      menu.scrollTop = Math.max(0, targetScrollTop);
+    }
+  }
+
+  selectMonth(monthIndex: number, event?: Event): void {
+    if (event) event.stopPropagation();
+    this.setCalendarMonth(monthIndex);
+    this.isMonthDropdownOpen = false;
+  }
+
+  selectYear(year: number, event?: Event): void {
+    if (event) event.stopPropagation();
+    this.setCalendarYear(year);
+    this.isYearDropdownOpen = false;
   }
 
   private getTodayDate(): string {
@@ -258,6 +330,8 @@ export class CheckoutComponent {
   toggleCalendar(): void {
     if (this.paymentId) return;
     this.isCalendarOpen = !this.isCalendarOpen;
+    this.isMonthDropdownOpen = false;
+    this.isYearDropdownOpen = false;
     if (this.isCalendarOpen && this.checkData.appointmentDate) {
       this.calendarViewDate = this.getStartOfDay(
         this.checkData.appointmentDate,
@@ -265,7 +339,8 @@ export class CheckoutComponent {
     }
   }
 
-  showPreviousMonth(): void {
+  showPreviousMonth(event?: Event): void {
+    if (event) event.stopPropagation();
     if (this.canViewPreviousMonth) {
       this.calendarViewDate = new Date(
         this.calendarViewDate.getFullYear(),
@@ -275,7 +350,8 @@ export class CheckoutComponent {
     }
   }
 
-  showNextMonth(): void {
+  showNextMonth(event?: Event): void {
+    if (event) event.stopPropagation();
     this.calendarViewDate = new Date(
       this.calendarViewDate.getFullYear(),
       this.calendarViewDate.getMonth() + 1,
