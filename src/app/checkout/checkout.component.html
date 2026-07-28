@@ -485,7 +485,7 @@
                               class="calendar-dropdown-btn"
                               (click)="toggleMonthDropdown($event)"
                             >
-                              <span>{{
+                              <span style="color: #fff">{{
                                 calendarMonths[calendarViewDate.getMonth()]
                               }}</span>
                               <svg
@@ -529,7 +529,9 @@
                               class="calendar-dropdown-btn"
                               (click)="toggleYearDropdown($event)"
                             >
-                              <span>{{ calendarViewDate.getFullYear() }}</span>
+                              <span style="color: #fff">{{
+                                calendarViewDate.getFullYear()
+                              }}</span>
                               <svg
                                 class="dropdown-chevron"
                                 viewBox="0 0 20 20"
@@ -568,7 +570,9 @@
                             [disabled]="!canViewPreviousMonth"
                             aria-label="Previous month"
                           >
-                            <span aria-hidden="true" style="color: #fff">‹</span>
+                            <span aria-hidden="true" style="color: #fff"
+                              >‹</span
+                            >
                           </button>
                           <button
                             type="button"
@@ -576,7 +580,9 @@
                             (click)="showNextMonth($event)"
                             aria-label="Next month"
                           >
-                            <span aria-hidden="true" style="color: #fff">›</span>
+                            <span aria-hidden="true" style="color: #fff"
+                              >›</span
+                            >
                           </button>
                         </div>
                       </div>
@@ -631,8 +637,13 @@
                       [attr.aria-expanded]="isTimeDropdownOpen"
                       aria-haspopup="listbox"
                     >
-                      <span [class.time-placeholder]="!checkData.appointmentTime">
-                        {{ checkData.appointmentTime || "Select a 45-minute time slot" }}
+                      <span
+                        [class.time-placeholder]="!checkData.appointmentTime"
+                      >
+                        {{
+                          checkData.appointmentTime ||
+                            "Select a 45-minute time slot"
+                        }}
                       </span>
                       <svg
                         class="time-trigger-icon"
@@ -664,10 +675,14 @@
                         *ngFor="let slot of timeSlots"
                         type="button"
                         class="custom-time-item"
-                        [class.active]="checkData.appointmentTime === slot.value"
+                        [class.active]="
+                          checkData.appointmentTime === slot.value
+                        "
                         (click)="selectTimeSlot(slot.value, $event)"
                         role="option"
-                        [attr.aria-selected]="checkData.appointmentTime === slot.value"
+                        [attr.aria-selected]="
+                          checkData.appointmentTime === slot.value
+                        "
                       >
                         <svg
                           class="time-clock-icon"
@@ -679,7 +694,7 @@
                           <circle cx="12" cy="12" r="9" />
                           <polyline points="12 7 12 12 15 15" />
                         </svg>
-                        <span>{{ slot.label }}</span>
+                        <span style="color: #fff">{{ slot.label }}</span>
                       </button>
                     </div>
                   </div>
