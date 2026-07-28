@@ -709,3 +709,132 @@ h3 {
 .payment-method-btn:hover .gateway-logo {
   transform: scale(1.04);
 }
+
+/* --- Custom Time Slot Dropdown --- */
+.custom-time-wrapper {
+  position: relative;
+}
+
+.custom-time-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 12px 16px;
+  background: #ffffff;
+  border: 1px solid #fed7aa;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #222222;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+}
+
+.custom-time-trigger:hover:not(:disabled),
+.custom-time-trigger:focus {
+  border-color: #f47019;
+  box-shadow: 0 0 0 3px rgba(244, 112, 25, 0.15);
+  outline: none;
+}
+
+.time-placeholder {
+  color: #94a3b8;
+  font-weight: 400;
+}
+
+.time-trigger-icon {
+  width: 18px;
+  height: 18px;
+  color: #f47019;
+  transition: transform 0.2s ease;
+}
+
+.custom-time-trigger[aria-expanded="true"] .time-trigger-icon {
+  transform: rotate(180deg);
+}
+
+.custom-time-popup {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  z-index: 100;
+  max-height: 210px;
+  overflow-y: auto;
+  background: #ffffff;
+  border: 1px solid #fed7aa;
+  border-radius: 12px;
+  box-shadow: 0 12px 28px rgba(244, 112, 25, 0.18);
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  animation: timeFadeIn 0.15s ease-out;
+}
+
+@keyframes timeFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.custom-time-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 10px 14px;
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: #334155;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.15s ease;
+}
+
+.time-clock-icon {
+  width: 16px;
+  height: 16px;
+  color: #94a3b8;
+  flex-shrink: 0;
+  transition: color 0.15s ease;
+}
+
+.custom-time-item:hover {
+  background: #fff7ed;
+  color: #ea580c;
+}
+
+.custom-time-item:hover .time-clock-icon {
+  color: #ea580c;
+}
+
+.custom-time-item.active {
+  background: linear-gradient(135deg, #f47019, #e5600c);
+  color: #ffffff;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(244, 112, 25, 0.3);
+}
+
+.custom-time-item.active .time-clock-icon {
+  color: #ffffff;
+}
+
+.custom-time-no-slots {
+  padding: 14px;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #94a3b8;
+  font-weight: 500;
+}

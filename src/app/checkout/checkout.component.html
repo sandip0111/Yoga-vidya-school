@@ -621,25 +621,67 @@
                   <label for="appointmentTime" class="custom-form-label mt-3"
                     >Select Time <span class="required-asterisk">*</span></label
                   >
-                  <div class="input-wrapper-custom select-wrapper-custom">
-                    <select
-                      class="form-control custom-select"
+                  <div class="input-wrapper-custom custom-time-wrapper">
+                    <button
+                      type="button"
+                      class="form-control custom-input custom-time-trigger"
                       id="appointmentTime"
-                      name="appointmentTime"
-                      [(ngModel)]="checkData.appointmentTime"
                       [disabled]="paymentId ? true : false"
-                      (ngModelChange)="inputValidation('appointmentTime')"
+                      (click)="toggleTimeDropdown($event)"
+                      [attr.aria-expanded]="isTimeDropdownOpen"
+                      aria-haspopup="listbox"
                     >
-                      <option value="" disabled>
-                        Select a 45-minute time slot
-                      </option>
-                      <option
-                        *ngFor="let slot of timeSlots"
-                        [value]="slot.value"
+                      <span [class.time-placeholder]="!checkData.appointmentTime">
+                        {{ checkData.appointmentTime || "Select a 45-minute time slot" }}
+                      </span>
+                      <svg
+                        class="time-trigger-icon"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                        aria-hidden="true"
                       >
-                        {{ slot.label }}
-                      </option>
-                    </select>
+                        <path
+                          fill-rule="evenodd"
+                          d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                          clip-rule="evenodd"
+                        />
+                      </svg>
+                    </button>
+
+                    <div
+                      *ngIf="isTimeDropdownOpen"
+                      class="custom-time-popup fancy-scrollbar"
+                      role="listbox"
+                      aria-label="Select appointment time"
+                    >
+                      <div
+                        *ngIf="timeSlots.length === 0"
+                        class="custom-time-no-slots"
+                      >
+                        No slots available for today
+                      </div>
+                      <button
+                        *ngFor="let slot of timeSlots"
+                        type="button"
+                        class="custom-time-item"
+                        [class.active]="checkData.appointmentTime === slot.value"
+                        (click)="selectTimeSlot(slot.value, $event)"
+                        role="option"
+                        [attr.aria-selected]="checkData.appointmentTime === slot.value"
+                      >
+                        <svg
+                          class="time-clock-icon"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                        >
+                          <circle cx="12" cy="12" r="9" />
+                          <polyline points="12 7 12 12 15 15" />
+                        </svg>
+                        <span>{{ slot.label }}</span>
+                      </button>
+                    </div>
                   </div>
                   <div
                     *ngIf="appointmentTimeRequired"

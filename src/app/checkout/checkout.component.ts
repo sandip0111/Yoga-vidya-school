@@ -210,12 +210,14 @@ export class CheckoutComponent {
 
   isMonthDropdownOpen: boolean = false;
   isYearDropdownOpen: boolean = false;
+  isTimeDropdownOpen: boolean = false;
 
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: MouseEvent): void {
-    if (!this.isCalendarOpen) return;
+    if (!this.isCalendarOpen && !this.isTimeDropdownOpen) return;
     const target = event.target as HTMLElement;
     if (!target || !document.body.contains(target)) return;
+
     const calendarWrapper =
       this.elementRef.nativeElement.querySelector('.custom-calendar-wrapper');
     if (calendarWrapper && !calendarWrapper.contains(target)) {
@@ -223,12 +225,19 @@ export class CheckoutComponent {
       this.isMonthDropdownOpen = false;
       this.isYearDropdownOpen = false;
     }
+
+    const timeWrapper =
+      this.elementRef.nativeElement.querySelector('.custom-time-wrapper');
+    if (timeWrapper && !timeWrapper.contains(target)) {
+      this.isTimeDropdownOpen = false;
+    }
   }
 
   toggleMonthDropdown(event?: Event): void {
     if (event) event.stopPropagation();
     this.isMonthDropdownOpen = !this.isMonthDropdownOpen;
     this.isYearDropdownOpen = false;
+    this.isTimeDropdownOpen = false;
     if (this.isMonthDropdownOpen) {
       setTimeout(
         () => this.scrollToActiveDropdownItem('.month-dropdown-menu'),
@@ -241,6 +250,7 @@ export class CheckoutComponent {
     if (event) event.stopPropagation();
     this.isYearDropdownOpen = !this.isYearDropdownOpen;
     this.isMonthDropdownOpen = false;
+    this.isTimeDropdownOpen = false;
     if (this.isYearDropdownOpen) {
       setTimeout(
         () => this.scrollToActiveDropdownItem('.year-dropdown-menu'),
@@ -249,14 +259,33 @@ export class CheckoutComponent {
     }
   }
 
+  toggleTimeDropdown(event?: Event): void {
+    if (event) event.stopPropagation();
+    if (this.paymentId) return;
+    this.isTimeDropdownOpen = !this.isTimeDropdownOpen;
+    this.isMonthDropdownOpen = false;
+    this.isYearDropdownOpen = false;
+    if (this.isTimeDropdownOpen) {
+      setTimeout(
+        () => this.scrollToActiveDropdownItem('.custom-time-popup'),
+        0,
+      );
+    }
+  }
+
+  selectTimeSlot(slotValue: string, event?: Event): void {
+    if (event) event.stopPropagation();
+    this.checkData.appointmentTime = slotValue;
+    this.inputValidation('appointmentTime');
+    this.isTimeDropdownOpen = false;
+  }
+
   private scrollToActiveDropdownItem(menuSelector: string): void {
     const menu = this.elementRef.nativeElement.querySelector(
       menuSelector,
     ) as HTMLElement;
     if (!menu) return;
-    const activeItem = menu.querySelector(
-      '.calendar-dropdown-item.active',
-    ) as HTMLElement;
+    const activeItem = menu.querySelector('.active') as HTMLElement;
     if (activeItem) {
       const targetScrollTop =
         activeItem.offsetTop -
@@ -332,6 +361,7 @@ export class CheckoutComponent {
     this.isCalendarOpen = !this.isCalendarOpen;
     this.isMonthDropdownOpen = false;
     this.isYearDropdownOpen = false;
+    this.isTimeDropdownOpen = false;
     if (this.isCalendarOpen && this.checkData.appointmentDate) {
       this.calendarViewDate = this.getStartOfDay(
         this.checkData.appointmentDate,
@@ -403,6 +433,7 @@ export class CheckoutComponent {
     }
     this.inputValidation('appointmentDate');
     this.isCalendarOpen = false;
+    this.isTimeDropdownOpen = false;
   }
 
   selectToday(): void {
@@ -420,6 +451,7 @@ export class CheckoutComponent {
     }
     this.inputValidation('appointmentDate');
     this.isCalendarOpen = false;
+    this.isTimeDropdownOpen = false;
   }
 
   formatSelectedDate(): string {
