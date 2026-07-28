@@ -316,6 +316,15 @@ export class CheckoutComponent {
   selectAppointmentDate(day: CalendarDay): void {
     if (day.isPast) return;
     this.checkData.appointmentDate = day.date;
+    this.timeSlots = this.createTimeSlots(day.date);
+    if (
+      this.checkData.appointmentTime &&
+      !this.timeSlots.some(
+        (slot) => slot.value === this.checkData.appointmentTime,
+      )
+    ) {
+      this.checkData.appointmentTime = '';
+    }
     this.inputValidation('appointmentDate');
     this.isCalendarOpen = false;
   }
@@ -324,6 +333,15 @@ export class CheckoutComponent {
     const today = this.getStartOfDay(new Date());
     this.calendarViewDate = today;
     this.checkData.appointmentDate = today;
+    this.timeSlots = this.createTimeSlots(today);
+    if (
+      this.checkData.appointmentTime &&
+      !this.timeSlots.some(
+        (slot) => slot.value === this.checkData.appointmentTime,
+      )
+    ) {
+      this.checkData.appointmentTime = '';
+    }
     this.inputValidation('appointmentDate');
     this.isCalendarOpen = false;
   }
@@ -359,19 +377,33 @@ export class CheckoutComponent {
     return Array.from({ length: 11 }, (_, index) => currentYear + index);
   }
 
-  private createTimeSlots(): { label: string; value: string }[] {
+  private createTimeSlots(
+    selectedDate?: Date,
+  ): { label: string; value: string }[] {
     const slots: { label: string; value: string }[] = [];
     const startMinutes = 9 * 60;
     const endMinutes = 17 * 60;
+    const now = new Date();
+    const targetDate = selectedDate || this.checkData?.appointmentDate;
+
+    const isToday =
+      !targetDate ||
+      (targetDate.getFullYear() === now.getFullYear() &&
+        targetDate.getMonth() === now.getMonth() &&
+        targetDate.getDate() === now.getDate());
+
+    const currentMinutes = now.getHours() * 60 + now.getMinutes();
 
     for (let start = startMinutes; start + 45 <= endMinutes; start += 45) {
+      if (isToday && start <= currentMinutes) {
+        continue;
+      }
       const end = start + 45;
       slots.push({
         value: `${this.formatTime(start)} - ${this.formatTime(end)}`,
         label: `${this.formatTime(start)} - ${this.formatTime(end)}`,
       });
     }
-
     return slots;
   }
 
