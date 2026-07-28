@@ -234,6 +234,7 @@ export class CheckoutComponent {
       this.webapiService.getAllBookedSlotPg().subscribe({
         next: (res) => {
           this.allTimeSlots = res;
+          this.updateDisabledTimeSlots();
         },
         error: (error) => {},
       });
@@ -309,6 +310,7 @@ export class CheckoutComponent {
     this.isMonthDropdownOpen = false;
     this.isYearDropdownOpen = false;
     if (this.isTimeDropdownOpen) {
+      this.updateDisabledTimeSlots();
       setTimeout(
         () => this.scrollToActiveDropdownItem('.custom-time-popup'),
         0,
@@ -316,8 +318,23 @@ export class CheckoutComponent {
     }
   }
 
+  updateDisabledTimeSlots(): void {
+    const selectedDate = this.checkData?.appointmentDate;
+    if (!selectedDate || !this.allTimeSlots || !this.allTimeSlots.length) return;
+    const selectedDateStr = selectedDate.toDateString();
+    const bookedSlotsForDate = this.allTimeSlots
+      .filter((item) => item.selectedDate === selectedDateStr)
+      .map((item) => item.selectedSlot);
+
+    this.timeSlots.forEach((slot) => {
+      slot.disabled = bookedSlotsForDate.includes(slot.label);
+    });
+  }
+
   selectTimeSlot(slotValue: string, event?: Event): void {
     if (event) event.stopPropagation();
+    const slot = this.timeSlots.find((s) => s.value === slotValue);
+    if (slot?.disabled) return;
     this.checkData.appointmentTime = slotValue;
     this.inputValidation('appointmentTime');
     this.isTimeDropdownOpen = false;
@@ -477,17 +494,7 @@ export class CheckoutComponent {
     this.inputValidation('appointmentDate');
     this.isCalendarOpen = false;
     this.isTimeDropdownOpen = false;
-    if (
-      this.allTimeSlots.some(
-        (obj) => obj.selectedDate == day.date.toDateString(),
-      )
-    ) {
-      this.timeSlots.map((obj) => {
-        if (this.allTimeSlots.some((item) => item.selectedSlot == obj.label)) {
-          obj.disabled = true;
-        }
-      });
-    }
+    this.updateDisabledTimeSlots();
   }
 
   selectToday(): void {
@@ -506,6 +513,7 @@ export class CheckoutComponent {
     this.inputValidation('appointmentDate');
     this.isCalendarOpen = false;
     this.isTimeDropdownOpen = false;
+    this.updateDisabledTimeSlots();
   }
 
   formatSelectedDate(): string {

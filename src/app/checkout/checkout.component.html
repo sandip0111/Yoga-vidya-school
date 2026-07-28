@@ -679,11 +679,14 @@
                         [class.active]="
                           checkData.appointmentTime === slot.value
                         "
+                        [class.disabled]="slot.disabled"
+                        [disabled]="slot.disabled"
                         (click)="selectTimeSlot(slot.value, $event)"
                         role="option"
                         [attr.aria-selected]="
                           checkData.appointmentTime === slot.value
                         "
+                        [attr.aria-disabled]="slot.disabled"
                       >
                         <svg
                           class="time-clock-icon"

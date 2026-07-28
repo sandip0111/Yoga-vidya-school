@@ -854,6 +854,30 @@ h3 {
   color: #ffffff;
 }
 
+.custom-time-item.disabled,
+.custom-time-item:disabled,
+.custom-time-item.disabled:hover,
+.custom-time-item:disabled:hover {
+  opacity: 0.6;
+  cursor: not-allowed !important;
+  background: #f8fafc !important;
+  color: #94a3b8 !important;
+  box-shadow: none !important;
+}
+
+.custom-time-item.disabled .time-clock-icon,
+.custom-time-item:disabled .time-clock-icon,
+.custom-time-item.disabled:hover .time-clock-icon,
+.custom-time-item:disabled:hover .time-clock-icon {
+  color: #cbd5e1 !important;
+}
+
+.custom-time-item.disabled span i,
+.custom-time-item:disabled span i {
+  color: #c2410c;
+  font-style: italic;
+}
+
 .custom-time-no-slots {
   padding: 14px;
   text-align: center;
