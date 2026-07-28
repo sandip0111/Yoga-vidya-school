@@ -162,3 +162,7 @@ export interface savePaymentIdModel {
   orderId?: string;
   paymentId: string;
 }
+export class personalGuidanceBookedSlotDto {
+  selectedSlot: string = '';
+  selectedDate: string = '';
+}

@@ -35,6 +35,7 @@ import {
   swaraRazorModel,
   swaraStripeModel,
   TwoHundredTTCSignupModel,
+  personalGuidanceBookedSlotDto,
 } from '../models/checkout';
 import { localstorageKey } from '../enum/localstorage';
 import { routeEnum } from '../enum/routes';
@@ -123,14 +124,10 @@ export class CheckoutComponent {
     INR: 79000,
     USD: 850,
   };
-  /** PayPal only supports USD — this is the single source of truth. */
   private readonly PAYPAL_CURRENCY = PaymentType.usdCur as const;
-
-  /** True when the user has selected a 30% deposit booking option */
   get is30PercentBooking(): boolean {
     return +this.checkData.package === 3 || +this.checkData.package === 4;
   }
-
   get show30PercentDepositSection(): boolean {
     const allowedSlugs = [
       routeEnum.rishikesh100,
@@ -145,7 +142,6 @@ export class CheckoutComponent {
     ];
     return allowedSlugs.includes(this.slug as any);
   }
-
   get showPaypalButton(): boolean {
     return (
       this.slug === routeEnum['200TTC'] ||
@@ -158,24 +154,14 @@ export class CheckoutComponent {
       this.slug === routeEnum.bali300
     );
   }
-
-  /** True only when the selected currency is USD (the sole currency PayPal accepts here). */
   get canUsePaypal(): boolean {
     return this.checkData.currency === this.PAYPAL_CURRENCY;
   }
-
-  /**
-   * PayPal entry-point called from the template.
-   * The button is only rendered when canUsePaypal is true (currency === USD),
-   * so no currency switching is needed here.
-   */
-  onPaypalClick(): void {
-    if (this.showPaypalButton) {
-      this.checkoutData(this.checkData, 'paypal');
-    }
-  }
   pgId: number = 0;
-
+  isMonthDropdownOpen: boolean = false;
+  isYearDropdownOpen: boolean = false;
+  isTimeDropdownOpen: boolean = false;
+  allTimeSlots: personalGuidanceBookedSlotDto[] = [];
   constructor(
     private webapiService: WebapiService,
     private _activatedRoute: ActivatedRoute,
@@ -207,27 +193,84 @@ export class CheckoutComponent {
       this.pgId = id ? +id : 0;
     }
   }
-
-  isMonthDropdownOpen: boolean = false;
-  isYearDropdownOpen: boolean = false;
-  isTimeDropdownOpen: boolean = false;
-
+  ngOnInit(): void {
+    this.spinner.show();
+    const isBrowser =
+      typeof window !== 'undefined' && typeof document !== 'undefined';
+    this.getRoomListOption(this.slug);
+    if (isBrowser) {
+      this.scrollToTop();
+      this.trackCheckoutPageView();
+      setTimeout(() => {
+        this.invokeStripe();
+        this.loadRazorpayScript();
+        this.title.setTitle('Checkout');
+        const canonicalUrl =
+          'https://www.yogavidyaschool.com' + this.router.url;
+        const link = this._document.querySelector('link[rel="canonical"]');
+        this._renderer2.setAttribute(link, 'href', canonicalUrl);
+        if (this.slug === routeEnum.pranicPurification) {
+          const storedDateStr = sessionStorage.getItem('pranicDate');
+          if (storedDateStr) {
+            this.pranicDate = new Date(storedDateStr);
+            this.formattedPranicDate = this.pranicDate.toDateString();
+          }
+          this.pranicDuration = sessionStorage.getItem('pranicDuration');
+          if (!this.pranicDate) {
+            const date = new Date('2026-01-18');
+            this.pranicDate = date;
+            this.pranicDuration = '7PM to 8PM (IST)';
+            sessionStorage.setItem('pranicDate', date.toISOString());
+            sessionStorage.setItem('pranicDuration', this.pranicDuration);
+          }
+        }
+      }, 1000);
+    }
+    this.getCourseBySlug(this.slug);
+    if (this.paymentId) {
+      this.getPaymentDetailsById();
+    }
+    if (this.slug == routeEnum.pg) {
+      this.webapiService.getAllBookedSlotPg().subscribe({
+        next: (res) => {
+          this.allTimeSlots = res;
+        },
+        error: (error) => {},
+      });
+    }
+  }
+  scrollToTop(): void {
+    if (typeof window === 'undefined') {
+      return;
+    }
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  }
+  onPaypalClick(): void {
+    if (this.showPaypalButton) {
+      this.checkoutData(this.checkData, 'paypal');
+    }
+  }
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: MouseEvent): void {
     if (!this.isCalendarOpen && !this.isTimeDropdownOpen) return;
     const target = event.target as HTMLElement;
     if (!target || !document.body.contains(target)) return;
 
-    const calendarWrapper =
-      this.elementRef.nativeElement.querySelector('.custom-calendar-wrapper');
+    const calendarWrapper = this.elementRef.nativeElement.querySelector(
+      '.custom-calendar-wrapper',
+    );
     if (calendarWrapper && !calendarWrapper.contains(target)) {
       this.isCalendarOpen = false;
       this.isMonthDropdownOpen = false;
       this.isYearDropdownOpen = false;
     }
 
-    const timeWrapper =
-      this.elementRef.nativeElement.querySelector('.custom-time-wrapper');
+    const timeWrapper = this.elementRef.nativeElement.querySelector(
+      '.custom-time-wrapper',
+    );
     if (timeWrapper && !timeWrapper.contains(target)) {
       this.isTimeDropdownOpen = false;
     }
@@ -316,7 +359,6 @@ export class CheckoutComponent {
       year: 'numeric',
     });
   }
-
   get calendarDays(): CalendarDay[] {
     const year = this.calendarViewDate.getFullYear();
     const month = this.calendarViewDate.getMonth();
@@ -327,7 +369,6 @@ export class CheckoutComponent {
       1 - firstDayOfMonth.getDay(),
     );
     const today = this.getStartOfDay(new Date());
-
     return Array.from({ length: 42 }, (_, index) => {
       const date = new Date(
         firstCalendarDay.getFullYear(),
@@ -335,7 +376,7 @@ export class CheckoutComponent {
         firstCalendarDay.getDate() + index,
       );
       const normalizedDate = this.getStartOfDay(date);
-
+      const dayOfWeek = normalizedDate.getDay();
       return {
         date: normalizedDate,
         value: this.formatDateValue(normalizedDate),
@@ -343,10 +384,10 @@ export class CheckoutComponent {
         isCurrentMonth: normalizedDate.getMonth() === month,
         isToday: normalizedDate.getTime() === today.getTime(),
         isPast: normalizedDate.getTime() < today.getTime(),
+        isWeekend: dayOfWeek === 0 || dayOfWeek === 6,
       };
     });
   }
-
   get canViewPreviousMonth(): boolean {
     const today = new Date();
     return (
@@ -420,7 +461,9 @@ export class CheckoutComponent {
   }
 
   selectAppointmentDate(day: CalendarDay): void {
+    console.log(day);
     if (day.isPast) return;
+    if (day.isPast || day.isWeekend) return;
     this.checkData.appointmentDate = day.date;
     this.timeSlots = this.createTimeSlots(day.date);
     if (
@@ -434,6 +477,17 @@ export class CheckoutComponent {
     this.inputValidation('appointmentDate');
     this.isCalendarOpen = false;
     this.isTimeDropdownOpen = false;
+    if (
+      this.allTimeSlots.some(
+        (obj) => obj.selectedDate == day.date.toDateString(),
+      )
+    ) {
+      this.timeSlots.map((obj) => {
+        if (this.allTimeSlots.some((item) => item.selectedSlot == obj.label)) {
+          obj.disabled = true;
+        }
+      });
+    }
   }
 
   selectToday(): void {
@@ -487,91 +541,28 @@ export class CheckoutComponent {
 
   private createTimeSlots(
     selectedDate?: Date,
-  ): { label: string; value: string }[] {
-    const slots: { label: string; value: string }[] = [];
-    const startMinutes = 9 * 60;
-    const endMinutes = 17 * 60;
+  ): { label: string; value: string; disabled: boolean }[] {
+    const fixedSlots = [
+      { minutes: 10 * 60, label: '10:00 AM' },
+      { minutes: 11 * 60, label: '11:00 AM' },
+      { minutes: 12 * 60, label: '12:00 PM' },
+      { minutes: 13 * 60, label: '1:00 PM' },
+      { minutes: 14 * 60, label: '2:00 PM' },
+      { minutes: 18 * 60, label: '6:00 PM' },
+    ];
     const now = new Date();
     const targetDate = selectedDate || this.checkData?.appointmentDate;
-
     const isToday =
       !targetDate ||
       (targetDate.getFullYear() === now.getFullYear() &&
         targetDate.getMonth() === now.getMonth() &&
         targetDate.getDate() === now.getDate());
-
     const currentMinutes = now.getHours() * 60 + now.getMinutes();
-
-    for (let start = startMinutes; start + 45 <= endMinutes; start += 45) {
-      if (isToday && start <= currentMinutes) {
-        continue;
-      }
-      const end = start + 45;
-      slots.push({
-        value: `${this.formatTime(start)} - ${this.formatTime(end)}`,
-        label: `${this.formatTime(start)} - ${this.formatTime(end)}`,
-      });
-    }
-    return slots;
+    return fixedSlots
+      .filter((slot) => !(isToday && slot.minutes <= currentMinutes))
+      .map((slot) => ({ label: slot.label, value: slot.label, disabled: false }));
   }
 
-  private formatTime(totalMinutes: number): string {
-    const hour = Math.floor(totalMinutes / 60);
-    const minute = totalMinutes % 60;
-    const period = hour >= 12 ? 'PM' : 'AM';
-    const displayHour = hour % 12 || 12;
-    return `${displayHour}:${minute.toString().padStart(2, '0')} ${period}`;
-  }
-
-  ngOnInit(): void {
-    this.spinner.show();
-    const isBrowser =
-      typeof window !== 'undefined' && typeof document !== 'undefined';
-    this.getRoomListOption(this.slug);
-    if (isBrowser) {
-      this.scrollToTop();
-      // Track checkout page view
-      this.trackCheckoutPageView();
-      setTimeout(() => {
-        this.invokeStripe();
-        this.loadRazorpayScript();
-        this.title.setTitle('Checkout');
-        const canonicalUrl =
-          'https://www.yogavidyaschool.com' + this.router.url;
-        const link = this._document.querySelector('link[rel="canonical"]');
-        this._renderer2.setAttribute(link, 'href', canonicalUrl);
-        if (this.slug === routeEnum.pranicPurification) {
-          const storedDateStr = sessionStorage.getItem('pranicDate');
-          if (storedDateStr) {
-            this.pranicDate = new Date(storedDateStr);
-            this.formattedPranicDate = this.pranicDate.toDateString();
-          }
-          this.pranicDuration = sessionStorage.getItem('pranicDuration');
-          if (!this.pranicDate) {
-            const date = new Date('2026-01-18');
-            this.pranicDate = date;
-            this.pranicDuration = '7PM to 8PM (IST)';
-            sessionStorage.setItem('pranicDate', date.toISOString());
-            sessionStorage.setItem('pranicDuration', this.pranicDuration);
-          }
-        }
-      }, 1000);
-    }
-    this.getCourseBySlug(this.slug);
-    if (this.paymentId) {
-      this.getPaymentDetailsById();
-    }
-  }
-  scrollToTop(): void {
-    if (typeof window === 'undefined') {
-      return;
-    }
-
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
-  }
   getRoomListOption(pageSlug: string) {
     const baliCourses = [
       routeEnum.bali200,
@@ -2450,4 +2441,5 @@ interface CalendarDay {
   isCurrentMonth: boolean;
   isToday: boolean;
   isPast: boolean;
+  isWeekend: boolean;
 }

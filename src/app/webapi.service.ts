@@ -17,6 +17,7 @@ import {
   swaraRazorModel,
   swaraStripeModel,
   TwoHundredTTCSignupModel,
+  personalGuidanceBookedSlotDto,
 } from './models/checkout';
 import { Observable } from 'rxjs';
 import { getSlugDataModel } from './models/rishikesh';
@@ -535,6 +536,11 @@ export class WebapiService {
     return this.http.post<razorPayReturnModel>(
       this.url + 'api/v1/getRazorPaymentResultPg',
       data,
+    );
+  }
+  getAllBookedSlotPg(): Observable<personalGuidanceBookedSlotDto[]> {
+    return this.http.get<personalGuidanceBookedSlotDto[]>(
+      this.url + 'api/v1/getAllBookedSlotPg',
     );
   }
 }
