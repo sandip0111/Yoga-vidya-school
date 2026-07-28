@@ -27,6 +27,9 @@ export class PersonalGuidance {
     title: '',
     data: [],
   };
+  redirectLink1 = `/checkout/${routeEnum.pg}?type=1`
+  redirectLink2 = `/checkout/${routeEnum.pg}?type=2`
+  redirectLink3 = `/checkout/${routeEnum.pg}?type=3`
   constructor(private webapiService: WebapiService) {}
   ngOnInit(): void {
     this.getCourseBySlug(routeEnum.pg);

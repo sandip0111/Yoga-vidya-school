@@ -53,6 +53,9 @@ export interface SignupDataModel {
   room?: string;
   hour?: number;
   month?: string;
+  selectedDate?: Date;
+  selectedSlot?: string;
+  courseType?: string;
 }
 export interface TwoHundredTTCSignupModel {
   name: string;

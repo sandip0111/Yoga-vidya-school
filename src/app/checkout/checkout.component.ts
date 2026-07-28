@@ -57,7 +57,15 @@ export class CheckoutComponent {
   timeSlots = this.createTimeSlots();
   isCalendarOpen: boolean = false;
   calendarViewDate: Date = this.getStartOfDay(new Date());
-  readonly calendarWeekdays: string[] = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  readonly calendarWeekdays: string[] = [
+    'Sun',
+    'Mon',
+    'Tue',
+    'Wed',
+    'Thu',
+    'Fri',
+    'Sat',
+  ];
   readonly calendarMonths: string[] = [
     'January',
     'February',
@@ -114,7 +122,7 @@ export class CheckoutComponent {
     USD: 850,
   };
   /** PayPal only supports USD — this is the single source of truth. */
-  private readonly PAYPAL_CURRENCY = 'USD' as const;
+  private readonly PAYPAL_CURRENCY = PaymentType.usdCur as const;
 
   /** True when the user has selected a 30% deposit booking option */
   get is30PercentBooking(): boolean {
@@ -164,6 +172,7 @@ export class CheckoutComponent {
       this.checkoutData(this.checkData, 'paypal');
     }
   }
+  pgId: number = 0;
 
   constructor(
     private webapiService: WebapiService,
@@ -190,6 +199,10 @@ export class CheckoutComponent {
       }
     });
     this.paymentId = this._activatedRoute.snapshot.queryParamMap.get('id');
+    if (this.slug == routeEnum.pg) {
+      const id = this._activatedRoute.snapshot.queryParamMap.get('type');
+      this.pgId = id ? +id : 0;
+    }
   }
 
   private getTodayDate(): string {
@@ -207,7 +220,11 @@ export class CheckoutComponent {
     const year = this.calendarViewDate.getFullYear();
     const month = this.calendarViewDate.getMonth();
     const firstDayOfMonth = new Date(year, month, 1);
-    const firstCalendarDay = new Date(year, month, 1 - firstDayOfMonth.getDay());
+    const firstCalendarDay = new Date(
+      year,
+      month,
+      1 - firstDayOfMonth.getDay(),
+    );
     const today = this.getStartOfDay(new Date());
 
     return Array.from({ length: 42 }, (_, index) => {
@@ -242,7 +259,9 @@ export class CheckoutComponent {
     if (this.paymentId) return;
     this.isCalendarOpen = !this.isCalendarOpen;
     if (this.isCalendarOpen && this.checkData.appointmentDate) {
-      this.calendarViewDate = this.getStartOfDay(this.checkData.appointmentDate);
+      this.calendarViewDate = this.getStartOfDay(
+        this.checkData.appointmentDate,
+      );
     }
   }
 
@@ -486,13 +505,31 @@ export class CheckoutComponent {
         if (res.data.length > 0) {
           this.courseList = res.data[0];
           this.feesData = this.courseList.feeInfo;
-          this.feesData.map(
-            (a) =>
-              (a.title = a.title == 'Price' ? a.title : `Price(${a.title})`),
-          );
-          if (!this.paymentId) {
-            this.updateCurrencyOptions(false);
+          if (this.slug == routeEnum.pg) {
+            if (this.pgId == 1) {
+              this.feesData = this.feesData.filter(
+                (a) => a.title == 'Yogic Therapy Guidance',
+              );
+            } else if (this.pgId == 2) {
+              this.feesData = this.feesData.filter(
+                (a) => a.title == 'Personal Sadhana & Spiritual Guidance',
+              );
+            } else if (this.pgId == 3) {
+              this.feesData = this.feesData.filter(
+                (a) =>
+                  a.title ==
+                  'Professional Mentorship for Yoga Teachers & School Owners',
+              );
+            }
+          } else {
+            this.feesData.map(
+              (a) =>
+                (a.title = a.title == 'Price' ? a.title : `Price(${a.title})`),
+            );
           }
+          // if (!this.paymentId) {
+          //   this.updateCurrencyOptions(false);
+          // }
           this.title.setTitle('Checkout');
           this.spinner.hide();
         } else {
@@ -601,81 +638,95 @@ export class CheckoutComponent {
           : 2
         : +roomId;
     }
-
-    for (let item of feesData) {
-      if (item.title == 'Price') {
-        if (this.isSpecialDiscount) {
-          const discountPrice = item.data.find(
-            (f) => f.currency == currency,
-          )?.discount;
-          if (discountPrice) {
-            const baseAmount = discountPrice;
-            const baseActual =
-              item.data.find((f) => f.currency == currency)?.amount ?? 0;
-            this.amount = isBooking30
-              ? Math.round(baseAmount * 0.3)
-              : baseAmount;
-            this.actualAmount = isBooking30
-              ? Math.round(baseActual * 0.3)
-              : baseActual;
+    if (this.slug == routeEnum.pg) {
+      this.selectPersonalGuidePrice(currency);
+    } else {
+      for (let item of feesData) {
+        if (item.title == 'Price') {
+          if (this.isSpecialDiscount) {
+            const discountPrice = item.data.find(
+              (f) => f.currency == currency,
+            )?.discount;
+            if (discountPrice) {
+              const baseAmount = discountPrice;
+              const baseActual =
+                item.data.find((f) => f.currency == currency)?.amount ?? 0;
+              this.amount = isBooking30
+                ? Math.round(baseAmount * 0.3)
+                : baseAmount;
+              this.actualAmount = isBooking30
+                ? Math.round(baseActual * 0.3)
+                : baseActual;
+            } else {
+              const baseAmount =
+                item.data.find((f) => f.currency == currency)?.amount ?? 0;
+              this.amount = isBooking30
+                ? Math.round(baseAmount * 0.3)
+                : baseAmount;
+              this.actualAmount = 0;
+            }
           } else {
             const baseAmount =
               item.data.find((f) => f.currency == currency)?.amount ?? 0;
+            const baseOffer =
+              item.data.find((f) => f.currency == currency)?.discount ?? 0;
             this.amount = isBooking30
               ? Math.round(baseAmount * 0.3)
               : baseAmount;
-            this.actualAmount = 0;
+            this.offerAmount = isBooking30
+              ? Math.round(baseOffer * 0.3)
+              : baseOffer;
           }
         } else {
-          const baseAmount =
-            item.data.find((f) => f.currency == currency)?.amount ?? 0;
-          const baseOffer =
-            item.data.find((f) => f.currency == currency)?.discount ?? 0;
-          this.amount = isBooking30 ? Math.round(baseAmount * 0.3) : baseAmount;
-          this.offerAmount = isBooking30
-            ? Math.round(baseOffer * 0.3)
-            : baseOffer;
-        }
-      } else {
-        const roomName = this.roomList.find(
-          (item) => item.value == lookupRoomId,
-        )?.name;
-        const room = `Price(${roomName})`;
-        const matchData = item.data.find(
-          (f) => f.currency == currency && item.title == room,
-        );
+          const roomName = this.roomList.find(
+            (item) => item.value == lookupRoomId,
+          )?.name;
+          const room = `Price(${roomName})`;
+          const matchData = item.data.find(
+            (f) => f.currency == currency && item.title == room,
+          );
 
-        if (this.isSpecialDiscount) {
-          const discountPrice = matchData?.discount;
-          if (discountPrice) {
-            const baseAmount = discountPrice;
-            const baseActual = matchData?.amount ?? 0;
-            this.amount = isBooking30
-              ? Math.round(baseAmount * 0.3)
-              : baseAmount;
-            this.actualAmount = isBooking30
-              ? Math.round(baseActual * 0.3)
-              : baseActual;
+          if (this.isSpecialDiscount) {
+            const discountPrice = matchData?.discount;
+            if (discountPrice) {
+              const baseAmount = discountPrice;
+              const baseActual = matchData?.amount ?? 0;
+              this.amount = isBooking30
+                ? Math.round(baseAmount * 0.3)
+                : baseAmount;
+              this.actualAmount = isBooking30
+                ? Math.round(baseActual * 0.3)
+                : baseActual;
+            } else {
+              const baseAmount = matchData?.amount ?? 0;
+              this.amount = isBooking30
+                ? Math.round(baseAmount * 0.3)
+                : baseAmount;
+              this.actualAmount = 0;
+            }
           } else {
             const baseAmount = matchData?.amount ?? 0;
+            const baseOffer = matchData?.discount ?? 0;
             this.amount = isBooking30
               ? Math.round(baseAmount * 0.3)
               : baseAmount;
-            this.actualAmount = 0;
+            this.offerAmount = isBooking30
+              ? Math.round(baseOffer * 0.3)
+              : baseOffer;
           }
-        } else {
-          const baseAmount = matchData?.amount ?? 0;
-          const baseOffer = matchData?.discount ?? 0;
-          this.amount = isBooking30 ? Math.round(baseAmount * 0.3) : baseAmount;
-          this.offerAmount = isBooking30
-            ? Math.round(baseOffer * 0.3)
-            : baseOffer;
+        }
+        if (this.amount) {
+          break;
         }
       }
-      if (this.amount) {
-        break;
-      }
     }
+  }
+  selectPersonalGuidePrice(currency: string) {
+    const priceData: feesDto | undefined = this.feesData[0].data.find(
+      (fd) => fd.currency == currency,
+    );
+    this.amount = priceData?.amount ?? 0;
+    this.actualAmount = this.amount;
   }
   onPhoneInputChange(
     isValid: boolean | null | undefined,
@@ -697,64 +748,64 @@ export class CheckoutComponent {
   }
 
   updateCurrencyOptions(isIndian: boolean): void {
-    if (this.paymentId) return;
-
-    if (this.isDiscountPlan && this.slug === routeEnum['200TTC']) {
-      this.currencyOptions = isIndian ? ['USD', 'INR'] : ['USD'];
-      if (isIndian) {
-        if (!this.checkData.currency || this.checkData.currency !== 'INR') {
-          this.checkData.currency = 'INR';
-        }
-      } else {
-        this.checkData.currency = 'USD';
-      }
-      if (this.checkData.package) {
-        const baseAmount =
-          this.discountPlanPrices[this.checkData.currency] ?? 850;
-        const isBooking30 = +this.checkData.package === 3;
-        this.amount = isBooking30 ? Math.round(baseAmount * 0.3) : baseAmount;
-      }
-      return;
-    }
-
-    if (this.feesData.length > 0) {
-      const optionsSet = new Set<string>();
-      this.feesData.forEach((item) => {
-        item.data.forEach((d) => {
-          if (isIndian || d.currency !== PaymentType.indianCur) {
-            optionsSet.add(d.currency);
+    if(this.checkData.phoneNumber.e164Number) {
+      if (this.paymentId) return;
+      if (this.isDiscountPlan && this.slug === routeEnum['200TTC']) {
+        this.currencyOptions = isIndian ? ['USD', 'INR'] : ['USD'];
+        if (isIndian) {
+          if (!this.checkData.currency || this.checkData.currency !== 'INR') {
+            this.checkData.currency = 'INR';
           }
-        });
-      });
-      this.currencyOptions = Array.from(optionsSet);
-      if (this.currencyOptions.length === 0) {
-        this.currencyOptions = ['USD'];
-      }
-
-      if (isIndian) {
-        this.checkData.currency = this.currencyOptions.includes(
-          PaymentType.indianCur,
-        )
-          ? PaymentType.indianCur
-          : this.checkData.currency || 'USD';
-      } else {
-        if (
-          this.checkData.currency === PaymentType.indianCur ||
-          !this.currencyOptions.includes(this.checkData.currency)
-        ) {
-          this.checkData.currency = this.currencyOptions[0] || 'USD';
+        } else {
+          this.checkData.currency = 'USD';
         }
+        if (this.checkData.package) {
+          const baseAmount =
+            this.discountPlanPrices[this.checkData.currency] ?? 850;
+          const isBooking30 = +this.checkData.package === 3;
+          this.amount = isBooking30 ? Math.round(baseAmount * 0.3) : baseAmount;
+        }
+        return;
       }
-
-      this.setPriceData(
-        this.feesData,
-        this.checkData.currency,
-        this.checkData.package,
-      );
-    } else {
-      this.currencyOptions = isIndian ? ['USD', 'INR'] : ['USD'];
-      if (!isIndian) {
-        this.checkData.currency = 'USD';
+      if (this.feesData.length > 0) {
+        const optionsSet = new Set<string>();
+        this.feesData.forEach((item) => {
+          item.data.forEach((d) => {
+            if (isIndian || d.currency !== PaymentType.indianCur) {
+              optionsSet.add(d.currency);
+            }
+          });
+        });
+        this.currencyOptions = Array.from(optionsSet);
+        if (this.currencyOptions.length === 0) {
+          this.currencyOptions = ['USD'];
+        }
+  
+        if (isIndian) {
+          this.checkData.currency = this.currencyOptions.includes(
+            PaymentType.indianCur,
+          )
+            ? PaymentType.indianCur
+            : this.checkData.currency || 'USD';
+        } else {
+          if (
+            this.checkData.currency === PaymentType.indianCur ||
+            !this.currencyOptions.includes(this.checkData.currency)
+          ) {
+            this.checkData.currency = this.currencyOptions[0] || 'USD';
+          }
+        }
+  
+        this.setPriceData(
+          this.feesData,
+          this.checkData.currency,
+          this.checkData.package,
+        );
+      } else {
+        this.currencyOptions = isIndian ? ['USD', 'INR'] : ['USD'];
+        if (!isIndian) {
+          this.checkData.currency = 'USD';
+        }
       }
     }
   }
@@ -863,14 +914,13 @@ export class CheckoutComponent {
         isErrMsg = true;
       }
       if (!data.package) {
-        // 200TTC always requires a booking selection (even on discount plan)
-        // All other courses only require it when not on a discount plan
         const requires200TTCPackage = this.slug === routeEnum['200TTC'];
         if (
           this.slug !== routeEnum.sa &&
           this.slug !== routeEnum.pranOnlinePranaArambh &&
           this.slug !== routeEnum.foundationOfSpirituality &&
           this.slug !== routeEnum.pranayamaCertification &&
+          this.slug !== routeEnum.pg &&
           (!this.isDiscountPlan || requires200TTCPackage)
         ) {
           this.packageRequired = 'Please select a Booking';
@@ -914,6 +964,8 @@ export class CheckoutComponent {
           this.pranayamaCertificationCheckout(data, isRazorPay);
         } else if (this.slug == routeEnum.retreats) {
           this.retreatsCheckout(data, isRazorPay, isPaypal);
+        } else if (this.slug == routeEnum.pg) {
+          this.personalGuidanceCheckout(data, isRazorPay, isPaypal);
         } else {
           this.pranaArambhCheckout(data, isRazorPay);
         }
@@ -1162,7 +1214,11 @@ export class CheckoutComponent {
       this.initializePaymentFor200TTC(signupData);
     }
   }
-  rishikesh200Checkout(data: checkoutModel, isRazorPay: boolean, isPaypal: boolean = false) {
+  rishikesh200Checkout(
+    data: checkoutModel,
+    isRazorPay: boolean,
+    isPaypal: boolean = false,
+  ) {
     let room = this.roomList.find((item) => item.value == data.package);
 
     // PayPal enforces USD as the only accepted currency
@@ -1193,7 +1249,11 @@ export class CheckoutComponent {
     }
   }
 
-  baliCheckout(data: checkoutModel, isRazorPay: boolean, isPaypal: boolean = false) {
+  baliCheckout(
+    data: checkoutModel,
+    isRazorPay: boolean,
+    isPaypal: boolean = false,
+  ) {
     let hour = 100;
     let month;
     if (this.slug == routeEnum.bali200) {
@@ -1249,14 +1309,8 @@ export class CheckoutComponent {
       .checkoutPaypalForBali(data)
       .subscribe((res: paypalPayModel) => {
         if (res.orderId && res.payDbId && res.approvalUrl) {
-          localStorage.setItem(
-            localstorageKey.baliPaypalOrderId,
-            res.orderId,
-          );
-          localStorage.setItem(
-            localstorageKey.baliPaypalDBId,
-            res.payDbId,
-          );
+          localStorage.setItem(localstorageKey.baliPaypalOrderId, res.orderId);
+          localStorage.setItem(localstorageKey.baliPaypalDBId, res.payDbId);
           window.location.href = res.approvalUrl;
           this.spinner.hide();
         } else {
@@ -2050,7 +2104,11 @@ export class CheckoutComponent {
     return courseNames[slug] || 'Yoga Teacher Training';
   }
   //#region retreat
-  retreatsCheckout(data: checkoutModel, isRazorPay: boolean, isPaypal: boolean = false) {
+  retreatsCheckout(
+    data: checkoutModel,
+    isRazorPay: boolean,
+    isPaypal: boolean = false,
+  ) {
     let room = this.roomList.find((item) => item.value == data.package);
 
     // PayPal enforces USD as the only accepted currency
@@ -2141,10 +2199,6 @@ export class CheckoutComponent {
         }
       });
   }
-  /**
-   * PayPal checkout for The Essence of Yoga – Mysore Retreat.
-   * Currency is always forced to USD (PayPal requirement).
-   */
   initializePayPalPaymentForRetreat(data: SignupDataModel) {
     this.webapiService
       .checkoutPaypalForRetreat(data)
@@ -2154,10 +2208,7 @@ export class CheckoutComponent {
             localstorageKey.retreatPaypalOrderId,
             res.orderId,
           );
-          localStorage.setItem(
-            localstorageKey.retreatPaypalDBId,
-            res.payDbId,
-          );
+          localStorage.setItem(localstorageKey.retreatPaypalDBId, res.payDbId);
           window.location.href = res.approvalUrl;
           this.spinner.hide();
         } else {
@@ -2165,6 +2216,30 @@ export class CheckoutComponent {
           this.spinner.hide();
         }
       });
+  }
+  //#endregion
+  //#region personal guidance
+  personalGuidanceCheckout(
+    data: checkoutModel,
+    isRazorPay: boolean,
+    isPaypal: boolean = false,
+  ) {
+    const effectiveCurrency = isPaypal ? this.PAYPAL_CURRENCY : data.currency;
+    let personalGuidanceData: SignupDataModel = {
+      name: data.name,
+      email: data.email.toLowerCase(),
+      phoneNumber: data.phoneNumber.e164Number,
+      courseType: this.feesData[0].title,
+      price: this.amount,
+      currency: effectiveCurrency,
+    };
+    if (isPaypal) {
+      this.initializePayPalPaymentForRetreat(personalGuidanceData);
+    } else if (isRazorPay) {
+      this.initializeRazorPayRetreat(personalGuidanceData);
+    } else {
+      this.initializePayStripeRetreat(personalGuidanceData);
+    }
   }
   //#endregion
 }
