@@ -53,7 +53,7 @@ export interface SignupDataModel {
   room?: string;
   hour?: number;
   month?: string;
-  selectedDate?: Date;
+  selectedDate?: string;
   selectedSlot?: string;
   courseType?: string;
 }

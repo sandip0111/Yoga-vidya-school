@@ -527,9 +527,9 @@ export class CheckoutComponent {
                 (a.title = a.title == 'Price' ? a.title : `Price(${a.title})`),
             );
           }
-          // if (!this.paymentId) {
-          //   this.updateCurrencyOptions(false);
-          // }
+          if (!this.paymentId) {
+            this.updateCurrencyOptions(false);
+          }
           this.title.setTitle('Checkout');
           this.spinner.hide();
         } else {
@@ -748,64 +748,62 @@ export class CheckoutComponent {
   }
 
   updateCurrencyOptions(isIndian: boolean): void {
-    if(this.checkData.phoneNumber.e164Number) {
-      if (this.paymentId) return;
-      if (this.isDiscountPlan && this.slug === routeEnum['200TTC']) {
-        this.currencyOptions = isIndian ? ['USD', 'INR'] : ['USD'];
-        if (isIndian) {
-          if (!this.checkData.currency || this.checkData.currency !== 'INR') {
-            this.checkData.currency = 'INR';
-          }
-        } else {
-          this.checkData.currency = 'USD';
+    if (this.paymentId) return;
+    if (this.isDiscountPlan && this.slug === routeEnum['200TTC']) {
+      this.currencyOptions = isIndian ? ['USD', 'INR'] : ['USD'];
+      if (isIndian) {
+        if (!this.checkData.currency || this.checkData.currency !== 'INR') {
+          this.checkData.currency = 'INR';
         }
-        if (this.checkData.package) {
-          const baseAmount =
-            this.discountPlanPrices[this.checkData.currency] ?? 850;
-          const isBooking30 = +this.checkData.package === 3;
-          this.amount = isBooking30 ? Math.round(baseAmount * 0.3) : baseAmount;
-        }
-        return;
-      }
-      if (this.feesData.length > 0) {
-        const optionsSet = new Set<string>();
-        this.feesData.forEach((item) => {
-          item.data.forEach((d) => {
-            if (isIndian || d.currency !== PaymentType.indianCur) {
-              optionsSet.add(d.currency);
-            }
-          });
-        });
-        this.currencyOptions = Array.from(optionsSet);
-        if (this.currencyOptions.length === 0) {
-          this.currencyOptions = ['USD'];
-        }
-  
-        if (isIndian) {
-          this.checkData.currency = this.currencyOptions.includes(
-            PaymentType.indianCur,
-          )
-            ? PaymentType.indianCur
-            : this.checkData.currency || 'USD';
-        } else {
-          if (
-            this.checkData.currency === PaymentType.indianCur ||
-            !this.currencyOptions.includes(this.checkData.currency)
-          ) {
-            this.checkData.currency = this.currencyOptions[0] || 'USD';
-          }
-        }
-  
-        this.setPriceData(
-          this.feesData,
-          this.checkData.currency,
-          this.checkData.package,
-        );
       } else {
-        this.currencyOptions = isIndian ? ['USD', 'INR'] : ['USD'];
-        if (!isIndian) {
-          this.checkData.currency = 'USD';
+        this.checkData.currency = 'USD';
+      }
+      if (this.checkData.package) {
+        const baseAmount =
+          this.discountPlanPrices[this.checkData.currency] ?? 850;
+        const isBooking30 = +this.checkData.package === 3;
+        this.amount = isBooking30 ? Math.round(baseAmount * 0.3) : baseAmount;
+      }
+      return;
+    }
+    if (this.feesData.length > 0) {
+      const optionsSet = new Set<string>();
+      this.feesData.forEach((item) => {
+        item.data.forEach((d) => {
+          if (isIndian || d.currency !== PaymentType.indianCur) {
+            optionsSet.add(d.currency);
+          }
+        });
+      });
+      this.currencyOptions = Array.from(optionsSet);
+      if (this.currencyOptions.length === 0) {
+        this.currencyOptions = ['USD'];
+      }
+
+      if (isIndian) {
+        this.checkData.currency = this.currencyOptions.includes(
+          PaymentType.indianCur,
+        )
+          ? PaymentType.indianCur
+          : this.checkData.currency || 'USD';
+      } else {
+        if (
+          this.checkData.currency === PaymentType.indianCur ||
+          !this.currencyOptions.includes(this.checkData.currency)
+        ) {
+          this.checkData.currency = this.currencyOptions[0] || 'USD';
         }
+      }
+
+      this.setPriceData(
+        this.feesData,
+        this.checkData.currency,
+        this.checkData.package,
+      );
+    } else {
+      this.currencyOptions = isIndian ? ['USD', 'INR'] : ['USD'];
+      if (!isIndian) {
+        this.checkData.currency = 'USD';
       }
     }
   }
@@ -2232,14 +2230,65 @@ export class CheckoutComponent {
       courseType: this.feesData[0].title,
       price: this.amount,
       currency: effectiveCurrency,
+      selectedDate: data.appointmentDate.toDateString(),
+      selectedSlot: data.appointmentTime,
     };
     if (isPaypal) {
-      this.initializePayPalPaymentForRetreat(personalGuidanceData);
+      // this.initializePayPalPaymentForRetreat(personalGuidanceData);
     } else if (isRazorPay) {
-      this.initializeRazorPayRetreat(personalGuidanceData);
+      this.initializeRazorPayPersonalGuidance(personalGuidanceData);
     } else {
-      this.initializePayStripeRetreat(personalGuidanceData);
+      // this.initializePayStripeRetreat(personalGuidanceData);
     }
+  }
+  initializeRazorPayPersonalGuidance(data: SignupDataModel) {
+    this.webapiService
+      .checkoutRazorpayPg(data)
+      .subscribe((res: razorPayModel) => {
+        if (res && res.orderId && res.razorpayKey) {
+          const options = {
+            key: res.razorpayKey,
+            amount: res.amount * 100,
+            currency: data.currency,
+            name: 'Yoga Vidya School',
+            description: `Personal Guidance - ${data.courseType}`,
+            order_id: res.orderId,
+            handler: (response: any) => {
+              localStorage.setItem(
+                localstorageKey.pgRzpId,
+                response.razorpay_payment_id,
+              );
+              localStorage.setItem(
+                localstorageKey.pgOrderId,
+                response.razorpay_order_id,
+              );
+              localStorage.setItem(
+                localstorageKey.pgSig,
+                response.razorpay_signature,
+              );
+              localStorage.setItem(localstorageKey.pgDBId, res.payDbId);
+              this.router.navigate(['/confirmation']);
+            },
+            prefill: {
+              name: data.name,
+              email: data.email,
+              contact: data.phoneNumber,
+            },
+            notes: {
+              course: JSON.stringify(`Personal Guidance - ${data.courseType}`),
+            },
+            theme: {
+              color: '#f47019',
+            },
+          };
+          this.spinner.hide();
+          const rzp = new Razorpay(options);
+          rzp.open();
+        } else {
+          alert('Session Genration failed! please try again');
+          this.spinner.hide();
+        }
+      });
   }
   //#endregion
 }
