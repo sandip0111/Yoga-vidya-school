@@ -37,6 +37,7 @@ h3 {
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.03) !important;
   border: 1px solid #edf2f7 !important;
   transition: all 0.3s ease;
+  overflow: visible !important;
 }
 
 .summary-card {
@@ -46,6 +47,7 @@ h3 {
 
 .form-card {
   border: 1px solid #edf2f7 !important;
+  overflow: visible !important;
 }
 
 /* --- Titles & Headers --- */
@@ -713,6 +715,7 @@ h3 {
 /* --- Custom Time Slot Dropdown --- */
 .custom-time-wrapper {
   position: relative;
+  overflow: visible;
 }
 
 .custom-time-trigger {
@@ -761,9 +764,10 @@ h3 {
   top: calc(100% + 6px);
   left: 0;
   right: 0;
-  z-index: 100;
+  z-index: 9999;
   max-height: 210px;
   overflow-y: auto;
+  overflow-x: hidden;
   background: #ffffff;
   border: 1px solid #fed7aa;
   border-radius: 12px;
@@ -791,6 +795,7 @@ h3 {
   align-items: center;
   gap: 10px;
   width: 100%;
+  min-width: 0;
   padding: 10px 14px;
   background: transparent;
   border: none;
@@ -801,6 +806,18 @@ h3 {
   cursor: pointer;
   text-align: left;
   transition: all 0.15s ease;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  box-sizing: border-box;
+}
+
+.custom-time-item span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1;
+  min-width: 0;
 }
 
 .time-clock-icon {
