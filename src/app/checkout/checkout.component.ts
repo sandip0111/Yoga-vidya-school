@@ -45,6 +45,7 @@ import {
   feesInfoDto,
 } from '../course/rishikesh/pricing/pricing.component';
 import { s3Bucket } from '../enum/s3Bucket';
+import { PersonalGuidanceType } from '../enum/course';
 
 declare var Razorpay: any;
 @Component({
@@ -320,7 +321,8 @@ export class CheckoutComponent {
 
   updateDisabledTimeSlots(): void {
     const selectedDate = this.checkData?.appointmentDate;
-    if (!selectedDate || !this.allTimeSlots || !this.allTimeSlots.length) return;
+    if (!selectedDate || !this.allTimeSlots || !this.allTimeSlots.length)
+      return;
     const selectedDateStr = selectedDate.toDateString();
     const bookedSlotsForDate = this.allTimeSlots
       .filter((item) => item.selectedDate === selectedDateStr)
@@ -568,7 +570,11 @@ export class CheckoutComponent {
     const currentMinutes = now.getHours() * 60 + now.getMinutes();
     return fixedSlots
       .filter((slot) => !(isToday && slot.minutes <= currentMinutes))
-      .map((slot) => ({ label: slot.label, value: slot.label, disabled: false }));
+      .map((slot) => ({
+        label: slot.label,
+        value: slot.label,
+        disabled: false,
+      }));
   }
 
   getRoomListOption(pageSlug: string) {
@@ -647,17 +653,15 @@ export class CheckoutComponent {
           if (this.slug == routeEnum.pg) {
             if (this.pgId == 1) {
               this.feesData = this.feesData.filter(
-                (a) => a.title == 'Yogic Therapy Guidance',
+                (a) => a.title == PersonalGuidanceType.pg1,
               );
             } else if (this.pgId == 2) {
               this.feesData = this.feesData.filter(
-                (a) => a.title == 'Personal Sadhana & Spiritual Guidance',
+                (a) => a.title == PersonalGuidanceType.pg2,
               );
             } else if (this.pgId == 3) {
               this.feesData = this.feesData.filter(
-                (a) =>
-                  a.title ==
-                  'Professional Mentorship for Yoga Teachers & School Owners',
+                (a) => a.title == PersonalGuidanceType.pg3,
               );
             }
           } else {

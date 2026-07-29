@@ -5,6 +5,7 @@ import { WebapiService } from '../../webapi.service';
 import { routeEnum } from '../../enum/routes';
 import { feesInfoDto } from '../../course/rishikesh/pricing/pricing.component';
 import { CommonModule } from '@angular/common';
+import { PersonalGuidanceType } from '../../enum/course';
 
 @Component({
   selector: 'app-personal-guidance',
@@ -27,9 +28,9 @@ export class PersonalGuidance {
     title: '',
     data: [],
   };
-  redirectLink1 = `/checkout/${routeEnum.pg}?type=1`
-  redirectLink2 = `/checkout/${routeEnum.pg}?type=2`
-  redirectLink3 = `/checkout/${routeEnum.pg}?type=3`
+  redirectLink1 = `/checkout/${routeEnum.pg}?type=1`;
+  redirectLink2 = `/checkout/${routeEnum.pg}?type=2`;
+  redirectLink3 = `/checkout/${routeEnum.pg}?type=3`;
   constructor(private webapiService: WebapiService) {}
   ngOnInit(): void {
     this.getCourseBySlug(routeEnum.pg);
@@ -42,13 +43,13 @@ export class PersonalGuidance {
       next: (res: any) => {
         if (res.data.length > 0) {
           this.feesData1 = res.data[0].feeInfo.find(
-            (f: feesInfoDto) => f.title == 'Yogic Therapy Guidance',
+            (f: feesInfoDto) => f.title == PersonalGuidanceType.pg1,
           );
           this.feesData2 = res.data[0].feeInfo.find(
-            (f: feesInfoDto) => f.title == 'Personal Sadhana & Spiritual Guidance',
+            (f: feesInfoDto) => f.title == PersonalGuidanceType.pg2,
           );
           this.feesData3 = res.data[0].feeInfo.find(
-            (f: feesInfoDto) => f.title == 'Professional Mentorship for Yoga Teachers & School Owners',
+            (f: feesInfoDto) => f.title == PersonalGuidanceType.pg3,
           );
         }
       },

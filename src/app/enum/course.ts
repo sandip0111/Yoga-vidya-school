@@ -10,3 +10,8 @@ export enum CourseEnum {
   RISHIKESH_200_HOURS = '6a00b5e5be6d5aa0d803b71f',
   RISHIKESH_300_HOURS = '6a00b998eefefe86dfedb27e',
 }
+export enum PersonalGuidanceType {
+  pg1 = 'Yogic Therapy Guidance',
+  pg2 = 'Personal Sadhana & Spiritual Guidance',
+  pg3 = 'Professional Mentorship for Yoga Teachers & School Owners',
+}
