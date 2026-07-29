@@ -824,6 +824,7 @@ h3 {
   text-overflow: ellipsis;
   flex: 1;
   min-width: 0;
+  color: #334155;
 }
 
 .time-clock-icon {
@@ -848,6 +849,10 @@ h3 {
   color: #ffffff;
   font-weight: 600;
   box-shadow: 0 4px 12px rgba(244, 112, 25, 0.3);
+}
+
+.custom-time-item.active *{
+  color: #ffffff;
 }
 
 .custom-time-item.active .time-clock-icon {
