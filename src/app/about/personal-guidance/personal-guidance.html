@@ -55,166 +55,202 @@
     <div class="body-container">
       <div class="col-lg-12">
         <div class="personal-guidance-card">
-          <h2><span>Yogic Therapy Guidance</span></h2>
-          <p class="section-intro">
-            For those seeking support with physical discomfort, stress,
-            lifestyle, breathing, energy, or overall wellbeing through yogic
-            practices and recommendations.
-          </p>
-          <p>
-            The first responsibility of Yoga is to help us create harmony within
-            the body and mind.
-          </p>
-          <p>
-            If you are facing physical discomfort, recurring health challenges,
-            stress, emotional imbalance, lack of energy, poor sleep, digestive
-            issues, breathing difficulties, or other concerns affecting your
-            daily life, you may request a personal guidance session.
-          </p>
-          <p>During the session we may explore:</p>
-          <ul>
-            <li>Your current lifestyle and habits</li>
-            <li>Physical limitations and challenges</li>
-            <li>Breath patterns and energy levels</li>
-            <li>Stress and mental wellbeing</li>
-            <li>Yogic practices that may support your condition</li>
-            <li>
-              Appropriate asana, pranayama, relaxation, and lifestyle
-              recommendations
-            </li>
-          </ul>
-          <p>
-            The purpose is not to treat disease, but to understand how Yoga can
-            become a supportive tool in your healing journey.
-          </p>
-          <blockquote>
-            “The first spiritual practice is to create a body and mind capable
-            of supporting higher awareness.”
-          </blockquote>
-          <div class="session-details">
-            <p><span>Duration</span>45 minutes</p>
-            <p>
-              <span>Investment</span>{{feesData1.data[0].amount| currency:
-              feesData1.data[0].currency}} / {{feesData1.data[1].amount|
-              currency: feesData1.data[1].currency}}
-            </p>
-          </div>
-          <div class="text-center">
-            <a class="button" [href]="redirectLink1"
-              >Request a Therapy Guidance Session</a
-            >
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-12">
-        <div class="personal-guidance-card">
-          <h2><span>Personal Sadhana & Spiritual Guidance</span></h2>
-          <p class="section-intro">
-            For sincere practitioners looking for clarity in their yoga journey,
-            including asana, pranayama, meditation, daily practice, philosophy,
-            and spiritual development.
-          </p>
-          <p>
-            Many practitioners reach a point where they feel confused about what
-            to practice, how much to practice, and which direction to take on
-            their spiritual path.
-          </p>
-          <p>You may have questions about:</p>
-          <ul>
-            <li>Asana practice</li>
-            <li>Pranayama</li>
-            <li>Meditation</li>
-            <li>Kundalini and energetic experiences</li>
-            <li>Yogic lifestyle</li>
-            <li>Daily sadhana structure</li>
-            <li>Obstacles in practice</li>
-            <li>Traditional Yoga philosophy</li>
-            <li>Spiritual growth and inner discipline</li>
-          </ul>
-          <p>
-            This session is designed for sincere seekers who wish to receive
-            personal guidance regarding their Yoga journey.
-          </p>
-          <p>
-            Together we can assess your current practice and help create a
-            clearer direction based on your experience, goals, and stage of
-            development.
-          </p>
-          <p>Yoga is not about collecting techniques.</p>
-          <p>
-            It is about understanding what is necessary for your evolution at
-            this moment.
-          </p>
-          <blockquote>
-            “The right practice at the right time is more valuable than
-            practicing many techniques without direction.”
-          </blockquote>
-          <div class="session-details">
-            <p><span>Duration</span>45 minutes</p>
-            <p>
-              <span>Investment</span>{{feesData2.data[0].amount| currency:
-              feesData2.data[0].currency}} / {{feesData2.data[1].amount|
-              currency: feesData2.data[1].currency}}
-            </p>
-          </div>
-          <div class="text-center">
-            <a class="button" [href]="redirectLink2"
-              >Request a Sadhana Guidance Session</a
-            >
+          <div class="row align-items-center">
+            <div class="col-lg-7">
+              <h2><span>Yogic Therapy Guidance</span></h2>
+              <p class="section-intro">
+                For those seeking support with physical discomfort, stress,
+                lifestyle, breathing, energy, or overall wellbeing through yogic
+                practices and recommendations.
+              </p>
+              <p>
+                The first responsibility of Yoga is to help us create harmony within
+                the body and mind.
+              </p>
+              <p>
+                If you are facing physical discomfort, recurring health challenges,
+                stress, emotional imbalance, lack of energy, poor sleep, digestive
+                issues, breathing difficulties, or other concerns affecting your
+                daily life, you may request a personal guidance session.
+              </p>
+              <p>During the session we may explore:</p>
+              <ul>
+                <li>Your current lifestyle and habits</li>
+                <li>Physical limitations and challenges</li>
+                <li>Breath patterns and energy levels</li>
+                <li>Stress and mental wellbeing</li>
+                <li>Yogic practices that may support your condition</li>
+                <li>
+                  Appropriate asana, pranayama, relaxation, and lifestyle
+                  recommendations
+                </li>
+              </ul>
+              <p>
+                The purpose is not to treat disease, but to understand how Yoga can
+                become a supportive tool in your healing journey.
+              </p>
+              <blockquote>
+                “The first spiritual practice is to create a body and mind capable
+                of supporting higher awareness.”
+              </blockquote>
+              <div class="session-details">
+                <p><span>Duration</span>45 minutes</p>
+                <p *ngIf="feesData1.data.length > 0">
+                  <span>Investment</span>{{feesData1.data[0]?.amount| currency:
+                  feesData1.data[0]?.currency}} / {{feesData1.data[1]?.amount|
+                  currency: feesData1.data[1]?.currency}}
+                </p>
+              </div>
+              <div class="text-center text-lg-start">
+                <a class="button" [href]="redirectLink1"
+                  >Request a Therapy Guidance Session</a
+                >
+              </div>
+            </div>
+            <div class="col-lg-5 text-center mt-4 mt-lg-0">
+              <img
+                loading="lazy"
+                alt="Yogic Therapy Guidance"
+                [src]="s3Bucket.pg1"
+                class="pg-card-img"
+              />
+            </div>
           </div>
         </div>
       </div>
       <div class="col-lg-12">
         <div class="personal-guidance-card">
-          <h2>
-            <span
-              >Professional Mentorship for Yoga Teachers & School Owners
-            </span>
-          </h2>
-          <p class="section-intro">Build Your Vision with Clarity</p>
-          <p>
-            Many Yoga teachers are passionate about sharing Yoga but struggle
-            with the practical aspects of creating a sustainable and authentic
-            Yoga career.
-          </p>
-          <p>
-            Over the years, I have built Yoga Vidya School and worked with
-            thousands of students from different countries through online and
-            in-person programs.
-          </p>
-          <p>This mentorship is for:</p>
-          <ul>
-            <li>Yoga teachers</li>
-            <li>Yoga school founders</li>
-            <li>Course creators</li>
-            <li>Retreat organizers</li>
-            <li>Studio owners</li>
-            <li>Spiritual entrepreneurs</li>
-          </ul>
-          <p>Topics may include:</p>
-          <ul>
-            <li>Creating Yoga courses and trainings</li>
-            <li>Designing Teacher Training Programs</li>
-            <li>Choosing a teaching niche or specialization</li>
-            <li>Student experience and curriculum development</li>
-            <li>Teaching methodology</li>
-          </ul>
-          <blockquote>
-            “Yoga is not a profession first. It is a responsibility. When the
-            foundation is correct, growth naturally follows.”
-          </blockquote>
-          <div class="session-details">
-            <p><span>Duration</span>45 minutes</p>
-            <p>
-              <span>Investment</span>{{feesData3.data[0].amount| currency:
-              feesData3.data[0].currency}} / {{feesData3.data[1].amount|
-              currency: feesData3.data[1].currency}}
-            </p>
+          <div class="row align-items-center">
+            <div class="col-lg-7">
+              <h2><span>Personal Sadhana & Spiritual Guidance</span></h2>
+              <p class="section-intro">
+                For sincere practitioners looking for clarity in their yoga journey,
+                including asana, pranayama, meditation, daily practice, philosophy,
+                and spiritual development.
+              </p>
+              <p>
+                Many practitioners reach a point where they feel confused about what
+                to practice, how much to practice, and which direction to take on
+                their spiritual path.
+              </p>
+              <p>You may have questions about:</p>
+              <ul>
+                <li>Asana practice</li>
+                <li>Pranayama</li>
+                <li>Meditation</li>
+                <li>Kundalini and energetic experiences</li>
+                <li>Yogic lifestyle</li>
+                <li>Daily sadhana structure</li>
+                <li>Obstacles in practice</li>
+                <li>Traditional Yoga philosophy</li>
+                <li>Spiritual growth and inner discipline</li>
+              </ul>
+              <p>
+                This session is designed for sincere seekers who wish to receive
+                personal guidance regarding their Yoga journey.
+              </p>
+              <p>
+                Together we can assess your current practice and help create a
+                clearer direction based on your experience, goals, and stage of
+                development.
+              </p>
+              <p>Yoga is not about collecting techniques.</p>
+              <p>
+                It is about understanding what is necessary for your evolution at
+                this moment.
+              </p>
+              <blockquote>
+                “The right practice at the right time is more valuable than
+                practicing many techniques without direction.”
+              </blockquote>
+              <div class="session-details">
+                <p><span>Duration</span>45 minutes</p>
+                <p *ngIf="feesData2.data.length > 0">
+                  <span>Investment</span>{{feesData2.data[0]?.amount| currency:
+                  feesData2.data[0]?.currency}} / {{feesData2.data[1]?.amount|
+                  currency: feesData2.data[1]?.currency}}
+                </p>
+              </div>
+              <div class="text-center text-lg-start">
+                <a class="button" [href]="redirectLink2"
+                  >Request a Sadhana Guidance Session</a
+                >
+              </div>
+            </div>
+            <div class="col-lg-5 text-center mt-4 mt-lg-0">
+              <img
+                loading="lazy"
+                alt="Personal Sadhana & Spiritual Guidance"
+                [src]="s3Bucket.pg2"
+                class="pg-card-img"
+              />
+            </div>
           </div>
-          <div class="text-center">
-            <a class="button" [href]="redirectLink3"
-              >Request Professional Mentorship</a
-            >
+        </div>
+      </div>
+      <div class="col-lg-12">
+        <div class="personal-guidance-card">
+          <div class="row align-items-center">
+            <div class="col-lg-7">
+              <h2>
+                <span
+                  >Professional Mentorship for Yoga Teachers & School Owners
+                </span>
+              </h2>
+              <p class="section-intro">Build Your Vision with Clarity</p>
+              <p>
+                Many Yoga teachers are passionate about sharing Yoga but struggle
+                with the practical aspects of creating a sustainable and authentic
+                Yoga career.
+              </p>
+              <p>
+                Over the years, I have built Yoga Vidya School and worked with
+                thousands of students from different countries through online and
+                in-person programs.
+              </p>
+              <p>This mentorship is for:</p>
+              <ul>
+                <li>Yoga teachers</li>
+                <li>Yoga school founders</li>
+                <li>Course creators</li>
+                <li>Retreat organizers</li>
+                <li>Studio owners</li>
+                <li>Spiritual entrepreneurs</li>
+              </ul>
+              <p>Topics may include:</p>
+              <ul>
+                <li>Creating Yoga courses and trainings</li>
+                <li>Designing Teacher Training Programs</li>
+                <li>Choosing a teaching niche or specialization</li>
+                <li>Student experience and curriculum development</li>
+                <li>Teaching methodology</li>
+              </ul>
+              <blockquote>
+                “Yoga is not a profession first. It is a responsibility. When the
+                foundation is correct, growth naturally follows.”
+              </blockquote>
+              <div class="session-details">
+                <p><span>Duration</span>45 minutes</p>
+                <p *ngIf="feesData3.data.length > 0">
+                  <span>Investment</span>{{feesData3.data[0]?.amount| currency:
+                  feesData3.data[0]?.currency}} / {{feesData3.data[1]?.amount|
+                  currency: feesData3.data[1]?.currency}}
+                </p>
+              </div>
+              <div class="text-center text-lg-start">
+                <a class="button" [href]="redirectLink3"
+                  >Request Professional Mentorship</a
+                >
+              </div>
+            </div>
+            <div class="col-lg-5 text-center mt-4 mt-lg-0">
+              <img
+                loading="lazy"
+                alt="Professional Mentorship for Yoga Teachers & School Owners"
+                [src]="s3Bucket.pg3"
+                class="pg-card-img"
+              />
+            </div>
           </div>
         </div>
       </div>
