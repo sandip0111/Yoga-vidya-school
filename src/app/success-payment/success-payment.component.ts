@@ -55,6 +55,8 @@ export class SuccessPaymentComponent {
   baliPaypalOrderId: string = '';
   liveClassesPaypalOrderId: string = '';
   pgRazorPaySessionId: string = '';
+  pgStripeSessionId: string = '';
+  isPersonalGuidance: boolean = false;
   constructor(
     private webapiService: WebapiService,
     private router: Router,
@@ -152,8 +154,8 @@ export class SuccessPaymentComponent {
       '';
     this.pgRazorPaySessionId =
       localStorage.getItem(localstorageKey.pgRzpId) ?? '';
-    // Track purchase completion after a short delay to ensure data is loaded
-
+    this.pgStripeSessionId =
+      localStorage.getItem(localstorageKey.pgStripeSessionId) ?? '';
     if (this.sessionId) {
       setTimeout(() => {
         this.getpaymentResult(this.sessionId, this.couponCodeId ?? '');
@@ -309,6 +311,11 @@ export class SuccessPaymentComponent {
     if (this.pgRazorPaySessionId) {
       setTimeout(() => {
         this.getRazorPaymentResultPg(this.pgRazorPaySessionId);
+      }, 0);
+    }
+    if (this.pgStripeSessionId) {
+      setTimeout(() => {
+        this.getStripePaymentResultPg(this.pgStripeSessionId);
       }, 0);
     }
   }
@@ -1408,7 +1415,7 @@ export class SuccessPaymentComponent {
       .getRazorPaymentResultPg(paymentResult)
       .subscribe((res: razorPayReturnModel) => {
         if (res) {
-          this.isRetreat = true;
+          this.isPersonalGuidance = true;
           this.paidFlag = 'true';
           this.ordId = paymentResult.razorpayOrderId;
           this.amount = res.amount;
@@ -1426,6 +1433,32 @@ export class SuccessPaymentComponent {
         localStorage.removeItem(localstorageKey.pgCurr);
         localStorage.removeItem(localstorageKey.pgUserID);
       });
+  }
+  getStripePaymentResultPg(sessionId: string) {
+    const fbp = this.getCookie('_fbp');
+    const fbc = this.getCookie('_fbc');
+    let val = {
+      sessionId: sessionId,
+      payDbId: localStorage.getItem(localstorageKey.pgStripeDBId),
+      fbp: fbp,
+      fbc: fbc,
+    };
+    this.webapiService.getStripePaymentResultPg(val).subscribe((res: any) => {
+      if (res.data.status == 'success') {
+        this.isPersonalGuidance = true;
+        this.paidFlag = 'true';
+        this.ordId = res.data.paymtId;
+        this.amount = res.data.amount;
+        this.cur = this.currencySet(res.data.currency);
+        this.spinner.hide();
+      } else {
+        this.paidFlag = 'false';
+        this.reuseUrl = res.data.sessionId;
+        this.spinner.hide();
+      }
+      localStorage.removeItem(localstorageKey.pgStripeSessionId);
+      localStorage.removeItem(localstorageKey.pgStripeDBId);
+    });
   }
   //#endregion
 }

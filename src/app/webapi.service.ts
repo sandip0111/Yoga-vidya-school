@@ -543,4 +543,13 @@ export class WebapiService {
       this.url + 'api/v1/getAllBookedSlotPg',
     );
   }
+  checkoutStripeForPg(data: SignupDataModel): Observable<stripePayModel> {
+    return this.http.post<stripePayModel>(
+      this.url + 'api/v1/checkoutStripeForPg',
+      data,
+    );
+  }
+  getStripePaymentResultPg(data: any) {
+    return this.http.post(this.url + 'api/v1/getStripePaymentResultPg', data);
+  }
 }

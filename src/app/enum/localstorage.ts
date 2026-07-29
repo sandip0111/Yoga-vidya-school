@@ -73,4 +73,6 @@ export enum localstorageKey {
   'pgAmnt' = 'pg_rzp_amnt',
   'pgCurr' = 'pg_rzp_curr',
   'pgUserID' = 'pg_user_id',
+  'pgStripeSessionId' = 'pg_stripe_session_id',
+  'pgStripeDBId' = 'pg_stripe_db_id',
 }

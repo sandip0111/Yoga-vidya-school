@@ -2377,7 +2377,7 @@ export class CheckoutComponent {
     } else if (isRazorPay) {
       this.initializeRazorPayPersonalGuidance(personalGuidanceData);
     } else {
-      // this.initializePayStripeRetreat(personalGuidanceData);
+      this.initializePayStripePersonalGuidance(personalGuidanceData);
     }
   }
   initializeRazorPayPersonalGuidance(data: SignupDataModel) {
@@ -2423,6 +2423,24 @@ export class CheckoutComponent {
           this.spinner.hide();
           const rzp = new Razorpay(options);
           rzp.open();
+        } else {
+          alert('Session Genration failed! please try again');
+          this.spinner.hide();
+        }
+      });
+  }
+  initializePayStripePersonalGuidance(data: SignupDataModel) {
+    this.webapiService
+      .checkoutStripeForPg(data)
+      .subscribe((res: stripePayModel) => {
+        if (res.sessionId) {
+          localStorage.setItem(
+            localstorageKey.pgStripeSessionId,
+            res.sessionId,
+          );
+          localStorage.setItem(localstorageKey.pgStripeDBId, res.payDbId);
+          window.location.href = res.url;
+          this.spinner.hide();
         } else {
           alert('Session Genration failed! please try again');
           this.spinner.hide();
