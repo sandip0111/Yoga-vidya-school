@@ -156,7 +156,7 @@ export class BannerComponent implements OnInit {
           'A return to practice, in the living home of Ashtanga Yoga';
         break;
       case routeEnum.pg:
-        this.rishikesHeroImage = '';
+        this.rishikesHeroImage = s3Bucket.bannerPg;
         break;
       default:
         break;

@@ -182,6 +182,11 @@ export const s3Bucket = {
 
   retreats: `${environment.imageUrl}retreat_home.JPG`,
   retreatAbt: `${environment.imageUrl}retreat_about.jpg`,
+
+  bannerPg: `${environment.imageUrl}bannerpg.PNG`,
+  pg1: `${environment.imageUrl}pg1.JPEG`,
+  pg2: `${environment.imageUrl}pg2.JPEG`,
+  pg3: `${environment.imageUrl}pg3.JPEG`,
 } as const;
 export const youtubeLink = {
   trainingImportance:
