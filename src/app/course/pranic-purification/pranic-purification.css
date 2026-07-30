@@ -175,9 +175,12 @@
   position: relative;
   z-index: 1;
   padding: 20px 0;
-  overflow: auto;
+  overflow: hidden;
   margin-left: 0;
+  width: 100%;
+  box-sizing: border-box;
 }
+
 
 /* Keep the Pranic Purification image and course details aligned side by side. */
 .pranic-about-section > .mb-3 {
@@ -379,9 +382,9 @@
   background-color: #f0f7ff;
   padding: 1rem;
   border-radius: 6px;
-  border-left: 4px solid #2196f3;
+  border-left: 4px solid #f5711a;
   font-size: 0.95rem;
-  color: #1565c0;
+  color: #f5711a;
 }
 
 .pranic-guided {
@@ -535,20 +538,20 @@
   background: #f0f7ff;
   padding: 1rem;
   border-radius: 6px;
-  border-left: 4px solid #2196f3;
+  border-left: 4px solid #f5711a;
   position: relative;
   z-index: 1;
 }
 
 .requirement-icon {
-  color: #2196f3;
+  color: #f5711a;
   font-weight: bold;
   font-size: 1.2rem;
 }
 
 .requirement-text {
   font-size: 0.95rem;
-  color: #1565c0;
+  color: #f5711a;
   font-weight: 500;
 }
 
@@ -643,5 +646,40 @@
   .pranic-journey-message,
   .pranic-journey-closing {
     font-size: 1.25rem;
+  }
+}
+.pranic-about-section {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 !important;
+  box-sizing: border-box;
+}
+
+.pranic-about-section > .mb-3 {
+  width: 100%;
+  max-width: 100%;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  box-sizing: border-box;
+}
+
+@media (max-width: 767px) {
+  .pranic-about-section {
+    width: 100vw;
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+
+  .pranic-about-section > .mb-3 {
+    display: block;
+    width: 100%;
+    margin: 0 !important;
+  }
+
+  .pranic-content-wrapper {
+    width: 100%;
+    max-width: 100%;
+    padding: 0 !important;
+    box-sizing: border-box;
   }
 }
