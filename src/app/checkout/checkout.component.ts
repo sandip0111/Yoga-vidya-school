@@ -152,7 +152,8 @@ export class CheckoutComponent {
       this.slug === routeEnum.rishikesh300 ||
       this.slug === routeEnum.bali100 ||
       this.slug === routeEnum.bali200 ||
-      this.slug === routeEnum.bali300
+      this.slug === routeEnum.bali300 ||
+      this.slug === routeEnum.pg
     );
   }
   get canUsePaypal(): boolean {
@@ -2377,7 +2378,7 @@ export class CheckoutComponent {
       selectedSlot: data.appointmentTime,
     };
     if (isPaypal) {
-      // this.initializePayPalPaymentForRetreat(personalGuidanceData);
+      this.initializePayPalPaymentForPg(personalGuidanceData);
     } else if (isRazorPay) {
       this.initializeRazorPayPersonalGuidance(personalGuidanceData);
     } else {
@@ -2444,6 +2445,27 @@ export class CheckoutComponent {
           );
           localStorage.setItem(localstorageKey.pgStripeDBId, res.payDbId);
           window.location.href = res.url;
+          this.spinner.hide();
+        } else {
+          alert('Session Genration failed! please try again');
+          this.spinner.hide();
+        }
+      });
+  }
+  initializePayPalPaymentForPg(data: SignupDataModel) {
+    this.webapiService
+      .checkoutPaypalForPg(data)
+      .subscribe((res: paypalPayModel) => {
+        if (res.orderId && res.payDbId && res.approvalUrl) {
+          localStorage.setItem(
+            localstorageKey.pgPaypalOrderId,
+            res.orderId,
+          );
+          localStorage.setItem(
+            localstorageKey.pgPaypalDBId,
+            res.payDbId,
+          );
+          window.location.href = res.approvalUrl;
           this.spinner.hide();
         } else {
           alert('Session Genration failed! please try again');

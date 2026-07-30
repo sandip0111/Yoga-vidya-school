@@ -552,4 +552,16 @@ export class WebapiService {
   getStripePaymentResultPg(data: any) {
     return this.http.post(this.url + 'api/v1/getStripePaymentResultPg', data);
   }
+  checkoutPaypalForPg(data: SignupDataModel): Observable<paypalPayModel> {
+    return this.http.post<paypalPayModel>(
+      this.url + 'api/v1/checkoutPaypalForPg',
+      data,
+    );
+  }
+  getPaypalPaymentResultPg(data: paypalPaymentResultModel) {
+    return this.http.post(
+      this.url + 'api/v1/getPaypalPaymentResultPg',
+      data,
+    );
+  }
 }
