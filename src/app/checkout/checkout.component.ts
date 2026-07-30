@@ -4,6 +4,8 @@ import {
   Inject,
   ViewChild,
   DOCUMENT,
+  ElementRef,
+  HostListener,
 } from '@angular/core';
 
 import { WebapiService } from '../webapi.service';
@@ -33,6 +35,7 @@ import {
   swaraRazorModel,
   swaraStripeModel,
   TwoHundredTTCSignupModel,
+  personalGuidanceBookedSlotDto,
 } from '../models/checkout';
 import { localstorageKey } from '../enum/localstorage';
 import { routeEnum } from '../enum/routes';
@@ -42,6 +45,7 @@ import {
   feesInfoDto,
 } from '../course/rishikesh/pricing/pricing.component';
 import { s3Bucket } from '../enum/s3Bucket';
+import { PersonalGuidanceType } from '../enum/course';
 
 declare var Razorpay: any;
 @Component({
@@ -53,6 +57,34 @@ declare var Razorpay: any;
 })
 export class CheckoutComponent {
   checkData: checkoutModel = new checkoutModel();
+  minimumAppointmentDate: string = this.getTodayDate();
+  timeSlots = this.createTimeSlots();
+  isCalendarOpen: boolean = false;
+  calendarViewDate: Date = this.getStartOfDay(new Date());
+  readonly calendarWeekdays: string[] = [
+    'Sun',
+    'Mon',
+    'Tue',
+    'Wed',
+    'Thu',
+    'Fri',
+    'Sat',
+  ];
+  readonly calendarMonths: string[] = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ];
+  readonly calendarYears: number[] = this.createCalendarYears();
   oldStudent: boolean = false;
   slug: string = '';
   price: string = '';
@@ -93,14 +125,10 @@ export class CheckoutComponent {
     INR: 79000,
     USD: 850,
   };
-  /** PayPal only supports USD — this is the single source of truth. */
-  private readonly PAYPAL_CURRENCY = 'USD' as const;
-
-  /** True when the user has selected a 30% deposit booking option */
+  private readonly PAYPAL_CURRENCY = PaymentType.usdCur as const;
   get is30PercentBooking(): boolean {
     return +this.checkData.package === 3 || +this.checkData.package === 4;
   }
-
   get show30PercentDepositSection(): boolean {
     const allowedSlugs = [
       routeEnum.rishikesh100,
@@ -115,7 +143,6 @@ export class CheckoutComponent {
     ];
     return allowedSlugs.includes(this.slug as any);
   }
-
   get showPaypalButton(): boolean {
     return (
       this.slug === routeEnum['200TTC'] ||
@@ -128,23 +155,14 @@ export class CheckoutComponent {
       this.slug === routeEnum.bali300
     );
   }
-
-  /** True only when the selected currency is USD (the sole currency PayPal accepts here). */
   get canUsePaypal(): boolean {
     return this.checkData.currency === this.PAYPAL_CURRENCY;
   }
-
-  /**
-   * PayPal entry-point called from the template.
-   * The button is only rendered when canUsePaypal is true (currency === USD),
-   * so no currency switching is needed here.
-   */
-  onPaypalClick(): void {
-    if (this.showPaypalButton) {
-      this.checkoutData(this.checkData, 'paypal');
-    }
-  }
-
+  pgId: number = 0;
+  isMonthDropdownOpen: boolean = false;
+  isYearDropdownOpen: boolean = false;
+  isTimeDropdownOpen: boolean = false;
+  allTimeSlots: personalGuidanceBookedSlotDto[] = [];
   constructor(
     private webapiService: WebapiService,
     private _activatedRoute: ActivatedRoute,
@@ -154,6 +172,7 @@ export class CheckoutComponent {
     @Inject(DOCUMENT) private _document: Document,
     private _renderer2: Renderer2,
     private pixelTracking: PixelTrackingService,
+    private elementRef: ElementRef,
   ) {
     this._activatedRoute.params.subscribe((params) => {
       this.slug = params['id'];
@@ -170,8 +189,11 @@ export class CheckoutComponent {
       }
     });
     this.paymentId = this._activatedRoute.snapshot.queryParamMap.get('id');
+    if (this.slug == routeEnum.pg) {
+      const id = this._activatedRoute.snapshot.queryParamMap.get('type');
+      this.pgId = id ? +id : 0;
+    }
   }
-
   ngOnInit(): void {
     this.spinner.show();
     const isBrowser =
@@ -179,7 +201,6 @@ export class CheckoutComponent {
     this.getRoomListOption(this.slug);
     if (isBrowser) {
       this.scrollToTop();
-      // Track checkout page view
       this.trackCheckoutPageView();
       setTimeout(() => {
         this.invokeStripe();
@@ -210,17 +231,352 @@ export class CheckoutComponent {
     if (this.paymentId) {
       this.getPaymentDetailsById();
     }
+    if (this.slug == routeEnum.pg) {
+      this.webapiService.getAllBookedSlotPg().subscribe({
+        next: (res) => {
+          this.allTimeSlots = res;
+          this.updateDisabledTimeSlots();
+        },
+        error: (error) => {},
+      });
+    }
   }
   scrollToTop(): void {
     if (typeof window === 'undefined') {
       return;
     }
-
     window.scrollTo({
       top: 0,
       behavior: 'smooth',
     });
   }
+  onPaypalClick(): void {
+    if (this.showPaypalButton) {
+      this.checkoutData(this.checkData, 'paypal');
+    }
+  }
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent): void {
+    if (!this.isCalendarOpen && !this.isTimeDropdownOpen) return;
+    const target = event.target as HTMLElement;
+    if (!target || !document.body.contains(target)) return;
+
+    const calendarWrapper = this.elementRef.nativeElement.querySelector(
+      '.custom-calendar-wrapper',
+    );
+    if (calendarWrapper && !calendarWrapper.contains(target)) {
+      this.isCalendarOpen = false;
+      this.isMonthDropdownOpen = false;
+      this.isYearDropdownOpen = false;
+    }
+
+    const timeWrapper = this.elementRef.nativeElement.querySelector(
+      '.custom-time-wrapper',
+    );
+    if (timeWrapper && !timeWrapper.contains(target)) {
+      this.isTimeDropdownOpen = false;
+    }
+  }
+
+  toggleMonthDropdown(event?: Event): void {
+    if (event) event.stopPropagation();
+    this.isMonthDropdownOpen = !this.isMonthDropdownOpen;
+    this.isYearDropdownOpen = false;
+    this.isTimeDropdownOpen = false;
+    if (this.isMonthDropdownOpen) {
+      setTimeout(
+        () => this.scrollToActiveDropdownItem('.month-dropdown-menu'),
+        0,
+      );
+    }
+  }
+
+  toggleYearDropdown(event?: Event): void {
+    if (event) event.stopPropagation();
+    this.isYearDropdownOpen = !this.isYearDropdownOpen;
+    this.isMonthDropdownOpen = false;
+    this.isTimeDropdownOpen = false;
+    if (this.isYearDropdownOpen) {
+      setTimeout(
+        () => this.scrollToActiveDropdownItem('.year-dropdown-menu'),
+        0,
+      );
+    }
+  }
+
+  toggleTimeDropdown(event?: Event): void {
+    if (event) event.stopPropagation();
+    if (this.paymentId) return;
+    this.isTimeDropdownOpen = !this.isTimeDropdownOpen;
+    this.isMonthDropdownOpen = false;
+    this.isYearDropdownOpen = false;
+    if (this.isTimeDropdownOpen) {
+      this.updateDisabledTimeSlots();
+      setTimeout(
+        () => this.scrollToActiveDropdownItem('.custom-time-popup'),
+        0,
+      );
+    }
+  }
+
+  updateDisabledTimeSlots(): void {
+    const selectedDate = this.checkData?.appointmentDate;
+    if (!selectedDate || !this.allTimeSlots || !this.allTimeSlots.length)
+      return;
+    const selectedDateStr = selectedDate.toDateString();
+    const bookedSlotsForDate = this.allTimeSlots
+      .filter((item) => item.selectedDate === selectedDateStr)
+      .map((item) => item.selectedSlot);
+
+    this.timeSlots.forEach((slot) => {
+      slot.disabled = bookedSlotsForDate.includes(slot.label);
+    });
+  }
+
+  selectTimeSlot(slotValue: string, event?: Event): void {
+    if (event) event.stopPropagation();
+    const slot = this.timeSlots.find((s) => s.value === slotValue);
+    if (slot?.disabled) return;
+    this.checkData.appointmentTime = slotValue;
+    this.inputValidation('appointmentTime');
+    this.isTimeDropdownOpen = false;
+  }
+
+  private scrollToActiveDropdownItem(menuSelector: string): void {
+    const menu = this.elementRef.nativeElement.querySelector(
+      menuSelector,
+    ) as HTMLElement;
+    if (!menu) return;
+    const activeItem = menu.querySelector('.active') as HTMLElement;
+    if (activeItem) {
+      const targetScrollTop =
+        activeItem.offsetTop -
+        (menu.clientHeight - activeItem.offsetHeight) / 2;
+      menu.scrollTop = Math.max(0, targetScrollTop);
+    }
+  }
+
+  selectMonth(monthIndex: number, event?: Event): void {
+    if (event) event.stopPropagation();
+    this.setCalendarMonth(monthIndex);
+    this.isMonthDropdownOpen = false;
+  }
+
+  selectYear(year: number, event?: Event): void {
+    if (event) event.stopPropagation();
+    this.setCalendarYear(year);
+    this.isYearDropdownOpen = false;
+  }
+
+  private getTodayDate(): string {
+    return this.formatDateValue(this.getStartOfDay(new Date()));
+  }
+
+  get calendarMonthLabel(): string {
+    return this.calendarViewDate.toLocaleDateString('en-US', {
+      month: 'long',
+      year: 'numeric',
+    });
+  }
+  get calendarDays(): CalendarDay[] {
+    const year = this.calendarViewDate.getFullYear();
+    const month = this.calendarViewDate.getMonth();
+    const firstDayOfMonth = new Date(year, month, 1);
+    const firstCalendarDay = new Date(
+      year,
+      month,
+      1 - firstDayOfMonth.getDay(),
+    );
+    const today = this.getStartOfDay(new Date());
+    return Array.from({ length: 42 }, (_, index) => {
+      const date = new Date(
+        firstCalendarDay.getFullYear(),
+        firstCalendarDay.getMonth(),
+        firstCalendarDay.getDate() + index,
+      );
+      const normalizedDate = this.getStartOfDay(date);
+      const dayOfWeek = normalizedDate.getDay();
+      return {
+        date: normalizedDate,
+        value: this.formatDateValue(normalizedDate),
+        dayNumber: normalizedDate.getDate(),
+        isCurrentMonth: normalizedDate.getMonth() === month,
+        isToday: normalizedDate.getTime() === today.getTime(),
+        isPast: normalizedDate.getTime() < today.getTime(),
+        isWeekend: dayOfWeek === 0 || dayOfWeek === 6,
+      };
+    });
+  }
+  get canViewPreviousMonth(): boolean {
+    const today = new Date();
+    return (
+      this.calendarViewDate.getFullYear() > today.getFullYear() ||
+      (this.calendarViewDate.getFullYear() === today.getFullYear() &&
+        this.calendarViewDate.getMonth() > today.getMonth())
+    );
+  }
+
+  toggleCalendar(): void {
+    if (this.paymentId) return;
+    this.isCalendarOpen = !this.isCalendarOpen;
+    this.isMonthDropdownOpen = false;
+    this.isYearDropdownOpen = false;
+    this.isTimeDropdownOpen = false;
+    if (this.isCalendarOpen && this.checkData.appointmentDate) {
+      this.calendarViewDate = this.getStartOfDay(
+        this.checkData.appointmentDate,
+      );
+    }
+  }
+
+  showPreviousMonth(event?: Event): void {
+    if (event) event.stopPropagation();
+    if (this.canViewPreviousMonth) {
+      this.calendarViewDate = new Date(
+        this.calendarViewDate.getFullYear(),
+        this.calendarViewDate.getMonth() - 1,
+        1,
+      );
+    }
+  }
+
+  showNextMonth(event?: Event): void {
+    if (event) event.stopPropagation();
+    this.calendarViewDate = new Date(
+      this.calendarViewDate.getFullYear(),
+      this.calendarViewDate.getMonth() + 1,
+      1,
+    );
+  }
+
+  setCalendarMonth(month: number): void {
+    const selectedMonth = Number(month);
+    if (this.isCalendarMonthDisabled(selectedMonth)) return;
+    this.calendarViewDate = new Date(
+      this.calendarViewDate.getFullYear(),
+      selectedMonth,
+      1,
+    );
+  }
+
+  setCalendarYear(year: number): void {
+    const selectedYear = Number(year);
+    const today = new Date();
+    const selectedMonth =
+      selectedYear === today.getFullYear() &&
+      this.calendarViewDate.getMonth() < today.getMonth()
+        ? today.getMonth()
+        : this.calendarViewDate.getMonth();
+
+    this.calendarViewDate = new Date(selectedYear, selectedMonth, 1);
+  }
+
+  isCalendarMonthDisabled(month: number): boolean {
+    const today = new Date();
+    return (
+      this.calendarViewDate.getFullYear() === today.getFullYear() &&
+      month < today.getMonth()
+    );
+  }
+
+  selectAppointmentDate(day: CalendarDay): void {
+    console.log(day);
+    if (day.isPast) return;
+    if (day.isPast || day.isWeekend) return;
+    this.checkData.appointmentDate = day.date;
+    this.timeSlots = this.createTimeSlots(day.date);
+    if (
+      this.checkData.appointmentTime &&
+      !this.timeSlots.some(
+        (slot) => slot.value === this.checkData.appointmentTime,
+      )
+    ) {
+      this.checkData.appointmentTime = '';
+    }
+    this.inputValidation('appointmentDate');
+    this.isCalendarOpen = false;
+    this.isTimeDropdownOpen = false;
+    this.updateDisabledTimeSlots();
+  }
+
+  selectToday(): void {
+    const today = this.getStartOfDay(new Date());
+    this.calendarViewDate = today;
+    this.checkData.appointmentDate = today;
+    this.timeSlots = this.createTimeSlots(today);
+    if (
+      this.checkData.appointmentTime &&
+      !this.timeSlots.some(
+        (slot) => slot.value === this.checkData.appointmentTime,
+      )
+    ) {
+      this.checkData.appointmentTime = '';
+    }
+    this.inputValidation('appointmentDate');
+    this.isCalendarOpen = false;
+    this.isTimeDropdownOpen = false;
+    this.updateDisabledTimeSlots();
+  }
+
+  formatSelectedDate(): string {
+    const selectedDate = this.checkData.appointmentDate;
+    return selectedDate
+      ? selectedDate.toLocaleDateString('en-GB', {
+          day: '2-digit',
+          month: 'short',
+          year: 'numeric',
+        })
+      : '';
+  }
+
+  isSelectedCalendarDate(day: CalendarDay): boolean {
+    return day.date.getTime() === this.checkData.appointmentDate?.getTime();
+  }
+
+  private getStartOfDay(date: Date): Date {
+    return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+  }
+
+  private formatDateValue(date: Date): string {
+    const year = date.getFullYear();
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const day = date.getDate().toString().padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  }
+
+  private createCalendarYears(): number[] {
+    const currentYear = new Date().getFullYear();
+    return Array.from({ length: 22 }, (_, index) => currentYear + index);
+  }
+
+  private createTimeSlots(
+    selectedDate?: Date,
+  ): { label: string; value: string; disabled: boolean }[] {
+    const fixedSlots = [
+      { minutes: 10 * 60, label: '10:00 AM' },
+      { minutes: 11 * 60, label: '11:00 AM' },
+      { minutes: 12 * 60, label: '12:00 PM' },
+      { minutes: 13 * 60, label: '1:00 PM' },
+      { minutes: 14 * 60, label: '2:00 PM' },
+      { minutes: 18 * 60, label: '6:00 PM' },
+    ];
+    const now = new Date();
+    const targetDate = selectedDate || this.checkData?.appointmentDate;
+    const isToday =
+      !targetDate ||
+      (targetDate.getFullYear() === now.getFullYear() &&
+        targetDate.getMonth() === now.getMonth() &&
+        targetDate.getDate() === now.getDate());
+    const currentMinutes = now.getHours() * 60 + now.getMinutes();
+    return fixedSlots
+      .filter((slot) => !(isToday && slot.minutes <= currentMinutes))
+      .map((slot) => ({
+        label: slot.label,
+        value: slot.label,
+        disabled: false,
+      }));
+  }
+
   getRoomListOption(pageSlug: string) {
     const baliCourses = [
       routeEnum.bali200,
@@ -294,10 +650,26 @@ export class CheckoutComponent {
         if (res.data.length > 0) {
           this.courseList = res.data[0];
           this.feesData = this.courseList.feeInfo;
-          this.feesData.map(
-            (a) =>
-              (a.title = a.title == 'Price' ? a.title : `Price(${a.title})`),
-          );
+          if (this.slug == routeEnum.pg) {
+            if (this.pgId == 1) {
+              this.feesData = this.feesData.filter(
+                (a) => a.title == PersonalGuidanceType.pg1,
+              );
+            } else if (this.pgId == 2) {
+              this.feesData = this.feesData.filter(
+                (a) => a.title == PersonalGuidanceType.pg2,
+              );
+            } else if (this.pgId == 3) {
+              this.feesData = this.feesData.filter(
+                (a) => a.title == PersonalGuidanceType.pg3,
+              );
+            }
+          } else {
+            this.feesData.map(
+              (a) =>
+                (a.title = a.title == 'Price' ? a.title : `Price(${a.title})`),
+            );
+          }
           if (!this.paymentId) {
             this.updateCurrencyOptions(false);
           }
@@ -409,81 +781,95 @@ export class CheckoutComponent {
           : 2
         : +roomId;
     }
-
-    for (let item of feesData) {
-      if (item.title == 'Price') {
-        if (this.isSpecialDiscount) {
-          const discountPrice = item.data.find(
-            (f) => f.currency == currency,
-          )?.discount;
-          if (discountPrice) {
-            const baseAmount = discountPrice;
-            const baseActual =
-              item.data.find((f) => f.currency == currency)?.amount ?? 0;
-            this.amount = isBooking30
-              ? Math.round(baseAmount * 0.3)
-              : baseAmount;
-            this.actualAmount = isBooking30
-              ? Math.round(baseActual * 0.3)
-              : baseActual;
+    if (this.slug == routeEnum.pg) {
+      this.selectPersonalGuidePrice(currency);
+    } else {
+      for (let item of feesData) {
+        if (item.title == 'Price') {
+          if (this.isSpecialDiscount) {
+            const discountPrice = item.data.find(
+              (f) => f.currency == currency,
+            )?.discount;
+            if (discountPrice) {
+              const baseAmount = discountPrice;
+              const baseActual =
+                item.data.find((f) => f.currency == currency)?.amount ?? 0;
+              this.amount = isBooking30
+                ? Math.round(baseAmount * 0.3)
+                : baseAmount;
+              this.actualAmount = isBooking30
+                ? Math.round(baseActual * 0.3)
+                : baseActual;
+            } else {
+              const baseAmount =
+                item.data.find((f) => f.currency == currency)?.amount ?? 0;
+              this.amount = isBooking30
+                ? Math.round(baseAmount * 0.3)
+                : baseAmount;
+              this.actualAmount = 0;
+            }
           } else {
             const baseAmount =
               item.data.find((f) => f.currency == currency)?.amount ?? 0;
+            const baseOffer =
+              item.data.find((f) => f.currency == currency)?.discount ?? 0;
             this.amount = isBooking30
               ? Math.round(baseAmount * 0.3)
               : baseAmount;
-            this.actualAmount = 0;
+            this.offerAmount = isBooking30
+              ? Math.round(baseOffer * 0.3)
+              : baseOffer;
           }
         } else {
-          const baseAmount =
-            item.data.find((f) => f.currency == currency)?.amount ?? 0;
-          const baseOffer =
-            item.data.find((f) => f.currency == currency)?.discount ?? 0;
-          this.amount = isBooking30 ? Math.round(baseAmount * 0.3) : baseAmount;
-          this.offerAmount = isBooking30
-            ? Math.round(baseOffer * 0.3)
-            : baseOffer;
-        }
-      } else {
-        const roomName = this.roomList.find(
-          (item) => item.value == lookupRoomId,
-        )?.name;
-        const room = `Price(${roomName})`;
-        const matchData = item.data.find(
-          (f) => f.currency == currency && item.title == room,
-        );
+          const roomName = this.roomList.find(
+            (item) => item.value == lookupRoomId,
+          )?.name;
+          const room = `Price(${roomName})`;
+          const matchData = item.data.find(
+            (f) => f.currency == currency && item.title == room,
+          );
 
-        if (this.isSpecialDiscount) {
-          const discountPrice = matchData?.discount;
-          if (discountPrice) {
-            const baseAmount = discountPrice;
-            const baseActual = matchData?.amount ?? 0;
-            this.amount = isBooking30
-              ? Math.round(baseAmount * 0.3)
-              : baseAmount;
-            this.actualAmount = isBooking30
-              ? Math.round(baseActual * 0.3)
-              : baseActual;
+          if (this.isSpecialDiscount) {
+            const discountPrice = matchData?.discount;
+            if (discountPrice) {
+              const baseAmount = discountPrice;
+              const baseActual = matchData?.amount ?? 0;
+              this.amount = isBooking30
+                ? Math.round(baseAmount * 0.3)
+                : baseAmount;
+              this.actualAmount = isBooking30
+                ? Math.round(baseActual * 0.3)
+                : baseActual;
+            } else {
+              const baseAmount = matchData?.amount ?? 0;
+              this.amount = isBooking30
+                ? Math.round(baseAmount * 0.3)
+                : baseAmount;
+              this.actualAmount = 0;
+            }
           } else {
             const baseAmount = matchData?.amount ?? 0;
+            const baseOffer = matchData?.discount ?? 0;
             this.amount = isBooking30
               ? Math.round(baseAmount * 0.3)
               : baseAmount;
-            this.actualAmount = 0;
+            this.offerAmount = isBooking30
+              ? Math.round(baseOffer * 0.3)
+              : baseOffer;
           }
-        } else {
-          const baseAmount = matchData?.amount ?? 0;
-          const baseOffer = matchData?.discount ?? 0;
-          this.amount = isBooking30 ? Math.round(baseAmount * 0.3) : baseAmount;
-          this.offerAmount = isBooking30
-            ? Math.round(baseOffer * 0.3)
-            : baseOffer;
+        }
+        if (this.amount) {
+          break;
         }
       }
-      if (this.amount) {
-        break;
-      }
     }
+  }
+  selectPersonalGuidePrice(currency: string) {
+    const priceData: feesDto | undefined = this.feesData[0].data.find(
+      (fd) => fd.currency == currency,
+    );
+    this.amount = priceData?.amount ?? 0;
+    this.actualAmount = this.amount;
   }
   onPhoneInputChange(
     isValid: boolean | null | undefined,
@@ -506,7 +892,6 @@ export class CheckoutComponent {
 
   updateCurrencyOptions(isIndian: boolean): void {
     if (this.paymentId) return;
-
     if (this.isDiscountPlan && this.slug === routeEnum['200TTC']) {
       this.currencyOptions = isIndian ? ['USD', 'INR'] : ['USD'];
       if (isIndian) {
@@ -524,7 +909,6 @@ export class CheckoutComponent {
       }
       return;
     }
-
     if (this.feesData.length > 0) {
       const optionsSet = new Set<string>();
       this.feesData.forEach((item) => {
@@ -625,12 +1009,24 @@ export class CheckoutComponent {
         this.currencyRequired = 'Currency is required';
       }
     }
+    if (type === 'appointmentDate') {
+      this.appointmentDateRequired = this.checkData.appointmentDate
+        ? ''
+        : 'Please select a date';
+    }
+    if (type === 'appointmentTime') {
+      this.appointmentTimeRequired = this.checkData.appointmentTime
+        ? ''
+        : 'Please select a time slot';
+    }
   }
   emailRequired: string = '';
   nameRequired: string = '';
   packageRequired: string = '';
   phoneRequired: string = '';
   currencyRequired: string = '';
+  appointmentDateRequired: string = '';
+  appointmentTimeRequired: string = '';
   checkoutData(data: checkoutModel, paymentGateway: boolean | 'paypal') {
     const isPaypal = paymentGateway === 'paypal';
     const isRazorPay = paymentGateway === true;
@@ -659,14 +1055,13 @@ export class CheckoutComponent {
         isErrMsg = true;
       }
       if (!data.package) {
-        // 200TTC always requires a booking selection (even on discount plan)
-        // All other courses only require it when not on a discount plan
         const requires200TTCPackage = this.slug === routeEnum['200TTC'];
         if (
           this.slug !== routeEnum.sa &&
           this.slug !== routeEnum.pranOnlinePranaArambh &&
           this.slug !== routeEnum.foundationOfSpirituality &&
           this.slug !== routeEnum.pranayamaCertification &&
+          this.slug !== routeEnum.pg &&
           (!this.isDiscountPlan || requires200TTCPackage)
         ) {
           this.packageRequired = 'Please select a Booking';
@@ -679,6 +1074,14 @@ export class CheckoutComponent {
       }
       if (!data.currency) {
         this.currencyRequired = 'Currency is required';
+        isErrMsg = true;
+      }
+      if (this.slug === routeEnum.pg && !data.appointmentDate) {
+        this.appointmentDateRequired = 'Please select a date';
+        isErrMsg = true;
+      }
+      if (this.slug === routeEnum.pg && !data.appointmentTime) {
+        this.appointmentTimeRequired = 'Please select a time slot';
         isErrMsg = true;
       }
       if (!isErrMsg) {
@@ -702,6 +1105,8 @@ export class CheckoutComponent {
           this.pranayamaCertificationCheckout(data, isRazorPay);
         } else if (this.slug == routeEnum.retreats) {
           this.retreatsCheckout(data, isRazorPay, isPaypal);
+        } else if (this.slug == routeEnum.pg) {
+          this.personalGuidanceCheckout(data, isRazorPay, isPaypal);
         } else {
           this.pranaArambhCheckout(data, isRazorPay);
         }
@@ -950,7 +1355,11 @@ export class CheckoutComponent {
       this.initializePaymentFor200TTC(signupData);
     }
   }
-  rishikesh200Checkout(data: checkoutModel, isRazorPay: boolean, isPaypal: boolean = false) {
+  rishikesh200Checkout(
+    data: checkoutModel,
+    isRazorPay: boolean,
+    isPaypal: boolean = false,
+  ) {
     let room = this.roomList.find((item) => item.value == data.package);
 
     // PayPal enforces USD as the only accepted currency
@@ -981,7 +1390,11 @@ export class CheckoutComponent {
     }
   }
 
-  baliCheckout(data: checkoutModel, isRazorPay: boolean, isPaypal: boolean = false) {
+  baliCheckout(
+    data: checkoutModel,
+    isRazorPay: boolean,
+    isPaypal: boolean = false,
+  ) {
     let hour = 100;
     let month;
     if (this.slug == routeEnum.bali200) {
@@ -1037,14 +1450,8 @@ export class CheckoutComponent {
       .checkoutPaypalForBali(data)
       .subscribe((res: paypalPayModel) => {
         if (res.orderId && res.payDbId && res.approvalUrl) {
-          localStorage.setItem(
-            localstorageKey.baliPaypalOrderId,
-            res.orderId,
-          );
-          localStorage.setItem(
-            localstorageKey.baliPaypalDBId,
-            res.payDbId,
-          );
+          localStorage.setItem(localstorageKey.baliPaypalOrderId, res.orderId);
+          localStorage.setItem(localstorageKey.baliPaypalDBId, res.payDbId);
           window.location.href = res.approvalUrl;
           this.spinner.hide();
         } else {
@@ -1838,7 +2245,11 @@ export class CheckoutComponent {
     return courseNames[slug] || 'Yoga Teacher Training';
   }
   //#region retreat
-  retreatsCheckout(data: checkoutModel, isRazorPay: boolean, isPaypal: boolean = false) {
+  retreatsCheckout(
+    data: checkoutModel,
+    isRazorPay: boolean,
+    isPaypal: boolean = false,
+  ) {
     let room = this.roomList.find((item) => item.value == data.package);
 
     // PayPal enforces USD as the only accepted currency
@@ -1929,10 +2340,6 @@ export class CheckoutComponent {
         }
       });
   }
-  /**
-   * PayPal checkout for The Essence of Yoga – Mysore Retreat.
-   * Currency is always forced to USD (PayPal requirement).
-   */
   initializePayPalPaymentForRetreat(data: SignupDataModel) {
     this.webapiService
       .checkoutPaypalForRetreat(data)
@@ -1942,14 +2349,104 @@ export class CheckoutComponent {
             localstorageKey.retreatPaypalOrderId,
             res.orderId,
           );
-          localStorage.setItem(
-            localstorageKey.retreatPaypalDBId,
-            res.payDbId,
-          );
+          localStorage.setItem(localstorageKey.retreatPaypalDBId, res.payDbId);
           window.location.href = res.approvalUrl;
           this.spinner.hide();
         } else {
           alert('Session Generation failed! please try again');
+          this.spinner.hide();
+        }
+      });
+  }
+  //#endregion
+  //#region personal guidance
+  personalGuidanceCheckout(
+    data: checkoutModel,
+    isRazorPay: boolean,
+    isPaypal: boolean = false,
+  ) {
+    const effectiveCurrency = isPaypal ? this.PAYPAL_CURRENCY : data.currency;
+    let personalGuidanceData: SignupDataModel = {
+      name: data.name,
+      email: data.email.toLowerCase(),
+      phoneNumber: data.phoneNumber.e164Number,
+      courseType: this.feesData[0].title,
+      price: this.amount,
+      currency: effectiveCurrency,
+      selectedDate: data.appointmentDate.toDateString(),
+      selectedSlot: data.appointmentTime,
+    };
+    if (isPaypal) {
+      // this.initializePayPalPaymentForRetreat(personalGuidanceData);
+    } else if (isRazorPay) {
+      this.initializeRazorPayPersonalGuidance(personalGuidanceData);
+    } else {
+      this.initializePayStripePersonalGuidance(personalGuidanceData);
+    }
+  }
+  initializeRazorPayPersonalGuidance(data: SignupDataModel) {
+    this.webapiService
+      .checkoutRazorpayPg(data)
+      .subscribe((res: razorPayModel) => {
+        if (res && res.orderId && res.razorpayKey) {
+          const options = {
+            key: res.razorpayKey,
+            amount: res.amount * 100,
+            currency: data.currency,
+            name: 'Yoga Vidya School',
+            description: `Personal Guidance - ${data.courseType}`,
+            order_id: res.orderId,
+            handler: (response: any) => {
+              localStorage.setItem(
+                localstorageKey.pgRzpId,
+                response.razorpay_payment_id,
+              );
+              localStorage.setItem(
+                localstorageKey.pgOrderId,
+                response.razorpay_order_id,
+              );
+              localStorage.setItem(
+                localstorageKey.pgSig,
+                response.razorpay_signature,
+              );
+              localStorage.setItem(localstorageKey.pgDBId, res.payDbId);
+              this.router.navigate(['/confirmation']);
+            },
+            prefill: {
+              name: data.name,
+              email: data.email,
+              contact: data.phoneNumber,
+            },
+            notes: {
+              course: JSON.stringify(`Personal Guidance - ${data.courseType}`),
+            },
+            theme: {
+              color: '#f47019',
+            },
+          };
+          this.spinner.hide();
+          const rzp = new Razorpay(options);
+          rzp.open();
+        } else {
+          alert('Session Genration failed! please try again');
+          this.spinner.hide();
+        }
+      });
+  }
+  initializePayStripePersonalGuidance(data: SignupDataModel) {
+    this.webapiService
+      .checkoutStripeForPg(data)
+      .subscribe((res: stripePayModel) => {
+        if (res.sessionId) {
+          localStorage.setItem(
+            localstorageKey.pgStripeSessionId,
+            res.sessionId,
+          );
+          localStorage.setItem(localstorageKey.pgStripeDBId, res.payDbId);
+          window.location.href = res.url;
+          this.spinner.hide();
+        } else {
+          alert('Session Genration failed! please try again');
           this.spinner.hide();
         }
       });
@@ -1965,4 +2462,14 @@ class courseListDto {
 interface feeInfoDto {
   title: string;
   data: feesDto[];
+}
+
+interface CalendarDay {
+  date: Date;
+  value: string;
+  dayNumber: number;
+  isCurrentMonth: boolean;
+  isToday: boolean;
+  isPast: boolean;
+  isWeekend: boolean;
 }

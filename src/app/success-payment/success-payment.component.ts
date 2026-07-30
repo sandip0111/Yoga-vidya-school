@@ -54,6 +54,9 @@ export class SuccessPaymentComponent {
   rishikeshPaypalOrderId: string = '';
   baliPaypalOrderId: string = '';
   liveClassesPaypalOrderId: string = '';
+  pgRazorPaySessionId: string = '';
+  pgStripeSessionId: string = '';
+  isPersonalGuidance: boolean = false;
   constructor(
     private webapiService: WebapiService,
     private router: Router,
@@ -149,8 +152,10 @@ export class SuccessPaymentComponent {
         ? ''
         : tokenFromUrl) ||
       '';
-    // Track purchase completion after a short delay to ensure data is loaded
-
+    this.pgRazorPaySessionId =
+      localStorage.getItem(localstorageKey.pgRzpId) ?? '';
+    this.pgStripeSessionId =
+      localStorage.getItem(localstorageKey.pgStripeSessionId) ?? '';
     if (this.sessionId) {
       setTimeout(() => {
         this.getpaymentResult(this.sessionId, this.couponCodeId ?? '');
@@ -301,6 +306,16 @@ export class SuccessPaymentComponent {
     if (this.liveClassesPaypalOrderId) {
       setTimeout(() => {
         this.getPaypalPaymentResultLiveClasses(this.liveClassesPaypalOrderId);
+      }, 0);
+    }
+    if (this.pgRazorPaySessionId) {
+      setTimeout(() => {
+        this.getRazorPaymentResultPg(this.pgRazorPaySessionId);
+      }, 0);
+    }
+    if (this.pgStripeSessionId) {
+      setTimeout(() => {
+        this.getStripePaymentResultPg(this.pgStripeSessionId);
       }, 0);
     }
   }
@@ -1262,6 +1277,7 @@ export class SuccessPaymentComponent {
         }
       });
   }
+  //#endregion
   getPaypalPaymentResultRishikesh(paypalOrderId: string) {
     const fbp = this.getCookie('_fbp');
     const fbc = this.getCookie('_fbc');
@@ -1313,31 +1329,29 @@ export class SuccessPaymentComponent {
       fbp: fbp,
       fbc: fbc,
     };
-    this.webapiService
-      .getPaypalPaymentResultBali(val)
-      .subscribe((res: any) => {
-        const responseData = res?.data || res;
-        if (
-          responseData &&
-          (responseData.status === 'success' ||
-            res.status === 'success' ||
-            res.status === 200)
-        ) {
-          this.isRishikesh = true;
-          localStorage.removeItem(localstorageKey.baliPaypalOrderId);
-          localStorage.removeItem(localstorageKey.baliPaypalDBId);
-          this.paidFlag = 'true';
-          this.ordId = responseData.paymtId || res.paymtId || paypalOrderId;
-          this.amount = responseData.amount || res.amount || 0;
-          this.cur = this.currencySet(
-            responseData.currency || res.currency || 'USD',
-          );
-          this.spinner.hide();
-        } else {
-          this.paidFlag = 'false';
-          this.spinner.hide();
-        }
-      });
+    this.webapiService.getPaypalPaymentResultBali(val).subscribe((res: any) => {
+      const responseData = res?.data || res;
+      if (
+        responseData &&
+        (responseData.status === 'success' ||
+          res.status === 'success' ||
+          res.status === 200)
+      ) {
+        this.isRishikesh = true;
+        localStorage.removeItem(localstorageKey.baliPaypalOrderId);
+        localStorage.removeItem(localstorageKey.baliPaypalDBId);
+        this.paidFlag = 'true';
+        this.ordId = responseData.paymtId || res.paymtId || paypalOrderId;
+        this.amount = responseData.amount || res.amount || 0;
+        this.cur = this.currencySet(
+          responseData.currency || res.currency || 'USD',
+        );
+        this.spinner.hide();
+      } else {
+        this.paidFlag = 'false';
+        this.spinner.hide();
+      }
+    });
   }
   getPaypalPaymentResultLiveClasses(paypalOrderId: string) {
     const fbp = this.getCookie('_fbp');
@@ -1384,6 +1398,67 @@ export class SuccessPaymentComponent {
         localStorage.removeItem(localstorageKey.liveClassesPaypalOrderId);
         localStorage.removeItem(localstorageKey.liveClassesPaypalDBId);
       });
+  }
+  //#region personal guidance
+  getRazorPaymentResultPg(razorpayPaymentId: string) {
+    const fbp = this.getCookie('_fbp');
+    const fbc = this.getCookie('_fbc');
+    const paymentResult: razorPaymentResultModel = {
+      razorpayPaymentId: razorpayPaymentId,
+      razorpayOrderId: localStorage.getItem(localstorageKey.pgOrderId),
+      razorpaySignature: localStorage.getItem(localstorageKey.pgSig),
+      payDbId: localStorage.getItem(localstorageKey.pgDBId),
+      fbp: fbp,
+      fbc: fbc,
+    };
+    this.webapiService
+      .getRazorPaymentResultPg(paymentResult)
+      .subscribe((res: razorPayReturnModel) => {
+        if (res) {
+          this.isPersonalGuidance = true;
+          this.paidFlag = 'true';
+          this.ordId = paymentResult.razorpayOrderId;
+          this.amount = res.amount;
+          this.cur = this.currencySet(res.currency);
+          this.spinner.hide();
+        } else {
+          this.paidFlag = 'false';
+          this.spinner.hide();
+        }
+        localStorage.removeItem(localstorageKey.pgRzpId);
+        localStorage.removeItem(localstorageKey.pgOrderId);
+        localStorage.removeItem(localstorageKey.pgSig);
+        localStorage.removeItem(localstorageKey.pgDBId);
+        localStorage.removeItem(localstorageKey.pgAmnt);
+        localStorage.removeItem(localstorageKey.pgCurr);
+        localStorage.removeItem(localstorageKey.pgUserID);
+      });
+  }
+  getStripePaymentResultPg(sessionId: string) {
+    const fbp = this.getCookie('_fbp');
+    const fbc = this.getCookie('_fbc');
+    let val = {
+      sessionId: sessionId,
+      payDbId: localStorage.getItem(localstorageKey.pgStripeDBId),
+      fbp: fbp,
+      fbc: fbc,
+    };
+    this.webapiService.getStripePaymentResultPg(val).subscribe((res: any) => {
+      if (res.data.status == 'success') {
+        this.isPersonalGuidance = true;
+        this.paidFlag = 'true';
+        this.ordId = res.data.paymtId;
+        this.amount = res.data.amount;
+        this.cur = this.currencySet(res.data.currency);
+        this.spinner.hide();
+      } else {
+        this.paidFlag = 'false';
+        this.reuseUrl = res.data.sessionId;
+        this.spinner.hide();
+      }
+      localStorage.removeItem(localstorageKey.pgStripeSessionId);
+      localStorage.removeItem(localstorageKey.pgStripeDBId);
+    });
   }
   //#endregion
 }

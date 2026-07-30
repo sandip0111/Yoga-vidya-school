@@ -17,6 +17,7 @@ import {
   swaraRazorModel,
   swaraStripeModel,
   TwoHundredTTCSignupModel,
+  personalGuidanceBookedSlotDto,
 } from './models/checkout';
 import { Observable } from 'rxjs';
 import { getSlugDataModel } from './models/rishikesh';
@@ -413,10 +414,7 @@ export class WebapiService {
     );
   }
   getPaypalPaymentResultBali(data: paypalPaymentResultModel) {
-    return this.http.post(
-      this.url + 'api/v1/getPaypalPaymentResultBali',
-      data,
-    );
+    return this.http.post(this.url + 'api/v1/getPaypalPaymentResultBali', data);
   }
   checkoutPaypalForLiveClasses(data: any): Observable<paypalPayModel> {
     return this.http.post<paypalPayModel>(
@@ -526,5 +524,32 @@ export class WebapiService {
       data,
     );
   }
+  checkoutRazorpayPg(data: SignupDataModel): Observable<razorPayModel> {
+    return this.http.post<razorPayModel>(
+      this.url + 'api/v1/checkoutRazorpayPg',
+      data,
+    );
+  }
+  getRazorPaymentResultPg(
+    data: razorPaymentResultModel,
+  ): Observable<razorPayReturnModel> {
+    return this.http.post<razorPayReturnModel>(
+      this.url + 'api/v1/getRazorPaymentResultPg',
+      data,
+    );
+  }
+  getAllBookedSlotPg(): Observable<personalGuidanceBookedSlotDto[]> {
+    return this.http.get<personalGuidanceBookedSlotDto[]>(
+      this.url + 'api/v1/getAllBookedSlotPg',
+    );
+  }
+  checkoutStripeForPg(data: SignupDataModel): Observable<stripePayModel> {
+    return this.http.post<stripePayModel>(
+      this.url + 'api/v1/checkoutStripeForPg',
+      data,
+    );
+  }
+  getStripePaymentResultPg(data: any) {
+    return this.http.post(this.url + 'api/v1/getStripePaymentResultPg', data);
+  }
 }
-

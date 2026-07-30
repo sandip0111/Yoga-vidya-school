@@ -98,7 +98,7 @@ body {
   color: #fff;
 }
 
-.height_medium{
+.height_medium {
   height: clamp(320px, 50vw, 580px);
   width: 100%;
   object-fit: cover;
@@ -242,9 +242,10 @@ iframe {
     text-align: center;
     line-height: 28px !important;
     margin-top: 10px;
-  }
-  span {
-    color: #f47019;
+
+    span {
+      color: #f47019;
+    }
   }
   small {
     padding: 0 0 !important;

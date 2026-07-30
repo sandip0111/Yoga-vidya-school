@@ -60,10 +60,19 @@ export enum localstorageKey {
   'retreatUserID' = 'retreat_user_id',
   'retreatStripeSessionId' = 'retreat_stripe_session_id',
   'retreatStripeDBId' = 'retreat_stripe_db_id',
-
   'retreatPaypalOrderId' = 'retreat_paypal_order_id',
   'retreatPaypalDBId' = 'retreat_paypal_db_id',
 
   'liveClassesPaypalOrderId' = 'live_classes_paypal_order_id',
   'liveClassesPaypalDBId' = 'live_classes_paypal_db_id',
+
+  'pgRzpId' = 'pg_rzp_id',
+  'pgOrderId' = 'pg_rzp_order_id',
+  'pgSig' = 'pg_rzp_signature',
+  'pgDBId' = 'pg_rzp_db_id',
+  'pgAmnt' = 'pg_rzp_amnt',
+  'pgCurr' = 'pg_rzp_curr',
+  'pgUserID' = 'pg_user_id',
+  'pgStripeSessionId' = 'pg_stripe_session_id',
+  'pgStripeDBId' = 'pg_stripe_db_id',
 }

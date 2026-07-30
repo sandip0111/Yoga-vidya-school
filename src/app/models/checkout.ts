@@ -6,6 +6,8 @@ export class checkoutModel {
   currency: string;
   address: string;
   code: string;
+  appointmentDate: Date;
+  appointmentTime: string;
   constructor() {
     this.name = '';
     this.email = '';
@@ -14,6 +16,8 @@ export class checkoutModel {
     this.currency = '';
     this.address = '';
     this.code = '';
+    this.appointmentDate = new Date();
+    this.appointmentTime = '';
   }
 }
 export class PhoneNumberData {
@@ -49,6 +53,9 @@ export interface SignupDataModel {
   room?: string;
   hour?: number;
   month?: string;
+  selectedDate?: string;
+  selectedSlot?: string;
+  courseType?: string;
 }
 export interface TwoHundredTTCSignupModel {
   name: string;
@@ -154,4 +161,8 @@ export interface savePaymentIdModel {
   id: string;
   orderId?: string;
   paymentId: string;
+}
+export class personalGuidanceBookedSlotDto {
+  selectedSlot: string = '';
+  selectedDate: string = '';
 }
