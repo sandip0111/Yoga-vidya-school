@@ -58,6 +58,7 @@ export class SuccessPaymentComponent {
   pgRazorPaySessionId: string = '';
   pgStripeSessionId: string = '';
   pgPaypalOrderId: string = '';
+  pranaArambhaPaypalOrderId: string = '';
   isPersonalGuidance: boolean = false;
   constructor(
     private webapiService: WebapiService,
@@ -151,6 +152,9 @@ export class SuccessPaymentComponent {
     const hasLiveClassesPaypal =
       !!sessionStorage.getItem('liveClassesPaypalOrderId') ||
       !!localStorage.getItem(localstorageKey.liveClassesPaypalOrderId);
+    const hasPranaArambhaPaypal =
+      !!localStorage.getItem(localstorageKey.pranaArambhaPaypalDBId) ||
+      !!localStorage.getItem(localstorageKey.pranaArambhaPaypalOrderId);
 
     this.twoHundredTTCPaypalOrderId =
       localStorage.getItem(localstorageKey['200TTCPaypalOrderId']) ||
@@ -164,17 +168,28 @@ export class SuccessPaymentComponent {
         ? tokenFromUrl
         : '') ||
       '';
+    this.pranaArambhaPaypalOrderId =
+      localStorage.getItem(localstorageKey.pranaArambhaPaypalOrderId) ||
+      (hasPranaArambhaPaypal ||
+      this.router.url.includes('pranayama-course-online-pranarambha') ||
+      this.router.url.includes('prana')
+        ? tokenFromUrl
+        : '') ||
+      '';
     this.retreatPaypalOrderId =
       localStorage.getItem(localstorageKey.retreatPaypalOrderId) ||
       (hasRetreatPaypal ||
       (!has200TTCPaypal &&
         !hasPgPaypal &&
+        !hasPranaArambhaPaypal &&
         !hasRishikeshPaypal &&
         !hasBaliPaypal &&
         !hasLiveClassesPaypal &&
         !this.router.url.includes('200') &&
         !this.router.url.includes('pg') &&
-        !this.router.url.includes('personal-guidance'))
+        !this.router.url.includes('personal-guidance') &&
+        !this.router.url.includes('pranayama-course-online-pranarambha') &&
+        !this.router.url.includes('prana'))
         ? tokenFromUrl
         : '') ||
       '';
@@ -351,6 +366,13 @@ export class SuccessPaymentComponent {
     if (this.pgStripeSessionId) {
       setTimeout(() => {
         this.getStripePaymentResultPg(this.pgStripeSessionId);
+      }, 0);
+    }
+    if (this.pranaArambhaPaypalOrderId) {
+      setTimeout(() => {
+        this.getPaypalPaymentResultPranaArambha(
+          this.pranaArambhaPaypalOrderId,
+        );
       }, 0);
     }
     if (this.pgPaypalOrderId) {
@@ -1533,6 +1555,45 @@ export class SuccessPaymentComponent {
         }
         localStorage.removeItem(localstorageKey.pgPaypalOrderId);
         localStorage.removeItem(localstorageKey.pgPaypalDBId);
+      });
+  }
+  getPaypalPaymentResultPranaArambha(paypalOrderId: string) {
+    const fbp = this.getCookie('_fbp');
+    const fbc = this.getCookie('_fbc');
+    const couponCodeId = localStorage.getItem(localstorageKey.couponCode);
+    let val = {
+      paypalOrderId: paypalOrderId,
+      payDbId: localStorage.getItem(
+        localstorageKey.pranaArambhaPaypalDBId,
+      ),
+      couponCodeId: couponCodeId,
+      fbp: fbp,
+      fbc: fbc,
+    };
+    this.webapiService
+      .getPaypalPaymentResultPranaArambha(val)
+      .subscribe((res: any) => {
+        const responseData = res?.data || res;
+        if (
+          responseData &&
+          (responseData.status === 'success' ||
+            res.status === 'success' ||
+            res.status === 200)
+        ) {
+          this.paidFlag = 'true';
+          this.ordId = responseData.paymtId || res.paymtId || paypalOrderId;
+          this.amount = responseData.amount || res.amount || 0;
+          this.cur = this.currencySet(
+            responseData.currency || res.currency || 'USD',
+          );
+          this.spinner.hide();
+        } else {
+          this.paidFlag = 'false';
+          this.spinner.hide();
+        }
+        localStorage.removeItem(localstorageKey.pranaArambhaPaypalOrderId);
+        localStorage.removeItem(localstorageKey.pranaArambhaPaypalDBId);
+        localStorage.removeItem(localstorageKey.couponCode);
       });
   }
   //#endregion

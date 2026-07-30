@@ -564,4 +564,16 @@ export class WebapiService {
       data,
     );
   }
+  checkoutPaypalForPranaArambha(data: any): Observable<paypalPayModel> {
+    return this.http.post<paypalPayModel>(
+      this.url + 'api/v1/checkoutPaypalForPranaArambha',
+      data,
+    );
+  }
+  getPaypalPaymentResultPranaArambha(data: paypalPaymentResultModel) {
+    return this.http.post(
+      this.url + 'api/v1/getPaypalPaymentResultPranaArambha',
+      data,
+    );
+  }
 }
