@@ -6,6 +6,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { CommonModule } from '@angular/common';
 import { localstorageKey } from '../enum/localstorage';
 import {
+  paypalPaymentResultModel,
   razorPaymentResultModel,
   razorPayReturnModel,
   swaraPaymentResultModel,
@@ -56,6 +57,8 @@ export class SuccessPaymentComponent {
   liveClassesPaypalOrderId: string = '';
   pgRazorPaySessionId: string = '';
   pgStripeSessionId: string = '';
+  pgPaypalOrderId: string = '';
+  pranaArambhaPaypalOrderId: string = '';
   isPersonalGuidance: boolean = false;
   constructor(
     private webapiService: WebapiService,
@@ -108,10 +111,7 @@ export class SuccessPaymentComponent {
     this.twoHundredTTCStripeSessionId =
       localStorage.getItem(localstorageKey['200TTCStripeSessionId']) ?? '';
     const tokenFromUrl = this.route.snapshot.queryParams['token'];
-    this.twoHundredTTCPaypalOrderId =
-      localStorage.getItem(localstorageKey['200TTCPaypalOrderId']) ||
-      (this.router.url.includes('200') ? tokenFromUrl : '') ||
-      '';
+
     this.rishikesh200StripeSessionId =
       localStorage.getItem(localstorageKey.rishikesh20StripeSessionId) ?? '';
     this.couponCodeId = localStorage.getItem(localstorageKey.couponCode);
@@ -129,33 +129,83 @@ export class SuccessPaymentComponent {
       localStorage.getItem(localstorageKey.retreatRzpId) ?? '';
     this.retreatStripeSessionId =
       localStorage.getItem(localstorageKey.retreatStripeSessionId) ?? '';
-    this.retreatPaypalOrderId =
-      localStorage.getItem(localstorageKey.retreatPaypalOrderId) ||
-      tokenFromUrl ||
-      '';
-    this.rishikeshPaypalOrderId =
-      localStorage.getItem(localstorageKey.rishikeshPaypalOrderId) ||
-      (this.retreatPaypalOrderId ? '' : tokenFromUrl) ||
-      '';
-    this.baliPaypalOrderId =
-      localStorage.getItem(localstorageKey.baliPaypalOrderId) ||
-      (this.retreatPaypalOrderId || this.rishikeshPaypalOrderId
-        ? ''
-        : tokenFromUrl) ||
-      '';
-    this.liveClassesPaypalOrderId =
-      sessionStorage.getItem('liveClassesPaypalOrderId') ||
-      localStorage.getItem(localstorageKey.liveClassesPaypalOrderId) ||
-      (this.retreatPaypalOrderId ||
-      this.rishikeshPaypalOrderId ||
-      this.baliPaypalOrderId
-        ? ''
-        : tokenFromUrl) ||
-      '';
     this.pgRazorPaySessionId =
       localStorage.getItem(localstorageKey.pgRzpId) ?? '';
     this.pgStripeSessionId =
       localStorage.getItem(localstorageKey.pgStripeSessionId) ?? '';
+
+    const has200TTCPaypal =
+      !!localStorage.getItem(localstorageKey['200TTCPaypalDBId']) ||
+      !!localStorage.getItem(localstorageKey['200TTCPaypalOrderId']);
+    const hasPgPaypal =
+      !!localStorage.getItem(localstorageKey.pgPaypalDBId) ||
+      !!localStorage.getItem(localstorageKey.pgPaypalOrderId);
+    const hasRetreatPaypal =
+      !!localStorage.getItem(localstorageKey.retreatPaypalDBId) ||
+      !!localStorage.getItem(localstorageKey.retreatPaypalOrderId);
+    const hasRishikeshPaypal =
+      !!localStorage.getItem(localstorageKey.rishikeshPaypalDBId) ||
+      !!localStorage.getItem(localstorageKey.rishikeshPaypalOrderId);
+    const hasBaliPaypal =
+      !!localStorage.getItem(localstorageKey.baliPaypalDBId) ||
+      !!localStorage.getItem(localstorageKey.baliPaypalOrderId);
+    const hasLiveClassesPaypal =
+      !!sessionStorage.getItem('liveClassesPaypalOrderId') ||
+      !!localStorage.getItem(localstorageKey.liveClassesPaypalOrderId);
+    const hasPranaArambhaPaypal =
+      !!localStorage.getItem(localstorageKey.pranaArambhaPaypalDBId) ||
+      !!localStorage.getItem(localstorageKey.pranaArambhaPaypalOrderId);
+
+    this.twoHundredTTCPaypalOrderId =
+      localStorage.getItem(localstorageKey['200TTCPaypalOrderId']) ||
+      (has200TTCPaypal || this.router.url.includes('200') ? tokenFromUrl : '') ||
+      '';
+    this.pgPaypalOrderId =
+      localStorage.getItem(localstorageKey.pgPaypalOrderId) ||
+      (hasPgPaypal ||
+      this.router.url.includes('pg') ||
+      this.router.url.includes('personal-guidance')
+        ? tokenFromUrl
+        : '') ||
+      '';
+    this.pranaArambhaPaypalOrderId =
+      localStorage.getItem(localstorageKey.pranaArambhaPaypalOrderId) ||
+      (hasPranaArambhaPaypal ||
+      this.router.url.includes('pranayama-course-online-pranarambha') ||
+      this.router.url.includes('prana')
+        ? tokenFromUrl
+        : '') ||
+      '';
+    this.retreatPaypalOrderId =
+      localStorage.getItem(localstorageKey.retreatPaypalOrderId) ||
+      (hasRetreatPaypal ||
+      (!has200TTCPaypal &&
+        !hasPgPaypal &&
+        !hasPranaArambhaPaypal &&
+        !hasRishikeshPaypal &&
+        !hasBaliPaypal &&
+        !hasLiveClassesPaypal &&
+        !this.router.url.includes('200') &&
+        !this.router.url.includes('pg') &&
+        !this.router.url.includes('personal-guidance') &&
+        !this.router.url.includes('pranayama-course-online-pranarambha') &&
+        !this.router.url.includes('prana'))
+        ? tokenFromUrl
+        : '') ||
+      '';
+    this.rishikeshPaypalOrderId =
+      localStorage.getItem(localstorageKey.rishikeshPaypalOrderId) ||
+      (hasRishikeshPaypal ? tokenFromUrl : '') ||
+      '';
+    this.baliPaypalOrderId =
+      localStorage.getItem(localstorageKey.baliPaypalOrderId) ||
+      (hasBaliPaypal ? tokenFromUrl : '') ||
+      '';
+    this.liveClassesPaypalOrderId =
+      sessionStorage.getItem('liveClassesPaypalOrderId') ||
+      localStorage.getItem(localstorageKey.liveClassesPaypalOrderId) ||
+      (hasLiveClassesPaypal ? tokenFromUrl : '') ||
+      '';
     if (this.sessionId) {
       setTimeout(() => {
         this.getpaymentResult(this.sessionId, this.couponCodeId ?? '');
@@ -316,6 +366,18 @@ export class SuccessPaymentComponent {
     if (this.pgStripeSessionId) {
       setTimeout(() => {
         this.getStripePaymentResultPg(this.pgStripeSessionId);
+      }, 0);
+    }
+    if (this.pranaArambhaPaypalOrderId) {
+      setTimeout(() => {
+        this.getPaypalPaymentResultPranaArambha(
+          this.pranaArambhaPaypalOrderId,
+        );
+      }, 0);
+    }
+    if (this.pgPaypalOrderId) {
+      setTimeout(() => {
+        this.getPaypalPaymentResultPg(this.pgPaypalOrderId);
       }, 0);
     }
   }
@@ -1459,6 +1521,80 @@ export class SuccessPaymentComponent {
       localStorage.removeItem(localstorageKey.pgStripeSessionId);
       localStorage.removeItem(localstorageKey.pgStripeDBId);
     });
+  }
+  getPaypalPaymentResultPg(paypalOrderId: string) {
+    const fbp = this.getCookie('_fbp');
+    const fbc = this.getCookie('_fbc');
+    let val: paypalPaymentResultModel = {
+      paypalOrderId: paypalOrderId,
+      payDbId: localStorage.getItem(localstorageKey.pgPaypalDBId),
+      fbp: fbp,
+      fbc: fbc,
+    };
+    this.webapiService
+      .getPaypalPaymentResultPg(val)
+      .subscribe((res: any) => {
+        const responseData = res?.data || res;
+        if (
+          responseData &&
+          (responseData.status === 'success' ||
+            res.status === 'success' ||
+            res.status === 200)
+        ) {
+          this.isPersonalGuidance = true;
+          this.paidFlag = 'true';
+          this.ordId = responseData.paymtId || res.paymtId || paypalOrderId;
+          this.amount = responseData.amount || res.amount || 0;
+          this.cur = this.currencySet(
+            responseData.currency || res.currency || 'USD',
+          );
+          this.spinner.hide();
+        } else {
+          this.paidFlag = 'false';
+          this.spinner.hide();
+        }
+        localStorage.removeItem(localstorageKey.pgPaypalOrderId);
+        localStorage.removeItem(localstorageKey.pgPaypalDBId);
+      });
+  }
+  getPaypalPaymentResultPranaArambha(paypalOrderId: string) {
+    const fbp = this.getCookie('_fbp');
+    const fbc = this.getCookie('_fbc');
+    const couponCodeId = localStorage.getItem(localstorageKey.couponCode);
+    let val = {
+      paypalOrderId: paypalOrderId,
+      payDbId: localStorage.getItem(
+        localstorageKey.pranaArambhaPaypalDBId,
+      ),
+      couponCodeId: couponCodeId,
+      fbp: fbp,
+      fbc: fbc,
+    };
+    this.webapiService
+      .getPaypalPaymentResultPranaArambha(val)
+      .subscribe((res: any) => {
+        const responseData = res?.data || res;
+        if (
+          responseData &&
+          (responseData.status === 'success' ||
+            res.status === 'success' ||
+            res.status === 200)
+        ) {
+          this.paidFlag = 'true';
+          this.ordId = responseData.paymtId || res.paymtId || paypalOrderId;
+          this.amount = responseData.amount || res.amount || 0;
+          this.cur = this.currencySet(
+            responseData.currency || res.currency || 'USD',
+          );
+          this.spinner.hide();
+        } else {
+          this.paidFlag = 'false';
+          this.spinner.hide();
+        }
+        localStorage.removeItem(localstorageKey.pranaArambhaPaypalOrderId);
+        localStorage.removeItem(localstorageKey.pranaArambhaPaypalDBId);
+        localStorage.removeItem(localstorageKey.couponCode);
+      });
   }
   //#endregion
 }

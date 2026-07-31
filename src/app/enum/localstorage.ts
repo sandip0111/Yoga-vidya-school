@@ -75,4 +75,8 @@ export enum localstorageKey {
   'pgUserID' = 'pg_user_id',
   'pgStripeSessionId' = 'pg_stripe_session_id',
   'pgStripeDBId' = 'pg_stripe_db_id',
+  'pgPaypalOrderId' = 'pg_paypal_order_id',
+  'pgPaypalDBId' = 'pg_paypal_db_id',
+  'pranaArambhaPaypalOrderId' = 'prana_arambha_paypal_order_id',
+  'pranaArambhaPaypalDBId' = 'prana_arambha_paypal_db_id',
 }

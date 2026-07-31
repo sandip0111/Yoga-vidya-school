@@ -152,7 +152,9 @@ export class CheckoutComponent {
       this.slug === routeEnum.rishikesh300 ||
       this.slug === routeEnum.bali100 ||
       this.slug === routeEnum.bali200 ||
-      this.slug === routeEnum.bali300
+      this.slug === routeEnum.bali300 ||
+      this.slug === routeEnum.pg ||
+      this.slug === routeEnum.pranOnlinePranaArambh
     );
   }
   get canUsePaypal(): boolean {
@@ -1108,7 +1110,7 @@ export class CheckoutComponent {
         } else if (this.slug == routeEnum.pg) {
           this.personalGuidanceCheckout(data, isRazorPay, isPaypal);
         } else {
-          this.pranaArambhCheckout(data, isRazorPay);
+          this.pranaArambhCheckout(data, isRazorPay, isPaypal);
         }
       } else {
         this.spinner.hide();
@@ -1312,11 +1314,15 @@ export class CheckoutComponent {
       this.initializeRazorPaymentForPranicPurificationII(signup);
     }
   }
-  pranaArambhCheckout(data: checkoutModel, isRazorPay: boolean) {
+  pranaArambhCheckout(
+    data: checkoutModel,
+    isRazorPay: boolean,
+    isPaypal: boolean = false,
+  ) {
     sessionStorage.setItem('tempCourse', this.courseList._id);
     let pass = this.genratePass(6);
     if (this.oldStudent == false) {
-      this.newStudentCheckOut(data, isRazorPay, pass);
+      this.newStudentCheckOut(data, isRazorPay, pass, isPaypal);
     }
   }
   twoHundredTTCCheckout(
@@ -1565,7 +1571,12 @@ export class CheckoutComponent {
         }
       });
   }
-  newStudentCheckOut(data: checkoutModel, isRazorPay: boolean, pass: string) {
+  newStudentCheckOut(
+    data: checkoutModel,
+    isRazorPay: boolean,
+    pass: string,
+    isPaypal: boolean = false,
+  ) {
     let signup = {
       firstName: data.name,
       email: data.email.toLowerCase(),
@@ -1578,7 +1589,9 @@ export class CheckoutComponent {
     this.webapiService.createStudent(signup).subscribe((res: any) => {
       if (res.status == 'ok') {
         sessionStorage.setItem('loginId-checkout', res.studentId);
-        if (!isRazorPay) {
+        if (isPaypal) {
+          this.initializePayPalPaymentForPranaArambha(data);
+        } else if (!isRazorPay) {
           if (this.slug == routeEnum.pranOnlinePranaArambh) {
             if (data.currency == 'INR') {
               this.initializePayment(
@@ -2377,7 +2390,7 @@ export class CheckoutComponent {
       selectedSlot: data.appointmentTime,
     };
     if (isPaypal) {
-      // this.initializePayPalPaymentForRetreat(personalGuidanceData);
+      this.initializePayPalPaymentForPg(personalGuidanceData);
     } else if (isRazorPay) {
       this.initializeRazorPayPersonalGuidance(personalGuidanceData);
     } else {
@@ -2444,6 +2457,60 @@ export class CheckoutComponent {
           );
           localStorage.setItem(localstorageKey.pgStripeDBId, res.payDbId);
           window.location.href = res.url;
+          this.spinner.hide();
+        } else {
+          alert('Session Genration failed! please try again');
+          this.spinner.hide();
+        }
+      });
+  }
+  initializePayPalPaymentForPg(data: SignupDataModel) {
+    this.webapiService
+      .checkoutPaypalForPg(data)
+      .subscribe((res: paypalPayModel) => {
+        if (res.orderId && res.payDbId && res.approvalUrl) {
+          localStorage.setItem(
+            localstorageKey.pgPaypalOrderId,
+            res.orderId,
+          );
+          localStorage.setItem(
+            localstorageKey.pgPaypalDBId,
+            res.payDbId,
+          );
+          window.location.href = res.approvalUrl;
+          this.spinner.hide();
+        } else {
+          alert('Session Genration failed! please try again');
+          this.spinner.hide();
+        }
+      });
+  }
+  initializePayPalPaymentForPranaArambha(data: checkoutModel) {
+    this.spinner.show();
+    let val = {
+      price: this.isDiscounted ? this.offerAmount : this.amount,
+      currency: this.PAYPAL_CURRENCY,
+      email: data.email.toLowerCase(),
+      courseId: sessionStorage.getItem('tempCourse'),
+      paymentStatus: 'pending',
+      studentId: sessionStorage.getItem('loginId-checkout'),
+    };
+    this.webapiService
+      .checkoutPaypalForPranaArambha(val)
+      .subscribe((res: paypalPayModel) => {
+        if (res.orderId && res.payDbId && res.approvalUrl) {
+          if (this.isDiscounted) {
+            localStorage.setItem(localstorageKey.couponCode, this.couponCodeId);
+          }
+          localStorage.setItem(
+            localstorageKey.pranaArambhaPaypalOrderId,
+            res.orderId,
+          );
+          localStorage.setItem(
+            localstorageKey.pranaArambhaPaypalDBId,
+            res.payDbId,
+          );
+          window.location.href = res.approvalUrl;
           this.spinner.hide();
         } else {
           alert('Session Genration failed! please try again');
