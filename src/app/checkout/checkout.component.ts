@@ -404,7 +404,7 @@ export class CheckoutComponent {
         dayNumber: normalizedDate.getDate(),
         isCurrentMonth: normalizedDate.getMonth() === month,
         isToday: normalizedDate.getTime() === today.getTime(),
-        isPast: normalizedDate.getTime() < today.getTime(),
+        isPast: normalizedDate.getTime() <= today.getTime(),
         isWeekend: dayOfWeek === 0 || dayOfWeek === 6,
       };
     });
@@ -521,13 +521,18 @@ export class CheckoutComponent {
 
   formatSelectedDate(): string {
     const selectedDate = this.checkData.appointmentDate;
-    return selectedDate
-      ? selectedDate.toLocaleDateString('en-GB', {
-          day: '2-digit',
-          month: 'short',
-          year: 'numeric',
-        })
-      : '';
+    if(new Date(selectedDate).getDate() != new Date().getDate()) {
+      return selectedDate
+        ? selectedDate.toLocaleDateString('en-GB', {
+            day: '2-digit',
+            month: 'short',
+            year: 'numeric',
+          })
+        : 'Select a date';
+    } else {
+      this.checkData.appointmentDate = undefined as any;
+      return 'Select a date';
+    }
   }
 
   isSelectedCalendarDate(day: CalendarDay): boolean {
