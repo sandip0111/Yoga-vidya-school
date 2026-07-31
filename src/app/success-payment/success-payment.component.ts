@@ -44,6 +44,7 @@ export class SuccessPaymentComponent {
   couponCodeId: string | null = '';
   swaraSadhnaRazorPaySessionId: string = '';
   swaraSadhnaStripeSessionId: string = '';
+  swaraSadhnaPaypalOrderId: string = '';
   bali300StripeSessionId: string = '';
   pranayamaRzpSessionId: string = '';
   pranayamaStripeSessionId: string = '';
@@ -155,6 +156,9 @@ export class SuccessPaymentComponent {
     const hasPranaArambhaPaypal =
       !!localStorage.getItem(localstorageKey.pranaArambhaPaypalDBId) ||
       !!localStorage.getItem(localstorageKey.pranaArambhaPaypalOrderId);
+    const hasSwaraSadhnaPaypal =
+      !!localStorage.getItem(localstorageKey.swaraSadhnaPaypalDBId) ||
+      !!localStorage.getItem(localstorageKey.swaraSadhnaPaypalOrderId);
 
     this.twoHundredTTCPaypalOrderId =
       localStorage.getItem(localstorageKey['200TTCPaypalOrderId']) ||
@@ -176,6 +180,10 @@ export class SuccessPaymentComponent {
         ? tokenFromUrl
         : '') ||
       '';
+    this.swaraSadhnaPaypalOrderId =
+      localStorage.getItem(localstorageKey.swaraSadhnaPaypalOrderId) ||
+      (hasSwaraSadhnaPaypal || this.router.url.includes('swara') ? tokenFromUrl : '') ||
+      '';
     this.retreatPaypalOrderId =
       localStorage.getItem(localstorageKey.retreatPaypalOrderId) ||
       (hasRetreatPaypal ||
@@ -185,11 +193,13 @@ export class SuccessPaymentComponent {
         !hasRishikeshPaypal &&
         !hasBaliPaypal &&
         !hasLiveClassesPaypal &&
+        !hasSwaraSadhnaPaypal &&
         !this.router.url.includes('200') &&
         !this.router.url.includes('pg') &&
         !this.router.url.includes('personal-guidance') &&
         !this.router.url.includes('pranayama-course-online-pranarambha') &&
-        !this.router.url.includes('prana'))
+        !this.router.url.includes('prana') &&
+        !this.router.url.includes('swara'))
         ? tokenFromUrl
         : '') ||
       '';
@@ -307,6 +317,11 @@ export class SuccessPaymentComponent {
     if (this.swaraSadhnaStripeSessionId) {
       setTimeout(() => {
         this.getStripePaymentResultSwaraSadhna(this.swaraSadhnaStripeSessionId);
+      }, 0);
+    }
+    if (this.swaraSadhnaPaypalOrderId) {
+      setTimeout(() => {
+        this.getPaypalPaymentResultSwaraSadhna(this.swaraSadhnaPaypalOrderId);
       }, 0);
     }
     if (this.bali300StripeSessionId) {
@@ -1004,7 +1019,47 @@ export class SuccessPaymentComponent {
           this.spinner.hide();
         }
         localStorage.removeItem(localstorageKey.swaraSadhnaStripeSessionId);
-        localStorage.removeItem(localstorageKey.swaraSadhnaStripeDBId);
+    localStorage.removeItem(localstorageKey.swaraSadhnaStripeDBId);
+    localStorage.removeItem(localstorageKey.swaraSadhnaPaypalOrderId);
+    localStorage.removeItem(localstorageKey.swaraSadhnaPaypalDBId);
+      });
+  }
+  getPaypalPaymentResultSwaraSadhna(paypalOrderId: string) {
+    const fbp = this.getCookie('_fbp');
+    const fbc = this.getCookie('_fbc');
+    let val: paypalPaymentResultModel = {
+      paypalOrderId: paypalOrderId,
+      payDbId: localStorage.getItem(localstorageKey.swaraSadhnaPaypalDBId),
+    };
+    this.webapiService
+      .getPaypalPaymentResultSwaraSadhana(val)
+      .subscribe((res: any) => {
+        const responseData = res?.data || res;
+        if (
+          responseData &&
+          (responseData.status === 'success' ||
+            res.status === 'success' ||
+            responseData.paymtId)
+        ) {
+          this.isRishikesh = true;
+          this.paidFlag = 'true';
+          this.ordId = responseData.paymtId || res.paymtId || paypalOrderId;
+          this.amount = 0;
+          this.cur = this.currencySet(responseData.currency || 'USD');
+          this.pixelTracking.trackPurchaseSwaraSadhana(
+            this.ordId,
+            'swara_sadhana',
+            'Swara Sadhana',
+            responseData.amount || 0,
+            responseData.currency || 'USD',
+          );
+          this.spinner.hide();
+        } else {
+          this.paidFlag = 'false';
+          this.spinner.hide();
+        }
+        localStorage.removeItem(localstorageKey.swaraSadhnaPaypalOrderId);
+        localStorage.removeItem(localstorageKey.swaraSadhnaPaypalDBId);
       });
   }
   currencySet(currency: string) {

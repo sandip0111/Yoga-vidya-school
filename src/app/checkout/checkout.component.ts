@@ -154,7 +154,8 @@ export class CheckoutComponent {
       this.slug === routeEnum.bali200 ||
       this.slug === routeEnum.bali300 ||
       this.slug === routeEnum.pg ||
-      this.slug === routeEnum.pranOnlinePranaArambh
+      this.slug === routeEnum.pranOnlinePranaArambh ||
+      this.slug === routeEnum.sa
     );
   }
   get canUsePaypal(): boolean {
@@ -1106,7 +1107,7 @@ export class CheckoutComponent {
         ) {
           this.baliCheckout(data, isRazorPay, isPaypal);
         } else if (this.slug == routeEnum.sa) {
-          this.swaraSadhanaCheckout(data, isRazorPay);
+          this.swaraSadhanaCheckout(data, isRazorPay, isPaypal);
         } else if (this.slug == routeEnum.pranayamaCertification) {
           this.pranayamaCertificationCheckout(data, isRazorPay);
         } else if (this.slug == routeEnum.retreats) {
@@ -1147,7 +1148,11 @@ export class CheckoutComponent {
       this.spinner.hide();
     }
   }
-  swaraSadhanaCheckout(data: checkoutModel, isRazorPay: boolean) {
+  swaraSadhanaCheckout(
+    data: checkoutModel,
+    isRazorPay: boolean | string,
+    isPaypal: boolean = false,
+  ) {
     let signupData: swaraDataModel = {
       city: data.address,
       email: data.email.toLowerCase(),
@@ -1157,13 +1162,15 @@ export class CheckoutComponent {
       timeSlot: '69fed2c141cc943f7e6489ea',
       webinar: 'Swara Sadhana',
       isWebsite: true,
-      paymentType: isRazorPay ? 'razorpay' : 'stripe',
+      paymentType: isPaypal ? 'paypal' : isRazorPay === true ? 'razorpay' : 'stripe',
     };
     this.webapiService
       .registerSwarSadhanaWebinarUser(signupData)
       .subscribe((res: any) => {
         if (res.message == 'User registered successfully!') {
-          if (isRazorPay) {
+          if (isPaypal) {
+            this.initializePayPalPaymentForSwaraSadhana(signupData, res.userId);
+          } else if (isRazorPay === true) {
             this.initializeRazorPaySwaraSadhana(data, res.userId, this.amount);
           } else {
             let priceId: string =
@@ -1178,6 +1185,44 @@ export class CheckoutComponent {
               res.userId,
             );
           }
+        }
+      });
+  }
+  initializePayPalPaymentForSwaraSadhana(
+    data: swaraDataModel,
+    userId: string,
+  ) {
+    let priceId: string =
+      this.checkData.currency === 'INR'
+        ? stripePaymentKey.swaraInr
+        : this.checkData.currency === 'USD'
+          ? 'price_1TpLvUSEQq0H4GuESdeYezVj'
+          : 'price_1RU7RYSEQq0H4GuE8nk5oH79';
+
+    let paypalData = {
+      userId: userId,
+      custEmail: data.email,
+      price: this.amount,
+      priceId: priceId,
+      currency: this.PAYPAL_CURRENCY,
+    };
+    this.webapiService
+      .checkoutPaypalForSwaraSadhana(paypalData)
+      .subscribe((res: paypalPayModel) => {
+        if (res.orderId && res.payDbId && res.approvalUrl) {
+          localStorage.setItem(
+            localstorageKey.swaraSadhnaPaypalOrderId,
+            res.orderId,
+          );
+          localStorage.setItem(
+            localstorageKey.swaraSadhnaPaypalDBId,
+            res.payDbId,
+          );
+          window.location.href = res.approvalUrl;
+          this.spinner.hide();
+        } else {
+          alert('Session Generation failed! Please try again');
+          this.spinner.hide();
         }
       });
   }

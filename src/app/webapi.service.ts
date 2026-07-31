@@ -456,6 +456,18 @@ export class WebapiService {
       data,
     );
   }
+  checkoutPaypalForSwaraSadhana(data: any): Observable<paypalPayModel> {
+    return this.http.post<paypalPayModel>(
+      this.url + 'api/v1/checkoutPaypalForSwaraSadhana',
+      data,
+    );
+  }
+  getPaypalPaymentResultSwaraSadhana(data: paypalPaymentResultModel) {
+    return this.http.post(
+      this.url + 'api/v1/getPaypalPaymentResultSwaraSadhana',
+      data,
+    );
+  }
   checkoutRazorpayForPranayamaCertification(
     data: PranayamaCertificationSignupModel,
   ): Observable<razorPayModel> {
