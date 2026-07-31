@@ -482,7 +482,6 @@ export class CheckoutComponent {
   }
 
   selectAppointmentDate(day: CalendarDay): void {
-    console.log(day);
     if (day.isPast) return;
     if (day.isPast || day.isWeekend) return;
     this.checkData.appointmentDate = day.date;
@@ -2161,7 +2160,6 @@ export class CheckoutComponent {
       script.id = 'razorpay-script';
       script.src = 'https://checkout.razorpay.com/v1/checkout.js';
       script.onload = () => {
-        console.log('Razorpay script loaded.');
       };
       document.body.appendChild(script);
     }
