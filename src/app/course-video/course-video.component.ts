@@ -6,7 +6,7 @@ import {
   AfterViewInit,
   ElementRef,
   ChangeDetectorRef,
-  DOCUMENT
+  DOCUMENT,
 } from '@angular/core';
 import { WebapiService } from '../webapi.service';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -136,7 +136,7 @@ export class CourseVideoComponent {
             if (this.userId && this.studentValidated) {
               this.getOnlineCourseVideosV2(res.data[0]._id);
               setTimeout(() => {
-                if (this.slug == 'pranayama-course-online-pranarambha') {
+                if (this.slug == routeEnum.pranOnlinePranaArambh) {
                   this.setDataFeedbackV3(9);
                 } else {
                   this.setDataFeedbackV3(1);
@@ -181,7 +181,7 @@ export class CourseVideoComponent {
         if (res.count == 1 && res.data.nextSchedule.length > 0) {
           for (let index = 0; index < res.data.nextSchedule.length; index++) {
             if (
-              this.slug == 'pranayama-course-online-pranarambha' &&
+              this.slug == routeEnum.pranOnlinePranaArambh &&
               this.reverseArr[index]?.dayNumber ==
                 res.data.nextSchedule[index].day
             ) {
