@@ -97,6 +97,9 @@
 }
 
 @media screen and (max-width: 900px) {
+  .nav-container {
+    padding: 0 1rem !important;
+  }
   .mtn-35 {
     margin: auto;
   }
