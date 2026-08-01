@@ -26,7 +26,7 @@ export class NavbarComponent implements OnInit {
   };
   constructor(
     private eventBus: EventBusService,
-    private cartService: CartService
+    private cartService: CartService,
   ) {
     if (typeof sessionStorage !== 'undefined') {
       this.loginUser = sessionStorage.getItem(localstorageKey.loginId);
@@ -38,7 +38,7 @@ export class NavbarComponent implements OnInit {
     var items = this.cartService.getItems();
     this.cartItemTotal = items.reduce(
       (total, item) => total + item.quantity,
-      0
+      0,
     );
     this.eventBus.on('cart-icon', (data) => {
       this.cartItemTotal = data.message;
@@ -72,7 +72,6 @@ export class NavbarComponent implements OnInit {
             link: '/yoga-teacher/acharya-prashant-jakhmola/prashantjyoga',
           },
           { title: 'Yoga Teachers', link: `/${routeEnum.mentors}` },
-          { title: 'Personal Guidance', link: `/${routeEnum.pg}` },
         ],
       },
       {
@@ -128,6 +127,7 @@ export class NavbarComponent implements OnInit {
             title: 'योग शास्त्र / योग ग्रंथ अध्यन',
             link: '/yoga-philosophy-course-free',
           },
+          { title: 'Personal Guidance', link: `/${routeEnum.pg}` },
         ],
       },
       {
