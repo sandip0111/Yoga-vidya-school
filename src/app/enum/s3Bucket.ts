@@ -156,6 +156,7 @@ export const s3Bucket = {
   pankaj1: 'https://d29rwrqvux6m5p.cloudfront.net/images/954A9553.JPG',
   pankaj2: 'https://d29rwrqvux6m5p.cloudfront.net/images/IMG_9861.JPG',
   pranicImage1: `${environment.imageUrl}FERN8247.jpeg`,
+  pranicImage1_1: `${environment.imageUrl}FERN8247_1.jpeg`,
   pranicImage2: `${environment.imageUrl}pranic1.png`,
 
   whatWillLearn1: `${environment.imageUrl}IMG_1222.JPEG`,
