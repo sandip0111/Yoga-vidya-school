@@ -75,11 +75,23 @@
           <div class="row mt-3 d-flex justify-content-center" *ngIf="dt.isShow">
             <div [class]="videoClass">
               <div class="video-container">
+                <div class="video-loader-overlay" *ngIf="isVideoLoading">
+                  <div class="video-spinner-wrapper">
+                    <div class="spinner-border text-warning" role="status" style="width: 3rem; height: 3rem; border-width: 0.25em;">
+                      <span class="visually-hidden">Loading Video...</span>
+                    </div>
+                    <p class="mt-2 text-white font-weight-bold text-center" style="font-size: 0.9rem; letter-spacing: 0.5px; margin-bottom: 0;">Loading Video, please wait...</p>
+                  </div>
+                </div>
                 <video
                   *ngIf="slug != 'pranayama-course-online-pranarambha'"
                   [attr.id]="'plyrID-' + i"
                   controls
                   playsinline
+                  (loadstart)="onVideoLoadStart()"
+                  (waiting)="onVideoWaiting()"
+                  (canplay)="onVideoCanPlay()"
+                  (playing)="onVideoPlaying()"
                   (play)="onVideoPlay(dt.updateId)"
                   controlsList="nodownload"
                   (timeupdate)="onTimeUpdate($event, dt.dayNumber)"
@@ -91,6 +103,10 @@
                   [attr.id]="'plyrID-' + dt.updateId"
                   controls
                   playsinline
+                  (loadstart)="onVideoLoadStart()"
+                  (waiting)="onVideoWaiting()"
+                  (canplay)="onVideoCanPlay()"
+                  (playing)="onVideoPlaying()"
                   (play)="onVideoPlay(dt.updateId)"
                   controlsList="nodownload"
                   (timeupdate)="onTimeUpdate($event, dt.dayNumber)"

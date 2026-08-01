@@ -43,6 +43,23 @@ export class CourseVideoComponent {
   videoClass: string = 'col-lg-8';
   routeEnum = routeEnum;
   teacherId: number = 0;
+  isVideoLoading: boolean = false;
+
+  onVideoLoadStart() {
+    this.isVideoLoading = true;
+  }
+
+  onVideoWaiting() {
+    this.isVideoLoading = true;
+  }
+
+  onVideoCanPlay() {
+    this.isVideoLoading = false;
+  }
+
+  onVideoPlaying() {
+    this.isVideoLoading = false;
+  }
   constructor(
     private webapiService: WebapiService,
     private _activatedRoute: ActivatedRoute,
@@ -780,6 +797,7 @@ export class CourseVideoComponent {
     }
   }
   onlineVideoLoad(obj: onLineVideoModel) {
+    this.isVideoLoading = true;
     const localKey =
       localstorageKey.pranaArambhVideo + obj.title.split(' ').join('_');
     const vidUrl = localStorage.getItem(localKey);
