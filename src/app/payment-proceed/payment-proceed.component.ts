@@ -277,7 +277,6 @@ export class PaymentProceedComponent implements OnInit {
         paymentStatus: 'due',
         price: data.price,
         courses: courseList,
-        month: this.courses[0].month,
       };
 
       this.pixelTracking.trackInitiateCheckout(
@@ -360,7 +359,6 @@ export class PaymentProceedComponent implements OnInit {
         price: data.price,
         courses: courseList,
         paymentStatus: 'due',
-        month: this.courses[0].month,
       };
 
       this.pixelTracking.trackInitiateCheckout(
@@ -447,7 +445,6 @@ export class PaymentProceedComponent implements OnInit {
         paymentStatus: 'due',
         price: data.price,
         courses: courseList,
-        month: this.courses[0]?.month,
       };
 
       this.pixelTracking.trackInitiateCheckout(
