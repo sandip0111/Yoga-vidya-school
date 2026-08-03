@@ -498,6 +498,20 @@ export class WebapiService {
       data,
     );
   }
+  checkoutPaypalForPranayamaCertification(
+    data: PranayamaCertificationSignupModel,
+  ): Observable<paypalPayModel> {
+    return this.http.post<paypalPayModel>(
+      this.url + 'api/v1/checkoutPaypalForPranayamaCertification',
+      data,
+    );
+  }
+  getPaypalPaymentResultPranayamaCertification(data: paypalPaymentResultModel) {
+    return this.http.post(
+      this.url + 'api/v1/getPaypalPaymentResultPranayamaCertification',
+      data,
+    );
+  }
   checkoutRazorpayRetreat(data: SignupDataModel): Observable<razorPayModel> {
     return this.http.post<razorPayModel>(
       this.url + 'api/v1/checkoutRazorpayRetreat',

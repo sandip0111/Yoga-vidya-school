@@ -50,6 +50,8 @@ export enum localstorageKey {
   'pranayamaRzpDBId' = 'pranayama_rzp_db_id',
   'pranayamaStripeSessionId' = 'pranayama_stripe_session_id',
   'pranayamaStripeDBId' = 'pranayama_stripe_db_id',
+  'pranayamaPaypalOrderId' = 'pranayama_paypal_order_id',
+  'pranayamaPaypalDBId' = 'pranayama_paypal_db_id',
   'pranayamaInstallment' = 'pranayama_installment',
   'pranayamaDue' = 'pranayama_due',
 

@@ -155,6 +155,7 @@ export class CheckoutComponent {
       this.slug === routeEnum.bali300 ||
       this.slug === routeEnum.pg ||
       this.slug === routeEnum.pranOnlinePranaArambh ||
+      this.slug === routeEnum.pranayamaCertification ||
       this.slug === routeEnum.sa
     );
   }
@@ -1109,7 +1110,7 @@ export class CheckoutComponent {
         } else if (this.slug == routeEnum.sa) {
           this.swaraSadhanaCheckout(data, isRazorPay, isPaypal);
         } else if (this.slug == routeEnum.pranayamaCertification) {
-          this.pranayamaCertificationCheckout(data, isRazorPay);
+          this.pranayamaCertificationCheckout(data, isRazorPay, isPaypal);
         } else if (this.slug == routeEnum.retreats) {
           this.retreatsCheckout(data, isRazorPay, isPaypal);
         } else if (this.slug == routeEnum.pg) {
@@ -1515,25 +1516,59 @@ export class CheckoutComponent {
         }
       });
   }
-  pranayamaCertificationCheckout(data: checkoutModel, isRazorPay: boolean) {
+  pranayamaCertificationCheckout(
+    data: checkoutModel,
+    isRazorPay: boolean | string,
+    isPaypal: boolean = false,
+  ) {
     const isBooking30 = +data.package === 3;
     const dueAmount = isBooking30 ? Math.round((this.amount / 0.3) * 0.7) : 0;
+    const effectiveCurrency = isPaypal ? this.PAYPAL_CURRENCY : data.currency;
 
     let signupData: PranayamaCertificationSignupModel = {
       name: data.name,
       email: data.email.toLowerCase(),
       phoneNumber: data.phoneNumber.e164Number,
       price: this.amount,
-      currency: data.currency,
+      currency: effectiveCurrency,
       dueAmount: dueAmount,
       month: 'February, 2027',
     };
 
-    if (isRazorPay) {
+    if (isPaypal) {
+      this.initializePayPalPaymentForPranayamaCertification(signupData);
+    } else if (isRazorPay === true) {
       this.initializeRazorPaymentForPranayamaCertification(signupData);
     } else {
       this.initializePaymentForPranayamaCertification(signupData);
     }
+  }
+  initializePayPalPaymentForPranayamaCertification(
+    data: PranayamaCertificationSignupModel,
+  ) {
+    this.webapiService
+      .checkoutPaypalForPranayamaCertification(data)
+      .subscribe((res: paypalPayModel) => {
+        if (res.orderId && res.payDbId && res.approvalUrl) {
+          localStorage.setItem(
+            localstorageKey.pranayamaPaypalOrderId,
+            res.orderId,
+          );
+          localStorage.setItem(
+            localstorageKey.pranayamaPaypalDBId,
+            res.payDbId,
+          );
+          localStorage.setItem(
+            localstorageKey.pranayamaDue,
+            data.dueAmount ? data.dueAmount.toString() : '0',
+          );
+          window.location.href = res.approvalUrl;
+          this.spinner.hide();
+        } else {
+          alert('Session Generation failed! please try again');
+          this.spinner.hide();
+        }
+      });
   }
   initializeRazorPaymentForPranayamaCertification(
     data: PranayamaCertificationSignupModel,

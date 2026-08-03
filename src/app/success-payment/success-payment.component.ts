@@ -45,6 +45,7 @@ export class SuccessPaymentComponent {
   swaraSadhnaRazorPaySessionId: string = '';
   swaraSadhnaStripeSessionId: string = '';
   swaraSadhnaPaypalOrderId: string = '';
+  pranayamaPaypalOrderId: string = '';
   bali300StripeSessionId: string = '';
   pranayamaRzpSessionId: string = '';
   pranayamaStripeSessionId: string = '';
@@ -159,6 +160,9 @@ export class SuccessPaymentComponent {
     const hasSwaraSadhnaPaypal =
       !!localStorage.getItem(localstorageKey.swaraSadhnaPaypalDBId) ||
       !!localStorage.getItem(localstorageKey.swaraSadhnaPaypalOrderId);
+    const hasPranayamaPaypal =
+      !!localStorage.getItem(localstorageKey.pranayamaPaypalDBId) ||
+      !!localStorage.getItem(localstorageKey.pranayamaPaypalOrderId);
 
     this.twoHundredTTCPaypalOrderId =
       localStorage.getItem(localstorageKey['200TTCPaypalOrderId']) ||
@@ -184,6 +188,10 @@ export class SuccessPaymentComponent {
       localStorage.getItem(localstorageKey.swaraSadhnaPaypalOrderId) ||
       (hasSwaraSadhnaPaypal || this.router.url.includes('swara') ? tokenFromUrl : '') ||
       '';
+    this.pranayamaPaypalOrderId =
+      localStorage.getItem(localstorageKey.pranayamaPaypalOrderId) ||
+      (hasPranayamaPaypal || this.router.url.includes('pranayama-certification') ? tokenFromUrl : '') ||
+      '';
     this.retreatPaypalOrderId =
       localStorage.getItem(localstorageKey.retreatPaypalOrderId) ||
       (hasRetreatPaypal ||
@@ -194,12 +202,14 @@ export class SuccessPaymentComponent {
         !hasBaliPaypal &&
         !hasLiveClassesPaypal &&
         !hasSwaraSadhnaPaypal &&
+        !hasPranayamaPaypal &&
         !this.router.url.includes('200') &&
         !this.router.url.includes('pg') &&
         !this.router.url.includes('personal-guidance') &&
         !this.router.url.includes('pranayama-course-online-pranarambha') &&
         !this.router.url.includes('prana') &&
-        !this.router.url.includes('swara'))
+        !this.router.url.includes('swara') &&
+        !this.router.url.includes('pranayama-certification'))
         ? tokenFromUrl
         : '') ||
       '';
@@ -340,6 +350,13 @@ export class SuccessPaymentComponent {
       setTimeout(() => {
         this.getStripePaymentResultPranayamaCertification(
           this.pranayamaStripeSessionId,
+        );
+      }, 0);
+    }
+    if (this.pranayamaPaypalOrderId) {
+      setTimeout(() => {
+        this.getPaypalPaymentResultPranayamaCertification(
+          this.pranayamaPaypalOrderId,
         );
       }, 0);
     }
@@ -1167,6 +1184,41 @@ export class SuccessPaymentComponent {
         }
       });
   }
+  getPaypalPaymentResultPranayamaCertification(paypalOrderId: string) {
+    let pass = this.genratePass(6);
+    const fbp = this.getCookie('_fbp');
+    const fbc = this.getCookie('_fbc');
+    let dueAmnt = localStorage.getItem(localstorageKey.pranayamaDue);
+    let val: paypalPaymentResultModel = {
+      paypalOrderId: paypalOrderId,
+      payDbId: localStorage.getItem(localstorageKey.pranayamaPaypalDBId),
+    };
+    this.webapiService
+      .getPaypalPaymentResultPranayamaCertification(val)
+      .subscribe((res: any) => {
+        const responseData = res?.data || res;
+        if (
+          responseData &&
+          (responseData.status === 'success' ||
+            res.status === 'success' ||
+            responseData.paymtId)
+        ) {
+          this.paidFlag = 'true';
+          this.ordId = responseData.paymtId || res.paymtId || paypalOrderId;
+          this.amount = responseData.amount || res.amount || 0;
+          this.cur = this.currencySet(
+            responseData.currency || res.currency || 'USD',
+          );
+          this.spinner.hide();
+        } else {
+          this.paidFlag = 'false';
+          this.spinner.hide();
+        }
+        localStorage.removeItem(localstorageKey.pranayamaPaypalOrderId);
+        localStorage.removeItem(localstorageKey.pranayamaPaypalDBId);
+        localStorage.removeItem(localstorageKey.pranayamaDue);
+      });
+  }
   gotoAccount() {
     this.router.navigate(['/login']);
     sessionStorage.removeItem('tempCourse');
@@ -1245,6 +1297,8 @@ export class SuccessPaymentComponent {
     localStorage.removeItem(localstorageKey.pranayamaDue);
     localStorage.removeItem(localstorageKey.pranayamaStripeSessionId);
     localStorage.removeItem(localstorageKey.pranayamaStripeDBId);
+    localStorage.removeItem(localstorageKey.pranayamaPaypalOrderId);
+    localStorage.removeItem(localstorageKey.pranayamaPaypalDBId);
     localStorage.removeItem(localstorageKey.retreatRzpId);
     localStorage.removeItem(localstorageKey.retreatOrderId);
     localStorage.removeItem(localstorageKey.retreatSig);
