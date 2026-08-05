@@ -96,6 +96,28 @@
     </div>
   </div>
 </div>
+@if (mentor?.price) {
+  <div class="price-card-wrapper">
+    <div class="price-card">
+      <div class="price-card-header">Price Details</div>
+      <div class="price-card-body">
+        <div class="price-fee-label"><i class="fas fa-tag"></i> Course Fee</div>
+        @for (
+          item of getSortedPrices(mentor.price);
+          track $index;
+          let last = $last
+        ) {
+          <div class="price-display">
+            {{ item.amount | currency: item.currency : "symbol" : "1.0-0" }}
+          </div>
+          @if (!last) {
+            <hr class="price-divider" />
+          }
+        }
+      </div>
+    </div>
+  </div>
+}
 <div class="card">
   <div class="row mb-3 align-items-center">
     <div class="col-md-6">
