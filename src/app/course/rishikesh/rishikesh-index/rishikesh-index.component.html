@@ -161,6 +161,23 @@
   </section>
   <app-mentors></app-mentors>
   <app-bonus></app-bonus>
+  <section class="video-review-section py-4">
+    <div class="container text-center">
+      <div class="d-flex justify-content-center">
+        <video
+          class="review-video"
+          controls
+          muted
+          loop
+          playsinline
+          preload="metadata"
+        >
+          <source [src]="reviewLink.review200" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </div>
+  </section>
   <app-pricing [slug]="slug"></app-pricing>
   <app-services [data]="accomData"></app-services>
   <app-fee-structure [data]="feesData"></app-fee-structure>

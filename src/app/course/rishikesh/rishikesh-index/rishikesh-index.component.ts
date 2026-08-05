@@ -32,7 +32,7 @@ import { routeEnum } from '../../../enum/routes';
 import { PricingComponent } from '../pricing/pricing.component';
 import { BonusComponent } from '../../../certified/bonus/bonus.component';
 import { PixelTrackingService } from '../../../services/pixel-tracking.service';
-import { s3Bucket } from '../../../enum/s3Bucket';
+import { reviewLink, s3Bucket } from '../../../enum/s3Bucket';
 
 @Component({
   selector: 'app-rishikesh-index',
@@ -83,6 +83,7 @@ export class RishikeshIndexComponent implements OnInit {
   isYoutubeDataReady: boolean = false;
   routEnum = routeEnum;
   s3Bucket = s3Bucket;
+  reviewLink = reviewLink;
   courseTeacher = [
     {
       course: 'Ashtanga',
