@@ -113,6 +113,8 @@ export class CheckoutComponent {
   routeEnum = routeEnum;
   isInstallment: boolean = false;
   paymentId: string | null = '';
+  originalDueAmount: number = 0;
+  originalCurrency: string = '';
   roomList: dropdownModel[] = [];
   isSpecialDiscount: boolean = false;
   actualAmount: number = 0;
@@ -160,7 +162,7 @@ export class CheckoutComponent {
     );
   }
   get canUsePaypal(): boolean {
-    return this.checkData.currency === this.PAYPAL_CURRENCY;
+    return (this.checkData.currency || '').toUpperCase() === this.PAYPAL_CURRENCY;
   }
   pgId: number = 0;
   isMonthDropdownOpen: boolean = false;
@@ -633,20 +635,40 @@ export class CheckoutComponent {
     this.webapiService
       .getPaymentDetailsById(this.paymentId)
       .subscribe((res: any) => {
-        this.checkData.name = res.name;
-        this.checkData.email = res.email;
+        if (!res) return;
+        this.checkData.name = res.name || '';
+        this.checkData.email = res.email || '';
+
+        const phoneStr = res.phoneNumber || '';
+        const isIndian =
+          phoneStr.includes('+91') ||
+          phoneStr.startsWith('91') ||
+          (phoneStr.length === 10 && !phoneStr.startsWith('+'));
+        let cleanedNumber = phoneStr.replace(/^\+91/, '').replace(/^91/, '');
+        if (!cleanedNumber && phoneStr) {
+          cleanedNumber = phoneStr;
+        }
+
         this.checkData.phoneNumber = {
-          number: '9876543210',
-          internationalNumber: '+91 98765 43210',
-          nationalNumber: '098765 43210',
-          e164Number: '+919876543210',
-          countryCode: 'IN',
-          dialCode: '+91',
+          number: cleanedNumber,
+          internationalNumber: phoneStr.startsWith('+')
+            ? phoneStr
+            : `+91 ${cleanedNumber}`,
+          nationalNumber: cleanedNumber,
+          e164Number: phoneStr.startsWith('+')
+            ? phoneStr
+            : `+91${cleanedNumber}`,
+          countryCode: isIndian ? 'IN' : 'US',
+          dialCode: isIndian ? '+91' : '+1',
         };
-        this.checkData.package = res.package;
-        this.currencyOption2 = [res.currency];
-        // this.checkData.currency = this.currencyOptions[0];
-        this.amount = res.dueAmount;
+
+        this.checkData.package = 1;
+        const cur = (res.currency || 'USD').toUpperCase();
+        this.checkData.currency = cur;
+        this.originalCurrency = cur;
+        this.originalDueAmount = res.dueAmount || 0;
+        this.amount = res.dueAmount || 0;
+        this.currencyOptions = isIndian ? ['USD', 'INR'] : ['USD', 'INR'];
       });
   }
   getCourseBySlug(slug: string) {
@@ -751,6 +773,11 @@ export class CheckoutComponent {
   }
   onCurrencyChange(value: string) {
     this.checkData.currency = value;
+    if (this.paymentId) {
+      this.updateAmountForPaymentId(value);
+      this.inputValidation('cur');
+      return;
+    }
     // Discount plan + 200TTC: recompute respecting the currently selected booking type
     if (this.isDiscountPlan && this.slug === routeEnum['200TTC']) {
       const baseAmount = this.discountPlanPrices[value] ?? 79000;
@@ -763,6 +790,38 @@ export class CheckoutComponent {
       this.setPriceData(this.feesData, value, this.checkData.package);
     }
     this.inputValidation('cur');
+  }
+
+  updateAmountForPaymentId(currency: string) {
+    const targetCur = (currency || '').toUpperCase();
+    const origCur = (this.originalCurrency || 'USD').toUpperCase();
+    if (targetCur === origCur) {
+      this.amount = this.originalDueAmount;
+      return;
+    }
+
+    let convertedDue = 0;
+    if (this.feesData && this.feesData.length > 0) {
+      for (const item of this.feesData) {
+        const matchData = item.data?.find((f) => f.currency === targetCur);
+        if (matchData && matchData.amount) {
+          convertedDue = Math.round(matchData.amount * 0.7);
+          break;
+        }
+      }
+    }
+
+    if (convertedDue > 0) {
+      this.amount = convertedDue;
+    } else {
+      if (targetCur === 'INR' && origCur === 'USD') {
+        this.amount = Math.round(this.originalDueAmount * 89);
+      } else if (targetCur === 'USD' && origCur === 'INR') {
+        this.amount = Math.round(this.originalDueAmount / 89);
+      } else {
+        this.amount = this.originalDueAmount;
+      }
+    }
   }
   setPriceData(feesData: feesInfoDto[], currency: string, roomId: number) {
     let isBooking30 = false;
@@ -899,7 +958,13 @@ export class CheckoutComponent {
   }
 
   updateCurrencyOptions(isIndian: boolean): void {
-    if (this.paymentId) return;
+    if (this.paymentId) {
+      this.currencyOptions = isIndian ? ['USD', 'INR'] : ['USD', 'INR'];
+      if (!this.checkData.currency) {
+        this.checkData.currency = 'USD';
+      }
+      return;
+    }
     if (this.isDiscountPlan && this.slug === routeEnum['200TTC']) {
       this.currencyOptions = isIndian ? ['USD', 'INR'] : ['USD'];
       if (isIndian) {

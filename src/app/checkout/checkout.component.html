@@ -12,59 +12,23 @@
             </h4>
           </div>
           <div class="card-body px-4 pb-4 pt-3">
-            <div class="summary-receipt">
-              <div class="receipt-item-main">
-                <div class="row align-items-center">
-                  <div class="col">
-                    <span class="summary-section-heading">
-                      {{ courseList.coursetitle }}
-                      <span *ngIf="selectedMonth" class="selected-month-badge"
-                        >({{ selectedMonth }})</span
-                      >
-                    </span>
-                  </div>
-                  <!-- Discount plan: show selected currency price top-right -->
-                  <div
-                    class="col-auto"
-                    *ngIf="amount > 0 && checkData.currency && isDiscountPlan"
-                  >
-                    <div class="price-display">
-                      <span class="h4 m-0">
-                        <strong class="price-amount">
-                          {{
-                            amount
-                              | currency
-                                : checkData.currency
-                                : "symbol"
-                                : "1.0-3"
-                          }}
-                        </strong>
+            @if (paymentId) {
+              <div class="summary-receipt">
+                <div class="receipt-item-main">
+                  <div class="row align-items-center">
+                    <div class="col">
+                      <span class="summary-section-heading">
+                        {{ courseList.coursetitle || 'Course Registration' }} - Remaining Balance
+                        <span *ngIf="selectedMonth" class="selected-month-badge"
+                          >({{ selectedMonth }})</span
+                        >
                       </span>
                     </div>
-                  </div>
-                  <!-- Normal plans: show price top-right ONLY when NOT a 30% deposit booking -->
-                  <div
-                    class="col-auto"
-                    *ngIf="
-                      amount > 0 &&
-                      checkData.currency &&
-                      !isDiscountPlan &&
-                      !is30PercentBooking
-                    "
-                  >
-                    @if (isSpecialDiscount) {
+                    <div
+                      class="col-auto"
+                      *ngIf="amount > 0 && checkData.currency"
+                    >
                       <div class="price-display">
-                        <span class="h4 m-0" *ngIf="actualAmount">
-                          <strong class="old-price">
-                            {{
-                              actualAmount
-                                | currency
-                                  : checkData.currency
-                                  : "symbol"
-                                  : "1.0-3"
-                            }}
-                          </strong>
-                        </span>
                         <span class="h4 m-0">
                           <strong class="price-amount">
                             {{
@@ -77,11 +41,43 @@
                           </strong>
                         </span>
                       </div>
-                    } @else {
+                    </div>
+                  </div>
+                  <div class="price-subtitle-row mt-2">
+                    <span class="price-subtitle"
+                      >Remaining Due Amount:
+                      <b class="highlight-text">{{
+                        amount
+                          | currency
+                            : checkData.currency
+                            : "symbol"
+                            : "1.0-3"
+                      }}</b></span
+                    >
+                  </div>
+                </div>
+              </div>
+            } @else {
+              <div class="summary-receipt">
+                <div class="receipt-item-main">
+                  <div class="row align-items-center">
+                    <div class="col">
+                      <span class="summary-section-heading">
+                        {{ courseList.coursetitle }}
+                        <span *ngIf="selectedMonth" class="selected-month-badge"
+                          >({{ selectedMonth }})</span
+                        >
+                      </span>
+                    </div>
+                    <!-- Discount plan: show selected currency price top-right -->
+                    <div
+                      class="col-auto"
+                      *ngIf="amount > 0 && checkData.currency && isDiscountPlan"
+                    >
                       <div class="price-display">
                         <span class="h4 m-0">
-                          <strong [ngClass]="isDiscounted ? 'old-price' : ''"
-                            >{{
+                          <strong class="price-amount">
+                            {{
                               amount
                                 | currency
                                   : checkData.currency
@@ -90,129 +86,180 @@
                             }}
                           </strong>
                         </span>
-                        <span class="h4 m-0">
-                          <strong *ngIf="isDiscounted" class="price-amount">
-                            {{
+                      </div>
+                    </div>
+                    <!-- Normal plans: show price top-right ONLY when NOT a 30% deposit booking -->
+                    <div
+                      class="col-auto"
+                      *ngIf="
+                        amount > 0 &&
+                        checkData.currency &&
+                        !isDiscountPlan &&
+                        !is30PercentBooking
+                      "
+                    >
+                      @if (isSpecialDiscount) {
+                        <div class="price-display">
+                          <span class="h4 m-0" *ngIf="actualAmount">
+                            <strong class="old-price">
+                              {{
+                                actualAmount
+                                  | currency
+                                    : checkData.currency
+                                    : "symbol"
+                                    : "1.0-3"
+                              }}
+                            </strong>
+                          </span>
+                          <span class="h4 m-0">
+                            <strong class="price-amount">
+                              {{
+                                amount
+                                  | currency
+                                    : checkData.currency
+                                    : "symbol"
+                                    : "1.0-3"
+                              }}
+                            </strong>
+                          </span>
+                        </div>
+                      } @else {
+                        <div class="price-display">
+                          <span class="h4 m-0">
+                            <strong [ngClass]="isDiscounted ? 'old-price' : ''"
+                              >{{
+                                amount
+                                  | currency
+                                    : checkData.currency
+                                    : "symbol"
+                                    : "1.0-3"
+                              }}
+                            </strong>
+                          </span>
+                          <span class="h4 m-0">
+                            <strong *ngIf="isDiscounted" class="price-amount">
+                              {{
+                                offerAmount
+                                  | currency
+                                    : checkData.currency
+                                    : "symbol"
+                                    : "1.0-3"
+                              }}
+                            </strong>
+                          </span>
+                        </div>
+                      }
+                    </div>
+                  </div>
+
+                  <!-- Price Subtitle Details -->
+                  @if (isDiscountPlan && slug === routeEnum["200TTC"]) {
+                    <div class="price-subtitle-row mt-2">
+                      <span class="price-subtitle"
+                        >Full Price:
+                        <b class="highlight-text">$850 / ₹79,000</b></span
+                      >
+                    </div>
+                  }
+                  @if (feesData.length > 0 && !isDiscountPlan) {
+                    <div
+                      class="price-subtitle-row mt-2"
+                      *ngFor="let item of feesData"
+                    >
+                      <span class="price-subtitle"
+                        >{{ item.title }}:
+                        <b
+                          class="highlight-text"
+                          *ngFor="let obj of item.data; let i = index"
+                          >{{
+                            isSpecialDiscount && obj.discount
+                              ? (obj.discount
+                                | currency: obj.currency : "symbol" : "1.0-3")
+                              : (obj.amount
+                                | currency: obj.currency : "symbol" : "1.0-3")
+                          }}{{ item.data.length - 1 > i ? " / " : "" }}</b
+                        ></span
+                      >
+                    </div>
+                  }
+                </div>
+
+                <!-- 30% Deposit Section — always visible when feesData is available for allowed courses -->
+                @if (
+                  show30PercentDepositSection &&
+                  feesData.length > 0 &&
+                  !isDiscountPlan
+                ) {
+                  <div class="deposit-section mt-4 pt-3">
+                    <div class="row align-items-center deposit-heading-row m-0">
+                      <div class="col p-0">
+                        <span class="summary-section-heading deposit-title"
+                          >Reserve your room with 30% deposit</span
+                        >
+                      </div>
+                      <div
+                        class="col-auto p-0"
+                        *ngIf="
+                          amount > 0 && checkData.currency && is30PercentBooking
+                        "
+                      >
+                        @if (isSpecialDiscount) {
+                          <span class="h4 m-0 price-display">
+                            <strong class="old-price" *ngIf="actualAmount">{{
+                              actualAmount
+                                | currency
+                                  : checkData.currency
+                                  : "symbol"
+                                  : "1.0-3"
+                            }}</strong>
+                            <strong class="price-amount">{{
+                              amount
+                                | currency
+                                  : checkData.currency
+                                  : "symbol"
+                                  : "1.0-3"
+                            }}</strong>
+                          </span>
+                        } @else {
+                          <span class="h4 m-0 price-display">
+                            <strong [ngClass]="isDiscounted ? 'old-price' : ''">{{
+                              amount
+                                | currency
+                                  : checkData.currency
+                                  : "symbol"
+                                  : "1.0-3"
+                            }}</strong>
+                            <strong *ngIf="isDiscounted" class="price-amount">{{
                               offerAmount
                                 | currency
                                   : checkData.currency
                                   : "symbol"
                                   : "1.0-3"
-                            }}
-                          </strong>
-                        </span>
+                            }}</strong>
+                          </span>
+                        }
                       </div>
-                    }
-                  </div>
-                </div>
-
-                <!-- Price Subtitle Details -->
-                @if (isDiscountPlan && slug === routeEnum["200TTC"]) {
-                  <div class="price-subtitle-row mt-2">
-                    <span class="price-subtitle"
-                      >Full Price:
-                      <b class="highlight-text">$850 / ₹79,000</b></span
+                    </div>
+                    <div
+                      class="deposit-subtitle-row mt-2"
+                      *ngFor="let item of feesData"
                     >
-                  </div>
-                }
-                @if (feesData.length > 0 && !isDiscountPlan) {
-                  <div
-                    class="price-subtitle-row mt-2"
-                    *ngFor="let item of feesData"
-                  >
-                    <span class="price-subtitle"
-                      >{{ item.title }}:
-                      <b
-                        class="highlight-text"
-                        *ngFor="let obj of item.data; let i = index"
-                        >{{
-                          isSpecialDiscount && obj.discount
-                            ? (obj.discount
-                              | currency: obj.currency : "symbol" : "1.0-3")
-                            : (obj.amount
-                              | currency: obj.currency : "symbol" : "1.0-3")
-                        }}{{ item.data.length - 1 > i ? " / " : "" }}</b
-                      ></span
-                    >
+                      <span class="price-subtitle"
+                        >{{ item.title }} Deposit:
+                        <b
+                          class="highlight-text"
+                          *ngFor="let obj of item.data; let i = index"
+                          >{{
+                            obj.amount * 0.3
+                              | currency: obj.currency : "symbol" : "1.0-0"
+                          }}{{ item.data.length - 1 > i ? " / " : "" }}</b
+                        >
+                      </span>
+                    </div>
                   </div>
                 }
               </div>
-
-              <!-- 30% Deposit Section — always visible when feesData is available for allowed courses -->
-              @if (
-                show30PercentDepositSection &&
-                feesData.length > 0 &&
-                !isDiscountPlan
-              ) {
-                <div class="deposit-section mt-4 pt-3">
-                  <div class="row align-items-center deposit-heading-row m-0">
-                    <div class="col p-0">
-                      <span class="summary-section-heading deposit-title"
-                        >Reserve your room with 30% deposit</span
-                      >
-                    </div>
-                    <div
-                      class="col-auto p-0"
-                      *ngIf="
-                        amount > 0 && checkData.currency && is30PercentBooking
-                      "
-                    >
-                      @if (isSpecialDiscount) {
-                        <span class="h4 m-0 price-display">
-                          <strong class="old-price" *ngIf="actualAmount">{{
-                            actualAmount
-                              | currency
-                                : checkData.currency
-                                : "symbol"
-                                : "1.0-3"
-                          }}</strong>
-                          <strong class="price-amount">{{
-                            amount
-                              | currency
-                                : checkData.currency
-                                : "symbol"
-                                : "1.0-3"
-                          }}</strong>
-                        </span>
-                      } @else {
-                        <span class="h4 m-0 price-display">
-                          <strong [ngClass]="isDiscounted ? 'old-price' : ''">{{
-                            amount
-                              | currency
-                                : checkData.currency
-                                : "symbol"
-                                : "1.0-3"
-                          }}</strong>
-                          <strong *ngIf="isDiscounted" class="price-amount">{{
-                            offerAmount
-                              | currency
-                                : checkData.currency
-                                : "symbol"
-                                : "1.0-3"
-                          }}</strong>
-                        </span>
-                      }
-                    </div>
-                  </div>
-                  <div
-                    class="deposit-subtitle-row mt-2"
-                    *ngFor="let item of feesData"
-                  >
-                    <span class="price-subtitle"
-                      >{{ item.title }} Deposit:
-                      <b
-                        class="highlight-text"
-                        *ngFor="let obj of item.data; let i = index"
-                        >{{
-                          obj.amount * 0.3
-                            | currency: obj.currency : "symbol" : "1.0-0"
-                        }}{{ item.data.length - 1 > i ? " / " : "" }}</b
-                      >
-                    </span>
-                  </div>
-                </div>
-              }
-            </div>
+            }
 
             <!-- Payment Instructions Header -->
             <div class="payment-instructions-header mt-4">
@@ -418,6 +465,7 @@
                     name="room"
                     [(ngModel)]="checkData.package"
                     (change)="setRoomPrice($event)"
+                    [disabled]="!!paymentId"
                   >
                     <option *ngFor="let item of roomList" [value]="item.value">
                       {{ item.name }}
@@ -722,7 +770,6 @@
                     name="currency"
                     [(ngModel)]="checkData.currency"
                     (ngModelChange)="onCurrencyChange($event)"
-                    [disabled]="paymentId ? true : false"
                   >
                     <option
                       *ngFor="let option of currencyOptions"
