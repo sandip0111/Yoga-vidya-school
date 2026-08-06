@@ -2152,10 +2152,9 @@ export class CheckoutComponent {
       });
   }
   initializePayPalPaymentFor200TTC(data: TwoHundredTTCSignupModel) {
-    this.webapiService
-      .checkoutPaypalFor200TTC(data)
-      .subscribe((res: paypalPayModel) => {
-        if (res.orderId && res.payDbId && res.approvalUrl) {
+    this.webapiService.checkoutPaypalFor200TTC(data).subscribe({
+      next: (res: paypalPayModel) => {
+        if (res && res.orderId && res.payDbId && res.approvalUrl) {
           localStorage.setItem(
             localstorageKey['200TTCPaypalOrderId'],
             res.orderId,
@@ -2176,10 +2175,19 @@ export class CheckoutComponent {
           window.location.href = res.approvalUrl;
           this.spinner.hide();
         } else {
-          alert('Session Genration failed! please try again');
+          alert('Session Generation failed! please try again');
           this.spinner.hide();
         }
-      });
+      },
+      error: (err: any) => {
+        this.spinner.hide();
+        const msg =
+          err?.error?.msg ||
+          err?.error?.message ||
+          'PayPal payment initialization failed. Please try again.';
+        alert(msg);
+      },
+    });
   }
   initializeRazorPayRishi(data: SignupDataModel) {
     this.webapiService
