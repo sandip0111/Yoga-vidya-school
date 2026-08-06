@@ -1219,6 +1219,7 @@ export class CheckoutComponent {
     isRazorPay: boolean | string,
     isPaypal: boolean = false,
   ) {
+    const effectiveCurrency = isPaypal ? this.PAYPAL_CURRENCY : data.currency;
     let signupData: swaraDataModel = {
       city: data.address,
       email: data.email.toLowerCase(),
@@ -1229,6 +1230,8 @@ export class CheckoutComponent {
       webinar: 'Swara Sadhana',
       isWebsite: true,
       paymentType: isPaypal ? 'paypal' : isRazorPay === true ? 'razorpay' : 'stripe',
+      price: this.amount,
+      currency: effectiveCurrency,
     };
     this.webapiService
       .registerSwarSadhanaWebinarUser(signupData)

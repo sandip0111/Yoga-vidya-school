@@ -89,6 +89,8 @@ export interface swaraDataModel {
   webinar: string;
   isWebsite: boolean;
   paymentType?: string;
+  price: number,
+  currency: string;
 }
 export interface swaraRazorModel {
   currency: string;

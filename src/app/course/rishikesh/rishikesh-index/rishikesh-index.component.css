@@ -270,3 +270,25 @@
     background: rgba(255, 122, 0, 0.15);
   }
 }
+
+.video-review-section {
+  padding: 40px 0;
+}
+
+.review-video {
+  width: 100%;
+  max-width: 700px;
+  border-radius: 16px;
+  box-shadow: 0 12px 30px rgba(244, 112, 25, 0.15);
+  border: 1px solid #f8dfca;
+}
+
+@media (max-width: 768px) {
+  .video-review-section {
+    padding: 20px 0;
+  }
+  .review-video {
+    max-width: 100%;
+    border-radius: 12px;
+  }
+}

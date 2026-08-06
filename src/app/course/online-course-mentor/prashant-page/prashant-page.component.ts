@@ -52,6 +52,15 @@ export class PrashantPageComponent implements OnInit {
     });
   }
 
+  getSortedPrices(prices: any[]): any[] {
+    if (!prices || !Array.isArray(prices)) return [];
+    return [...prices].sort((a, b) => {
+      if (a.currency === 'USD') return -1;
+      if (b.currency === 'USD') return 1;
+      return 0;
+    });
+  }
+
   addToCart(mentor: CartItem): void {
     if (mentor) {
       this.cartService.addToCartMentor(mentor);

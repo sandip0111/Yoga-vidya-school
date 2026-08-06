@@ -135,3 +135,66 @@
     width: 90%;
   }
 }
+
+/* Price Card Styles */
+.price-card-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 35px 0;
+}
+
+.price-card {
+  width: 100%;
+  max-width: 330px;
+  background: #ffffff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid #eaeaea;
+}
+
+.price-card-header {
+  background-color: #f36c21;
+  color: #ffffff;
+  padding: 14px 20px;
+  font-size: 1.25rem;
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: 0.2px;
+}
+
+.price-card-body {
+  padding: 24px 20px;
+  text-align: center;
+}
+
+.price-fee-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #666666;
+  margin-bottom: 16px;
+}
+
+.price-fee-label i {
+  font-size: 1rem;
+  color: #666666;
+}
+
+.price-display {
+  font-size: 24px;
+  font-weight: bold;
+  color: #111111;
+  margin: 10px 0;
+  line-height: 1.2;
+}
+
+.price-divider {
+  border: none;
+  border-top: 1px solid #e0e0e0;
+  margin: 18px 0;
+  width: 100%;
+}

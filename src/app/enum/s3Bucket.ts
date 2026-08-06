@@ -236,4 +236,6 @@ export const reviewLink = {
   rishikesh3: `${environment.imageUrl}MVI_0364.mp4`,
   rishikesh4: `${environment.imageUrl}MVI_0364_1.mp4`,
   rishikesh5: `${environment.imageUrl}MVI_0364_3.mp4`,
+
+  review200: `${environment.imageUrl}ALKA.mp4`,
 } as const;
