@@ -107,7 +107,6 @@ export class CheckoutComponent {
     SearchCountryField.Iso2,
   ];
   currencyOptions: string[] = [];
-  currencyOption2: string[] = [];
   firstInstAmnt: number = 0;
   secondInstAmnt: number = 0;
   routeEnum = routeEnum;
