@@ -107,15 +107,22 @@
 
           <b class="sub-list webinar-section-title">Why Join This Webinar?</b>
           <p class="webinar-text">
-            It is an invitation to understand the traditional vision of yoga, where practice is not limited to the mat but becomes a way of living, serving, and inspiring others.
+            It is an invitation to understand the traditional vision of yoga,
+            where practice is not limited to the mat but becomes a way of
+            living, serving, and inspiring others.
           </p>
           <p class="webinar-text">
-            If you have ever felt that there is something deeper beyond modern yoga classes, this webinar will help you discover that path.
+            If you have ever felt that there is something deeper beyond modern
+            yoga classes, this webinar will help you discover that path.
           </p>
 
           <b class="sub-list webinar-section-title">About the Teacher</b>
           <p class="webinar-text">
-            Prashant Jakhmola is the founder of Yoga Vidya School and has dedicated his life to the study and practice of traditional yoga. His teachings are rooted in authentic yogic lineages and emphasize direct experience, disciplined practice, and the inner transformation described in the classical texts.
+            Prashant Jakhmola is the founder of Yoga Vidya School and has
+            dedicated his life to the study and practice of traditional yoga.
+            His teachings are rooted in authentic yogic lineages and emphasize
+            direct experience, disciplined practice, and the inner
+            transformation described in the classical texts.
           </p>
         </div>
       </div>
@@ -186,35 +193,59 @@
 </section>
 
 <div class="container justify-content-center">
-  <p class="register-head mb-3">COMING SOON...</p>
-  <!-- <div class="card registration-card flex-fill p-4" id="register-form">
-    <p class="register-head">This is NOT modern breathwork</p>
-    <p class="register-head">
-      This is authentic Tantric & Vedic Pranayama — the science behind energy
-      mastery
-    </p>
-    <p class="join-now-free">JOIN NOW</p>
+  <!-- <p class="register-head mb-3">COMING SOON...</p> -->
+  <div class="card registration-card flex-fill p-4" id="register-form">
+    <p class="register-head">Reserve Your Free Spot:</p>
     <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
       <div class="mb-3">
         <label for="name" class="form-label">Name</label>
-        <input type="text" id="name" formControlName="name" class="form-control" [ngClass]="{
-            'is-invalid': submitted && registrationForm.get('name')?.invalid
-          }" />
-        <div *ngIf="submitted && registrationForm.get('name')?.invalid" class="text-danger">
+        <input
+          type="text"
+          id="name"
+          formControlName="name"
+          class="form-control"
+          [ngClass]="{
+            'is-invalid': submitted && registrationForm.get('name')?.invalid,
+          }"
+        />
+        <div
+          *ngIf="submitted && registrationForm.get('name')?.invalid"
+          class="text-danger"
+        >
           Name is required.
         </div>
       </div>
 
       <div class="mb-3">
         <label for="email" class="form-label">Email</label>
-        <input type="email" id="email" formControlName="email" class="form-control" [ngClass]="{
-            'is-invalid': submitted && registrationForm.get('email')?.invalid
-          }" />
-        <div *ngIf="submitted && registrationForm.get('email')?.invalid" class="text-danger">
+        <input
+          type="email"
+          id="email"
+          formControlName="email"
+          class="form-control"
+          [ngClass]="{
+            'is-invalid': submitted && registrationForm.get('email')?.invalid,
+          }"
+        />
+        <div
+          *ngIf="submitted && registrationForm.get('email')?.invalid"
+          class="text-danger"
+        >
           Please enter a valid email.
         </div>
       </div>
       <button type="submit" class="btn btn-primary">Join Now</button>
+      <p>
+        Join us live and discover how sincere Sadhana naturally blossoms into
+        Seva, and how your own practice can become a source of transformation
+        not only for yourself, but for many others
+      </p>
     </form>
-  </div> -->
+    <img
+      [src]="s3Bucket.freeWebinerBottom"
+      alt="Breath of Yogis webinar"
+      class="webinar-detail-image"
+      loading="lazy"
+    />
+  </div>
 </div>
