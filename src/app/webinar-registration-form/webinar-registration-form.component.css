@@ -5,18 +5,22 @@
 }
 
 .registration-card {
-  border: 1px solid #f3f4f6;
+  border: 1px solid #ffe3e0;
   border-radius: 16px !important;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: stretch;
-  transition: box-shadow 0.3s ease-in-out;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 15px 35px rgba(244, 112, 25, 0.08), 0 5px 15px rgba(0, 0, 0, 0.02);
   margin: 0 auto;
   max-width: 650px;
   width: 100%;
   overflow: hidden;
+}
+.registration-card:hover {
+  border-color: #fbd38d;
+  box-shadow: 0 20px 40px rgba(244, 112, 25, 0.12), 0 8px 20px rgba(0, 0, 0, 0.04);
 }
 
 h3 {
@@ -358,16 +362,18 @@ h2 {
 
 .registration-card .form-control {
   border-radius: 8px;
-  border: 1px solid #e2e8f0;
+  border: 1.5px solid #cbd5e1;
   padding: 12px 16px;
   font-size: 1rem;
   transition: all 0.2s ease;
   width: 100%;
+  background-color: #f8fafc;
 }
 
 .registration-card .form-control:focus {
+  background-color: #ffffff;
   border-color: #f47019;
-  box-shadow: 0 0 0 3px rgba(244, 112, 25, 0.15);
+  box-shadow: 0 0 0 4px rgba(244, 112, 25, 0.2);
   outline: none;
 }
 

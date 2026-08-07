@@ -107,6 +107,7 @@ export const s3Bucket = {
 
   freeWebinnarHero: `${environment.imageUrl}DSC07653.JPG`,
   freeWebinnarDetails: `${environment.imageUrl}DSC07685.JPG`,
+  freeWebinnarDetails2: `${environment.imageUrl}DSC07696.JPG`,
   freeWebinerBottom: `${environment.imageUrl}DSC07708.JPG`,
 
   bali100Hero: `${environment.imageUrl}954A0247.JPG`,
