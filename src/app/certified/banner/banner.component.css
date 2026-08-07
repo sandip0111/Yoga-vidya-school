@@ -36,7 +36,7 @@ section {
 
 .banner-subtitle-overlay {
   position: absolute;
-  top: calc(50% + 50px);
+  top: calc(50% + 29px);
   left: 50%;
   transform: translateX(-50%);
   color: #f0f0f0;
