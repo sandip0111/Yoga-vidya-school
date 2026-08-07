@@ -62,6 +62,19 @@ h2 {
   margin-top: 2rem;
 }
 
+.webinar-summary {
+  margin: 1.5rem auto 2rem;
+  max-width: 860px;
+  text-align: left;
+  color: #444;
+  font-size: 1.05rem;
+  line-height: 1.75;
+}
+
+.webinar-summary p {
+  margin: 0 0 1rem;
+}
+
 .webinar-image-wrapper {
   height: 100%;
   min-height: 420px;
