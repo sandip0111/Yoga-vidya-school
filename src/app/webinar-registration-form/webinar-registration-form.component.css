@@ -5,15 +5,18 @@
 }
 
 .registration-card {
-  border: none;
-  border-radius: 8px;
-  display: flex; /* flexbox for centering */
-  justify-content: center; /* horizontal center */
-  align-items: center;
+  border: 1px solid #f3f4f6;
+  border-radius: 16px !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
   transition: box-shadow 0.3s ease-in-out;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  margin-bottom: 10px;
-  min-width: 300px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+  margin: 0 auto;
+  max-width: 650px;
+  width: 100%;
+  overflow: hidden;
 }
 
 h3 {
@@ -155,9 +158,7 @@ h2 {
     max-width: 900px;
   }
 
-  .registration-card {
-    min-width: 400px;
-  }
+
 
   .webinar-details {
     background-color: #fff;
@@ -343,5 +344,70 @@ h2 {
   text-align: left;
   margin: 0 auto 1.2rem;
   max-width: 700px;
+  display: block;
+}
+
+.registration-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 3rem 0;
+  padding: 0 1rem;
+}
+
+.registration-card .form-control {
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  padding: 12px 16px;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+.registration-card .form-control:focus {
+  border-color: #f47019;
+  box-shadow: 0 0 0 3px rgba(244, 112, 25, 0.15);
+  outline: none;
+}
+
+.registration-card .form-label {
+  font-weight: 500;
+  color: #4a5568;
+  margin-bottom: 0.4rem;
+}
+
+.registration-card .btn-primary {
+  background: linear-gradient(135deg, #f47019 0%, #d97706 100%);
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+.registration-card .btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(244, 112, 25, 0.3);
+}
+
+.form-desc {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #555;
+  margin: 1.5rem 0 1rem;
+  font-style: italic;
+}
+
+.webinar-bottom-image {
+  width: 100%;
+  height: auto;
+  max-height: 380px;
+  object-fit: cover;
   display: block;
 }
