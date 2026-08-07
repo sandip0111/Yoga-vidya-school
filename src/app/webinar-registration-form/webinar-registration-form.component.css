@@ -92,20 +92,48 @@ h2 {
 .sub-list {
   display: block;
   margin-bottom: 1rem;
-  font-size: 1.5rem;
+  font-size: 1.7rem;
+  color: #d97706;
 }
 .lead {
-  font-size: 1.3rem;
+  font-size: 1.15rem;
   max-width: 700px;
-  margin: 0 auto 2rem;
-  line-height: 1.6;
-  color: #555;
+  line-height: 1.8;
+  color: #444;
   display: inline-block;
   text-align: left;
 }
 .lead li {
+  position: relative;
   text-align: left;
-  list-style-position: outside;
+  margin-bottom: 0.9rem;
+  padding-left: 1.4rem;
+  list-style: none;
+}
+.lead li::before {
+  content: "\2022";
+  position: absolute;
+  left: 0;
+  top: 0.15rem;
+  color: #f47019;
+  font-size: 1.2rem;
+  line-height: 1;
+}
+.webinar-discover-list {
+  font-size: 1.05rem;
+  max-width: 700px;
+  margin: 0 auto 2rem;
+  line-height: 1.7;
+  color: #666;
+  display: inline-block;
+  text-align: left;
+  padding-left: 1.5rem;
+}
+.webinar-discover-list li {
+  text-align: left;
+  margin-bottom: 0.6rem;
+  list-style-type: disc;
+  color: #666;
 }
 @media (min-width: 768px) {
   .container {
@@ -291,4 +319,18 @@ h2 {
 .join-now-free {
   margin-top: 10px;
   font-weight: 600;
+}
+
+.webinar-section-title {
+  margin-top: 2.2rem;
+}
+
+.webinar-text {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #444;
+  text-align: left;
+  margin: 0 auto 1.2rem;
+  max-width: 700px;
+  display: block;
 }
