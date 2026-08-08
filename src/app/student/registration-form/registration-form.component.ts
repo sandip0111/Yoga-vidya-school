@@ -11,6 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { WebapiService } from '../../webapi.service';
 import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { SeoService } from '../../services/seo.service';
 
 interface RegistrationForm {
   firstName: string;
@@ -24,6 +25,7 @@ interface RegistrationForm {
   source: string;
   created: Date;
 }
+
 @Component({
   selector: 'app-registration-form',
   standalone: true,
@@ -39,7 +41,8 @@ export class RegistrationFormComponent {
     private formBuilder: FormBuilder,
     private webapiService: WebapiService,
     private toastr: ToastrService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private seoService: SeoService
   ) {
     this.registrationForm = this.formBuilder.group({
       firstName: ['', Validators.required],
@@ -52,6 +55,7 @@ export class RegistrationFormComponent {
     });
   }
   ngOnInit(): void {
+    this.seoService.setNoIndex('Student Registration');
     this.courseName = 'Breath Detox Yoga';
   }
   get f(): { [key in keyof RegistrationForm]: any } {

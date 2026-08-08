@@ -52,16 +52,33 @@ export class PersonalGuidance {
     };
     this.webapiService.getCourseById(data).subscribe({
       next: (res: any) => {
-        if (res.data.length > 0) {
-          this.feesData1 = res.data[0].feeInfo.find(
+        if (res.data && res.data.length > 0) {
+          const course = res.data[0];
+          this.feesData1 = course.feeInfo?.find(
             (f: feesInfoDto) => f.title == PersonalGuidanceType.pg1,
           );
-          this.feesData2 = res.data[0].feeInfo.find(
+          this.feesData2 = course.feeInfo?.find(
             (f: feesInfoDto) => f.title == PersonalGuidanceType.pg2,
           );
-          this.feesData3 = res.data[0].feeInfo.find(
+          this.feesData3 = course.feeInfo?.find(
             (f: feesInfoDto) => f.title == PersonalGuidanceType.pg3,
           );
+
+          // Update SEO with database values if specific, or use dedicated page fallbacks
+          const metaTitle = course.metaTitle && !course.metaTitle.includes('Rishikesh & Bali')
+            ? course.metaTitle
+            : 'One-on-One Personal Guidance & Mentorship | Yoga Vidya School';
+          const metaDesc = course.metaDescription && !course.metaDescription.includes('100, 200 & 300 Hour')
+            ? course.metaDescription
+            : 'Receive personalized 1-on-1 yoga guidance, pranayama mentorship, and spiritual consultation tailored specifically for your individual practice with Acharya Prashant Jakhmola.';
+          const metaKeys = course.metaKeyword || 'Personal Yoga Guidance, 1 on 1 Yoga Mentorship, Spiritual Consultation, Acharya Prashant Mentorship';
+
+          this.seoService.updateSeo({
+            title: metaTitle,
+            description: metaDesc,
+            keywords: metaKeys,
+            url: `/${routeEnum.pg}`
+          });
         }
       },
       error: () => {},

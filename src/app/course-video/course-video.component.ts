@@ -18,6 +18,8 @@ import Hls from 'hls.js';
 import { onLineVideoModel } from '../models/video';
 import { localstorageKey } from '../enum/localstorage';
 import { routeEnum } from '../enum/routes';
+import { SeoService } from '../services/seo.service';
+
 @Component({
   selector: 'app-course-video',
   standalone: true,
@@ -70,6 +72,7 @@ export class CourseVideoComponent {
     @Inject(DOCUMENT) private _document: Document,
     private _renderer2: Renderer2,
     private _changeDetect: ChangeDetectorRef,
+    private seoService: SeoService
   ) {
     this.spinner.show();
     this._activatedRoute.params.subscribe((params) => {
@@ -88,6 +91,7 @@ export class CourseVideoComponent {
   }
 
   ngOnInit(): void {
+    this.seoService.setNoIndex('Course Videos');
     if (typeof sessionStorage === 'undefined') {
       return;
     }
@@ -97,9 +101,6 @@ export class CourseVideoComponent {
     if (!this.userId) {
       this.router.navigate(['/login']);
     }
-    const canonicalUrl = 'https://www.yogavidyaschool.com' + this.router.url;
-    const link = this._document.querySelector('link[rel="canonical"]');
-    this._renderer2.setAttribute(link, 'href', canonicalUrl);
   }
 
   setHlsOrMp4VideoURL(

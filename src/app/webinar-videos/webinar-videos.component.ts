@@ -7,6 +7,8 @@ import { WebinarVideosInterface } from '../models/WebinarVideosInterface';
 import { ToastrService } from 'ngx-toastr';
 import { NgxExtendedPdfViewerModule, pdfDefaultOptions } from 'ngx-extended-pdf-viewer';
 
+import { SeoService } from '../services/seo.service';
+
 @Component({
   selector: 'app-webinar-videos',
   standalone: true,
@@ -23,7 +25,14 @@ export class WebinarVideosComponent implements OnInit {
   activeTabIndex = 0;
   userId: any;
   pdfSrc: any;
-  constructor(private webapiService: WebapiService, private _activatedRoute: ActivatedRoute, private router: Router, private spinner: NgxSpinnerService, private toastr: ToastrService) {
+  constructor(
+    private webapiService: WebapiService,
+    private _activatedRoute: ActivatedRoute,
+    private router: Router,
+    private spinner: NgxSpinnerService,
+    private toastr: ToastrService,
+    private seoService: SeoService
+  ) {
     this._activatedRoute.params.subscribe(params => {
       this.name = params['name'];
     });  
@@ -32,6 +41,7 @@ export class WebinarVideosComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.seoService.setNoIndex('Webinar Videos');
     if (typeof sessionStorage === 'undefined') {
       return;
     }
