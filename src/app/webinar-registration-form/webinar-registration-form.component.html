@@ -12,6 +12,22 @@
       Most people think they are breathing…<br />
       Yogis don’t breathe like that.
     </p>
+    <div class="webinar-summary">
+      <p>
+        When your practice matures, it naturally becomes service. Yoga is not
+        only about improving yourself. In the traditional path, sincere practice
+        (Sadhana) gradually transforms into selfless sharing (Seva). This is how
+        the wisdom of yoga has been preserved for thousands of years through
+        practitioners who embodied the teachings before passing them on.
+      </p>
+      <p>
+        This webinar is for those who feel called to deepen their practice and
+        explore the path of teaching from an authentic, traditional perspective.
+        Whether you aspire to become a yoga teacher or simply want to understand
+        the true purpose of yoga, this session will provide clarity and
+        direction.
+      </p>
+    </div>
     <div class="row webinar-discover-row">
       <div class="col-md-4">
         <div class="webinar-image-wrapper">
@@ -25,29 +41,99 @@
       </div>
       <div class="col-md-8">
         <div class="sub-list-container">
-          <b class="sub-list">In this webinar, discover:</b>
-          <ul class="lead">
-            <li>The real difference between bio-energy and Prana</li>
-            <li>How Yogic breathing can heal the mind, body & energy field</li>
-            <li>Why “breathwork” can't be Pranayama</li>
+          <b class="sub-list">What You Will Learn</b>
+          <p>- clear Road map to become from practitioners to Teacher</p>
+          <ul class="webinar-discover-list">
             <li>
-              The way Yogis breathe to awaken clarity, strength & protection
+              The true meaning of Sadhana and why it is the foundation of every
+              authentic yoga teacher.
             </li>
             <li>
-              After registration you will reiceve all details to join the
-              webinar in your email inbox
-            </li>
-            <li>Yogis breath are not the same as yours</li>
-            <li>
-              You breathe air/oxygen - that’s why you are limited with your
-              existence and experiences and yogis breathe prana
+              Why sincere practice naturally evolves into Seva - the sharing of
+              knowledge for the benefit of others.
             </li>
             <li>
-              Your primary organ for breathing and survival, our lungs Yogis
-              don’t depend on them
+              The essential qualities of a genuine yoga teacher beyond poses and
+              certifications.
             </li>
-            <li>Technique to turn your ordinary breath into yogic breath</li>
+            <li>How to cultivate a strong and consistent personal practice.</li>
+            <li>
+              Why teaching yoga begins with inner transformation, not external
+              techniques.
+            </li>
+            <li>
+              The difference between traditional yoga and much of what is
+              presented as modern yoga today.
+            </li>
+            <li>
+              Why many practitioners experience techniques but not real
+              transformation.
+            </li>
+            <li>
+              How an authentic lineage preserves the power of yoga through
+              direct experience.
+            </li>
+            <li>
+              How sharing yoga strengthens your own practice and deepens your
+              understanding.
+            </li>
+            <li>
+              Whether the path of teaching is the next step in your own
+              spiritual journey.
+            </li>
           </ul>
+        </div>
+      </div>
+    </div>
+    <div class="row webinar-discover-row">
+      <div class="col-md-4 order-md-2">
+        <div class="webinar-image-wrapper">
+          <img
+            [src]="s3Bucket.freeWebinnarDetails2"
+            alt="Breath of Yogis webinar"
+            class="webinar-detail-image"
+            loading="lazy"
+          />
+        </div>
+      </div>
+      <div class="col-md-8 order-md-1">
+        <div class="sub-list-container">
+          <b class="sub-list">Who Should Attend?</b>
+          <ul class="webinar-discover-list">
+            <li>
+              Dedicated yoga practitioners seeking a deeper understanding of
+              yoga.
+            </li>
+            <li>Students considering a Yoga Teacher Training.</li>
+            <li>
+              Yoga teachers who wish to reconnect with the traditional roots of
+              yoga.
+            </li>
+            <li>
+              Anyone who feels called to transform personal practice into
+              meaningful service.
+            </li>
+          </ul>
+
+          <b class="sub-list webinar-section-title">Why Join This Webinar?</b>
+          <p class="webinar-text">
+            It is an invitation to understand the traditional vision of yoga,
+            where practice is not limited to the mat but becomes a way of
+            living, serving, and inspiring others.
+          </p>
+          <p class="webinar-text">
+            If you have ever felt that there is something deeper beyond modern
+            yoga classes, this webinar will help you discover that path.
+          </p>
+
+          <b class="sub-list webinar-section-title">About the Teacher</b>
+          <p class="webinar-text">
+            Prashant Jakhmola is the founder of Yoga Vidya School and has
+            dedicated his life to the study and practice of traditional yoga.
+            His teachings are rooted in authentic yogic lineages and emphasize
+            direct experience, disciplined practice, and the inner
+            transformation described in the classical texts.
+          </p>
         </div>
       </div>
     </div>
@@ -106,36 +192,55 @@
   </div>
 </section>
 
-<div class="container justify-content-center">
-  <p class="register-head mb-3">COMING SOON...</p>
-  <!-- <div class="card registration-card flex-fill p-4" id="register-form">
-    <p class="register-head">This is NOT modern breathwork</p>
-    <p class="register-head">
-      This is authentic Tantric & Vedic Pranayama — the science behind energy
-      mastery
-    </p>
-    <p class="join-now-free">JOIN NOW</p>
-    <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
-      <div class="mb-3">
-        <label for="name" class="form-label">Name</label>
-        <input type="text" id="name" formControlName="name" class="form-control" [ngClass]="{
-            'is-invalid': submitted && registrationForm.get('name')?.invalid
-          }" />
-        <div *ngIf="submitted && registrationForm.get('name')?.invalid" class="text-danger">
-          Name is required.
+<div class="registration-container">
+  <div class="card registration-card" id="register-form">
+    <div class="p-4 pb-0">
+      <p class="register-head mb-4">Reserve Your Free Spot:</p>
+      <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+        <div class="mb-3 text-start">
+          <label for="name" class="form-label">Name</label>
+          <input
+            type="text"
+            id="name"
+            formControlName="name"
+            class="form-control"
+            [ngClass]="{
+              'is-invalid': submitted && registrationForm.get('name')?.invalid
+            }"
+          />
+          <div *ngIf="submitted && registrationForm.get('name')?.invalid" class="text-danger">
+            Name is required.
+          </div>
         </div>
-      </div>
 
-      <div class="mb-3">
-        <label for="email" class="form-label">Email</label>
-        <input type="email" id="email" formControlName="email" class="form-control" [ngClass]="{
-            'is-invalid': submitted && registrationForm.get('email')?.invalid
-          }" />
-        <div *ngIf="submitted && registrationForm.get('email')?.invalid" class="text-danger">
-          Please enter a valid email.
+        <div class="mb-3 text-start">
+          <label for="email" class="form-label">Email</label>
+          <input
+            type="email"
+            id="email"
+            formControlName="email"
+            class="form-control"
+            [ngClass]="{
+              'is-invalid': submitted && registrationForm.get('email')?.invalid
+            }"
+          />
+          <div *ngIf="submitted && registrationForm.get('email')?.invalid" class="text-danger">
+            Please enter a valid email.
+          </div>
         </div>
-      </div>
-      <button type="submit" class="btn btn-primary">Join Now</button>
-    </form>
-  </div> -->
+        <button type="submit" class="btn btn-primary w-100 py-2.5">Join Now</button>
+        <p class="form-desc text-center">
+          Join us live and discover how sincere Sadhana naturally blossoms into
+          Seva, and how your own practice can become a source of transformation
+          not only for yourself, but for many others
+        </p>
+      </form>
+    </div>
+    <img
+      [src]="s3Bucket.freeWebinerBottom"
+      alt="Breath of Yogis webinar"
+      class="webinar-detail-image"
+      loading="lazy"
+    />
+  </div>
 </div>

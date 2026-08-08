@@ -84,8 +84,9 @@ export class WebinarRegistrationFormComponent implements OnInit {
     });
     this.title.setTitle('Free Webinar - Yoga Vidya School');
     this.bannerSubtitle = this.sanitizer
-      .bypassSecurityTrustHtml(`<b style="color: #f47019;">COMING SOON...<br /> 
-	    <!--Date: June the 21st - 6:30 PM IST--></b>`);
+      .bypassSecurityTrustHtml(`<b style="color: #f47019;">“From Sadhana to Seva”</b><br /> 
+	    A Free Live Webinar for Dedicated Yoga Practitioners<br />
+      <i class="fa-solid fa-calendar"></i> Saturday 15th, 6:30 PM IST`);
     this.bannerTitle = 'Free Online Webinar';
     this.imgSlug = this.s3Bucket.freeWebinnarHero;
   }
