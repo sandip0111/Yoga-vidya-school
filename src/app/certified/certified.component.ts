@@ -49,8 +49,6 @@ export class CertifiedComponent {
     private spinner: NgxSpinnerService,
     private activatedRoute: ActivatedRoute,
     private pixelTracking: PixelTrackingService,
-    private titleService: Title,
-    private sanitizer: DomSanitizer,
     private seoService: SeoService
   ) {
     this.spinner.show();
