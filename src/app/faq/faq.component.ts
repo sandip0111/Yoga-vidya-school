@@ -1,8 +1,6 @@
-import { Component, Renderer2, Inject, DOCUMENT } from '@angular/core';
-
-import { Title, Meta } from '@angular/platform-browser';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-
+import { SeoService } from '../services/seo.service';
 
 @Component({
   selector: 'app-faq',
@@ -13,19 +11,36 @@ import { Router } from '@angular/router';
 })
 export class FaqComponent {
 
-  constructor(private title: Title, private meta: Meta, private router: Router, @Inject(DOCUMENT) private _document: Document, private _renderer2: Renderer2) {
+  constructor(private router: Router, private seoService: SeoService) {}
 
-  }
   ngOnInit(): void {
-    setTimeout(() => {
-      this.title.setTitle('Frequently Asked Questions');
-      this.meta.updateTag({ name: 'keywords', content: 'Yoga Frequently Asked Questions, Yoga FAQ' });
-      this.meta.updateTag({ name: 'description', content: '' });
-      const canonicalUrl = 'https://www.yogavidyaschool.com' + this.router.url;
-      const link = this._document.querySelector('link[rel="canonical"]');
-      this._renderer2.setAttribute(link, 'href', canonicalUrl);
-    }, 1000)
-
+    this.seoService.updateSeo({
+      title: 'Frequently Asked Questions | Yoga Vidya School',
+      description: 'Find answers to common questions about Yoga Teacher Training in Rishikesh & Bali, Yoga Alliance certification, course curriculum, accommodation, food, and prerequisites.',
+      keywords: 'Yoga FAQ, Yoga Teacher Training Questions, Yoga Alliance Certification FAQ, Rishikesh Yoga Course FAQ',
+      url: '/faq',
+      schema: {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        'mainEntity': [
+          {
+            '@type': 'Question',
+            'name': 'Why Do Yoga Teacher Training in Rishikesh?',
+            'acceptedAnswer': {
+              '@type': 'Answer',
+              'text': 'Rishikesh is the birthplace and world capital of yoga, offering authentic spiritual energy, experienced traditional gurus, and immersion in Himalayan yogic culture.'
+            }
+          },
+          {
+            '@type': 'Question',
+            'name': 'Is Yoga Vidya School Yoga Alliance certified?',
+            'acceptedAnswer': {
+              '@type': 'Answer',
+              'text': 'Yes, all our 100, 200, 300, and 500 hour Yoga Teacher Training programs are fully registered and accredited by Yoga Alliance USA.'
+            }
+          }
+        ]
+      }
+    });
   }
-
 }

@@ -7,6 +7,8 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { FormsModule } from '@angular/forms';
 import { localstorageKey } from '../enum/localstorage';
+import { SeoService } from '../services/seo.service';
+
 @Component({
   selector: 'app-change-password',
   standalone: true,
@@ -18,30 +20,27 @@ export class ChangePasswordComponent {
 
   studentId: any;
   loginId:any;
-  constructor(private webapiService:WebapiService,private router: Router,private route: ActivatedRoute,private toastr: ToastrService, private spinner:NgxSpinnerService,@Inject(DOCUMENT) private _document: Document, private _renderer2: Renderer2,private title:Title,private meta:Meta) {
-  }
+  constructor(
+    private webapiService: WebapiService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private toastr: ToastrService,
+    private spinner: NgxSpinnerService,
+    private seoService: SeoService
+  ) {}
   formData:any = {};
   ngOnInit():void{
-    setTimeout(() => {
-      this.title.setTitle('Change Password');
-      this.meta.updateTag({ name: 'keywords', content: '' });
-      this.meta.updateTag({ name: 'description', content: '' });
-      const canonicalUrl = 'https://www.yogavidyaschool.com' + this.router.url;
-      const link = this._document.querySelector('link[rel="canonical"]');
-      this._renderer2.setAttribute(link, 'href', canonicalUrl);
-      this.studentId = this.route.snapshot.paramMap.get('id'); // Get the parameter
-      if (typeof sessionStorage === 'undefined') {
-        return;
-      }
+    this.seoService.setNoIndex('Change Password');
+    this.studentId = this.route.snapshot.paramMap.get('id');
+    if (typeof sessionStorage === 'undefined') {
+      return;
+    }
 
-      this.loginId = sessionStorage.getItem(localstorageKey.loginId);
-      if (!this.loginId) {
-        sessionStorage.clear();
-        this.title.setTitle('login');
-        this.router.navigate(['/login']);
-      }
-      
-    }, 1000)
+    this.loginId = sessionStorage.getItem(localstorageKey.loginId);
+    if (!this.loginId) {
+      sessionStorage.clear();
+      this.router.navigate(['/login']);
+    }
   }
 
   changeStudentPassword(data:any){
@@ -55,7 +54,6 @@ export class ChangePasswordComponent {
       if (res.status == '200') {
         this.spinner.hide();
         this.toastr.success(res.msg);
-        this.title.setTitle('my-account');
         this.router.navigate(['/my-account']);
       }    
     },
@@ -64,7 +62,6 @@ export class ChangePasswordComponent {
       this.toastr.error(error.error.msg);
       if(error.error.status == "404") {
         sessionStorage.clear();
-        this.title.setTitle('login');
         this.router.navigate(['/login']);
       }
     });

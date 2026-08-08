@@ -24,6 +24,8 @@ import { localstorageKey } from '../enum/localstorage';
 import { paypalPayModel } from '../models/checkout';
 
 declare var Razorpay: any;
+import { SeoService } from '../services/seo.service';
+
 @Component({
   selector: 'app-payment-proceed',
   standalone: true,
@@ -66,6 +68,7 @@ export class PaymentProceedComponent implements OnInit {
     private pixelTracking: PixelTrackingService,
     private actRoute: ActivatedRoute,
     private titleService: Title,
+    private seoService: SeoService
   ) {
     this.actRoute.queryParams.subscribe((params) => {
       if (params['hash'] === 'abcdef1234567890') {
@@ -81,6 +84,7 @@ export class PaymentProceedComponent implements OnInit {
     });
   }
   ngOnInit(): void {
+    this.seoService.setNoIndex('Payment Proceed');
     this.setPageTitle(this.courses);
     if (typeof window !== 'undefined' && typeof document !== 'undefined') {
       this.invokeStripe();

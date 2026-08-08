@@ -1,12 +1,12 @@
-import { Component, Renderer2, Inject, DOCUMENT } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { WebapiService } from '../webapi.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Title, Meta } from '@angular/platform-browser';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { DomSanitizer } from '@angular/platform-browser';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { routeEnum } from '../enum/routes';
+import { SeoService } from '../services/seo.service';
 
 @Component({
   selector: 'app-blog-detail',
@@ -27,29 +27,21 @@ export class BlogDetailComponent {
   constructor(
     private webapiService: WebapiService,
     private _activatedRoute: ActivatedRoute,
-    private title: Title,
-    private meta: Meta,
     private spinner: NgxSpinnerService,
     private router: Router,
-    @Inject(DOCUMENT) private _document: Document,
-    private _renderer2: Renderer2,
-    public sanitizer: DomSanitizer
+    public sanitizer: DomSanitizer,
+    private seoService: SeoService
   ) {}
 
   ngOnInit(): void {
-    setTimeout(() => {
-      const canonicalUrl = 'https://www.yogavidyaschool.com' + this.router.url;
-      const link = this._document.querySelector('link[rel="canonical"]');
-      if (link) {
-        this._renderer2.setAttribute(link, 'href', canonicalUrl);
-      }
-    }, 1000);
     this.spinner.show();
     this.imageUrl = this.webapiService.imageUrl;
     this._activatedRoute.params.subscribe((params) => {
-      return (this.blogId = params['id']);
+      this.blogId = params['id'];
+      if (this.blogId) {
+        this.getBlogBySlug(this.blogId);
+      }
     });
-    this.getBlogBySlug(this.blogId);
   }
 
   ngAfterViewChecked() {
@@ -67,15 +59,36 @@ export class BlogDetailComponent {
         return;
       }
       this.blogArr = res.data;
-      this.title.setTitle(res?.data?.title);
-      this.meta.updateTag({
-        name: 'keywords',
-        content: res?.data?.seokeywords,
+      const blogData = res.data[0] || res.data;
+      const blogTitle = blogData?.title || 'Yoga Article';
+      const blogDescription = blogData?.seodescription || blogData?.shortDescription || 'Read authentic yoga insights from Yoga Vidya School.';
+      const blogKeywords = blogData?.seokeywords || 'Yoga Blog, Yoga Article';
+      const blogImage = blogData?.image ? `${this.imageUrl}/${blogData.image}` : undefined;
+
+      this.seoService.updateSeo({
+        title: blogTitle,
+        description: blogDescription,
+        keywords: blogKeywords,
+        image: blogImage,
+        url: `/blog/${slug}`,
+        type: 'article',
+        schema: {
+          '@context': 'https://schema.org',
+          '@type': 'Article',
+          'headline': blogTitle,
+          'description': blogDescription,
+          'image': blogImage,
+          'publisher': {
+            '@type': 'Organization',
+            'name': 'Yoga Vidya School',
+            'logo': {
+              '@type': 'ImageObject',
+              'url': 'https://d29rwrqvux6m5p.cloudfront.net/images/Yoga-Vidya-Logo.svg'
+            }
+          }
+        }
       });
-      this.meta.updateTag({
-        name: 'description',
-        content: res?.data?.seodescription,
-      });
+
       this.spinner.hide();
     });
   }

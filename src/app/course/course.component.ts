@@ -14,6 +14,8 @@ import { routeEnum } from '../enum/routes';
 import { s3Bucket } from '../enum/s3Bucket';
 import { PixelTrackingService } from '../services/pixel-tracking.service';
 
+import { SeoService } from '../services/seo.service';
+
 @Component({
   selector: 'app-course',
   standalone: true,
@@ -117,7 +119,8 @@ export class CourseComponent {
     protected sanitizer: DomSanitizer,
     private _renderer2: Renderer2,
     private pixelTracking: PixelTrackingService,
-    @Inject(DOCUMENT) private _document: Document
+    @Inject(DOCUMENT) private _document: Document,
+    private seoService: SeoService
   ) {
     this.slug = this._activatedRoute.snapshot.routeConfig?.path;
     if (this.slug) {
@@ -126,9 +129,6 @@ export class CourseComponent {
   }
   ngOnInit(): void {
     this.ogMetaTag(this.slug ?? '');
-    const canonicalUrl = 'https://www.yogavidyaschool.com' + this.router.url;
-    const link = this._document.querySelector('link[rel="canonical"]');
-    this._renderer2.setAttribute(link, 'href', canonicalUrl);
   }
 
   getCourseBySlug(slug: any) {
@@ -137,33 +137,17 @@ export class CourseComponent {
     };
     this.webapiService.getCourseById(data).subscribe({
       next: (res: any) => {
-        // console.log(res.data, 'course Data');
-        const currentDate = new Date();
         if (res.data.length > 0) {
           this.courseList = res.data[0];
-          // this.courseName = res.data[0].coursetitle;
-          // const currentDate = new Date();
-          // this.upcomingDates = res.data[0]?.upcomingEventInfo.filter((item: any) => {
-          //   const itemDate = new Date(item.startDate);
-          //   return itemDate >= currentDate;
-          // });
           this.introLink =
             'https://www.youtube.com/embed/' + res.data[0].courseintrovideoId;
-          //console.log(this.introLink,'--');
 
-          this.title.setTitle(res.data[0].metaTitle);
-          this.meta.updateTag({
-            name: 'keywords',
-            content: res.data[0].metaKeyword,
+          this.seoService.updateSeo({
+            title: res.data[0].metaTitle || `${res.data[0].coursetitle} | Yoga Vidya School`,
+            description: res.data[0].metaDescription || `Join ${res.data[0].coursetitle} at Yoga Vidya School. Authentic yoga training online & offline.`,
+            keywords: res.data[0].metaKeyword || 'Yoga Teacher Training, Online Yoga Course',
+            url: `/${slug}`
           });
-          this.meta.updateTag({
-            name: 'description',
-            content: res.data[0].metaDescription,
-          });
-          // this.checkForCourse(this.userId, res.data[0]._id);
-        } else {
-          // this.router.navigate(['/']);
-          // this.spinner.hide();
         }
       },
       error: () => {},

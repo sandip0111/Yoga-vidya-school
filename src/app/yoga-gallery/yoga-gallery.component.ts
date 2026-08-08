@@ -1,8 +1,7 @@
-import { Component, Renderer2, Inject, DOCUMENT } from '@angular/core';
-
-import { Title, Meta } from '@angular/platform-browser';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { s3Bucket } from '../enum/s3Bucket';
+import { SeoService } from '../services/seo.service';
 
 @Component({
   selector: 'app-yoga-gallery',
@@ -14,19 +13,16 @@ import { s3Bucket } from '../enum/s3Bucket';
 export class YogaGalleryComponent {
   s3bucket = s3Bucket;
   constructor(
-    private meta: Meta,
-    private title: Title,
     private router: Router,
-    @Inject(DOCUMENT) private _document: Document,
-    private _renderer2: Renderer2
+    private seoService: SeoService
   ) {}
 
   ngOnInit(): void {
-    setTimeout(() => {
-      this.title.setTitle('Photo Gallery | Yoga Vidya School');
-      const canonicalUrl = 'https://www.yogavidyaschool.com' + this.router.url;
-      const link = this._document.querySelector('link[rel="canonical"]');
-      this._renderer2.setAttribute(link, 'href', canonicalUrl);
-    }, 1000);
+    this.seoService.updateSeo({
+      title: 'Photo Gallery | Yoga Vidya School Rishikesh & Bali',
+      description: 'Browse photos of Yoga Vidya School campuses in Rishikesh & Bali, yoga teacher training classes, excursion trips, graduation ceremonies, and ashram life.',
+      keywords: 'Yoga Gallery, Yoga Vidya School Photos, Rishikesh Ashram Photos, Yoga Student Life, Bali Yoga Gallery',
+      url: '/gallery'
+    });
   }
 }

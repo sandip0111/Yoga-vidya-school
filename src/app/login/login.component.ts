@@ -7,6 +7,8 @@ import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { localstorageKey } from '../enum/localstorage';
 
+import { SeoService } from '../services/seo.service';
+
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -22,14 +24,11 @@ export class LoginComponent {
     private router: Router,
     private toastr: ToastrService,
     private spinner: NgxSpinnerService,
-    @Inject(DOCUMENT) private _document: Document,
-    private _renderer2: Renderer2
+    private seoService: SeoService
   ) {}
 
   ngOnInit(): void {
-    const canonicalUrl = 'https://www.yogavidyaschool.com' + this.router.url;
-    const link = this._document.querySelector('link[rel="canonical"]');
-    this._renderer2.setAttribute(link, 'href', canonicalUrl);
+    this.seoService.setNoIndex('Student Login');
   }
 
   studentLogin(data: any) {

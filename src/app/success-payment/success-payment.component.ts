@@ -13,6 +13,8 @@ import {
 } from '../models/checkout';
 import { PixelTrackingService } from '../services/pixel-tracking.service';
 
+import { SeoService } from '../services/seo.service';
+
 @Component({
   selector: 'app-success-payment',
   standalone: true,
@@ -69,12 +71,11 @@ export class SuccessPaymentComponent {
     private spinner: NgxSpinnerService,
     private title: Title,
     private pixelTracking: PixelTrackingService,
+    private seoService: SeoService
   ) {}
 
   ngOnInit(): void {
-    setTimeout(() => {
-      this.title.setTitle('Confirmation');
-    }, 1000);
+    this.seoService.setNoIndex('Order Confirmation');
 
     this.spinner.show();
     if (

@@ -9,6 +9,8 @@ import { routeEnum } from '../enum/routes';
 import { CourseEnum } from '../enum/course';
 import { localstorageKey } from '../enum/localstorage';
 
+import { SeoService } from '../services/seo.service';
+
 @Component({
   selector: 'app-my-account',
   standalone: true,
@@ -31,17 +33,11 @@ export class MyAccountComponent {
     private meta: Meta,
     @Inject(DOCUMENT) private _document: Document,
     private _renderer2: Renderer2,
+    private seoService: SeoService
   ) {}
 
   ngOnInit(): void {
-    setTimeout(() => {
-      this.title.setTitle('My Account');
-      this.meta.updateTag({ name: 'keywords', content: '' });
-      this.meta.updateTag({ name: 'description', content: '' });
-      const canonicalUrl = 'https://www.yogavidyaschool.com' + this.router.url;
-      const link = this._document.querySelector('link[rel="canonical"]');
-      this._renderer2.setAttribute(link, 'href', canonicalUrl);
-    }, 1000);
+    this.seoService.setNoIndex('My Account');
 
     if (typeof sessionStorage === 'undefined') {
       return;

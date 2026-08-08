@@ -11,6 +11,7 @@ import {
 import { CartItem, CartService } from '../cart.service';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { SeoService } from '../services/seo.service';
 
 @Component({
   selector: 'app-add-to-cart',
@@ -19,7 +20,6 @@ import { Router } from '@angular/router';
   templateUrl: './add-to-cart.component.html',
   styleUrl: './add-to-cart.component.css',
 })
-
 export class AddToCartComponent implements AfterViewInit, OnDestroy {
 
   courses: CartItem[] = [];
@@ -30,9 +30,10 @@ export class AddToCartComponent implements AfterViewInit, OnDestroy {
   totalAmount: any;
   selectedCurrency: string = '';
   options?: { label: string; value: string }[] = [];
-  constructor(private renderer: Renderer2, private cartService: CartService, private router: Router) {}
+  constructor(private renderer: Renderer2, private cartService: CartService, private router: Router, private seoService: SeoService) {}
 
   ngOnInit(): void {
+    this.seoService.setNoIndex('Shopping Cart');
     this.courses = this.cartService.getItems();    
     this.options = [
       { label: 'INR', value: 'INR' },

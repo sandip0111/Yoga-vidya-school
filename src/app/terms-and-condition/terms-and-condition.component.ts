@@ -1,7 +1,7 @@
-import { Component, Renderer2, Inject, DOCUMENT } from '@angular/core';
-
-import { Title, Meta } from '@angular/platform-browser';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { SeoService } from '../services/seo.service';
+
 @Component({
   selector: 'app-terms-and-condition',
   standalone: true,
@@ -11,20 +11,14 @@ import { Router } from '@angular/router';
 })
 export class TermsAndConditionComponent {
 
+  constructor(private router: Router, private seoService: SeoService) {}
 
-  constructor(private title: Title, private meta: Meta, private router: Router, @Inject(DOCUMENT) private _document: Document, private _renderer2: Renderer2) {
-
-  }
   ngOnInit(): void {
-    setTimeout(() => {
-      this.title.setTitle('Terms & Conditions');
-      this.meta.updateTag({ name: 'keywords', content: '' });
-      this.meta.updateTag({ name: 'description', content: '' });
-      const canonicalUrl = 'https://www.yogavidyaschool.com' + this.router.url;
-      const link = this._document.querySelector('link[rel="canonical"]');
-      this._renderer2.setAttribute(link, 'href', canonicalUrl);
-    }, 1000)
-
+    this.seoService.updateSeo({
+      title: 'Terms & Conditions | Yoga Vidya School',
+      description: 'Official Terms & Conditions of Yoga Vidya School for course registration, payment policy, code of conduct, and refund guidelines in Rishikesh & Bali.',
+      keywords: 'Yoga Vidya School Terms, Course Terms and Conditions, Refund Policy, Student Code of Conduct',
+      url: '/terms-and-condition'
+    });
   }
-
 }

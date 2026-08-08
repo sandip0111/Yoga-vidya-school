@@ -48,6 +48,8 @@ import { s3Bucket } from '../enum/s3Bucket';
 import { PersonalGuidanceType } from '../enum/course';
 
 declare var Razorpay: any;
+import { SeoService } from '../services/seo.service';
+
 @Component({
   selector: 'app-checkout',
   standalone: true,
@@ -178,6 +180,7 @@ export class CheckoutComponent {
     private _renderer2: Renderer2,
     private pixelTracking: PixelTrackingService,
     private elementRef: ElementRef,
+    private seoService: SeoService
   ) {
     this._activatedRoute.params.subscribe((params) => {
       this.slug = params['id'];
@@ -200,6 +203,7 @@ export class CheckoutComponent {
     }
   }
   ngOnInit(): void {
+    this.seoService.setNoIndex('Checkout');
     this.spinner.show();
     const isBrowser =
       typeof window !== 'undefined' && typeof document !== 'undefined';
@@ -210,11 +214,6 @@ export class CheckoutComponent {
       setTimeout(() => {
         this.invokeStripe();
         this.loadRazorpayScript();
-        this.title.setTitle('Checkout');
-        const canonicalUrl =
-          'https://www.yogavidyaschool.com' + this.router.url;
-        const link = this._document.querySelector('link[rel="canonical"]');
-        this._renderer2.setAttribute(link, 'href', canonicalUrl);
         if (this.slug === routeEnum.pranicPurification) {
           const storedDateStr = sessionStorage.getItem('pranicDate');
           if (storedDateStr) {
