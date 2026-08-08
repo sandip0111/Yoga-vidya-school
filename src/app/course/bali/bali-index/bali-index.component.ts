@@ -41,6 +41,8 @@ import { routeEnum } from '../../../enum/routes';
 import { PixelTrackingService } from '../../../services/pixel-tracking.service';
 import { PricingComponent } from '../../rishikesh/pricing/pricing.component';
 import { BonusComponent } from '../../../certified/bonus/bonus.component';
+import { SeoService } from '../../../services/seo.service';
+
 @Component({
   selector: 'app-bali-index',
   standalone: true,
@@ -100,7 +102,8 @@ export class BaliIndexComponent implements OnInit {
     private title: Title,
     private meta: Meta,
     private pixelTracking: PixelTrackingService,
-    @Inject(PLATFORM_ID) private platformId: Object
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private seoService: SeoService
   ) {
     this.slug = this.activatedRoute.snapshot.routeConfig?.path ?? '';
     if (this.slug) {
@@ -230,14 +233,11 @@ export class BaliIndexComponent implements OnInit {
           this.codecond = {
             title: courseData.coursetitle,
           };
-          this.title.setTitle(courseData.metaTitle);
-          this.meta.updateTag({
-            name: 'keywords',
-            content: courseData.metaKeyword,
-          });
-          this.meta.updateTag({
-            name: 'description',
-            content: courseData.metaDescription,
+          this.seoService.updateSeo({
+            title: courseData.metaTitle || `${courseData.coursetitle} | Yoga Vidya School Bali`,
+            description: courseData.metaDescription || `Join ${courseData.coursetitle} at Yoga Vidya School in Bali. Yoga Alliance certified course.`,
+            keywords: courseData.metaKeyword || 'Yoga Teacher Training Bali, Yoga Retreat Bali, Yoga Alliance Certified',
+            url: `/${slug}`
           });
         } else {
           this.router.navigate(['/']);

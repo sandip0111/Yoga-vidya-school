@@ -13,7 +13,8 @@ import { ToastrService } from 'ngx-toastr';
 import { routeEnum } from '../enum/routes';
 import { BannerComponent } from '../certified/banner/banner.component';
 import { s3Bucket } from '../enum/s3Bucket';
-import { DomSanitizer, SafeHtml, Title } from '@angular/platform-browser';
+import { SeoService } from '../services/seo.service';
+
 @Component({
   selector: 'app-webinar-registration-form',
   standalone: true,
@@ -44,19 +45,6 @@ export class WebinarRegistrationFormComponent implements OnInit {
       feesINR: '799',
       fesUSD: '',
     },
-    // { value: "Kundalini parichay", label: 'Kundalini parichay', title: 'Kundalini parichay',
-    //   description: `It is the term used for sleeping dormant potential force in every human organism,
-    //   which is not yet awakened . The recite point of this force is root of the spinal
-    //   column. until this energy is not awakened, Person remains in illusion and unaware
-    //   of this universe and its functioning, but once it is awaken Through the practice
-    //   of yoga and other spiritual techniques, this energy makes its way through centre
-    //   of the spine to the brain. Once this energy ascend, it passes through each energy
-    //   centres which are interconnected with the different silent areas of the brain.
-    //   The dormant areas of the brain start blooming And new awareness arises. this
-    //   upcoming webinar is to know about this energy and what are the practices to awaken it.`,
-    //   feesINR: '799',
-    //   fesUSD: ''
-    //   }
   ];
   bannerTitle: string | undefined;
   imgSlug: string | undefined;
@@ -69,6 +57,7 @@ export class WebinarRegistrationFormComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private title: Title,
     private sanitizer: DomSanitizer,
+    private seoService: SeoService
   ) {
     this.registrationForm = this.fb.group({
       name: ['', Validators.required],
@@ -82,7 +71,12 @@ export class WebinarRegistrationFormComponent implements OnInit {
     this.registrationForm.patchValue({
       webinar: this.selectedOption.value,
     });
-    this.title.setTitle('Free Webinar - Yoga Vidya School');
+    this.seoService.updateSeo({
+      title: 'Free Live Online Yoga Webinar | Yoga Vidya School',
+      description: 'Register for free online live webinars on Swara Yoga, Pranayama, and Yogic Philosophy guided by Acharya Prashant Jakhmola.',
+      keywords: 'Free Yoga Webinar, Swara Yoga Workshop, Live Breathwork Session, Yoga Vidya School Webinar',
+      url: `/${routeEnum.freeWebiner}`
+    });
     this.bannerSubtitle = this.sanitizer
       .bypassSecurityTrustHtml(`<b style="color: #f47019;">“From Sadhana to Seva”</b><br /> 
 	    A Free Live Webinar for Dedicated Yoga Practitioners<br />

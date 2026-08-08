@@ -5,6 +5,8 @@ import { WebapiService } from '../../webapi.service';
 import { routeEnum } from '../../enum/routes';
 import { Router } from '@angular/router';
 
+import { SeoService } from '../../services/seo.service';
+
 @Component({
   selector: 'app-pranic-purification',
   imports: [BannerComponent],
@@ -18,8 +20,15 @@ export class PranicPurification {
   constructor(
     private webapiService: WebapiService,
     private router: Router,
+    private seoService: SeoService
   ) {}
   ngOnInit(): void {
+    this.seoService.updateSeo({
+      title: 'Pranic Purification Online Course | Yoga Vidya School',
+      description: 'Cleanse and balance your prana (vital energy body) with traditional pranayama, Shatkarma techniques, and breathwork guided by Acharya Prashant Jakhmola.',
+      keywords: 'Pranic Purification, Pranayama Course, Breathwork Online, Energy Body Cleansing, Shatkarma Practice',
+      url: `/${routeEnum.pranicPurification}`
+    });
     this.getCourseBySlug(routeEnum.pranicPurification);
   }
   getCourseBySlug(slug: string) {

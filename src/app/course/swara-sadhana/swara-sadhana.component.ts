@@ -11,6 +11,8 @@ import { WebapiService } from '../../webapi.service';
 import { feesDto } from '../rishikesh/pricing/pricing.component';
 import { NgxSpinnerService } from 'ngx-spinner';
 
+import { SeoService } from '../../services/seo.service';
+
 @Component({
   selector: 'app-swara-sadhana',
   standalone: true,
@@ -29,12 +31,18 @@ export class SwaraSadhanaComponent {
     private titleService: Title,
     private webapiService: WebapiService,
     private activatedRoute: ActivatedRoute,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private seoService: SeoService
   ) {
     this.slug = this.activatedRoute.snapshot.routeConfig?.path ?? '';
-    this.titleService.setTitle('Swara Sadhana');
   }
   ngOnInit(): void {
+    this.seoService.updateSeo({
+      title: 'Swara Sadhana - Ancient Science of Breath & Energy | Yoga Vidya School',
+      description: 'Master Swara Yoga - the ancient science of breath rhythms, brain hemisphere dominance, and elemental energy flow to transform your physical, mental and spiritual health.',
+      keywords: 'Swara Yoga, Swara Sadhana, Science of Breath, Energy Flow, Nadi Purification, Acharya Prashant Jakhmola',
+      url: `/${this.slug}`
+    });
     this.spinner.show();
     let data = {
       slug: this.slug,

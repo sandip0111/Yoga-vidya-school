@@ -10,6 +10,8 @@ import { s3Bucket } from '../enum/s3Bucket';
 import { YogateacherComponent } from '../yogateacher/yogateacher.component';
 import { environment } from '../../environments/environment';
 
+import { SeoService } from '../services/seo.service';
+
 @Component({
   selector: 'app-trainers',
   standalone: true,
@@ -34,32 +36,22 @@ export class TrainersComponent {
   constructor(
     private webapiService: WebapiService,
     private spinner: NgxSpinnerService,
-    private title: Title,
-    private meta: Meta,
     private router: Router,
     @Inject(DOCUMENT) private _document: Document,
     private _renderer2: Renderer2,
     public sanitizer: DomSanitizer,
+    private seoService: SeoService
   ) {}
 
   ngOnInit(): void {
     this.spinner.show();
     this.getAllMentors();
-    setTimeout(() => {
-      this.title.setTitle('Mentors');
-      this.meta.updateTag({
-        name: 'keywords',
-        content: 'Yoga Vidya School Rishikesh Contact Details',
-      });
-      this.meta.updateTag({
-        name: 'description',
-        content:
-          'We would love to hear from you. Whether you want more information on our classes or want to attend any events that we hold, just give us a quick call.',
-      });
-      const canonicalUrl = 'https://www.yogavidyaschool.com' + this.router.url;
-      const link = this._document.querySelector('link[rel="canonical"]');
-      this._renderer2.setAttribute(link, 'href', canonicalUrl);
-    }, 1000);
+    this.seoService.updateSeo({
+      title: 'Our Expert Yoga Teachers & Mentors | Yoga Vidya School',
+      description: 'Meet our team of experienced traditional yoga masters in Rishikesh & Bali. Experts in Ashtanga, Hatha, Pranayama, Yoga Philosophy, Alignment, Adjustment & Anatomy.',
+      keywords: 'Yoga Mentors Rishikesh, Yoga Teachers India, Acharya Prashant Jakhmola, Yoga Masters Rishikesh, Traditional Yoga Gurus',
+      url: '/mentors'
+    });
   }
 
   getAllMentors() {

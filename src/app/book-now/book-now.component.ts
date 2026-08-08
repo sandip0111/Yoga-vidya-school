@@ -8,6 +8,8 @@ import { FormsModule } from '@angular/forms';
 import { PixelTrackingService } from '../services/pixel-tracking.service';
 import { paymentkey } from '../enum/payment';
 
+import { SeoService } from '../services/seo.service';
+
 @Component({
   selector: 'app-book-now',
   standalone: true,
@@ -30,17 +32,13 @@ export class BookNowComponent {
     private routeReuseStrategy: RouteReuseStrategy,
     @Inject(DOCUMENT) private _document: Document,
     private _renderer2: Renderer2,
-    private pixelTracking: PixelTrackingService
+    private pixelTracking: PixelTrackingService,
+    private seoService: SeoService
   ) {}
 
   ngOnInit(): void {
-    setTimeout(() => {
-      this.invokeStripe();
-      this.title.setTitle('Book Now');
-      const canonicalUrl = 'https://www.yogavidyaschool.com' + this.router.url;
-      const link = this._document.querySelector('link[rel="canonical"]');
-      this._renderer2.setAttribute(link, 'href', canonicalUrl);
-    }, 1000);
+    this.seoService.setNoIndex('Book Now');
+    this.invokeStripe();
     this.pixelTracking.trackPageView(
       'book-now',
       'Book Now - Yoga Teacher Training'

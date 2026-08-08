@@ -1,7 +1,6 @@
-import { Component, Renderer2, Inject, DOCUMENT } from '@angular/core';
-
-import { Title, Meta } from '@angular/platform-browser';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { SeoService } from '../services/seo.service';
 
 @Component({
   selector: 'app-privacy-policy',
@@ -14,19 +13,15 @@ export class PrivacyPolicyComponent {
   user = 'info';
   domain = 'yogavidyaschool.com';
   email: string = "";
-  constructor(private title: Title, private meta: Meta, private router: Router, @Inject(DOCUMENT) private _document: Document, private _renderer2: Renderer2) {
+  constructor(private router: Router, private seoService: SeoService) {}
 
-  }
   ngOnInit(): void {
     this.email = `${this.user}@${this.domain}`;
-    setTimeout(() => {
-      this.title.setTitle('Privacy Policy');
-      this.meta.updateTag({ name: 'keywords', content: '' });
-      this.meta.updateTag({ name: 'description', content: '' });
-      const canonicalUrl = 'https://www.yogavidyaschool.com' + this.router.url;
-      const link = this._document.querySelector('link[rel="canonical"]');
-      this._renderer2.setAttribute(link, 'href', canonicalUrl);
-    }, 1000)
-
+    this.seoService.updateSeo({
+      title: 'Privacy Policy | Yoga Vidya School',
+      description: 'Privacy Policy of Yoga Vidya School Rishikesh & Bali regarding student data protection, cookies, course bookings, and website privacy standards.',
+      keywords: 'Yoga Vidya School Privacy Policy, Data Protection, Privacy Terms',
+      url: '/privacy-policy'
+    });
   }
 }

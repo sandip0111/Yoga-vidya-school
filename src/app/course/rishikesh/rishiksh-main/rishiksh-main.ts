@@ -11,6 +11,8 @@ import { BonusComponent } from '../../../certified/bonus/bonus.component';
 import { VideoReviewsComponent } from '../../video-reviews/video-reviews.component';
 import { ReadyComponent } from '../../../certified/ready/ready.component';
 
+import { SeoService } from '../../../services/seo.service';
+
 @Component({
   selector: 'app-rishiksh-main',
   imports: [
@@ -33,6 +35,7 @@ export class RishikshMain {
   constructor(
     private router: Router,
     private pixelTracking: PixelTrackingService,
+    private seoService: SeoService
   ) {
     this.bannerTitle =
       'Transform Your Yoga Practice in Rishikesh – Yoga Alliance Certified TTC';
@@ -44,6 +47,15 @@ export class RishikshMain {
       '',
       'Join us at Yoga Vidya School for a transformational journey rooted in traditional practice, deep wisdom, and immersive experience.',
     );
+  }
+
+  ngOnInit(): void {
+    this.seoService.updateSeo({
+      title: 'Get Certified in Rishikesh | Yoga Teacher Training Courses | Yoga Vidya School',
+      description: 'Get certified as a Yoga Teacher in Rishikesh, India. Yoga Alliance approved 100, 200 & 300 Hour Yoga TTC courses at Yoga Vidya School.',
+      keywords: 'Get Certified in Rishikesh, Yoga Alliance Certification Rishikesh, Yoga Teacher Training India, Rishikesh Yoga School',
+      url: `/${routeEnum.rishikesh}`
+    });
   }
   goToLink(link: string) {
     this.trackCourseSelection(link);

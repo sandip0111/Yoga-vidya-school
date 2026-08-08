@@ -12,6 +12,7 @@ import { BenifitsComponent } from '../includes/home/benifits/benifits.component'
 import { BannerComponent } from '../includes/home/banner/banner.component';
 import { CooperateComponent } from '../includes/home/cooperate/cooperate.component';
 import { Router } from '@angular/router';
+import { SeoService } from '../services/seo.service';
 
 @Component({
   selector: 'app-index',
@@ -135,7 +136,7 @@ export class IndexComponent {
   eventList: any;
   onlineEventList: any;
 
-  constructor(private webapiService: WebapiService,private title: Title, private meta: Meta, private _renderer2: Renderer2,@Inject(DOCUMENT) private _document: Document,private router: Router){
+  constructor(private webapiService: WebapiService,private title: Title, private meta: Meta, private _renderer2: Renderer2,@Inject(DOCUMENT) private _document: Document,private router: Router, private seoService: SeoService){
 
     this.faq = [
       {
@@ -179,29 +180,13 @@ export class IndexComponent {
   }
 
   ngOnInit(): void {
-    setTimeout(() => {
-      this.title.setTitle('Yoga Teacher Training in Rishikesh - Yoga School Rishikesh');
-      this.meta.updateTag({ name: 'keywords', content: '' });
-      this.meta.updateTag({ name: 'description', content: 'Yoga Vidya School offers best Yoga teacher training Courses in Rishikesh, India. ✓Yoga Alliance Approved ✓Hatha ✓Ashtanga ✓Pranayama , Lead by Prashant J Yoga' });
-
-      this.meta.addTag({ property: 'og:url', content: 'https://www.yogavidyaschool.com/' });
-      this.meta.addTag({ property: 'og:type', content: 'website' });
-      this.meta.addTag({ property: 'og:title', content: 'Yoga Teacher Training in Rishikesh - Yoga School Rishikesh'});
-      this.meta.addTag({ property: 'og:description', content: 'Yoga Vidya School offers best Yoga teacher training Courses in Rishikesh, India. ✓Yoga Alliance Approved ✓Hatha ✓Ashtanga ✓Pranayama , Lead by Prashant J Yoga' });
-      this.meta.addTag({ property: 'og:image', content: 'https://my-s3-images-bucket.s3.amazonaws.com/images/imp-2_e7j80f.jpg' });
-
-      this.meta.addTag({ name: 'twitter:card', content: 'summary_large_image' });
-      this.meta.addTag({ property: 'twitter:domain', content: 'yogavidyaschool.com' });
-      this.meta.addTag({ property: 'twitter:url', content: 'https://www.yogavidyaschool.com/' });
-      this.meta.addTag({ name: 'twitter:title', content: 'Yoga Teacher Training in Rishikesh - Yoga School Rishikesh'});
-      this.meta.addTag({ name: 'twitter:description', content: 'Yoga Vidya School offers best Yoga teacher training Courses in Rishikesh, India. ✓Yoga Alliance Approved ✓Hatha ✓Ashtanga ✓Pranayama , Lead by Prashant J Yoga' });
-      this.meta.addTag({ name: 'twitter:image', content: 'https://my-s3-images-bucket.s3.amazonaws.com/images/imp-2_e7j80f.jpg' });
-
-      const canonicalUrl = 'https://www.yogavidyaschool.com' + this.router.url;
-      const link = this._document.querySelector('link[rel="canonical"]');
-      this._renderer2.setAttribute(link, 'href', canonicalUrl);
-
-    }, 1000)
+    this.seoService.updateSeo({
+      title: 'Yoga Teacher Training in Rishikesh & Bali | Yoga Vidya School',
+      description: 'Yoga Vidya School offers best Yoga Alliance certified 100, 200 & 300 Hour Yoga Teacher Training Courses & Retreats in Rishikesh India & Bali. Hatha, Ashtanga & Pranayama led by Acharya Prashant Jakhmola.',
+      keywords: 'Yoga Teacher Training Rishikesh, Yoga School Rishikesh, 200 Hour Yoga TTC Rishikesh, 300 Hour Yoga Teacher Training, Yoga Retreat Bali, Acharya Prashant Jakhmola',
+      image: 'https://my-s3-images-bucket.s3.amazonaws.com/images/imp-2_e7j80f.jpg',
+      url: '/'
+    });
     let script = this._renderer2.createElement('script');
     script.type = `application/ld+json`;
     script.text = `

@@ -6,6 +6,8 @@ import { razorPayReturnModel } from '../../models/checkout';
 import { CartItem, CartService } from '../../cart.service';
 import { routeEnum } from '../../enum/routes';
 
+import { SeoService } from '../../services/seo.service';
+
 @Component({
   selector: 'app-course-mentor',
   standalone: true,
@@ -22,12 +24,22 @@ export class CourseMentorComponent {
     private _activatedRoute: ActivatedRoute,
     private router: Router,
     private cartService: CartService,
+    private seoService: SeoService
   ) {
     this.slug = this._activatedRoute.snapshot.routeConfig?.path;
     if (this.slug == 'online-yoga-classes') {
       this.getTeachersData(this.slug);
       this.isShowAddToCart = true;
     }
+  }
+
+  ngOnInit(): void {
+    this.seoService.updateSeo({
+      title: 'Live Online Yoga Classes & Daily Practice | Yoga Vidya School',
+      description: 'Join daily live online yoga classes led by Indian masters. Practice Hatha asanas, Pranayama & Meditation live from home for holistic wellness.',
+      keywords: 'Online Yoga Classes, Daily Live Yoga, Online Hatha Yoga, Online Pranayama Classes, Acharya Prashant Yoga',
+      url: `/${this.slug || routeEnum.online}`
+    });
   }
   getTeachersData(slug: string) {
     this.cartService.getTeachersData(slug).subscribe({

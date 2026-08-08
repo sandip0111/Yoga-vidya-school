@@ -7,6 +7,8 @@ import { feesInfoDto } from '../../course/rishikesh/pricing/pricing.component';
 import { CommonModule } from '@angular/common';
 import { PersonalGuidanceType } from '../../enum/course';
 
+import { SeoService } from '../../services/seo.service';
+
 @Component({
   selector: 'app-personal-guidance',
   imports: [CommonModule, BannerComponent],
@@ -31,8 +33,17 @@ export class PersonalGuidance {
   redirectLink1 = `/checkout/${routeEnum.pg}?type=1`;
   redirectLink2 = `/checkout/${routeEnum.pg}?type=2`;
   redirectLink3 = `/checkout/${routeEnum.pg}?type=3`;
-  constructor(private webapiService: WebapiService) {}
+  constructor(
+    private webapiService: WebapiService,
+    private seoService: SeoService
+  ) {}
   ngOnInit(): void {
+    this.seoService.updateSeo({
+      title: 'One-on-One Personal Guidance & Mentorship | Yoga Vidya School',
+      description: 'Receive personalized 1-on-1 yoga guidance, pranayama mentorship, and spiritual consultation tailored specifically for your individual practice.',
+      keywords: 'Personal Yoga Guidance, 1 on 1 Yoga Mentorship, Spiritual Consultation, Acharya Prashant Mentorship',
+      url: `/${routeEnum.pg}`
+    });
     this.getCourseBySlug(routeEnum.pg);
   }
   getCourseBySlug(slug: string) {

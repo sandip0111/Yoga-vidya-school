@@ -15,6 +15,8 @@ import { TestimonialsComponent } from '../../../includes/home/testimonials/testi
 import { Title } from '@angular/platform-browser';
 import { faq, FaqComponent } from '../../../includes/home/faq/faq.component';
 
+import { SeoService } from '../../../services/seo.service';
+
 @Component({
   selector: 'app-bali-100-hour',
   standalone: true,
@@ -80,13 +82,16 @@ export class Bali100HourComponent {
   constructor(
     private router: Router,
     private webapiService: WebapiService,
-    private _titleService: Title
-  ) {
-    this._titleService.setTitle(
-      'Yoga Vidya School - 100 Hour Yoga Teacher Training in Bali'
-    );
-  }
+    private _titleService: Title,
+    private seoService: SeoService
+  ) {}
   ngOnInit(): void {
+    this.seoService.updateSeo({
+      title: '100 Hour Yoga Teacher Training in Bali | Yoga Vidya School',
+      description: 'Join our 100 Hour Beginner Yoga Teacher Training in Bali. Learn foundational Hatha, Ashtanga, Pranayama, Meditation & Philosophy in tropical paradise.',
+      keywords: '100 Hour Yoga Teacher Training Bali, 100 Hour Yoga TTC Bali, Beginner Yoga Course Bali, Yoga Vidya School Bali',
+      url: `/${routeEnum.bali100}`
+    });
     let data = {
       slug: routeEnum.bali100,
     };

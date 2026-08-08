@@ -1,13 +1,12 @@
-import { Component, Renderer2, Inject, DOCUMENT } from '@angular/core';
-
+import { Component } from '@angular/core';
 import { WebapiService } from '../webapi.service';
 import { NgxSpinnerService } from "ngx-spinner";
-import { Title, Meta } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { RouterLink } from '@angular/router';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { CommonModule } from '@angular/common';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
+import { SeoService } from '../services/seo.service';
 
 @Component({
   selector: 'app-blog',
@@ -25,7 +24,7 @@ export class BlogComponent {
   p: number = 1;
   total: any;
   filter: any = {};
-  constructor(private webapiService: WebapiService, private spinner: NgxSpinnerService, private title: Title, private meta: Meta, private router: Router, @Inject(DOCUMENT) private _document: Document, private _renderer2: Renderer2) {
+  constructor(private webapiService: WebapiService, private spinner: NgxSpinnerService, private router: Router, private seoService: SeoService) {
 
   }
 
@@ -37,15 +36,12 @@ export class BlogComponent {
     }
     this.imageUrl = this.webapiService.imageUrl;
     this.getAllBlogs();
-    setTimeout(() => {
-      this.title.setTitle('Blogs');
-      this.meta.updateTag({ name: 'keywords', content: 'Yoga Blogs, Yoga Techniques' });
-      this.meta.updateTag({ name: 'description', content: 'Read quality Yoga Blogs online' });
-      const canonicalUrl = 'https://www.yogavidyaschool.com' + this.router.url;
-      const link = this._document.querySelector('link[rel="canonical"]');
-      this._renderer2.setAttribute(link, 'href', canonicalUrl);
-    }, 1000)
-
+    this.seoService.updateSeo({
+      title: 'Yoga Blogs, Insights & Tips | Yoga Vidya School',
+      description: 'Explore authentic articles on yoga philosophy, pranayama practices, asana alignment, meditation, and healthy yogic lifestyle tips written by experts.',
+      keywords: 'Yoga Blogs, Yoga Articles, Yoga Philosophy, Pranayama Techniques, Yoga Tips Rishikesh',
+      url: '/blogs'
+    });
   }
 
   getAllBlogs() {

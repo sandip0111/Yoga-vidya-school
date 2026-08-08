@@ -1,9 +1,7 @@
-import { Component, Renderer2, Inject, DOCUMENT } from '@angular/core';
-
+import { Component } from '@angular/core';
 import { NgxSpinnerService } from "ngx-spinner";
-import { Title, Meta } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-
+import { SeoService } from '../services/seo.service';
 
 @Component({
   selector: 'app-testinomial',
@@ -14,19 +12,14 @@ import { Router } from '@angular/router';
 })
 export class TestinomialComponent {
 
-  constructor(private spinner: NgxSpinnerService, private title: Title, private meta: Meta, private router: Router, @Inject(DOCUMENT) private _document: Document, private _renderer2: Renderer2) {
-
-  }
+  constructor(private spinner: NgxSpinnerService, private router: Router, private seoService: SeoService) {}
 
   ngOnInit(): void {
-    setTimeout(() => {
-      this.title.setTitle('Testimonials');
-      this.meta.updateTag({ name: 'keywords', content: 'Yoga Vidya School Testimonials' });
-      this.meta.updateTag({ name: 'description', content: 'Yoga Vidya School Testimonials, Reviews' });
-      const canonicalUrl = 'https://www.yogavidyaschool.com' + this.router.url;
-      const link = this._document.querySelector('link[rel="canonical"]');
-      this._renderer2.setAttribute(link, 'href', canonicalUrl);
-    }, 1000)
+    this.seoService.updateSeo({
+      title: 'Student Testimonials & Reviews | Yoga Vidya School',
+      description: 'Read genuine reviews and watch video testimonials from international graduates of our 100, 200 & 300 Hour Yoga Teacher Training courses in Rishikesh & Bali.',
+      keywords: 'Yoga Vidya School Reviews, Yoga Teacher Training Testimonials, Rishikesh Yoga Course Reviews, Student Experiences Bali Yoga',
+      url: '/testimonial'
+    });
   }
-
 }

@@ -34,6 +34,8 @@ import { BonusComponent } from '../../../certified/bonus/bonus.component';
 import { PixelTrackingService } from '../../../services/pixel-tracking.service';
 import { reviewLink, s3Bucket } from '../../../enum/s3Bucket';
 
+import { SeoService } from '../../../services/seo.service';
+
 @Component({
   selector: 'app-rishikesh-index',
   standalone: true,
@@ -127,7 +129,8 @@ export class RishikeshIndexComponent implements OnInit {
     @Inject(DOCUMENT) private _document: Document,
     private title: Title,
     private pixelTracking: PixelTrackingService,
-    private meta: Meta
+    private meta: Meta,
+    private seoService: SeoService
   ) {
     this.spinner.show();
     this.slug = this.activatedRoute.snapshot.routeConfig?.path ?? '';
@@ -547,14 +550,11 @@ export class RishikeshIndexComponent implements OnInit {
           this.codecond = {
             title: res.data[0].coursetitle,
           };
-          this.title.setTitle(res.data[0].metaTitle);
-          this.meta.updateTag({
-            name: 'keywords',
-            content: res.data[0].metaKeyword,
-          });
-          this.meta.updateTag({
-            name: 'description',
-            content: res.data[0].metaDescription,
+          this.seoService.updateSeo({
+            title: res.data[0].metaTitle || `${res.data[0].coursetitle} | Yoga Vidya School`,
+            description: res.data[0].metaDescription || `Join ${res.data[0].coursetitle} at Yoga Vidya School in Rishikesh, India. Yoga Alliance certified course.`,
+            keywords: res.data[0].metaKeyword || 'Yoga Teacher Training Rishikesh, Yoga Alliance Certified',
+            url: `/${slug}`
           });
           this.spinner.hide();
         } else {
