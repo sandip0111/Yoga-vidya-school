@@ -15,11 +15,12 @@ import { BannerComponent } from '../certified/banner/banner.component';
 import { s3Bucket } from '../enum/s3Bucket';
 import { DomSanitizer } from '@angular/platform-browser';
 import { SeoService } from '../services/seo.service';
+import { SafePipe } from '../safe.pipe';
 
 @Component({
   selector: 'app-webinar-registration-form',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, CommonModule, BannerComponent],
+  imports: [FormsModule, ReactiveFormsModule, CommonModule, BannerComponent, SafePipe],
   templateUrl: './webinar-registration-form.component.html',
   styleUrl: './webinar-registration-form.component.css',
 })
@@ -79,8 +80,7 @@ export class WebinarRegistrationFormComponent implements OnInit {
     });
     this.bannerSubtitle = this.sanitizer
       .bypassSecurityTrustHtml(`<b style="color: #f47019;">“From Sadhana to Seva”</b><br /> 
-	    A Free Live Webinar for Dedicated Yoga Practitioners<br />
-      <i class="fa-solid fa-calendar"></i> Saturday 15th, 6:30 PM IST`);
+	    A Free Live Webinar for Dedicated Yoga Practitioners`);
     this.bannerTitle = 'Free Online Webinar';
     this.imgSlug = this.s3Bucket.freeWebinnarHero;
   }

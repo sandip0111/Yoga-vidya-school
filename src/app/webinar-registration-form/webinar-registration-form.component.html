@@ -130,64 +130,12 @@
         </div>
       </div>
     </div>
-    <!-- <div class="details-grid">
-      <div class="detail-item">
-        <span class="icon">🕉</span>
-        <p>
-          <strong>Why this TTC matters:</strong><br />
-          It’s not just about certification, but deep transformation — a journey
-          from <em>sadhana</em> (practice) to <em>seva</em> (service).
-        </p>
-      </div>
-
-      <div class="detail-item">
-        <span class="icon">📘</span>
-        <p>
-          <strong>What you will study:</strong><br />
-          The 13 foundational subjects of authentic yoga.
-        </p>
-      </div>
-
-      <div class="detail-item">
-        <span class="icon">🧘‍♂️</span>
-        <p>
-          <strong>Why I’m personally teaching this Online TTC:</strong><br />
-          To pass on the essence of yoga as a living tradition.
-        </p>
-      </div>
-
-      <div class="detail-item">
-        <span class="icon">🌿</span>
-        <p>
-          <strong>Why this TTC is different:</strong><br />
-          Rooted in authenticity, connection, and spiritual purpose.
-        </p>
-      </div>
-
-      <div class="detail-item">
-        <span class="icon">💫</span>
-        <p>
-          <strong>How it supports the world:</strong><br />
-          Empowering you to become a conscious teacher.
-        </p>
-      </div>
-      <div class="detail-item">
-        <span class="icon">🌸</span>
-        <p>
-          <strong>In this special session, we will also explore:</strong><br />
-          The sacred purpose of becoming a yoga teacher — beyond profession.
-          <br />
-          How to continue your journey after TTC — to share your gift and serve
-          the world through yoga
-        </p>
-      </div>
-    </div> -->
   </div>
 </section>
 
 <div class="registration-container">
   <div class="card registration-card" id="register-form">
-    <div class="p-4 pb-0">
+    <!-- <div class="p-4 pb-0">
       <p class="register-head mb-4">Reserve Your Free Spot:</p>
       <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
         <div class="mb-3 text-start">
@@ -228,12 +176,27 @@
           not only for yourself, but for many others
         </p>
       </form>
+    </div> -->
+    <div class="p-4 pb-0">
+      <p class="register-head mb-4">
+        Our last webinar was on August 15th. Check the recordings here:
+      </p>
+      <div class="video-container mb-4">
+        <iframe
+          [src]="'https://www.youtube.com/embed/zbljMSaVBog' | safe"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen>
+        </iframe>
+      </div>
     </div>
-    <img
+    <!-- <img
       [src]="s3Bucket.freeWebinerBottom"
       alt="Breath of Yogis webinar"
       class="webinar-detail-image"
       loading="lazy"
-    />
+    /> -->
   </div>
 </div>
