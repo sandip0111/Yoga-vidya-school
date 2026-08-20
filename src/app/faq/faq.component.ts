@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { SeoService } from '../services/seo.service';
 
 @Component({
   selector: 'app-faq',
@@ -11,7 +10,7 @@ import { SeoService } from '../services/seo.service';
 })
 export class FaqComponent {
 
-  constructor(private router: Router, private seoService: SeoService) {}
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
     

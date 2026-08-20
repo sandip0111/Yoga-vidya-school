@@ -3,7 +3,6 @@ import { ActivatedRoute } from '@angular/router';
 import { routeEnum } from '../../../enum/routes';
 import { s3Bucket } from '../../../enum/s3Bucket';
 import { CartService, CartItem } from '../../../cart.service';
-import { SeoService } from '../../../services/seo.service';
 
 @Component({
   selector: 'app-pankaj-page',
@@ -18,8 +17,7 @@ export class PankajPageComponent {
   mentor: any;
   constructor(
     private cartService: CartService,
-    private route: ActivatedRoute,
-    private seoService: SeoService
+    private route: ActivatedRoute
   ) {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {

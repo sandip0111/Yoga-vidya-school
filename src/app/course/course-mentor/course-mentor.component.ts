@@ -6,7 +6,6 @@ import { razorPayReturnModel } from '../../models/checkout';
 import { CartItem, CartService } from '../../cart.service';
 import { routeEnum } from '../../enum/routes';
 
-import { SeoService } from '../../services/seo.service';
 
 @Component({
   selector: 'app-course-mentor',
@@ -23,8 +22,7 @@ export class CourseMentorComponent {
   constructor(
     private _activatedRoute: ActivatedRoute,
     private router: Router,
-    private cartService: CartService,
-    private seoService: SeoService
+    private cartService: CartService
   ) {
     this.slug = this._activatedRoute.snapshot.routeConfig?.path;
     if (this.slug == 'online-yoga-classes') {

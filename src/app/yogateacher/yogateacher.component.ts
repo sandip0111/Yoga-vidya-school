@@ -5,7 +5,6 @@ import { Title } from '@angular/platform-browser';
 import { BannerComponent } from '../course/banner/banner.component';
 import { s3Bucket } from '../enum/s3Bucket';
 
-import { SeoService } from '../services/seo.service';
 
 @Component({
   selector: 'app-yogateacher',
@@ -22,8 +21,7 @@ export class YogateacherComponent {
   constructor(
     private title: Title,
     private _activatedRoute: ActivatedRoute,
-    private router: Router,
-    private seoService: SeoService
+    private router: Router
   ) {}
 
   ngOnInit() {

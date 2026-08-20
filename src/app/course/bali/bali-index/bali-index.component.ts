@@ -41,7 +41,6 @@ import { routeEnum } from '../../../enum/routes';
 import { PixelTrackingService } from '../../../services/pixel-tracking.service';
 import { PricingComponent } from '../../rishikesh/pricing/pricing.component';
 import { BonusComponent } from '../../../certified/bonus/bonus.component';
-import { SeoService } from '../../../services/seo.service';
 
 @Component({
   selector: 'app-bali-index',
@@ -102,8 +101,7 @@ export class BaliIndexComponent implements OnInit {
     private title: Title,
     private meta: Meta,
     private pixelTracking: PixelTrackingService,
-    @Inject(PLATFORM_ID) private platformId: Object,
-    private seoService: SeoService
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {
     this.slug = this.activatedRoute.snapshot.routeConfig?.path ?? '';
     if (this.slug) {

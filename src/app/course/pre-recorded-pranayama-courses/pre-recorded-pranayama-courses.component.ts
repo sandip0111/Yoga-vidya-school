@@ -4,7 +4,6 @@ import { s3Bucket } from '../../enum/s3Bucket';
 import { routeEnum } from '../../enum/routes';
 import { Router } from '@angular/router';
 
-import { SeoService } from '../../services/seo.service';
 
 @Component({
   selector: 'app-pre-recorded-pranayama-courses',
@@ -16,7 +15,7 @@ import { SeoService } from '../../services/seo.service';
 export class PreRecordedPranayamaCoursesComponent {
   s3Bucket = s3Bucket;
   routEnum = routeEnum;
-  constructor(private router: Router, private seoService: SeoService) {}
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
     

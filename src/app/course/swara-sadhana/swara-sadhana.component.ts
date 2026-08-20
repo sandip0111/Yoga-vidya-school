@@ -11,7 +11,6 @@ import { WebapiService } from '../../webapi.service';
 import { feesDto } from '../rishikesh/pricing/pricing.component';
 import { NgxSpinnerService } from 'ngx-spinner';
 
-import { SeoService } from '../../services/seo.service';
 
 @Component({
   selector: 'app-swara-sadhana',
@@ -31,8 +30,7 @@ export class SwaraSadhanaComponent {
     private titleService: Title,
     private webapiService: WebapiService,
     private activatedRoute: ActivatedRoute,
-    private spinner: NgxSpinnerService,
-    private seoService: SeoService
+    private spinner: NgxSpinnerService
   ) {
     this.slug = this.activatedRoute.snapshot.routeConfig?.path ?? '';
   }

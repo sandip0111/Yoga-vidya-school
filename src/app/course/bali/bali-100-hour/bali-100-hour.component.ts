@@ -15,7 +15,6 @@ import { TestimonialsComponent } from '../../../includes/home/testimonials/testi
 import { Title } from '@angular/platform-browser';
 import { faq, FaqComponent } from '../../../includes/home/faq/faq.component';
 
-import { SeoService } from '../../../services/seo.service';
 
 @Component({
   selector: 'app-bali-100-hour',
@@ -82,8 +81,7 @@ export class Bali100HourComponent {
   constructor(
     private router: Router,
     private webapiService: WebapiService,
-    private _titleService: Title,
-    private seoService: SeoService
+    private _titleService: Title
   ) {}
   ngOnInit(): void {
     

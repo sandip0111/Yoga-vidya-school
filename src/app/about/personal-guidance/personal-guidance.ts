@@ -7,7 +7,6 @@ import { feesInfoDto } from '../../course/rishikesh/pricing/pricing.component';
 import { CommonModule } from '@angular/common';
 import { PersonalGuidanceType } from '../../enum/course';
 
-import { SeoService } from '../../services/seo.service';
 
 @Component({
   selector: 'app-personal-guidance',
@@ -34,8 +33,7 @@ export class PersonalGuidance {
   redirectLink2 = `/checkout/${routeEnum.pg}?type=2`;
   redirectLink3 = `/checkout/${routeEnum.pg}?type=3`;
   constructor(
-    private webapiService: WebapiService,
-    private seoService: SeoService
+    private webapiService: WebapiService
   ) {}
   ngOnInit(): void {
     

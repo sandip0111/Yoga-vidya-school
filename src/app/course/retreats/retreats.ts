@@ -5,7 +5,6 @@ import { IncludesComponent } from '../../certified/includes/includes.component';
 import { PricingComponent } from '../rishikesh/pricing/pricing.component';
 import { ActivatedRoute } from '@angular/router';
 
-import { SeoService } from '../../services/seo.service';
 
 @Component({
   selector: 'app-retreats',
@@ -18,8 +17,7 @@ export class Retreats {
   s3Bucket = s3Bucket;
   slug: string = '';
   constructor(
-    private _activatedRoute: ActivatedRoute,
-    private seoService: SeoService
+    private _activatedRoute: ActivatedRoute
   ) {
     this.slug = this._activatedRoute.snapshot.routeConfig?.path || '';
   }

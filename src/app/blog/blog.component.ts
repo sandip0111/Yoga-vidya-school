@@ -6,7 +6,6 @@ import { RouterLink } from '@angular/router';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { CommonModule } from '@angular/common';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
-import { SeoService } from '../services/seo.service';
 
 @Component({
   selector: 'app-blog',
@@ -24,7 +23,7 @@ export class BlogComponent {
   p: number = 1;
   total: any;
   filter: any = {};
-  constructor(private webapiService: WebapiService, private spinner: NgxSpinnerService, private router: Router, private seoService: SeoService) {
+  constructor(private webapiService: WebapiService, private spinner: NgxSpinnerService, private router: Router) {
 
   }
 

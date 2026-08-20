@@ -14,7 +14,6 @@ import { routeEnum } from '../enum/routes';
 import { BannerComponent } from '../certified/banner/banner.component';
 import { s3Bucket } from '../enum/s3Bucket';
 import { DomSanitizer } from '@angular/platform-browser';
-import { SeoService } from '../services/seo.service';
 import { SafePipe } from '../safe.pipe';
 
 @Component({
@@ -57,8 +56,7 @@ export class WebinarRegistrationFormComponent implements OnInit {
     private webapiService: WebapiService,
     private toastr: ToastrService,
     private spinner: NgxSpinnerService,
-    private sanitizer: DomSanitizer,
-    private seoService: SeoService
+    private sanitizer: DomSanitizer
   ) {
     this.registrationForm = this.fb.group({
       name: ['', Validators.required],

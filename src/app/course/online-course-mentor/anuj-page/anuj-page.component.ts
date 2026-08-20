@@ -8,7 +8,6 @@ import { CartItem, CartService } from '../../../cart.service';
 import { s3Bucket } from '../../../enum/s3Bucket';
 import { routeEnum } from '../../../enum/routes';
 
-import { SeoService } from '../../../services/seo.service';
 
 @Component({
   selector: 'app-anuj-page',
@@ -26,8 +25,7 @@ export class AnujPageComponent implements OnInit {
   about: string = '';
   constructor(
     private route: ActivatedRoute,
-    private cartService: CartService,
-    private seoService: SeoService
+    private cartService: CartService
   ) {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {

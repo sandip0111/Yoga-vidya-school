@@ -7,7 +7,6 @@ import { WebapiService } from '../../webapi.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { SeoService } from '../../services/seo.service';
 
 @Component({
   selector: 'app-pranic-purification-ii',
@@ -24,8 +23,7 @@ export class PranicPurificationIiComponent {
     private webapiService: WebapiService,
     private spinner: NgxSpinnerService,
     private activatedRoute: ActivatedRoute,
-    private router: Router,
-    private seoService: SeoService
+    private router: Router
   ) {
     this.spinner.show();
     this.slug = this.activatedRoute.snapshot.routeConfig?.path ?? '';

@@ -9,7 +9,6 @@ import { ReviewListComponentComponent } from '../../../text-review-list/review-l
 import { faq, FaqComponent } from '../../../includes/home/faq/faq.component';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { WebapiService } from '../../../webapi.service';
-import { SeoService } from '../../../services/seo.service';
 
 @Component({
   selector: 'app-prana-arambh',
@@ -33,8 +32,7 @@ export class PranaArambhComponent {
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private spinner: NgxSpinnerService,
-    private webapiService: WebapiService,
-    private seoService: SeoService
+    private webapiService: WebapiService
   ) {
   }
   ngOnInit(): void {

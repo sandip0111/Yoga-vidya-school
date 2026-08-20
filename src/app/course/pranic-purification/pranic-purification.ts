@@ -5,7 +5,6 @@ import { WebapiService } from '../../webapi.service';
 import { routeEnum } from '../../enum/routes';
 import { Router } from '@angular/router';
 
-import { SeoService } from '../../services/seo.service';
 
 @Component({
   selector: 'app-pranic-purification',
@@ -19,8 +18,7 @@ export class PranicPurification {
   feesData!: { title: any; amount: any; currency: any };
   constructor(
     private webapiService: WebapiService,
-    private router: Router,
-    private seoService: SeoService
+    private router: Router
   ) {}
   ngOnInit(): void {
     

@@ -6,7 +6,6 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { DomSanitizer } from '@angular/platform-browser';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { routeEnum } from '../enum/routes';
-import { SeoService } from '../services/seo.service';
 
 @Component({
   selector: 'app-blog-detail',
@@ -29,8 +28,7 @@ export class BlogDetailComponent {
     private _activatedRoute: ActivatedRoute,
     private spinner: NgxSpinnerService,
     private router: Router,
-    public sanitizer: DomSanitizer,
-    private seoService: SeoService
+    public sanitizer: DomSanitizer
   ) {}
 
   ngOnInit(): void {

@@ -3,7 +3,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { WebapiService } from '../../webapi.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { SeoService } from '../../services/seo.service';
 
 @Component({
   selector: 'app-trainer-detail',
@@ -22,8 +21,7 @@ export class TrainerDetailComponent {
     private webapiService: WebapiService,
     private spinner: NgxSpinnerService,
     protected sanitizer: DomSanitizer,
-    private router: Router,
-    private seoService: SeoService
+    private router: Router
   ) {
     this._activatedRoute.params.subscribe(params => {
       this.slug = params['id'];

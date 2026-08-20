@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { WebapiService } from '../webapi.service';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { SeoService } from '../services/seo.service';
 
 @Component({
   selector: 'app-contact',
@@ -17,7 +16,7 @@ export class ContactComponent {
   user = 'info';
   domain = 'yogavidyaschool.com';
   email: string = "";
-  constructor(private webapiService: WebapiService, private router: Router, private seoService: SeoService) { }
+  constructor(private webapiService: WebapiService, private router: Router) { }
 
   ngOnInit(): void {
     this.email = `${this.user}@${this.domain}`;

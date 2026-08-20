@@ -10,7 +10,6 @@ import { s3Bucket } from '../enum/s3Bucket';
 import { YogateacherComponent } from '../yogateacher/yogateacher.component';
 import { environment } from '../../environments/environment';
 
-import { SeoService } from '../services/seo.service';
 
 @Component({
   selector: 'app-trainers',
@@ -39,8 +38,7 @@ export class TrainersComponent {
     private router: Router,
     @Inject(DOCUMENT) private _document: Document,
     private _renderer2: Renderer2,
-    public sanitizer: DomSanitizer,
-    private seoService: SeoService
+    public sanitizer: DomSanitizer
   ) {}
 
   ngOnInit(): void {

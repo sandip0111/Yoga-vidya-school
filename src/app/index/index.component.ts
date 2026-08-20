@@ -12,7 +12,6 @@ import { BenifitsComponent } from '../includes/home/benifits/benifits.component'
 import { BannerComponent } from '../includes/home/banner/banner.component';
 import { CooperateComponent } from '../includes/home/cooperate/cooperate.component';
 import { Router } from '@angular/router';
-import { SeoService } from '../services/seo.service';
 
 @Component({
   selector: 'app-index',
@@ -136,7 +135,7 @@ export class IndexComponent {
   eventList: any;
   onlineEventList: any;
 
-  constructor(private webapiService: WebapiService,private title: Title, private meta: Meta, private _renderer2: Renderer2,@Inject(DOCUMENT) private _document: Document,private router: Router, private seoService: SeoService){
+  constructor(private webapiService: WebapiService,private title: Title, private meta: Meta, private _renderer2: Renderer2,@Inject(DOCUMENT) private _document: Document,private router: Router){
 
     this.faq = [
       {

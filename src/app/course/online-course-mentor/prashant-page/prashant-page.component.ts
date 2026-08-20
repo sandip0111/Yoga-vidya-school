@@ -10,7 +10,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { PixelTrackingService } from '../../../services/pixel-tracking.service';
 import { WebapiService } from '../../../webapi.service';
 import { routeEnum } from '../../../enum/routes';
-import { SeoService } from '../../../services/seo.service';
 
 @Component({
   selector: 'app-prashant-page',
@@ -27,8 +26,7 @@ export class PrashantPageComponent implements OnInit {
     private cartService: CartService,
     private route: ActivatedRoute,
     private pixelTracking: PixelTrackingService,
-    private webapiService: WebapiService,
-    private seoService: SeoService
+    private webapiService: WebapiService
   ) {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {

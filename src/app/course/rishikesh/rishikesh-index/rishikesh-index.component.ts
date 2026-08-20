@@ -34,7 +34,6 @@ import { BonusComponent } from '../../../certified/bonus/bonus.component';
 import { PixelTrackingService } from '../../../services/pixel-tracking.service';
 import { reviewLink, s3Bucket } from '../../../enum/s3Bucket';
 
-import { SeoService } from '../../../services/seo.service';
 
 @Component({
   selector: 'app-rishikesh-index',
@@ -129,8 +128,7 @@ export class RishikeshIndexComponent implements OnInit {
     @Inject(DOCUMENT) private _document: Document,
     private title: Title,
     private pixelTracking: PixelTrackingService,
-    private meta: Meta,
-    private seoService: SeoService
+    private meta: Meta
   ) {
     this.spinner.show();
     this.slug = this.activatedRoute.snapshot.routeConfig?.path ?? '';

@@ -11,7 +11,6 @@ import { BonusComponent } from '../../../certified/bonus/bonus.component';
 import { VideoReviewsComponent } from '../../video-reviews/video-reviews.component';
 import { ReadyComponent } from '../../../certified/ready/ready.component';
 
-import { SeoService } from '../../../services/seo.service';
 
 @Component({
   selector: 'app-rishiksh-main',
@@ -34,8 +33,7 @@ export class RishikshMain {
   aboutContent: aboutContentModel = new aboutContentModel('', '', '', '');
   constructor(
     private router: Router,
-    private pixelTracking: PixelTrackingService,
-    private seoService: SeoService
+    private pixelTracking: PixelTrackingService
   ) {
     this.bannerTitle =
       'Transform Your Yoga Practice in Rishikesh – Yoga Alliance Certified TTC';
