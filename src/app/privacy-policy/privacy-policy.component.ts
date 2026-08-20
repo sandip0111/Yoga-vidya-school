@@ -17,11 +17,6 @@ export class PrivacyPolicyComponent {
 
   ngOnInit(): void {
     this.email = `${this.user}@${this.domain}`;
-    this.seoService.updateSeo({
-      title: 'Privacy Policy | Yoga Vidya School',
-      description: 'Privacy Policy of Yoga Vidya School Rishikesh & Bali regarding student data protection, cookies, course bookings, and website privacy standards.',
-      keywords: 'Yoga Vidya School Privacy Policy, Data Protection, Privacy Terms',
-      url: '/privacy-policy'
-    });
+    
   }
 }

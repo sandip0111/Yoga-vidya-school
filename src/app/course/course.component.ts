@@ -142,12 +142,7 @@ export class CourseComponent {
           this.introLink =
             'https://www.youtube.com/embed/' + res.data[0].courseintrovideoId;
 
-          this.seoService.updateSeo({
-            title: res.data[0].metaTitle || `${res.data[0].coursetitle} | Yoga Vidya School`,
-            description: res.data[0].metaDescription || `Join ${res.data[0].coursetitle} at Yoga Vidya School. Authentic yoga training online & offline.`,
-            keywords: res.data[0].metaKeyword || 'Yoga Teacher Training, Online Yoga Course',
-            url: `/${slug}`
-          });
+          
         }
       },
       error: () => {},

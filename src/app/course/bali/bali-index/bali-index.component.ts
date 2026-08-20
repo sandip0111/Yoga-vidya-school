@@ -233,12 +233,7 @@ export class BaliIndexComponent implements OnInit {
           this.codecond = {
             title: courseData.coursetitle,
           };
-          this.seoService.updateSeo({
-            title: courseData.metaTitle || `${courseData.coursetitle} | Yoga Vidya School Bali`,
-            description: courseData.metaDescription || `Join ${courseData.coursetitle} at Yoga Vidya School in Bali. Yoga Alliance certified course.`,
-            keywords: courseData.metaKeyword || 'Yoga Teacher Training Bali, Yoga Retreat Bali, Yoga Alliance Certified',
-            url: `/${slug}`
-          });
+          
         } else {
           this.router.navigate(['/']);
           this.spinner.hide();

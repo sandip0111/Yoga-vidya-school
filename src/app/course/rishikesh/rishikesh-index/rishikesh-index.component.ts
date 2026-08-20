@@ -550,12 +550,7 @@ export class RishikeshIndexComponent implements OnInit {
           this.codecond = {
             title: res.data[0].coursetitle,
           };
-          this.seoService.updateSeo({
-            title: res.data[0].metaTitle || `${res.data[0].coursetitle} | Yoga Vidya School`,
-            description: res.data[0].metaDescription || `Join ${res.data[0].coursetitle} at Yoga Vidya School in Rishikesh, India. Yoga Alliance certified course.`,
-            keywords: res.data[0].metaKeyword || 'Yoga Teacher Training Rishikesh, Yoga Alliance Certified',
-            url: `/${slug}`
-          });
+          
           this.spinner.hide();
         } else {
           this.router.navigate(['/']);

@@ -27,12 +27,7 @@ export class PankajPageComponent {
     }
   }
   ngOnInit(): void {
-    this.seoService.updateSeo({
-      title: 'Ashtanga & Alignment-Based Practice with Pankaj Ji | Yoga Vidya School',
-      description: 'Master Ashtanga Yoga Vinyasa and posture alignment with senior master Pankaj Ji at Yoga Vidya School in Rishikesh. Online & in-person classes.',
-      keywords: 'Pankaj Ji Yoga, Ashtanga Yoga Rishikesh, Asana Alignment, Ashtanga Vinyasa Teacher',
-      url: `/pankaji/${this.slugId || 4}`
-    });
+    
     this.getTeachersData(routeEnum.online);
   }
   getTeachersData(slug: string) {

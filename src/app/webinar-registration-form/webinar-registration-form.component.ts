@@ -72,12 +72,7 @@ export class WebinarRegistrationFormComponent implements OnInit {
     this.registrationForm.patchValue({
       webinar: this.selectedOption.value,
     });
-    this.seoService.updateSeo({
-      title: 'Free Live Online Yoga Webinar | Yoga Vidya School',
-      description: 'Register for free online live webinars on Swara Yoga, Pranayama, and Yogic Philosophy guided by Acharya Prashant Jakhmola.',
-      keywords: 'Free Yoga Webinar, Swara Yoga Workshop, Live Breathwork Session, Yoga Vidya School Webinar',
-      url: `/${routeEnum.freeWebiner}`
-    });
+    
     this.bannerSubtitle = this.sanitizer
       .bypassSecurityTrustHtml(`<b style="color: #f47019;">“From Sadhana to Seva”</b><br /> 
 	    A Free Live Webinar for Dedicated Yoga Practitioners`);

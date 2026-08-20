@@ -36,26 +36,7 @@ export class YogateacherComponent {
         return;
       }
 
-      this.seoService.updateSeo({
-        title: 'Acharya Prashant Jakhmola | Founder & Master Yoga Teacher',
-        description: 'Meet Acharya Prashant Jakhmola, founder of Yoga Vidya School in Rishikesh. Revered yoga master specializing in Pranayama, Asana Alignment, and Spiritual Sadhana.',
-        keywords: 'Acharya Prashant Jakhmola, Prashant J Yoga, Yoga Master Rishikesh, Yoga Vidya School Founder, Pranayama Master India',
-        url: `/yoga-teacher/acharya-prashant-jakhmola/${this.slug}`,
-        schema: {
-          '@context': 'https://schema.org',
-          '@type': 'Person',
-          'name': 'Acharya Prashant Jakhmola',
-          'jobTitle': 'Founder & Head Yoga Teacher',
-          'worksFor': {
-            '@type': 'Organization',
-            'name': 'Yoga Vidya School'
-          },
-          'sameAs': [
-            'https://www.instagram.com/yogavidyaschool/',
-            'https://www.youtube.com/@yogavidyaschool/'
-          ]
-        }
-      });
+      
     } else {
       this.slug = 'prashantjyoga';
     }

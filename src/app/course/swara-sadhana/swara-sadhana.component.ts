@@ -37,12 +37,7 @@ export class SwaraSadhanaComponent {
     this.slug = this.activatedRoute.snapshot.routeConfig?.path ?? '';
   }
   ngOnInit(): void {
-    this.seoService.updateSeo({
-      title: 'Swara Sadhana - Ancient Science of Breath & Energy | Yoga Vidya School',
-      description: 'Master Swara Yoga - the ancient science of breath rhythms, brain hemisphere dominance, and elemental energy flow to transform your physical, mental and spiritual health.',
-      keywords: 'Swara Yoga, Swara Sadhana, Science of Breath, Energy Flow, Nadi Purification, Acharya Prashant Jakhmola',
-      url: `/${this.slug}`
-    });
+    
     this.spinner.show();
     let data = {
       slug: this.slug,

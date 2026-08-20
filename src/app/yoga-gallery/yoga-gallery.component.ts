@@ -18,11 +18,6 @@ export class YogaGalleryComponent {
   ) {}
 
   ngOnInit(): void {
-    this.seoService.updateSeo({
-      title: 'Photo Gallery | Yoga Vidya School Rishikesh & Bali',
-      description: 'Browse photos of Yoga Vidya School campuses in Rishikesh & Bali, yoga teacher training classes, excursion trips, graduation ceremonies, and ashram life.',
-      keywords: 'Yoga Gallery, Yoga Vidya School Photos, Rishikesh Ashram Photos, Yoga Student Life, Bali Yoga Gallery',
-      url: '/gallery'
-    });
+    
   }
 }

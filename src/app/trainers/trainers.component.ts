@@ -46,12 +46,7 @@ export class TrainersComponent {
   ngOnInit(): void {
     this.spinner.show();
     this.getAllMentors();
-    this.seoService.updateSeo({
-      title: 'Our Expert Yoga Teachers & Mentors | Yoga Vidya School',
-      description: 'Meet our team of experienced traditional yoga masters in Rishikesh & Bali. Experts in Ashtanga, Hatha, Pranayama, Yoga Philosophy, Alignment, Adjustment & Anatomy.',
-      keywords: 'Yoga Mentors Rishikesh, Yoga Teachers India, Acharya Prashant Jakhmola, Yoga Masters Rishikesh, Traditional Yoga Gurus',
-      url: '/mentors'
-    });
+    
   }
 
   getAllMentors() {

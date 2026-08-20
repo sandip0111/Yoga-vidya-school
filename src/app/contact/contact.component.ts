@@ -21,19 +21,7 @@ export class ContactComponent {
 
   ngOnInit(): void {
     this.email = `${this.user}@${this.domain}`;
-    this.seoService.updateSeo({
-      title: 'Contact Us | Yoga Vidya School Rishikesh & Bali',
-      description: 'Get in touch with Yoga Vidya School for Yoga Teacher Training inquiries, enrollment guidance, or retreat details in Rishikesh, India & Bali.',
-      keywords: 'Yoga Vidya School Contact, Contact Yoga School Rishikesh, Yoga Teacher Training Inquiry',
-      url: '/contact-us',
-      schema: {
-        '@context': 'https://schema.org',
-        '@type': 'ContactPage',
-        'name': 'Contact Yoga Vidya School',
-        'url': 'https://www.yogavidyaschool.com/contact-us',
-        'telephone': '+919818660954'
-      }
-    });
+    
   }
 
   insertInquiry(data: any) {

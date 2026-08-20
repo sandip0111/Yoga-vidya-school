@@ -60,16 +60,7 @@ export class CertifiedComponent {
     this.setBannerTitle();
     this.setAboutContent();
     const isRishikesh = this.slug === routeEnum.rishikesh;
-    this.seoService.updateSeo({
-      title: isRishikesh ? 'Get Certified in Rishikesh | Yoga Vidya School' : 'Get Certified in Bali | Yoga Vidya School',
-      description: isRishikesh
-        ? 'Get certified as a Yoga Teacher in Rishikesh, India — the world capital of yoga. Join Yoga Alliance approved 200 & 300 Hour TTC at Yoga Vidya School.'
-        : 'Get certified as a Yoga Teacher in Bali. Experience traditional Hatha & Ashtanga Yoga Alliance certified TTC amidst tranquil nature in Bali.',
-      keywords: isRishikesh
-        ? 'Get Certified in Rishikesh, Rishikesh Yoga Teacher Training, Yoga Alliance Certification Rishikesh'
-        : 'Get Certified in Bali, Bali Yoga Teacher Training, Yoga Alliance Certification Bali',
-      url: `/${this.slug}`
-    });
+    
     this.spinner.hide();
     if (typeof window !== 'undefined' && typeof document !== 'undefined') {
       this.trackPageView();

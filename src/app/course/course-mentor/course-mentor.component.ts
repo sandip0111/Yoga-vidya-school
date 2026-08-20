@@ -34,12 +34,7 @@ export class CourseMentorComponent {
   }
 
   ngOnInit(): void {
-    this.seoService.updateSeo({
-      title: 'Live Online Yoga Classes & Daily Practice | Yoga Vidya School',
-      description: 'Join daily live online yoga classes led by Indian masters. Practice Hatha asanas, Pranayama & Meditation live from home for holistic wellness.',
-      keywords: 'Online Yoga Classes, Daily Live Yoga, Online Hatha Yoga, Online Pranayama Classes, Acharya Prashant Yoga',
-      url: `/${this.slug || routeEnum.online}`
-    });
+    
   }
   getTeachersData(slug: string) {
     this.cartService.getTeachersData(slug).subscribe({

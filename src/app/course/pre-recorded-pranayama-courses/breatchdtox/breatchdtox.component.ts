@@ -19,11 +19,6 @@ export class BreatchdtoxComponent {
   constructor(private seoService: SeoService) {}
 
   ngOnInit(): void {
-    this.seoService.updateSeo({
-      title: 'Breath Detox Yoga Course | Free Online Breathwork | Yoga Vidya School',
-      description: 'Join our Free Breath Detox Yoga course. Purify respiratory channels, boost oxygenation, release stress, and master foundational pranayama exercises.',
-      keywords: 'Breath Detox Yoga, Free Pranayama Course, Respiratory Detox, Online Breathwork, Yoga Vidya School',
-      url: `/${routeEnum.bDtox}`
-    });
+    
   }
 }

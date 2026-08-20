@@ -36,12 +36,7 @@ export class BlogComponent {
     }
     this.imageUrl = this.webapiService.imageUrl;
     this.getAllBlogs();
-    this.seoService.updateSeo({
-      title: 'Yoga Blogs, Insights & Tips | Yoga Vidya School',
-      description: 'Explore authentic articles on yoga philosophy, pranayama practices, asana alignment, meditation, and healthy yogic lifestyle tips written by experts.',
-      keywords: 'Yoga Blogs, Yoga Articles, Yoga Philosophy, Pranayama Techniques, Yoga Tips Rishikesh',
-      url: '/blogs'
-    });
+    
   }
 
   getAllBlogs() {

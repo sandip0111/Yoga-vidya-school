@@ -36,12 +36,7 @@ export class PrashantPageComponent implements OnInit {
     }
   }
   ngOnInit(): void {
-    this.seoService.updateSeo({
-      title: 'Online Sadhana with Acharya Prashant Jakhmola | Yoga Vidya School',
-      description: 'Join daily Online Yoga Sadhana & Pranayama classes with founder Acharya Prashant Jakhmola. Experience authentic yogic practice, breathwork, and meditation from anywhere in the world.',
-      keywords: 'Online Sadhana, Prashant Jakhmola Yoga, Online Pranayama Classes, Daily Yoga Practice Online',
-      url: `/online-sadhna-prashant/${this.slugId || 1}`
-    });
+    
     this.getTeachersData(routeEnum.online);
     this.ogMetaTag();
   }

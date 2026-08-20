@@ -45,12 +45,7 @@ export class AnujPageComponent implements OnInit {
       this.heroImage = s3Bucket.anujHero2;
       this.about = `These classes are designed for practitioners who want to move beyond the basics...`;
     }
-    this.seoService.updateSeo({
-      title: `${this.title} | Yoga Vidya School`,
-      description: `Join Online Hatha & Alignment Yoga classes with Anuj Pareek at Yoga Vidya School. Improve mobility, posture, alignment, and flexibility.`,
-      keywords: 'Anuj Pareek Yoga, Therapeutic Hatha Yoga, Alignment Yoga Class, Online Hatha Yoga',
-      url: `/anuj-online-class/${this.slugId || 2}`
-    });
+    
   }
   getTeachersData(slug: string) {
     this.cartService.getTeachersData(slug).subscribe({

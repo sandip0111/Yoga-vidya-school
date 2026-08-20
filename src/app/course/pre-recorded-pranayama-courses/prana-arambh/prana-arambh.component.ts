@@ -38,12 +38,7 @@ export class PranaArambhComponent {
   ) {
   }
   ngOnInit(): void {
-    this.seoService.updateSeo({
-      title: 'Prana Arambha - Online Pranayama Beginners Course | Yoga Vidya School',
-      description: 'Begin your pranayama journey with Prana Arambha. Master foundational breath control techniques, daily practice routines, and vital force expansion.',
-      keywords: 'Prana Arambha, Pranayama Beginners Course, Online Pranayama Training, Breathwork Foundations, Acharya Prashant Jakhmola',
-      url: `/${routeEnum.pranOnlinePranaArambh}`
-    });
+    
     this.getCourseBySlug(routeEnum.pranOnlinePranaArambh);
   }
   getCourseBySlug(slug: string) {

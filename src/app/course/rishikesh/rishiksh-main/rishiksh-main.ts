@@ -50,12 +50,7 @@ export class RishikshMain {
   }
 
   ngOnInit(): void {
-    this.seoService.updateSeo({
-      title: 'Get Certified in Rishikesh | Yoga Teacher Training Courses | Yoga Vidya School',
-      description: 'Get certified as a Yoga Teacher in Rishikesh, India. Yoga Alliance approved 100, 200 & 300 Hour Yoga TTC courses at Yoga Vidya School.',
-      keywords: 'Get Certified in Rishikesh, Yoga Alliance Certification Rishikesh, Yoga Teacher Training India, Rishikesh Yoga School',
-      url: `/${routeEnum.rishikesh}`
-    });
+    
   }
   goToLink(link: string) {
     this.trackCourseSelection(link);

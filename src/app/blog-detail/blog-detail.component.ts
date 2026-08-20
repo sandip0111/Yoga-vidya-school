@@ -65,29 +65,7 @@ export class BlogDetailComponent {
       const blogKeywords = blogData?.seokeywords || 'Yoga Blog, Yoga Article';
       const blogImage = blogData?.image ? `${this.imageUrl}/${blogData.image}` : undefined;
 
-      this.seoService.updateSeo({
-        title: blogTitle,
-        description: blogDescription,
-        keywords: blogKeywords,
-        image: blogImage,
-        url: `/blog/${slug}`,
-        type: 'article',
-        schema: {
-          '@context': 'https://schema.org',
-          '@type': 'Article',
-          'headline': blogTitle,
-          'description': blogDescription,
-          'image': blogImage,
-          'publisher': {
-            '@type': 'Organization',
-            'name': 'Yoga Vidya School',
-            'logo': {
-              '@type': 'ImageObject',
-              'url': 'https://d29rwrqvux6m5p.cloudfront.net/images/Yoga-Vidya-Logo.svg'
-            }
-          }
-        }
-      });
+      
 
       this.spinner.hide();
     });

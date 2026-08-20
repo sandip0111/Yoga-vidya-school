@@ -25,11 +25,6 @@ export class Retreats {
   }
 
   ngOnInit(): void {
-    this.seoService.updateSeo({
-      title: 'Yoga Retreat in Mysore, India | Yoga Vidya School',
-      description: 'Rejuvenate your body, mind, and spirit with authentic Yoga & Wellness Retreats in Mysore, India guided by traditional masters.',
-      keywords: 'Yoga Retreat Mysore, Mysore Yoga Retreat India, Meditation Retreat India, Yoga Vidya School Retreat',
-      url: `/${this.slug}`
-    });
+    
   }
 }

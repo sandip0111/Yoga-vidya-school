@@ -38,12 +38,7 @@ export class PersonalGuidance {
     private seoService: SeoService
   ) {}
   ngOnInit(): void {
-    this.seoService.updateSeo({
-      title: 'One-on-One Personal Guidance & Mentorship | Yoga Vidya School',
-      description: 'Receive personalized 1-on-1 yoga guidance, pranayama mentorship, and spiritual consultation tailored specifically for your individual practice.',
-      keywords: 'Personal Yoga Guidance, 1 on 1 Yoga Mentorship, Spiritual Consultation, Acharya Prashant Mentorship',
-      url: `/${routeEnum.pg}`
-    });
+    
     this.getCourseBySlug(routeEnum.pg);
   }
   getCourseBySlug(slug: string) {
@@ -73,12 +68,7 @@ export class PersonalGuidance {
             : 'Receive personalized 1-on-1 yoga guidance, pranayama mentorship, and spiritual consultation tailored specifically for your individual practice with Acharya Prashant Jakhmola.';
           const metaKeys = course.metaKeyword || 'Personal Yoga Guidance, 1 on 1 Yoga Mentorship, Spiritual Consultation, Acharya Prashant Mentorship';
 
-          this.seoService.updateSeo({
-            title: metaTitle,
-            description: metaDesc,
-            keywords: metaKeys,
-            url: `/${routeEnum.pg}`
-          });
+          
         }
       },
       error: () => {},
