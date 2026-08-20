@@ -52,9 +52,16 @@ export class SeoService {
     // 1. Page Title
     this.titleService.setTitle(fullTitle);
 
-    // 2. Standard Meta Tags
-    this.metaService.updateTag({ name: 'description', content: config.description });
-    this.metaService.updateTag({ name: 'keywords', content: config.keywords || '' });
+    if (config.description) {
+      this.metaService.updateTag({ name: 'description', content: config.description });
+    } else {
+      this.metaService.removeTag("name='description'");
+    }
+    if (config.keywords) {
+      this.metaService.updateTag({ name: 'keywords', content: config.keywords });
+    } else {
+      this.metaService.removeTag("name='keywords'");
+    }
     this.metaService.updateTag({ name: 'robots', content: robots });
 
     // 3. OpenGraph Meta Tags
