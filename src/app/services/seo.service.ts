@@ -4,7 +4,7 @@ import { DOCUMENT } from '@angular/common';
 
 export interface SeoConfig {
   title: string;
-  description: string;
+  description?: string;
   keywords?: string;
   image?: string;
   url?: string;
@@ -67,7 +67,7 @@ export class SeoService {
     // 3. OpenGraph Meta Tags
     this.metaService.updateTag({ property: 'og:site_name', content: DEFAULT_SITE_NAME });
     this.metaService.updateTag({ property: 'og:title', content: fullTitle });
-    this.metaService.updateTag({ property: 'og:description', content: config.description });
+    this.metaService.updateTag({ property: 'og:description', content: config.description || '' });
     this.metaService.updateTag({ property: 'og:image', content: imageUrl });
     this.metaService.updateTag({ property: 'og:url', content: pageUrl });
     this.metaService.updateTag({ property: 'og:type', content: ogType });
@@ -75,7 +75,7 @@ export class SeoService {
     // 4. Twitter Card Meta Tags
     this.metaService.updateTag({ name: 'twitter:card', content: 'summary_large_image' });
     this.metaService.updateTag({ name: 'twitter:title', content: fullTitle });
-    this.metaService.updateTag({ name: 'twitter:description', content: config.description });
+    this.metaService.updateTag({ name: 'twitter:description', content: config.description || '' });
     this.metaService.updateTag({ name: 'twitter:image', content: imageUrl });
     this.metaService.updateTag({ name: 'twitter:url', content: pageUrl });
 

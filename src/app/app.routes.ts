@@ -48,11 +48,28 @@ export const routes: Routes = [
     component: IndexComponent,
     data: {
       seo: {
-        title: 'Yoga Vidya School'
-      }
-    }
+        title: 'Yoga Teacher Training in Rishikesh & Bali | Yoga Vidya School',
+        description:
+          'Yoga Vidya School offers best Yoga Alliance certified 100, 200 & 300 Hour Yoga Teacher Training Courses & Retreats in Rishikesh India & Bali. Hatha, Ashtanga & Pranayama led by Acharya Prashant Jakhmola.',
+        keywords:
+          'Yoga Teacher Training Rishikesh, Yoga School Rishikesh, 200 Hour Yoga TTC Rishikesh, 300 Hour Yoga Teacher Training, Yoga Retreat Bali, Acharya Prashant Jakhmola',
+        url: '/',
+      },
+    },
   },
-  { path: 'course', component: CourseComponent },
+  {
+    path: 'course',
+    component: CourseComponent,
+    data: {
+      seo: {
+        title: 'Yoga Teacher Training Courses | Yoga Vidya School',
+        description:
+          'Explore all Yoga Alliance certified courses at Yoga Vidya School — 100, 200 & 300 Hour Yoga Teacher Training in Rishikesh & Bali, Pranayama courses, and online yoga classes.',
+        keywords:
+          'Yoga Teacher Training Courses, Yoga Alliance Certified, Rishikesh Yoga Courses, Bali Yoga Courses',
+      },
+    },
+  },
   {
     path: routeEnum.mentors,
     component: TrainersComponent,
@@ -90,48 +107,169 @@ export const routes: Routes = [
   {
     path: '200-hour-yoga-teacher-training-in-bali',
     component: BaliIndexComponent,
+    data: {
+      seo: {
+        title: '200 Hour Yoga Teacher Training in Bali | Yoga Vidya School',
+        description:
+          'Join our 200 Hour Yoga Alliance certified Yoga Teacher Training in Bali. Experience traditional Hatha & Ashtanga yoga immersed in the spiritual beauty of Bali, Indonesia.',
+        keywords:
+          '200 Hour Yoga Teacher Training Bali, Yoga TTC Bali, 200 Hour Yoga Alliance Bali',
+      },
+    },
   },
   {
     path: '300-hour-yoga-teacher-training-in-bali',
     component: BaliIndexComponent,
+    data: {
+      seo: {
+        title: '300 Hour Yoga Teacher Training in Bali | Yoga Vidya School',
+        description:
+          'Deepen your yoga practice with our 300 Hour Yoga Alliance certified Yoga Teacher Training in Bali. Advanced training in Hatha, Ashtanga, Pranayama & Yoga Philosophy.',
+        keywords:
+          '300 Hour Yoga Teacher Training Bali, Advanced Yoga TTC Bali, 300 Hour Yoga Alliance Bali',
+      },
+    },
   },
-  { path: 'yoga-retreat-in-bali', component: BaliIndexComponent },
+  {
+    path: 'yoga-retreat-in-bali',
+    component: BaliIndexComponent,
+    data: {
+      seo: {
+        title: 'Yoga Retreat in Bali | Yoga Vidya School',
+        description:
+          'Rejuvenate mind, body and soul with our transformative Yoga Retreat in Bali. Daily asana, pranayama, meditation and cultural excursions surrounded by tropical beauty.',
+        keywords:
+          'Yoga Retreat Bali, Bali Yoga Holiday, Spiritual Retreat Bali, Yoga Vidya Bali Retreat',
+      },
+    },
+  },
   // {path:'yoga-retreat-in-mysore-india', component: BaliIndexComponent},
   // {path:'yoga-retreat-in-peru', component: BaliIndexComponent},
   {
     path: '100-hours-yoga-teacher-training-in-rishikesh',
     component: RishikeshIndexComponent,
+    data: {
+      seo: {
+        title:
+          '100 Hour Yoga Teacher Training in Rishikesh | Yoga Vidya School',
+        description:
+          'Earn your Yoga Alliance certification with our 100 Hour Yoga Teacher Training in Rishikesh. Intensive course covering Hatha Yoga, Pranayama, Meditation & Yoga Philosophy.',
+        keywords:
+          '100 Hour Yoga Teacher Training Rishikesh, 100 Hour Yoga TTC Rishikesh, Yoga Alliance 100 Hour',
+      },
+    },
   },
   {
     path: '200-hours-yoga-teacher-training-in-rishikesh',
     component: RishikeshIndexComponent,
+    data: {
+      seo: {
+        title:
+          '200 Hour Yoga Teacher Training in Rishikesh | Yoga Vidya School',
+        description:
+          'Get Yoga Alliance RYT 200 certified with our comprehensive 200 Hour Yoga Teacher Training in Rishikesh. Covering Hatha, Ashtanga, Pranayama, Anatomy & Yoga Philosophy.',
+        keywords:
+          '200 Hour Yoga Teacher Training Rishikesh, 200 Hour Yoga TTC Rishikesh, RYT 200 Rishikesh',
+      },
+    },
   },
   {
     path: '300-hours-yoga-teacher-training-in-rishikesh',
     component: RishikeshIndexComponent,
+    data: {
+      seo: {
+        title:
+          '300 Hour Yoga Teacher Training in Rishikesh | Yoga Vidya School',
+        description:
+          'Advance your teaching with our 300 Hour Yoga Teacher Training in Rishikesh. Yoga Alliance RYT 300 certification covering advanced asanas, Pranayama, Ayurveda & meditation.',
+        keywords:
+          '300 Hour Yoga Teacher Training Rishikesh, 300 Hour Yoga TTC Rishikesh, RYT 300 Rishikesh',
+      },
+    },
   },
   {
     path: '200-horas-de-formacioacuten-de-profesores-de-yoga-en-rishikesh',
     component: RishikeshIndexComponent,
+    data: {
+      seo: {
+        title:
+          '200 Horas Formación de Profesores de Yoga en Rishikesh | Yoga Vidya School',
+        description:
+          'Obtén tu certificación Yoga Alliance con nuestra Formación de 200 Horas para Profesores de Yoga en Rishikesh, India. Incluye Hatha, Ashtanga, Pranayama y Filosofía del Yoga.',
+        keywords:
+          'Formación Profesores Yoga Rishikesh, 200 Horas Yoga TTC, Yoga Alliance España',
+      },
+    },
   },
   {
     path: '200-hour-yoga-teacher-training-scholarship-in-rishikesh',
     component: RishikeshIndexComponent,
+    data: {
+      seo: {
+        title:
+          '200 Hour Yoga Teacher Training Scholarship in Rishikesh | Yoga Vidya School',
+        description:
+          'Apply for our 200 Hour Yoga Teacher Training Scholarship in Rishikesh. Limited seats available for deserving yoga students seeking Yoga Alliance certification.',
+        keywords:
+          '200 Hour Yoga TTC Scholarship Rishikesh, Yoga Teacher Training Scholarship India',
+      },
+    },
   },
   {
     path: '300-hour-yoga-teacher-training-scholarship-in-rishikesh',
     component: RishikeshIndexComponent,
+    data: {
+      seo: {
+        title:
+          '300 Hour Yoga Teacher Training Scholarship in Rishikesh | Yoga Vidya School',
+        description:
+          'Apply for our 300 Hour Yoga Teacher Training Scholarship in Rishikesh. Deepen your yoga practice with advanced training and Yoga Alliance certification.',
+        keywords:
+          '300 Hour Yoga TTC Scholarship Rishikesh, Advanced Yoga Teacher Training Scholarship India',
+      },
+    },
   },
   {
     path: 'yoga-retreat-in-rishikesh-india',
     component: RishikeshIndexComponent,
+    data: {
+      seo: {
+        title: 'Yoga Retreat in Rishikesh India | Yoga Vidya School',
+        description:
+          'Escape to a transformative Yoga Retreat in Rishikesh, the yoga capital of the world. Immerse yourself in daily asana, pranayama, meditation & Ganga aarti ceremonies.',
+        keywords:
+          'Yoga Retreat Rishikesh, Rishikesh Yoga Holiday, Yoga Retreat India, Spiritual Retreat Rishikesh',
+      },
+    },
   },
 
-  { path: 'adjustment-and-alignment', component: RishikeshIndexComponent },
+  {
+    path: 'adjustment-and-alignment',
+    component: RishikeshIndexComponent,
+    data: {
+      seo: {
+        title:
+          'Yoga Adjustment & Alignment Teacher Training | Yoga Vidya School',
+        description:
+          'Master the art of yoga adjustments and alignment in our specialized Yoga Teacher Training in Rishikesh. Learn hands-on techniques for safe and effective yoga teaching.',
+        keywords:
+          'Yoga Adjustment Alignment, Yoga Alignment Training Rishikesh, Hands-On Adjustment Yoga',
+      },
+    },
+  },
 
   {
     path: 'yoga-teacher-training-in-india',
     component: RishikeshIndexComponent,
+    data: {
+      seo: {
+        title: 'Yoga Teacher Training in India | Yoga Vidya School Rishikesh',
+        description:
+          'Join a transformative Yoga Teacher Training in India at Yoga Vidya School in Rishikesh. Yoga Alliance certified 100, 200 & 300 Hour programs in the birthplace of yoga.',
+        keywords:
+          'Yoga Teacher Training India, Yoga TTC India, Yoga School India, Best Yoga Teacher Training India',
+      },
+    },
   },
 
   {
@@ -194,11 +332,41 @@ export const routes: Routes = [
   {
     path: routeEnum.foundationOfSpirituality,
     component: BaliIndexComponent,
+    data: {
+      seo: {
+        title: 'Foundation of Spirituality Course | Yoga Vidya School',
+        description:
+          'Explore the Foundation of Spirituality course at Yoga Vidya School. Deepen your understanding of yogic philosophy, meditation, and the roots of spiritual practice.',
+        keywords:
+          'Foundation of Spirituality, Yoga Philosophy Course, Spiritual Yoga Course, Yoga Vidya School',
+      },
+    },
   },
-  { path: 'yoga-philosophy-course-free', component: BaliIndexComponent },
+  {
+    path: 'yoga-philosophy-course-free',
+    component: BaliIndexComponent,
+    data: {
+      seo: {
+        title: 'Free Yoga Philosophy Course | Yoga Vidya School',
+        description:
+          'Enroll in our free online Yoga Philosophy Course at Yoga Vidya School. Explore Patanjali Yoga Sutras, Samkhya philosophy, and the deeper teachings of classical yoga.',
+        keywords:
+          'Free Yoga Philosophy Course, Online Yoga Philosophy, Yoga Sutras, Classical Yoga Philosophy',
+      },
+    },
+  },
   {
     path: routeEnum['200TTC'],
     component: RishikeshIndexComponent,
+    data: {
+      seo: {
+        title: '200 Hour Yoga Teacher Training Online | Yoga Vidya School',
+        description:
+          'Get Yoga Alliance RYT 200 certified with our comprehensive 200 Hour Online Yoga Teacher Training. Learn from Indian masters from the comfort of your home.',
+        keywords:
+          '200 Hour Online Yoga Teacher Training, Online Yoga TTC, RYT 200 Online, Yoga Alliance Online Certification',
+      },
+    },
   },
   { path: 'my-account', component: MyAccountComponent },
   { path: 'password/:id', component: ChangePasswordComponent },
@@ -326,6 +494,16 @@ export const routes: Routes = [
   {
     path: 'get-certified-in-bali',
     component: CertifiedComponent,
+    data: {
+      seo: {
+        title:
+          'Get Certified in Bali | Yoga Teacher Training | Yoga Vidya School',
+        description:
+          'Get certified as a Yoga Teacher in Bali. Experience traditional Hatha & Ashtanga Yoga Alliance certified TTC amidst the tranquil nature and spiritual culture of Bali.',
+        keywords:
+          'Get Certified in Bali, Bali Yoga Teacher Training, Yoga Alliance Certification Bali, Yoga School Bali',
+      },
+    },
   },
   {
     path: `${routeEnum.online_prashant_page}/:id`,
