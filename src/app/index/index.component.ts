@@ -180,13 +180,6 @@ export class IndexComponent {
   }
 
   ngOnInit(): void {
-    this.seoService.updateSeo({
-      title: 'Yoga Teacher Training in Rishikesh & Bali | Yoga Vidya School',
-      description: 'Yoga Vidya School offers best Yoga Alliance certified 100, 200 & 300 Hour Yoga Teacher Training Courses & Retreats in Rishikesh India & Bali. Hatha, Ashtanga & Pranayama led by Acharya Prashant Jakhmola.',
-      keywords: 'Yoga Teacher Training Rishikesh, Yoga School Rishikesh, 200 Hour Yoga TTC Rishikesh, 300 Hour Yoga Teacher Training, Yoga Retreat Bali, Acharya Prashant Jakhmola',
-      image: 'https://my-s3-images-bucket.s3.amazonaws.com/images/imp-2_e7j80f.jpg',
-      url: '/'
-    });
     let script = this._renderer2.createElement('script');
     script.type = `application/ld+json`;
     script.text = `
