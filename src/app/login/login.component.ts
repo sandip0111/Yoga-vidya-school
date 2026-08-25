@@ -28,7 +28,7 @@ export class LoginComponent {
   ) {}
 
   ngOnInit(): void {
-    this.seoService.setNoIndex('Student Login');
+    this.seoService.setNoIndex('Login');
   }
 
   studentLogin(data: any) {
@@ -52,3 +52,4 @@ export class LoginComponent {
     });
   }
 }
+

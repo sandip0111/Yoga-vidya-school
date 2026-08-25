@@ -48,7 +48,7 @@ export const routes: Routes = [
     component: IndexComponent,
     data: {
       seo: {
-        title: 'Yoga Teacher Training in Rishikesh & Bali | Yoga Vidya School',
+        title: 'Tradicional Yoga Education',
         description:
           'Yoga Vidya School offers best Yoga Alliance certified 100, 200 & 300 Hour Yoga Teacher Training Courses & Retreats in Rishikesh India & Bali. Hatha, Ashtanga & Pranayama led by Acharya Prashant Jakhmola.',
         keywords:
@@ -75,7 +75,7 @@ export const routes: Routes = [
     component: TrainersComponent,
     data: {
       seo: {
-        title: `Our Expert Yoga Teachers & Mentors | Yoga Vidya School`,
+        title: 'Meet Our Yoga Teachers',
         description: `Meet our team of experienced traditional yoga masters in Rishikesh & Bali. Experts in Ashtanga, Hatha, Pranayama, Yoga Philosophy, Alignment, Adjustment & Anatomy.`,
         keywords: `Yoga Mentors Rishikesh, Yoga Teachers India, Acharya Prashant Jakhmola, Yoga Masters Rishikesh, Traditional Yoga Gurus`,
       },
@@ -97,7 +97,7 @@ export const routes: Routes = [
     component: BlogComponent,
     data: {
       seo: {
-        title: `Yoga Blogs, Insights & Tips | Yoga Vidya School`,
+        title: 'Blog',
         description: `Explore authentic articles on yoga philosophy, pranayama practices, asana alignment, meditation, and healthy yogic lifestyle tips written by experts.`,
         keywords: `Yoga Blogs, Yoga Articles, Yoga Philosophy, Pranayama Techniques, Yoga Tips Rishikesh`,
       },
@@ -109,7 +109,7 @@ export const routes: Routes = [
     component: BaliIndexComponent,
     data: {
       seo: {
-        title: '200 Hour Yoga Teacher Training in Bali | Yoga Vidya School',
+        title: '200 HRS Teacher Training Course in Bali',
         description:
           'Join our 200 Hour Yoga Alliance certified Yoga Teacher Training in Bali. Experience traditional Hatha & Ashtanga yoga immersed in the spiritual beauty of Bali, Indonesia.',
         keywords:
@@ -122,7 +122,7 @@ export const routes: Routes = [
     component: BaliIndexComponent,
     data: {
       seo: {
-        title: '300 Hour Yoga Teacher Training in Bali | Yoga Vidya School',
+        title: '300 HRS Teacher Training Course in Bali',
         description:
           'Deepen your yoga practice with our 300 Hour Yoga Alliance certified Yoga Teacher Training in Bali. Advanced training in Hatha, Ashtanga, Pranayama & Yoga Philosophy.',
         keywords:
@@ -135,7 +135,7 @@ export const routes: Routes = [
     component: BaliIndexComponent,
     data: {
       seo: {
-        title: 'Yoga Retreat in Bali | Yoga Vidya School',
+        title: 'Yoga Retreat in Bali',
         description:
           'Rejuvenate mind, body and soul with our transformative Yoga Retreat in Bali. Daily asana, pranayama, meditation and cultural excursions surrounded by tropical beauty.',
         keywords:
@@ -150,8 +150,7 @@ export const routes: Routes = [
     component: RishikeshIndexComponent,
     data: {
       seo: {
-        title:
-          '100 Hour Yoga Teacher Training in Rishikesh | Yoga Vidya School',
+        title: '100 HRS Teacher Training course in Rishikesh',
         description:
           'Earn your Yoga Alliance certification with our 100 Hour Yoga Teacher Training in Rishikesh. Intensive course covering Hatha Yoga, Pranayama, Meditation & Yoga Philosophy.',
         keywords:
@@ -164,8 +163,7 @@ export const routes: Routes = [
     component: RishikeshIndexComponent,
     data: {
       seo: {
-        title:
-          '200 Hour Yoga Teacher Training in Rishikesh | Yoga Vidya School',
+        title: '200 HRS Teacher Training course in Rishikesh',
         description:
           'Get Yoga Alliance RYT 200 certified with our comprehensive 200 Hour Yoga Teacher Training in Rishikesh. Covering Hatha, Ashtanga, Pranayama, Anatomy & Yoga Philosophy.',
         keywords:
@@ -178,8 +176,7 @@ export const routes: Routes = [
     component: RishikeshIndexComponent,
     data: {
       seo: {
-        title:
-          '300 Hour Yoga Teacher Training in Rishikesh | Yoga Vidya School',
+        title: '300 HRS Teacher Training course in Rishikesh',
         description:
           'Advance your teaching with our 300 Hour Yoga Teacher Training in Rishikesh. Yoga Alliance RYT 300 certification covering advanced asanas, Pranayama, Ayurveda & meditation.',
         keywords:
@@ -277,7 +274,7 @@ export const routes: Routes = [
     component: PranicPurification,
     data: {
       seo: {
-        title: `Pranic Purification Online Course | Yoga Vidya School`,
+        title: 'Pranic Path',
         description: `Cleanse and balance your prana (vital energy body) with traditional pranayama, Shatkarma techniques, and breathwork guided by Acharya Prashant Jakhmola.`,
         keywords: `Pranic Purification, Pranayama Course, Breathwork Online, Energy Body Cleansing, Shatkarma Practice`,
       },
@@ -301,7 +298,7 @@ export const routes: Routes = [
     component: CourseMentorComponent,
     data: {
       seo: {
-        title: `Live Online Yoga Classes & Daily Practice | Yoga Vidya School`,
+        title: 'Online Yoga Classes',
         description: `Join daily live online yoga classes led by Indian masters. Practice Hatha asanas, Pranayama & Meditation live from home for holistic wellness.`,
         keywords: `Online Yoga Classes, Daily Live Yoga, Online Hatha Yoga, Online Pranayama Classes, Acharya Prashant Yoga`,
       },
@@ -312,7 +309,7 @@ export const routes: Routes = [
     component: BreatchdtoxComponent,
     data: {
       seo: {
-        title: `Breath Detox Yoga Course | Free Online Breathwork | Yoga Vidya School`,
+        title: 'Free Online Course -Breath Detox',
         description: `Join our Free Breath Detox Yoga course. Purify respiratory channels, boost oxygenation, release stress, and master foundational pranayama exercises.`,
         keywords: `Breath Detox Yoga, Free Pranayama Course, Respiratory Detox, Online Breathwork, Yoga Vidya School`,
       },
@@ -323,7 +320,7 @@ export const routes: Routes = [
     component: PranaArambhComponent,
     data: {
       seo: {
-        title: `Prana Arambha - Online Pranayama Beginners Course | Yoga Vidya School`,
+        title: 'Prana Arambha',
         description: `Begin your pranayama journey with Prana Arambha. Master foundational breath control techniques, daily practice routines, and vital force expansion.`,
         keywords: `Prana Arambha, Pranayama Beginners Course, Online Pranayama Training, Breathwork Foundations, Acharya Prashant Jakhmola`,
       },
@@ -334,7 +331,7 @@ export const routes: Routes = [
     component: BaliIndexComponent,
     data: {
       seo: {
-        title: 'Foundation of Spirituality Course | Yoga Vidya School',
+        title: 'Foundation of Spirituality — Online Course',
         description:
           'Explore the Foundation of Spirituality course at Yoga Vidya School. Deepen your understanding of yogic philosophy, meditation, and the roots of spiritual practice.',
         keywords:
@@ -360,7 +357,7 @@ export const routes: Routes = [
     component: RishikeshIndexComponent,
     data: {
       seo: {
-        title: '200 Hour Yoga Teacher Training Online | Yoga Vidya School',
+        title: '200-Hour Yoga Teacher Training Online',
         description:
           'Get Yoga Alliance RYT 200 certified with our comprehensive 200 Hour Online Yoga Teacher Training. Learn from Indian masters from the comfort of your home.',
         keywords:
@@ -379,7 +376,7 @@ export const routes: Routes = [
     component: AboutComponent,
     data: {
       seo: {
-        title: `About Us | Yoga Vidya School Rishikesh & Bali`,
+        title: 'About Us',
         description: `Learn about Yoga Vidya School, founded by Acharya Prashant Jakhmola in Rishikesh. We provide traditional, Yoga Alliance certified Yoga Teacher Training courses in Rishikesh, India & Bali.`,
         keywords: `About Yoga Vidya School, Acharya Prashant Jakhmola, Yoga School Rishikesh, Yoga Alliance Certified School India`,
       },
@@ -391,7 +388,7 @@ export const routes: Routes = [
     component: PrivacyPolicyComponent,
     data: {
       seo: {
-        title: `Privacy Policy | Yoga Vidya School`,
+        title: 'Privacy Policy',
         description: `Privacy Policy of Yoga Vidya School Rishikesh & Bali regarding student data protection, cookies, course bookings, and website privacy standards.`,
         keywords: `Yoga Vidya School Privacy Policy, Data Protection, Privacy Terms`,
       },
@@ -402,7 +399,7 @@ export const routes: Routes = [
     component: YogaGalleryComponent,
     data: {
       seo: {
-        title: `Photo Gallery | Yoga Vidya School Rishikesh & Bali`,
+        title: 'Gallery',
         description: `Browse photos of Yoga Vidya School campuses in Rishikesh & Bali, yoga teacher training classes, excursion trips, graduation ceremonies, and ashram life.`,
         keywords: `Yoga Gallery, Yoga Vidya School Photos, Rishikesh Ashram Photos, Yoga Student Life, Bali Yoga Gallery`,
       },
@@ -413,7 +410,7 @@ export const routes: Routes = [
     component: TermsAndConditionComponent,
     data: {
       seo: {
-        title: `Terms & Conditions | Yoga Vidya School`,
+        title: 'Terms & Conditions',
         description: `Official Terms & Conditions of Yoga Vidya School for course registration, payment policy, code of conduct, and refund guidelines in Rishikesh & Bali.`,
         keywords: `Yoga Vidya School Terms, Course Terms and Conditions, Refund Policy, Student Code of Conduct`,
       },
@@ -425,7 +422,7 @@ export const routes: Routes = [
     component: FaqComponent,
     data: {
       seo: {
-        title: `Frequently Asked Questions | Yoga Vidya School`,
+        title: 'Frequently Asked Questions',
         description: `Find answers to common questions about Yoga Teacher Training in Rishikesh & Bali, Yoga Alliance certification, course curriculum, accommodation, food, and prerequisites.`,
         keywords: `Yoga FAQ, Yoga Teacher Training Questions, Yoga Alliance Certification FAQ, Rishikesh Yoga Course FAQ`,
       },
@@ -436,7 +433,7 @@ export const routes: Routes = [
     component: TestinomialComponent,
     data: {
       seo: {
-        title: `Student Testimonials & Reviews | Yoga Vidya School`,
+        title: 'Student Testimonials',
         description: `Read genuine reviews and watch video testimonials from international graduates of our 100, 200 & 300 Hour Yoga Teacher Training courses in Rishikesh & Bali.`,
         keywords: `Yoga Vidya School Reviews, Yoga Teacher Training Testimonials, Rishikesh Yoga Course Reviews, Student Experiences Bali Yoga`,
       },
@@ -447,7 +444,7 @@ export const routes: Routes = [
     component: YogateacherComponent,
     data: {
       seo: {
-        title: `Acharya Prashant Jakhmola | Founder & Master Yoga Teacher`,
+        title: 'Acharya Prashant Jakhmola, Founder',
         description: `Meet Acharya Prashant Jakhmola, founder of Yoga Vidya School in Rishikesh. Revered yoga master specializing in Pranayama, Asana Alignment, and Spiritual Sadhana.`,
         keywords: `Acharya Prashant Jakhmola, Prashant J Yoga, Yoga Master Rishikesh, Yoga Vidya School Founder, Pranayama Master India`,
       },
@@ -461,7 +458,7 @@ export const routes: Routes = [
     component: ContactComponent,
     data: {
       seo: {
-        title: `Contact Us | Yoga Vidya School Rishikesh & Bali`,
+        title: 'Contact Us',
         description: `Get in touch with Yoga Vidya School for Yoga Teacher Training inquiries, enrollment guidance, or retreat details in Rishikesh, India & Bali.`,
         keywords: `Yoga Vidya School Contact, Contact Yoga School Rishikesh, Yoga Teacher Training Inquiry`,
       },
@@ -485,7 +482,7 @@ export const routes: Routes = [
     component: RishikshMain,
     data: {
       seo: {
-        title: `Get Certified in Rishikesh | Yoga Teacher Training Courses | Yoga Vidya School`,
+        title: 'Teacher Training course in Rishikesh',
         description: `Get certified as a Yoga Teacher in Rishikesh, India. Yoga Alliance approved 100, 200 & 300 Hour Yoga TTC courses at Yoga Vidya School.`,
         keywords: `Get Certified in Rishikesh, Yoga Alliance Certification Rishikesh, Yoga Teacher Training India, Rishikesh Yoga School`,
       },
@@ -496,8 +493,7 @@ export const routes: Routes = [
     component: CertifiedComponent,
     data: {
       seo: {
-        title:
-          'Get Certified in Bali | Yoga Teacher Training | Yoga Vidya School',
+        title: 'Teacher Training Course in Bali',
         description:
           'Get certified as a Yoga Teacher in Bali. Experience traditional Hatha & Ashtanga Yoga Alliance certified TTC amidst the tranquil nature and spiritual culture of Bali.',
         keywords:
@@ -525,7 +521,7 @@ export const routes: Routes = [
     component: AnujPageComponent,
     data: {
       seo: {
-        title: `Online Hatha & Alignment Yoga classes | Yoga Vidya School`,
+        title: 'Therapeutic Hatha / Alignment Yoga - Anuj Pareek',
         description: `Join Online Hatha & Alignment Yoga classes with Anuj Pareek at Yoga Vidya School. Improve mobility, posture, alignment, and flexibility.`,
         keywords: `Anuj Pareek Yoga, Therapeutic Hatha Yoga, Alignment Yoga Class, Online Hatha Yoga`,
       },
@@ -536,7 +532,7 @@ export const routes: Routes = [
     component: PankajPageComponent,
     data: {
       seo: {
-        title: `Ashtanga & Alignment-Based Practice with Pankaj Ji | Yoga Vidya School`,
+        title: 'Ashtanga & Alignment-Based Practice with Pankaj Ji',
         description: `Master Ashtanga Yoga Vinyasa and posture alignment with senior master Pankaj Ji at Yoga Vidya School in Rishikesh. Online & in-person classes.`,
         keywords: `Pankaj Ji Yoga, Ashtanga Yoga Rishikesh, Asana Alignment, Ashtanga Vinyasa Teacher`,
       },
@@ -573,7 +569,7 @@ export const routes: Routes = [
     component: PersonalGuidance,
     data: {
       seo: {
-        title: `One-on-One Personal Guidance & Mentorship | Yoga Vidya School`,
+        title: 'Personal Guidance',
         description: `Receive personalized 1-on-1 yoga guidance, pranayama mentorship, and spiritual consultation tailored specifically for your individual practice.`,
         keywords: `Personal Yoga Guidance, 1 on 1 Yoga Mentorship, Spiritual Consultation, Acharya Prashant Mentorship`,
       },

@@ -36,9 +36,11 @@ export class SeoService {
   updateSeo(config: SeoConfig): void {
     if (!config) return;
 
-    const fullTitle = config.title.includes(DEFAULT_SITE_NAME)
-      ? config.title
-      : `${config.title} | ${DEFAULT_SITE_NAME}`;
+    let pageTitle = config.title;
+    // Strip out existing brand names if any so we don't double up
+    pageTitle = pageTitle.replace(/ \| Yoga Vidya School/gi, '').replace(/Yoga Vidya School \| /gi, '').trim();
+    
+    const fullTitle = `Yoga Vidya School | ${pageTitle}`;
 
     const rawUrl = config.url || (this.document.location ? this.document.location.pathname : '');
     const pageUrl = rawUrl.startsWith('http')
@@ -90,7 +92,8 @@ export class SeoService {
 
   setNoIndex(title?: string): void {
     if (title) {
-      const fullTitle = title.includes(DEFAULT_SITE_NAME) ? title : `${title} | ${DEFAULT_SITE_NAME}`;
+      let pageTitle = title.replace(/ \| Yoga Vidya School/gi, '').replace(/Yoga Vidya School \| /gi, '').trim();
+      const fullTitle = `Yoga Vidya School | ${pageTitle}`;
       this.titleService.setTitle(fullTitle);
     }
     this.metaService.updateTag({ name: 'robots', content: 'noindex, nofollow' });

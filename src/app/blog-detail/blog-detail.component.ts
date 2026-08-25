@@ -6,6 +6,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { DomSanitizer } from '@angular/platform-browser';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { routeEnum } from '../enum/routes';
+import { SeoService } from '../services/seo.service';
 
 @Component({
   selector: 'app-blog-detail',
@@ -28,7 +29,8 @@ export class BlogDetailComponent {
     private _activatedRoute: ActivatedRoute,
     private spinner: NgxSpinnerService,
     private router: Router,
-    public sanitizer: DomSanitizer
+    public sanitizer: DomSanitizer,
+    private seoService: SeoService
   ) {}
 
   ngOnInit(): void {
@@ -63,7 +65,25 @@ export class BlogDetailComponent {
       const blogKeywords = blogData?.seokeywords || 'Yoga Blog, Yoga Article';
       const blogImage = blogData?.image ? `${this.imageUrl}/${blogData.image}` : undefined;
 
-      
+      this.seoService.updateSeo({
+        title: blogTitle,
+        description: blogDescription,
+        keywords: blogKeywords,
+        image: blogImage,
+        url: `/blog/${slug}`,
+        type: 'article',
+        schema: {
+          "@context": "https://schema.org",
+          "@type": "Article",
+          "headline": blogTitle,
+          "description": blogDescription,
+          "image": blogImage || "https://www.yogavidyaschool.com/assets/images/logo.png",
+          "author": {
+            "@type": "Organization",
+            "name": "Yoga Vidya School"
+          }
+        }
+      });
 
       this.spinner.hide();
     });
