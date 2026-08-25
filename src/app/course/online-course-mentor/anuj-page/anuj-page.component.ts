@@ -8,7 +8,6 @@ import { CartItem, CartService } from '../../../cart.service';
 import { s3Bucket } from '../../../enum/s3Bucket';
 import { routeEnum } from '../../../enum/routes';
 
-import { SeoService } from '../../../services/seo.service';
 
 @Component({
   selector: 'app-anuj-page',
@@ -26,8 +25,7 @@ export class AnujPageComponent implements OnInit {
   about: string = '';
   constructor(
     private route: ActivatedRoute,
-    private cartService: CartService,
-    private seoService: SeoService
+    private cartService: CartService
   ) {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
@@ -45,12 +43,7 @@ export class AnujPageComponent implements OnInit {
       this.heroImage = s3Bucket.anujHero2;
       this.about = `These classes are designed for practitioners who want to move beyond the basics...`;
     }
-    this.seoService.updateSeo({
-      title: `${this.title} | Yoga Vidya School`,
-      description: `Join Online Hatha & Alignment Yoga classes with Anuj Pareek at Yoga Vidya School. Improve mobility, posture, alignment, and flexibility.`,
-      keywords: 'Anuj Pareek Yoga, Therapeutic Hatha Yoga, Alignment Yoga Class, Online Hatha Yoga',
-      url: `/anuj-online-class/${this.slugId || 2}`
-    });
+    
   }
   getTeachersData(slug: string) {
     this.cartService.getTeachersData(slug).subscribe({

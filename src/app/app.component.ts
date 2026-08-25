@@ -7,7 +7,8 @@ import { ModalModule } from './modal/modal.module';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CourseModalComponent } from './modal/course-modal/course-modal.component';
 import { isPlatformBrowser } from '@angular/common';
-import { filter } from 'rxjs';
+import { filter, map, mergeMap } from 'rxjs';
+import { SeoService } from './services/seo.service';
 // import { WebinarModalComponent } from './modal/webinar-modal/webinar-modal.component';
 
 @Component({
@@ -21,9 +22,25 @@ import { filter } from 'rxjs';
 
 export class AppComponent implements OnInit {
 
-  constructor(private modalService: NgbModal, @Inject(PLATFORM_ID) private platformId: Object, private router: Router) {}
+  constructor(private modalService: NgbModal, @Inject(PLATFORM_ID) private platformId: Object, private router: Router, private activatedRoute: ActivatedRoute, private seoService: SeoService) {}
 
   ngOnInit(): void {
+    this.router.events.pipe(
+      filter((event): event is NavigationEnd => event instanceof NavigationEnd),
+      map(() => {
+        let route = this.activatedRoute;
+        while (route.firstChild) {
+          route = route.firstChild;
+        }
+        return route;
+      }),
+      mergeMap((route) => route.data)
+    ).subscribe((data) => {
+      if (data['seo']) {
+        this.seoService.updateSeo(data['seo']);
+      }
+    });
+
     if (isPlatformBrowser(this.platformId)) {
       this.router.events.pipe(
       filter((event): event is NavigationEnd => event instanceof NavigationEnd)

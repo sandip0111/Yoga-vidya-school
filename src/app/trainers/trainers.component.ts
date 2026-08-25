@@ -10,7 +10,6 @@ import { s3Bucket } from '../enum/s3Bucket';
 import { YogateacherComponent } from '../yogateacher/yogateacher.component';
 import { environment } from '../../environments/environment';
 
-import { SeoService } from '../services/seo.service';
 
 @Component({
   selector: 'app-trainers',
@@ -39,19 +38,13 @@ export class TrainersComponent {
     private router: Router,
     @Inject(DOCUMENT) private _document: Document,
     private _renderer2: Renderer2,
-    public sanitizer: DomSanitizer,
-    private seoService: SeoService
+    public sanitizer: DomSanitizer
   ) {}
 
   ngOnInit(): void {
     this.spinner.show();
     this.getAllMentors();
-    this.seoService.updateSeo({
-      title: 'Our Expert Yoga Teachers & Mentors | Yoga Vidya School',
-      description: 'Meet our team of experienced traditional yoga masters in Rishikesh & Bali. Experts in Ashtanga, Hatha, Pranayama, Yoga Philosophy, Alignment, Adjustment & Anatomy.',
-      keywords: 'Yoga Mentors Rishikesh, Yoga Teachers India, Acharya Prashant Jakhmola, Yoga Masters Rishikesh, Traditional Yoga Gurus',
-      url: '/mentors'
-    });
+    
   }
 
   getAllMentors() {

@@ -14,7 +14,6 @@ import { routeEnum } from '../enum/routes';
 import { BannerComponent } from '../certified/banner/banner.component';
 import { s3Bucket } from '../enum/s3Bucket';
 import { DomSanitizer } from '@angular/platform-browser';
-import { SeoService } from '../services/seo.service';
 import { SafePipe } from '../safe.pipe';
 
 @Component({
@@ -57,8 +56,7 @@ export class WebinarRegistrationFormComponent implements OnInit {
     private webapiService: WebapiService,
     private toastr: ToastrService,
     private spinner: NgxSpinnerService,
-    private sanitizer: DomSanitizer,
-    private seoService: SeoService
+    private sanitizer: DomSanitizer
   ) {
     this.registrationForm = this.fb.group({
       name: ['', Validators.required],
@@ -72,12 +70,7 @@ export class WebinarRegistrationFormComponent implements OnInit {
     this.registrationForm.patchValue({
       webinar: this.selectedOption.value,
     });
-    this.seoService.updateSeo({
-      title: 'Free Live Online Yoga Webinar | Yoga Vidya School',
-      description: 'Register for free online live webinars on Swara Yoga, Pranayama, and Yogic Philosophy guided by Acharya Prashant Jakhmola.',
-      keywords: 'Free Yoga Webinar, Swara Yoga Workshop, Live Breathwork Session, Yoga Vidya School Webinar',
-      url: `/${routeEnum.freeWebiner}`
-    });
+    
     this.bannerSubtitle = this.sanitizer
       .bypassSecurityTrustHtml(`<b style="color: #f47019;">“From Sadhana to Seva”</b><br /> 
 	    A Free Live Webinar for Dedicated Yoga Practitioners`);

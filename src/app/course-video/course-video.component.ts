@@ -48,7 +48,9 @@ export class CourseVideoComponent {
   isVideoLoading: boolean = false;
 
   onVideoLoadStart() {
-    this.isVideoLoading = true;
+    // We don't set isVideoLoading = true here because on mobile devices,
+    // the video might not load metadata until the user interacts with it,
+    // causing the loader to show indefinitely and confusing the user.
   }
 
   onVideoWaiting() {
@@ -113,6 +115,7 @@ export class CourseVideoComponent {
     const video = document.getElementById(id) as HTMLVideoElement;
     if (!video || !isShow) return;
     if (video.src.trim() !== '' && video.src !== null) {
+      this.isVideoLoading = false;
       return;
     }
     if (isM3U8) {
@@ -126,6 +129,9 @@ export class CourseVideoComponent {
     } else {
       video.src = videoSrc;
     }
+    
+    // Once source is attached, hide custom loader so native player controls (like play button on mobile) are visible.
+    this.isVideoLoading = false;
   }
 
   getCourseBySlug(slug: any) {

@@ -89,6 +89,7 @@
                   controls
                   playsinline
                   (loadstart)="onVideoLoadStart()"
+                  (loadedmetadata)="onVideoCanPlay()"
                   (waiting)="onVideoWaiting()"
                   (canplay)="onVideoCanPlay()"
                   (playing)="onVideoPlaying()"
@@ -104,6 +105,7 @@
                   controls
                   playsinline
                   (loadstart)="onVideoLoadStart()"
+                  (loadedmetadata)="onVideoCanPlay()"
                   (waiting)="onVideoWaiting()"
                   (canplay)="onVideoCanPlay()"
                   (playing)="onVideoPlaying()"

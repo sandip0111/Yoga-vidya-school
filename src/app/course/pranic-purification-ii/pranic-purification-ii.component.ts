@@ -7,7 +7,6 @@ import { WebapiService } from '../../webapi.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { SeoService } from '../../services/seo.service';
 
 @Component({
   selector: 'app-pranic-purification-ii',
@@ -24,19 +23,13 @@ export class PranicPurificationIiComponent {
     private webapiService: WebapiService,
     private spinner: NgxSpinnerService,
     private activatedRoute: ActivatedRoute,
-    private router: Router,
-    private seoService: SeoService
+    private router: Router
   ) {
     this.spinner.show();
     this.slug = this.activatedRoute.snapshot.routeConfig?.path ?? '';
   }
   ngOnInit(): void {
-    this.seoService.updateSeo({
-      title: 'Pranic Purification Level 2 | Advanced Breathwork Course | Yoga Vidya School',
-      description: 'Advanced Pranic Purification Level 2 course to deepen your pranayama practice, bandhas, and subtle energy purification under expert guidance.',
-      keywords: 'Pranic Purification Level 2, Advanced Pranayama Course, Advanced Breathwork, Bandhas, Energy Purification',
-      url: `/${this.slug}`
-    });
+    
     this.getCourseBySlug(this.slug);
   }
   getCourseBySlug(slug: string) {

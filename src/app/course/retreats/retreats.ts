@@ -5,7 +5,6 @@ import { IncludesComponent } from '../../certified/includes/includes.component';
 import { PricingComponent } from '../rishikesh/pricing/pricing.component';
 import { ActivatedRoute } from '@angular/router';
 
-import { SeoService } from '../../services/seo.service';
 
 @Component({
   selector: 'app-retreats',
@@ -18,18 +17,12 @@ export class Retreats {
   s3Bucket = s3Bucket;
   slug: string = '';
   constructor(
-    private _activatedRoute: ActivatedRoute,
-    private seoService: SeoService
+    private _activatedRoute: ActivatedRoute
   ) {
     this.slug = this._activatedRoute.snapshot.routeConfig?.path || '';
   }
 
   ngOnInit(): void {
-    this.seoService.updateSeo({
-      title: 'Yoga Retreat in Mysore, India | Yoga Vidya School',
-      description: 'Rejuvenate your body, mind, and spirit with authentic Yoga & Wellness Retreats in Mysore, India guided by traditional masters.',
-      keywords: 'Yoga Retreat Mysore, Mysore Yoga Retreat India, Meditation Retreat India, Yoga Vidya School Retreat',
-      url: `/${this.slug}`
-    });
+    
   }
 }

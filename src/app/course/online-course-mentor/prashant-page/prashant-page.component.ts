@@ -10,7 +10,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { PixelTrackingService } from '../../../services/pixel-tracking.service';
 import { WebapiService } from '../../../webapi.service';
 import { routeEnum } from '../../../enum/routes';
-import { SeoService } from '../../../services/seo.service';
 
 @Component({
   selector: 'app-prashant-page',
@@ -27,8 +26,7 @@ export class PrashantPageComponent implements OnInit {
     private cartService: CartService,
     private route: ActivatedRoute,
     private pixelTracking: PixelTrackingService,
-    private webapiService: WebapiService,
-    private seoService: SeoService
+    private webapiService: WebapiService
   ) {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
@@ -36,12 +34,7 @@ export class PrashantPageComponent implements OnInit {
     }
   }
   ngOnInit(): void {
-    this.seoService.updateSeo({
-      title: 'Online Sadhana with Acharya Prashant Jakhmola | Yoga Vidya School',
-      description: 'Join daily Online Yoga Sadhana & Pranayama classes with founder Acharya Prashant Jakhmola. Experience authentic yogic practice, breathwork, and meditation from anywhere in the world.',
-      keywords: 'Online Sadhana, Prashant Jakhmola Yoga, Online Pranayama Classes, Daily Yoga Practice Online',
-      url: `/online-sadhna-prashant/${this.slugId || 1}`
-    });
+    
     this.getTeachersData(routeEnum.online);
     this.ogMetaTag();
   }

@@ -73,18 +73,14 @@ export class BlogDetailComponent {
         url: `/blog/${slug}`,
         type: 'article',
         schema: {
-          '@context': 'https://schema.org',
-          '@type': 'Article',
-          'headline': blogTitle,
-          'description': blogDescription,
-          'image': blogImage,
-          'publisher': {
-            '@type': 'Organization',
-            'name': 'Yoga Vidya School',
-            'logo': {
-              '@type': 'ImageObject',
-              'url': 'https://d29rwrqvux6m5p.cloudfront.net/images/Yoga-Vidya-Logo.svg'
-            }
+          "@context": "https://schema.org",
+          "@type": "Article",
+          "headline": blogTitle,
+          "description": blogDescription,
+          "image": blogImage || "https://www.yogavidyaschool.com/assets/images/logo.png",
+          "author": {
+            "@type": "Organization",
+            "name": "Yoga Vidya School"
           }
         }
       });

@@ -14,7 +14,6 @@ import { routeEnum } from '../enum/routes';
 import { s3Bucket } from '../enum/s3Bucket';
 import { PixelTrackingService } from '../services/pixel-tracking.service';
 
-import { SeoService } from '../services/seo.service';
 
 @Component({
   selector: 'app-course',
@@ -119,8 +118,7 @@ export class CourseComponent {
     protected sanitizer: DomSanitizer,
     private _renderer2: Renderer2,
     private pixelTracking: PixelTrackingService,
-    @Inject(DOCUMENT) private _document: Document,
-    private seoService: SeoService
+    @Inject(DOCUMENT) private _document: Document
   ) {
     this.slug = this._activatedRoute.snapshot.routeConfig?.path;
     if (this.slug) {
@@ -142,12 +140,7 @@ export class CourseComponent {
           this.introLink =
             'https://www.youtube.com/embed/' + res.data[0].courseintrovideoId;
 
-          this.seoService.updateSeo({
-            title: res.data[0].metaTitle || `${res.data[0].coursetitle} | Yoga Vidya School`,
-            description: res.data[0].metaDescription || `Join ${res.data[0].coursetitle} at Yoga Vidya School. Authentic yoga training online & offline.`,
-            keywords: res.data[0].metaKeyword || 'Yoga Teacher Training, Online Yoga Course',
-            url: `/${slug}`
-          });
+          
         }
       },
       error: () => {},

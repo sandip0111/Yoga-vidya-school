@@ -9,7 +9,6 @@ import { ReviewListComponentComponent } from '../../../text-review-list/review-l
 import { faq, FaqComponent } from '../../../includes/home/faq/faq.component';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { WebapiService } from '../../../webapi.service';
-import { SeoService } from '../../../services/seo.service';
 
 @Component({
   selector: 'app-prana-arambh',
@@ -33,17 +32,11 @@ export class PranaArambhComponent {
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private spinner: NgxSpinnerService,
-    private webapiService: WebapiService,
-    private seoService: SeoService
+    private webapiService: WebapiService
   ) {
   }
   ngOnInit(): void {
-    this.seoService.updateSeo({
-      title: 'Prana Arambha - Online Pranayama Beginners Course | Yoga Vidya School',
-      description: 'Begin your pranayama journey with Prana Arambha. Master foundational breath control techniques, daily practice routines, and vital force expansion.',
-      keywords: 'Prana Arambha, Pranayama Beginners Course, Online Pranayama Training, Breathwork Foundations, Acharya Prashant Jakhmola',
-      url: `/${routeEnum.pranOnlinePranaArambh}`
-    });
+    
     this.getCourseBySlug(routeEnum.pranOnlinePranaArambh);
   }
   getCourseBySlug(slug: string) {

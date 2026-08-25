@@ -33,7 +33,7 @@ export class AddToCartComponent implements AfterViewInit, OnDestroy {
   constructor(private renderer: Renderer2, private cartService: CartService, private router: Router, private seoService: SeoService) {}
 
   ngOnInit(): void {
-    this.seoService.setNoIndex('Shopping Cart');
+    this.seoService.setNoIndex('Cart');
     this.courses = this.cartService.getItems();    
     this.options = [
       { label: 'INR', value: 'INR' },
@@ -120,3 +120,4 @@ export class AddToCartComponent implements AfterViewInit, OnDestroy {
     this.router.navigate(['/proceed-payment']);
   }
 }
+

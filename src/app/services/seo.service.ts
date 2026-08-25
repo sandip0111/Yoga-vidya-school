@@ -4,7 +4,7 @@ import { DOCUMENT } from '@angular/common';
 
 export interface SeoConfig {
   title: string;
-  description: string;
+  description?: string;
   keywords?: string;
   image?: string;
   url?: string;
@@ -36,9 +36,11 @@ export class SeoService {
   updateSeo(config: SeoConfig): void {
     if (!config) return;
 
-    const fullTitle = config.title.includes(DEFAULT_SITE_NAME)
-      ? config.title
-      : `${config.title} | ${DEFAULT_SITE_NAME}`;
+    let pageTitle = config.title;
+    // Strip out existing brand names if any so we don't double up
+    pageTitle = pageTitle.replace(/ \| Yoga Vidya School/gi, '').replace(/Yoga Vidya School \| /gi, '').trim();
+    
+    const fullTitle = `Yoga Vidya School | ${pageTitle}`;
 
     const rawUrl = config.url || (this.document.location ? this.document.location.pathname : '');
     const pageUrl = rawUrl.startsWith('http')
@@ -52,15 +54,22 @@ export class SeoService {
     // 1. Page Title
     this.titleService.setTitle(fullTitle);
 
-    // 2. Standard Meta Tags
-    this.metaService.updateTag({ name: 'description', content: config.description });
-    this.metaService.updateTag({ name: 'keywords', content: config.keywords || '' });
+    if (config.description) {
+      this.metaService.updateTag({ name: 'description', content: config.description });
+    } else {
+      this.metaService.removeTag("name='description'");
+    }
+    if (config.keywords) {
+      this.metaService.updateTag({ name: 'keywords', content: config.keywords });
+    } else {
+      this.metaService.removeTag("name='keywords'");
+    }
     this.metaService.updateTag({ name: 'robots', content: robots });
 
     // 3. OpenGraph Meta Tags
     this.metaService.updateTag({ property: 'og:site_name', content: DEFAULT_SITE_NAME });
     this.metaService.updateTag({ property: 'og:title', content: fullTitle });
-    this.metaService.updateTag({ property: 'og:description', content: config.description });
+    this.metaService.updateTag({ property: 'og:description', content: config.description || '' });
     this.metaService.updateTag({ property: 'og:image', content: imageUrl });
     this.metaService.updateTag({ property: 'og:url', content: pageUrl });
     this.metaService.updateTag({ property: 'og:type', content: ogType });
@@ -68,7 +77,7 @@ export class SeoService {
     // 4. Twitter Card Meta Tags
     this.metaService.updateTag({ name: 'twitter:card', content: 'summary_large_image' });
     this.metaService.updateTag({ name: 'twitter:title', content: fullTitle });
-    this.metaService.updateTag({ name: 'twitter:description', content: config.description });
+    this.metaService.updateTag({ name: 'twitter:description', content: config.description || '' });
     this.metaService.updateTag({ name: 'twitter:image', content: imageUrl });
     this.metaService.updateTag({ name: 'twitter:url', content: pageUrl });
 
@@ -83,7 +92,8 @@ export class SeoService {
 
   setNoIndex(title?: string): void {
     if (title) {
-      const fullTitle = title.includes(DEFAULT_SITE_NAME) ? title : `${title} | ${DEFAULT_SITE_NAME}`;
+      let pageTitle = title.replace(/ \| Yoga Vidya School/gi, '').replace(/Yoga Vidya School \| /gi, '').trim();
+      const fullTitle = `Yoga Vidya School | ${pageTitle}`;
       this.titleService.setTitle(fullTitle);
     }
     this.metaService.updateTag({ name: 'robots', content: 'noindex, nofollow' });
