@@ -3,9 +3,9 @@ export enum paymentkey {
   stripeKey = 'pk_test_51LTjKYSDnZBoIVm7pF6anOLQhi4oPrvRNYuOP0fF0wOptRzE1m0QqtvAOo1wi6VUVb5cMgThi8FGGeSUhZ10KRIW00zlCy2Ff0',
 }
 export enum stripePaymentKey {
-  basicInr = 'price_1TvfmgSEQq0H4GuEbfWezfuP', //prod
+  basicInr = 'price_1NI6oxSEQq0H4GuEx9fdhEd0', //prod
   // basicInr = 'price_1NI7hnSEQq0H4GuEWS5qIffa', // test
-  standardInr = 'price_1TvfmgSEQq0H4GuEbfWezfuP',
+  standardInr = 'price_1NI6oxSEQq0H4GuEx9fdhEd0',
   premiumInr = 'price_1NI6oxSEQq0H4GuEx9fdhEd0',
   basicUsd = 'price_1TpLyMSEQq0H4GuE00ArRzna',
   basicEur = 'price_1Qq8OGSEQq0H4GuExvBjijrv',
