@@ -9,6 +9,7 @@ import {
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { s3Bucket } from '../../../enum/s3Bucket';
+import { routeEnum } from '../../../enum/routes';
 
 @Component({
   selector: 'app-rishikesh-curriculum',
@@ -33,7 +34,7 @@ export class RishikeshCurriculumComponent implements OnInit {
     @Inject(PLATFORM_ID) private platformId: Object
   ) {
     this.slug = this.activatedRoute.snapshot.routeConfig?.path;
-    if (this.slug == 'pranic-purification') {
+    if (this.slug == routeEnum.pranicPurification) {
       this.isItPranicRoute = true;
       const date = new Date('2025-07-24');
       const day = date.getDate();
@@ -50,7 +51,7 @@ export class RishikeshCurriculumComponent implements OnInit {
   ngOnInit() {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (this.slug != 'pranic-purification') {
+    if (this.slug != routeEnum.pranicPurification) {
       if (changes['data']?.currentValue) {
         this.curriculum = changes['data']?.currentValue.curr;
         this.title = changes['data']?.currentValue.title;
@@ -68,7 +69,7 @@ export class RishikeshCurriculumComponent implements OnInit {
   }
 
   registerClick() {
-    if (this.slug != 'pranic-purification') {
+    if (this.slug != routeEnum.pranicPurification) {
       window.open('https://www.yogavidyaschool.com/book-now', '_blank');
     } else {
       this.router.navigate(['checkout', this.slug]);

@@ -183,7 +183,7 @@ export class CertifiedYogaComponent implements OnInit {
       this.slug == 'adjustment-and-alignment-level-2' ||
       this.slug == 'yoga-teacher-training-in-india' ||
       this.slug == 'drop-in-yoga-classes' ||
-      this.slug == 'pranic-purification' ||
+      this.slug == routeEnum.pranicPurification ||
       this.slug == '21-days-ashtanga-yoga-immersion' ||
       this.slug == 'yoga-for-weight-loss' ||
       this.slug == 'online-hip-opening-workshop'

@@ -174,7 +174,7 @@ export class BannerComponent implements OnInit {
     } else if (this.slug == 'yoga-retreat-in-mysore-india') {
       this.sliderImage =
         'https://my-s3-images-bucket.s3.amazonaws.com/img/image_1692698338795.jpg';
-    } else if (this.slug == 'pranic-purification') {
+    } else if (this.slug == routeEnum.pranicPurification) {
       this.sliderImage = `${environment.imageUrl}IMG_3011.jpeg`;
     } else if (
       this.slug == '200-hour-yoga-teacher-training-in-kerala-india' ||
@@ -220,7 +220,7 @@ export class BannerComponent implements OnInit {
   ngAfterViewInit() {
     if (this.bannerSection) {
       if (
-        this.slug !== 'pranic-purification' &&
+        this.slug !== routeEnum.pranicPurification &&
         this.slug != 'breath-detox-yoga'
       ) {
         if (this.bannerSection) {

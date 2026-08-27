@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
+import { routeEnum } from '../../../enum/routes';
 
 @Component({
   selector: 'app-gallery',
@@ -23,7 +24,7 @@ export class GalleryComponent implements OnInit {
   folowers: string= "https://my-s3-images-bucket.s3.amazonaws.com/img/flower-color.png";
   constructor(private activatedRoute: ActivatedRoute) {
     this.slug = this.activatedRoute.snapshot.routeConfig?.path;
-    if(this.slug == 'pranic-purification'){
+    if(this.slug == routeEnum.pranicPurification){
       this.isHidePranicPurificationRouteImageTab = true;
     }
   }
@@ -407,7 +408,7 @@ export class GalleryComponent implements OnInit {
       ]
     }
 
-    else if(this.slug == "pranic-purification"){
+    else if(this.slug == routeEnum.pranicPurification){
       this.displayImages = [
         {
           image:"https://my-s3-images-bucket.s3.amazonaws.com/images/pranic_954A0874.JPG"
@@ -578,7 +579,7 @@ export class GalleryComponent implements OnInit {
         },
       ]
     }
-    else if(this.slug == 'pranayama-therapy-course-online' || this.slug == 'adjustment-and-alignment' || this.slug == 'adjustment-and-alignment-level-2' || this.slug == 'yoga-teacher-training-in-india' || this.slug == 'drop-in-yoga-classes' || this.slug == 'pranic-purification'){
+    else if(this.slug == 'pranayama-therapy-course-online' || this.slug == 'adjustment-and-alignment' || this.slug == 'adjustment-and-alignment-level-2' || this.slug == 'yoga-teacher-training-in-india' || this.slug == 'drop-in-yoga-classes' || this.slug == routeEnum.pranicPurification){
       this.displayImages = [
         {
           image:"https://my-s3-images-bucket.s3.amazonaws.com/images/Gallery1_p2mk26.jpg"
@@ -879,7 +880,7 @@ export class GalleryComponent implements OnInit {
         },
       ]
     }
-    else if(this.slug == 'pranayama-therapy-course-online' || this.slug == 'adjustment-and-alignment' || this.slug == 'adjustment-and-alignment-level-2' || this.slug == 'yoga-teacher-training-in-india' || this.slug == 'drop-in-yoga-classes' || this.slug == 'pranic-purification'){
+    else if(this.slug == 'pranayama-therapy-course-online' || this.slug == 'adjustment-and-alignment' || this.slug == 'adjustment-and-alignment-level-2' || this.slug == 'yoga-teacher-training-in-india' || this.slug == 'drop-in-yoga-classes' || this.slug == routeEnum.pranicPurification){
       this.displayImages = [
         {
           image:"https://my-s3-images-bucket.s3.amazonaws.com/images/Gallery1_p2mk26.jpg"
@@ -1134,7 +1135,7 @@ export class GalleryComponent implements OnInit {
         }
       ]
     }
-    else if(this.slug == 'pranayama-therapy-course-online' || this.slug == 'adjustment-and-alignment' || this.slug == 'adjustment-and-alignment-level-2' || this.slug == 'yoga-teacher-training-in-india' || this.slug == 'drop-in-yoga-classes' || this.slug == 'pranic-purification' || this.slug == '21-days-ashtanga-yoga-immersion' || this.slug == 'yoga-for-weight-loss' || this.slug == 'yoga-retreat-in-bali' || this.slug == 'yoga-retreat-in-mysore-india'){
+    else if(this.slug == 'pranayama-therapy-course-online' || this.slug == 'adjustment-and-alignment' || this.slug == 'adjustment-and-alignment-level-2' || this.slug == 'yoga-teacher-training-in-india' || this.slug == 'drop-in-yoga-classes' || this.slug == routeEnum.pranicPurification || this.slug == '21-days-ashtanga-yoga-immersion' || this.slug == 'yoga-for-weight-loss' || this.slug == 'yoga-retreat-in-bali' || this.slug == 'yoga-retreat-in-mysore-india'){
       this.displayImages = [
         {
           image:"https://my-s3-images-bucket.s3.amazonaws.com/images/accomodation_pqonex.jpg"

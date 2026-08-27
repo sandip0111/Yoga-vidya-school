@@ -138,7 +138,7 @@ export class MentorsComponent implements OnInit {
           slug: 'acharya-prashant-jakhmola',
         },
       ];
-    } else if (this.slug == 'pranic-purification') {
+    } else if (this.slug == routeEnum.pranicPurification) {
       this.hideBtn = true;
       this.mentors = [
         {

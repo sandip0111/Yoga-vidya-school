@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { routeEnum } from '../../../enum/routes';
 
 @Component({
   selector: 'app-bottom-nav',
@@ -15,7 +16,7 @@ export class BottomNavComponent implements OnInit {
     { title: 'Prana Arambha', link: '/pranayama-course-online-pranarambha' },
     { title: 'Yoga Inversion', link: '/yoga-inversion-workshop-headstand' },
     { title: 'Yoga Retreats', link: '/yoga-retreat-in-rishikesh-india' },
-    { title: 'Pranayama Sadhana (21 days)', link: '/pranic-purification' },
+    { title: 'Pranayama Sadhana (21 days)', link: `/${routeEnum.pranicPurification}` },
     { title: '21 Days Ashtanga', link: '/21-days-ashtanga-yoga-immersion' }
   ];
   constructor() { }
