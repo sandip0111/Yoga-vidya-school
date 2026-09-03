@@ -105,7 +105,7 @@ export const s3Bucket = {
   prasantVideo: `${environment.imageUrl}IMG_3010.MOV`,
   taniyaVideo: 'https://d29rwrqvux6m5p.cloudfront.net/images/Reel+Taniya.MP4',
 
-  freeWebinnarHero: `${environment.imageUrl}DSC07653.JPG`,
+  freeWebinnarHero: `${environment.imageUrl}DSC01017.jpg`,
   freeWebinnarDetails: `${environment.imageUrl}DSC07685.JPG`,
   freeWebinnarDetails2: `${environment.imageUrl}DSC07696.JPG`,
   freeWebinerBottom: `${environment.imageUrl}DSC07708.JPG`,

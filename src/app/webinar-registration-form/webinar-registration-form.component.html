@@ -1,8 +1,26 @@
-<app-banner
-  [imgSlug]="imgSlug"
-  [bannerTitle]="bannerTitle"
-  [bannerSubtitle]="bannerSubtitle"
-></app-banner>
+<section class="about-section">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="slider position-relative">
+        <div class="inner image">
+          <img
+            [src]="imgSlug"
+            class="img-fluid banner_image"
+            alt="Banner Image"
+          />
+          <div class="banner-text-overlay">
+            One Week of Free Learning - <i>“Into the Roots of Yoga”</i>
+          </div>
+          <div
+            class="banner-subtitle-overlay"
+            [innerHTML]="bannerSubtitle"
+          ></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="webinar-details">
   <div class="container1">
     <div class="webinar-summary">
@@ -135,8 +153,10 @@
 
 <div class="registration-container">
   <div class="card registration-card" id="register-form">
-    <!-- <div class="p-4 pb-0">
-      <p class="register-head mb-4">Reserve Your Free Spot:</p>
+    <div class="p-4 pb-0">
+      <p class="register-head">One week. Five sessions. Free access.</p>
+      <p class="register-head mb-4">Recordings will also be available.</p>
+      <p class="form-desc text-center">JOIN NOW: We are waiting for you!</p>
       <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
         <div class="mb-3 text-start">
           <label for="name" class="form-label">Name</label>
@@ -146,10 +166,13 @@
             formControlName="name"
             class="form-control"
             [ngClass]="{
-              'is-invalid': submitted && registrationForm.get('name')?.invalid
+              'is-invalid': submitted && registrationForm.get('name')?.invalid,
             }"
           />
-          <div *ngIf="submitted && registrationForm.get('name')?.invalid" class="text-danger">
+          <div
+            *ngIf="submitted && registrationForm.get('name')?.invalid"
+            class="text-danger"
+          >
             Name is required.
           </div>
         </div>
@@ -162,22 +185,22 @@
             formControlName="email"
             class="form-control"
             [ngClass]="{
-              'is-invalid': submitted && registrationForm.get('email')?.invalid
+              'is-invalid': submitted && registrationForm.get('email')?.invalid,
             }"
           />
-          <div *ngIf="submitted && registrationForm.get('email')?.invalid" class="text-danger">
+          <div
+            *ngIf="submitted && registrationForm.get('email')?.invalid"
+            class="text-danger"
+          >
             Please enter a valid email.
           </div>
         </div>
-        <button type="submit" class="btn btn-primary w-100 py-2.5">Join Now</button>
-        <p class="form-desc text-center">
-          Join us live and discover how sincere Sadhana naturally blossoms into
-          Seva, and how your own practice can become a source of transformation
-          not only for yourself, but for many others
-        </p>
+        <button type="submit" class="btn btn-primary w-100 py-2.5 mb-4">
+          Join Now
+        </button>
       </form>
-    </div> -->
-    <div class="p-4 pb-0">
+    </div>
+    <!-- <div class="p-4 pb-0">
       <p class="register-head mb-4">
         Our last webinar was on August 15th. Check the recordings here:
       </p>
@@ -191,7 +214,7 @@
           allowfullscreen>
         </iframe>
       </div>
-    </div>
+    </div> -->
     <!-- <img
       [src]="s3Bucket.freeWebinerBottom"
       alt="Breath of Yogis webinar"
