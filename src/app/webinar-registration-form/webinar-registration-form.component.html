@@ -1,20 +1,23 @@
 <section class="about-section">
-  <div class="row">
-    <div class="col-md-12">
+  <div class="row m-0">
+    <div class="col-12 p-0">
       <div class="slider position-relative">
-        <div class="inner image">
+        <div class="inner image banner-hero-container">
           <img
             [src]="imgSlug"
             class="img-fluid banner_image"
-            alt="Banner Image"
+            alt="One Week of Free Online Learning - Into the Roots of Yoga"
           />
-          <div class="banner-text-overlay">
-            One Week of Free Online Learning - <i>“Into the Roots of Yoga”</i>
+          <div class="banner-scrim-overlay" aria-hidden="true"></div>
+          <div class="banner-content-box">
+            <h1 class="banner-text-overlay">
+              One Week of Free Online Learning - <i>“Into the Roots of Yoga”</i>
+            </h1>
+            <div class="banner-subtitle-overlay">
+              <i class="fa-regular fa-calendar-check banner-calendar-icon" aria-hidden="true"></i>
+              <span [innerHTML]="bannerSubtitle"></span>
+            </div>
           </div>
-          <div
-            class="banner-subtitle-overlay"
-            [innerHTML]="bannerSubtitle"
-          ></div>
         </div>
       </div>
     </div>
