@@ -2,28 +2,9 @@
   <div class="card d-inline-block w-80" *ngIf="paidFlag == 'true'">
     <div class="card-body">
       <span class="fas fa-check-circle fa-5x text-success mb-4"></span>
-      <h4 class="card-title">Success</h4>
-      <p class="card-text">Order ID: {{ ordId }}</p>
-      <p class="card-text" *ngIf="amount != 0">
-        Amount: {{ amount | currency: cur }}
-      </p>
-      <p class="card-text">Thank you for your payment!</p>
-      <p *ngIf="sessionId" class="card-text">
-        Check your email for details for details..
-      </p>
-      <p
-        *ngIf="
-          onlineLiveClassesSessionId ||
-          pranaArambhaRazorpayPaymentId ||
-          onlineClassRazorpayPaymentId ||
-          is200TTC ||
-          isRetreat ||
-          isPersonalGuidance
-        "
-        class="card-text"
-      >
-        Check your email for details.
-      </p>
+      <p class="card-text">Thank you for your purchase! 🙏</p>
+      <p class="card-text">We’ve sent you an email with all the information you need.</p>
+      <p class="card-text">Please check your inbox and, just in case, your Promotions and Spam/Junk folders as well.</p>
       <p>
         <a
           *ngIf="sessionId || pranaArambhaRazorpayPaymentId"
