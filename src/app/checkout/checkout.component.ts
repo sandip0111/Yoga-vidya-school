@@ -125,8 +125,8 @@ export class CheckoutComponent {
   isDiscountPlan: boolean = false;
   // Hardcoded prices for ?plan=discount on 200TTC slug
   private readonly discountPlanPrices: Record<string, number> = {
-    INR: 79000,
-    USD: 850,
+    INR: 82000,
+    USD: 899,
   };
   private readonly PAYPAL_CURRENCY = PaymentType.usdCur as const;
   get is30PercentBooking(): boolean {
@@ -974,7 +974,7 @@ export class CheckoutComponent {
       }
       if (this.checkData.package) {
         const baseAmount =
-          this.discountPlanPrices[this.checkData.currency] ?? 850;
+          this.discountPlanPrices[this.checkData.currency] ?? 899;
         const isBooking30 = +this.checkData.package === 3;
         this.amount = isBooking30 ? Math.round(baseAmount * 0.3) : baseAmount;
       }
