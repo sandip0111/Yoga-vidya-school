@@ -50,13 +50,13 @@ export class WeOfferComponent implements OnInit {
           seeMore: true,
         },
         {
-          titleBox: 'Pre-recorded Pranayama Courses',
+          titleBox: 'Pranic Path',
           paraBox:
-            'Exclusively designed by Prashant J Yoga, Breath Detox, Prana Arambha, Swara Sadhana',
+            'A progressive learning journey that takes students from the foundations of breath awareness to our most advanced Pranayama Certification',
           dateTimeBox: 'Starts Anytime',
-          imgBox: s3Bucket.offer4,
+          imgBox: s3Bucket.bDtox4,
           durationBox: '',
-          url: `/${routeEnum.preRecordPranayamaCourse}`,
+          url: `/${routeEnum.pranicPurification}`,
           seeMore: true,
         },
       ],

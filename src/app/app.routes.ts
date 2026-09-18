@@ -281,17 +281,17 @@ export const routes: Routes = [
     },
   },
 
-  {
-    path: routeEnum.pranicPurificationII,
-    component: PranicPurificationIiComponent,
-    data: {
-      seo: {
-        title: `Pranic Purification Level 2 | Advanced Breathwork Course | Yoga Vidya School`,
-        description: `Advanced Pranic Purification Level 2 course to deepen your pranayama practice, bandhas, and subtle energy purification under expert guidance.`,
-        keywords: `Pranic Purification Level 2, Advanced Pranayama Course, Advanced Breathwork, Bandhas, Energy Purification`,
-      },
-    },
-  },
+  // {
+  //   path: routeEnum.pranicPurificationII,
+  //   component: PranicPurificationIiComponent,
+  //   data: {
+  //     seo: {
+  //       title: `Pranic Purification Level 2 | Advanced Breathwork Course | Yoga Vidya School`,
+  //       description: `Advanced Pranic Purification Level 2 course to deepen your pranayama practice, bandhas, and subtle energy purification under expert guidance.`,
+  //       keywords: `Pranic Purification Level 2, Advanced Pranayama Course, Advanced Breathwork, Bandhas, Energy Purification`,
+  //     },
+  //   },
+  // },
 
   {
     path: routeEnum.online,
@@ -538,13 +538,13 @@ export const routes: Routes = [
       },
     },
   },
-  {
-    path: routeEnum.preRecordPranayamaCourse,
-    loadComponent: () =>
-      import('./course/pre-recorded-pranayama-courses/pre-recorded-pranayama-courses.component').then(
-        (m) => m.PreRecordedPranayamaCoursesComponent,
-      ),
-  },
+  // {
+  //   path: routeEnum.preRecordPranayamaCourse,
+  //   loadComponent: () =>
+  //     import('./course/pre-recorded-pranayama-courses/pre-recorded-pranayama-courses.component').then(
+  //       (m) => m.PreRecordedPranayamaCoursesComponent,
+  //     ),
+  // },
   {
     path: routeEnum.sa,
     loadComponent: () =>
