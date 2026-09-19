@@ -281,17 +281,29 @@ export const routes: Routes = [
     },
   },
 
-  // {
-  //   path: routeEnum.pranicPurificationII,
-  //   component: PranicPurificationIiComponent,
-  //   data: {
-  //     seo: {
-  //       title: `Pranic Purification Level 2 | Advanced Breathwork Course | Yoga Vidya School`,
-  //       description: `Advanced Pranic Purification Level 2 course to deepen your pranayama practice, bandhas, and subtle energy purification under expert guidance.`,
-  //       keywords: `Pranic Purification Level 2, Advanced Pranayama Course, Advanced Breathwork, Bandhas, Energy Purification`,
-  //     },
-  //   },
-  // },
+  {
+    path: routeEnum.pranicPurificationI,
+    component: PranicPurification,
+    data: {
+      seo: {
+        title: 'Pranic Purification I | Breathwork & Pranayama Course | Yoga Vidya School',
+        description: `Cleanse and balance your prana (vital energy body) with traditional pranayama, Shatkarma techniques, and breathwork guided by Acharya Prashant Jakhmola.`,
+        keywords: `Pranic Purification, Pranayama Course, Breathwork Online, Energy Body Cleansing, Shatkarma Practice`,
+      },
+    },
+  },
+
+  {
+    path: routeEnum.pranicPurificationII,
+    component: PranicPurificationIiComponent,
+    data: {
+      seo: {
+        title: `Pranic Purification Level 2 | Advanced Breathwork Course | Yoga Vidya School`,
+        description: `Advanced Pranic Purification Level 2 course to deepen your pranayama practice, bandhas, and subtle energy purification under expert guidance.`,
+        keywords: `Pranic Purification Level 2, Advanced Pranayama Course, Advanced Breathwork, Bandhas, Energy Purification`,
+      },
+    },
+  },
 
   {
     path: routeEnum.online,

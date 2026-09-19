@@ -359,7 +359,8 @@
                 class="mb-4 form-group-custom"
                 *ngIf="
                   slug === routeEnum.pranicPurification ||
-                  (!oldStudent && slug !== routeEnum.pranicPurification)
+                  slug === routeEnum.pranicPurificationI ||
+                  (!oldStudent && slug !== routeEnum.pranicPurification && slug !== routeEnum.pranicPurificationI)
                 "
               >
                 <label for="name" class="custom-form-label"
@@ -822,6 +823,7 @@
                 class="mb-4 form-group-custom"
                 *ngIf="
                   slug === routeEnum.pranicPurification ||
+                  slug === routeEnum.pranicPurificationI ||
                   slug == routeEnum.sa ||
                   slug == routeEnum.pranicPurificationII
                 "

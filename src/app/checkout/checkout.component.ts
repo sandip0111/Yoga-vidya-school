@@ -214,7 +214,7 @@ export class CheckoutComponent {
       setTimeout(() => {
         this.invokeStripe();
         this.loadRazorpayScript();
-        if (this.slug === routeEnum.pranicPurification) {
+        if (this.slug === routeEnum.pranicPurification || this.slug === routeEnum.pranicPurificationI) {
           const storedDateStr = sessionStorage.getItem('pranicDate');
           if (storedDateStr) {
             this.pranicDate = new Date(storedDateStr);
@@ -1114,6 +1114,7 @@ export class CheckoutComponent {
     );
     if (
       this.slug !== routeEnum.pranicPurification &&
+      this.slug !== routeEnum.pranicPurificationI &&
       this.slug !== routeEnum.pranicPurificationII
     ) {
       let isErrMsg: boolean = false;
@@ -1205,7 +1206,10 @@ export class CheckoutComponent {
       if (!isErrMsg) {
         if (this.slug == routeEnum.pranicPurificationII) {
           this.pranicPurificationIICheckOut(data, isRazorPay);
-        } else if (this.slug == routeEnum.pranicPurification) {
+        } else if (
+          this.slug == routeEnum.pranicPurification ||
+          this.slug == routeEnum.pranicPurificationI
+        ) {
           this.pranicPurificationCheckOut(data, isRazorPay);
         }
       }
