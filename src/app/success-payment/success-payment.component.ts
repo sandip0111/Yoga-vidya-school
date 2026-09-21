@@ -210,8 +210,7 @@ export class SuccessPaymentComponent {
     this.pranaArambhaPaypalOrderId =
       localStorage.getItem(localstorageKey.pranaArambhaPaypalOrderId) ||
       (hasPranaArambhaPaypal ||
-      this.router.url.includes('pranayama-course-online-pranarambha') ||
-      this.router.url.includes('prana')
+      this.router.url.includes('pranayama-course-online-pranarambha')
         ? tokenFromUrl
         : '') ||
       '';
@@ -225,19 +224,11 @@ export class SuccessPaymentComponent {
       '';
     this.pranicPaypalOrderId =
       localStorage.getItem(localstorageKey.pranicPaypalOrderId) ||
-      (hasPranicPaypal ||
-      this.router.url.includes('pranic-purification-i') ||
-      this.router.url.includes('pranic-path') ||
-      this.router.url.includes('pranic')
-        ? tokenFromUrl
-        : '') ||
+      (hasPranicPaypal ? tokenFromUrl : '') ||
       '';
     this.pranicIIPaypalOrderId =
       localStorage.getItem(localstorageKey.pranicIIPaypalOrderId) ||
-      (hasPranicIIPaypal ||
-      this.router.url.includes('pranic-purification-ii')
-        ? tokenFromUrl
-        : '') ||
+      (hasPranicIIPaypal ? tokenFromUrl : '') ||
       '';
     this.retreatPaypalOrderId =
       localStorage.getItem(localstorageKey.retreatPaypalOrderId) ||
