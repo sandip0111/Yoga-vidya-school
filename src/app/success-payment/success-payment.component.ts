@@ -5,6 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { CommonModule } from '@angular/common';
 import { localstorageKey } from '../enum/localstorage';
+import { routeEnum } from '../enum/routes';
 import {
   paypalPaymentResultModel,
   razorPaymentResultModel,
@@ -63,6 +64,8 @@ export class SuccessPaymentComponent {
   pgStripeSessionId: string = '';
   pgPaypalOrderId: string = '';
   pranaArambhaPaypalOrderId: string = '';
+  pranicPaypalOrderId: string = '';
+  pranicIIPaypalOrderId: string = '';
   isPersonalGuidance: boolean = false;
   constructor(
     private webapiService: WebapiService,
@@ -137,33 +140,60 @@ export class SuccessPaymentComponent {
     this.pgStripeSessionId =
       localStorage.getItem(localstorageKey.pgStripeSessionId) ?? '';
 
+    const activePaypalSlug =
+      sessionStorage.getItem('active_paypal_slug') ||
+      localStorage.getItem('active_paypal_slug') ||
+      '';
+
     const has200TTCPaypal =
+      activePaypalSlug === routeEnum['200TTC'] ||
       !!localStorage.getItem(localstorageKey['200TTCPaypalDBId']) ||
       !!localStorage.getItem(localstorageKey['200TTCPaypalOrderId']);
     const hasPgPaypal =
+      activePaypalSlug === routeEnum.pg ||
       !!localStorage.getItem(localstorageKey.pgPaypalDBId) ||
       !!localStorage.getItem(localstorageKey.pgPaypalOrderId);
     const hasRetreatPaypal =
+      activePaypalSlug === routeEnum.retreats ||
       !!localStorage.getItem(localstorageKey.retreatPaypalDBId) ||
       !!localStorage.getItem(localstorageKey.retreatPaypalOrderId);
     const hasRishikeshPaypal =
+      activePaypalSlug === routeEnum.rishikesh100 ||
+      activePaypalSlug === routeEnum.rishkesh200 ||
+      activePaypalSlug === routeEnum.rishikesh300 ||
       !!localStorage.getItem(localstorageKey.rishikeshPaypalDBId) ||
       !!localStorage.getItem(localstorageKey.rishikeshPaypalOrderId);
     const hasBaliPaypal =
+      activePaypalSlug === routeEnum.bali100 ||
+      activePaypalSlug === routeEnum.bali200 ||
+      activePaypalSlug === routeEnum.bali300 ||
       !!localStorage.getItem(localstorageKey.baliPaypalDBId) ||
       !!localStorage.getItem(localstorageKey.baliPaypalOrderId);
     const hasLiveClassesPaypal =
+      activePaypalSlug === routeEnum.online ||
       !!sessionStorage.getItem('liveClassesPaypalOrderId') ||
       !!localStorage.getItem(localstorageKey.liveClassesPaypalOrderId);
     const hasPranaArambhaPaypal =
+      activePaypalSlug === routeEnum.pranOnlinePranaArambh ||
       !!localStorage.getItem(localstorageKey.pranaArambhaPaypalDBId) ||
       !!localStorage.getItem(localstorageKey.pranaArambhaPaypalOrderId);
     const hasSwaraSadhnaPaypal =
+      activePaypalSlug === routeEnum.sa ||
       !!localStorage.getItem(localstorageKey.swaraSadhnaPaypalDBId) ||
       !!localStorage.getItem(localstorageKey.swaraSadhnaPaypalOrderId);
     const hasPranayamaPaypal =
+      activePaypalSlug === routeEnum.pranayamaCertification ||
       !!localStorage.getItem(localstorageKey.pranayamaPaypalDBId) ||
       !!localStorage.getItem(localstorageKey.pranayamaPaypalOrderId);
+    const hasPranicPaypal =
+      activePaypalSlug === routeEnum.pranicPurification ||
+      activePaypalSlug === routeEnum.pranicPurificationI ||
+      !!localStorage.getItem(localstorageKey.pranicPaypalDBId) ||
+      !!localStorage.getItem(localstorageKey.pranicPaypalOrderId);
+    const hasPranicIIPaypal =
+      activePaypalSlug === routeEnum.pranicPurificationII ||
+      !!localStorage.getItem(localstorageKey.pranicIIPaypalDBId) ||
+      !!localStorage.getItem(localstorageKey.pranicIIPaypalOrderId);
 
     this.twoHundredTTCPaypalOrderId =
       localStorage.getItem(localstorageKey['200TTCPaypalOrderId']) ||
@@ -193,6 +223,22 @@ export class SuccessPaymentComponent {
       localStorage.getItem(localstorageKey.pranayamaPaypalOrderId) ||
       (hasPranayamaPaypal || this.router.url.includes('pranayama-certification') ? tokenFromUrl : '') ||
       '';
+    this.pranicPaypalOrderId =
+      localStorage.getItem(localstorageKey.pranicPaypalOrderId) ||
+      (hasPranicPaypal ||
+      this.router.url.includes('pranic-purification-i') ||
+      this.router.url.includes('pranic-path') ||
+      this.router.url.includes('pranic')
+        ? tokenFromUrl
+        : '') ||
+      '';
+    this.pranicIIPaypalOrderId =
+      localStorage.getItem(localstorageKey.pranicIIPaypalOrderId) ||
+      (hasPranicIIPaypal ||
+      this.router.url.includes('pranic-purification-ii')
+        ? tokenFromUrl
+        : '') ||
+      '';
     this.retreatPaypalOrderId =
       localStorage.getItem(localstorageKey.retreatPaypalOrderId) ||
       (hasRetreatPaypal ||
@@ -204,12 +250,15 @@ export class SuccessPaymentComponent {
         !hasLiveClassesPaypal &&
         !hasSwaraSadhnaPaypal &&
         !hasPranayamaPaypal &&
+        !hasPranicPaypal &&
+        !hasPranicIIPaypal &&
         !this.router.url.includes('200') &&
         !this.router.url.includes('pg') &&
         !this.router.url.includes('personal-guidance') &&
         !this.router.url.includes('pranayama-course-online-pranarambha') &&
         !this.router.url.includes('prana') &&
         !this.router.url.includes('swara') &&
+        !this.router.url.includes('pranic') &&
         !this.router.url.includes('pranayama-certification'))
         ? tokenFromUrl
         : '') ||
@@ -411,6 +460,20 @@ export class SuccessPaymentComponent {
     if (this.pgPaypalOrderId) {
       setTimeout(() => {
         this.getPaypalPaymentResultPg(this.pgPaypalOrderId);
+      }, 0);
+    }
+    if (this.pranicPaypalOrderId) {
+      setTimeout(() => {
+        this.getPaypalPaymentResultPranicPurification(
+          this.pranicPaypalOrderId,
+        );
+      }, 0);
+    }
+    if (this.pranicIIPaypalOrderId) {
+      setTimeout(() => {
+        this.getPaypalPaymentResultPranicPurificationII(
+          this.pranicIIPaypalOrderId,
+        );
       }, 0);
     }
   }
@@ -1261,6 +1324,10 @@ export class SuccessPaymentComponent {
     sessionStorage.removeItem('liveClassesPaypalDBId');
     localStorage.removeItem(localstorageKey.liveClassesPaypalOrderId);
     localStorage.removeItem(localstorageKey.liveClassesPaypalDBId);
+    localStorage.removeItem(localstorageKey.pranicPaypalOrderId);
+    localStorage.removeItem(localstorageKey.pranicPaypalDBId);
+    localStorage.removeItem(localstorageKey.pranicIIPaypalOrderId);
+    localStorage.removeItem(localstorageKey.pranicIIPaypalDBId);
   }
   gotoHome() {
     this.router.navigate(['/']);
@@ -1319,6 +1386,10 @@ export class SuccessPaymentComponent {
     sessionStorage.removeItem('liveClassesPaypalDBId');
     localStorage.removeItem(localstorageKey.liveClassesPaypalOrderId);
     localStorage.removeItem(localstorageKey.liveClassesPaypalDBId);
+    localStorage.removeItem(localstorageKey.pranicPaypalOrderId);
+    localStorage.removeItem(localstorageKey.pranicPaypalDBId);
+    localStorage.removeItem(localstorageKey.pranicIIPaypalOrderId);
+    localStorage.removeItem(localstorageKey.pranicIIPaypalDBId);
   }
   genratePass(len: number) {
     const charset =
@@ -1704,6 +1775,92 @@ export class SuccessPaymentComponent {
         localStorage.removeItem(localstorageKey.pranaArambhaPaypalOrderId);
         localStorage.removeItem(localstorageKey.pranaArambhaPaypalDBId);
         localStorage.removeItem(localstorageKey.couponCode);
+      });
+  }
+  getPaypalPaymentResultPranicPurification(paypalOrderId: string) {
+    const fbp = this.getCookie('_fbp');
+    const fbc = this.getCookie('_fbc');
+    let val = {
+      paypalOrderId: paypalOrderId,
+      payDbId: localStorage.getItem(localstorageKey.pranicPaypalDBId),
+      password: this.genratePass(6),
+      fbp: fbp,
+      fbc: fbc,
+    };
+    this.webapiService
+      .getPaypalPaymentResultPranicPurification(val)
+      .subscribe((res: any) => {
+        const responseData = res?.data || res;
+        if (
+          responseData &&
+          (responseData.status === 'success' ||
+            res.status === 'success' ||
+            res.status === 200)
+        ) {
+          this.paidFlag = 'true';
+          this.ordId = responseData.paymtId || res.paymtId || paypalOrderId;
+          this.amount = responseData.amount || res.amount || 0;
+          this.cur = this.currencySet(
+            responseData.currency || res.currency || 'USD',
+          );
+          this.pixelTracking.trackPurchasePranicPurification(
+            this.ordId,
+            'pranic_purification',
+            'Pranic Purification - Best online pranayama sadhana',
+            this.amount,
+            this.cur,
+          );
+          this.spinner.hide();
+        } else {
+          this.paidFlag = 'false';
+          this.spinner.hide();
+        }
+        localStorage.removeItem(localstorageKey.pranicPaypalOrderId);
+        localStorage.removeItem(localstorageKey.pranicPaypalDBId);
+        sessionStorage.removeItem('active_paypal_slug');
+      });
+  }
+  getPaypalPaymentResultPranicPurificationII(paypalOrderId: string) {
+    const fbp = this.getCookie('_fbp');
+    const fbc = this.getCookie('_fbc');
+    let val = {
+      paypalOrderId: paypalOrderId,
+      payDbId: localStorage.getItem(localstorageKey.pranicIIPaypalDBId),
+      password: this.genratePass(6),
+      fbp: fbp,
+      fbc: fbc,
+    };
+    this.webapiService
+      .getPaypalPaymentResultPranicPurificationII(val)
+      .subscribe((res: any) => {
+        const responseData = res?.data || res;
+        if (
+          responseData &&
+          (responseData.status === 'success' ||
+            res.status === 'success' ||
+            res.status === 200)
+        ) {
+          this.paidFlag = 'true';
+          this.ordId = responseData.paymtId || res.paymtId || paypalOrderId;
+          this.amount = responseData.amount || res.amount || 0;
+          this.cur = this.currencySet(
+            responseData.currency || res.currency || 'USD',
+          );
+          this.pixelTracking.trackPurchasePranicPurification(
+            this.ordId,
+            'pranic_purification_II',
+            'Pranic Purification II - Best online pranayama sadhana',
+            this.amount,
+            this.cur,
+          );
+          this.spinner.hide();
+        } else {
+          this.paidFlag = 'false';
+          this.spinner.hide();
+        }
+        localStorage.removeItem(localstorageKey.pranicIIPaypalOrderId);
+        localStorage.removeItem(localstorageKey.pranicIIPaypalDBId);
+        sessionStorage.removeItem('active_paypal_slug');
       });
   }
   //#endregion

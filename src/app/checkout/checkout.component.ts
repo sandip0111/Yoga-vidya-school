@@ -159,7 +159,10 @@ export class CheckoutComponent {
       this.slug === routeEnum.pg ||
       this.slug === routeEnum.pranOnlinePranaArambh ||
       this.slug === routeEnum.pranayamaCertification ||
-      this.slug === routeEnum.sa
+      this.slug === routeEnum.sa ||
+      this.slug === routeEnum.pranicPurification ||
+      this.slug === routeEnum.pranicPurificationI ||
+      this.slug === routeEnum.pranicPurificationII
     );
   }
   get canUsePaypal(): boolean {
@@ -1205,12 +1208,12 @@ export class CheckoutComponent {
       }
       if (!isErrMsg) {
         if (this.slug == routeEnum.pranicPurificationII) {
-          this.pranicPurificationIICheckOut(data, isRazorPay);
+          this.pranicPurificationIICheckOut(data, isRazorPay, isPaypal);
         } else if (
           this.slug == routeEnum.pranicPurification ||
           this.slug == routeEnum.pranicPurificationI
         ) {
-          this.pranicPurificationCheckOut(data, isRazorPay);
+          this.pranicPurificationCheckOut(data, isRazorPay, isPaypal);
         }
       }
       this.spinner.hide();
@@ -1388,50 +1391,64 @@ export class CheckoutComponent {
         }
       });
   }
-  pranicPurificationCheckOut(data: checkoutModel, isRazorPay: boolean) {
+  pranicPurificationCheckOut(
+    data: checkoutModel,
+    isRazorPay: boolean | string,
+    isPaypal: boolean = false,
+  ) {
     var { price, currency } = this.extractPriceAndCurrency(
       `${this.amount} ${data.currency}`,
     ) || {
       price: 0,
       currency: '',
     };
+    const effectiveCurrency = isPaypal ? this.PAYPAL_CURRENCY : currency;
     let signup = {
       name: data.name,
       email: data.email.toLowerCase(),
       phoneNumber: data.phoneNumber.e164Number,
       address: data.address,
       price: this.isDiscounted ? this.offerAmount : price,
-      currency: currency,
+      currency: effectiveCurrency,
       courseStartDate: this.pranicDate,
       courseTimeDuration: this.pranicDuration,
     };
-    if (!isRazorPay) {
-      this.initializePaymentForPranicPurification(signup);
-    } else {
+    if (isPaypal) {
+      this.initializePayPalPaymentForPranicPurification(signup);
+    } else if (isRazorPay === true) {
       this.initializeRazorPaymentForPranicPurification(signup);
+    } else {
+      this.initializePaymentForPranicPurification(signup);
     }
   }
-  pranicPurificationIICheckOut(data: checkoutModel, isRazorPay: boolean) {
+  pranicPurificationIICheckOut(
+    data: checkoutModel,
+    isRazorPay: boolean | string,
+    isPaypal: boolean = false,
+  ) {
     var { price, currency } = this.extractPriceAndCurrency(
       `${this.amount} ${data.currency}`,
     ) || {
       price: 0,
       currency: '',
     };
+    const effectiveCurrency = isPaypal ? this.PAYPAL_CURRENCY : currency;
     let signup = {
       name: data.name,
       email: data.email.toLowerCase(),
       phoneNumber: data.phoneNumber.e164Number,
       address: data.address,
       price: this.isDiscounted ? this.offerAmount : price,
-      currency: currency,
+      currency: effectiveCurrency,
       courseStartDate: this.pranicDate,
       courseTimeDuration: this.pranicDuration,
     };
-    if (!isRazorPay) {
-      this.initializePaymentForPranicPurificationII(signup);
-    } else {
+    if (isPaypal) {
+      this.initializePayPalPaymentForPranicPurificationII(signup);
+    } else if (isRazorPay === true) {
       this.initializeRazorPaymentForPranicPurificationII(signup);
+    } else {
+      this.initializePaymentForPranicPurificationII(signup);
     }
   }
   pranaArambhCheckout(
@@ -2057,6 +2074,52 @@ export class CheckoutComponent {
           this.spinner.hide();
         } else {
           alert('Session Genration failed! please try again');
+          this.spinner.hide();
+        }
+      });
+  }
+  initializePayPalPaymentForPranicPurification(data: any) {
+    this.spinner.show();
+    this.webapiService
+      .checkoutPaypalForPranicPurification(data)
+      .subscribe((res: paypalPayModel) => {
+        if (res.orderId && res.payDbId && res.approvalUrl) {
+          sessionStorage.setItem('active_paypal_slug', this.slug);
+          localStorage.setItem(
+            localstorageKey.pranicPaypalOrderId,
+            res.orderId,
+          );
+          localStorage.setItem(
+            localstorageKey.pranicPaypalDBId,
+            res.payDbId,
+          );
+          window.location.href = res.approvalUrl;
+          this.spinner.hide();
+        } else {
+          alert('Session Generation failed! please try again');
+          this.spinner.hide();
+        }
+      });
+  }
+  initializePayPalPaymentForPranicPurificationII(data: any) {
+    this.spinner.show();
+    this.webapiService
+      .checkoutPaypalForPranicPurificationII(data)
+      .subscribe((res: paypalPayModel) => {
+        if (res.orderId && res.payDbId && res.approvalUrl) {
+          sessionStorage.setItem('active_paypal_slug', this.slug);
+          localStorage.setItem(
+            localstorageKey.pranicIIPaypalOrderId,
+            res.orderId,
+          );
+          localStorage.setItem(
+            localstorageKey.pranicIIPaypalDBId,
+            res.payDbId,
+          );
+          window.location.href = res.approvalUrl;
+          this.spinner.hide();
+        } else {
+          alert('Session Generation failed! please try again');
           this.spinner.hide();
         }
       });

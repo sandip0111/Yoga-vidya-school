@@ -602,4 +602,28 @@ export class WebapiService {
       data,
     );
   }
+  checkoutPaypalForPranicPurification(data: any): Observable<paypalPayModel> {
+    return this.http.post<paypalPayModel>(
+      this.url + 'api/v1/checkoutPaypalForPranicPurification',
+      data,
+    );
+  }
+  getPaypalPaymentResultPranicPurification(data: paypalPaymentResultModel) {
+    return this.http.post(
+      this.url + 'api/v1/getPaypalPaymentResultPranicPurification',
+      data,
+    );
+  }
+  checkoutPaypalForPranicPurificationII(data: any): Observable<paypalPayModel> {
+    return this.http.post<paypalPayModel>(
+      this.url + 'api/v1/checkoutPaypalForPranicPurificationII',
+      data,
+    );
+  }
+  getPaypalPaymentResultPranicPurificationII(data: paypalPaymentResultModel) {
+    return this.http.post(
+      this.url + 'api/v1/getPaypalPaymentResultPranicPurificationII',
+      data,
+    );
+  }
 }

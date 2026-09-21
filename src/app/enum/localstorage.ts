@@ -83,4 +83,8 @@ export enum localstorageKey {
   'pgPaypalDBId' = 'pg_paypal_db_id',
   'pranaArambhaPaypalOrderId' = 'prana_arambha_paypal_order_id',
   'pranaArambhaPaypalDBId' = 'prana_arambha_paypal_db_id',
+  'pranicPaypalOrderId' = 'pranic_purification_paypal_order_id',
+  'pranicPaypalDBId' = 'pranic_purification_paypal_db_id',
+  'pranicIIPaypalOrderId' = 'pranic_purification_ii_paypal_order_id',
+  'pranicIIPaypalDBId' = 'pranic_purification_ii_paypal_db_id',
 }
