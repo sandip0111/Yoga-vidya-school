@@ -225,7 +225,7 @@ export class CheckoutComponent {
           }
           this.pranicDuration = sessionStorage.getItem('pranicDuration');
           if (!this.pranicDate) {
-            const date = new Date('2026-01-18');
+            const date = new Date('2027-01-07');
             this.pranicDate = date;
             this.pranicDuration = '7PM to 8PM (IST)';
             sessionStorage.setItem('pranicDate', date.toISOString());

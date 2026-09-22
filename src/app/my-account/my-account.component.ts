@@ -185,6 +185,7 @@ export class MyAccountComponent {
               slug != routeEnum['200TTC'] &&
               slug != routeEnum.online &&
               slug != routeEnum.pranicPurification &&
+              slug != routeEnum.pranicPurificationI &&
               slug != routeEnum.pranicPurificationII &&
               slug != routeEnum.pranayamaCertification &&
               slug != routeEnum.sa &&

@@ -34,9 +34,12 @@ export class RishikeshCurriculumComponent implements OnInit {
     @Inject(PLATFORM_ID) private platformId: Object
   ) {
     this.slug = this.activatedRoute.snapshot.routeConfig?.path;
-    if (this.slug == routeEnum.pranicPurification) {
+    if (
+      this.slug == routeEnum.pranicPurification ||
+      this.slug == routeEnum.pranicPurificationI
+    ) {
       this.isItPranicRoute = true;
-      const date = new Date('2025-07-24');
+      const date = new Date('2027-01-07');
       const day = date.getDate();
       const month = date.toLocaleString('en-US', { month: 'long' });
       this.pranicDate = `${day} ${month}`;
@@ -51,7 +54,10 @@ export class RishikeshCurriculumComponent implements OnInit {
   ngOnInit() {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (this.slug != routeEnum.pranicPurification) {
+    if (
+      this.slug != routeEnum.pranicPurification &&
+      this.slug != routeEnum.pranicPurificationI
+    ) {
       if (changes['data']?.currentValue) {
         this.curriculum = changes['data']?.currentValue.curr;
         this.title = changes['data']?.currentValue.title;
@@ -69,7 +75,10 @@ export class RishikeshCurriculumComponent implements OnInit {
   }
 
   registerClick() {
-    if (this.slug != routeEnum.pranicPurification) {
+    if (
+      this.slug != routeEnum.pranicPurification &&
+      this.slug != routeEnum.pranicPurificationI
+    ) {
       window.open('https://www.yogavidyaschool.com/book-now', '_blank');
     } else {
       this.router.navigate(['checkout', this.slug]);
