@@ -45,6 +45,7 @@ export class CourseMentorComponent {
     });
   }
   goToMentorPage(url: string, id: number): void {
+    console.log('Navigating to mentor page:', url, 'with ID:', id);
     if (url) {
       this.router.navigate([url, id]).then(() => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
