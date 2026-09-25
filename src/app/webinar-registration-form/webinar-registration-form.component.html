@@ -36,18 +36,28 @@
           So, we thought we’d give you a glimpse.”
           <span class="quote-om-emoji">🕉️</span>
         </p>
+        <p class="glimpse-concluded-text">
+          <span class="project-color"
+            >The Free Learning Week has now concluded, but you can still
+            experience it!</span
+          >
+          The full recording is available to watch at your convenience.
+        </p>
       </div>
       <h2 class="webinar-main-title">
         <span class="title-sparkle">✨</span> Into the Roots of Yoga
         <span class="title-sparkle">✨</span>
       </h2>
-      <!-- <div class="webinar-date-banner">
-        <i class="fa-regular fa-calendar-check me-2"></i>
-        <span
-          >One week of <strong>FREE</strong> learning &middot; September 21
-          &ndash; 25 &middot; 5:30 PM IST</span
+      <div class="watch-recordings-wrapper">
+        <a
+          [href]="youtubeLinkEnum.freeWebinerSept"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn-watch-recordings"
         >
-      </div> -->
+          <i class="fa-brands fa-youtube me-2"></i>Watch recordings
+        </a>
+      </div>
       <!-- Narrative Description -->
       <div class="webinar-narrative-box">
         <h3 class="narrative-heading">
@@ -396,7 +406,17 @@
   </div>
 </section>
 
-<div class="registration-container">
+<div class="watch-recordings-wrapper">
+  <a
+    [href]="youtubeLinkEnum.freeWebinerSept"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="btn-watch-recordings"
+  >
+    <i class="fa-brands fa-youtube me-2"></i>Watch recordings
+  </a>
+</div>
+<!-- <div class="registration-container">
   <div class="card registration-card" id="register-form">
     <div class="p-4 pb-0">
       <p class="register-head">One week. Five sessions. Free access.</p>
@@ -445,7 +465,7 @@
         </button>
       </form>
     </div>
-    <!-- <div class="p-4 pb-0">
+    <div class="p-4 pb-0">
       <p class="register-head mb-4">
         Our last webinar was on August 15th. Check the recordings here:
       </p>
@@ -459,12 +479,12 @@
           allowfullscreen>
         </iframe>
       </div>
-    </div> -->
-    <!-- <img
+    </div>
+    <img
       [src]="s3Bucket.freeWebinerBottom"
       alt="Breath of Yogis webinar"
       class="webinar-detail-image"
       loading="lazy"
-    /> -->
+    />
   </div>
-</div>
+</div> -->

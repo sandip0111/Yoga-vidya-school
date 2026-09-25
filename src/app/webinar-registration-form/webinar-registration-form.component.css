@@ -404,6 +404,38 @@ h2 {
   box-shadow: 0 4px 14px rgba(249, 168, 38, 0.12);
 }
 
+.watch-recordings-wrapper {
+  margin: 1.25rem auto 2.25rem;
+  text-align: center;
+}
+
+.btn-watch-recordings {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #f47019 0%, #d97706 100%);
+  color: #ffffff !important;
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 12px 30px;
+  border-radius: 50px;
+  text-decoration: none;
+  box-shadow: 0 6px 20px rgba(244, 112, 25, 0.35);
+  transition: all 0.3s ease;
+  letter-spacing: 0.3px;
+}
+
+.btn-watch-recordings:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(244, 112, 25, 0.45);
+  color: #ffffff !important;
+}
+
+.btn-watch-recordings i {
+  font-size: 1.25rem;
+  color: #ffffff;
+}
+
 /* Glimpse Quote Box */
 .glimpse-quote-card {
   position: relative;
@@ -435,6 +467,16 @@ h2 {
   font-style: italic;
   line-height: 1.7;
   margin: 0;
+  position: relative;
+  z-index: 1;
+  font-weight: 500;
+}
+
+.glimpse-concluded-text {
+  font-size: 1.1rem;
+  color: #4a5568;
+  line-height: 1.65;
+  margin: 0.85rem 0 0;
   position: relative;
   z-index: 1;
   font-weight: 500;
@@ -1000,6 +1042,11 @@ h2 {
 
   .glimpse-text {
     font-size: 1.05rem;
+  }
+
+  .glimpse-concluded-text {
+    font-size: 0.98rem;
+    margin-top: 0.75rem;
   }
 
   .session-name {

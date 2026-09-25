@@ -198,6 +198,7 @@ export const youtubeLink = {
   trainingImportance:
     'https://www.youtube.com/embed/t7l1cqDj1tA?si=ZJCQXJYDLzDwLLvm',
   pranaArambh: `${environment.imageUrl}pranaarambhVdo.MP4`,
+  freeWebinerSept: 'https://youtube.com/playlist?list=PLI1ni9zbysm0&si=jkbmazIYMZtnIqr-'
 } as const;
 export const reviewLink = {
   review1:

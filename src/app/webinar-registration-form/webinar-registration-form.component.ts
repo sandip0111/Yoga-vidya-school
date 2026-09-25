@@ -11,7 +11,7 @@ import { WebapiService } from '../webapi.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { routeEnum } from '../enum/routes';
-import { s3Bucket } from '../enum/s3Bucket';
+import { s3Bucket, youtubeLink } from '../enum/s3Bucket';
 import { DomSanitizer } from '@angular/platform-browser';
 // import { SafePipe } from '../safe.pipe';
 
@@ -53,6 +53,7 @@ export class WebinarRegistrationFormComponent implements OnInit {
   imgSlug: string | undefined;
   bannerSubtitle: any;
   s3Bucket = s3Bucket;
+  youtubeLinkEnum = youtubeLink;
   constructor(
     private fb: FormBuilder,
     private webapiService: WebapiService,
