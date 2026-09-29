@@ -37,7 +37,7 @@ export class RishikshMain {
   ) {
     this.bannerTitle =
       'Transform Your Yoga Practice in Rishikesh – Yoga Alliance Certified TTC';
-    this.bannerSubtitle = `2026 Batches: October<br/>
+    this.bannerSubtitle = `2027 Batches: October<br/>
       Reserve your room with 30% deposit`;
     this.aboutContent = new aboutContentModel(
       s3Bucket.certifiedRishikeshAbout,

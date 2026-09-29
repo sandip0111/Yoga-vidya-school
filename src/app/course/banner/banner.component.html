@@ -102,14 +102,16 @@
       ) {
         <div class="d-flex gap-2">
           <div class="banner-subtitle-overlay ms-5">
-            2026 Batch: October 3rd<br />Reserve your room with 30% deposit
+            2027 Batch: October 3rd<br />Reserve your room with 30% deposit
             <br />
-            <button
-              (click)="registerClick(slug, monthEnum.October26)"
-              class="button"
-            >
-              JOIN NOW
-            </button>
+            @if(slug !== routEnum.rishikesh300) {
+              <button
+                (click)="registerClick(slug, monthEnum.October26)"
+                class="button"
+              >
+                JOIN NOW
+              </button>
+            }
           </div>
         </div>
       } @else {

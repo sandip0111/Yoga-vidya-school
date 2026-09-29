@@ -87,7 +87,7 @@ export class AboutRishikeshComponent implements OnInit {
         '',
         '',
         this.sanitizer.bypassSecurityTrustHtml(
-          `<p>Our <b>300-Hour Yoga Teacher Training</b> is designed for certified <b>200-Hour TTC graduates</b> and dedicated practitioners ready to take their practice to the next level.
+          `<p>Our <b>300-Hour Yoga Teacher Training</b> is designed for certified <b>200-Hour TTC graduates</b> ready to take their practice to the next level.
           This is not just a training—it’s an invitation to go deeper into the heart of yoga.
           It’s for those who are committed to their inner journey, eager to refine their skills, and inspired to share the wisdom of yoga to bring more peace, clarity, and joy into the world.</p>
           <p>Training takes place in our peaceful venue, surrounded by lush green Himalayan forest and only a short walk from the sacred Ganges River. Here, in the heart of Rishikesh, you’ll be supported by a team of experienced teachers led by <b>Prashant J Yoga</b>—one of the most trusted yoga educators on YouTube.</p>
