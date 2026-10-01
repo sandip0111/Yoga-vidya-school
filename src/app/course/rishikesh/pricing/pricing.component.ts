@@ -74,17 +74,17 @@ export class PricingComponent implements OnInit {
   setPriceValue(slug: string) {
     switch (slug) {
       case routeEnum.rishikesh100:
-        this.mainHeading = 'Pricing of 100 Hours TTC Rishikesh';
+        this.mainHeading = 'VERY EARLY BIRD - Until October 31st';
         this.subHeading =
           'The course fee includes accommodation in a shared room; a private room is available with an additional cost.';
         break;
       case routeEnum.rishkesh200:
-        this.mainHeading = 'Pricing of 200 Hours TTC Rishikesh';
+        this.mainHeading = 'VERY EARLY BIRD - Until October 31st';
         this.subHeading =
           'The course fee includes accommodation in a shared room; a private room is available with an additional cost.';
         break;
       case routeEnum.rishikesh300:
-        this.mainHeading = 'Pricing of 300 Hours TTC Rishikesh';
+        this.mainHeading = 'VERY EARLY BIRD - Until October 31st';
         this.subHeading =
           'The course fee includes accommodation in a shared room; a private room is available with an additional cost.';
         break;
