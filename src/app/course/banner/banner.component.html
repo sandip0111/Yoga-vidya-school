@@ -100,19 +100,17 @@
         slug == routEnum.rishkesh200 ||
         slug == routEnum.rishikesh300
       ) {
-        <div class="d-flex gap-2">
-          <div class="banner-subtitle-overlay ms-5">
-            2027 Batch: October 3rd<br />Reserve your room with 30% deposit
-            <br />
-            @if(slug !== routEnum.rishikesh300) {
-              <button
-                (click)="registerClick(slug, monthEnum.October26)"
-                class="button"
-              >
-                JOIN NOW
-              </button>
-            }
-          </div>
+        <div class="banner-subtitle-overlay">
+          2027 Batch: October 3rd<br />Reserve your room with 30% deposit
+          <br />
+          @if(slug !== routEnum.rishikesh300) {
+            <button
+              (click)="registerClick(slug, monthEnum.October26)"
+              class="button"
+            >
+              JOIN NOW
+            </button>
+          }
         </div>
       } @else {
         <div class="banner-subtitle-overlay">{{ rishikeshSubHeading }}</div>
