@@ -26,13 +26,13 @@ export class CertifiedYogaComponent implements OnInit {
   ngOnInit() {
     if (this.slug == routeEnum.rishkesh200) {
       this.cerData = {
-        title1: '🧘 Become a Yoga Teacher in Just 28 Days',
+        title1: '🧘 Become a Yoga Teacher in Just 24 Days',
         title2: '🎓 Explore 14+ Yogic Subjects in One Transformational Course',
         img1: s3Bucket.rishi200Certify1,
         img2: s3Bucket.rishi200Certify2,
         desc1: this.sanitizer.bypassSecurityTrustHtml(
           `<b >Train deeply. Transform fully. Teach authentically.</b>
-          <p>This 200-Hour Yoga Teacher Training in Rishikesh is more than a course — it's a journey. In 28 immersive days, you'll build the foundation of a strong self-practice and the tools to guide others with clarity and confidence.</p>
+          <p>This 200-Hour Yoga Teacher Training in Rishikesh is more than a course — it's a journey. In 24 immersive days, you'll build the foundation of a strong self-practice and the tools to guide others with clarity and confidence.</p>
           <ul style="list-style-type: none;">
             <li>✨ Learn from experienced teachers in the birthplace of yoga</li>
             <li>✨ Master Asana, Pranayama & Meditation</li>
