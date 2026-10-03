@@ -1,6 +1,6 @@
 <section class="about-section section-fower">
-  <div class="row">
-    <div class="col-md-12">
+  <div class="row m-0 p-0">
+    <div class="col-12 p-0">
       <div class="slider position-relative">
         <div class="inner image">
           <img
@@ -8,13 +8,19 @@
             class="img-fluid banner_image"
             alt="Banner Image"
           />
-          <div class="banner-text-overlay">
-            {{ bannerTitle }}
+          <div class="banner-scrim-overlay" aria-hidden="true"></div>
+          <div class="banner-content-container">
+            <div class="banner-content-box">
+              <h1 *ngIf="bannerTitle" class="banner-title banner-text-overlay">
+                {{ bannerTitle }}
+              </h1>
+              <div
+                *ngIf="bannerSubtitle"
+                class="banner-subtitle banner-subtitle-overlay"
+                [innerHTML]="bannerSubtitle"
+              ></div>
+            </div>
           </div>
-          <div
-            class="banner-subtitle-overlay"
-            [innerHTML]="bannerSubtitle"
-          ></div>
         </div>
       </div>
     </div>
