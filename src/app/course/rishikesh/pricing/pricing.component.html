@@ -64,7 +64,8 @@
       slug === routeEnum.rishkesh200 ||
       slug === routeEnum.rishikesh300
     ) {
-      @if(slug !== routeEnum.rishikesh300) {
+      <h2>Coming soon...</h2>
+      <!-- @if(slug !== routeEnum.rishikesh300) {
         <button class="button" (click)="goToPaymentPage(monthEnum.October26)">
           Join October Batch
         </button>
@@ -72,7 +73,7 @@
         <p class="admissions-notice">
           <b class="project-color">Admissions are now open!</b> If you hold a 200-hour TTC certificate, please send your certificate to <a href="mailto:info@yogavidyaschool.com">info@yogavidyaschool.com</a> to begin the application and selection process for our 300-Hour TTC.
         </p>
-      }
+      } -->
     } @else if (slug == routeEnum.pranOnlinePranaArambh) {
       <button class="button" (click)="goToPaymentPage()">Join Now</button>
     } @else if (slug == routeEnum.retreats) {
