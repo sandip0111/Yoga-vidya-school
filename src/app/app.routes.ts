@@ -146,7 +146,7 @@ export const routes: Routes = [
   // {path:'yoga-retreat-in-mysore-india', component: BaliIndexComponent},
   // {path:'yoga-retreat-in-peru', component: BaliIndexComponent},
   {
-    path: '100-hours-yoga-teacher-training-in-rishikesh',
+    path: routeEnum.rishikesh100,
     component: RishikeshIndexComponent,
     data: {
       seo: {
@@ -159,7 +159,7 @@ export const routes: Routes = [
     },
   },
   {
-    path: '200-hours-yoga-teacher-training-in-rishikesh',
+    path: routeEnum.rishkesh200,
     component: RishikeshIndexComponent,
     data: {
       seo: {
@@ -586,6 +586,21 @@ export const routes: Routes = [
         keywords: `Personal Yoga Guidance, 1 on 1 Yoga Mentorship, Spiritual Consultation, Acharya Prashant Mentorship`,
       },
     },
+  },
+  {
+    path: routeEnum.rishikehsRetreat,
+    loadComponent: () =>
+      import('./course/rishikesh-retreat/rishikesh-retreat').then((m) => m.RishikeshRetreat),
+  },
+  {
+    path: routeEnum.mysoreTTC,
+    loadComponent: () =>
+      import('./course/mysore-ttc/mysore-ttc').then((m) => m.MysoreTtc),
+  },
+  {
+    path: routeEnum.mysore100,
+    loadComponent: () =>
+      import('./course/mysore-100/mysore-100').then((m) => m.Mysore100),
   },
   { path: 'webinar-video/:name', component: WebinarVideosComponent },
   { path: '**', pathMatch: 'full', component: PagenotfoundComponent },

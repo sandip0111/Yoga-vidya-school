@@ -39,7 +39,7 @@ export class VideoReviewsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    if (this.slug == routeEnum.rishikesh) {
+    if (this.slug == routeEnum.rishikesh || this.slug == routeEnum.mysoreTTC) {
       this.videos = [
         reviewLink.rishikesh1,
         reviewLink.rishikesh2,

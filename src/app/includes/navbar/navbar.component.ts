@@ -82,6 +82,10 @@ export class NavbarComponent implements OnInit {
             title: 'Mysore Retreat',
             link: `/${routeEnum.retreats}`,
           },
+          {
+            title: 'Rishikesh Retreat',
+            link: `/${routeEnum.rishikehsRetreat}`,
+          },
         ],
       },
       {
@@ -95,6 +99,10 @@ export class NavbarComponent implements OnInit {
           {
             title: 'Get Certified in Bali',
             link: `/${routeEnum.bali}`,
+          },
+          {
+            title: 'Get Certified in Mysore',
+            link: `/${routeEnum.mysoreTTC}`,
           },
           {
             title: 'Get Certified Online',

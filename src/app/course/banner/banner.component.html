@@ -111,7 +111,7 @@
               JOIN NOW
             </button>
           } -->
-            Coming Soon
+          Coming Soon
         </div>
       } @else {
         <div class="banner-subtitle-overlay">{{ rishikeshSubHeading }}</div>
@@ -145,11 +145,37 @@
       <div class="banner-text-overlay">{{ rishikeshMainHeading }}</div>
       <div class="banner-subtitle-overlay">{{ rishikeshSubHeading }}</div>
       <div class="banner-subtitle-overlay">
-        <!-- September 15–20, 2026 --> Coming Soon
+        <!-- September 15–20, 2026 -->
+        Coming Soon
         <br />
         <!-- <button (click)="registerClick(routEnum.retreats)" class="button">
           JOIN NOW
         </button> -->
+      </div>
+    </div>
+  </div>
+} @else if (slug == routeEnum.mysore100) {
+  <div class="carousel-inner">
+    <div class="inner">
+      <img
+        [src]="s3Bucket.rishikesh100Banner"
+        class="img-fluid banner_image"
+        alt="Banner Image"
+      />
+    </div>
+    <div class="banner-overlay">
+      <div class="banner-text-overlay">
+        100-Hour Yoga Teacher Training in Mysore
+      </div>
+      <div class="banner-subtitle-overlay">
+        2027 Batch: October 3rd<br />Reserve your room with 30% deposit
+        <br />
+        <button
+          (click)="registerClick(slug, monthEnum.October26)"
+          class="button"
+        >
+          JOIN NOW
+        </button>
       </div>
     </div>
   </div>
