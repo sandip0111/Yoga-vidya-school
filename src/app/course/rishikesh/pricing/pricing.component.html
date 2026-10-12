@@ -81,8 +81,8 @@
         <div class="retreat-info-card">
           <div class="info-decoration-top">🧘</div>
           <p class="retreat-info-text">
-            Six days. One practice. A tradition that has not changed because it does
-            not need to.
+            Six days. One practice. A tradition that has not changed because it
+            does not need to.
           </p>
           <div class="info-decoration-bottom">✨</div>
         </div>
@@ -90,6 +90,10 @@
       <!-- <button class="button" (click)="goToPaymentPage()">
         Reserve Your Place
       </button> -->
+    } @else if (slug == routeEnum.mysore100) {
+      <button class="button" (click)="goToPaymentPage(monthEnum.October26)">
+        Join October Batch
+      </button>
     } @else {
       <button class="button" (click)="goToPaymentPage()">
         Join this journey

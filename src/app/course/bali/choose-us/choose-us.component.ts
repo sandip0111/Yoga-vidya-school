@@ -148,9 +148,6 @@ export class ChooseUsComponent implements OnInit {
     if (changes['data'].currentValue) {
       this.title = changes['data'].currentValue.title;
     }
-    if(this.slug == routeEnum.mysore100){
-      this.title = '100 Hours Yoga Teacher Training in Mysore';
-    }
   }
 
   ngOnInit() {}
