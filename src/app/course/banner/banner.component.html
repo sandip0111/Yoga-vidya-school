@@ -179,6 +179,31 @@
       </div>
     </div>
   </div>
+} @else if (slug == routeEnum.mysore200) {
+  <div class="carousel-inner">
+    <div class="inner">
+      <img
+        [src]="s3Bucket.rishikesh100Banner"
+        class="img-fluid banner_image"
+        alt="Banner Image"
+      />
+    </div>
+    <div class="banner-overlay">
+      <div class="banner-text-overlay">
+        Transform Your Life with 200 Hour Yoga TTC in Mysore
+      </div>
+      <div class="banner-subtitle-overlay">
+        2027 Batch: October 3rd<br />Reserve your room with 30% deposit
+        <br />
+        <button
+          (click)="registerClick(slug, monthEnum.October26)"
+          class="button"
+        >
+          JOIN NOW
+        </button>
+      </div>
+    </div>
+  </div>
 } @else {
   <section
     #bannerSection

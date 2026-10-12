@@ -139,6 +139,20 @@ export class ChooseUsComponent implements OnInit {
           'Access to Online Courses: Gain fundamental and foundational yoga knowledge  by  getting access to different online yoga courses.',
         ],
       };
+    } else if (this.slug == routeEnum.mysore200) {
+      this.chooseData = {
+        firstImage: s3Bucket.choose9,
+        secondImage: s3Bucket.choose10,
+        content:
+          'We at Yoga Vidya School offer the best-in-class 200 Hour Yoga teacher training in Mysore. Helmed by Acharya Prashant Jakhmola, Yoga Vidya School is a Yoga Alliance accredited institution imparting quality education in yoga. We give you innumerable reasons for choosing us as your preferred almamater to learn yoga.',
+        list: [
+          'Blend of Tradition and Modernity: Seamlessly integrates ancient yoga traditions with modern day practices to understand easily and apply on current lifestyle.',
+          'Comprehensive Curriculum: Rich curriculum with equal emphasis on philosophy and meditation practices along with Asanas.',
+          'Dedicated Yoga Masters: Graduates from top yoga ashrams and universities, learn with the teachers who are living yoga and dedicated to preserve the authenticity of traditional yoga.',
+          'Supportive Environment: At Yoga Vidya School, students can enjoy nurturing and supportive atmosphere for personal and professional growth.',
+          'Get Access to numerous valuable online courses to enhance your knowledge and practice.',
+        ],
+      };
     } else {
       this.noContent = true;
     }

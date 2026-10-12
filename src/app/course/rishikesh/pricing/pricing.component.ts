@@ -38,6 +38,7 @@ export class PricingComponent implements OnInit {
       '300-hour-yoga-teacher-training-scholarship-in-rishikesh',
       'yoga-teacher-training-in-india',
       routeEnum.mysore100,
+      routeEnum.mysore200,
     ];
     return validSlugs.includes(this.slug as any);
   }
@@ -51,6 +52,7 @@ export class PricingComponent implements OnInit {
       '300-hour-yoga-teacher-training-scholarship-in-rishikesh',
       'yoga-teacher-training-in-india',
       routeEnum.mysore100,
+      routeEnum.mysore200,
     ];
     return validRoomSlugs.includes(this.slug as any);
   }
@@ -115,7 +117,12 @@ export class PricingComponent implements OnInit {
           'Choose the space that supports your practice — in solitude or in company';
         break;
       case routeEnum.mysore100:
-        this.mainHeading = 'VERY EARLY BIRD';
+        this.mainHeading = 'VERY EARLY BIRD - Until October 31st';
+        this.subHeading =
+          'The course fee includes accommodation in a shared room; a private room is available with an additional cost.';
+        break;
+      case routeEnum.mysore200:
+        this.mainHeading = 'VERY EARLY BIRD - Until October 31st';
         this.subHeading =
           'The course fee includes accommodation in a shared room; a private room is available with an additional cost.';
         break;

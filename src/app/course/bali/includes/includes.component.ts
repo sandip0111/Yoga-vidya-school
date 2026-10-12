@@ -62,7 +62,8 @@ export class IncludesComponent implements OnInit {
       this.slug == 'pranayama-therapy-course-online' ||
       this.slug == 'yoga-teacher-training-in-india' ||
       this.slug == 'drop-in-yoga-classes' ||
-      this.slug == routeEnum.mysore100
+      this.slug == routeEnum.mysore100 ||
+      this.slug == routeEnum.mysore200
     ) {
       this.amenities = [
         { text: '28 nights shared room accommodation with attached bathroom.' },

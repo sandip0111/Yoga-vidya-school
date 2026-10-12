@@ -86,6 +86,27 @@ export class ExcursionsComponent implements OnInit {
       this.noContent = false;
 
       this.title = '300 Hours Yoga Teacher Training Scholarship In Rishikesh';
+    } else if (this.slug == routeEnum.mysore200) {
+      this.noContent = true;
+      this.exsData = {
+        title: '200 Hour Yoga Teacher Training in Mysore',
+        desc: 'Experience the beauty of Mysore with guided excursions  and enhance your yoga journey with these enriching cultural and natural explorations',
+        row1: {
+          img: this.s3Bucket.Kunjapuri,
+          title: 'Kunjapuri Temple',
+          desc: 'Kunjapuri Temple visit is a spiritual tour with beautiful sunrise in the Himalayas. One of the highest points near Mysore, this temple is an energetic shakti peeth among 52 peeths of goddesss shakti. After trekking to the top, the entry gate has stairs that almost feels as if staircase of the heavens. A visit to Kunjapuri is one of the top attractions around Mysore which is worth the experience – the most stunning sunrise, the panoramic views of the Himalayan range, the local villages and the colorful shops.',
+        },
+        row2: {
+          img: this.s3Bucket.gangaArti,
+          title: 'World Famous Evening Ganga Aarti at Parmarth Niketans',
+          desc: '‘Aarti’ is a prayer or one’s expression of devoted love towards God. It is an act of singing and chanting of mantras with meditative awareness and a deep sense of adoration. So in the Ganga Aarti ceremony, we express our devotion and love for mother Ganges. We visit Parmarth Ashram where this spiritual ceremony is performed on the Ganges with mantras, diyas and the beating drums. You can sit quietly or can sing the bhajans, chant mantras and swing in ecstasy as yogis do the Bhakti Yoga.',
+        },
+        row3: {
+          img: this.s3Bucket.maunicave,
+          title: 'Mauni Baba Cave',
+          desc: 'A mysterious cave on the way to Neelkanth Mahadev temple. Surrounded by lush green Himalayan forest, this natural cave is a home of Himalayan ascetic sage who is also known as Jatadhari Baba. With a richness of meditative energy, this place has an interesting story about how the Guruji came here living the city life. Students can meditate in the small dome shaped cave and can also interact with the monk during their visit.',
+        },
+      };
     }
   }
 

@@ -602,6 +602,11 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./course/mysore-100/mysore-100').then((m) => m.Mysore100),
   },
+  {
+    path: routeEnum.mysore200,
+    loadComponent: () =>
+      import('./course/mysore-200/mysore-200').then((m) => m.Mysore200),
+  },
   { path: 'webinar-video/:name', component: WebinarVideosComponent },
   { path: '**', pathMatch: 'full', component: PagenotfoundComponent },
 ];

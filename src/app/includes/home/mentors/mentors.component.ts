@@ -205,7 +205,8 @@ export class MentorsComponent implements OnInit {
       this.slug == this.routeList.rishikesh100 ||
       this.slug == this.routeList.rishkesh200 ||
       this.slug == this.routeList.rishikesh300 ||
-      this.slug == this.routeList.mysore100
+      this.slug == this.routeList.mysore100 ||
+      this.slug == this.routeList.mysore200
     ) {
       this.mentors = [
         {
