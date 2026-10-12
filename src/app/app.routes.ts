@@ -591,6 +591,15 @@ export const routes: Routes = [
     path: routeEnum.rishikehsRetreat,
     loadComponent: () =>
       import('./course/rishikesh-retreat/rishikesh-retreat').then((m) => m.RishikeshRetreat),
+    data: {
+      seo: {
+        title: 'The Essence of Yoga - Rishikesh Retreat',
+        description:
+          'Yoga Retreat in Rishikesh with Prashant Jakhmola. A return to practice, breath, and tradition nestled in the foothills of the Himalayas.',
+        keywords:
+          'Retreat, Yoga Retreat, Ashtanga Retreat, Ashtanga, Ashtanga Yoga, Ashtanga Vinyasa, Yoga Retreat, Ashtanga Retreat, Yoga Vidya, Yoga Vidya School, Prashant Jakhmola',
+      },
+    },
   },
   {
     path: routeEnum.mysoreTTC,

@@ -38,6 +38,8 @@ export class PricingComponent implements OnInit {
       '300-hour-yoga-teacher-training-scholarship-in-rishikesh',
       'yoga-teacher-training-in-india',
       routeEnum.mysore100,
+      routeEnum.rishikehsRetreat,
+      routeEnum.rishikeshRetreat,
     ];
     return validSlugs.includes(this.slug as any);
   }
@@ -113,6 +115,25 @@ export class PricingComponent implements OnInit {
       case routeEnum.retreats:
         this.mainHeading =
           'Choose the space that supports your practice — in solitude or in company';
+        break;
+      case routeEnum.rishikehsRetreat:
+      case routeEnum.rishikeshRetreat:
+        this.mainHeading =
+          'Choose the space that supports your practice — in solitude or in company';
+        if (!this.feesData || this.feesData.length === 0) {
+          this.pricing = [
+            {
+              title: 'Shared room',
+              usd: 599,
+              inr: 49999,
+            },
+            {
+              title: 'Single room',
+              usd: 799,
+              inr: 64999,
+            },
+          ];
+        }
         break;
       case routeEnum.mysore100:
         this.mainHeading = 'VERY EARLY BIRD';

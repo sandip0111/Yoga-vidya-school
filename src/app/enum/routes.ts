@@ -34,6 +34,7 @@ export enum routeEnum {
   'retreats' = 'mysore-retreat',
   'pg' = 'personal-guidance',
   'rishikehsRetreat' = 'rishikesh-retreat',
+  'rishikeshRetreat' = 'rishikesh-retreat',
   'mysoreTTC' = 'get-certified-in-mysore',
   'mysore100' = '100-hours-yoga-teacher-training-in-mysore',
 }

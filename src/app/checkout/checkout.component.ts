@@ -143,6 +143,8 @@ export class CheckoutComponent {
       routeEnum['200TTC'],
       routeEnum.pranayamaCertification,
       routeEnum.retreats,
+      routeEnum.rishikehsRetreat,
+      routeEnum.rishikeshRetreat,
     ];
     return allowedSlugs.includes(this.slug as any);
   }
@@ -150,6 +152,8 @@ export class CheckoutComponent {
     return (
       this.slug === routeEnum['200TTC'] ||
       this.slug === routeEnum.retreats ||
+      this.slug === routeEnum.rishikehsRetreat ||
+      this.slug === routeEnum.rishikeshRetreat ||
       this.slug === routeEnum.rishikesh100 ||
       this.slug === routeEnum.rishkesh200 ||
       this.slug === routeEnum.rishikesh300 ||
@@ -620,7 +624,11 @@ export class CheckoutComponent {
         { name: 'Full Payment', value: 1 },
         { name: 'Reserve your room with a 30% deposit', value: 3 },
       ];
-    } else if (pageSlug === routeEnum.retreats) {
+    } else if (
+      pageSlug === routeEnum.retreats ||
+      pageSlug === routeEnum.rishikehsRetreat ||
+      pageSlug === routeEnum.rishikeshRetreat
+    ) {
       this.roomList = [
         { name: 'Shared room', value: 1 },
         { name: 'Single room', value: 2 },
@@ -832,7 +840,9 @@ export class CheckoutComponent {
       this.slug === this.routeEnum.rishikesh100 ||
       this.slug === this.routeEnum.rishkesh200 ||
       this.slug === this.routeEnum.rishikesh300 ||
-      this.slug === this.routeEnum.retreats
+      this.slug === this.routeEnum.retreats ||
+      this.slug === this.routeEnum.rishikehsRetreat ||
+      this.slug === this.routeEnum.rishikeshRetreat
     ) {
       if (+roomId === 3) {
         isBooking30 = true;
@@ -849,6 +859,18 @@ export class CheckoutComponent {
           : 2
         : +roomId;
     }
+
+    const calc30 = (val: number) => {
+      if (
+        this.slug === this.routeEnum.rishikehsRetreat ||
+        this.slug === this.routeEnum.rishikeshRetreat ||
+        this.slug === this.routeEnum.retreats
+      ) {
+        return Math.floor(val * 0.3);
+      }
+      return Math.round(val * 0.3);
+    };
+
     if (this.slug == routeEnum.pg) {
       this.selectPersonalGuidePrice(currency);
     } else {
@@ -863,16 +885,16 @@ export class CheckoutComponent {
               const baseActual =
                 item.data.find((f) => f.currency == currency)?.amount ?? 0;
               this.amount = isBooking30
-                ? Math.round(baseAmount * 0.3)
+                ? calc30(baseAmount)
                 : baseAmount;
               this.actualAmount = isBooking30
-                ? Math.round(baseActual * 0.3)
+                ? calc30(baseActual)
                 : baseActual;
             } else {
               const baseAmount =
                 item.data.find((f) => f.currency == currency)?.amount ?? 0;
               this.amount = isBooking30
-                ? Math.round(baseAmount * 0.3)
+                ? calc30(baseAmount)
                 : baseAmount;
               this.actualAmount = 0;
             }
@@ -882,10 +904,10 @@ export class CheckoutComponent {
             const baseOffer =
               item.data.find((f) => f.currency == currency)?.discount ?? 0;
             this.amount = isBooking30
-              ? Math.round(baseAmount * 0.3)
+              ? calc30(baseAmount)
               : baseAmount;
             this.offerAmount = isBooking30
-              ? Math.round(baseOffer * 0.3)
+              ? calc30(baseOffer)
               : baseOffer;
           }
         } else {
@@ -903,15 +925,15 @@ export class CheckoutComponent {
               const baseAmount = discountPrice;
               const baseActual = matchData?.amount ?? 0;
               this.amount = isBooking30
-                ? Math.round(baseAmount * 0.3)
+                ? calc30(baseAmount)
                 : baseAmount;
               this.actualAmount = isBooking30
-                ? Math.round(baseActual * 0.3)
+                ? calc30(baseActual)
                 : baseActual;
             } else {
               const baseAmount = matchData?.amount ?? 0;
               this.amount = isBooking30
-                ? Math.round(baseAmount * 0.3)
+                ? calc30(baseAmount)
                 : baseAmount;
               this.actualAmount = 0;
             }
@@ -919,10 +941,10 @@ export class CheckoutComponent {
             const baseAmount = matchData?.amount ?? 0;
             const baseOffer = matchData?.discount ?? 0;
             this.amount = isBooking30
-              ? Math.round(baseAmount * 0.3)
+              ? calc30(baseAmount)
               : baseAmount;
             this.offerAmount = isBooking30
-              ? Math.round(baseOffer * 0.3)
+              ? calc30(baseOffer)
               : baseOffer;
           }
         }
@@ -1178,7 +1200,11 @@ export class CheckoutComponent {
           this.swaraSadhanaCheckout(data, isRazorPay, isPaypal);
         } else if (this.slug == routeEnum.pranayamaCertification) {
           this.pranayamaCertificationCheckout(data, isRazorPay, isPaypal);
-        } else if (this.slug == routeEnum.retreats) {
+        } else if (
+          this.slug == routeEnum.retreats ||
+          this.slug == routeEnum.rishikehsRetreat ||
+          this.slug == routeEnum.rishikeshRetreat
+        ) {
           this.retreatsCheckout(data, isRazorPay, isPaypal);
         } else if (this.slug == routeEnum.pg) {
           this.personalGuidanceCheckout(data, isRazorPay, isPaypal);
@@ -2492,6 +2518,10 @@ export class CheckoutComponent {
     // PayPal enforces USD as the only accepted currency
     const effectiveCurrency = isPaypal ? this.PAYPAL_CURRENCY : data.currency;
 
+    const isRishikesh =
+      this.slug === routeEnum.rishikehsRetreat ||
+      this.slug === routeEnum.rishikeshRetreat;
+
     let retreatData: SignupDataModel = {
       name: data.name,
       email: data.email.toLowerCase(),
@@ -2499,6 +2529,8 @@ export class CheckoutComponent {
       room: room?.name,
       price: this.amount,
       currency: effectiveCurrency,
+      month: isRishikesh ? 'March, 2027' : 'September, 2026',
+      courseType: isRishikesh ? 'rishikesh-retreat' : 'mysore-retreat',
     };
     if (isPaypal) {
       this.initializePayPalPaymentForRetreat(retreatData);
@@ -2509,6 +2541,13 @@ export class CheckoutComponent {
     }
   }
   initializeRazorPayRetreat(data: SignupDataModel) {
+    const isRishikesh =
+      this.slug === routeEnum.rishikehsRetreat ||
+      this.slug === routeEnum.rishikeshRetreat;
+    const retreatDesc = isRishikesh
+      ? 'The Essence of Yoga – Rishikesh Retreat 2027 Payment'
+      : 'The Essence of Yoga – Mysore Retreat 2026 Payment';
+
     this.webapiService
       .checkoutRazorpayRetreat(data)
       .subscribe((res: razorPayModel) => {
@@ -2518,7 +2557,7 @@ export class CheckoutComponent {
             amount: res.amount * 100,
             currency: data.currency,
             name: 'Yoga Vidya School',
-            description: 'The Essence of Yoga – Mysore Retreat 2026 Payment',
+            description: retreatDesc,
             order_id: res.orderId,
             handler: (response: any) => {
               localStorage.setItem(
@@ -2542,9 +2581,7 @@ export class CheckoutComponent {
               contact: data.phoneNumber,
             },
             notes: {
-              course: JSON.stringify(
-                'The Essence of Yoga – Mysore Retreat 2026 Payment',
-              ),
+              course: JSON.stringify(retreatDesc),
             },
             theme: {
               color: '#3399cc',
