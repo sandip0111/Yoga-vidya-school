@@ -154,9 +154,9 @@ export const s3Bucket = {
   stripe: `${environment.imageUrl}stripe-2.png`,
   paypal: `${environment.imageUrl}paypal.png`,
 
-  pankajHero: 'https://d29rwrqvux6m5p.cloudfront.net/img/954A0126.JPG',
-  pankaj1: 'https://d29rwrqvux6m5p.cloudfront.net/images/954A9553.JPG',
-  pankaj2: 'https://d29rwrqvux6m5p.cloudfront.net/images/IMG_9861.JPG',
+  pankajHero: `${environment.imageUrl}954A0126.JPG`,
+  pankaj1: `${environment.imageUrl}954A9553.JPG`,
+  pankaj2: `${environment.imageUrl}IMG_9861.JPG`,
   pranicImage1: `${environment.imageUrl}FERN8247.jpeg`,
   pranicImage1_1: `${environment.imageUrl}FERN8247_1.jpeg`,
   pranicImage2: `${environment.imageUrl}pranic1.png`,
@@ -187,7 +187,9 @@ export const s3Bucket = {
   maunicave: `${environment.imageUrl}DSC01650.jpg`,
 
   retreats: `${environment.imageUrl}retreat_home.JPG`,
+  rishikeshRetreatBanner: `${environment.imageUrl}DSC07544.JPG`,
   retreatAbt: `${environment.imageUrl}retreat_about.jpg`,
+  rishikeshRetreatAbt: `${environment.imageUrl}DSC07613.JPG`,
 
   bannerPg: `${environment.imageUrl}bannerpg.PNG`,
   pg1: `${environment.imageUrl}pg1.JPEG`,
