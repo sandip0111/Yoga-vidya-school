@@ -147,6 +147,26 @@ export class CheckoutComponent {
     ];
     return allowedSlugs.includes(this.slug as any);
   }
+  get depositFeesData(): feeInfoDto[] {
+    if (
+      this.slug === routeEnum.rishikeshRetreat ||
+      this.slug === routeEnum.retreats
+    ) {
+      return this.feesData.filter((item) =>
+        item.title.toLowerCase().includes('single'),
+      );
+    }
+    return this.feesData;
+  }
+  getDepositPrice(amount: number): number {
+    if (
+      this.slug === routeEnum.rishikeshRetreat ||
+      this.slug === routeEnum.retreats
+    ) {
+      return Math.floor(amount * 0.3);
+    }
+    return Math.round(amount * 0.3);
+  }
   get showPaypalButton(): boolean {
     return (
       this.slug === routeEnum['200TTC'] ||
@@ -629,8 +649,7 @@ export class CheckoutComponent {
       this.roomList = [
         { name: 'Shared room', value: 1 },
         { name: 'Single room', value: 2 },
-        { name: 'Reserve your shared room with a 30% deposit', value: 3 },
-        { name: 'Reserve your Single room with a 30% deposit', value: 4 },
+        { name: 'Reserve your Single room with a 30% deposit', value: 3 },
       ];
     }
     if (this.roomList && this.roomList.length > 0) {
@@ -836,14 +855,20 @@ export class CheckoutComponent {
     if (
       this.slug === this.routeEnum.rishikesh100 ||
       this.slug === this.routeEnum.rishkesh200 ||
-      this.slug === this.routeEnum.rishikesh300 ||
-      this.slug === this.routeEnum.retreats ||
-      this.slug === this.routeEnum.rishikeshRetreat
+      this.slug === this.routeEnum.rishikesh300
     ) {
       if (+roomId === 3) {
         isBooking30 = true;
         lookupRoomId = 1;
       } else if (+roomId === 4) {
+        isBooking30 = true;
+        lookupRoomId = 2;
+      }
+    } else if (
+      this.slug === this.routeEnum.retreats ||
+      this.slug === this.routeEnum.rishikeshRetreat
+    ) {
+      if (+roomId === 3 || +roomId === 4) {
         isBooking30 = true;
         lookupRoomId = 2;
       }
