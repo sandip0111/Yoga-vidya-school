@@ -588,7 +588,7 @@ export const routes: Routes = [
     },
   },
   {
-    path: routeEnum.rishikehsRetreat,
+    path: routeEnum.rishikeshRetreat,
     loadComponent: () =>
       import('./course/rishikesh-retreat/rishikesh-retreat').then((m) => m.RishikeshRetreat),
     data: {

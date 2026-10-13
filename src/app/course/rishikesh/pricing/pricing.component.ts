@@ -39,7 +39,6 @@ export class PricingComponent implements OnInit {
       'yoga-teacher-training-in-india',
       routeEnum.mysore100,
       routeEnum.mysore200,
-      routeEnum.rishikehsRetreat,
       routeEnum.rishikeshRetreat,
     ];
     return validSlugs.includes(this.slug as any);
@@ -118,7 +117,6 @@ export class PricingComponent implements OnInit {
         this.mainHeading =
           'Choose the space that supports your practice — in solitude or in company';
         break;
-      case routeEnum.rishikehsRetreat:
       case routeEnum.rishikeshRetreat:
         this.mainHeading =
           'Choose the space that supports your practice — in solitude or in company';

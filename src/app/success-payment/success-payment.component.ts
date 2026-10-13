@@ -155,7 +155,6 @@ export class SuccessPaymentComponent {
       !!localStorage.getItem(localstorageKey.pgPaypalOrderId);
     const hasRetreatPaypal =
       activePaypalSlug === routeEnum.retreats ||
-      activePaypalSlug === routeEnum.rishikehsRetreat ||
       activePaypalSlug === routeEnum.rishikeshRetreat ||
       !!localStorage.getItem(localstorageKey.retreatPaypalDBId) ||
       !!localStorage.getItem(localstorageKey.retreatPaypalOrderId);

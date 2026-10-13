@@ -84,7 +84,7 @@ export class NavbarComponent implements OnInit {
           },
           {
             title: 'Rishikesh Retreat',
-            link: `/${routeEnum.rishikehsRetreat}`,
+            link: `/${routeEnum.rishikeshRetreat}`,
           },
         ],
       },

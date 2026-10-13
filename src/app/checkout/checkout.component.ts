@@ -143,7 +143,6 @@ export class CheckoutComponent {
       routeEnum['200TTC'],
       routeEnum.pranayamaCertification,
       routeEnum.retreats,
-      routeEnum.rishikehsRetreat,
       routeEnum.rishikeshRetreat,
     ];
     return allowedSlugs.includes(this.slug as any);
@@ -152,7 +151,6 @@ export class CheckoutComponent {
     return (
       this.slug === routeEnum['200TTC'] ||
       this.slug === routeEnum.retreats ||
-      this.slug === routeEnum.rishikehsRetreat ||
       this.slug === routeEnum.rishikeshRetreat ||
       this.slug === routeEnum.rishikesh100 ||
       this.slug === routeEnum.rishkesh200 ||
@@ -626,7 +624,6 @@ export class CheckoutComponent {
       ];
     } else if (
       pageSlug === routeEnum.retreats ||
-      pageSlug === routeEnum.rishikehsRetreat ||
       pageSlug === routeEnum.rishikeshRetreat
     ) {
       this.roomList = [
@@ -841,7 +838,6 @@ export class CheckoutComponent {
       this.slug === this.routeEnum.rishkesh200 ||
       this.slug === this.routeEnum.rishikesh300 ||
       this.slug === this.routeEnum.retreats ||
-      this.slug === this.routeEnum.rishikehsRetreat ||
       this.slug === this.routeEnum.rishikeshRetreat
     ) {
       if (+roomId === 3) {
@@ -862,7 +858,6 @@ export class CheckoutComponent {
 
     const calc30 = (val: number) => {
       if (
-        this.slug === this.routeEnum.rishikehsRetreat ||
         this.slug === this.routeEnum.rishikeshRetreat ||
         this.slug === this.routeEnum.retreats
       ) {
@@ -1202,7 +1197,6 @@ export class CheckoutComponent {
           this.pranayamaCertificationCheckout(data, isRazorPay, isPaypal);
         } else if (
           this.slug == routeEnum.retreats ||
-          this.slug == routeEnum.rishikehsRetreat ||
           this.slug == routeEnum.rishikeshRetreat
         ) {
           this.retreatsCheckout(data, isRazorPay, isPaypal);
@@ -2518,9 +2512,7 @@ export class CheckoutComponent {
     // PayPal enforces USD as the only accepted currency
     const effectiveCurrency = isPaypal ? this.PAYPAL_CURRENCY : data.currency;
 
-    const isRishikesh =
-      this.slug === routeEnum.rishikehsRetreat ||
-      this.slug === routeEnum.rishikeshRetreat;
+    const isRishikesh = this.slug === routeEnum.rishikeshRetreat;
 
     let retreatData: SignupDataModel = {
       name: data.name,
@@ -2541,9 +2533,7 @@ export class CheckoutComponent {
     }
   }
   initializeRazorPayRetreat(data: SignupDataModel) {
-    const isRishikesh =
-      this.slug === routeEnum.rishikehsRetreat ||
-      this.slug === routeEnum.rishikeshRetreat;
+    const isRishikesh = this.slug === routeEnum.rishikeshRetreat;
     const retreatDesc = isRishikesh
       ? 'The Essence of Yoga – Rishikesh Retreat 2027 Payment'
       : 'The Essence of Yoga – Mysore Retreat 2026 Payment';
