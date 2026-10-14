@@ -72,14 +72,13 @@ export class SuccessPaymentComponent {
   isMysore: boolean = false;
   isPersonalGuidance: boolean = false;
   constructor(
-
     private webapiService: WebapiService,
     private router: Router,
     private route: ActivatedRoute,
     private spinner: NgxSpinnerService,
     private title: Title,
     private pixelTracking: PixelTrackingService,
-    private seoService: SeoService
+    private seoService: SeoService,
   ) {}
 
   ngOnInit(): void {
@@ -213,7 +212,9 @@ export class SuccessPaymentComponent {
 
     this.twoHundredTTCPaypalOrderId =
       localStorage.getItem(localstorageKey['200TTCPaypalOrderId']) ||
-      (has200TTCPaypal || this.router.url.includes('200') ? tokenFromUrl : '') ||
+      (has200TTCPaypal || this.router.url.includes('200')
+        ? tokenFromUrl
+        : '') ||
       '';
     this.pgPaypalOrderId =
       localStorage.getItem(localstorageKey.pgPaypalOrderId) ||
@@ -232,11 +233,15 @@ export class SuccessPaymentComponent {
       '';
     this.swaraSadhnaPaypalOrderId =
       localStorage.getItem(localstorageKey.swaraSadhnaPaypalOrderId) ||
-      (hasSwaraSadhnaPaypal || this.router.url.includes('swara') ? tokenFromUrl : '') ||
+      (hasSwaraSadhnaPaypal || this.router.url.includes('swara')
+        ? tokenFromUrl
+        : '') ||
       '';
     this.pranayamaPaypalOrderId =
       localStorage.getItem(localstorageKey.pranayamaPaypalOrderId) ||
-      (hasPranayamaPaypal || this.router.url.includes('pranayama-certification') ? tokenFromUrl : '') ||
+      (hasPranayamaPaypal || this.router.url.includes('pranayama-certification')
+        ? tokenFromUrl
+        : '') ||
       '';
     this.pranicPaypalOrderId =
       localStorage.getItem(localstorageKey.pranicPaypalOrderId) ||
@@ -287,7 +292,9 @@ export class SuccessPaymentComponent {
       '';
     this.mysoreTTCPaypalOrderId =
       localStorage.getItem(localstorageKey.mysoreTTCPaypalOrderId) ||
-      (hasMysorePaypal || this.router.url.includes('mysore') ? tokenFromUrl : '') ||
+      (hasMysorePaypal || this.router.url.includes('mysore')
+        ? tokenFromUrl
+        : '') ||
       '';
 
     if (this.sessionId) {
@@ -383,16 +390,12 @@ export class SuccessPaymentComponent {
     }
     if (this.mysoreTTCRazorPaySessionId) {
       setTimeout(() => {
-        this.getRazorPaymentResultMysoreTTC(
-          this.mysoreTTCRazorPaySessionId,
-        );
+        this.getRazorPaymentResultMysoreTTC(this.mysoreTTCRazorPaySessionId);
       }, 0);
     }
     if (this.mysoreTTCStripeSessionId) {
       setTimeout(() => {
-        this.getStripePaymentResultMysoreTTC(
-          this.mysoreTTCStripeSessionId,
-        );
+        this.getStripePaymentResultMysoreTTC(this.mysoreTTCStripeSessionId);
       }, 0);
     }
 
@@ -487,9 +490,7 @@ export class SuccessPaymentComponent {
     }
     if (this.pranaArambhaPaypalOrderId) {
       setTimeout(() => {
-        this.getPaypalPaymentResultPranaArambha(
-          this.pranaArambhaPaypalOrderId,
-        );
+        this.getPaypalPaymentResultPranaArambha(this.pranaArambhaPaypalOrderId);
       }, 0);
     }
     if (this.pgPaypalOrderId) {
@@ -499,9 +500,7 @@ export class SuccessPaymentComponent {
     }
     if (this.pranicPaypalOrderId) {
       setTimeout(() => {
-        this.getPaypalPaymentResultPranicPurification(
-          this.pranicPaypalOrderId,
-        );
+        this.getPaypalPaymentResultPranicPurification(this.pranicPaypalOrderId);
       }, 0);
     }
     if (this.pranicIIPaypalOrderId) {
@@ -1059,83 +1058,7 @@ export class SuccessPaymentComponent {
         localStorage.removeItem(localstorageKey.rishikesh200StripeDBId);
       });
   }
-  getRazorPaymentResultMysoreTTC(razorpayPaymentId: string) {
-    const fbp = this.getCookie('_fbp');
-    const fbc = this.getCookie('_fbc');
-    const paymentResult: razorPaymentResultModel = {
-      razorpayPaymentId: razorpayPaymentId,
-      razorpayOrderId: localStorage.getItem(
-        localstorageKey.mysoreTTCOrderId,
-      ),
-      razorpaySignature: localStorage.getItem(localstorageKey.mysoreTTCSig),
-      payDbId: localStorage.getItem(localstorageKey.mysoreTTCDBId),
-      fbp: fbp,
-      fbc: fbc,
-    };
-    this.webapiService
-      .getRazorPaymentResultMysoreTTC(paymentResult)
-      .subscribe((res: razorPayReturnModel) => {
-        if (res) {
-          this.isMysore = true;
-          this.paidFlag = 'true';
-          this.ordId = paymentResult.razorpayOrderId;
-          this.amount = res.amount;
-          this.cur = this.currencySet(res.currency);
-          this.pixelTracking.trackPurchaseMysoreTTC(
-            this.ordId,
-            'mysore_ttc',
-            'Mysore Yoga Teacher Training Course',
-            this.amount,
-            this.cur,
-          );
-          this.spinner.hide();
-        } else {
-          this.paidFlag = 'false';
-          this.spinner.hide();
-        }
-        localStorage.removeItem(localstorageKey.mysoreTTCRzpId);
-        localStorage.removeItem(localstorageKey.mysoreTTCOrderId);
-        localStorage.removeItem(localstorageKey.mysoreTTCSig);
-        localStorage.removeItem(localstorageKey.mysoreTTCDBId);
-      });
-  }
-  getStripePaymentResultMysoreTTC(sessionId: string) {
-    const fbp = this.getCookie('_fbp');
-    const fbc = this.getCookie('_fbc');
-    let val = {
-      sessionId: sessionId,
-      payDbId: localStorage.getItem(localstorageKey.mysoreTTCStripeDBId),
-      fbp: fbp,
-      fbc: fbc,
-    };
-    this.webapiService
-      .getStripePaymentResultMysoreTTC(val)
-      .subscribe((res: any) => {
-        if (res.data.status == 'success') {
-          this.isMysore = true;
-          this.paidFlag = 'true';
-          this.ordId = res.data.paymtId;
-          this.amount = res.data.amount;
-          this.cur = this.currencySet(res.data.currency);
-          this.pixelTracking.trackPurchaseMysoreTTC(
-            this.ordId,
-            'mysore_ttc',
-            'Mysore Yoga Teacher Training Course',
-            this.amount,
-            this.cur,
-          );
-          this.spinner.hide();
-        } else {
-          this.paidFlag = 'false';
-          this.reuseUrl = res.data.sessionId;
-          this.spinner.hide();
-        }
-        localStorage.removeItem(localstorageKey.mysoreTTCStripeSessionId);
-        localStorage.removeItem(localstorageKey.mysoreTTCStripeDBId);
-      });
-  }
   getRazorPaymentResultSwaraSadhna(razorpayPaymentId: string) {
-
     const fbp = this.getCookie('_fbp');
     const fbc = this.getCookie('_fbc');
     const paymentResult: swaraPaymentResultModel = {
@@ -1211,9 +1134,9 @@ export class SuccessPaymentComponent {
           this.spinner.hide();
         }
         localStorage.removeItem(localstorageKey.swaraSadhnaStripeSessionId);
-    localStorage.removeItem(localstorageKey.swaraSadhnaStripeDBId);
-    localStorage.removeItem(localstorageKey.swaraSadhnaPaypalOrderId);
-    localStorage.removeItem(localstorageKey.swaraSadhnaPaypalDBId);
+        localStorage.removeItem(localstorageKey.swaraSadhnaStripeDBId);
+        localStorage.removeItem(localstorageKey.swaraSadhnaPaypalOrderId);
+        localStorage.removeItem(localstorageKey.swaraSadhnaPaypalDBId);
       });
   }
   getPaypalPaymentResultSwaraSadhna(paypalOrderId: string) {
@@ -1717,7 +1640,6 @@ export class SuccessPaymentComponent {
       });
   }
   getPaypalPaymentResultBali(paypalOrderId: string) {
-
     const fbp = this.getCookie('_fbp');
     const fbc = this.getCookie('_fbc');
     let val = {
@@ -1866,31 +1788,29 @@ export class SuccessPaymentComponent {
       fbp: fbp,
       fbc: fbc,
     };
-    this.webapiService
-      .getPaypalPaymentResultPg(val)
-      .subscribe((res: any) => {
-        const responseData = res?.data || res;
-        if (
-          responseData &&
-          (responseData.status === 'success' ||
-            res.status === 'success' ||
-            res.status === 200)
-        ) {
-          this.isPersonalGuidance = true;
-          this.paidFlag = 'true';
-          this.ordId = responseData.paymtId || res.paymtId || paypalOrderId;
-          this.amount = responseData.amount || res.amount || 0;
-          this.cur = this.currencySet(
-            responseData.currency || res.currency || 'USD',
-          );
-          this.spinner.hide();
-        } else {
-          this.paidFlag = 'false';
-          this.spinner.hide();
-        }
-        localStorage.removeItem(localstorageKey.pgPaypalOrderId);
-        localStorage.removeItem(localstorageKey.pgPaypalDBId);
-      });
+    this.webapiService.getPaypalPaymentResultPg(val).subscribe((res: any) => {
+      const responseData = res?.data || res;
+      if (
+        responseData &&
+        (responseData.status === 'success' ||
+          res.status === 'success' ||
+          res.status === 200)
+      ) {
+        this.isPersonalGuidance = true;
+        this.paidFlag = 'true';
+        this.ordId = responseData.paymtId || res.paymtId || paypalOrderId;
+        this.amount = responseData.amount || res.amount || 0;
+        this.cur = this.currencySet(
+          responseData.currency || res.currency || 'USD',
+        );
+        this.spinner.hide();
+      } else {
+        this.paidFlag = 'false';
+        this.spinner.hide();
+      }
+      localStorage.removeItem(localstorageKey.pgPaypalOrderId);
+      localStorage.removeItem(localstorageKey.pgPaypalDBId);
+    });
   }
   getPaypalPaymentResultPranaArambha(paypalOrderId: string) {
     const fbp = this.getCookie('_fbp');
@@ -1898,9 +1818,7 @@ export class SuccessPaymentComponent {
     const couponCodeId = localStorage.getItem(localstorageKey.couponCode);
     let val = {
       paypalOrderId: paypalOrderId,
-      payDbId: localStorage.getItem(
-        localstorageKey.pranaArambhaPaypalDBId,
-      ),
+      payDbId: localStorage.getItem(localstorageKey.pranaArambhaPaypalDBId),
       couponCodeId: couponCodeId,
       fbp: fbp,
       fbc: fbc,
@@ -2015,6 +1933,81 @@ export class SuccessPaymentComponent {
         localStorage.removeItem(localstorageKey.pranicIIPaypalOrderId);
         localStorage.removeItem(localstorageKey.pranicIIPaypalDBId);
         sessionStorage.removeItem('active_paypal_slug');
+      });
+  }
+  //#endregion
+  //#region Mysore TTC
+  getRazorPaymentResultMysoreTTC(razorpayPaymentId: string) {
+    const fbp = this.getCookie('_fbp');
+    const fbc = this.getCookie('_fbc');
+    const paymentResult: razorPaymentResultModel = {
+      razorpayPaymentId: razorpayPaymentId,
+      razorpayOrderId: localStorage.getItem(localstorageKey.mysoreTTCOrderId),
+      razorpaySignature: localStorage.getItem(localstorageKey.mysoreTTCSig),
+      payDbId: localStorage.getItem(localstorageKey.mysoreTTCDBId),
+      fbp: fbp,
+      fbc: fbc,
+    };
+    this.webapiService
+      .getRazorPaymentResultMysoreTTC(paymentResult)
+      .subscribe((res: razorPayReturnModel) => {
+        if (res) {
+          this.isMysore = true;
+          this.paidFlag = 'true';
+          this.ordId = paymentResult.razorpayOrderId;
+          this.amount = res.amount;
+          this.cur = this.currencySet(res.currency);
+          this.pixelTracking.trackPurchaseMysoreTTC(
+            this.ordId,
+            'mysore_ttc',
+            'Mysore Yoga Teacher Training Course',
+            this.amount,
+            this.cur,
+          );
+          this.spinner.hide();
+        } else {
+          this.paidFlag = 'false';
+          this.spinner.hide();
+        }
+        localStorage.removeItem(localstorageKey.mysoreTTCRzpId);
+        localStorage.removeItem(localstorageKey.mysoreTTCOrderId);
+        localStorage.removeItem(localstorageKey.mysoreTTCSig);
+        localStorage.removeItem(localstorageKey.mysoreTTCDBId);
+      });
+  }
+  getStripePaymentResultMysoreTTC(sessionId: string) {
+    const fbp = this.getCookie('_fbp');
+    const fbc = this.getCookie('_fbc');
+    let val = {
+      sessionId: sessionId,
+      payDbId: localStorage.getItem(localstorageKey.mysoreTTCStripeDBId),
+      fbp: fbp,
+      fbc: fbc,
+    };
+    this.webapiService
+      .getStripePaymentResultMysoreTTC(val)
+      .subscribe((res: any) => {
+        if (res.data.status == 'success') {
+          this.isMysore = true;
+          this.paidFlag = 'true';
+          this.ordId = res.data.paymtId;
+          this.amount = res.data.amount;
+          this.cur = this.currencySet(res.data.currency);
+          this.pixelTracking.trackPurchaseMysoreTTC(
+            this.ordId,
+            'mysore_ttc',
+            'Mysore Yoga Teacher Training Course',
+            this.amount,
+            this.cur,
+          );
+          this.spinner.hide();
+        } else {
+          this.paidFlag = 'false';
+          this.reuseUrl = res.data.sessionId;
+          this.spinner.hide();
+        }
+        localStorage.removeItem(localstorageKey.mysoreTTCStripeSessionId);
+        localStorage.removeItem(localstorageKey.mysoreTTCStripeDBId);
       });
   }
   //#endregion

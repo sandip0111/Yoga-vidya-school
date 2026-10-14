@@ -190,7 +190,6 @@ export class CheckoutComponent {
       this.slug == routeEnum.mysore100 ||
       this.slug == routeEnum.mysore200
     );
-
   }
   get canUsePaypal(): boolean {
     return (
@@ -904,8 +903,7 @@ export class CheckoutComponent {
         isBooking30 = true;
         lookupRoomId = 2;
       }
-    }
- else {
+    } else {
       isBooking30 = +roomId === 3;
       lookupRoomId = isBooking30
         ? this.slug === this.routeEnum.pranayamaCertification
@@ -1248,7 +1246,6 @@ export class CheckoutComponent {
         } else {
           this.pranaArambhCheckout(data, isRazorPay, isPaypal);
         }
-
       } else {
         this.spinner.hide();
       }
@@ -1630,7 +1627,6 @@ export class CheckoutComponent {
       this.initializePayStripeMysoreTTC(signupData);
     }
   }
-
 
   baliCheckout(
     data: checkoutModel,
@@ -2445,106 +2441,7 @@ export class CheckoutComponent {
         }
       });
   }
-  initializeRazorPayMysoreTTC(data: SignupDataModel) {
-    this.webapiService
-      .checkoutRazorpayMysoreTTC(data)
-      .subscribe((res: razorPayModel) => {
-        if (res && res.orderId && res.razorpayKey) {
-          const courseLabel =
-            data.hour === 100
-              ? 'Mysore 100 Hour'
-              : 'Mysore 200 Hour';
-          const options = {
-            key: res.razorpayKey,
-            amount: res.amount * 100,
-            currency: data.currency,
-            name: 'Yoga Vidya School',
-            description: `${courseLabel} Yoga TTC Payment`,
-            order_id: res.orderId,
-            handler: (response: any) => {
-              localStorage.setItem(
-                localstorageKey.mysoreTTCRzpId,
-                response.razorpay_payment_id,
-              );
-              localStorage.setItem(
-                localstorageKey.mysoreTTCOrderId,
-                response.razorpay_order_id,
-              );
-              localStorage.setItem(
-                localstorageKey.mysoreTTCSig,
-                response.razorpay_signature,
-              );
-              localStorage.setItem(
-                localstorageKey.mysoreTTCDBId,
-                res.payDbId,
-              );
-              this.router.navigate(['/confirmation']);
-            },
-            prefill: {
-              name: data.name,
-              email: data.email,
-              contact: data.phoneNumber,
-            },
-            notes: {
-              course: JSON.stringify(courseLabel),
-            },
-            theme: {
-              color: '#3399cc',
-            },
-          };
-          this.spinner.hide();
-          const rzp = new Razorpay(options);
-          rzp.open();
-        } else {
-          alert('Session Genration failed! please try again');
-          this.spinner.hide();
-        }
-      });
-  }
-  initializePayStripeMysoreTTC(data: SignupDataModel) {
-    this.webapiService
-      .checkoutStripeForMysoreTTC(data)
-      .subscribe((res: stripePayModel) => {
-        if (res.sessionId) {
-          localStorage.setItem(
-            localstorageKey.mysoreTTCStripeSessionId,
-            res.sessionId,
-          );
-          localStorage.setItem(
-            localstorageKey.mysoreTTCStripeDBId,
-            res.payDbId,
-          );
-          window.location.href = res.url;
-          this.spinner.hide();
-        } else {
-          alert('Session Genration failed! please try again');
-          this.spinner.hide();
-        }
-      });
-  }
-  initializePayPalPaymentForMysoreTTC(data: SignupDataModel) {
-    this.webapiService
-      .checkoutPaypalForMysoreTTC(data)
-      .subscribe((res: paypalPayModel) => {
-        if (res.orderId && res.payDbId && res.approvalUrl) {
-          localStorage.setItem(
-            localstorageKey.mysoreTTCPaypalOrderId,
-            res.orderId,
-          );
-          localStorage.setItem(
-            localstorageKey.mysoreTTCPaypalDBId,
-            res.payDbId,
-          );
-          window.location.href = res.approvalUrl;
-          this.spinner.hide();
-        } else {
-          alert('Session Generation failed! please try again');
-          this.spinner.hide();
-        }
-      });
-  }
   extractPriceAndCurrency(
-
     value: string,
   ): { price: number; currency: string } | null {
     const match = value.match(/^(\d+)\s*([A-Z]+)$/);
@@ -2930,6 +2827,101 @@ export class CheckoutComponent {
           this.spinner.hide();
         } else {
           alert('Session Genration failed! please try again');
+          this.spinner.hide();
+        }
+      });
+  }
+  //#endregion
+  //#region Mysore TTC
+  initializeRazorPayMysoreTTC(data: SignupDataModel) {
+    this.webapiService
+      .checkoutRazorpayMysoreTTC(data)
+      .subscribe((res: razorPayModel) => {
+        if (res && res.orderId && res.razorpayKey) {
+          const courseLabel =
+            data.hour === 100 ? 'Mysore 100 Hour' : 'Mysore 200 Hour';
+          const options = {
+            key: res.razorpayKey,
+            amount: res.amount * 100,
+            currency: data.currency,
+            name: 'Yoga Vidya School',
+            description: `${courseLabel} Yoga TTC Payment`,
+            order_id: res.orderId,
+            handler: (response: any) => {
+              localStorage.setItem(
+                localstorageKey.mysoreTTCRzpId,
+                response.razorpay_payment_id,
+              );
+              localStorage.setItem(
+                localstorageKey.mysoreTTCOrderId,
+                response.razorpay_order_id,
+              );
+              localStorage.setItem(
+                localstorageKey.mysoreTTCSig,
+                response.razorpay_signature,
+              );
+              localStorage.setItem(localstorageKey.mysoreTTCDBId, res.payDbId);
+              this.router.navigate(['/confirmation']);
+            },
+            prefill: {
+              name: data.name,
+              email: data.email,
+              contact: data.phoneNumber,
+            },
+            notes: {
+              course: JSON.stringify(courseLabel),
+            },
+            theme: {
+              color: '#f47019',
+            },
+          };
+          this.spinner.hide();
+          const rzp = new Razorpay(options);
+          rzp.open();
+        } else {
+          alert('Session Genration failed! please try again');
+          this.spinner.hide();
+        }
+      });
+  }
+  initializePayStripeMysoreTTC(data: SignupDataModel) {
+    this.webapiService
+      .checkoutStripeForMysoreTTC(data)
+      .subscribe((res: stripePayModel) => {
+        if (res.sessionId) {
+          localStorage.setItem(
+            localstorageKey.mysoreTTCStripeSessionId,
+            res.sessionId,
+          );
+          localStorage.setItem(
+            localstorageKey.mysoreTTCStripeDBId,
+            res.payDbId,
+          );
+          window.location.href = res.url;
+          this.spinner.hide();
+        } else {
+          alert('Session Genration failed! please try again');
+          this.spinner.hide();
+        }
+      });
+  }
+  initializePayPalPaymentForMysoreTTC(data: SignupDataModel) {
+    this.webapiService
+      .checkoutPaypalForMysoreTTC(data)
+      .subscribe((res: paypalPayModel) => {
+        if (res.orderId && res.payDbId && res.approvalUrl) {
+          localStorage.setItem(
+            localstorageKey.mysoreTTCPaypalOrderId,
+            res.orderId,
+          );
+          localStorage.setItem(
+            localstorageKey.mysoreTTCPaypalDBId,
+            res.payDbId,
+          );
+          window.location.href = res.approvalUrl;
+          this.spinner.hide();
+        } else {
+          alert('Session Generation failed! please try again');
           this.spinner.hide();
         }
       });
