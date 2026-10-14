@@ -155,6 +155,23 @@ trackPurchaseSwaraSadhana(transactionId: string, courseId: string, courseName: s
   }
 }    
 
+ trackPurchaseMysoreTTC(transactionId: string, courseId: string, courseName: string, value: number, currency: string = 'USD') {
+  if (typeof fbq !== 'undefined') {   
+    const eventId = "mysore_ttc";
+    
+    fbq('track', 'Purchase', {
+      content_ids: ["mysore_ttc"],
+      content_name: "Mysore Yoga Teacher Training Course",
+      content_type: 'mysore_ttc',
+      value: value,
+      currency: currency,
+      num_items: 1
+    }, {
+      eventID: eventId 
+    });
+  }
+}
+
 trackPurchaseLiveClasses(transactionId: string, courseId: string, courseName: string, value: number, currency: string = 'USD') {
   if (typeof fbq !== 'undefined') {   
     const eventId = "live_classes";
