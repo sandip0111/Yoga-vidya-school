@@ -125,8 +125,8 @@ export class CheckoutComponent {
   isDiscountPlan: boolean = false;
   // Hardcoded prices for ?plan=discount on 200TTC slug
   private readonly discountPlanPrices: Record<string, number> = {
-    INR: 82000,
-    USD: 899,
+    INR: 89000,
+    USD: 999,
   };
   private readonly PAYPAL_CURRENCY = PaymentType.usdCur as const;
   get is30PercentBooking(): boolean {
@@ -196,7 +196,7 @@ export class CheckoutComponent {
         this.selectedMonth = params['month'];
       }
       if (params['plan'] === 'discount') {
-        this.isDiscountPlan = true;
+        this.isDiscountPlan = false;
       }
     });
     this.paymentId = this._activatedRoute.snapshot.queryParamMap.get('id');
