@@ -127,8 +127,8 @@ export class ChooseUsComponent implements OnInit {
       };
     } else if (this.slug == routeEnum.mysore100) {
       this.chooseData = {
-        firstImage: s3Bucket.choose7,
-        secondImage: s3Bucket.choose8,
+        firstImage: s3Bucket.choose13,
+        secondImage: s3Bucket.choose14,
         content:
           'Yoga Vidya School offers a superior  100 Hour Yoga teacher training course in Mysore. Founded by Acharya Prashant Jakhmola, all Yoga TTC courses of Yoga Vidya School are Yoga Alliance, USA certified ensuring credibility and quality training in yoga. We at Yoga Vidya School can give you a good amount of rationale for choosing us for pursuing a 100 hours yoga ttc in Mysore.',
         list: [
@@ -141,8 +141,8 @@ export class ChooseUsComponent implements OnInit {
       };
     } else if (this.slug == routeEnum.mysore200) {
       this.chooseData = {
-        firstImage: s3Bucket.choose9,
-        secondImage: s3Bucket.choose10,
+        firstImage: s3Bucket.choose15,
+        secondImage: s3Bucket.choose16,
         content:
           'We at Yoga Vidya School offer the best-in-class 200 Hour Yoga teacher training in Mysore. Helmed by Acharya Prashant Jakhmola, Yoga Vidya School is a Yoga Alliance accredited institution imparting quality education in yoga. We give you innumerable reasons for choosing us as your preferred almamater to learn yoga.',
         list: [

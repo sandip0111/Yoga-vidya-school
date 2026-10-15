@@ -149,6 +149,10 @@ export const s3Bucket = {
   choose10: `${environment.imageUrl}IMG_1740.jpeg`,
   choose11: `${environment.imageUrl}IMG_1747.jpeg`,
   choose12: `${environment.imageUrl}IMG_1746.jpeg`,
+  choose13: `${environment.imageUrl}IMG_7421.jpg`,
+  choose14: `${environment.imageUrl}IMG_7424.jpg`,
+  choose15: `${environment.imageUrl}IMG_7361.JPG`,
+  choose16: `${environment.imageUrl}IMG_0811.jpeg`,
 
   razorpay: `${environment.imageUrl}razor.svg`,
   stripe: `${environment.imageUrl}stripe-2.png`,
@@ -190,6 +194,17 @@ export const s3Bucket = {
   rishikeshRetreatBanner: `${environment.imageUrl}DSC07544.JPG`,
   retreatAbt: `${environment.imageUrl}retreat_about.jpg`,
   rishikeshRetreatAbt: `${environment.imageUrl}DSC07613.JPG`,
+
+  mysoreTTC: `${environment.imageUrl}IMG_7405.JPG`,
+  mysoreTTCAbout: `${environment.imageUrl}IMG_7200.jpg`,
+  mysore100Logo: `${environment.imageUrl}IMG_7211.jpg`,
+  mysore200Logo: `${environment.imageUrl}IMG_7215.jpg`,
+  mysore100Banner: `${environment.imageUrl}IMG_7181.JPG`,
+  mysore100About: `${environment.imageUrl}IMG_7425.jpg`,
+  mysore200Banner: `${environment.imageUrl}_MG_0852-2.jpeg`,
+  mysore200About1: `${environment.imageUrl}IMG_7428.jpg `,
+  mysore200About2: `${environment.imageUrl}IMG_7399.JPG `,
+  mysore200About3: `${environment.imageUrl}IMG_7445.jpg`,
 
   bannerPg: `${environment.imageUrl}bannerpg.PNG`,
   pg1: `${environment.imageUrl}pg1.JPEG`,
