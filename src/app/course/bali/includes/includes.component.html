@@ -1,169 +1,182 @@
 <section class="includes" *ngIf="amenities.length > 0">
   <div class="row">
-    @if(slug==routEnum.rishikesh100 || slug==routEnum.rishkesh200 ||
-    slug==routEnum.rishikesh300){
-    <div class="mb-3" *ngIf="feesData?.amount"></div>
-    <div class="head-content">
-      <h2>What's Included in Your Training</h2>
-    </div>
-    <div class="includes-grid text-center">
-      <div class="include-item">
-        <i class="fas fa-bed"></i>
-        <p *ngIf="slug == routEnum.rishikesh100">
-          12 nights shared room accommodation with attached bathroom
-        </p>
-        <p *ngIf="slug == routEnum.rishkesh200">
-          24 nights room accommodation with attached bathroom
-        </p>
-        <p *ngIf="slug == routEnum.rishikesh300">
-          28 nights room accommodation with attached bathroom
-        </p>
+    @if (
+      slug == routEnum.rishikesh100 ||
+      slug == routEnum.rishkesh200 ||
+      slug == routEnum.rishikesh300 ||
+      slug == routEnum.mysore100 ||
+      slug == routEnum.mysore200
+    ) {
+      <div class="head-content">
+        <h2>What's Included in Your Training</h2>
       </div>
-      <div class="include-item">
-        <i class="fa fa-tint"></i>
-        <p>24x7 Filtered drinking water and hot water</p>
+      <div class="includes-grid text-center">
+        <div class="include-item">
+          <i class="fas fa-bed"></i>
+          <p *ngIf="slug == routEnum.rishikesh100">
+            12 nights shared room accommodation with attached bathroom
+          </p>
+          <p *ngIf="slug == routEnum.rishkesh200">
+            24 nights room accommodation with attached bathroom
+          </p>
+          <p *ngIf="slug == routEnum.rishikesh300">
+            28 nights room accommodation with attached bathroom
+          </p>
+        </div>
+        <div class="include-item">
+          <i class="fa fa-tint"></i>
+          <p>24x7 Filtered drinking water and hot water</p>
+        </div>
+        <div class="include-item">
+          <i class="fas fa-book"></i>
+          <p>Well-designed Course Material</p>
+        </div>
+        <div class="include-item">
+          <i class="fa fa-graduation-cap"></i>
+          <p>Beautiful Bag and School T-shirt</p>
+        </div>
+        <div class="include-item">
+          <i class="fab fa-uikit"></i>
+          <p>Shat Kriyas or Yogic Cleansing Kit</p>
+        </div>
+        <div class="include-item">
+          <i class="fas fa-seedling"></i>
+          <p>
+            Three nutritious organic meals per day, plus Indian Masala Chai for
+            morning and evening.
+          </p>
+        </div>
+        <div class="include-item">
+          <i class="fas fa-hiking"></i>
+          <p>
+            Cultural Trips and Excursions that include sunrise trek in Himalayas
+            and visit to spiritual caves, ashrams, waterfalls and nearby
+            villages
+          </p>
+        </div>
+        <div class="include-item">
+          <i class="fas fa-wifi"></i>
+          <p>
+            WiFi and Beautiful sitting area to study and spend quality Me-time
+          </p>
+        </div>
+        <div class="include-item">
+          <i class="fas fa-user-md"></i>
+          <p>On-call Doctor and Emergency Services</p>
+        </div>
+        <div class="include-item">
+          <i class="fas fa-fire"></i>
+          <p>Havan Ceremony</p>
+        </div>
+        <div class="include-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <p>Visit to local attractions</p>
+        </div>
+        <div class="include-item">
+          <i class="fas fa-tree"></i>
+          <p>Celebration of indians festivals</p>
+        </div>
       </div>
-      <div class="include-item">
-        <i class="fas fa-book"></i>
-        <p>Well-designed Course Material</p>
-      </div>
-      <div class="include-item">
-        <i class="fa fa-graduation-cap"></i>
-        <p>Beautiful Bag and School T-shirt</p>
-      </div>
-      <div class="include-item">
-        <i class="fab fa-uikit"></i>
-        <p>Shat Kriyas or Yogic Cleansing Kit</p>
-      </div>
-      <div class="include-item">
-        <i class="fas fa-seedling"></i>
-        <p>
-          Three nutritious organic meals per day, plus Indian Masala Chai for
-          morning and evening.
-        </p>
-      </div>
-      <div class="include-item">
-        <i class="fas fa-hiking"></i>
-        <p>
-          Cultural Trips and Excursions that include sunrise trek in Himalayas
-          and visit to spiritual caves, ashrams, waterfalls and nearby villages
-        </p>
-      </div>
-      <div class="include-item">
-        <i class="fas fa-wifi"></i>
-        <p>
-          WiFi and Beautiful sitting area to study and spend quality Me-time
-        </p>
-      </div>
-      <div class="include-item">
-        <i class="fas fa-user-md"></i>
-        <p>On-call Doctor and Emergency Services</p>
-      </div>
-      <div class="include-item">
-        <i class="fas fa-fire"></i>
-        <p>Havan Ceremony</p>
-      </div>
-      <div class="include-item">
-        <i class="fas fa-map-marker-alt"></i>
-        <p>Visit to local attractions</p>
-      </div>
-      <div class="include-item">
-        <i class="fas fa-tree"></i>
-        <p>Celebration of indians festivals</p>
-      </div>
-    </div>
-    } @else if(slug==routEnum.bali300 || slug==routEnum.bali200){
-    <div class="mb-3" *ngIf="feesData?.amount"></div>
-    <div class="head-content">
-      <h2>What Does This Yoga Course</h2>
-    </div>
-    <div class="includes-grid text-center">
-      <div class="include-item">
-        <i class="fas fa-bed"></i>
-        <p>21 nights shared room accommodation with attached bathroom.</p>
-      </div>
-      <div class="include-item">
-        <i class="fas fa-book"></i>
-        <p>
-          Accommodation and Food at beautiful Ahamta retreat, Jl. Sri Wedari
-          No.46, Ubud, Kecamatan Ubud, Kabupaten Gianyar, Bali 80571, Indonesia
-        </p>
-      </div>
-      <div class="include-item">
-        <i class="fa fa-tint"></i>
-        <p>24x7 Filtered drinking water and hot water.</p>
-      </div>
-      <div class="include-item">
-        <i class="fa fa-graduation-cap"></i>
-        <p>Well-designed Course Material.</p>
-      </div>
-      <div class="include-item">
-        <i class="fab fa-uikit"></i>
-        <p>Shat Kriyas or Yogic Cleansing Kit.</p>
-      </div>
-      <div class="include-item">
-        <i class="fas fa-seedling"></i>
-        <p>Three nutritious organic meals per day</p>
-      </div>
-      <div class="include-item">
-        <i class="fas fa-hiking"></i>
-        <p>Cultural Trips and Excursions</p>
-      </div>
-      <div class="include-item">
-        <i class="fas fa-wifi"></i>
-        <p>WiFi and Beautiful sitting area to study and spend quality Me-time</p>
-      </div>
-      <div class="include-item">
-        <i class="fas fa-user-md"></i>
-        <p>On-call Doctor and Emergency Services.</p>
-      </div>
-    </div>
-    } @else {
-    <div class="col-md-6 borderall">
-      <div class="mb-3" *ngIf="feesData?.amount">
-        <h2>
-          {{ courseText != "" ? courseText : "Course" }} Fee:
-          {{ feesData?.amount | currency : feesData?.currency }}
-        </h2>
-      </div>
-      <div *ngIf="!hideIncludeSection" class="mb-3">
+    } @else if (slug == routEnum.bali300 || slug == routEnum.bali200) {
+      <div class="mb-3" *ngIf="feesData?.amount"></div>
+      <div class="head-content">
         <h2>What Does This Yoga Course</h2>
-        <h2><span>Package Include?</span></h2>
-        <div class="lists">
-          <ul>
-            <li *ngFor="let item of amenities">
-              <img
-                loading="lazy"
-                alt="Not Loaded"
-                src="https://my-s3-images-bucket.s3.amazonaws.com/img/check-green.png"
-              />
-              {{ item.text }}
-            </li>
-          </ul>
+      </div>
+      <div class="includes-grid text-center">
+        <div class="include-item">
+          <i class="fas fa-bed"></i>
+          <p>21 nights shared room accommodation with attached bathroom.</p>
+        </div>
+        <div class="include-item">
+          <i class="fas fa-book"></i>
+          <p>
+            Accommodation and Food at beautiful Ahamta retreat, Jl. Sri Wedari
+            No.46, Ubud, Kecamatan Ubud, Kabupaten Gianyar, Bali 80571,
+            Indonesia
+          </p>
+        </div>
+        <div class="include-item">
+          <i class="fa fa-tint"></i>
+          <p>24x7 Filtered drinking water and hot water.</p>
+        </div>
+        <div class="include-item">
+          <i class="fa fa-graduation-cap"></i>
+          <p>Well-designed Course Material.</p>
+        </div>
+        <div class="include-item">
+          <i class="fab fa-uikit"></i>
+          <p>Shat Kriyas or Yogic Cleansing Kit.</p>
+        </div>
+        <div class="include-item">
+          <i class="fas fa-seedling"></i>
+          <p>Three nutritious organic meals per day</p>
+        </div>
+        <div class="include-item">
+          <i class="fas fa-hiking"></i>
+          <p>Cultural Trips and Excursions</p>
+        </div>
+        <div class="include-item">
+          <i class="fas fa-wifi"></i>
+          <p>
+            WiFi and Beautiful sitting area to study and spend quality Me-time
+          </p>
+        </div>
+        <div class="include-item">
+          <i class="fas fa-user-md"></i>
+          <p>On-call Doctor and Emergency Services.</p>
         </div>
       </div>
-      <div class="mb-3">
-        <h2>What Is <span>Not Included</span> In This</h2>
-        <h2>Yoga Package?</h2>
-        <div class="lists">
-          <ul>
-            <li *ngFor="let item of not_includes">
-              <img
-                loading="lazy"
-                alt="Not Loaded"
-                src="https://my-s3-images-bucket.s3.amazonaws.com/img/check-green.png"
-              />
-              {{ item.text }}
-            </li>
-          </ul>
+    } @else {
+      <div class="col-md-6 borderall">
+        <div class="mb-3" *ngIf="feesData?.amount">
+          <h2>
+            {{ courseText != "" ? courseText : "Course" }} Fee:
+            {{ feesData?.amount | currency: feesData?.currency }}
+          </h2>
+        </div>
+        <div *ngIf="!hideIncludeSection" class="mb-3">
+          <h2>What Does This Yoga Course</h2>
+          <h2><span>Package Include?</span></h2>
+          <div class="lists">
+            <ul>
+              <li *ngFor="let item of amenities">
+                <img
+                  loading="lazy"
+                  alt="Not Loaded"
+                  src="https://my-s3-images-bucket.s3.amazonaws.com/img/check-green.png"
+                />
+                {{ item.text }}
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="mb-3">
+          <h2>What Is <span>Not Included</span> In This</h2>
+          <h2>Yoga Package?</h2>
+          <div class="lists">
+            <ul>
+              <li *ngFor="let item of not_includes">
+                <img
+                  loading="lazy"
+                  alt="Not Loaded"
+                  src="https://my-s3-images-bucket.s3.amazonaws.com/img/check-green.png"
+                />
+                {{ item.text }}
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="col-md-6">
-      <div class="img-border">
-        <img loading="lazy" [src]="image" class="img-fluid" alt="About Image" />
+      <div class="col-md-6">
+        <div class="img-border">
+          <img
+            loading="lazy"
+            [src]="image"
+            class="img-fluid"
+            alt="About Image"
+          />
+        </div>
       </div>
-    </div>
     }
   </div>
 </section>

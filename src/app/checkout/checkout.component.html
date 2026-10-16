@@ -242,7 +242,7 @@
                     </div>
                     <div
                       class="deposit-subtitle-row mt-2"
-                      *ngFor="let item of feesData"
+                      *ngFor="let item of depositFeesData"
                     >
                       <span class="price-subtitle"
                         >{{ item.title }} Deposit:
@@ -250,7 +250,7 @@
                           class="highlight-text"
                           *ngFor="let obj of item.data; let i = index"
                           >{{
-                            obj.amount * 0.3
+                            getDepositPrice(obj.amount)
                               | currency: obj.currency : "symbol" : "1.0-0"
                           }}{{ item.data.length - 1 > i ? " / " : "" }}</b
                         >
@@ -453,8 +453,12 @@
                       slug == routeEnum.bali200 ||
                       slug == routeEnum.bali100 ||
                       slug == routeEnum.pranayamaCertification ||
-                      slug == routeEnum.retreats))
+                      slug == routeEnum.retreats ||
+                      slug == routeEnum.rishikeshRetreat ||
+                      slug == routeEnum.mysore100 ||
+                      slug == routeEnum.mysore200))
                 "
+
               >
                 <label for="room" class="custom-form-label"
                   >Booking Option

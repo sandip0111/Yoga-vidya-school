@@ -404,6 +404,49 @@ export class WebapiService {
       data,
     );
   }
+  checkoutRazorpayMysoreTTC(data: SignupDataModel): Observable<razorPayModel> {
+    return this.http.post<razorPayModel>(
+      this.url + 'api/v1/checkoutRazorpayMysoreTTC',
+      data,
+    );
+  }
+  getRazorPaymentResultMysoreTTC(
+    data: razorPaymentResultModel,
+  ): Observable<razorPayReturnModel> {
+    return this.http.post<razorPayReturnModel>(
+      this.url + 'api/v1/getRazorPaymentResultMysoreTTC',
+      data,
+    );
+  }
+  checkoutStripeForMysoreTTC(
+    data: SignupDataModel,
+  ): Observable<stripePayModel> {
+    return this.http.post<stripePayModel>(
+      this.url + 'api/v1/checkoutStripeForMysoreTTC',
+      data,
+    );
+  }
+  getStripePaymentResultMysoreTTC(data: any) {
+    return this.http.post(
+      this.url + 'api/v1/getStripePaymentResultMysoreTTC',
+      data,
+    );
+  }
+  checkoutPaypalForMysoreTTC(
+    data: SignupDataModel,
+  ): Observable<paypalPayModel> {
+    return this.http.post<paypalPayModel>(
+      this.url + 'api/v1/checkoutPaypalForMysoreTTC',
+      data,
+    );
+  }
+  getPaypalPaymentResultMysoreTTC(data: paypalPaymentResultModel) {
+    return this.http.post(
+      this.url + 'api/v1/getPaypalPaymentResultMysoreTTC',
+      data,
+    );
+  }
+
   getStripePaymentResultBali(data: any) {
     return this.http.post(this.url + 'api/v1/getStripePaymentResultBali', data);
   }

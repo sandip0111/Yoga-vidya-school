@@ -155,6 +155,12 @@ export class BannerComponent implements OnInit {
         this.rishikeshSubHeading =
           'A return to practice, in the living home of Ashtanga Yoga';
         break;
+      case routeEnum.rishikeshRetreat:
+        this.rishikesHeroImage = s3Bucket.rishikeshRetreatBanner;
+        this.rishikeshMainHeading = 'The Essence of Yoga — Rishikesh Retreat 2027';
+        this.rishikeshSubHeading =
+          'A return to practice, nestled in the sacred birthplace of Yoga';
+        break;
       case routeEnum.pg:
         this.rishikesHeroImage = s3Bucket.bannerPg;
         break;

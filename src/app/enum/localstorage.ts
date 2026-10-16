@@ -24,6 +24,15 @@ export enum localstorageKey {
   'rishikeshPaypalOrderId' = 'rishikesh_paypal_order_id',
   'rishikeshPaypalDBId' = 'rishikesh_paypal_db_id',
 
+  'mysoreTTCRzpId' = 'mysore_ttc_rzp_id',
+  'mysoreTTCOrderId' = 'mysore_ttc_rzp_order_id',
+  'mysoreTTCSig' = 'mysore_ttc_rzp_signature',
+  'mysoreTTCDBId' = 'mysore_ttc_rzp_db_id',
+  'mysoreTTCStripeSessionId' = 'mysore_ttc_stripe_session_id',
+  'mysoreTTCStripeDBId' = 'mysore_ttc_stripe_db_id',
+  'mysoreTTCPaypalOrderId' = 'mysore_ttc_paypal_order_id',
+  'mysoreTTCPaypalDBId' = 'mysore_ttc_paypal_db_id',
+
   'swaraSadhnaRzpId' = 'swara_sadhna_rzp_id',
   'swaraSadhnaOrderId' = 'swara_sadhna_rzp_order_id',
   'swaraSadhnaSig' = 'swara_sadhna_rzp_signature',

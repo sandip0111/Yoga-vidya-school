@@ -143,13 +143,37 @@ export class CheckoutComponent {
       routeEnum['200TTC'],
       routeEnum.pranayamaCertification,
       routeEnum.retreats,
+      routeEnum.rishikeshRetreat,
+      routeEnum.mysore100,
+      routeEnum.mysore200,
     ];
     return allowedSlugs.includes(this.slug as any);
+  }
+  get depositFeesData(): feeInfoDto[] {
+    if (
+      this.slug === routeEnum.rishikeshRetreat ||
+      this.slug === routeEnum.retreats
+    ) {
+      return this.feesData.filter((item) =>
+        item.title.toLowerCase().includes('single'),
+      );
+    }
+    return this.feesData;
+  }
+  getDepositPrice(amount: number): number {
+    if (
+      this.slug === routeEnum.rishikeshRetreat ||
+      this.slug === routeEnum.retreats
+    ) {
+      return Math.floor(amount * 0.3);
+    }
+    return Math.round(amount * 0.3);
   }
   get showPaypalButton(): boolean {
     return (
       this.slug === routeEnum['200TTC'] ||
       this.slug === routeEnum.retreats ||
+      this.slug === routeEnum.rishikeshRetreat ||
       this.slug === routeEnum.rishikesh100 ||
       this.slug === routeEnum.rishkesh200 ||
       this.slug === routeEnum.rishikesh300 ||
@@ -162,11 +186,15 @@ export class CheckoutComponent {
       this.slug === routeEnum.sa ||
       this.slug === routeEnum.pranicPurification ||
       this.slug === routeEnum.pranicPurificationI ||
-      this.slug === routeEnum.pranicPurificationII
+      this.slug === routeEnum.pranicPurificationII ||
+      this.slug == routeEnum.mysore100 ||
+      this.slug == routeEnum.mysore200
     );
   }
   get canUsePaypal(): boolean {
-    return (this.checkData.currency || '').toUpperCase() === this.PAYPAL_CURRENCY;
+    return (
+      (this.checkData.currency || '').toUpperCase() === this.PAYPAL_CURRENCY
+    );
   }
   pgId: number = 0;
   isMonthDropdownOpen: boolean = false;
@@ -183,7 +211,7 @@ export class CheckoutComponent {
     private _renderer2: Renderer2,
     private pixelTracking: PixelTrackingService,
     private elementRef: ElementRef,
-    private seoService: SeoService
+    private seoService: SeoService,
   ) {
     this._activatedRoute.params.subscribe((params) => {
       this.slug = params['id'];
@@ -217,7 +245,10 @@ export class CheckoutComponent {
       setTimeout(() => {
         this.invokeStripe();
         this.loadRazorpayScript();
-        if (this.slug === routeEnum.pranicPurification || this.slug === routeEnum.pranicPurificationI) {
+        if (
+          this.slug === routeEnum.pranicPurification ||
+          this.slug === routeEnum.pranicPurificationI
+        ) {
           const storedDateStr = sessionStorage.getItem('pranicDate');
           if (storedDateStr) {
             this.pranicDate = new Date(storedDateStr);
@@ -526,7 +557,7 @@ export class CheckoutComponent {
 
   formatSelectedDate(): string {
     const selectedDate = this.checkData.appointmentDate;
-    if(new Date(selectedDate).getDate() != new Date().getDate()) {
+    if (new Date(selectedDate).getDate() != new Date().getDate()) {
       return selectedDate
         ? selectedDate.toLocaleDateString('en-GB', {
             day: '2-digit',
@@ -620,14 +651,27 @@ export class CheckoutComponent {
         { name: 'Full Payment', value: 1 },
         { name: 'Reserve your room with a 30% deposit', value: 3 },
       ];
-    } else if (pageSlug === routeEnum.retreats) {
+    } else if (
+      pageSlug === routeEnum.retreats ||
+      pageSlug === routeEnum.rishikeshRetreat
+    ) {
       this.roomList = [
         { name: 'Shared room', value: 1 },
         { name: 'Single room', value: 2 },
+        { name: 'Reserve your Single room with a 30% deposit', value: 3 },
+      ];
+    } else if (
+      pageSlug === routeEnum.mysore100 ||
+      pageSlug === routeEnum.mysore200
+    ) {
+      this.roomList = [
+        { name: 'Shared room', value: 1 },
+        { name: 'Private room', value: 2 },
         { name: 'Reserve your shared room with a 30% deposit', value: 3 },
-        { name: 'Reserve your Single room with a 30% deposit', value: 4 },
+        { name: 'Reserve your private room with a 30% deposit', value: 4 },
       ];
     }
+
     if (this.roomList && this.roomList.length > 0) {
       this.checkData.package = this.roomList[0].value;
     }
@@ -831,8 +875,26 @@ export class CheckoutComponent {
     if (
       this.slug === this.routeEnum.rishikesh100 ||
       this.slug === this.routeEnum.rishkesh200 ||
-      this.slug === this.routeEnum.rishikesh300 ||
-      this.slug === this.routeEnum.retreats
+      this.slug === this.routeEnum.rishikesh300
+    ) {
+      if (+roomId === 3) {
+        isBooking30 = true;
+        lookupRoomId = 1;
+      } else if (+roomId === 4) {
+        isBooking30 = true;
+        lookupRoomId = 2;
+      }
+    } else if (
+      this.slug === this.routeEnum.retreats ||
+      this.slug === this.routeEnum.rishikeshRetreat
+    ) {
+      if (+roomId === 3 || +roomId === 4) {
+        isBooking30 = true;
+        lookupRoomId = 2;
+      }
+    } else if (
+      this.slug === this.routeEnum.mysore100 ||
+      this.slug === this.routeEnum.mysore200
     ) {
       if (+roomId === 3) {
         isBooking30 = true;
@@ -849,6 +911,17 @@ export class CheckoutComponent {
           : 2
         : +roomId;
     }
+
+    const calc30 = (val: number) => {
+      if (
+        this.slug === this.routeEnum.rishikeshRetreat ||
+        this.slug === this.routeEnum.retreats
+      ) {
+        return Math.floor(val * 0.3);
+      }
+      return Math.round(val * 0.3);
+    };
+
     if (this.slug == routeEnum.pg) {
       this.selectPersonalGuidePrice(currency);
     } else {
@@ -862,18 +935,12 @@ export class CheckoutComponent {
               const baseAmount = discountPrice;
               const baseActual =
                 item.data.find((f) => f.currency == currency)?.amount ?? 0;
-              this.amount = isBooking30
-                ? Math.round(baseAmount * 0.3)
-                : baseAmount;
-              this.actualAmount = isBooking30
-                ? Math.round(baseActual * 0.3)
-                : baseActual;
+              this.amount = isBooking30 ? calc30(baseAmount) : baseAmount;
+              this.actualAmount = isBooking30 ? calc30(baseActual) : baseActual;
             } else {
               const baseAmount =
                 item.data.find((f) => f.currency == currency)?.amount ?? 0;
-              this.amount = isBooking30
-                ? Math.round(baseAmount * 0.3)
-                : baseAmount;
+              this.amount = isBooking30 ? calc30(baseAmount) : baseAmount;
               this.actualAmount = 0;
             }
           } else {
@@ -881,12 +948,8 @@ export class CheckoutComponent {
               item.data.find((f) => f.currency == currency)?.amount ?? 0;
             const baseOffer =
               item.data.find((f) => f.currency == currency)?.discount ?? 0;
-            this.amount = isBooking30
-              ? Math.round(baseAmount * 0.3)
-              : baseAmount;
-            this.offerAmount = isBooking30
-              ? Math.round(baseOffer * 0.3)
-              : baseOffer;
+            this.amount = isBooking30 ? calc30(baseAmount) : baseAmount;
+            this.offerAmount = isBooking30 ? calc30(baseOffer) : baseOffer;
           }
         } else {
           const roomName = this.roomList.find(
@@ -902,28 +965,18 @@ export class CheckoutComponent {
             if (discountPrice) {
               const baseAmount = discountPrice;
               const baseActual = matchData?.amount ?? 0;
-              this.amount = isBooking30
-                ? Math.round(baseAmount * 0.3)
-                : baseAmount;
-              this.actualAmount = isBooking30
-                ? Math.round(baseActual * 0.3)
-                : baseActual;
+              this.amount = isBooking30 ? calc30(baseAmount) : baseAmount;
+              this.actualAmount = isBooking30 ? calc30(baseActual) : baseActual;
             } else {
               const baseAmount = matchData?.amount ?? 0;
-              this.amount = isBooking30
-                ? Math.round(baseAmount * 0.3)
-                : baseAmount;
+              this.amount = isBooking30 ? calc30(baseAmount) : baseAmount;
               this.actualAmount = 0;
             }
           } else {
             const baseAmount = matchData?.amount ?? 0;
             const baseOffer = matchData?.discount ?? 0;
-            this.amount = isBooking30
-              ? Math.round(baseAmount * 0.3)
-              : baseAmount;
-            this.offerAmount = isBooking30
-              ? Math.round(baseOffer * 0.3)
-              : baseOffer;
+            this.amount = isBooking30 ? calc30(baseAmount) : baseAmount;
+            this.offerAmount = isBooking30 ? calc30(baseOffer) : baseOffer;
           }
         }
         if (this.amount) {
@@ -1178,10 +1231,18 @@ export class CheckoutComponent {
           this.swaraSadhanaCheckout(data, isRazorPay, isPaypal);
         } else if (this.slug == routeEnum.pranayamaCertification) {
           this.pranayamaCertificationCheckout(data, isRazorPay, isPaypal);
-        } else if (this.slug == routeEnum.retreats) {
+        } else if (
+          this.slug == routeEnum.retreats ||
+          this.slug == routeEnum.rishikeshRetreat
+        ) {
           this.retreatsCheckout(data, isRazorPay, isPaypal);
         } else if (this.slug == routeEnum.pg) {
           this.personalGuidanceCheckout(data, isRazorPay, isPaypal);
+        } else if (
+          this.slug == routeEnum.mysore100 ||
+          this.slug == routeEnum.mysore200
+        ) {
+          this.mysoreTTCCheckout(data, isRazorPay, isPaypal);
         } else {
           this.pranaArambhCheckout(data, isRazorPay, isPaypal);
         }
@@ -1234,7 +1295,11 @@ export class CheckoutComponent {
       timeSlot: '69fed2c141cc943f7e6489ea',
       webinar: 'Swara Sadhana',
       isWebsite: true,
-      paymentType: isPaypal ? 'paypal' : isRazorPay === true ? 'razorpay' : 'stripe',
+      paymentType: isPaypal
+        ? 'paypal'
+        : isRazorPay === true
+          ? 'razorpay'
+          : 'stripe',
       price: this.amount,
       currency: effectiveCurrency,
     };
@@ -1262,10 +1327,7 @@ export class CheckoutComponent {
         }
       });
   }
-  initializePayPalPaymentForSwaraSadhana(
-    data: swaraDataModel,
-    userId: string,
-  ) {
+  initializePayPalPaymentForSwaraSadhana(data: swaraDataModel, userId: string) {
     let priceId: string =
       this.checkData.currency === 'INR'
         ? stripePaymentKey.swaraInr
@@ -1530,6 +1592,39 @@ export class CheckoutComponent {
       this.initializeRazorPayRishi(signupData);
     } else {
       this.initializePayStripeRishi(signupData);
+    }
+  }
+
+  mysoreTTCCheckout(
+    data: checkoutModel,
+    isRazorPay: boolean,
+    isPaypal: boolean = false,
+  ) {
+    let room = this.roomList.find((item) => item.value == data.package);
+
+    // PayPal enforces USD as the only accepted currency
+    const effectiveCurrency = isPaypal ? this.PAYPAL_CURRENCY : data.currency;
+
+    let signupData: SignupDataModel = {
+      name: data.name,
+      email: data.email.toLowerCase(),
+      phoneNumber: data.phoneNumber.e164Number,
+      room: room?.name,
+      price: this.isInstallment ? this.firstInstAmnt : this.amount,
+      currency: effectiveCurrency,
+      month: this.selectedMonth || undefined,
+    };
+    if (this.slug == routeEnum.mysore100) {
+      signupData.hour = 100;
+    } else if (this.slug == routeEnum.mysore200) {
+      signupData.hour = 200;
+    }
+    if (isPaypal) {
+      this.initializePayPalPaymentForMysoreTTC(signupData);
+    } else if (isRazorPay) {
+      this.initializeRazorPayMysoreTTC(signupData);
+    } else {
+      this.initializePayStripeMysoreTTC(signupData);
     }
   }
 
@@ -2089,10 +2184,7 @@ export class CheckoutComponent {
             localstorageKey.pranicPaypalOrderId,
             res.orderId,
           );
-          localStorage.setItem(
-            localstorageKey.pranicPaypalDBId,
-            res.payDbId,
-          );
+          localStorage.setItem(localstorageKey.pranicPaypalDBId, res.payDbId);
           window.location.href = res.approvalUrl;
           this.spinner.hide();
         } else {
@@ -2112,10 +2204,7 @@ export class CheckoutComponent {
             localstorageKey.pranicIIPaypalOrderId,
             res.orderId,
           );
-          localStorage.setItem(
-            localstorageKey.pranicIIPaypalDBId,
-            res.payDbId,
-          );
+          localStorage.setItem(localstorageKey.pranicIIPaypalDBId, res.payDbId);
           window.location.href = res.approvalUrl;
           this.spinner.hide();
         } else {
@@ -2385,8 +2474,7 @@ export class CheckoutComponent {
       const script = document.createElement('script');
       script.id = 'razorpay-script';
       script.src = 'https://checkout.razorpay.com/v1/checkout.js';
-      script.onload = () => {
-      };
+      script.onload = () => {};
       document.body.appendChild(script);
     }
   }
@@ -2492,6 +2580,8 @@ export class CheckoutComponent {
     // PayPal enforces USD as the only accepted currency
     const effectiveCurrency = isPaypal ? this.PAYPAL_CURRENCY : data.currency;
 
+    const isRishikesh = this.slug === routeEnum.rishikeshRetreat;
+
     let retreatData: SignupDataModel = {
       name: data.name,
       email: data.email.toLowerCase(),
@@ -2499,6 +2589,8 @@ export class CheckoutComponent {
       room: room?.name,
       price: this.amount,
       currency: effectiveCurrency,
+      month: isRishikesh ? 'March, 2027' : 'September, 2026',
+      courseType: isRishikesh ? 'rishikesh-retreat' : 'mysore-retreat',
     };
     if (isPaypal) {
       this.initializePayPalPaymentForRetreat(retreatData);
@@ -2509,6 +2601,11 @@ export class CheckoutComponent {
     }
   }
   initializeRazorPayRetreat(data: SignupDataModel) {
+    const isRishikesh = this.slug === routeEnum.rishikeshRetreat;
+    const retreatDesc = isRishikesh
+      ? 'The Essence of Yoga – Rishikesh Retreat 2027 Payment'
+      : 'The Essence of Yoga – Mysore Retreat 2026 Payment';
+
     this.webapiService
       .checkoutRazorpayRetreat(data)
       .subscribe((res: razorPayModel) => {
@@ -2518,7 +2615,7 @@ export class CheckoutComponent {
             amount: res.amount * 100,
             currency: data.currency,
             name: 'Yoga Vidya School',
-            description: 'The Essence of Yoga – Mysore Retreat 2026 Payment',
+            description: retreatDesc,
             order_id: res.orderId,
             handler: (response: any) => {
               localStorage.setItem(
@@ -2542,9 +2639,7 @@ export class CheckoutComponent {
               contact: data.phoneNumber,
             },
             notes: {
-              course: JSON.stringify(
-                'The Essence of Yoga – Mysore Retreat 2026 Payment',
-              ),
+              course: JSON.stringify(retreatDesc),
             },
             theme: {
               color: '#3399cc',
@@ -2693,14 +2788,8 @@ export class CheckoutComponent {
       .checkoutPaypalForPg(data)
       .subscribe((res: paypalPayModel) => {
         if (res.orderId && res.payDbId && res.approvalUrl) {
-          localStorage.setItem(
-            localstorageKey.pgPaypalOrderId,
-            res.orderId,
-          );
-          localStorage.setItem(
-            localstorageKey.pgPaypalDBId,
-            res.payDbId,
-          );
+          localStorage.setItem(localstorageKey.pgPaypalOrderId, res.orderId);
+          localStorage.setItem(localstorageKey.pgPaypalDBId, res.payDbId);
           window.location.href = res.approvalUrl;
           this.spinner.hide();
         } else {
@@ -2738,6 +2827,101 @@ export class CheckoutComponent {
           this.spinner.hide();
         } else {
           alert('Session Genration failed! please try again');
+          this.spinner.hide();
+        }
+      });
+  }
+  //#endregion
+  //#region Mysore TTC
+  initializeRazorPayMysoreTTC(data: SignupDataModel) {
+    this.webapiService
+      .checkoutRazorpayMysoreTTC(data)
+      .subscribe((res: razorPayModel) => {
+        if (res && res.orderId && res.razorpayKey) {
+          const courseLabel =
+            data.hour === 100 ? 'Mysore 100 Hour' : 'Mysore 200 Hour';
+          const options = {
+            key: res.razorpayKey,
+            amount: res.amount * 100,
+            currency: data.currency,
+            name: 'Yoga Vidya School',
+            description: `${courseLabel} Yoga TTC Payment`,
+            order_id: res.orderId,
+            handler: (response: any) => {
+              localStorage.setItem(
+                localstorageKey.mysoreTTCRzpId,
+                response.razorpay_payment_id,
+              );
+              localStorage.setItem(
+                localstorageKey.mysoreTTCOrderId,
+                response.razorpay_order_id,
+              );
+              localStorage.setItem(
+                localstorageKey.mysoreTTCSig,
+                response.razorpay_signature,
+              );
+              localStorage.setItem(localstorageKey.mysoreTTCDBId, res.payDbId);
+              this.router.navigate(['/confirmation']);
+            },
+            prefill: {
+              name: data.name,
+              email: data.email,
+              contact: data.phoneNumber,
+            },
+            notes: {
+              course: JSON.stringify(courseLabel),
+            },
+            theme: {
+              color: '#f47019',
+            },
+          };
+          this.spinner.hide();
+          const rzp = new Razorpay(options);
+          rzp.open();
+        } else {
+          alert('Session Genration failed! please try again');
+          this.spinner.hide();
+        }
+      });
+  }
+  initializePayStripeMysoreTTC(data: SignupDataModel) {
+    this.webapiService
+      .checkoutStripeForMysoreTTC(data)
+      .subscribe((res: stripePayModel) => {
+        if (res.sessionId) {
+          localStorage.setItem(
+            localstorageKey.mysoreTTCStripeSessionId,
+            res.sessionId,
+          );
+          localStorage.setItem(
+            localstorageKey.mysoreTTCStripeDBId,
+            res.payDbId,
+          );
+          window.location.href = res.url;
+          this.spinner.hide();
+        } else {
+          alert('Session Genration failed! please try again');
+          this.spinner.hide();
+        }
+      });
+  }
+  initializePayPalPaymentForMysoreTTC(data: SignupDataModel) {
+    this.webapiService
+      .checkoutPaypalForMysoreTTC(data)
+      .subscribe((res: paypalPayModel) => {
+        if (res.orderId && res.payDbId && res.approvalUrl) {
+          localStorage.setItem(
+            localstorageKey.mysoreTTCPaypalOrderId,
+            res.orderId,
+          );
+          localStorage.setItem(
+            localstorageKey.mysoreTTCPaypalDBId,
+            res.payDbId,
+          );
+          window.location.href = res.approvalUrl;
+          this.spinner.hide();
+        } else {
+          alert('Session Generation failed! please try again');
           this.spinner.hide();
         }
       });
