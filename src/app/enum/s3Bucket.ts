@@ -210,6 +210,8 @@ export const s3Bucket = {
   pg1: `${environment.imageUrl}pg1.JPEG`,
   pg2: `${environment.imageUrl}pg2.JPEG`,
   pg3: `${environment.imageUrl}pg3.jpeg`,
+
+  shivamMain: `${environment.imageUrl}shivamPromo.jpeg`,
 } as const;
 export const youtubeLink = {
   trainingImportance:

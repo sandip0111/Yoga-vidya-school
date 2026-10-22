@@ -41,6 +41,7 @@ import { PranaArambhComponent } from './course/pre-recorded-pranayama-courses/pr
 import { RishikshMain } from './course/rishikesh/rishiksh-main/rishiksh-main';
 import { PranicPurification } from './course/pranic-purification/pranic-purification';
 import { PersonalGuidance } from './about/personal-guidance/personal-guidance';
+import { ShivamJoshi } from './course/online-course-mentor/shivam-joshi/shivam-joshi';
 
 export const routes: Routes = [
   {
@@ -521,6 +522,17 @@ export const routes: Routes = [
         title: `Online Sadhana with Acharya Prashant Jakhmola | Yoga Vidya School`,
         description: `Join daily Online Yoga Sadhana & Pranayama classes with founder Acharya Prashant Jakhmola. Experience authentic yogic practice, breathwork, and meditation from anywhere in the world.`,
         keywords: `Online Sadhana, Prashant Jakhmola Yoga, Online Pranayama Classes, Daily Yoga Practice Online`,
+      },
+    },
+  },
+  {
+    path: `${routeEnum.online_shivam_page}/:id`,
+    component: ShivamJoshi,
+    data: {
+      seo: {
+        title: `Hatha Yoga with Props - Online Classes with Shivam Joshi | Yoga Vidya School`,
+        description: `Join daily live online Hatha Yoga classes with props by Shivam Joshi. Explore traditional Hatha Yoga with an emphasis on alignment and mindful practice.`,
+        keywords: `Shivam Joshi Yoga, Hatha Yoga with Props, Traditional Hatha Yoga, Alignment Yoga Online`,
       },
     },
   },

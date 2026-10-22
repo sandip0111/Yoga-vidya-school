@@ -45,7 +45,6 @@ export class CourseMentorComponent {
     });
   }
   goToMentorPage(url: string, id: number): void {
-    console.log('Navigating to mentor page:', url, 'with ID:', id);
     if (url) {
       this.router.navigate([url, id]).then(() => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -83,7 +82,7 @@ export let jsonData = [
       time2: '7:00 AM',
       stamp: 'IST',
     },
-    nextBatch: 'November, the 3rd',
+    nextBatch: 'November, the 2nd',
     price: {
       priceInIndian: 2999,
       priceInUSD: 70,
@@ -94,23 +93,26 @@ export let jsonData = [
       'Interactive class combining Hatha asanas and pranayama each morning for holistic physical, mental, and spiritual growth. Suitable for all levels, with focus on correct alignment and routine building.',
     url: `${routeEnum.online_prashant_page}`,
   },
-  // {
-  //   id: 2,
-  //   name: 'Anuj Pareek',
-  //   image: s3Bucket.courseMentor2,
-  //   title: 'Therapeutic Hatha Yoga',
-  //   weeklyTime: 'From Monday to Thursday',
-  //   time: {
-  //     time1: '5:30 am',
-  //     time2: '6:30 am',
-  //     stamp: 'IST',
-  //   },
-  //   nextBatch: 'October the 6th',
-  //   price: { priceInIndian: 1999, priceInUSD: 50 },
-  //   description:
-  //     'Progressive, dynamic and therapeutic Hatha sequence tailored for mobility and release of long-held tension from sedentaries lifestyles.',
-  //   url: 'anuj-online-class',
-  // },
+  {
+    id: 2,
+    name: 'Shivam Joshi',
+    image: s3Bucket.shivamMain,
+    title: 'Hatha Yoga with Props',
+    weeklyTime: 'From Monday to Thursday',
+    time: {
+      time1: '6:00 PM',
+      time2: '7:00 PM',
+      stamp: 'IST',
+    },
+    nextBatch: 'November 2nd',
+    price: {
+      priceInIndian: 2499,
+      priceInUSD: 55,
+    },
+    description:
+      'Explore traditional Hatha Yoga with an emphasis on alignment, mindful practice, and the intelligent use of props to support and refine your experience.',
+    url: `${routeEnum.online_shivam_page}`,
+  },
   {
     id: 3,
     name: 'Taniya Verma',

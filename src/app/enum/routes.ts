@@ -28,6 +28,7 @@ export enum routeEnum {
   'courseVideo' = 'course-video',
   'pankaji' = 'pankaj-ji-online-class',
   'online_prashant_page' = 'prashant-jhakmola-online-class',
+  'online_shivam_page' = 'shivam-joshi-online-class',
   'online_taniya_page' = 'taniya-verma-online-class',
   'mentors' = 'mentors',
   'pranayamaCertification' = 'pranayama-certification',
