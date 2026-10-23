@@ -25,8 +25,8 @@ export class ShivamJoshi implements OnInit {
     time: '06:00 PM to 07:00 PM IST',
     startDate: 'November 2nd',
     price: [
-      { currency: 'USD', amount: 55 },
       { currency: 'INR', amount: 2499 },
+      { currency: 'USD', amount: 55 },
     ],
   };
 

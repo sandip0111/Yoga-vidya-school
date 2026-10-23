@@ -166,15 +166,15 @@ export class CartService {
   getTotalAmount(currency: string): number {
     var total = 0;
     if (currency == 'USD') {
-      total = this.items.reduce(
-        (total, item) => total + item.price[1].amount * 1,
-        0
-      );
+      total = this.items.reduce((total, item) => {
+        const usd = item?.price?.find((p: any) => p.currency === 'USD') || item?.price?.[1];
+        return total + (usd ? usd.amount * 1 : 0);
+      }, 0);
     } else if (currency == 'INR') {
-      total = this.items.reduce(
-        (total, item) => total + item.price[0].amount * 1,
-        0
-      );
+      total = this.items.reduce((total, item) => {
+        const inr = item?.price?.find((p: any) => p.currency === 'INR') || item?.price?.[0];
+        return total + (inr ? inr.amount * 1 : 0);
+      }, 0);
     }
     return total;
   }

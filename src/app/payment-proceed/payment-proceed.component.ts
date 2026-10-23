@@ -58,6 +58,7 @@ export class PaymentProceedComponent implements OnInit {
   currencyOptions: string[] = [];
   isPhoneValid: boolean = false;
   isSpecial: boolean = false;
+  requestedMentorId: number | null = null;
   s3Bucket = s3Bucket;
   constructor(
     private fb: FormBuilder,
@@ -73,6 +74,15 @@ export class PaymentProceedComponent implements OnInit {
     this.actRoute.queryParams.subscribe((params) => {
       if (params['hash'] === 'abcdef1234567890') {
         this.isSpecial = true;
+      }
+      if (params['id']) {
+        this.requestedMentorId = +params['id'];
+      } else if (params['mentor']) {
+        this.requestedMentorId = +params['mentor'];
+      } else if (params['teacher'] && params['teacher'].toLowerCase().includes('shivam')) {
+        this.requestedMentorId = 2;
+      } else if (params['teacher'] && params['teacher'].toLowerCase().includes('prashant')) {
+        this.requestedMentorId = 1;
       }
     });
     this.paymentForm = this.fb.group({
@@ -143,9 +153,19 @@ export class PaymentProceedComponent implements OnInit {
           }
           this.getCurrencyOption(this.courses, '');
           this.updatePrice('USD');
+        } else if (this.requestedMentorId) {
+          const mentor: CartItem | undefined = this.courseMentor.find(
+            (x) => x.id == this.requestedMentorId,
+          );
+          if (mentor) {
+            this.courses = [mentor];
+            this.cartService.addItem(mentor);
+          }
+          this.courseAddedFn(this.courseMentor);
         } else {
           this.courseAddedFn(this.courseMentor);
         }
+        this.setPageTitle(this.courses);
       },
       error: (error) => {
         console.error('Failed to load teachers:', error);
@@ -153,15 +173,23 @@ export class PaymentProceedComponent implements OnInit {
     });
   }
   setPageTitle(courses: CartItem[]) {
-    if (courses.length > 0) {
+    if (courses && courses.length > 0) {
       const firstVal = courses[0];
       if (firstVal.id == 1) {
         this.titleService.setTitle(
           'Online sadhna with Prashant - Yoga Vidya School',
         );
+      } else if (firstVal.id == 2) {
+        this.titleService.setTitle(
+          'Hatha Yoga with Props with Shivam Joshi - Yoga Vidya School',
+        );
       } else if (firstVal.id == 3) {
         this.titleService.setTitle(
           'Women wellness yoga with Taniya - Yoga Vidya School',
+        );
+      } else {
+        this.titleService.setTitle(
+          `${firstVal.name || 'Online Class'} - Yoga Vidya School`,
         );
       }
     } else {
@@ -260,6 +288,7 @@ export class PaymentProceedComponent implements OnInit {
       this.courses = this.courses.filter((c) => c.id !== course.id);
       this.cartService.removeItem(course.id);
     }
+    this.setPageTitle(this.courses);
     this.updatePrice(); // Recalculate price
   }
   onStripePayment(): void {
@@ -311,6 +340,7 @@ export class PaymentProceedComponent implements OnInit {
   removeItem(id: number): void {
     this.cartService.removeItem(id);
     this.courses = this.cartService.getItems();
+    this.setPageTitle(this.courses);
     this.updatePrice();
   }
   invokeStripe() {
@@ -518,5 +548,17 @@ export class PaymentProceedComponent implements OnInit {
       'proceed-payment_page',
       'proceed-payment',
     );
+  }
+
+  getInrPrice(course: CartItem): number {
+    if (!course || !course.price) return 0;
+    const item = course.price.find((p: any) => p.currency === 'INR');
+    return item ? item.amount : course.price[0]?.amount || 0;
+  }
+
+  getUsdPrice(course: CartItem): number {
+    if (!course || !course.price) return 0;
+    const item = course.price.find((p: any) => p.currency === 'USD');
+    return item ? item.amount : course.price[1]?.amount || 0;
   }
 }

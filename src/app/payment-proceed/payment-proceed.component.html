@@ -50,12 +50,12 @@
           <div class="course-price-row">
             <div class="course-price-item">
               <span class="price-label">INR</span>
-              <span class="price-amount">{{ course.price[0].amount | currency:'INR':'symbol':'1.0-0' }}</span>
+              <span class="price-amount">{{ getInrPrice(course) | currency:'INR':'symbol':'1.0-0' }}</span>
             </div>
             <span class="price-sep">/</span>
             <div class="course-price-item">
               <span class="price-label">USD</span>
-              <span class="price-amount">{{ course.price[1].amount | currency:'USD':'symbol':'1.0-0' }}</span>
+              <span class="price-amount">{{ getUsdPrice(course) | currency:'USD':'symbol':'1.0-0' }}</span>
             </div>
             <span class="course-qty">Qty: 1</span>
           </div>
