@@ -1637,13 +1637,13 @@ export class CheckoutComponent {
     let month;
     if (this.slug == routeEnum.bali200) {
       hour = 200;
-      month = 'June, 2026';
+      month = 'July, 2027';
     } else if (this.slug == routeEnum.bali300) {
       hour = 300;
-      month = 'July, 2026';
+      month = 'August, 2027';
     } else {
       hour = 100;
-      month = 'June, 2026';
+      month = 'July, 2027';
     }
     let room = this.roomList.find((item) => item.value == data.package);
     const effectiveCurrency = isPaypal ? this.PAYPAL_CURRENCY : data.currency;

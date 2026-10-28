@@ -83,7 +83,7 @@ export class CertifiedComponent {
         Reserve your room with 30% deposit`;
     } else if (this.slug === routeEnum.bali) {
       this.bannerTitle = 'Experience traditional yoga in the heart of paradise';
-      this.bannerSubtitle = `2026 Batches: June and July<br/>
+      this.bannerSubtitle = `2027 Batches: July and August<br/>
         Reserve your room with 30% deposit`;
     }
   }
