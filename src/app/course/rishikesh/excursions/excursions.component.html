@@ -1,6 +1,6 @@
 <!-- about.component.html -->
 
-<section class="excursions-rishikesh-section py-5" *ngIf="noContent">
+<section class="excursions-rishikesh-section py-5" [class.mysore-200-excursions]="slug == routeEnum.mysore200 || slug == '200-hours-yoga-teacher-training-in-mysore'" *ngIf="noContent">
   <div class="row text-center">
     <div class="col-md-12">
       <div>
@@ -12,13 +12,18 @@
         />
       </div>
       <h2>
-        Excursions for <span>{{ exsData?.title }}</span>
+        @if(slug == routeEnum.mysore200) {
+          Excursions During Your 
+        } @else {
+          Excursions for 
+        }
+        <span>{{ exsData?.title }}</span>
       </h2>
       <small>{{ exsData?.desc }}</small>
     </div>
   </div>
-  <div class="row">
-    <div class="col-md-6 image">
+  <div class="row" [class.excursion-row]="slug == routeEnum.mysore200">
+    <div class="col-md-6 image" [class.excursion-image-col]="slug == routeEnum.mysore200">
       <div class="imageback">
         <img
           loading="lazy"
@@ -28,31 +33,23 @@
         />
       </div>
     </div>
-    <div class="col-md-6 d-flex align-items-center">
-      <div>
+    <div class="col-md-6 d-flex align-items-center" [class.excursion-text-col]="slug == routeEnum.mysore200">
+      <div class="excursion-content" [class.ps-lg-4]="slug == routeEnum.mysore200">
         <h3>
           <span>{{ exsData?.row1?.title }}</span>
         </h3>
-        <p>
-          {{ exsData?.row1?.desc }}
-        </p>
-        <!-- <div class="namaste">Namaste!</div> -->
-        <!-- <div class=""><a href="#" class="button">Enroll In The Course </a></div> -->
+        <p [innerHTML]="exsData?.row1?.desc"></p>
       </div>
     </div>
   </div>
-  <div class="row mb-5">
-    <div class="col-md-6 d-flex align-items-center">
-      <div>
+  <div class="row mb-5" [class.excursion-row]="slug == routeEnum.mysore200">
+    <div class="col-md-6 d-flex align-items-center" [class.excursion-text-col]="slug == routeEnum.mysore200">
+      <div class="excursion-content" [class.pe-lg-4]="slug == routeEnum.mysore200">
         <h3>{{ exsData?.row2?.title }}</h3>
-        <p>
-          {{ exsData?.row2?.desc }}
-        </p>
-        <!-- <div class="namaste">Namaste!</div> -->
-        <!-- <div class=""><a href="#" class="button">Enroll In The Course </a></div> -->
+        <p [innerHTML]="exsData?.row2?.desc"></p>
       </div>
     </div>
-    <div class="col-md-6 image">
+    <div class="col-md-6 image" [class.excursion-image-col]="slug == routeEnum.mysore200">
       <div class="imageback">
         <img
           loading="lazy"
@@ -63,8 +60,8 @@
       </div>
     </div>
   </div>
-  <div class="row">
-    <div class="col-md-6 image">
+  <div class="row" [class.excursion-row]="slug == routeEnum.mysore200">
+    <div class="col-md-6 image" [class.excursion-image-col]="slug == routeEnum.mysore200">
       <div class="imageback">
         <img
           loading="lazy"
@@ -74,16 +71,12 @@
         />
       </div>
     </div>
-    <div class="col-md-6 d-flex align-items-center">
-      <div>
+    <div class="col-md-6 d-flex align-items-center" [class.excursion-text-col]="slug == routeEnum.mysore200">
+      <div class="excursion-content" [class.ps-lg-4]="slug == routeEnum.mysore200">
         <h3>
           <span>{{ exsData?.row3?.title }}</span>
         </h3>
-        <p>
-          {{ exsData?.row3?.desc }}
-        </p>
-        <!-- <div class="namaste">Namaste!</div> -->
-        <!-- <div class=""><a href="#" class="button">Enroll In The Course </a></div> -->
+        <p [innerHTML]="exsData?.row3?.desc"></p>
       </div>
     </div>
   </div>

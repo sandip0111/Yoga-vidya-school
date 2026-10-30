@@ -90,21 +90,21 @@ export class ExcursionsComponent implements OnInit {
       this.noContent = true;
       this.exsData = {
         title: '200 Hour Yoga Teacher Training in Mysore',
-        desc: 'Experience the beauty of Mysore with guided excursions  and enhance your yoga journey with these enriching cultural and natural explorations',
+        desc: 'Discover the spiritual heritage, ancient architecture, and natural beauty of Mysore through enriching excursions during your yoga journey.',
         row1: {
-          img: this.s3Bucket.Kunjapuri,
-          title: 'Kunjapuri Temple',
-          desc: 'Kunjapuri Temple visit is a spiritual tour with beautiful sunrise in the Himalayas. One of the highest points near Mysore, this temple is an energetic shakti peeth among 52 peeths of goddesss shakti. After trekking to the top, the entry gate has stairs that almost feels as if staircase of the heavens. A visit to Kunjapuri is one of the top attractions around Mysore which is worth the experience – the most stunning sunrise, the panoramic views of the Himalayan range, the local villages and the colorful shops.',
+          img: this.s3Bucket.chamundeswari,
+          title: 'Chamundeshwari Temple – The Sacred Hill of Mysore',
+          desc: 'Located atop the beautiful Chamundi Hills, approximately 13 km from Mysore, the ancient Chamundeshwari Temple is dedicated to Goddess Chamundeshwari, a powerful form of Goddess Durga. Revered as the guardian deity of Mysore and the royal family, the temple holds deep spiritual and cultural significance.<br/>According to Hindu mythology, this is the sacred hill where Goddess Chamundeshwari defeated the demon Mahishasura. The temple offers an opportunity to experience traditional Indian devotion, beautiful Dravidian architecture, and breathtaking panoramic views of Mysore city.<br/>A visit here allows you to connect with the spiritual heritage and devotional traditions of Karnataka.',
         },
         row2: {
-          img: this.s3Bucket.gangaArti,
-          title: 'World Famous Evening Ganga Aarti at Parmarth Niketans',
-          desc: '‘Aarti’ is a prayer or one’s expression of devoted love towards God. It is an act of singing and chanting of mantras with meditative awareness and a deep sense of adoration. So in the Ganga Aarti ceremony, we express our devotion and love for mother Ganges. We visit Parmarth Ashram where this spiritual ceremony is performed on the Ganges with mantras, diyas and the beating drums. You can sit quietly or can sing the bhajans, chant mantras and swing in ecstasy as yogis do the Bhakti Yoga.',
+          img: this.s3Bucket.somnathpura,
+          title: 'Somanathapura Temple – A Masterpiece of Hoysala Architecture',
+          desc: 'Travel back in time with a visit to the magnificent Chennakeshava Temple at Somanathapura, located approximately 35 km from Mysore. Built in 1268 CE during the Hoysala dynasty, this temple is one of the finest examples of India’s ancient temple architecture.<br/>Dedicated to Lord Vishnu, the temple is renowned for its intricate stone carvings, beautifully sculpted pillars, geometric designs, and extraordinary architectural details.<br/>Every wall tells a story through sculptures depicting deities, mythological narratives, and scenes from ancient Indian traditions. This excursion offers a wonderful opportunity to explore India’s artistic heritage, ancient craftsmanship, and the cultural roots of its spiritual traditions.',
         },
         row3: {
-          img: this.s3Bucket.maunicave,
-          title: 'Mauni Baba Cave',
-          desc: 'A mysterious cave on the way to Neelkanth Mahadev temple. Surrounded by lush green Himalayan forest, this natural cave is a home of Himalayan ascetic sage who is also known as Jatadhari Baba. With a richness of meditative energy, this place has an interesting story about how the Guruji came here living the city life. Students can meditate in the small dome shaped cave and can also interact with the monk during their visit.',
+          img: this.s3Bucket.karanjilake,
+          title: 'Karanji Lake – A Peaceful Escape into Nature',
+          desc: 'Experience the peaceful side of Mysore with a visit to Karanji Lake, a beautiful natural retreat surrounded by greenery and diverse birdlife.<br/>Away from the city’s busy streets, this tranquil destination offers a refreshing opportunity to connect with nature. Enjoy a relaxing walk along the lakeside, observe different species of birds, and experience the beauty of the surrounding landscape.<br/>The lake is also home to a nature park and butterfly park, making it a wonderful place to slow down, relax, and appreciate the natural environment.<br/>After days of dedicated yoga practice and study, this excursion offers a refreshing balance of relaxation, nature, and mindful exploration.',
         },
       };
     }
