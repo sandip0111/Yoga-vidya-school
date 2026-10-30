@@ -4,7 +4,7 @@
   [bannerSubtitle]="bannerSubtitle"
 ></app-banner>
 <section class="about-mysore-section py-5">
-  <div class="row mb-3 align-items-center">
+  <div class="row mb-3 align-items-stretch about-mysore-row">
     <div class="col-md-6 aboutImage">
       <div class="imageback">
         <img
@@ -15,7 +15,7 @@
         />
       </div>
     </div>
-    <div class="col-md-6 d-flex align-items-center">
+    <div class="col-md-6">
       <div class="about-content ps-lg-4">
         <h1>Yoga Teacher Training in Mysore, India</h1>
         <h3>Study Yoga Where a Great Modern Yoga Tradition Took Shape</h3>
@@ -236,8 +236,8 @@
       Next Batches Starts: October the 3rd
     </h4>
   </div>
-  <div class="row align-items-center mainContent">
-    <div class="col-md-6 contentrishi">
+  <div class="row align-items-center mainContent training-path-row">
+    <div class="col-md-6 contentrishi training-path-text text-left-col">
       <h4 style="color: #f47019">📘 100-Hour Yoga Teacher Training</h4>
       <p>
         <b>Perfect for:</b> Beginners or those deepening their personal practice
@@ -257,25 +257,29 @@
         See more details
       </button>
     </div>
-    <div class="col-md-6">
-      <img
-        loading="lazy"
-        class="img-fluid imgRishi100"
-        alt="mysore100Logo"
-        [src]="s3Bucket.mysore100Logo"
-      />
+    <div class="col-md-6 training-path-image">
+      <div class="imageback">
+        <img
+          loading="lazy"
+          class="img-fluid"
+          alt="mysore100Logo"
+          [src]="s3Bucket.mysore100Logo"
+        />
+      </div>
     </div>
   </div>
-  <div class="row align-items-center mainContent cl-reverse">
-    <div class="col-md-6">
-      <img
-        loading="lazy"
-        class="img-fluid imgRishi100"
-        alt="mysore200Logo"
-        [src]="s3Bucket.mysore200Logo"
-      />
+  <div class="row align-items-center mainContent cl-reverse training-path-row">
+    <div class="col-md-6 training-path-image">
+      <div class="imageback">
+        <img
+          loading="lazy"
+          class="img-fluid"
+          alt="mysore200Logo"
+          [src]="s3Bucket.mysore200Logo"
+        />
+      </div>
     </div>
-    <div class="col-md-6 contentrishi">
+    <div class="col-md-6 contentrishi training-path-text text-right-col">
       <h4 style="color: #f47019">📗 200-Hour Yoga Teacher Training</h4>
       <p><b>Perfect for:</b> Aspiring teachers or serious practitioners</p>
       <ul class="responsiveList">
