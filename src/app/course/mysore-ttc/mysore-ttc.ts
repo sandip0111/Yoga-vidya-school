@@ -34,6 +34,15 @@ export class MysoreTtc {
     private router: Router,
     private pixelTracking: PixelTrackingService,
   ) {}
+    scrollToTrainingPath(event?: Event) {
+    if (event) {
+      event.preventDefault();
+    }
+    const el = document.getElementById('training-paths');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
   goToLink(link: string) {
     this.trackCourseSelection(link);
     this.router.navigate([link]);
