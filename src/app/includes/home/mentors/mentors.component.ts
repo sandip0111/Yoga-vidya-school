@@ -28,7 +28,7 @@ export class MentorsComponent implements OnInit {
     protected sanitizer: DomSanitizer,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private _pixelTracking: PixelTrackingService
+    private _pixelTracking: PixelTrackingService,
   ) {
     this.slug = this.activatedRoute.snapshot.routeConfig?.path;
 
@@ -204,9 +204,7 @@ export class MentorsComponent implements OnInit {
     } else if (
       this.slug == this.routeList.rishikesh100 ||
       this.slug == this.routeList.rishkesh200 ||
-      this.slug == this.routeList.rishikesh300 ||
-      this.slug == this.routeList.mysore100 ||
-      this.slug == this.routeList.mysore200
+      this.slug == this.routeList.rishikesh300
     ) {
       this.mentors = [
         {
@@ -232,6 +230,24 @@ export class MentorsComponent implements OnInit {
           picture: 'Taniya.jpg',
           intro: 'Hatha/ Yoga Therapy',
           slug: 'taniya',
+        },
+      ];
+    } else if (
+      this.slug == this.routeList.mysore100 ||
+      this.slug == this.routeList.mysore200
+    ) {
+      this.mentors = [
+        {
+          name: 'Swami Atmatattwananda Sarawati',
+          picture: 'Swamiji.jpg',
+          intro: 'Yoga Philosophy',
+          slug: 'swami-atmatattwananda-saraswati',
+        },
+        {
+          name: 'Acharya Prashant Jakhmola',
+          picture: 'Prashant.jpg',
+          intro: 'Pranayama, Asanas ',
+          slug: 'acharya-prashant-jakhmola',
         },
       ];
     }
