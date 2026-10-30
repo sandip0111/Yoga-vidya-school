@@ -1,76 +1,83 @@
 .about-section {
   background: #f8eed8;
 
-  h1 {
-    font-size: 2.2rem;
-    font-weight: 700;
-    color: #1e2129;
-    margin-bottom: 18px;
-    line-height: 1.3;
+  .about-content {
+    h1 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: #1e2129;
+      margin-top: 0;
+      margin-bottom: 18px;
+      line-height: 1.3;
+    }
+
+    p {
+      font-size: 1.02rem;
+      line-height: 1.7;
+      color: #3a3a3a;
+      margin-bottom: 14px;
+    }
+
+    p:last-child {
+      margin-bottom: 0;
+    }
   }
 
-  p {
-    font-size: 1.02rem;
-    line-height: 1.7;
-    color: #3a3a3a;
-    margin-bottom: 14px;
-  }
-
-  p:last-child {
-    margin-bottom: 0;
+  .aboutImage {
+    display: flex;
+    flex-direction: column;
   }
 
   .imageback {
     width: 100%;
+    height: 100%;
     border-radius: 20px;
     position: relative;
     overflow: hidden;
-    min-height: 480px;
-    height: 100%;
     -webkit-box-shadow: 6px 6px 0px 0px var(--tw-primary-light);
     -moz-box-shadow: 6px 6px 0px 0px var(--tw-primary-light);
     box-shadow: 6px 6px 0px 0px var(--tw-primary-light);
 
     & img {
+      position: absolute;
+      top: 0;
+      left: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
-      min-height: 480px;
+      object-position: center top;
       display: block;
     }
   }
 
   @media screen and (max-width: 991px) {
-    h1 {
+    .about-content h1 {
       font-size: 1.85rem;
+      margin-bottom: 14px;
     }
 
-    p {
+    .about-content p {
       font-size: 0.98rem;
       margin-bottom: 12px;
-    }
-
-    .imageback,
-    .imageback img {
-      min-height: 380px;
     }
   }
 
   @media screen and (max-width: 767px) {
-    h1 {
+    .about-content h1 {
       font-size: 1.6rem;
     }
 
-    .imageback {
-      min-height: 240px;
-      max-height: 340px;
-      height: auto;
+    .aboutImage {
       margin-bottom: 24px;
     }
 
-    .imageback img {
-      min-height: 240px;
-      max-height: 340px;
+    .imageback {
+      height: 320px;
+
+      & img {
+        position: relative;
+        height: 100%;
+      }
     }
 
     .about-content {
