@@ -136,12 +136,17 @@ export class PricingComponent implements OnInit {
         }
         break;
       case routeEnum.mysore100:
-        this.mainHeading = 'VERY EARLY BIRD - Until October 31st';
+        this.mainHeading = 'EARLY BIRD - until March 30th - limited slots';
         this.subHeading =
           'The course fee includes accommodation in a shared room; a private room is available with an additional cost.';
         break;
       case routeEnum.mysore200:
-        this.mainHeading = 'VERY EARLY BIRD - Until October 31st';
+        this.mainHeading = 'EARLY BIRD - until March 30th - limited slots';
+        this.subHeading =
+          'The course fee includes accommodation in a shared room; a private room is available with an additional cost.';
+        break;
+      case routeEnum.mysoreTTC:
+        this.mainHeading = 'EARLY BIRD - until March 30th - limited slots';
         this.subHeading =
           'The course fee includes accommodation in a shared room; a private room is available with an additional cost.';
         break;
