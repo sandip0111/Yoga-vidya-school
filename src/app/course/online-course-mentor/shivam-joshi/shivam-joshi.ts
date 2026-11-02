@@ -22,7 +22,7 @@ export class ShivamJoshi implements OnInit {
     name: 'Shivam Joshi',
     title: 'Hatha Yoga with Props',
     date: 'From Monday to Thursday',
-    time: '06:00 PM to 07:00 PM IST',
+    time: '07:00 PM to 08:00 PM IST',
     startDate: 'November 2nd',
     price: [
       { currency: 'INR', amount: 2499 },
