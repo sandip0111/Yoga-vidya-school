@@ -98,7 +98,7 @@
                         !is30PercentBooking
                       "
                     >
-                      @if (isSpecialDiscount) {
+                      @if (isSpecialDiscount || isPranicPrevStudentPricing) {
                         <div class="price-display">
                           <span class="h4 m-0" *ngIf="actualAmount">
                             <strong class="old-price">
@@ -158,6 +158,14 @@
                       <span class="price-subtitle"
                         >Full Price:
                         <b class="highlight-text">$899 / ₹82,000</b></span
+                      >
+                    </div>
+                  }
+                  @if (isPranicPrevStudentPricing) {
+                    <div class="price-subtitle-row mt-2">
+                      <span class="price-subtitle"
+                        >Previous Student Price (50% off):
+                        <b class="highlight-text">$72 / ₹4,999</b></span
                       >
                     </div>
                   }

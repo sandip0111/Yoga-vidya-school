@@ -128,6 +128,18 @@ export class CheckoutComponent {
     INR: 89000,
     USD: 999,
   };
+  // ?plan=previous-student on Pranic Purification I: 50% off for returning students
+  isPranicPrevStudentPlan: boolean = false;
+  private readonly pranicPrevStudentPrices: Record<string, number> = {
+    USD: 72,
+    INR: 4999,
+  };
+  get isPranicPrevStudentPricing(): boolean {
+    return (
+      this.isPranicPrevStudentPlan &&
+      this.slug === routeEnum.pranicPurificationI
+    );
+  }
   private readonly PAYPAL_CURRENCY = PaymentType.usdCur as const;
   get is30PercentBooking(): boolean {
     return +this.checkData.package === 3 || +this.checkData.package === 4;
@@ -225,6 +237,9 @@ export class CheckoutComponent {
       }
       if (params['plan'] === 'discount') {
         this.isDiscountPlan = false;
+      }
+      if (params['plan'] === 'previous-student') {
+        this.isPranicPrevStudentPlan = true;
       }
     });
     this.paymentId = this._activatedRoute.snapshot.queryParamMap.get('id');
@@ -982,6 +997,13 @@ export class CheckoutComponent {
         if (this.amount) {
           break;
         }
+      }
+    }
+    if (this.isPranicPrevStudentPricing) {
+      const prevStudentPrice = this.pranicPrevStudentPrices[currency];
+      if (prevStudentPrice) {
+        this.actualAmount = this.amount;
+        this.amount = prevStudentPrice;
       }
     }
   }
