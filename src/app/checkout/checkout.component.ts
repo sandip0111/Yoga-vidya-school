@@ -2285,7 +2285,7 @@ export class CheckoutComponent {
               course: JSON.stringify('200 Hours Yoga TTC'),
             },
             theme: {
-              color: '#3399cc',
+              color: '#f5711a',
             },
           };
           this.spinner.hide();
