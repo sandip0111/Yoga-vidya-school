@@ -83,6 +83,8 @@ export class PaymentProceedComponent implements OnInit {
         this.requestedMentorId = 2;
       } else if (params['teacher'] && params['teacher'].toLowerCase().includes('prashant')) {
         this.requestedMentorId = 1;
+      } else if (params['teacher'] && params['teacher'].toLowerCase().includes('taniya')) {
+        this.requestedMentorId = 3;
       }
     });
     this.paymentForm = this.fb.group({
@@ -143,7 +145,7 @@ export class PaymentProceedComponent implements OnInit {
   getTeachersData(slug: string) {
     this.cartService.getTeachersData(slug).subscribe({
       next: (data) => {
-        this.courseMentor = data.filter((mentor) => mentor.id !== 3);
+        this.courseMentor = data; // data.filter((mentor) => mentor.id !== 3);
         if (this.isSpecial) {
           const mentor: CartItem | undefined = this.courseMentor.find(
             (x) => x.id == 1,
@@ -521,7 +523,7 @@ export class PaymentProceedComponent implements OnInit {
     }
   }
   courseAddedFn(courseMentor: CartItem[]) {
-    this.courses = this.cartService.getItems().filter((c) => c.id !== 3);
+    this.courses = this.cartService.getItems(); //this.cartService.getItems().filter((c) => c.id !== 3);
     this.availableCourses = courseMentor.map((mentor) => {
       const teacherName = mentor?.teacher ? ` ${mentor.teacher}` : '';
       const course: CartItem = {

@@ -536,10 +536,10 @@ export const routes: Routes = [
       },
     },
   },
-  // {
-  //   path: `${routeEnum.online_taniya_page}/:id`,
-  //   component: TaniyaPageComponent,
-  // },
+  {
+    path: `${routeEnum.online_taniya_page}/:id`,
+    component: TaniyaPageComponent,
+  },
   {
     path: 'anuj-online-class/:id',
     component: AnujPageComponent,

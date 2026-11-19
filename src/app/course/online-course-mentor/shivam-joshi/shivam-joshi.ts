@@ -17,19 +17,7 @@ import { routeEnum } from '../../../enum/routes';
 export class ShivamJoshi implements OnInit {
   s3Bucket = s3Bucket;
   slugId: number = 2;
-  mentor: any = {
-    id: 2,
-    name: 'Shivam Joshi',
-    title: 'Hatha Yoga with Props',
-    date: 'From Monday to Thursday',
-    time: '07:00 PM to 08:00 PM IST',
-    startDate: 'November 2nd',
-    price: [
-      { currency: 'INR', amount: 2499 },
-      { currency: 'USD', amount: 55 },
-    ],
-  };
-
+  mentor: any;
   constructor(
     private cartService: CartService,
     private route: ActivatedRoute,
@@ -50,14 +38,7 @@ export class ShivamJoshi implements OnInit {
   getTeachersData(slug: string) {
     this.cartService.getTeachersData(slug).subscribe({
       next: (res: any) => {
-        const found = res.find(
-          (t: any) =>
-            t.id == this.slugId ||
-            (t.name && t.name.toLowerCase().includes('shivam'))
-        );
-        if (found) {
-          this.mentor = found;
-        }
+        this.mentor = res.find((t: any) => t.id == this.slugId);
       },
       error: (error) => {
         console.error('Failed to load teachers:', error);

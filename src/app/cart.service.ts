@@ -35,7 +35,7 @@ export class CartService {
   constructor(
     private eventBus: EventBusService,
     private router: Router,
-    private webapiService: WebapiService
+    private webapiService: WebapiService,
   ) {
     this.loadCart();
   }
@@ -45,13 +45,13 @@ export class CartService {
     return this.webapiService.getCourseById(data).pipe(
       map((response: any) => {
         this.jsonData = response.data[0].teachersData.filter(
-          (t: any) => t.isActive
+          (t: any) => t.isActive,
         );
         return this.jsonData;
       }),
       catchError(() => {
         return of([]);
-      })
+      }),
     );
   }
 
@@ -86,7 +86,7 @@ export class CartService {
     if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
       const savedCart = localStorage.getItem(this.cartKey);
       this.items = (savedCart ? JSON.parse(savedCart) : []).filter(
-        (item: CartItem) => item.id !== 3
+        (item: CartItem) => item.id !== 3,
       );
       this.items.forEach((item) => {
         this.getTeachersData(routeEnum.online).subscribe(
@@ -104,7 +104,7 @@ export class CartService {
           },
           (err) => {
             console.error('Failed to load teacher data for cart item', err);
-          }
+          },
         );
       });
     }
@@ -149,7 +149,7 @@ export class CartService {
   sendEventBus() {
     var totalQuantity = this.items.reduce(
       (total, item) => total + item.quantity,
-      0
+      0,
     );
     this.eventBus.emit('cart-icon', { message: totalQuantity });
   }
@@ -167,36 +167,28 @@ export class CartService {
     var total = 0;
     if (currency == 'USD') {
       total = this.items.reduce((total, item) => {
-        const usd = item?.price?.find((p: any) => p.currency === 'USD') || item?.price?.[1];
+        const usd =
+          item?.price?.find((p: any) => p.currency === 'USD') ||
+          item?.price?.[1];
         return total + (usd ? usd.amount * 1 : 0);
       }, 0);
     } else if (currency == 'INR') {
       total = this.items.reduce((total, item) => {
-        const inr = item?.price?.find((p: any) => p.currency === 'INR') || item?.price?.[0];
+        const inr =
+          item?.price?.find((p: any) => p.currency === 'INR') ||
+          item?.price?.[0];
         return total + (inr ? inr.amount * 1 : 0);
       }, 0);
     }
     return total;
   }
   addToCartMentor(mentor: CartItem): void {
-    if (mentor && mentor.id !== 3) {
-      // course = {
-      //   id: mentor.id,
-      //   name: mentor ? `${mentor?.name} - ${mentor?.teacher}` : '',
-      //   shortDescription: mentor?.description ?? '',
-      //   price: mentor?.price,
-      //   quantity: 1,
-      // };
-      // if (course) {
-      //   this.addItem(mentor);
-      // }
-      mentor.quantity = 1;
-      this.addItem(mentor);
-      this.router.navigate(['/proceed-payment']).then(() => {
-        if (typeof window !== 'undefined') {
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-      });
-    }
+    mentor.quantity = 1;
+    this.addItem(mentor);
+    this.router.navigate(['/proceed-payment']).then(() => {
+      if (typeof window !== 'undefined') {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    });
   }
 }

@@ -37,7 +37,7 @@ export class CourseMentorComponent {
   getTeachersData(slug: string) {
     this.cartService.getTeachersData(slug).subscribe({
       next: (data) => {
-        this.courseMentor = data.filter((mentor) => mentor.id !== 3);
+        this.courseMentor = data;
       },
       error: (error) => {
         console.error('Failed to load teachers:', error);
@@ -104,7 +104,7 @@ export let jsonData = [
       time2: '7:00 PM',
       stamp: 'IST',
     },
-    nextBatch: 'November 2nd',
+    nextBatch: 'December 7th',
     price: {
       priceInIndian: 2499,
       priceInUSD: 55,
