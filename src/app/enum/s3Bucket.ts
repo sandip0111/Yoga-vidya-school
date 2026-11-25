@@ -59,20 +59,20 @@ export const s3Bucket = {
 
   onlineCourseHero: `${environment.imageUrl}online_sadhana_banner.JPG`,
   onlineCourseAbout1:
-    'https://my-s3-images-bucket.s3.amazonaws.com/img/image_1677479957069.JPG',
+    `${environment.imageUrl}image_1677479957069.JPG`,
   courseMentro1: '../../assets/20190630153357_IMG_0087.JPG',
   courseMentor2:
-    'https://my-s3-images-bucket.s3.amazonaws.com/img/image_1695634116777.jpeg',
+    `${environment.imageUrl}image_1695634116777.jpeg`,
   courseMentor3:
-    'https://my-s3-images-bucket.s3.amazonaws.com/img/IMG_20250331_171325_021.jpg',
+    `${environment.imageUrl}IMG_20250331_171325_021.jpg`,
   prashantjiHero: `${environment.imageUrl}Prashant_banner.jpg`,
   prasantAbout1: `${environment.imageUrl}IMG_2415.jpeg`,
   prasantAbout2: `${environment.imageUrl}IMG_3003.jpeg`,
-  anujHero1: 'https://d29rwrqvux6m5p.cloudfront.net/images/DSC00532_1.jpg',
-  anujHero2: 'https://d29rwrqvux6m5p.cloudfront.net/images/IMG_3894.JPG',
+  anujHero1: `${environment.imageUrl}DSC00532_1.jpg`,
+  anujHero2: `${environment.imageUrl}IMG_3894.JPG`,
   taniyaHero: `${environment.imageUrl}Taniya_banner.jpg`,
   taniyaAbout:
-    'https://d29rwrqvux6m5p.cloudfront.net/images/IMG-20250704-WA0010.jpg',
+    `${environment.imageUrl}IMG-20250704-WA0010.jpg`,
   beautyfulLadyPic:
     'https://my-s3-images-bucket.s3.amazonaws.com/img/rishikesh/travelRishikesh.JPG',
 
@@ -103,7 +103,7 @@ export const s3Bucket = {
   twoGirl: 'assets/IMG_1743.JPG.jpeg',
 
   prasantVideo: `${environment.imageUrl}IMG_3010.MOV`,
-  taniyaVideo: 'https://d29rwrqvux6m5p.cloudfront.net/images/Reel+Taniya.MP4',
+  taniyaVideo: `${environment.imageUrl}Taniya.MP4`,
 
   freeWebinnarHero: `${environment.imageUrl}DSC01017.jpg`,
   freeWebinnarDetails: `${environment.imageUrl}DSC07685.JPG`,
