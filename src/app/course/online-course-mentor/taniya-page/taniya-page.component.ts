@@ -9,11 +9,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { PixelTrackingService } from '../../../services/pixel-tracking.service';
 import { Title } from '@angular/platform-browser';
 import { routeEnum } from '../../../enum/routes';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-taniya-page',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './taniya-page.component.html',
   styleUrl: './taniya-page.component.css',
 })
@@ -93,6 +94,19 @@ export class TaniyaPageComponent implements OnInit {
           this.pixelTracking.trackScroll(threshold);
         }
       });
+    });
+  }
+  getSortedPrices(prices: any[]): any[] {
+    if (!prices || !Array.isArray(prices) || prices.length === 0) {
+      return [
+        { currency: 'USD', amount: 55 },
+        { currency: 'INR', amount: 2499 },
+      ];
+    }
+    return [...prices].sort((a, b) => {
+      if (a.currency === 'USD') return -1;
+      if (b.currency === 'USD') return 1;
+      return 0;
     });
   }
 }
