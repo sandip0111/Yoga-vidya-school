@@ -70,7 +70,7 @@ export const s3Bucket = {
   prasantAbout2: `${environment.imageUrl}IMG_3003.jpeg`,
   anujHero1: `${environment.imageUrl}DSC00532_1.jpg`,
   anujHero2: `${environment.imageUrl}IMG_3894.JPG`,
-  taniyaHero: `${environment.imageUrl}Taniya_banner.jpg`,
+  taniyaHero: `${environment.imageUrl}tanilya_banner.JPG`,
   taniyaAbout:
     `${environment.imageUrl}IMG-20250704-WA0010.jpg`,
   beautyfulLadyPic:
